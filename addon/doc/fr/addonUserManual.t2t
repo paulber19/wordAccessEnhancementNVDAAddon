@@ -1,0 +1,426 @@
+ADDON_SUMMARY - Manuel utilisateur
+Auteur: ADDON_AUTHOR_NAME
+
+
+%!includeconf: ../addon_userManual.t2tconf
+%!includeconf: addon_informations.t2tconf
+%!includeconf: addon_keys.t2tconf
+
+
+URL: ADDON_AUTHOR_URL
+
+Téléchargement:
+- [Version stable ADDON_VERSION ADDON_DOWNLOAD_SERVER1]
+- [Versions de développement ADDON_DEV_URL]
+
+
+Compatibilité:
+- version minimum de NVDA supportée: MINIMUM_NVDA_VERSION
+- dernière version de NVDA testée: LAST_TESTED_NVDA_VERSION
+
+
+= Sommaire =[toc]
+%%toc
+
++ Introduction +
+
+++ Fonctionnalités ++
+Cette extension apporte:
+- [un script #HDR1] pour présenter les différents types d'objets à lister (comme les commentaires, les mots mal orthographiés, ...),
+- [un script #HDR2] pour annoncer soit le numéro de ligne, colonne et de page de la position du curseur ou de la sélection, soit la position de la cellule courante du tableau,
+- [le saut des paragraphes vides #HDR3] lors de déplacement de paragraphe en paragraphe,
+- [un script pour insérer un commentaire sans déplacement du focus #HDR5],
+- [un script  pour lire la note de bas de page ou note de fin #HDR9] à la position du curseur,
+- [un script pour lire la modification du texte #HDR10] à la position du curseur,
+- [des scripts complémentaires pour les tableaux #HDR7],
+- [des commandes propres à Microsoft Word pour une navigation rapide dans le document #HDR8],
+- [un script pour se déplacer de phrase en phrase #HDR12],
+- [un script pour afficher des informations sur le document #HDR13],
+- [une amélioration de l'accessibilité du correcteur orthographique de Word 2013 et 2016 #HDR14].
+
+
+
+++ mise à jour ++
+La mise à jour de l'extension se fait, par défaut, automatiquement peu de temps après le démarrage de NVDA (entre 20 et 600 secondes) et au maximum une fois par jour.
+Il est possible de désactiver cette mise à jour en décochant l'option "Rechercher automatiquement les mises à jour"  se trouvant dans les paramètres de l'extension, élément de menu "Mise à jour".
+La version de l'extension peut être:
+- soit une version stable: son numéro de version est du type "1.0" par exemple.
+- soit une version de  développement: son numéro de version est alors du type "1.0-dev1", ou "1.0-rc1", ou "1.0-beta2".
+
+
+Par défaut, une  version stable est mise à jour avec une version stable plus récente (numéro de version supérieur).
+Mais il est possible de mettre à jour la version stable courante avec une version de développement de la prochaine version stable. Il suffit de cocher l'option "Mettre aussi à jour les versions stable vers les versions de développement  " situé dans les paramètres de l'extension, élément de menu "Mise à jour".
+
+Une version de développement  est mise à jour avec une version de développement plus récente ou avec sa version stable.
+
+Le bouton "Rechercher une mise à jour" placé dans les paramètres de l'extension, élément de menu "Mise à jour", permet de rechercher immédiatement une mise à jour.
+
+
+
+++ Compatibilité ++
+Cette extension a était  testé avec  les versions  2016 et 2013 de Microsoft Word.
+
+
++ Script de choix de la liste des objets à afficher+[hdr1]
+Ce script se lance à l'aide du geste de commande "key_choice".
+
+En réponse à cette commande, une boite de dialogue apparaît, présentant:
+
+- une liste pour choisir le type d'objet à lister,
+- une liste pour choisir la partie du document concernée,
+- un bouton pour rechercher et faire afficher les objets,
+- un bouton "Rechercher et copier dans le presse-papier" pour rechercher et copier les objets trouvés dans le presse-papier,
+- un bouton "Fermer
+
+
+Il est possible de quitter cette boite de dialogue à l'aide du bouton "Fermer" ou par un appui sur la touche "Echapp".
+
+La liste propose les types d'objets suivants:
+
+- les  mots mal orthographiés,
+- les erreurs de grammaire,
+- les commentaires,
+- les signets,
+- les modifications du document,
+- les notes de bas de page,
+- les notes de fin de document,
+- les objets graphiques de la couche texte,
+- les objets graphiques de la couche dessin,
+- les liens hypertexte,
+- les champs,
+- les tableaux,
+- les titres du document,
+- les cadres,
+- les sections.
+
+
+Les touches "Flèche haut" et "Flèche bas" permettent de se déplacer dans la liste.
+Avec la touche "Tab" on arrive sur la liste qui présente le choix de la partie du document  où seront recherchés les objets  du type sélectionnés.
+La liste  offre les choix suivant:
+- "position du curseur": l'objet situé à la position du curseur,
+- "Sélection" : les objets  situés dans la sélection (s'il y a une sélection faite),
+- "Document" : les objets situés dans le document,
+- "page": les objets situés dans la page courante,
+- "Début du document au curseur" : les objets situés entre le début du document et la position du curseur,
+- "Du curseur à la fin du document" : les objets situés entre la position du curseur et la fin du document.
+
+
+Par défaut, la préselection est faite sur "document".
+Si une partie du document est sélectionnée avant l'activation du script, le choix "sélection" est présélectionné.
+Sinon, ce choix n'est pas dans la liste de choix.
+
+Le choix fait, la touche "Entrée" dans la liste ou l'appui sur le bouton "Rechercher et afficher" déclenche la collecte des informations pour le type d'objet choisi puis l'affichage de la boite de dialogue présentant la liste des objets collectés.
+La collecte peut durer plusieurs secondes.
+
+Il est possible en utilisant le bouton "Rechercher et copier dans le presse-papier" de lancer la collecte et de copier la liste des objets collectés avec leurs informations dans le presse-papier, éventuellement plus détaillées qu'à l'affichage.
+
+La boite qui présente la liste des objets collectés dépend du type d'objet sélectionné et a la forme générale suivante:
+
+- une liste présentant des informations sous la forme de colonnes,
+- une ou deux zones de texte (en lecture seule),
+- des boutons à activer pour provoquer une action concernant l'objet sélectionné,
+- le bouton "Fermer".
+
+
+Le bouton "Fermer" ou l'appui sur la touche "Echapp" referme cette boite de dialogue.
+
+Dans la liste, et sans la quitter, il est possible :
+
+- soit d'aller à l'endroit dans le document où se trouve l'objet sélectionné (appui sur la touche "Entrée"),
+- soit pour certains objets, de supprimer l'objet sélectionné (appui sur la touche "Suppr") 
+L'appui sur la touche "espace" annonce le texte du premier champ  ou,  si la touche "Control" est enfoncée simultanéement, le texte du second champ .
+
+Les informations communes à tous les objets sont:
+
+- le numéro de l'objet dans la liste,
+- le numéro de page et numéro de ligne où se trouve l'objet dans le document.
+
+
++ Script d'annonce de la position +[hdr2]
+Ce script se lance à l'aide du geste de commande "key_line_page" ou "key_laptop_line_page" en configuration ordinateur portable.
+
+En réponse à cette commande, est annoncée suivant les cas:
+
+- dans le cas d'une sélection, le numéro de ligne, colonne et de page du début et de fin de la sélection,
+- dans le cas où le focus est dans un tableau, le numéro de ligne et de colonne de la cellule courante du tableau,
+- dans les autres cas, le numéro de ligne, colonne  et de page de la position du focus.
+
+
+Dans tous les cas, la position par rapport au bord gauche et du bord supérieur de la page est annoncée.
+
+Le numéro de ligne est relatif à la page et le numéro de colonne par rapport au début de la ligne.
+
+Un double appui du geste de commande affiche cette information à l'écran.
+
+
++ Script d'insertion d'un commentaire+[hdr5]
+Ce script se lance à l'aide du geste de commande "key_insert_comment".
+
+En réponse à cette commande, une boite de dialogue apparaît demandant d'entrer le texte du commentaire.
+Le texte peut être sur plusieurs lignes.
+Le bouton "OK" valide l'entrée.
+Le Bouton "Annuler" provoque l'abandon de l'insertion.
+Si une sélection est présente, le texte commenté est le texte de cette sélection. Sinon c'est le mot sous le focus.
+
++ Script de lecture de la note de bas de page ou de la note de fin +[HDR9]
+Ce script se lance à aide du geste de commande "key_report_footnote_endnote".
+
+Il a pour but de lire la note de bas de page ou la note de fin  à la position du curseur.
+Dans  le cas où il n'y a aucun de ces deux éléments, un message vocal l'annonce.
+
+
++ Script de lecture de la modification de texte +[HDR10]
+Ce script se lance à aide du geste de commande "key_report_revision".
+
+Il a pour but d'annoncer la modification de texte à la position du curseur. 
+Il peut y avoir plusieurs modifications concernant cette position.
+Le type, l'auteur, le texte de la modification sont annoncés.
+Un message vocal signale s'il n'y a aucune modification à cette position.
+
++ Saut  des paragraphes vides +[hdr3]
+Dans un document Word, NVDA fournit la possibilité de se déplacer de paragraphe en paragraphe à l'aide des commandes "key_next_paragraph" ou "key_previous_paragraph".
+Mais Le focus est donné au paragraphe précédent ou suivant  quel que soit son contenu.
+Cette extension offre la possibilité de faire sauter  les paragraphes vides et de donner le focus au premier paragraphe non vide trouvé.
+
+Le geste de commande "key_toggle_skip_empty_paragraph" active ou désactive cette possibilité qui est activé par défaut à l'installation de l'extension.
+
+
+
++ Scripts pour tableau +[hdr7]
+++ Annonce des éléments du tableau ++
+L'extension installe des scripts avec leur geste de commande pour annoncer les éléments composant un tableau ( cellule, ligne, colonne) sans avoir besoin de déplacer le curseur.
+
+Ce sont:
+- annoncer  la cellule sous le focus: "key_report_cell".
+- Annoncer toutes les  cellules de  la ligne courante: "key_report_row".
+- Annoncer toutes les  cellules de  la colonne courante: "key_report_column".
+- Annoncer  la cellule précédente dans la ligne: "key_report_previousInRow".
+- Annoncer  la cellule suivante dans la ligne: "key_report_nextInRow".
+- Annoncer  la cellule précédente dans la colonne: "key_report_previousInColumn".
+- Annoncer  la cellule suivante dans la colonne: "key_report_nextInColumn".
+- Annoncer  la première cellule  de la ligne: "key_report_firstInRow".
+- Annoncer  la dernière cellule  de la ligne: "key_report_lastInRow".
+- Annoncer  la première  cellule de la colonne: "key_report_firstInColumn".
+- Annoncer  la dernière cellule  de la colonne: "key_report_lastInColumn".
+
+
+Suivant l'option "en-têtes de colonne  " de  la catégorie "Mise en forme  des documents" des paramètres de NVDA, le contenu de la cellule est annoncé seul ou avec les titres  de la ligne et de la colonne.
+
+Ces scripts sont présentés dans la catégorie "Éditeur de texte Microsoft Word: complément d'accessiblité" du dialogue "Gestes de commandes" de NVDA.
+++ Annonce de toutes les cellules ++
+Il est possible de faire annoncer toutes les cellules de la ligne ou colonnes lors de l'utilisation des gestes de commandes précédents.
+Le script "activer ou désactiver l'annonce de toutes les cellules" se lance à l'aide du geste de commande "key_sayAll".
+
+Ce script est présenté dans la catégorie "Éditeur de texte Microsoft Word: complément d'accessiblité" du dialogue "Gestes de commandes" de NVDA.
+
+Ainsi,  si l'annonce de toutes les cellules est activée, en tapant:
+- "key_report_previousInRow ou "key_report_nextInRow": les cellules de la colonne précédente ou suivante sont annoncées.
+- "key_report_previousInColumn" ou "key_report_nextInColumn": toutes les cellules de la lignes  précédente ou suivante sont annoncées.
+- "key_report_firstInRow" ou "key_report_lastInRow": toutes les cellules de la première ou dernière  colonne sont annoncées.
+- "key_report_firstInColumn" ou "key_report_lastInColumn": toutes les cellules de la première ou dernière ligne sont annoncées.
+
+
+Pour désactiver l'annonce de toutes les cellules, il suffit de taper à nouveau le geste de commande "key_sayAll".
+
+++ Déplacement dans le tableau ++
+L'extension installe  les scripts suivant pour se déplacer dans un tableau:
+- aller à la cellule précédente  dans la ligne: "key_moveTo_previousInRow.
+- aller à la cellule suivante dans la ligne: "key_moveTo_nextInRow".
+- aller à la cellule précédente dans la colonne: "key_moveTo_previousInColumn".
+- aller à la cellule suivante dans la colonne: "key_moveTo_nextInColumn".
+- aller à la première cellule  de la ligne: "key_moveTo_firstInRow".
+- aller à la dernière cellule  de la ligne: "key_moveTo_lastInRow".
+- aller à la première cellule de la colonne: "key_moveTo_firstInColumn".
+- aller à la dernière cellule de la colonne: "key_moveTo_lastInColumn".
+
+
+Après le déplacement,  est annoncé soit la cellule courante, soit l'ensemble des cellules composant la ligne ou la colonne si l'annonce de toutes les cellules est activée.
+
+L'annonce du contenu de chaque cellule est précédée par l'annonce du titre correspondant si l'option "En-têtes de colonne" (catégorie "Mise en forme des documents" est cochée.
+
+
+L'extension installe  aussi, mais sans geste de commande,  les scripts suivant pour se déplacer dans un tableau et annoncer les cellules de la ligne ou la colonnes :
+- aller à la cellule précédente  dans la ligne et annoncer toutes les cellules de la colonne,
+- aller à la cellule suivante dans la ligne et annoncer toutes les cellules de la colonnes,
+- aller à la cellule précédente dans la colonne et annoncer toutes les cellules de la ligne,
+- aller à la cellule suivante dans la colonne et annoncer toutes les cellules de la ligne,
+- aller à la première cellule  de la ligne et annoncer toutes les cellules de la colonne,
+- aller à la dernière cellule  de la ligne et annoncer toutes les cellules de la colonne,
+- aller à la première cellule de la colonne et annoncer toutes les cellules de la ligne,
+- aller à la dernière cellule de la colonne et annoncer toutes les cellules de la ligne.
+
+En utilisant le dialogue "Gestes de commandes" de NVDA, il est possible de leur définir leur propres gestes de commandes.
+
+Ces scripts sont présentés dans la catégorie "Éditeur de texte Microsoft Word: complément d'accessiblité" du dialogue "Gestes de commandes" de NVDA.
+
+
+
+++ Couche de commande pour tableau ++
+L'extension permet  de modifier les   gestes de commandes  des précédents scripts qui nécessite la combinaison de plusieurs touches  afin d'utiliser uniquement  les touches de direction pour les déplacements.
+
+Pour cela il suffit de taper le geste de commande "key_layerMode" pour activer la couche de commande pour tableau .
+
+Ainsi après avoir activer la couche de commande pour tableau, les gestes de commandes des scripts de déplacement sont remplacés par:
+
+- aller à la cellule précédente  dans la ligne: "key_layer_moveTo_previousInRow.
+- aller à la cellule suivante  dans la ligne: "key_layer_moveTo_nextInRow".
+- aller à la cellule précédente dans la colonne: "key_layer_moveTo_previousInColumn".
+- aller à la cellule suivante dans la colonne: "key_layer_moveTo_nextInColumn".
+- aller à la première cellule  de la ligne: "key_layer_moveTo_firstInRow".
+- aller à la  dernière cellule  de la ligne: "key_layer_moveTo_lastInRow".
+- aller à la première cellule de la colonne: "key_layer_moveTo_firstInColumn".
+- aller à la dernière cellule de la colonne: "key_layer_moveTo_lastInColumn".
+
+
+
+Ces scripts sont alors présentés dans la catégorie "Éditeur de texte Microsoft Word: complément d'accessiblité (couche de commandes pour tableau)" du dialogue "gestes de commandes" de NVDA.
+
+Pour désactiver la couche de commande pour tableau, il suffit de retaper "key_layerMode", ou tout simplement de taber "key_escape".
+
+++ Annonce du titre de la ligne et de la colonne ++
+Le geste de commande "key_report_headers" permet de connaître le titre de la ligne et de la colonne pour la cellule courante.
+
+
++ Commandes pour une Navigation rapide dans le document+[HDR8]
+Pour se déplacer rapidement dans le document, NVDA propose un mode navigation que  l'on active  et désactive à l'aide du geste de commande "NVDA + espace".
+Quand ce mode est activé, il n'est plus possible de taper du texte dans le document.
+Chaque type d'élément est associé à une simple touche du clavier. En pressant cette touche le curseur est placé sur l'élément suivant  de même type. En tapant cette même touche avec majuscule enfoncé, le curseur est positionné sur  l'élément précédent de même type.
+Ces commandes sont communes à d'autres applications comme les navigateurs Internet.
+
+Cette extension ajoute les commandes suivantes spécifique pour  Microsoft Word.
+- "j" : commentaire,
+- "y" : champ,
+- ";" : signet,
+- "!" : note de fin,
+- ":" : note de pied de page,
+- "$" : erreur de grammaire,
+- "<" : modification de texte,
+- ")" : section,
+
+ 
+L'impossibilité de déplacer le curseur est signalé par un  message vocal indiquant qu'il n'y a plus d'élément correspondant à la commande.
+
+Les commandes du mode navigation non pris en charge  sont signalées par le message vocal Non supporté dans ce document" et toutes autres commandes,   par un bip sonore.
+
++ Déplacement de phrase en phrase +[HDR12]
+Les gestes de commandes suivants permettent de déplacer le curseur système de phrase en phrase:
+- "key_next_sentence" : déplacement à la prochaine phrase,
+- "key_previous_sentence" : déplacement à la précédente phrase.
+
+
+Ces scripts sont présentés dans la catégorie "Éditeur de texte Microsoft Word: complément d'accessiblité " du dialogue "gestes de commandes" de NVDA.
+
++ Affichage des informations sur le document +[HDR13]
+Le geste de commande "key_document_infos" permet d'afficher dans une boite de dialogue certaines informations sur le document:
+-  la position actuelle  dans le document comme : le numéro de page, le numéro de ligne, le numéro de section,
+- les propriétés du document comme: le nom du fichier, le nom de l'auteur, d la date de création,
+- les statistiques comme: le nombre de pages, le nombre de lignes, le nombre de mots,
+- les informations sur les sections comme: les pieds de page, les notes de fin, les bordures,
+- les informations sur les tableaux comme: le nombre de lignes et colonnes, les bordures,
+- l'état d'options particulières de Word comme: le suivi des modifications, la vérification de l'orthographe ou de la grammaire au cours de la frappe.
+
+
+Suivant le nombre de fautes d'orthographe ou de grammaire, le  délai d'affichage de la boite de dialogue  peut être relativement long.
+
+Les informations affichées peuvent être copiées dans le presse-papier à l'aide du bouton "Copier dans le presse-papier" de la boite de dialogue.
+Ce script est présenté dans la catégorie "Éditeur de texte Microsoft Word: complément d'accessiblité " du dialogue "gestes de commandes" de NVDA.
+
++ Amélioration de l'accessibilité du correcteur orthographique de Word 2013 et 2016 +[HDR14]
+Quand le focus est positionné dans le document, la touche "f7" (raccourci Word) permet  soit  de lancer le correcteur orthographique, soit d'y retourner s'il est déjà lancé et   la touche "Échapp" permet de revenir dans le document quand le focus est dans le correcteur orthographique.
+
+L'extension donne la possibilité d'utiliser aussi la touche "f7" pour exécuter la même action que la touche "Échapp".
+
+Contrairement à ce que NVDA vocalise, au premier lancement du correcteur,  le focus peut ne pas  se positionner  là où il faudrait c'est à dire à l'intérieur du volet et sur l'un de ses boutons ou listes (Défaut de Word 2013).
+C'est pourquoi l'extension peut vous demander à taper sur la touche "tab" avant toute chose.
+
+Comme ni l'erreur, ni la suggestion ne sont  annoncé par NVDA à l'arrivée du focus dans le correcteur orthographique, l'extension tente d'y palier.
+
+Un script permet de faire annoncer ces informations.
+
+ Le geste de commande "key_spelling_checker_help" lui est affecté.
+
+- avec un  simple appui de ce geste, l'erreur et la suggestion sont annoncées. 
+- avec un double appui  de ce geste, ces informations sont épelées.
+- avec un triple appui de ce geste  , l'aide du correcteur est annoncé.
+
+
+
+Le geste de commande "key_report_CURRENT_SENTENCE" permet de réentendre la phrase concernée par l'erreur.
+
+
+Ces scripts sont présentés dans la catégorie "Éditeur de texte Microsoft Word: complément d'accessiblité " du dialogue "gestes de commandes" de NVDA.
+
+Cette extension permet  aussi l'annonce automatique de la nouvelle erreur et de sa suggestion présentée par le correcteur orthographique suite à l'utilisation d'un des boutons comme "Ignorer", "Modifier" ou des raccourcis Word comme "i", "m".
+
+
++ Historique +
+++ v1.0 (10/10/2019) ++
+Cette extension change de nom  pour éviter toute confusion avec d'autres extensions. Sa version repart à 1.0.
+- Compatibilité avec NVDA 2019.3.
+- modification de gestes de commandes:
+ - remplacement de la touche NVDA par la touche "windows" dans les combinaisons avec la touche "alt".
+ - suppression   des gestes de commandes des scripts de  déplacement avec annonce de toutes les cellules.
+- ajout du script pour activer ou désactiver    l'annonce des cellules de la ligne ou de la colonne lors d'une consultation ou d'un déplacement dans un tableau.
+- ajout de la couche de commande  pour tableau amenant la possibilité d'utiliser    les touches de direction pour se déplacer dans les tableaux.
+- ajout du script pour annoncer la cellule courante.
+- ajout du script "Informations sur le document".
+- amélioration de l'accessibilité du correcteur orthographique de Word 2013 et 2016.
+- suppression de l'annonce du niveau de titre lors d'une modification (prise en charge par NVDA).
+- suppression, en mode navigation,  du déplacement à là faute d'ortographe  par "*" (pris en charge par NVDA: commande "w").
+- ajout de la possiblité d'annoncer le contenu du premier ou second  champ avec la touche "espace" dans la liste  des éléments (voir dialogue "Choix").
+- script Annoncer la position du curseur: affichage de l'information à l'écran  sur double appui du geste.
+- recherche de mise à jour automatique.
+
+
+
+++ v3.1 (10 Avril 2016) ++
+- ajout de l'annonce de la colonne pour la commande clavier "key_line_page "
+
+
+++ v3.0 (10 Mars 2016) ++
+- suppression des scripts de déplacement rapide (doublon avec le mode de navigation de NVDA),
+- suppression des scripts pour annoncer au second appui le titre des lignes ou colonnes (utilisation maintenant de l'option incluse dans  NVDA),
+- compatibilité avec NVDA 2016.1.
+
+
+++ v2.5 (22 Juin 2015) (non diffusée) ++
+- changement de commande clavier: "nvda+control+f6" en "alt+effacement" et nvda + numpad effacement".
+- indication de la position par rapport au bord gauche et supérieur (commande "alt + effacement", "alt + numpad effacement")
+- ajout de la recherche des objets dans la page courante (commande nvda+alt+f5)
+- compatibilité avec le mode navigation de NVDA (changement des raccourcis de navigation)
+
+
+++ v2.4 (11 Juin 2015) ++
+- correction de blocage  apparu depuis NVDA 2015.1
+- ajout du script pour sélectionner le mode de navigation rapide
+
+
+++ v2.3 (14 Décembre 2014) ++
+- ajout commande pour déplacer le focus à la précédente ou prochaine phrase ("alt+ Flèche haut ou bas")
+- correction de documentation et traduction
+- correction manifest.ini
+
+
+++ v2.2 (1 15 Novembre 2014) ++
+- ajout de la navigation rapide
+- séparation en deux catégories des objets graphique (ceux de la couche texte, ceux de la couche dessin)
+- ajout du script "nvda+alt+r" pour lire la modification de texte au curseur,
+- ajout du script "nvda+alt+e" pour lire la note de fin ou de bas de page  au curseur
+
+
+++ v2.1 (1 Octobre 2014) ++
+- ajout du bouton "Rechercher et afficher",
+- ajout des raccourcis pour les boutons des boites de dialogue,
+- Correction de la documentation
+- modification de la couleur de fond des éléments des listes.
+- correction du défaut de sélection sur appui sur bouton "Rechercher et copier dans presse-papier"
+
+
+++ v2.0 (24 Septembre 2014) ++
+- compatibilité avec La version 2014.3
+- ajout des scripts pour tableaux
+- ajout du script d'activation ou désactivation du saut des paragraphes vides
+
+
+++ v1.0 (24 janvier 2014) ++
+- Création de l'extension (anciennement module complémentaire). 

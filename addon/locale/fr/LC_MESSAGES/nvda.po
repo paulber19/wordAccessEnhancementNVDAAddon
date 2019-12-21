@@ -1,0 +1,3915 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wordAccessEnhancement\n"
+"Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
+"POT-Creation-Date: 2019-10-22 10:16+0200\n"
+"PO-Revision-Date: 2019-10-22 10:16+0200\n"
+"Last-Translator: Paul ( french scriptNVDA list)\n"
+"Language-Team: paulber19 <paulber19@laposte.net>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Bookmarks: -1,-1,-1,96,-1,-1,-1,-1,-1,-1\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: appModules/winword/__init__.py:133 appModules/winword/__init__.py:177
+msgid "Table layer mode on"
+msgstr "Couche de commandes pour tableau activée"
+
+#: appModules/winword/__init__.py:147
+msgid " (Table layer mode)"
+msgstr "(Couche de commandes pour tableau)"
+
+#: appModules/winword/__init__.py:179
+msgid "Table layer mode off"
+msgstr "Couche de commandes pour tableau désactivée"
+
+#: appModules/winword/__init__.py:186
+msgid "Toggle table layer mode"
+msgstr "Activer ou  désactiver la couche de commandes pour tableau"
+
+#: appModules/winword/__init__.py:196
+msgid "Report all Cells"
+msgstr "Annoncer toutes les cellules"
+
+#: appModules/winword/__init__.py:199
+msgid "Do not report all cells"
+msgstr "Ne pas annoncer toutes les cellules"
+
+#: appModules/winword/__init__.py:201
+msgid "activate or desactivate the report of all cells of row or column"
+msgstr ""
+"Activer ou désactiver l'annonce de toutes   les cellules composant la ligne "
+"ou la colonne"
+
+#: appModules/winword/__init__.py:218
+msgid "Not in table"
+msgstr "Pas dans un tableau"
+
+#: appModules/winword/__init__.py:312
+msgid "Move to the previous sentence"
+msgstr "Déplacer le focus à la précédente phrase"
+
+#: appModules/winword/__init__.py:316
+msgid "Move to the next sentence"
+msgstr "Déplacer le focus à la prochaine phrase"
+
+#: appModules/winword/__init__.py:330
+msgid ""
+"Move to the previous paragraph( skip empty paragraphs if SkipEmptyParagraph "
+"flag is set to on) "
+msgstr ""
+"Déplacer le focus au précédent paragraphe (en Sautant les paragraphes vides  "
+"suivant l'option configurable de saut des paragraphes vides)"
+
+#: appModules/winword/__init__.py:334
+msgid ""
+"Move to the next paragraph( skip empty paragraphs if SkipEmptyParagraph flag "
+"is set to on) "
+msgstr ""
+"Déplacer le focus au prochain paragraphe (en Sautant les paragraphes vides  "
+"suivant l'option configurable de saut des paragraphes vides)"
+
+#: appModules/winword/__init__.py:346
+msgid "Insert a comment where the System caret is located."
+msgstr "Insérer un commentaire à la position du curseur"
+
+#: appModules/winword/__init__.py:366 appModules/winword/__init__.py:377
+#: appModules/winword/ww_tables.py:313
+msgid "empty"
+msgstr "Vide"
+
+#: appModules/winword/__init__.py:386
+msgid "no endnote or footnote"
+msgstr "Aucune note de fin ou note de bas de page à la position du curseur"
+
+#: appModules/winword/__init__.py:388
+msgid ""
+"Reports the text of the endnote or footnote where the System caret is "
+"located."
+msgstr ""
+"Annoncer le texte de la note de fin ou de bas de page à la position du "
+"curseur"
+
+#: appModules/winword/__init__.py:393
+msgid "Reports the text of the revision where the System caret is located."
+msgstr "Annoncer le texte de la modification à la position du curseur"
+
+#: appModules/winword/__init__.py:400
+msgid "Display a dialog  to get word object informations in a range"
+msgstr ""
+"Afficher le dialogue qui permet d'obtenir les objets Word dans une  plage du "
+"document"
+
+#: appModules/winword/__init__.py:409
+#, python-brace-format
+msgid "at {0} from left edge and {1} from top edge of the page"
+msgstr "à {0} du bord gauche et à {1} du bord supérieur de la page"
+
+#: appModules/winword/__init__.py:415
+#, python-brace-format
+msgid "You are at the row {row}, column {column}  of table"
+msgstr "Vous êtes à la ligne {row}, colonne {column} du tableau"
+
+#: appModules/winword/__init__.py:421
+#, python-brace-format
+msgid "you are at Line {line}, column {column} of page {page}"
+msgstr "Vous êtes à la ligne {line}, colonne {column} de la page {page}"
+
+#: appModules/winword/__init__.py:427
+#, python-brace-format
+msgid "Selection begins at line {line}, column {column} of page {page}"
+msgstr ""
+"La sélection commence à la ligne {line}, colonne {column} de la page {page}"
+
+#: appModules/winword/__init__.py:435
+#, python-brace-format
+msgid "at {0} from left edge and {1} from top edge of the page."
+msgstr "à {0} du bord gauche et à {1} du bord supérieur de la page."
+
+#: appModules/winword/__init__.py:436
+#, python-brace-format
+msgid "It ends at line {line}, column {column} of page {page}"
+msgstr "Elle se termine à la ligne {line}, colonne {column} de la page {page}"
+
+#: appModules/winword/__init__.py:441
+msgid "Location information"
+msgstr "Informations de position"
+
+#: appModules/winword/__init__.py:449
+msgid ""
+"Report the  page number and line number relative to the page. Twice: display "
+"this information"
+msgstr ""
+"Annoncer soit le numéro de ligne et de page de  la position du curseur  ou "
+"de la sélection, soit  le numéro de colonne et de ligne de la cellule "
+"courante du tableau. Deux appuis: afficher cette information"
+
+#: appModules/winword/__init__.py:457 appModules/winword/ww_fields.py:149
+#: appModules/winword/ww_formfields.py:138
+msgid "Empty"
+msgstr "vide"
+
+#: appModules/winword/__init__.py:461
+msgid "No row header"
+msgstr "Aucun titre de ligne"
+
+#: appModules/winword/__init__.py:464 appModules/winword/__init__.py:467
+#, python-format
+msgid "Row header: %s"
+msgstr "Titre de ligne: %s"
+
+#: appModules/winword/__init__.py:471
+msgid "No column header"
+msgstr "Aucun titre de colonne"
+
+#: appModules/winword/__init__.py:474 appModules/winword/__init__.py:477
+#, python-format
+msgid "Column header: %s"
+msgstr "Titre de colonne: %s"
+
+#: appModules/winword/__init__.py:480
+msgid "Table: report current headers"
+msgstr "Tableau: annoncer le titre de la ligne et de la colonne"
+
+#: appModules/winword/__init__.py:487
+msgid "Display document's informations"
+msgstr "Afficher les informations sur le document"
+
+#: appModules/winword/__init__.py:507
+msgid "Table: report current cell"
+msgstr "Tableau: annoncer la cellule courante"
+
+#: appModules/winword/__init__.py:512
+msgid "Table: report all cells of current  row"
+msgstr "Tableau: annoncer les cellules de la ligne courante"
+
+#: appModules/winword/__init__.py:518
+msgid "Table: report all cells  of current column"
+msgstr "Tableau: annoncer les cellules de la colonne courante"
+
+#: appModules/winword/__init__.py:524
+msgid "Table: Report the nextt cell in the column"
+msgstr "Tableau: annoncer la cellule suivante dans la colonne"
+
+#: appModules/winword/__init__.py:530
+msgid "Table: report the previous cell in the column"
+msgstr "Tableau: annoncer la précédente cellule dans la colonne"
+
+#: appModules/winword/__init__.py:536
+msgid "Table: report the next cell in the  row"
+msgstr "Tableau: annoncer la cellule suivante dans la ligne"
+
+#: appModules/winword/__init__.py:542
+msgid "Table: report the previous cell in the row"
+msgstr "Tableau: annoncer la précédente cellule dans la ligne"
+
+#: appModules/winword/__init__.py:548
+msgid "Table: report the first cell of the  column"
+msgstr "Tableau: annoncer la première cellule de la colonne"
+
+#: appModules/winword/__init__.py:554
+msgid "Table: report the last cell of the column"
+msgstr "Tableau: annoncer la dernière cellule de la colonne"
+
+#: appModules/winword/__init__.py:561
+msgid "Table: report the first cell of the  row"
+msgstr "Tableau: annoncer la première cellule de la ligne"
+
+#: appModules/winword/__init__.py:567
+msgid "Table: report the last cell of the row"
+msgstr "Tableau: annoncer la dernière cellule de la ligne"
+
+#: appModules/winword/__init__.py:586
+#, python-brace-format
+msgid "Start of row {0}"
+msgstr "Début de ligne {0}"
+
+#: appModules/winword/__init__.py:588 appModules/winword/__init__.py:593
+#, python-brace-format
+msgid " column {0}"
+msgstr " colonne {0}"
+
+#: appModules/winword/__init__.py:591
+#, python-brace-format
+msgid "End of row {0}"
+msgstr "Fin de ligne {0}"
+
+#: appModules/winword/__init__.py:596
+#, python-brace-format
+msgid "Start of column {0}"
+msgstr "Début de colonne {0}"
+
+#: appModules/winword/__init__.py:598 appModules/winword/__init__.py:603
+#, python-brace-format
+msgid " row {0}"
+msgstr "ligne {0}"
+
+#: appModules/winword/__init__.py:601
+#, python-brace-format
+msgid "End of column {0}"
+msgstr "Fin de colonne {0}"
+
+#: appModules/winword/__init__.py:608 appModules/winword/ww_tables.py:196
+#: appModules/winword/ww_tables.py:221
+#, python-format
+msgid "column %s"
+msgstr "colonne %s"
+
+#: appModules/winword/__init__.py:611 appModules/winword/ww_tables.py:198
+#: appModules/winword/ww_tables.py:209
+#, python-format
+msgid "row %s"
+msgstr "ligne %s"
+
+#: appModules/winword/__init__.py:627
+msgid "Table: move to next row"
+msgstr "Tableau: aller à la  ligne suivante"
+
+#: appModules/winword/__init__.py:633
+msgid "Table: move to previous  row"
+msgstr "Tableau: aller à la ligne précédente"
+
+#: appModules/winword/__init__.py:639
+msgid "Table: move to next column"
+msgstr "Tableau: aller à la  colonne suivante"
+
+#: appModules/winword/__init__.py:645
+msgid "Table: move to  previous column "
+msgstr "Tableau: aller à la  colonne précédente"
+
+#: appModules/winword/__init__.py:651
+msgid "Table: move to the first cell of row"
+msgstr "Tableau: Aller à la première cellule de la ligne"
+
+#: appModules/winword/__init__.py:657
+msgid "Table: move to  the last cell of row"
+msgstr "Tableau: aller à la dernière cellule de la ligne"
+
+#: appModules/winword/__init__.py:663
+msgid "Table: move to the first cell of column"
+msgstr "Tableau: aller à la première cellule de la colonne"
+
+#: appModules/winword/__init__.py:669
+msgid "Table: move to  the last cell of column "
+msgstr "Tableau: aller à la dernière cellule de la colonne"
+
+#: appModules/winword/__init__.py:677
+msgid "Table: move to next row and report all cells of row"
+msgstr "Tableau: aller à la ligne suivante et annoncer toutes ses cellules"
+
+#: appModules/winword/__init__.py:683
+msgid "Table: move to prior row and report all cells of row"
+msgstr "Tableau: aller à la ligne précédente et annoncer toutes sescellules"
+
+#: appModules/winword/__init__.py:689
+msgid "Table: move to next columnand report all cells of column"
+msgstr "Tableau: aller à la colonne suivante et annoncer toutes ses cellules"
+
+#: appModules/winword/__init__.py:695
+msgid "Table: move to  prior column  and report all cells of column"
+msgstr "Tableau: aller à la colonne précédente et annoncer toutes ses cellules"
+
+#: appModules/winword/__init__.py:701
+msgid "Table: move to first cell of column and report all cells of row"
+msgstr ""
+"Tableau: aller à la première cellule de la colonne et annoncer toutes les "
+"cellules de la ligne"
+
+#: appModules/winword/__init__.py:707
+msgid "Table: move to last cell of column and report all cells of row"
+msgstr ""
+"Tableau: aller à la dernière cellule de la colonne et annoncer toutes les "
+"cellules de la ligne"
+
+#: appModules/winword/__init__.py:713
+msgid "Table: move to first cell of the row and report all cells of column"
+msgstr ""
+"Tableau: aller à la première cellule de la ligne et annoncer toutes les "
+"cellules de la colonne"
+
+#: appModules/winword/__init__.py:719
+msgid "Table: mMove to last cell of the row and report all cells of column"
+msgstr ""
+"Tableau: aller à la dernière cellule de la ligne et annoncer toutes les "
+"cellules de la colonne"
+
+#: appModules/winword/__init__.py:894
+msgid "Skip empty paragraphs"
+msgstr "Sauter les paragraphes vides"
+
+#: appModules/winword/__init__.py:897
+msgid "Don't skip empty paragraphs"
+msgstr "Ne pas sauter les paragraphes vides"
+
+#: appModules/winword/__init__.py:899
+msgid "Toggle on or off the option to skip empty paragraphs"
+msgstr ""
+"Basculer l'indicateur qui permet de sauter ou ne pas sauter les paragraphes "
+"vides lors d'un déplacement par paragraphe"
+
+#: appModules/winword/__init__.py:937 appModules/winword/__init__.py:983
+msgid "Hit tab to move focus in the spelling checker pane"
+msgstr ""
+"Taper sur la touche \"Tab\" pour placer correctement le focus dans le volet "
+"du correcteur orthographique"
+
+#: appModules/winword/__init__.py:970
+msgid "Not available for this Word version"
+msgstr "Pas disponible pour cette version de Word"
+
+#: appModules/winword/__init__.py:978
+msgid "You are Not in the spelling checker"
+msgstr "Vous n'êtes pas dans le correcteur orthographique"
+
+#: appModules/winword/__init__.py:994
+msgid ""
+"Report error and suggestion displayed by the spelling checker.Twice:spell "
+"them. Third: say help text"
+msgstr ""
+"Annoncer l'erreur et la suggestion du correcteur orthographique. Deux "
+"appuis: les épeler. Trois appuis: annoncer l'aide du correcteur"
+
+#: appModules/winword/__init__.py:1007
+msgid "Report current  sentence  "
+msgstr "Annoncer la phrase courante"
+
+#: appModules/winword/ww_bookmarks.py:53
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Story type text: {storyTypeText}\n"
+"Associated Ttext:\n"
+"{text}\n"
+msgstr ""
+"Page {page}, ligne {line}\n"
+"type: {storyTypeText}\n"
+"Texte associé:\n"
+"{text}\n"
+
+#: appModules/winword/ww_bookmarks.py:67
+#: appModules/winword/ww_browseMode.py:238
+#: appModules/winword/ww_browseMode.py:388 appModules/winword/ww_choice.py:68
+msgid "Bookmark"
+msgstr "Signet"
+
+#: appModules/winword/ww_bookmarks.py:67 appModules/winword/ww_bookmarks.py:84
+msgid "Bookmarks"
+msgstr "Signets"
+
+#: appModules/winword/ww_bookmarks.py:75
+msgid "No bookmark"
+msgstr "Aucun signet"
+
+#: appModules/winword/ww_bookmarks.py:86 appModules/winword/ww_comments.py:120
+#: appModules/winword/ww_endnotes.py:63 appModules/winword/ww_fields.py:107
+#: appModules/winword/ww_footnotes.py:71 appModules/winword/ww_formfields.py:94
+#: appModules/winword/ww_grammaticalErrors.py:74
+#: appModules/winword/ww_hyperlinks.py:104
+#: appModules/winword/ww_revisions.py:150 appModules/winword/ww_shapes.py:181
+#: appModules/winword/ww_spellingErrors.py:74
+msgid "Number"
+msgstr "Numéro"
+
+#: appModules/winword/ww_bookmarks.py:87 appModules/winword/ww_comments.py:121
+#: appModules/winword/ww_endnotes.py:64 appModules/winword/ww_fields.py:108
+#: appModules/winword/ww_footnotes.py:72 appModules/winword/ww_formfields.py:95
+#: appModules/winword/ww_frames.py:84
+#: appModules/winword/ww_grammaticalErrors.py:75
+#: appModules/winword/ww_headings.py:124
+#: appModules/winword/ww_hyperlinks.py:105
+#: appModules/winword/ww_revisions.py:151 appModules/winword/ww_shapes.py:182
+#: appModules/winword/ww_spellingErrors.py:75
+#: appModules/winword/ww_tables.py:247
+msgid "Location"
+msgstr "Emplacement"
+
+#: appModules/winword/ww_bookmarks.py:88
+#: appModules/winword/ww_hyperlinks.py:106 appModules/winword/ww_shapes.py:183
+msgid "Name"
+msgstr "Nom"
+
+#: appModules/winword/ww_bookmarks.py:89
+msgid "Story type"
+msgstr "type"
+
+#: appModules/winword/ww_bookmarks.py:98 appModules/winword/ww_comments.py:132
+#: appModules/winword/ww_endnotes.py:74 appModules/winword/ww_fields.py:119
+#: appModules/winword/ww_footnotes.py:80
+#: appModules/winword/ww_formfields.py:106 appModules/winword/ww_frames.py:95
+#: appModules/winword/ww_grammaticalErrors.py:84
+#: appModules/winword/ww_headings.py:135
+#: appModules/winword/ww_hyperlinks.py:116
+#: appModules/winword/ww_revisions.py:163 appModules/winword/ww_sections.py:272
+#: appModules/winword/ww_shapes.py:195
+#: appModules/winword/ww_spellingErrors.py:84
+#: appModules/winword/ww_tables.py:259
+msgid "&Go to"
+msgstr "&Aller à"
+
+#: appModules/winword/ww_bookmarks.py:99 appModules/winword/ww_comments.py:133
+#: appModules/winword/ww_endnotes.py:75 appModules/winword/ww_fields.py:120
+#: appModules/winword/ww_footnotes.py:81
+#: appModules/winword/ww_formfields.py:107 appModules/winword/ww_frames.py:96
+#: appModules/winword/ww_hyperlinks.py:117 appModules/winword/ww_shapes.py:196
+#: appModules/winword/ww_tables.py:260
+msgid "&Delete"
+msgstr "&Supprimer"
+
+#: appModules/winword/ww_bookmarks.py:100 appModules/winword/ww_comments.py:134
+#: appModules/winword/ww_fields.py:121 appModules/winword/ww_formfields.py:108
+msgid "Delete &all"
+msgstr "Supprimer &tout"
+
+#: appModules/winword/ww_bookmarks.py:105
+msgid "Bookmark's text"
+msgstr "Texte du signet"
+
+#: appModules/winword/ww_bookmarks.py:113 appModules/winword/ww_comments.py:152
+#: appModules/winword/ww_endnotes.py:87 appModules/winword/ww_fields.py:138
+#: appModules/winword/ww_footnotes.py:94
+#: appModules/winword/ww_formfields.py:126 appModules/winword/ww_frames.py:106
+#: appModules/winword/ww_grammaticalErrors.py:96
+#: appModules/winword/ww_headings.py:145
+#: appModules/winword/ww_hyperlinks.py:130
+#: appModules/winword/ww_revisions.py:219 appModules/winword/ww_sections.py:282
+#: appModules/winword/ww_sections.py:283 appModules/winword/ww_shapes.py:205
+#: appModules/winword/ww_spellingErrors.py:99
+#: appModules/winword/ww_tables.py:270
+#, python-brace-format
+msgid "Page {page}, line {line}"
+msgstr "Page {page}, ligne {line}"
+
+#: appModules/winword/ww_browseMode.py:35
+msgid "Extended browse mode for Microsoft Word"
+msgstr "Mode navigation étendu pour Microsoft Word"
+
+#: appModules/winword/ww_browseMode.py:78
+msgid "moves to the next grammatical error"
+msgstr "Aller à l'erreur de grammaire suivante"
+
+#: appModules/winword/ww_browseMode.py:80
+msgid "no next grammatical error"
+msgstr "Plus d'erreur de grammaire"
+
+#: appModules/winword/ww_browseMode.py:82
+msgid "moves to the previous grammatical error"
+msgstr "Aller à l'erreur de grammaire précédente"
+
+#: appModules/winword/ww_browseMode.py:84
+msgid "no previous grammatical error"
+msgstr "Plus d'erreur de grammaire"
+
+#: appModules/winword/ww_browseMode.py:89
+msgid "moves to the next revision"
+msgstr "Aller à la modification de texte suivante"
+
+#: appModules/winword/ww_browseMode.py:91
+msgid "no next revision"
+msgstr "Plus de modification de texte"
+
+#: appModules/winword/ww_browseMode.py:93
+msgid "moves to the previous revision"
+msgstr "Aller à la modification de texte précédente"
+
+#: appModules/winword/ww_browseMode.py:95
+msgid "no previous revision"
+msgstr "Plus de modification de texte"
+
+#: appModules/winword/ww_browseMode.py:99
+msgid "moves to the next comment"
+msgstr "Aller au commentaire suivant"
+
+#: appModules/winword/ww_browseMode.py:101
+msgid "no next comment"
+msgstr "Plus de commentaire"
+
+#: appModules/winword/ww_browseMode.py:103
+msgid "moves to the previous comment"
+msgstr "Aller au commentaire précédent"
+
+#: appModules/winword/ww_browseMode.py:105
+msgid "no previous comment"
+msgstr "Plus de commentaire"
+
+#: appModules/winword/ww_browseMode.py:109
+msgid "moves to the next field"
+msgstr "Aller au champ suivant"
+
+#: appModules/winword/ww_browseMode.py:111
+msgid "no next field"
+msgstr "Plus de champ"
+
+#: appModules/winword/ww_browseMode.py:113
+msgid "moves to the previous field"
+msgstr "Aller au champ précédent"
+
+#: appModules/winword/ww_browseMode.py:115
+msgid "no previous field"
+msgstr "Plus de champ"
+
+#: appModules/winword/ww_browseMode.py:120
+msgid "moves to the next bookmark"
+msgstr "Aller au signet suivant"
+
+#: appModules/winword/ww_browseMode.py:122
+msgid "no next bookmark"
+msgstr "Plus de signet"
+
+#: appModules/winword/ww_browseMode.py:124
+msgid "moves to the previous bookmark"
+msgstr "Aller au signet précédent"
+
+#: appModules/winword/ww_browseMode.py:126
+msgid "no previous bookmark"
+msgstr "Plus de signet"
+
+#: appModules/winword/ww_browseMode.py:130
+msgid "moves to the next endnote"
+msgstr "Aller à la note de fin suivante"
+
+#: appModules/winword/ww_browseMode.py:132
+msgid "no next endnote"
+msgstr "Plus de note de fin"
+
+#: appModules/winword/ww_browseMode.py:134
+msgid "moves to the previous endnote"
+msgstr "Aller à la note de fin précédente"
+
+#: appModules/winword/ww_browseMode.py:136
+msgid "no previous endnote"
+msgstr "Plus de note de fin"
+
+#: appModules/winword/ww_browseMode.py:139
+msgid "moves to the next footnote"
+msgstr "Aller à la note de bas de page suivante"
+
+#: appModules/winword/ww_browseMode.py:141
+msgid "no next footnote"
+msgstr "Plus de note de bas de page"
+
+#: appModules/winword/ww_browseMode.py:143
+msgid "moves to the previous footnote"
+msgstr "Aller à la note de bas de page précédente"
+
+#: appModules/winword/ww_browseMode.py:145
+msgid "no previous footnote"
+msgstr "Plus de note de bas de page"
+
+#: appModules/winword/ww_browseMode.py:149
+msgid "moves to the next section"
+msgstr "Aller à la section suivante"
+
+#: appModules/winword/ww_browseMode.py:151
+msgid "no next section"
+msgstr "Plus de section"
+
+#: appModules/winword/ww_browseMode.py:153
+msgid "moves to the previous section"
+msgstr "Aller à la section précédente"
+
+#: appModules/winword/ww_browseMode.py:155
+msgid "no previous section"
+msgstr "Plus de section"
+
+#: appModules/winword/ww_browseMode.py:239
+#, python-brace-format
+msgid "{name} text: {text}"
+msgstr "{name} texte: {text}"
+
+#: appModules/winword/ww_browseMode.py:241
+#, python-format
+msgid "Bookmark %s"
+msgstr "Signet %s"
+
+#: appModules/winword/ww_browseMode.py:253
+#, python-brace-format
+msgid "Endnote{index}"
+msgstr "Note de fin {index}"
+
+#: appModules/winword/ww_browseMode.py:258
+#, python-brace-format
+msgid "Endnote {index}"
+msgstr "Note de fin {index}"
+
+#: appModules/winword/ww_browseMode.py:299
+#: appModules/winword/ww_browseMode.py:304
+#, python-brace-format
+msgid "Footnote {index}"
+msgstr "Note de bas de page {index}"
+
+#: appModules/winword/ww_browseMode.py:327
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: appModules/winword/ww_browseMode.py:364
+#, python-format
+msgid "Section %s"
+msgstr "Section %s"
+
+#: appModules/winword/ww_browseMode.py:379 appModules/winword/ww_choice.py:77
+#: appModules/winword/ww_headings.py:77 appModules/winword/ww_headings.py:122
+msgid "Heading"
+msgstr "Titre"
+
+#: appModules/winword/ww_browseMode.py:382 appModules/winword/ww_fields.py:203
+#: appModules/winword/ww_formfields.py:192
+msgid "Link"
+msgstr "lien"
+
+#: appModules/winword/ww_browseMode.py:385
+msgid "Graphic"
+msgstr "Graphique"
+
+#: appModules/winword/ww_browseMode.py:391 appModules/winword/ww_choice.py:66
+#: appModules/winword/ww_comments.py:85 appModules/winword/ww_fields.py:166
+#: appModules/winword/ww_formfields.py:155 appModules/winword/ww_shapes.py:50
+msgid "Comment"
+msgstr "Commentaire"
+
+#: appModules/winword/ww_browseMode.py:394 appModules/winword/ww_choice.py:70
+#: appModules/winword/ww_endnotes.py:47
+msgid "Endnote"
+msgstr "Note de fin"
+
+#: appModules/winword/ww_browseMode.py:397 appModules/winword/ww_choice.py:74
+#: appModules/winword/ww_fields.py:89
+msgid "Field"
+msgstr "Champ"
+
+#: appModules/winword/ww_browseMode.py:400
+msgid "FormField"
+msgstr "Champ de formulaire"
+
+#: appModules/winword/ww_browseMode.py:403 appModules/winword/ww_choice.py:69
+#: appModules/winword/ww_footnotes.py:51
+msgid "Footnote"
+msgstr "Note de bas de page"
+
+#: appModules/winword/ww_browseMode.py:406 appModules/winword/ww_choice.py:67
+#: appModules/winword/ww_revisions.py:113
+msgid "Revision"
+msgstr "Modification du texte"
+
+#: appModules/winword/ww_browseMode.py:409 appModules/winword/ww_choice.py:79
+#: appModules/winword/ww_sections.py:142 appModules/winword/ww_sections.py:261
+msgid "Section"
+msgstr "Section"
+
+#: appModules/winword/ww_browseMode.py:412 appModules/winword/ww_choice.py:64
+#: appModules/winword/ww_spellingErrors.py:46
+msgid "Spelling error"
+msgstr "Mot mal orthographié"
+
+#: appModules/winword/ww_browseMode.py:415 appModules/winword/ww_choice.py:65
+#: appModules/winword/ww_grammaticalErrors.py:47
+msgid "Grammatical error"
+msgstr "Erreur de grammaire"
+
+#: appModules/winword/ww_browseMode.py:561
+#, python-format
+msgid "limited to  %s elements"
+msgstr "limité à %s elements"
+
+#: appModules/winword/ww_browseMode.py:561
+#: appModules/winword/ww_browseMode.py:564
+msgid "One element"
+msgstr "Un élément"
+
+#: appModules/winword/ww_browseMode.py:564
+#, python-format
+msgid "%s elements"
+msgstr "%s éléments"
+
+#: appModules/winword/ww_browseMode.py:567
+msgid "no element"
+msgstr "Aucun élément"
+
+#: appModules/winword/ww_choice.py:71 appModules/winword/ww_shapes.py:153
+msgid "Drawing layer object"
+msgstr "Objet graphique de la couche dessin "
+
+#: appModules/winword/ww_choice.py:72 appModules/winword/ww_shapes.py:164
+msgid "Text layer object"
+msgstr "Objet graphiques de la couche texte"
+
+#: appModules/winword/ww_choice.py:73 appModules/winword/ww_hyperlinks.py:87
+msgid "Hyperlink"
+msgstr "Lien hypertext"
+
+#: appModules/winword/ww_choice.py:75 appModules/winword/ww_formfields.py:76
+msgid "Formfield"
+msgstr "Champ de formulaire"
+
+#: appModules/winword/ww_choice.py:76 appModules/winword/ww_shapes.py:65
+#: appModules/winword/ww_tables.py:230 appModules/winword/ww_tables.py:246
+msgid "Table"
+msgstr "Tableau"
+
+#: appModules/winword/ww_choice.py:78 appModules/winword/ww_frames.py:65
+#: appModules/winword/ww_frames.py:83
+msgid "Frame"
+msgstr "Cadre"
+
+#: appModules/winword/ww_choice.py:84
+msgid "Informations 's collection"
+msgstr "Collecte des informations"
+
+#: appModules/winword/ww_choice.py:91 appModules/winword/ww_document.py:787
+msgid "Please wait"
+msgstr "Veuillez patienter"
+
+#: appModules/winword/ww_choice.py:117
+msgid "&Cancel"
+msgstr "&Annuler"
+
+#: appModules/winword/ww_choice.py:155
+#, python-format
+msgid "%s - choice"
+msgstr "%s - choix"
+
+#: appModules/winword/ww_choice.py:181
+msgid "Object's type:"
+msgstr "Type d'objet:"
+
+#: appModules/winword/ww_choice.py:190
+msgid "Part of document:"
+msgstr "Partie du document"
+
+#: appModules/winword/ww_choice.py:194
+msgid "Cursor's positionFocus"
+msgstr "Position du curseur"
+
+#: appModules/winword/ww_choice.py:195
+msgid "Document"
+msgstr "Document"
+
+#: appModules/winword/ww_choice.py:196 appModules/winword/ww_fields.py:180
+#: appModules/winword/ww_formfields.py:169
+msgid "Page"
+msgstr "page"
+
+#: appModules/winword/ww_choice.py:197
+msgid "Selection"
+msgstr "Sélection"
+
+#: appModules/winword/ww_choice.py:198
+msgid "Focus to end"
+msgstr "Curseur jusqu'à la fin du document"
+
+#: appModules/winword/ww_choice.py:199
+msgid "Start to focus"
+msgstr "Début du document jusqu'au curseur"
+
+#: appModules/winword/ww_choice.py:237
+msgid "Search an&d display"
+msgstr "Rechercher et &afficher"
+
+#: appModules/winword/ww_choice.py:241
+msgid "Search and C&opy to clipboard"
+msgstr ""
+"Rechercher et &Copier \n"
+"dans le presse-papier"
+
+#: appModules/winword/ww_choice.py:245 appModules/winword/ww_collection.py:383
+msgid "&Close"
+msgstr "&Fermer"
+
+#: appModules/winword/ww_collection.py:32
+msgid "28.35"
+msgstr "28.35"
+
+#: appModules/winword/ww_collection.py:73
+#: appModules/winword/ww_collection.py:83
+#, python-format
+msgid "%s at cursor's position"
+msgstr "%s à la position du curseur"
+
+#: appModules/winword/ww_collection.py:74
+#: appModules/winword/ww_collection.py:84
+#, python-format
+msgid "%s in the selection"
+msgstr "%s dans la sélection"
+
+#: appModules/winword/ww_collection.py:75
+#: appModules/winword/ww_collection.py:85
+#, python-format
+msgid "%s in the document"
+msgstr "%s dans le document"
+
+#: appModules/winword/ww_collection.py:76
+#: appModules/winword/ww_collection.py:86
+#, python-format
+msgid "%s in the page"
+msgstr "%s dans la page"
+
+#: appModules/winword/ww_collection.py:77
+#, python-format
+msgid "%s between  start of document and cursor's position"
+msgstr "%s entre le début du document et la position du curseur"
+
+#: appModules/winword/ww_collection.py:78
+#, python-format
+msgid "%s between cursor's position and end of document"
+msgstr "%s entre la position du curseur et la fin du document"
+
+#: appModules/winword/ww_collection.py:87
+#, python-format
+msgid "%s  between document's start  and cursor's position"
+msgstr "%s entre le début du document et la position du curseur"
+
+#: appModules/winword/ww_collection.py:88
+#, python-format
+msgid "%s between cursor's position and document's end"
+msgstr "%s entre la position du curseur et la fin du document"
+
+#: appModules/winword/ww_collection.py:105
+#, python-format
+msgid "%s percent"
+msgstr "%s pourcent"
+
+#: appModules/winword/ww_collection.py:134
+#: appModules/winword/ww_collection.py:164
+msgid "Sorry, There are too  many elements to be treated "
+msgstr "Désolé, il y a beaucoup trop déléments à traiter."
+
+#: appModules/winword/ww_collection.py:135
+msgid "Select smaller part of document"
+msgstr "Sélectionner une plus petite partie du document"
+
+#: appModules/winword/ww_collection.py:205
+msgid "Please wait."
+msgstr "Veuillez patienter"
+
+#: appModules/winword/ww_collection.py:238
+#, python-brace-format
+msgid "{name}'s list has been copied to clipboard"
+msgstr "La liste des {name} a été copiées dans le presse-papier."
+
+#: appModules/winword/ww_collection.py:270
+#, python-brace-format
+msgid "{count} {element}"
+msgstr "{count} {element}"
+
+#: appModules/winword/ww_collection.py:447
+msgid "Are you sure you wish to delete this items?"
+msgstr "Êtes vous sûr  de vouloir supprimer cet élément ?"
+
+#: appModules/winword/ww_collection.py:447
+msgid "Deletion of items"
+msgstr "Suppression d'élément"
+
+#: appModules/winword/ww_collection.py:534
+msgid "Are you sure you wish to delete all items?"
+msgstr "Êtes vous sûr  de vouloir supprimer tous les éléments ?"
+
+#: appModules/winword/ww_collection.py:534
+msgid "Deletion of all items"
+msgstr "Suppression de tous les éléments"
+
+#: appModules/winword/ww_comments.py:35
+msgid "Enter the comment's text"
+msgstr "Tapez le texte du commentaire"
+
+#: appModules/winword/ww_comments.py:35
+msgid "Insert comment"
+msgstr "Insertion de commentaire"
+
+#: appModules/winword/ww_comments.py:70
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Author: {author}\n"
+"Date: {date}\n"
+"Comment's text:\n"
+"{text}\n"
+"Commented text:\n"
+"{commentedText}\n"
+msgstr ""
+"Page {page}, ligne {line}\n"
+"Auteur: {author}\n"
+"Date: {date}\n"
+"Text du commentaire:\n"
+"{text}\n"
+"Texte commenté:\n"
+"{commentedText}\n"
+
+#: appModules/winword/ww_comments.py:85
+msgid "Comments"
+msgstr "Commentaires"
+
+#: appModules/winword/ww_comments.py:92
+msgid "No comment"
+msgstr "Aucun commentaire"
+
+#: appModules/winword/ww_comments.py:118
+msgid "Comments:"
+msgstr "Commentaires:"
+
+#: appModules/winword/ww_comments.py:122 appModules/winword/ww_document.py:715
+#: appModules/winword/ww_fields.py:164 appModules/winword/ww_formfields.py:153
+#: appModules/winword/ww_revisions.py:153
+msgid "Author"
+msgstr "Auteur"
+
+#: appModules/winword/ww_comments.py:123 appModules/winword/ww_fields.py:178
+#: appModules/winword/ww_formfields.py:167
+#: appModules/winword/ww_revisions.py:154
+msgid "Date"
+msgstr "Date"
+
+#: appModules/winword/ww_comments.py:138
+msgid "Comment's text"
+msgstr "Texte du commentaire"
+
+#: appModules/winword/ww_comments.py:142
+msgid "Commented text"
+msgstr "Texte commenté"
+
+#: appModules/winword/ww_configGui.py:40
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:36
+#, python-format
+msgid "%s - settings"
+msgstr "%s - Paramètres"
+
+#: appModules/winword/ww_configGui.py:46
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:43
+msgid "&Skip empty paragraph"
+msgstr "&Sauter les paragraphes vides"
+
+#: appModules/winword/ww_configGui.py:48
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:46
+msgid "&Play sound when paragraph is skipped"
+msgstr "Jouer un son si des paragraphes vides sont sautés"
+
+#: appModules/winword/ww_document.py:29 appModules/winword/ww_document.py:113
+msgid "Page's number on the Left"
+msgstr "Numéro de page à gauche"
+
+#: appModules/winword/ww_document.py:31 appModules/winword/ww_document.py:115
+msgid "Page's number Centered"
+msgstr "Numéro de page centré"
+
+#: appModules/winword/ww_document.py:33 appModules/winword/ww_document.py:117
+msgid "Page's number on the Right"
+msgstr "Numéro de page à droite"
+
+#: appModules/winword/ww_document.py:35 appModules/winword/ww_document.py:119
+msgid "Page number inside"
+msgstr "Numéro de page à l'intérieur"
+
+#: appModules/winword/ww_document.py:37 appModules/winword/ww_document.py:121
+msgid "Page's number Outside"
+msgstr "Numéro de page à l'extérieur"
+
+#: appModules/winword/ww_document.py:163
+#, python-brace-format
+msgid "Column {index}: {wide} wide"
+msgstr "Colonne {index}: largeur {wide}"
+
+#: appModules/winword/ww_document.py:167
+#, python-format
+msgid "with %s spacing after"
+msgstr "suivi d'un espacement de %s"
+
+#: appModules/winword/ww_document.py:178
+msgid "Text columns:"
+msgstr "Colonnes de texte:"
+
+#: appModules/winword/ww_document.py:184
+#, python-format
+msgid "Number of Text columns: %s"
+msgstr "Nombre de colonnes de texte: %s"
+
+#: appModules/winword/ww_document.py:186 appModules/winword/ww_document.py:256
+#: appModules/winword/ww_document.py:303 appModules/winword/ww_document.py:307
+#: appModules/winword/ww_document.py:415 appModules/winword/ww_document.py:747
+#: appModules/winword/ww_document.py:937 appModules/winword/ww_sections.py:48
+#: appModules/winword/ww_sections.py:188
+msgid "yes"
+msgstr "oui"
+
+#: appModules/winword/ww_document.py:186 appModules/winword/ww_document.py:256
+#: appModules/winword/ww_document.py:303 appModules/winword/ww_document.py:307
+#: appModules/winword/ww_document.py:415 appModules/winword/ww_document.py:747
+#: appModules/winword/ww_document.py:937 appModules/winword/ww_sections.py:48
+#: appModules/winword/ww_sections.py:188
+msgid "no"
+msgstr "non"
+
+#: appModules/winword/ww_document.py:188
+#, python-format
+msgid "Line between columns: %s"
+msgstr "Lignes entre colonnes: %s"
+
+#: appModules/winword/ww_document.py:193
+#, python-brace-format
+msgid ""
+"Style: columns' wide = {wide} (evenly spaced),  gap between columns = "
+"{spacing}"
+msgstr ""
+"Style: largeur des colonnes = {wide}, espacement entre les colonnes = "
+"{spacing}"
+
+#: appModules/winword/ww_document.py:197
+msgid "Style:  various column wide"
+msgstr "Style: largeur de colonne  inégale"
+
+#: appModules/winword/ww_document.py:204
+msgid "on the left side"
+msgstr "sur le coté gauche"
+
+#: appModules/winword/ww_document.py:205
+msgid "on the right side"
+msgstr "sur le coté droit"
+
+#: appModules/winword/ww_document.py:206
+msgid "on the top side"
+msgstr "sur le coté haut"
+
+#: appModules/winword/ww_document.py:214
+#, python-brace-format
+msgid "Gutter: {pos}, {size} large"
+msgstr "Reliure: {pos}, {size} de large"
+
+#: appModules/winword/ww_document.py:227
+msgid "Miror margins:"
+msgstr "Marges en miroir:"
+
+#: appModules/winword/ww_document.py:230
+msgid "Margins:"
+msgstr "Marges:"
+
+#: appModules/winword/ww_document.py:235
+#, python-format
+msgid "Inside: %s"
+msgstr "À l'Intérieur: %s"
+
+#: appModules/winword/ww_document.py:237
+#, python-format
+msgid "Outside: %s"
+msgstr "À l'Extérieur: %s"
+
+#: appModules/winword/ww_document.py:240
+#, python-format
+msgid "Left: %s"
+msgstr "À gauche: %s"
+
+#: appModules/winword/ww_document.py:242
+#, python-format
+msgid "Right: %s"
+msgstr "À droite: %s"
+
+#: appModules/winword/ww_document.py:246
+#, python-format
+msgid "Top: %s"
+msgstr "En haut: %s"
+
+#: appModules/winword/ww_document.py:249
+#, python-format
+msgid "Bottom: %s"
+msgstr "En bas: %s"
+
+#: appModules/winword/ww_document.py:254
+#, python-format
+msgid "Orientation: %s"
+msgstr "Orientation: %s"
+
+#: appModules/winword/ww_document.py:258
+#, python-format
+msgid "Print two pages per sheet: %s"
+msgstr "Impression de deux pages par feuille: %s"
+
+#: appModules/winword/ww_document.py:268
+msgid "Landscape"
+msgstr "Paysage"
+
+#: appModules/winword/ww_document.py:269 appModules/winword/ww_sections.py:73
+msgid "Portrait"
+msgstr "portrait"
+
+#: appModules/winword/ww_document.py:277 appModules/winword/ww_sections.py:84
+msgid "top"
+msgstr "haut"
+
+#: appModules/winword/ww_document.py:278
+msgid "centered"
+msgstr "centré"
+
+#: appModules/winword/ww_document.py:279
+msgid "justified"
+msgstr "justifié"
+
+#: appModules/winword/ww_document.py:280 appModules/winword/ww_sections.py:87
+msgid "bottom"
+msgstr "bas"
+
+#: appModules/winword/ww_document.py:288
+msgid "Continuous"
+msgstr "continu"
+
+#: appModules/winword/ww_document.py:289
+msgid "Even pages "
+msgstr "page paire"
+
+#: appModules/winword/ww_document.py:290
+msgid "New column"
+msgstr "nouvelle colonne"
+
+#: appModules/winword/ww_document.py:291
+msgid "New page"
+msgstr "nouvelle page"
+
+#: appModules/winword/ww_document.py:292
+msgid "Odd pages"
+msgstr "page impaire"
+
+#: appModules/winword/ww_document.py:297
+msgid "Disposition:"
+msgstr "Disposition:"
+
+#: appModules/winword/ww_document.py:301
+#, python-format
+msgid "Sectionstart: %s"
+msgstr "Début de section: %s"
+
+#: appModules/winword/ww_document.py:305
+#, python-format
+msgid "Different first page: %s"
+msgstr "Première page différente: %s"
+
+#: appModules/winword/ww_document.py:309
+#, python-format
+msgid "Different Odd and even pages: %s"
+msgstr "Pages paires et impaires diférentes: %s"
+
+#: appModules/winword/ww_document.py:312
+#, python-format
+msgid "Distance between footer and bottom: %s"
+msgstr "Distance entre le pied de page et le bas de la page: %s"
+
+#: appModules/winword/ww_document.py:315
+#, python-format
+msgid "Distance between header and top: %s"
+msgstr "Distance entre l'en-tête et le haut de la page: %s"
+
+#: appModules/winword/ww_document.py:320
+#, python-format
+msgid "Vertical alignment: %s"
+msgstr "Alignement vertical: %s"
+
+#: appModules/winword/ww_document.py:327
+msgid " 10 inches wide, 14 inches long"
+msgstr "25,4 x 35,56 cm (10x14inches)"
+
+#: appModules/winword/ww_document.py:328
+msgid "Legal 11 inches wide, 17 inches long"
+msgstr "27,9 x 43,2 cm (11x17 inches)"
+
+#: appModules/winword/ww_document.py:329
+msgid "A3 dimensions"
+msgstr "A3"
+
+#: appModules/winword/ww_document.py:330
+msgid "A4 dimensions"
+msgstr "A4"
+
+#: appModules/winword/ww_document.py:331
+msgid "Small A4 dimensions"
+msgstr "Petit A4"
+
+#: appModules/winword/ww_document.py:332
+msgid "A5 dimensions"
+msgstr "A5"
+
+#: appModules/winword/ww_document.py:333
+msgid "B4 dimensions"
+msgstr "B4"
+
+#: appModules/winword/ww_document.py:334
+msgid "B5 dimensions"
+msgstr "B5"
+
+#: appModules/winword/ww_document.py:335
+msgid "C sheet dimensions"
+msgstr "Feuille C"
+
+#: appModules/winword/ww_document.py:336
+msgid "Custom paper size"
+msgstr "Taille personnalisée"
+
+#: appModules/winword/ww_document.py:337
+msgid "D sheet dimensions"
+msgstr "Feuille US taille D"
+
+#: appModules/winword/ww_document.py:338
+msgid "Legal envelope, size 10"
+msgstr "Enveloppe US taille 10"
+
+#: appModules/winword/ww_document.py:339
+msgid "Envelope, size 11"
+msgstr "Enveloppe US 11"
+
+#: appModules/winword/ww_document.py:340
+msgid "Envelope, size 12"
+msgstr "Enveloppe US 12"
+
+#: appModules/winword/ww_document.py:341
+msgid "Envelope, size 14"
+msgstr "Enveloppe US 14"
+
+#: appModules/winword/ww_document.py:342
+msgid "Envelope, size 9"
+msgstr "Enveloppe US 9"
+
+#: appModules/winword/ww_document.py:343
+msgid "B4 envelope"
+msgstr "Enveloppe B4"
+
+#: appModules/winword/ww_document.py:344
+msgid "B5 envelope"
+msgstr "Enveloppe B5"
+
+#: appModules/winword/ww_document.py:345
+msgid "B6 envelope"
+msgstr "Enveloppe B6"
+
+#: appModules/winword/ww_document.py:346
+msgid "C3 envelope"
+msgstr "Enveloppe C3"
+
+#: appModules/winword/ww_document.py:347
+msgid "C4 envelope"
+msgstr "Enveloppe C4"
+
+#: appModules/winword/ww_document.py:348
+msgid "C5 envelope"
+msgstr "Enveloppe C5"
+
+#: appModules/winword/ww_document.py:349
+msgid "C6 envelope"
+msgstr "Enveloppe C6"
+
+#: appModules/winword/ww_document.py:350
+msgid "C65 envelope"
+msgstr "Enveloppe C65"
+
+#: appModules/winword/ww_document.py:351
+msgid "DL envelope"
+msgstr "Enveloppe DL"
+
+#: appModules/winword/ww_document.py:352
+#, fuzzy
+msgid "Italian envelope"
+msgstr "Enveloppe B4"
+
+#: appModules/winword/ww_document.py:353
+#, fuzzy
+msgid "Monarch envelope"
+msgstr "Enveloppe B4"
+
+#: appModules/winword/ww_document.py:354
+msgid "Personal envelope"
+msgstr "Enveloppe personnelle"
+
+#: appModules/winword/ww_document.py:355
+msgid "E sheet dimensions"
+msgstr "Feuille US taille E"
+
+#: appModules/winword/ww_document.py:356
+msgid "Executive dimensions"
+msgstr "Exécutif US (18,42 x 26,67 cm)"
+
+#: appModules/winword/ww_document.py:357
+msgid "German legal fanfold dimensions"
+msgstr "Légal plié allemand"
+
+#: appModules/winword/ww_document.py:358
+msgid "German standard fanfold dimensions"
+msgstr "STD plié alemand"
+
+#: appModules/winword/ww_document.py:359
+msgid "United States fanfold dimensions"
+msgstr "Folio US"
+
+#: appModules/winword/ww_document.py:360
+msgid "Folio dimensions"
+msgstr "Folio"
+
+#: appModules/winword/ww_document.py:361
+msgid "Ledger dimensions"
+msgstr "Ledger US (431,8 x 279,4 mm)"
+
+#: appModules/winword/ww_document.py:362
+msgid "Legal dimensions"
+msgstr "Legal US"
+
+#: appModules/winword/ww_document.py:363
+msgid "Letter dimensions"
+msgstr "Lettre"
+
+#: appModules/winword/ww_document.py:364
+msgid "Small letter dimensions"
+msgstr "Petite lettre"
+
+#: appModules/winword/ww_document.py:365
+msgid "Note dimensions"
+msgstr "Note US"
+
+#: appModules/winword/ww_document.py:366
+msgid "Quarto dimensions"
+msgstr "Quarto US"
+
+#: appModules/winword/ww_document.py:367
+msgid "Statement dimensions"
+msgstr "Statement US"
+
+#: appModules/winword/ww_document.py:368
+msgid "Tabloid dimensions"
+msgstr "Tabloïd"
+
+#: appModules/winword/ww_document.py:380
+msgid "Paper:"
+msgstr "Papier:"
+
+#: appModules/winword/ww_document.py:384
+#, python-format
+msgid "Paper size: %s"
+msgstr "Format de la page: %s"
+
+#: appModules/winword/ww_document.py:387
+#, python-brace-format
+msgid "Page's size: {height}height, {width} width"
+msgstr "Dimension de page: hauteur {height}, largeur {width}"
+
+#: appModules/winword/ww_document.py:417
+#, python-format
+msgid "Text modification  only in form fields: %s"
+msgstr ""
+"Modification de textes possible uniquement dans les champs de formulaires:  "
+"%s"
+
+#: appModules/winword/ww_document.py:420
+#, python-brace-format
+msgid ""
+"{indent}Section' margins:\n"
+"{indent}\tLeft: {left}\n"
+"{indent}\tRight: {right}\n"
+"{indent}\tTop: {top}\n"
+"{indent}\tBottom: {bottom}"
+msgstr ""
+"{indent}\tMarges de la section:\n"
+"{indent}\tGauche: {left}\n"
+"{indent}\tDroite: {right}\n"
+"{indent}\tHaut: {top}\n"
+"{indent}\tBas: {bottom}"
+
+#: appModules/winword/ww_document.py:422
+#, python-brace-format
+msgid ""
+"{indent}Section's argins:\n"
+"{indent}\tMirror Margins:\n"
+"{indent}\tinside: {left}\n"
+"{indent}\tOutside: {right}\n"
+"{indent}\ttop: {top}\n"
+"{indent}\tbottom {bottom}"
+msgstr ""
+"{indent}Marges de la section:\n"
+"{indent}\tMarges en vis à vis:\n"
+"{indent}\tIntérieur: {left}\n"
+"{indent}\tExtérieur: {right}\n"
+"{indent}\tHaut: {top}\n"
+"{indent}\tBas: {bottom}"
+
+#: appModules/winword/ww_document.py:427
+#, python-brace-format
+msgid "Section {index} of {count}:"
+msgstr "Section {index} sur {count}:"
+
+#: appModules/winword/ww_document.py:437
+#, python-brace-format
+msgid "First Page Header: {text}, {alignment}"
+msgstr "Entête de première page : {text}, {alignment}"
+
+#: appModules/winword/ww_document.py:445
+#, python-brace-format
+msgid "First Page Footer: {text}, {alignment}"
+msgstr "Pied de première page: {text}, {alignment}"
+
+#: appModules/winword/ww_document.py:455
+#, python-brace-format
+msgid "Even Page Header: {text}, {alignment}"
+msgstr "Entête de page paire: {text}, {alignment}"
+
+#: appModules/winword/ww_document.py:463
+#, python-brace-format
+msgid "Even Page Footer: {text}, {alignment}"
+msgstr "Pied de page paire: {text}, {alignment}"
+
+#: appModules/winword/ww_document.py:471
+#, python-brace-format
+msgid "Page header: {text}, {alignment}"
+msgstr "Entête de page: {text}, {alignment}"
+
+#: appModules/winword/ww_document.py:478
+#, python-brace-format
+msgid "Page Footer: {text}, {alignment}"
+msgstr "Pied de page: {text}, {alignment}"
+
+#: appModules/winword/ww_document.py:499
+msgid "Document's sections:"
+msgstr "Sections du document:"
+
+#: appModules/winword/ww_document.py:552
+msgid "Position in the document:"
+msgstr "Position dans le document:"
+
+#: appModules/winword/ww_document.py:556
+#, python-brace-format
+msgid "In section {section}, page {page}"
+msgstr "Dans la  section {section}, page {page}"
+
+#: appModules/winword/ww_document.py:562 appModules/winword/ww_document.py:923
+msgid "uniform"
+msgstr "uniforme"
+
+#: appModules/winword/ww_document.py:562 appModules/winword/ww_document.py:923
+msgid "non-uniform"
+msgstr "non uniforme"
+
+#: appModules/winword/ww_document.py:564
+#, python-brace-format
+msgid "In a {uniform} table"
+msgstr "Dans un tableau {uniform}"
+
+#: appModules/winword/ww_document.py:569
+#, python-brace-format
+msgid " Cell row {row} , column {col} of table {tableIndex}"
+msgstr "Cellule de la ligne {row} , colonne {col} du tableau {tableIndex}"
+
+#: appModules/winword/ww_document.py:575
+#, python-brace-format
+msgid "In section {section}, text column {textColumn}"
+msgstr "Dans la section {section}, colonne de text {textColumn}"
+
+#: appModules/winword/ww_document.py:579
+#, python-format
+msgid "In section {%s"
+msgstr "Dans la section %s"
+
+#: appModules/winword/ww_document.py:584
+#, python-brace-format
+msgid "On line {line} of the page {page}, column {col}"
+msgstr "Sur la  ligne {line} de la page {page}, colonne {col}"
+
+#: appModules/winword/ww_document.py:616
+msgid "Allow only revisions"
+msgstr "autoriser seulement les modifications de texte"
+
+#: appModules/winword/ww_document.py:617
+msgid "Allow only comments"
+msgstr "autoriser seulement les commentaires"
+
+#: appModules/winword/ww_document.py:618
+msgid "Allow only form fields"
+msgstr "autoriser seulement les champs de formulaire"
+
+#: appModules/winword/ww_document.py:619
+msgid "Read-only"
+msgstr "Lecture seule"
+
+#: appModules/winword/ww_document.py:624
+msgid "No protection"
+msgstr "Aucune protection"
+
+#: appModules/winword/ww_document.py:635
+msgid "Statistics:"
+msgstr "Statistiques:"
+
+#: appModules/winword/ww_document.py:639
+#, python-format
+msgid "Pages: %s"
+msgstr "Pages: %s"
+
+#: appModules/winword/ww_document.py:642
+#, python-format
+msgid "Lines: %s"
+msgstr "Lignes: %s"
+
+#: appModules/winword/ww_document.py:645
+#, python-format
+msgid "Words: %s"
+msgstr "Mots: %s"
+
+#: appModules/winword/ww_document.py:648
+#, python-format
+msgid "Characters: %s"
+msgstr "Caractères: %s"
+
+#: appModules/winword/ww_document.py:651
+#, python-format
+msgid "Paragraphs: %s"
+msgstr "Paragraphes: %s"
+
+#: appModules/winword/ww_document.py:655
+#, python-format
+msgid "Sections: %s"
+msgstr "Sections: %s"
+
+#: appModules/winword/ww_document.py:659
+#, python-format
+msgid "Comments: %s"
+msgstr "Commentaires: %s"
+
+#: appModules/winword/ww_document.py:663
+#, python-format
+msgid "Tables: %s"
+msgstr "Tableaux: %s"
+
+#: appModules/winword/ww_document.py:667
+#, python-format
+msgid "Shape objects: %s"
+msgstr "Objets graphiques de la couche texte: %s"
+
+#: appModules/winword/ww_document.py:671
+#, python-format
+msgid "InLineShape objects: %s"
+msgstr "Objects graphiques de la couche dessin: %s"
+
+#: appModules/winword/ww_document.py:675
+#, python-format
+msgid "Endnotes: %s"
+msgstr "Notes de fin: %s"
+
+#: appModules/winword/ww_document.py:679
+#, python-format
+msgid "Footnotes: %s"
+msgstr "Pieds de page: %s"
+
+#: appModules/winword/ww_document.py:683
+#, python-format
+msgid "Fields: %s"
+msgstr "Champs: %s"
+
+#: appModules/winword/ww_document.py:687
+#, python-format
+msgid "Formfields: %s"
+msgstr "Champs de formulaire: %s"
+
+#: appModules/winword/ww_document.py:691
+#, python-format
+msgid "Frames: %s"
+msgstr "Cadres: %s"
+
+#: appModules/winword/ww_document.py:695
+#, python-format
+msgid "Hyperlinks: %s"
+msgstr "Liens hypertext: %s"
+
+#: appModules/winword/ww_document.py:699
+#, python-format
+msgid "Lists: %s"
+msgstr "Listes: %s"
+
+#: appModules/winword/ww_document.py:703
+#, python-format
+msgid "Bookmarks: %s"
+msgstr "Signets: %s"
+
+#: appModules/winword/ww_document.py:707
+#, python-format
+msgid "Spelling errors: %s"
+msgstr "Erreurs d'orthographe: %s"
+
+#: appModules/winword/ww_document.py:711
+#, python-format
+msgid "Grammatical errors: %s"
+msgstr "Erreurs de grammaire: %s"
+
+#: appModules/winword/ww_document.py:716
+msgid "Creation date"
+msgstr "Date de création"
+
+#: appModules/winword/ww_document.py:717
+msgid "Revision number"
+msgstr "Numéro de révision"
+
+#: appModules/winword/ww_document.py:718 appModules/winword/ww_fields.py:162
+#: appModules/winword/ww_formfields.py:151 appModules/winword/ww_tables.py:248
+msgid "Title"
+msgstr "Titre"
+
+#: appModules/winword/ww_document.py:719 appModules/winword/ww_fields.py:163
+#: appModules/winword/ww_formfields.py:152
+msgid "Subject"
+msgstr "Objet"
+
+#: appModules/winword/ww_document.py:720
+msgid "Compagny"
+msgstr "Compagnie"
+
+#: appModules/winword/ww_document.py:724
+msgid "Document's properties:"
+msgstr "Propriétés du document:"
+
+#: appModules/winword/ww_document.py:726
+#, python-format
+msgid "File name: %s"
+msgstr "Nom du fichier: %s"
+
+#: appModules/winword/ww_document.py:733
+#, python-format
+msgid "Protection: %s"
+msgstr "Protection: %s"
+
+#: appModules/winword/ww_document.py:739
+msgid "Specific options:"
+msgstr "Options particulières:"
+
+#: appModules/winword/ww_document.py:742
+#, python-format
+msgid "Check spelling as you type: %s"
+msgstr "Vérifier l'orthographe au cours de la frappe %s"
+
+#: appModules/winword/ww_document.py:742 appModules/winword/ww_document.py:745
+#: appModules/winword/ww_document.py:752
+msgid "Yes"
+msgstr "Oui"
+
+#: appModules/winword/ww_document.py:742 appModules/winword/ww_document.py:745
+#: appModules/winword/ww_document.py:752
+msgid "No"
+msgstr "Non"
+
+#: appModules/winword/ww_document.py:745
+#, python-format
+msgid "Check grammar as you type: %s"
+msgstr "Vérifier la grammaire au cours de la frappe %s"
+
+#: appModules/winword/ww_document.py:749
+#, python-format
+msgid "Check grammar with spelling: %s"
+msgstr "Vérifier la grammaire avec l'orthographe: %s"
+
+#: appModules/winword/ww_document.py:752
+#, python-format
+msgid "Track revision: %s"
+msgstr "Suivi des modifications: %s"
+
+#: appModules/winword/ww_document.py:771
+msgid "Document's tables:"
+msgstr "Tableaux du document:"
+
+#: appModules/winword/ww_document.py:777
+#, python-brace-format
+msgid "Table {index} of {count}:"
+msgstr "Tableau {index} sur {count}:"
+
+#: appModules/winword/ww_document.py:795
+msgid "Document's informations"
+msgstr "Informations du document"
+
+#: appModules/winword/ww_document.py:800
+msgid "Aqua"
+msgstr "Cyan"
+
+#: appModules/winword/ww_document.py:801
+msgid "Black"
+msgstr "noir"
+
+#: appModules/winword/ww_document.py:802
+msgid "Blue"
+msgstr "bleu"
+
+#: appModules/winword/ww_document.py:803
+msgid "BlueGray"
+msgstr "gris bleu"
+
+#: appModules/winword/ww_document.py:804
+msgid "BrightGreen"
+msgstr "Vert brillant"
+
+#: appModules/winword/ww_document.py:805
+msgid "Brown"
+msgstr "marron"
+
+#: appModules/winword/ww_document.py:806
+msgid "DarkBlue"
+msgstr "bleu foncé"
+
+#: appModules/winword/ww_document.py:807
+msgid "DarkGreen"
+msgstr "vert foncé"
+
+#: appModules/winword/ww_document.py:808
+msgid "DarkRed"
+msgstr "rouge foncé"
+
+#: appModules/winword/ww_document.py:809
+msgid "DarkTeal"
+msgstr "Bleu sarcelle foncé"
+
+#: appModules/winword/ww_document.py:810
+msgid "DarkYellow"
+msgstr "jaune foncé"
+
+#: appModules/winword/ww_document.py:811
+msgid "Gold"
+msgstr "or"
+
+#: appModules/winword/ww_document.py:812
+msgid "Gray05"
+msgstr "gris 05"
+
+#: appModules/winword/ww_document.py:813
+msgid "Gray10"
+msgstr "gris 10"
+
+#: appModules/winword/ww_document.py:814
+msgid "Gray125"
+msgstr "gris 125"
+
+#: appModules/winword/ww_document.py:815
+msgid "Gray15"
+msgstr "gris 15"
+
+#: appModules/winword/ww_document.py:816
+msgid "Gray20"
+msgstr "gris 20"
+
+#: appModules/winword/ww_document.py:817
+msgid "Gray25"
+msgstr "gris 25"
+
+#: appModules/winword/ww_document.py:818
+msgid "Gray30"
+msgstr "gris 30"
+
+#: appModules/winword/ww_document.py:819
+msgid "Gray35"
+msgstr "gris 35"
+
+#: appModules/winword/ww_document.py:820
+msgid "Gray375"
+msgstr "gris 375"
+
+#: appModules/winword/ww_document.py:821
+msgid "Gray40"
+msgstr "gris 40"
+
+#: appModules/winword/ww_document.py:822
+msgid "Gray45"
+msgstr "gris 45"
+
+#: appModules/winword/ww_document.py:823
+msgid "Gray50"
+msgstr "gris 50"
+
+#: appModules/winword/ww_document.py:824
+msgid "Gray55"
+msgstr "gris 55"
+
+#: appModules/winword/ww_document.py:825
+msgid "Gray60"
+msgstr "gris 60"
+
+#: appModules/winword/ww_document.py:826
+msgid "Gray625"
+msgstr "gris 625"
+
+#: appModules/winword/ww_document.py:827
+msgid "Gray65"
+msgstr "gris 65"
+
+#: appModules/winword/ww_document.py:828
+msgid "Gray70"
+msgstr "gris 70"
+
+#: appModules/winword/ww_document.py:829
+msgid "Gray75"
+msgstr "gris 75"
+
+#: appModules/winword/ww_document.py:830
+msgid "Gray80"
+msgstr "gris 80"
+
+#: appModules/winword/ww_document.py:831
+msgid "Gray85"
+msgstr "gris 85"
+
+#: appModules/winword/ww_document.py:832
+msgid "Gray875"
+msgstr "gris 875"
+
+#: appModules/winword/ww_document.py:833
+msgid "Gray90"
+msgstr "gris 90"
+
+#: appModules/winword/ww_document.py:834
+msgid "Gray95"
+msgstr "gris"
+
+#: appModules/winword/ww_document.py:835
+msgid "Green"
+msgstr "vert"
+
+#: appModules/winword/ww_document.py:836
+msgid "Indigo"
+msgstr "indigo"
+
+#: appModules/winword/ww_document.py:837
+msgid "Lavender"
+msgstr "lavande"
+
+#: appModules/winword/ww_document.py:838
+msgid "LightBlue"
+msgstr "bleu clair"
+
+#: appModules/winword/ww_document.py:839
+msgid "LightGreen"
+msgstr "Vert clair"
+
+#: appModules/winword/ww_document.py:840
+msgid "LightOrange"
+msgstr "Orange clair"
+
+#: appModules/winword/ww_document.py:841
+msgid "LightTurquoise"
+msgstr "Turquoise clair"
+
+#: appModules/winword/ww_document.py:842
+msgid "LightYellow"
+msgstr "Jaune clair"
+
+#: appModules/winword/ww_document.py:843
+msgid "Lime"
+msgstr "Citron vert"
+
+#: appModules/winword/ww_document.py:844
+msgid "OliveGreen"
+msgstr "veert olive"
+
+#: appModules/winword/ww_document.py:845
+msgid "Orange"
+msgstr "orange"
+
+#: appModules/winword/ww_document.py:846
+msgid "PaleBlue"
+msgstr "Bleu pâle"
+
+#: appModules/winword/ww_document.py:847
+msgid "Pink"
+msgstr "rose"
+
+#: appModules/winword/ww_document.py:848
+msgid "Plum"
+msgstr "prune"
+
+#: appModules/winword/ww_document.py:849
+msgid "Red"
+msgstr "rouge"
+
+#: appModules/winword/ww_document.py:850
+msgid "Rose"
+msgstr "rose"
+
+#: appModules/winword/ww_document.py:851
+msgid "SeaGreen"
+msgstr "Vert d'eau"
+
+#: appModules/winword/ww_document.py:852
+msgid "SkyBlue"
+msgstr "Bleu ciel"
+
+#: appModules/winword/ww_document.py:853
+msgid "Tan"
+msgstr "Tan"
+
+#: appModules/winword/ww_document.py:854
+#, fuzzy
+msgid "Teal"
+msgstr "Bleu sarcelle foncé"
+
+#: appModules/winword/ww_document.py:855
+msgid "Turquoise"
+msgstr "turquoise"
+
+#: appModules/winword/ww_document.py:856
+msgid "Violet"
+msgstr "violet"
+
+#: appModules/winword/ww_document.py:857
+msgid "White"
+msgstr "blanc"
+
+#: appModules/winword/ww_document.py:858
+msgid "Yellow"
+msgstr "jaune"
+
+#: appModules/winword/ww_document.py:924
+msgid " nested"
+msgstr "imbriqué"
+
+#: appModules/winword/ww_document.py:925
+#, python-brace-format
+msgid "table {nested} {uniform} of {rows} rows, {columns} columns"
+msgstr "Tableau {nested} {uniform} de {rows} lignes, {columns} colonnes"
+
+#: appModules/winword/ww_document.py:927
+#, python-brace-format
+msgid "Localized at {page} page , {line} line"
+msgstr "Situé à la page {page}, ligne {line}"
+
+#: appModules/winword/ww_document.py:931
+#, python-format
+msgid "Title: %s"
+msgstr "Titre: %s"
+
+#: appModules/winword/ww_document.py:935
+#, python-format
+msgid "Description: %s"
+msgstr "Description: %s"
+
+#: appModules/winword/ww_document.py:939
+#, python-format
+msgid "Automatic resize to fit content: %s"
+msgstr "Redimensionnement automatique pour ajuster au contenu: %s"
+
+#: appModules/winword/ww_document.py:942
+#, python-format
+msgid "Top padding: %s"
+msgstr "Remplissage supérieur: %s"
+
+#: appModules/winword/ww_document.py:945
+#, python-format
+msgid "Bottom padding: %s"
+msgstr "Remplissage inférieur: %s"
+
+#: appModules/winword/ww_document.py:948
+#, python-format
+msgid "Spacing between cells: %s"
+msgstr "Espacement entre cellules: %s"
+
+#: appModules/winword/ww_document.py:954
+#, python-format
+msgid "Contains %s tables"
+msgstr "Contient %s tableaux"
+
+#: appModules/winword/ww_document.py:960
+msgid "Bottom"
+msgstr "Bas"
+
+#: appModules/winword/ww_document.py:961
+msgid "Diagonal down"
+msgstr "Diagonale descendante"
+
+#: appModules/winword/ww_document.py:962
+msgid "Diagonal up"
+msgstr "Diagonale montante"
+
+#: appModules/winword/ww_document.py:963
+msgid "Horizontal"
+msgstr "Horizontal"
+
+#: appModules/winword/ww_document.py:964
+msgid "Left"
+msgstr "Gauche"
+
+#: appModules/winword/ww_document.py:965
+msgid "Right"
+msgstr "Droit"
+
+#: appModules/winword/ww_document.py:966
+msgid "Top"
+msgstr "Haut"
+
+#: appModules/winword/ww_document.py:967
+msgid "Vertical"
+msgstr "Vertical"
+
+#: appModules/winword/ww_document.py:992
+msgid "Borders:"
+msgstr "Bordures:"
+
+#: appModules/winword/ww_document.py:1019
+#, python-brace-format
+msgid ""
+"surrounding {color} {lineStyle} with width of {lineWidth} and art style "
+"{artStyle}"
+msgstr ""
+"encadrement {color} {lineStyle} d'une largeur de{lineWidth} et de style "
+"{artStyle}"
+
+#: appModules/winword/ww_document.py:1022
+#, python-brace-format
+msgid "surrounding {color} {lineStyle} with width of {lineWidth}"
+msgstr "encadrement {color} {lineStyle}, d'une largeur de {lineWidth}"
+
+#: appModules/winword/ww_document.py:1044
+#, python-brace-format
+msgid ""
+"{name}= {color} {lineStyle} with width of {lineWidth} and art style "
+"{artStyle}"
+msgstr ""
+"{name}: {color} {lineStyle}, largeur de {lineWidth} et de style {artStyle}"
+
+#: appModules/winword/ww_document.py:1047
+#, python-brace-format
+msgid "{name}= {color} {lineStyle} with width of {lineWidth}"
+msgstr "{name}: {color} {lineStyle}, largeur {lineWidth}"
+
+#: appModules/winword/ww_document.py:1053
+#: appModules/winword/ww_document.py:1075
+msgid "None"
+msgstr "Aucun"
+
+#: appModules/winword/ww_document.py:1064
+msgid "Dash Dot"
+msgstr "Tiret-point"
+
+#: appModules/winword/ww_document.py:1065
+msgid "Dash Dot Dot"
+msgstr "Tiret-point-point"
+
+#: appModules/winword/ww_document.py:1066
+msgid "Dash Dot Stroked"
+msgstr "Trait épais-pointillé (rayure)"
+
+#: appModules/winword/ww_document.py:1067
+msgid "Dash Large Gap"
+msgstr "Tirets espacés"
+
+#: appModules/winword/ww_document.py:1068
+msgid "Dash Small Gap"
+msgstr "Tirets rapprochés"
+
+#: appModules/winword/ww_document.py:1070
+msgid "Double"
+msgstr "traits pleins doubles"
+
+#: appModules/winword/ww_document.py:1071
+msgid "Double Wavy"
+msgstr "Trait ondulé double"
+
+#: appModules/winword/ww_document.py:1072
+msgid "Emboss 3D"
+msgstr "3D relief"
+
+#: appModules/winword/ww_document.py:1073
+msgid "Engrave 3D"
+msgstr "3D empreinte"
+
+#: appModules/winword/ww_document.py:1074
+msgid "Inset"
+msgstr "abaissé"
+
+#: appModules/winword/ww_document.py:1076
+msgid "Outset"
+msgstr "Début"
+
+#: appModules/winword/ww_document.py:1077
+msgid "Single"
+msgstr "trait simple"
+
+#: appModules/winword/ww_document.py:1078
+msgid "Single Wavy"
+msgstr "trait simple ondulé"
+
+#: appModules/winword/ww_document.py:1079
+msgid "Thick Thin Large Gap"
+msgstr "Fin-épais très espacés"
+
+#: appModules/winword/ww_document.py:1080
+msgid "Thick Thin Medium Gap"
+msgstr "Fin-épais moyennement espacés"
+
+#: appModules/winword/ww_document.py:1081
+msgid "Thick Thin Small Gap"
+msgstr "Fin-épais peu espacés"
+
+#: appModules/winword/ww_document.py:1082
+msgid "Thin Thick Large Gap"
+msgstr "Épais-fin très espacés"
+
+#: appModules/winword/ww_document.py:1083
+msgid "Thin Thick Medium Gap"
+msgstr "Épais-fin moyennement espacés"
+
+#: appModules/winword/ww_document.py:1084
+msgid "Thin Thick Small Gap"
+msgstr "Épais-fin, peu espacé"
+
+#: appModules/winword/ww_document.py:1085
+msgid "Thin Thick Thin Large Gap"
+msgstr "Épais-fin très espacé"
+
+#: appModules/winword/ww_document.py:1086
+msgid "Thin Thick Thin Medium Gap"
+msgstr "Épais-fin moyennement espacés"
+
+#: appModules/winword/ww_document.py:1087
+msgid "Thin Thick Thin Small Gap"
+msgstr "Épais-fin peu espacés"
+
+#: appModules/winword/ww_document.py:1088
+msgid "Triple"
+msgstr "Triple ligne continu"
+
+#: appModules/winword/ww_document.py:1094
+msgid "mixed"
+msgstr "Mixte"
+
+#: appModules/winword/ww_document.py:1095
+#, python-format
+msgid "%s line"
+msgstr "%s ligne"
+
+#: appModules/winword/ww_document.py:1099
+msgid "0.25 points"
+msgstr "0.25 points"
+
+#: appModules/winword/ww_document.py:1100
+msgid "0.5 points"
+msgstr "0.5 points"
+
+#: appModules/winword/ww_document.py:1101
+msgid "0.75 points"
+msgstr "0.75 points"
+
+#: appModules/winword/ww_document.py:1102
+msgid "1 point"
+msgstr "1 point"
+
+#: appModules/winword/ww_document.py:1103
+msgid "1.5 points"
+msgstr "1.5 points"
+
+#: appModules/winword/ww_document.py:1104
+msgid "2.25 points"
+msgstr "2.25 points"
+
+#: appModules/winword/ww_document.py:1105
+msgid "3 points"
+msgstr "3 points"
+
+#: appModules/winword/ww_document.py:1106
+msgid "4.5 points"
+msgstr "4.5 points"
+
+#: appModules/winword/ww_document.py:1107
+msgid "6 points"
+msgstr "6 points"
+
+#: appModules/winword/ww_document.py:1108
+msgid "custom width"
+msgstr "Largeur personnalisée"
+
+#: appModules/winword/ww_document.py:1119
+msgid "Apples"
+msgstr "Pommes"
+
+#: appModules/winword/ww_document.py:1120
+msgid "ArchedScallops"
+msgstr "Coquilles Saint-Jacques"
+
+#: appModules/winword/ww_document.py:1121
+msgid "BabyPacifier"
+msgstr "Tétine"
+
+#: appModules/winword/ww_document.py:1122
+msgid "BabyRattle"
+msgstr "Hochet"
+
+#: appModules/winword/ww_document.py:1123
+msgid "Balloons3Colors"
+msgstr "Balon 3 couleurs"
+
+#: appModules/winword/ww_document.py:1124
+msgid "BalloonsHotAir"
+msgstr "Ballons à air chaud"
+
+#: appModules/winword/ww_document.py:1125
+msgid "BasicBlackDashes"
+msgstr "Tirets noirs de base"
+
+#: appModules/winword/ww_document.py:1126
+msgid "BasicBlackDots"
+msgstr "PaysagePoints noirs de base"
+
+#: appModules/winword/ww_document.py:1127
+msgid "BasicBlackSquares"
+msgstr "Carrés noirs de base"
+
+#: appModules/winword/ww_document.py:1128
+msgid "BasicThinLines"
+msgstr "Lignes fines de base"
+
+#: appModules/winword/ww_document.py:1129
+msgid "BasicWhiteDashes"
+msgstr "Tirets blancs de base"
+
+#: appModules/winword/ww_document.py:1130
+msgid "BasicWhiteDots"
+msgstr "Points blancs de base"
+
+#: appModules/winword/ww_document.py:1131
+msgid "BasicWhiteSquares"
+msgstr "Carrés blancs de base"
+
+#: appModules/winword/ww_document.py:1132
+msgid "BasicWideInline"
+msgstr "Lignes épaisses de base"
+
+#: appModules/winword/ww_document.py:1133
+msgid "BasicWideMidline"
+msgstr "Ligne médiane épaisse de base\""
+
+#: appModules/winword/ww_document.py:1134
+msgid "BasicWideOutline"
+msgstr "Ligne de contour épaisse de base"
+
+#: appModules/winword/ww_document.py:1135
+msgid "Bats"
+msgstr "Chauves-souris"
+
+#: appModules/winword/ww_document.py:1136
+msgid "Birds"
+msgstr "Oiseaux"
+
+#: appModules/winword/ww_document.py:1137
+msgid "BirdsFlight"
+msgstr "Vol d'oiseaux"
+
+#: appModules/winword/ww_document.py:1138
+msgid "Cabins"
+msgstr "Cabanes"
+
+#: appModules/winword/ww_document.py:1139
+msgid "CakeSlice"
+msgstr "Part de gâteau"
+
+#: appModules/winword/ww_document.py:1140
+msgid "CandyCorn"
+msgstr "Pop-corn"
+
+#: appModules/winword/ww_document.py:1141
+msgid "CelticKnotwork"
+msgstr "Entrelacs celtique"
+
+#: appModules/winword/ww_document.py:1142
+msgid "CertificateBanner"
+msgstr "Certificat"
+
+#: appModules/winword/ww_document.py:1143
+msgid "ChainLink"
+msgstr "Maillon de chaîne"
+
+#: appModules/winword/ww_document.py:1144
+msgid "ChampagneBottle"
+msgstr "Bouteille de champagne"
+
+#: appModules/winword/ww_document.py:1145
+msgid "CheckedBarBlack"
+msgstr "Barre à carreaux noirs"
+
+#: appModules/winword/ww_document.py:1146
+msgid "CheckedBarColor"
+msgstr "Barre à carreaux couleurs"
+
+#: appModules/winword/ww_document.py:1147
+msgid "Checkered"
+msgstr "Carreaux rouges"
+
+#: appModules/winword/ww_document.py:1148
+msgid "ChristmasTree"
+msgstr "Arbre de noël"
+
+#: appModules/winword/ww_document.py:1149
+msgid "CirclesLines"
+msgstr "Cercles lignes"
+
+#: appModules/winword/ww_document.py:1150
+msgid "CirclesRectangles"
+msgstr "Cercles rectangles"
+
+#: appModules/winword/ww_document.py:1151
+msgid "ClassicalWave"
+msgstr "Vague classique"
+
+#: appModules/winword/ww_document.py:1152
+msgid "Clocks"
+msgstr "Horloges"
+
+#: appModules/winword/ww_document.py:1153
+msgid "Compass"
+msgstr "Compas"
+
+#: appModules/winword/ww_document.py:1154
+msgid "Confetti"
+msgstr "Confettis"
+
+#: appModules/winword/ww_document.py:1155
+msgid "ConfettiGrays"
+msgstr "Confetti gris"
+
+#: appModules/winword/ww_document.py:1156
+msgid "ConfettiOutline"
+msgstr "Confetti contour"
+
+#: appModules/winword/ww_document.py:1157
+msgid "ConfettiStreamers"
+msgstr "Confetti serpentins"
+
+#: appModules/winword/ww_document.py:1158
+msgid "ConfettiWhite"
+msgstr "Confettis blancs"
+
+#: appModules/winword/ww_document.py:1159
+msgid "CornerTriangles"
+msgstr "Triangles en coin"
+
+#: appModules/winword/ww_document.py:1160
+msgid "CouponCutoutDashes"
+msgstr "Coupon tirets découpés"
+
+#: appModules/winword/ww_document.py:1161
+msgid "CouponCutoutDots"
+msgstr "Coupon points découpés"
+
+#: appModules/winword/ww_document.py:1162
+msgid "CrazyMaze"
+msgstr "Labyrinthe fou"
+
+#: appModules/winword/ww_document.py:1163
+msgid "CreaturesButterfly"
+msgstr "Créatures papillons"
+
+#: appModules/winword/ww_document.py:1164
+msgid "CreaturesFish"
+msgstr "Créatures poissons"
+
+#: appModules/winword/ww_document.py:1165
+msgid "CreaturesInsects"
+msgstr "Créatures insectes"
+
+#: appModules/winword/ww_document.py:1166
+msgid "CreaturesLadyBug"
+msgstr "Créatures coccinelle"
+
+#: appModules/winword/ww_document.py:1167
+msgid "CrossStitch"
+msgstr "Maille croisée"
+
+#: appModules/winword/ww_document.py:1168
+msgid "Cup"
+msgstr "Tasse"
+
+#: appModules/winword/ww_document.py:1169
+msgid "DecoArch"
+msgstr "Arc déco"
+
+#: appModules/winword/ww_document.py:1170
+msgid "DecoArchColor"
+msgstr "Arc déco couleur"
+
+#: appModules/winword/ww_document.py:1171
+msgid "DecoBlocks"
+msgstr "Blocs déco"
+
+#: appModules/winword/ww_document.py:1172
+msgid "DiamondsGray"
+msgstr "Diamants gris"
+
+#: appModules/winword/ww_document.py:1173
+msgid "DoubleD"
+msgstr "Double D"
+
+#: appModules/winword/ww_document.py:1174
+msgid "DoubleDiamonds"
+msgstr "Diamants doubles"
+
+#: appModules/winword/ww_document.py:1175
+msgid "Earth1"
+msgstr "Terre 1"
+
+#: appModules/winword/ww_document.py:1176
+msgid "Earth2"
+msgstr "Terre 2"
+
+#: appModules/winword/ww_document.py:1177
+msgid "EclipsingSquares1"
+msgstr "Carrés éclipsés 1"
+
+#: appModules/winword/ww_document.py:1178
+msgid "EclipsingSquares2"
+msgstr "Carrés éclipsés 2"
+
+#: appModules/winword/ww_document.py:1179
+msgid "EggsBlack"
+msgstr "Oeufs noirs"
+
+#: appModules/winword/ww_document.py:1180
+msgid "Fans"
+msgstr "Éventails"
+
+#: appModules/winword/ww_document.py:1181
+msgid "Film"
+msgstr "Film"
+
+#: appModules/winword/ww_document.py:1182
+msgid "Firecrackers"
+msgstr "Pétards"
+
+#: appModules/winword/ww_document.py:1183
+msgid "FlowersBlockPrint"
+msgstr "Bloc de fleurs imprimé"
+
+#: appModules/winword/ww_document.py:1184
+msgid "FlowersDaisies"
+msgstr "Marguerites"
+
+#: appModules/winword/ww_document.py:1185
+msgid "FlowersModern1"
+msgstr "Fleurs modernes 1"
+
+#: appModules/winword/ww_document.py:1186
+msgid "FlowersModern2"
+msgstr "Fleurs modernes 2"
+
+#: appModules/winword/ww_document.py:1187
+msgid "FlowersPansy"
+msgstr "Pensées"
+
+#: appModules/winword/ww_document.py:1188
+msgid "FlowersRedRose"
+msgstr "Roses rouges"
+
+#: appModules/winword/ww_document.py:1189
+msgid "FlowersRoses"
+msgstr "Roses"
+
+#: appModules/winword/ww_document.py:1190
+msgid "FlowersTeacup"
+msgstr "Fleurs, tasse de thé"
+
+#: appModules/winword/ww_document.py:1191
+msgid "FlowersTiny"
+msgstr "Fleurs très petites"
+
+#: appModules/winword/ww_document.py:1192
+msgid "Gems"
+msgstr "Gemmes"
+
+#: appModules/winword/ww_document.py:1193
+msgid "GingerbreadMan"
+msgstr "Bonhomme en pain d'épices"
+
+#: appModules/winword/ww_document.py:1194
+msgid "Gradient"
+msgstr "Pente"
+
+#: appModules/winword/ww_document.py:1195
+msgid "Handmade1"
+msgstr "Fait à la main 1"
+
+#: appModules/winword/ww_document.py:1196
+msgid "Handmade2"
+msgstr "Fait à la main 2"
+
+#: appModules/winword/ww_document.py:1197
+msgid "HeartBalloon"
+msgstr "Cœur ballon"
+
+#: appModules/winword/ww_document.py:1198
+msgid "HeartGray"
+msgstr "Cœur gris"
+
+#: appModules/winword/ww_document.py:1199
+msgid "Hearts"
+msgstr "Cœurs"
+
+#: appModules/winword/ww_document.py:1200
+msgid "HeebieJeebies"
+msgstr "Délire"
+
+#: appModules/winword/ww_document.py:1201
+msgid "Holly"
+msgstr "Saint"
+
+#: appModules/winword/ww_document.py:1202
+msgid "HouseFunky"
+msgstr "Maison funky"
+
+#: appModules/winword/ww_document.py:1203
+msgid "Hypnotic"
+msgstr "Hypnotique"
+
+#: appModules/winword/ww_document.py:1204
+msgid "IceCreamCones"
+msgstr "Cornets de crème glacée"
+
+#: appModules/winword/ww_document.py:1205
+msgid "LightBulb"
+msgstr "Ampoule"
+
+#: appModules/winword/ww_document.py:1206
+msgid "Lightning1"
+msgstr "Lumineux 1"
+
+#: appModules/winword/ww_document.py:1207
+msgid "Lightning2"
+msgstr "Lumineux 2"
+
+#: appModules/winword/ww_document.py:1208
+msgid "MapleLeaf"
+msgstr "Feuille d'érable"
+
+#: appModules/winword/ww_document.py:1209
+msgid "MapleMuffins"
+msgstr "Muffins à l'érable"
+
+#: appModules/winword/ww_document.py:1210
+msgid "MapPins"
+msgstr "Carte pins"
+
+#: appModules/winword/ww_document.py:1211
+msgid "Marquee"
+msgstr "Marquise"
+
+#: appModules/winword/ww_document.py:1212
+msgid "MarqueeToothed"
+msgstr "Marquise dentelée"
+
+#: appModules/winword/ww_document.py:1213
+msgid "Moons"
+msgstr "Lunes"
+
+#: appModules/winword/ww_document.py:1214
+msgid "Mosaic"
+msgstr "Mosaïque"
+
+#: appModules/winword/ww_document.py:1215
+msgid "MusicNotes"
+msgstr "Notes de musique"
+
+#: appModules/winword/ww_document.py:1216
+msgid "Northwest"
+msgstr "Nord-ouest"
+
+#: appModules/winword/ww_document.py:1217
+msgid "Ovals"
+msgstr "Ovales"
+
+#: appModules/winword/ww_document.py:1218
+msgid "Packages"
+msgstr "Colis"
+
+#: appModules/winword/ww_document.py:1219
+msgid "PalmsBlack"
+msgstr "Paumes noires"
+
+#: appModules/winword/ww_document.py:1220
+msgid "PalmsColor"
+msgstr "Paumes couleur"
+
+#: appModules/winword/ww_document.py:1221
+msgid "PaperClips"
+msgstr "Trombones"
+
+#: appModules/winword/ww_document.py:1222
+msgid "Papyrus"
+msgstr "Papyrus"
+
+#: appModules/winword/ww_document.py:1223
+msgid "PartyFavor"
+msgstr "Accessoires de fête"
+
+#: appModules/winword/ww_document.py:1224
+msgid "PartyGlass"
+msgstr "Verre de fête"
+
+#: appModules/winword/ww_document.py:1225
+msgid "Pencils"
+msgstr "Crayons"
+
+#: appModules/winword/ww_document.py:1226
+msgid "People"
+msgstr "Personnes"
+
+#: appModules/winword/ww_document.py:1227
+msgid "PeopleHats"
+msgstr "Persones chapeaux"
+
+#: appModules/winword/ww_document.py:1228
+msgid "PeopleWaving"
+msgstr "Personnes saluant"
+
+#: appModules/winword/ww_document.py:1229
+msgid "Poinsettias"
+msgstr "Étoile de noël"
+
+#: appModules/winword/ww_document.py:1230
+msgid "PostageStamp"
+msgstr "Timbre poste"
+
+#: appModules/winword/ww_document.py:1231
+msgid "Pumpkin1"
+msgstr "Citrouille 1"
+
+#: appModules/winword/ww_document.py:1232
+msgid "PushPinNote1"
+msgstr "Punaise 1"
+
+#: appModules/winword/ww_document.py:1233
+msgid "PushPinNote2"
+msgstr "Punaise 2"
+
+#: appModules/winword/ww_document.py:1234
+msgid "Pyramids"
+msgstr "Pyramides"
+
+#: appModules/winword/ww_document.py:1235
+msgid "PyramidsAbove"
+msgstr "Pyramides au-dessus"
+
+#: appModules/winword/ww_document.py:1236
+msgid "Quadrants"
+msgstr "Cadrans"
+
+#: appModules/winword/ww_document.py:1237
+msgid "Rings"
+msgstr "Anneaux"
+
+#: appModules/winword/ww_document.py:1238
+msgid "Safari"
+msgstr "Safari"
+
+#: appModules/winword/ww_document.py:1239
+msgid "Sawtooth"
+msgstr "Dent de scie"
+
+#: appModules/winword/ww_document.py:1240
+msgid "SawtoothGray"
+msgstr "Dent de scie grise"
+
+#: appModules/winword/ww_document.py:1241
+msgid "ScaredCat"
+msgstr "Chat effarouché"
+
+#: appModules/winword/ww_document.py:1242
+msgid "Seattle"
+msgstr "Seattle"
+
+#: appModules/winword/ww_document.py:1243
+msgid "ShadowedSquares"
+msgstr "squares ombragés"
+
+#: appModules/winword/ww_document.py:1244
+msgid "SharksTeeth"
+msgstr "Dents de requin"
+
+#: appModules/winword/ww_document.py:1245
+msgid "ShorebirdTracks"
+msgstr "traces d'oiseaux de rivage"
+
+#: appModules/winword/ww_document.py:1246
+msgid "Skyrocket"
+msgstr "Fusée"
+
+#: appModules/winword/ww_document.py:1247
+msgid "SnowflakeFancy"
+msgstr "Flocons de neige fantaisie"
+
+#: appModules/winword/ww_document.py:1248
+msgid "Snowflakes"
+msgstr "Flocons de neige"
+
+#: appModules/winword/ww_document.py:1249
+msgid "Sombrero"
+msgstr "Sombrero"
+
+#: appModules/winword/ww_document.py:1250
+msgid "Southwest"
+msgstr "Sud-ouest"
+
+#: appModules/winword/ww_document.py:1251
+msgid "Stars"
+msgstr "Étoiles"
+
+#: appModules/winword/ww_document.py:1252
+msgid "Stars3D"
+msgstr "Étoiles 3D"
+
+#: appModules/winword/ww_document.py:1253
+msgid "StarsBlack"
+msgstr "Étoiles noires"
+
+#: appModules/winword/ww_document.py:1254
+msgid "StarsShadowed"
+msgstr "Étoiles ombrées"
+
+#: appModules/winword/ww_document.py:1255
+msgid "StarsTop"
+msgstr "Étoiles haut"
+
+#: appModules/winword/ww_document.py:1256
+msgid "Sun"
+msgstr "Soleil"
+
+#: appModules/winword/ww_document.py:1257
+msgid "Swirligig"
+msgstr "Turbulence"
+
+#: appModules/winword/ww_document.py:1258
+msgid "TornPaper"
+msgstr "Papier déchiré"
+
+#: appModules/winword/ww_document.py:1259
+msgid "TornPaperBlack"
+msgstr "Papier déchiré noir"
+
+#: appModules/winword/ww_document.py:1260
+msgid "Trees"
+msgstr "Arborescences"
+
+#: appModules/winword/ww_document.py:1261
+msgid "TriangleParty"
+msgstr "Triangle fête"
+
+#: appModules/winword/ww_document.py:1262
+msgid "Triangles"
+msgstr "Triangles"
+
+#: appModules/winword/ww_document.py:1263
+msgid "Tribal1"
+msgstr "Tribal 1"
+
+#: appModules/winword/ww_document.py:1264
+msgid "Tribal2"
+msgstr "Tribal 2"
+
+#: appModules/winword/ww_document.py:1265
+msgid "Tribal3"
+msgstr "Tribal 3"
+
+#: appModules/winword/ww_document.py:1266
+msgid "Tribal4"
+msgstr "Tribal 4"
+
+#: appModules/winword/ww_document.py:1267
+msgid "Tribal5"
+msgstr "Tribal 5"
+
+#: appModules/winword/ww_document.py:1268
+msgid "Tribal6"
+msgstr "Tribal 6"
+
+#: appModules/winword/ww_document.py:1269
+msgid "TwistedLines1"
+msgstr "Lignes torsadées 1"
+
+#: appModules/winword/ww_document.py:1270
+msgid "TwistedLines2"
+msgstr "Lignes torsadées 2"
+
+#: appModules/winword/ww_document.py:1271
+msgid "Vine"
+msgstr "Vigne"
+
+#: appModules/winword/ww_document.py:1272
+msgid "Waveline"
+msgstr "Ligne ondulée"
+
+#: appModules/winword/ww_document.py:1273
+msgid "WeavingAngles"
+msgstr "Angles ondulés"
+
+#: appModules/winword/ww_document.py:1274
+msgid "WeavingBraid"
+msgstr "Tresse ondulée"
+
+#: appModules/winword/ww_document.py:1275
+msgid "WeavingRibbon"
+msgstr "Ruban ondulé"
+
+#: appModules/winword/ww_document.py:1276
+msgid "WeavingStrips"
+msgstr "Bandelettes ondulées"
+
+#: appModules/winword/ww_document.py:1277
+msgid "WhiteFlowers"
+msgstr "Fleurs blanches"
+
+#: appModules/winword/ww_document.py:1278
+msgid "Woodwork"
+msgstr "Boiseries"
+
+#: appModules/winword/ww_document.py:1279
+msgid "XIllusions"
+msgstr "Illusions"
+
+#: appModules/winword/ww_document.py:1280
+msgid "ZanyTriangles"
+msgstr "Triangles loufoques"
+
+#: appModules/winword/ww_document.py:1281
+msgid "ZigZag"
+msgstr "Zigzag"
+
+#: appModules/winword/ww_document.py:1282
+msgid "ZigZagStitch"
+msgstr "Point zigzag"
+
+#: appModules/winword/ww_endnotes.py:35
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Note's ttext:\n"
+"{text}\n"
+msgstr ""
+"Page {page}, ligne {line}\n"
+"Texte de la note:\n"
+"{text}\n"
+
+#: appModules/winword/ww_endnotes.py:47
+msgid "Endnotes"
+msgstr "Notes de fin"
+
+#: appModules/winword/ww_endnotes.py:52
+msgid "No endnote"
+msgstr "Aucune note de fin"
+
+#: appModules/winword/ww_endnotes.py:61 appModules/winword/ww_footnotes.py:69
+msgid "Notes:"
+msgstr "Notes:"
+
+#: appModules/winword/ww_endnotes.py:80 appModules/winword/ww_footnotes.py:86
+msgid "Note's text"
+msgstr "Texte de la note"
+
+#: appModules/winword/ww_fields.py:66 appModules/winword/ww_formfields.py:53
+#, python-brace-format
+msgid "Page {page}, line {line}\n"
+msgstr "Page {page}, ligne {line}\n"
+
+#: appModules/winword/ww_fields.py:89 appModules/winword/ww_fields.py:105
+msgid "Fields"
+msgstr "Champs"
+
+#: appModules/winword/ww_fields.py:96
+msgid "No field"
+msgstr "Aucun champ"
+
+#: appModules/winword/ww_fields.py:109 appModules/winword/ww_formfields.py:96
+#: appModules/winword/ww_hyperlinks.py:107
+#: appModules/winword/ww_revisions.py:152
+msgid "Type"
+msgstr "Type"
+
+#: appModules/winword/ww_fields.py:126 appModules/winword/ww_formfields.py:113
+msgid "Result"
+msgstr "Résultat"
+
+#: appModules/winword/ww_fields.py:130
+msgid "Code"
+msgstr "Code"
+
+#: appModules/winword/ww_fields.py:150 appModules/winword/ww_formfields.py:139
+msgid "Ref"
+msgstr "Ref"
+
+#: appModules/winword/ww_fields.py:152 appModules/winword/ww_formfields.py:141
+msgid "FootnoteRef"
+msgstr "référence de Note de bas de page"
+
+#: appModules/winword/ww_fields.py:157 appModules/winword/ww_formfields.py:146
+msgid "StyleRef"
+msgstr "Référence de style"
+
+#: appModules/winword/ww_fields.py:160 appModules/winword/ww_formfields.py:149
+msgid "TOC"
+msgstr "Table des matière"
+
+#: appModules/winword/ww_fields.py:165 appModules/winword/ww_formfields.py:154
+msgid "Keyword"
+msgstr "Mot clé"
+
+#: appModules/winword/ww_fields.py:168 appModules/winword/ww_formfields.py:157
+msgid "CreateDate"
+msgstr "création de date"
+
+#: appModules/winword/ww_fields.py:181 appModules/winword/ww_formfields.py:170
+msgid "Expression"
+msgstr "expression"
+
+#: appModules/winword/ww_fields.py:182 appModules/winword/ww_formfields.py:171
+msgid "Quote"
+msgstr "code"
+
+#: appModules/winword/ww_fields.py:183 appModules/winword/ww_formfields.py:172
+msgid "Include"
+msgstr "inclus"
+
+#: appModules/winword/ww_fields.py:204 appModules/winword/ww_formfields.py:193
+msgid "Symbol"
+msgstr "symbôle"
+
+#: appModules/winword/ww_footnotes.py:40
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Note's Ttext:\n"
+"{text}\n"
+msgstr ""
+"Page {page}, ligne {line}\n"
+"Texte de la note:\n"
+"{text}\n"
+
+#: appModules/winword/ww_footnotes.py:51
+msgid "Footnotes"
+msgstr "Notes de bas de page"
+
+#: appModules/winword/ww_footnotes.py:57
+msgid "No footnote"
+msgstr "Aucune note de bas de page"
+
+#: appModules/winword/ww_formfields.py:76
+msgid "Formfields"
+msgstr "Champs de formulaire"
+
+#: appModules/winword/ww_formfields.py:83
+msgid "No formfield"
+msgstr "Aucun champ de formulaire"
+
+#: appModules/winword/ww_formfields.py:92
+msgid "FormFields"
+msgstr "Champs de formulaire"
+
+#: appModules/winword/ww_formfields.py:118
+msgid "Status"
+msgstr "État"
+
+#: appModules/winword/ww_frames.py:54
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Height: {height}\n"
+"Width:\n"
+"{width}\n"
+msgstr ""
+"Page {page}, ligne {line}\n"
+"Hauteur: {height}\n"
+"Largeur: {width}\n"
+
+#: appModules/winword/ww_frames.py:65 appModules/winword/ww_frames.py:81
+msgid "Frames"
+msgstr "Cadres"
+
+#: appModules/winword/ww_frames.py:72
+msgid "No frame"
+msgstr "Aucun cadre"
+
+#: appModules/winword/ww_frames.py:85
+msgid "Width"
+msgstr "Largeur"
+
+#: appModules/winword/ww_frames.py:86
+msgid "Height"
+msgstr "Hauteur"
+
+#: appModules/winword/ww_funct old.py:53
+msgid "Main text story"
+msgstr "Volet Document"
+
+#: appModules/winword/ww_funct old.py:54
+msgid "Footnotes story"
+msgstr "Volet Notes de bas de page"
+
+#: appModules/winword/ww_funct old.py:55
+msgid "Endnotes story"
+msgstr "Volet notes de fin"
+
+#: appModules/winword/ww_funct old.py:56
+msgid "Comments story"
+msgstr "Volet Commentaires"
+
+#: appModules/winword/ww_funct old.py:57
+msgid "Text frame story"
+msgstr "Volet Cadre de texte"
+
+#: appModules/winword/ww_funct old.py:58
+msgid "Even pages header story"
+msgstr "Even pages header story"
+
+#: appModules/winword/ww_funct old.py:59
+msgid "Primary header story"
+msgstr "Primary header story"
+
+#: appModules/winword/ww_funct old.py:60
+msgid "Even pages footer story"
+msgstr "Even pages footer story"
+
+#: appModules/winword/ww_funct old.py:61
+msgid "Primary footer story"
+msgstr "Primary footer story"
+
+#: appModules/winword/ww_funct old.py:62
+msgid "First page header story"
+msgstr "First page header story"
+
+#: appModules/winword/ww_funct old.py:63
+msgid "First page footer story"
+msgstr "First page footer story"
+
+#: appModules/winword/ww_funct old.py:64
+#, fuzzy
+msgid "Footnote separator story"
+msgstr "Position dans le document:"
+
+#: appModules/winword/ww_funct old.py:65
+msgid "Footnote continuation separator story"
+msgstr ""
+
+#: appModules/winword/ww_funct old.py:66
+msgid "Footnote continuation notice story"
+msgstr ""
+
+#: appModules/winword/ww_funct old.py:67
+#, fuzzy
+msgid "Endnote separator story"
+msgstr "Volet notes de fin"
+
+#: appModules/winword/ww_funct old.py:68
+msgid "Endnote continuation separator story"
+msgstr ""
+
+#: appModules/winword/ww_funct old.py:69
+msgid "Endnote continuation notice story"
+msgstr ""
+
+#: appModules/winword/ww_funct old.py:92
+#, python-brace-format
+msgid "Frame {name} document pane {index}"
+msgstr "Cadre {name} document pane {index}"
+
+#: appModules/winword/ww_grammaticalErrors.py:35
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Ttext involved:\n"
+"{text}\n"
+msgstr ""
+"Page {page}, ligne {line}\n"
+"Ttext concerné:\n"
+"{text}\n"
+
+#: appModules/winword/ww_grammaticalErrors.py:47
+msgid "Grammatical errors"
+msgstr "Erreurs de grammaire"
+
+#: appModules/winword/ww_grammaticalErrors.py:52
+msgid "No gramatical error"
+msgstr "Aucune erreur de grammaire"
+
+#: appModules/winword/ww_grammaticalErrors.py:56
+msgid "Not available, Check grammar as you type is not activated"
+msgstr ""
+"Impossible, la vérification de la grammaire au cours de la frappe n'est pas "
+"activée."
+
+#: appModules/winword/ww_grammaticalErrors.py:72
+#: appModules/winword/ww_spellingErrors.py:72
+msgid "Errors:"
+msgstr "Erreurs:"
+
+#: appModules/winword/ww_grammaticalErrors.py:89
+#: appModules/winword/ww_spellingErrors.py:94
+msgid "Involved sentence"
+msgstr "Phrase concernée"
+
+#: appModules/winword/ww_headings.py:61
+#, python-format
+msgid "heading level %s"
+msgstr "Titre niveau %s"
+
+#: appModules/winword/ww_headings.py:66
+#, python-brace-format
+msgid ""
+"\tPage {page}, line {line}\n"
+"\tText: {text}\n"
+"\tLevel: {level}\n"
+"\tStyle: {style}\n"
+"\t"
+msgstr ""
+"\tPage {page}, ligne {line}\n"
+"\tTexte: {text}\n"
+"\tNiveau: {level}\n"
+"\tStyle: {style}"
+
+#: appModules/winword/ww_headings.py:77 appModules/winword/ww_headings.py:120
+msgid "Headings"
+msgstr "Titres"
+
+#: appModules/winword/ww_headings.py:85
+msgid "No heading"
+msgstr "Aucun titre"
+
+#: appModules/winword/ww_headings.py:123
+msgid "Text"
+msgstr "texte"
+
+#: appModules/winword/ww_headings.py:125
+msgid "Level"
+msgstr "Niveau"
+
+#: appModules/winword/ww_headings.py:126
+msgid "Style"
+msgstr "Style"
+
+#: appModules/winword/ww_hyperlinks.py:66
+msgid "Hyperlink to range"
+msgstr "Lien hypertext "
+
+#: appModules/winword/ww_hyperlinks.py:67
+msgid "Hyperlink to shape"
+msgstr "Lien hypertext pour objet"
+
+#: appModules/winword/ww_hyperlinks.py:68
+msgid "Hyperlink to inLine Shape"
+msgstr "Lien hypertext pour objet inLine"
+
+#: appModules/winword/ww_hyperlinks.py:75
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Name: {name}\n"
+"type: {type}\n"
+"Address: {address}\n"
+"Sub-address: {subAddress}\n"
+msgstr ""
+"Page {page}, ligne {line}\n"
+"Nom: {name}\n"
+"type: {type}\n"
+"Adresse: {address}\n"
+"Sous-adresse: {subAddress}\n"
+
+#: appModules/winword/ww_hyperlinks.py:87
+#: appModules/winword/ww_hyperlinks.py:102
+msgid "Hyperlinks"
+msgstr "Liens hypertext"
+
+#: appModules/winword/ww_hyperlinks.py:93
+msgid "No hyperlink"
+msgstr "Aucun lien hypertext"
+
+#: appModules/winword/ww_hyperlinks.py:122
+msgid "Text to display"
+msgstr "Texte à afficher"
+
+#: appModules/winword/ww_revisions.py:42 appModules/winword/ww_revisions.py:119
+msgid "No revision"
+msgstr "Aucune modification"
+
+#: appModules/winword/ww_revisions.py:44
+msgid "Insertion"
+msgstr "Insertion"
+
+#: appModules/winword/ww_revisions.py:46
+msgid "Deletion"
+msgstr "Suppression"
+
+#: appModules/winword/ww_revisions.py:48
+msgid "Property changed"
+msgstr "Changement de propriété"
+
+#: appModules/winword/ww_revisions.py:50
+msgid "Paragraph number changed"
+msgstr "Modification de paragraphe"
+
+#: appModules/winword/ww_revisions.py:52
+msgid "Field display changed"
+msgstr "Modification de champ"
+
+#: appModules/winword/ww_revisions.py:54
+msgid "Revision marked as reconciled conflict"
+msgstr "Modification marquée comme conflit résolu"
+
+#: appModules/winword/ww_revisions.py:56
+msgid "Revision marked as a conflict"
+msgstr "Modification marqué comme conflit"
+
+#: appModules/winword/ww_revisions.py:58
+msgid "Style changed"
+msgstr "Changement de style"
+
+#: appModules/winword/ww_revisions.py:60
+msgid "Replaced"
+msgstr "Replacement"
+
+#: appModules/winword/ww_revisions.py:62
+msgid "Paragraph property changed"
+msgstr "Changement de proprité de paragraphe "
+
+#: appModules/winword/ww_revisions.py:64
+msgid "Table property changed"
+msgstr "Changement de propritié de tableau"
+
+#: appModules/winword/ww_revisions.py:66
+msgid "Section property changed"
+msgstr "Changement de propriété de section"
+
+#: appModules/winword/ww_revisions.py:68
+msgid "Style definition changed"
+msgstr "Changement de la définition du style"
+
+#: appModules/winword/ww_revisions.py:70
+msgid "Content moved from"
+msgstr "Contenu déplacé\" de"
+
+#: appModules/winword/ww_revisions.py:72
+msgid "Content moved to"
+msgstr "Contenu déplacé vers"
+
+#: appModules/winword/ww_revisions.py:74
+msgid "Table cell inserted"
+msgstr "Insertion de cellule de tableau"
+
+#: appModules/winword/ww_revisions.py:76
+msgid "Table cell deleted"
+msgstr "Effacement de cellule de tableau"
+
+#: appModules/winword/ww_revisions.py:78
+msgid "Table cells merged"
+msgstr "Fusion de cellule de tableau"
+
+#: appModules/winword/ww_revisions.py:97
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Author: {author}\n"
+"Date: {date}\n"
+"Type: {type}\n"
+"Revision's ttext:\n"
+"{text}\n"
+msgstr ""
+"Page {page}, ligne {line}\n"
+"Auteur: {author}\n"
+"Date: {date}\n"
+"Type: {type}\n"
+"Texte de la modification:\n"
+"{text}\n"
+
+#: appModules/winword/ww_revisions.py:109
+#, python-brace-format
+msgid "{type} by {author} {text}"
+msgstr "{type} par {author} {text}"
+
+#: appModules/winword/ww_revisions.py:113
+msgid "Revisions"
+msgstr "Modifications"
+
+#: appModules/winword/ww_revisions.py:136
+msgid "revision track is not activated"
+msgstr "Le suivi des modifications n'est pas activé."
+
+#: appModules/winword/ww_revisions.py:148
+msgid "Revisions:"
+msgstr "Modifications:"
+
+#: appModules/winword/ww_revisions.py:164
+msgid "&Accept"
+msgstr "&Accepter"
+
+#: appModules/winword/ww_revisions.py:165
+msgid "&Reject"
+msgstr "&Rejeter"
+
+#: appModules/winword/ww_revisions.py:169
+msgid "Revision's text"
+msgstr "Texte de la modification"
+
+#: appModules/winword/ww_revisions.py:181
+msgid "Are you sure you wish to reject this items?"
+msgstr "Êtes vous sûr  de vouloir rejeter cet élément ?\""
+
+#: appModules/winword/ww_revisions.py:181
+msgid "Reject of items"
+msgstr "Rejet d'élément"
+
+#: appModules/winword/ww_sections.py:59
+#, python-brace-format
+msgid ""
+"Start: Page {pageStart}, line {lineStart}\n"
+"End: Page {pageEnd}, line {lineEnd}\n"
+"With header: {header}\n"
+"With footer: {footer}\n"
+"Protected for forms: {protected}\n"
+"{pageSetup}\n"
+msgstr ""
+"Début: Page {pageStart}, ligne {lineStart}\n"
+"Fin: Page {pageEnd}, ligne {lineEnd}\n"
+"Avec en-tête: {header}\n"
+"Avec pied de page: {footer}\n"
+"Protection pour formulaires: {protected}\n"
+"{pageSetup}\n"
+
+#: appModules/winword/ww_sections.py:69
+#, python-brace-format
+msgid "page {page} line {line}"
+msgstr "Page {page}, ligne {line}"
+
+#: appModules/winword/ww_sections.py:74
+msgid "land scape"
+msgstr "paysage"
+
+#: appModules/winword/ww_sections.py:77
+msgid "continue"
+msgstr "continu"
+
+#: appModules/winword/ww_sections.py:78
+msgid "new column"
+msgstr "nouvell colonne"
+
+#: appModules/winword/ww_sections.py:79
+msgid "new page"
+msgstr "nouvelle page"
+
+#: appModules/winword/ww_sections.py:80
+msgid "even page"
+msgstr "page paire"
+
+#: appModules/winword/ww_sections.py:81
+msgid "odd page"
+msgstr "page impaire"
+
+#: appModules/winword/ww_sections.py:85
+msgid "center"
+msgstr "centré"
+
+#: appModules/winword/ww_sections.py:86
+msgid "justify"
+msgstr "justifié"
+
+#: appModules/winword/ww_sections.py:130
+msgid "custom"
+msgstr "personnalisé"
+
+#: appModules/winword/ww_sections.py:134
+msgid "Right alignment, right to left reading"
+msgstr "Alignement à droite, lecture de droite à gauche"
+
+#: appModules/winword/ww_sections.py:135
+msgid "Left alignment, left to right reading"
+msgstr "Alignement à gauche, lecture de gauche à droite"
+
+#: appModules/winword/ww_sections.py:142 appModules/winword/ww_sections.py:259
+msgid "Sections"
+msgstr "Sections"
+
+#: appModules/winword/ww_sections.py:149
+msgid "No section"
+msgstr "Aucune section"
+
+#: appModules/winword/ww_sections.py:200
+#, python-brace-format
+msgid ""
+"Disposition:\n"
+"\tSection's start: {start}\n"
+"\tHeader / footer's even or odd pages different: {oddAndEven} \n"
+"\tHeader/footer's first page different: {firstPage}\n"
+"\tHeader distance from top: {headerDistance}\n"
+"\tFooter distance from bottom: {footerDistance}\n"
+"\tVertical alignment: {verticalAlignment}\n"
+msgstr ""
+"Disposition:\n"
+"\tDébut de section: {start}\n"
+"\tEn-tête, pied de page différents sur pages paires ou impaires: "
+"{oddAndEven} \n"
+"\tEn-tête, pied de page différent sur première page: {firstPage}\n"
+"\tDistance entre en-tête et haut de page: {headerDistance}\n"
+"\tDistance entre pied de page et bas de page: {footerDistance}\n"
+"\tAlignement vertical: {verticalAlignment}\n"
+
+#: appModules/winword/ww_sections.py:262
+msgid "Start"
+msgstr "Début"
+
+#: appModules/winword/ww_sections.py:263
+msgid "End"
+msgstr "Fin"
+
+#: appModules/winword/ww_shapes.py:46
+msgid "Mixed shape type"
+msgstr "Forme mixée"
+
+#: appModules/winword/ww_shapes.py:47
+msgid "AutoShape"
+msgstr "Forme automatique"
+
+#: appModules/winword/ww_shapes.py:48
+msgid " Callout"
+msgstr " Callout"
+
+#: appModules/winword/ww_shapes.py:49
+msgid "Chart"
+msgstr "Chart"
+
+#: appModules/winword/ww_shapes.py:51
+msgid "Freeform"
+msgstr "Forme libre"
+
+#: appModules/winword/ww_shapes.py:52
+msgid "Group"
+msgstr "Groupe"
+
+#: appModules/winword/ww_shapes.py:53 appModules/winword/ww_shapes.py:116
+msgid "Embedded OLE object"
+msgstr "Objet OLE embarqué"
+
+#: appModules/winword/ww_shapes.py:54
+msgid "Form control"
+msgstr "Controle de forme"
+
+#: appModules/winword/ww_shapes.py:55
+msgid "Line"
+msgstr "Ligne"
+
+#: appModules/winword/ww_shapes.py:56 appModules/winword/ww_shapes.py:117
+msgid "Linked OLE object"
+msgstr "Objet OLE lié"
+
+#: appModules/winword/ww_shapes.py:57 appModules/winword/ww_shapes.py:119
+msgid "Linked picture"
+msgstr "Image liée"
+
+#: appModules/winword/ww_shapes.py:58 appModules/winword/ww_shapes.py:120
+msgid "OLE control object"
+msgstr "Controle d'objet OLE"
+
+#: appModules/winword/ww_shapes.py:59 appModules/winword/ww_shapes.py:118
+msgid "Picture"
+msgstr "Image"
+
+#: appModules/winword/ww_shapes.py:60
+msgid "Placeholder"
+msgstr "Espace réservé"
+
+#: appModules/winword/ww_shapes.py:61
+msgid "Text effect"
+msgstr "Effet de texte"
+
+#: appModules/winword/ww_shapes.py:62
+msgid "Media. "
+msgstr "Média"
+
+#: appModules/winword/ww_shapes.py:63
+msgid "Text box"
+msgstr "Zone de texte"
+
+#: appModules/winword/ww_shapes.py:66
+msgid "Canvas"
+msgstr "Canvas"
+
+#: appModules/winword/ww_shapes.py:67
+msgid "Diagram"
+msgstr "Diagramme"
+
+#: appModules/winword/ww_shapes.py:68
+msgid "Ink"
+msgstr "Ink"
+
+#: appModules/winword/ww_shapes.py:69
+msgid "Ink comment"
+msgstr "Commentaire INK"
+
+#: appModules/winword/ww_shapes.py:70 appModules/winword/ww_shapes.py:130
+msgid "Smart art"
+msgstr "Smart art"
+
+#: appModules/winword/ww_shapes.py:71
+msgid "Slicer"
+msgstr "Slicer"
+
+#: appModules/winword/ww_shapes.py:72
+msgid "Web video"
+msgstr "Web vidéo"
+
+#: appModules/winword/ww_shapes.py:79
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Name: {name}\n"
+"type: {typeText}\n"
+"Width: {width}\n"
+"Height: {height}\n"
+"Alternative text:\n"
+"{alternativeText}\n"
+msgstr ""
+"Page {page}, ligne {line}\n"
+"Nom: {name}\n"
+"type: {typeText}\n"
+"Largeur: {width}\n"
+"Hauteur: {height}\n"
+"Text alternatif:\n"
+"{alternativeText}\n"
+
+#: appModules/winword/ww_shapes.py:121
+msgid "Horizontal line"
+msgstr "Ligne horizontale"
+
+#: appModules/winword/ww_shapes.py:122
+msgid "Picture with horizontal line"
+msgstr "Image avec ligne horizontale"
+
+#: appModules/winword/ww_shapes.py:123
+msgid "Linked picture with horizontal line"
+msgstr "Image liée avec ligne horizontale"
+
+#: appModules/winword/ww_shapes.py:124
+msgid "Picture used as a bullet"
+msgstr "Picture used as a bullet"
+
+#: appModules/winword/ww_shapes.py:126
+msgid "OWS anchor"
+msgstr "Ancre OWS"
+
+#: appModules/winword/ww_shapes.py:128
+msgid "Inline diagram"
+msgstr "Diagramme fixe"
+
+#: appModules/winword/ww_shapes.py:138
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"type: {typeText}\n"
+"Width: {width}\n"
+"Height: {height}\n"
+"Alternative ttext:\n"
+"{alternativeText}\n"
+msgstr ""
+"Page {page}, ligne {line}\n"
+"type: {typeText}\n"
+"Largeur: {width}\n"
+"Hauteur: {height}\n"
+"Text alternatif:\n"
+"{alternativeText}\n"
+
+#: appModules/winword/ww_shapes.py:153
+msgid "Drawing layer objects"
+msgstr "Objets graphiques  de la couche dessin"
+
+#: appModules/winword/ww_shapes.py:159 appModules/winword/ww_shapes.py:170
+msgid "No object"
+msgstr "Aucun objet"
+
+#: appModules/winword/ww_shapes.py:164
+msgid "Text layer objects"
+msgstr "Objets graphiques  de la couche texte"
+
+#: appModules/winword/ww_shapes.py:179
+msgid "Objects:"
+msgstr "Objets:"
+
+#: appModules/winword/ww_shapes.py:185
+msgid "Height(in centimeter)"
+msgstr "Hauteur en centimètre"
+
+#: appModules/winword/ww_shapes.py:186
+msgid "Width (in centimeter)"
+msgstr "Largeur en centimètre"
+
+#: appModules/winword/ww_shapes.py:199
+msgid "Alternative text"
+msgstr "Texte alternatif"
+
+#: appModules/winword/ww_spellingChecker.py:77
+#, python-format
+msgid "Error: %s"
+msgstr "Erreur: %s"
+
+#: appModules/winword/ww_spellingChecker.py:82
+#, python-format
+msgid "Suggestion: %s"
+msgstr "Suggestion: %s"
+
+#: appModules/winword/ww_spellingErrors.py:36
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Word: {word}\n"
+msgstr ""
+"Page {page}, ligne {line}\n"
+"Mot: {word}\n"
+
+#: appModules/winword/ww_spellingErrors.py:46
+msgid "Spelling errors"
+msgstr "Mots mal orthographiés"
+
+#: appModules/winword/ww_spellingErrors.py:51
+msgid "No spelling error"
+msgstr "Aucun mot mal orthographié"
+
+#: appModules/winword/ww_spellingErrors.py:55
+msgid "Not available, Check spelling as you type is not activated"
+msgstr ""
+"Impossible, la vérification de l'orthographe au cours de la frappe n'est pas "
+"activée."
+
+#: appModules/winword/ww_spellingErrors.py:89
+msgid "Mispelled word"
+msgstr "Mot mal orthographié"
+
+#: appModules/winword/ww_tables.py:45
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Title: {title}\n"
+"Number of rows: {rowsCount}\n"
+"Number of columns: {columnsCount}\n"
+msgstr ""
+"Page {page}, ligne {line}\n"
+"Titre: {title}\n"
+"Nombre de lignes: {rowsCount}\n"
+"Nombre de colonnes: {columnsCount}\n"
+
+#: appModules/winword/ww_tables.py:74 appModules/winword/ww_tables.py:191
+#: appModules/winword/ww_tables.py:219
+msgid "Row's limit"
+msgstr "limie de la ligne"
+
+#: appModules/winword/ww_tables.py:80 appModules/winword/ww_tables.py:193
+#: appModules/winword/ww_tables.py:206
+msgid "Column's limit"
+msgstr "limie de la colonne"
+
+#: appModules/winword/ww_tables.py:230 appModules/winword/ww_tables.py:244
+msgid "Tables"
+msgstr "Tableaux"
+
+#: appModules/winword/ww_tables.py:235
+msgid "No table"
+msgstr "Aucun tableau"
+
+#: appModules/winword/ww_tables.py:249
+msgid "Number of rows"
+msgstr "Nombre de lignes"
+
+#: appModules/winword/ww_tables.py:250
+msgid "Number of columns"
+msgstr "Nombre de colonnes"
+
+#: appModules/winword/ww_tables.py:321 appModules/winword/ww_tables.py:327
+msgid "table's limit"
+msgstr "limie de tableau"
+
+#: buildVars.py:17
+msgid "Microsoft Word text editor:   accessibility enhancement"
+msgstr "Éditeur de texte Microsoft Word: complément d'accessibilité"
+
+#: buildVars.py:20
+msgid ""
+"This add-on adds extra functionality when working with Microsoft Word:\n"
+"* a  script (\"windows+alt+f5\")  to display a dialog box to choose between "
+"most of objects 's type to be listed (like comments, revisions, fields, "
+"endnotes, footnotes,spelling errors, grammar errors,...).\n"
+"* a script (\"Alt+delete\"\") to announce line, column  and page of  cursor "
+"position, or start  and end ofselection, or currenttable's cell,\n"
+"* a script (\"windows+alt+f2\") to insert a comment,\n"
+"* a script (\"windows+alt+r\") to report revision at cursor's  position,\n"
+"* a script (\"windows+alt+n\") to report endNote  or footNote at cursor's "
+"position,\n"
+"*  modify the NVDA scripts \"control+downArrow\" and \"Control+Uparrow"
+"\" (which moves the carret paragraph by paragraph) to skip the empty "
+"paragraph (optionnal).\n"
+"* some scripts to move in table and read table 's elements (row, column, "
+"cell),\n"
+"* adds specific Word browse mode command keys ,\n"
+"* possibility to move sentence by sentence (\"alt+ downArrow\" and \"alt"
+"+upArrow\"),\n"
+"* a script to report document 's informations(windows+alt+f1\"),\n"
+"* accessibility enhancement for spelling checker (Word 2013 and 2016):\n"
+"\t* a script (NNVDA+shift+f7\") to report spelling or grammatical error and "
+"suggested correction by the spelling checker,\n"
+"\t* a script (NVDA+control+f7\") to report current sentence under focus.\n"
+"\n"
+"This module has been tested with Microsoft Word 2016 and 2013.\n"
+msgstr ""
+"Cette extension complète les scripts intégrés dans la version de base de "
+"NVDA et apporte:\n"
+"* le script(\"windows+alt+F5\") pour obtenir la liste de divers objets Word "
+"(commentaires, modifications, signets,...), \n"
+"* le script (\"Alt+éfacement\") pour connaitre suivant le cas: le numéro de "
+"ligne, colonne  et de page de la position du curseur système,  le début  et "
+"la fin de la sélection, ou le numéro de ligne et colonne de la cellule "
+"courante d'un tableau (avec indication éventuelle de la position  par "
+"rapport au bord gauche et supérieur),\n"
+"* le script (\"windows+alt+f2\") pour insérer un commentaire  à la position "
+"du curseur,\n"
+"* le script (\"windows+alt+n\") pour lire la note de bas de page ou de fin à "
+"la position du curseur,\n"
+"* le script (\"windows+alt+r\") pour lire la modification de texte à la "
+"position du curseur,\n"
+"* ajout dans les scripts de base  de déplacement de paragraphe en paragraphe "
+"(\"Control+Flèche bas ou haut\"), la possiblité configurable  de sauter  les "
+"paragraphes vides,\n"
+"* les scripts pour se déplacer dans un tableau ou lire ses éléments (ligne, "
+"colonne, cellule),\n"
+"* complète le mode \"navigation\" de NVDA par de nouvelles commandes propre "
+"à Microsoft Word,\n"
+"* le déplacement de phrase en phrase (\"alt+ flèche bas ou haut\"),\n"
+"* le script pour afficher quelques informations sur le document (\"windows"
+"+alt+f1\"),\n"
+"* amélioration de l'accessibilité du correcteur orthographique de Word 2013 "
+"et 2016:\n"
+"\t* le script (\"NVDA+majuscule+f7\") pour annoncer  l'erreur et la "
+"suggestion,\n"
+"\t* le script (NVDA+control+f7\") pour annoncer la phrase courante sous le "
+"focus.\n"
+"\n"
+"Pour plus d'informations, voir l'aide du module.\n"
+"\n"
+"Cette extension a été testée avec MS Word 2013 et MS Word 2016.\n"
+"\n"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:63
+msgid "The update is not compatible with this version of Windows."
+msgstr "La mise à jour n'est pas compatible avec cette version de Windows"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:82
+#, python-brace-format
+msgid ""
+"The update is not compatible with this version of NVDA. Minimum NVDA "
+"version: {minYear}{minMajor}, last tested: {testedYear}.{testedMajor}."
+msgstr ""
+"La mise à jour n'est pas compatible avec cette version de NVDA. Version "
+"minimum de NVDA : {minYear}.{minMajor}, dernière version testée : "
+"{testedYear}.{testedMajor}."
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:129
+msgid "Update"
+msgstr "Mise à jour"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:131
+#, python-brace-format
+msgid "Downloading {name}"
+msgstr "Téléchargement de {name} en cours"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:145
+#, python-brace-format
+msgid "Error downloading update for {name}."
+msgstr "Erreur lors du téléchargement de la mise à jour de {name}."
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:201
+#, python-brace-format
+msgid "Cannot update {name} - missing file or invalid file format"
+msgstr ""
+"Impossible de mettre à jour {name} - fichier manquant ou format de fichier "
+"incorrect"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:232
+msgid "Updating"
+msgstr "Mise à jour en cours"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:234
+msgid "Please wait while the add-on is being updated."
+msgstr "Veuillez patienter durant la mise à jour de l'extension"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:241
+#, python-brace-format
+msgid "Failed to update {name} add-on"
+msgstr "Échec de la mise à jour de l'extension {name}"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:297
+#, python-brace-format
+msgid "{summary} - update"
+msgstr "{summary} - mise à jour"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:306
+msgid "The service is temporarily under maintenance. Please, try again later."
+msgstr ""
+"le service est momentanément en maintenance. Veuillez réessayer plus tard."
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:327
+#, python-format
+msgid "New version available, version %s. Do you want download it now?"
+msgstr ""
+"Une nouvelle version est disponible: version %s. Voulez-vous la télécharger "
+"maintenant ?"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:341
+#, python-format
+msgid "You are up-to-date. %s is the latest version."
+msgstr "Vous êtes à jour, %s est la dernière version."
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:347
+msgid "Oops! There was a problem checking for updates. Please retry later"
+msgstr ""
+"Oups! Il y a un problème pour rechercher les mises à jour. Réessayer "
+"ultérieurement."
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:501
+msgid "&Yes"
+msgstr "&Oui"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:505
+msgid "&No"
+msgstr "Non"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:509
+msgid "&Later"
+msgstr "&Plus tard"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:49
+msgid "Automatically check for &updates "
+msgstr "Rechercher &automatiquement les mises à jour"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:53
+msgid "Update also release versions to &developpement versions"
+msgstr ""
+"&Mettre aussi à jour les versions stable vers les versions de développement"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:57
+msgid "&Check for update"
+msgstr "&Rechercher une mise à jour"
+
+#: installTasks old.py:48 installTasks.py:48
+msgid "Do you want to keep current add-on configuration settings ?"
+msgstr "Voulez vous conserver les paramètres  actuels du module?"
+
+#: installTasks old.py:50 installTasks.py:50
+#, python-format
+msgid "%s - installation"
+msgstr "%s - installation"
+
+#: shared/ww_informationDialog.py:34
+msgid "Informations"
+msgstr "Informations"
+
+#: shared/ww_informationDialog.py:60 shared/ww_utils.py:112
+msgid "Co&py to Clipboard"
+msgstr "C&opier dans le presse-papier"
+
+#: shared/ww_informationDialog.py:78 shared/ww_utils.py:126
+msgid "Copied"
+msgstr "Copié"
+
+#: shared/ww_informationDialog.py:84 shared/ww_utils.py:132
+msgid "Error, the information cannot be copied to the clipboard"
+msgstr ""
+"Erreur: les informations ne peuvent pas être copiées dans le presse-papier"
+
+#: shared/ww_utils.py:70
+#, python-format
+msgid "%s dialog is allready open"
+msgstr "Le dialogue %s est déjà affiché"
+
+#: shared/ww_utils.py:76
+#, python-format
+msgid "%s add-on - Informations"
+msgstr "Module complémentaire %s - Informations"

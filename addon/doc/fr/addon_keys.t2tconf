@@ -1,0 +1,51 @@
+% base key definition
+%!PostProc (html): key_toggle_skip_empty_paragraph windows + alt + f4
+%!PostProc (html): key_document_infos windows +Alt+f1
+%!PostProc (html): key_spelling_checker_help NVDA+majuscule+f7
+%!PostProc (html): key_report_CURRENT_SENTENCE NVDA+control+f7
+%!PostProc (html): key_line_page alt + pavnum effacement
+%!PostProc (html): key_laptop_line_page alt + effacement
+%!PostProc (html): key_next_paragraph Control + Flèche Bas
+%!PostProc (html): key_previous_sentence Alt + Flèche Haut
+%!PostProc (html): key_next_sentence Alt + Flèche bas
+%!PostProc (html): key_previous_paragraph Control + Flèche Haut
+%!PostProc (html): key_layerMode NVDA+e
+%!PostProc (html): key_sayAll windows+alt+espace
+%!PostProc (html): key_escape Échapp
+%!PostProc (html): key_choice windows+alt+F5
+%!PostProc (html): key_insert_comment windows+alt+f2
+%!PostProc (html): key_report_footnote_endnote windows+alt+n
+%!PostProc (html): key_report_revision windows+alt+m
+% report in table
+%!PostProc (html): key_report_headers windows+alt+h
+%!PostProc (html): key_report_cell Windows+Alt+j
+%!PostProc (html): key_report_row Windows+Alt+;
+%!PostProc (html): key_report_column Windows+Alt+,
+%!PostProc (html): key_report_previousInRow windows+Alt+flèche gauche
+%!PostProc (html): key_report_nextInRow windows+Alt+flèche droite
+%!PostProc (html): key_report_previousInColumn windows+Alt+flèche haut
+%!PostProc (html): key_report_nextInColumn windows+Alt+flèche bas
+%!PostProc (html): key_report_firstInRow Windows+Alt+début
+%!PostProc (html): key_report_firstInColumn windows + Alt + page précédente
+%!PostProc (html): key_report_lastInRow windows+Alt+fin
+%!PostProc (html): key_report_lastInColumn windows+alt+page suivante
+% moving key definitions  when table layer mode is off
+%!PostProc (html): key_moveTo_nextInRow Windows+control+Flèche droite
+%!PostProc (html): key_moveTo_previousInRow Windows+control+Flèche gauche
+%!PostProc (html): key_moveTo_nextInColumn Windows+control+Flèche bas
+%!PostProc (html): key_moveTo_previousInColumn Windows+control+Flèche haut
+%!PostProc (html): key_moveTo_firstInRow Windows+control+Début
+%!PostProc (html): key_moveTo_lastInRow Windows+control+Fin
+%!PostProc (html): key_moveTo_firstInColumn Windows+control+Page précédente
+%!PostProc (html): key_moveTo_lastInColumn Windows+control+Page suivante
+% moving key definitions  when table layer mode is on
+%!PostProc (html): key_layer_moveTo_nextInRow Flèche Bas
+%!PostProc (html): key_layer_moveTo_previousInRow Flèche Haut
+%!PostProc (html): key_layer_moveTo_nextInColumn Flèche Droite
+%!PostProc (html): key_layer_moveTo_previousInColumn Flèche Gauche
+%!PostProc (html): key_layer_moveTo_firstInRow Début
+%!PostProc (html): key_layer_moveTo_lastInRow Fin
+%!PostProc (html): key_layer_moveTo_firstInColumn Page précédente
+%!PostProc (html): key_layer_moveTo_lastInColumn Page suivante
+
+
