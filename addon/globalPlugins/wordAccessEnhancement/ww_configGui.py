@@ -45,18 +45,22 @@ class WordAddonSettingsDialog(gui.SettingsDialog):
 		# Translators: This is the label for a checkbox in the settings panel.
 		self.playSoundOnSkippedParagraphBox = sHelper.addItem(wx.CheckBox(self,wx.ID_ANY,label=_("&Play sound when paragraph is skipped")))
 		self.playSoundOnSkippedParagraphBox.SetValue(_addonConfigManager.togglePlaySoundOnSkippedParagraphOption(False))
+		# Translators: This is the label for a group of editing options in the settings panel.
+		groupText = _("Update")
+		group = gui.guiHelper.BoxSizerHelper(self, sizer=wx.StaticBoxSizer(wx.StaticBox(self, label=groupText), wx.VERTICAL))
+		sHelper.addItem(group)
 		# Translators: This is the label for a checkbox in the settings panel.
 		labelText = _("Automatically check for &updates ")
-		self.autoCheckForUpdatesCheckBox=sHelper.addItem (wx.CheckBox(self,wx.ID_ANY, label= labelText))
+		self.autoCheckForUpdatesCheckBox=group.addItem (wx.CheckBox(self,wx.ID_ANY, label= labelText))
 		self.autoCheckForUpdatesCheckBox.SetValue(_addonConfigManager.toggleAutoUpdateCheck(False))
 		# Translators: This is the label for a checkbox in the settings panel.
 		labelText = _("Update also release versions to &developpement versions")
-		self.updateReleaseVersionsToDevVersionsCheckBox=sHelper.addItem (wx.CheckBox(self,wx.ID_ANY, label= labelText))
+		self.updateReleaseVersionsToDevVersionsCheckBox=group.addItem (wx.CheckBox(self,wx.ID_ANY, label= labelText))
 		self.updateReleaseVersionsToDevVersionsCheckBox.SetValue(_addonConfigManager.toggleUpdateReleaseVersionsToDevVersions     (False))
 		# Translators: This is the label for a button in the settings panel.
 		labelText = _("&Check for update")
 		checkForUpdateButton= wx.Button(self, label=labelText)
-		sHelper.addItem (checkForUpdateButton)
+		group.addItem (checkForUpdateButton)
 		checkForUpdateButton.Bind(wx.EVT_BUTTON,self.onCheckForUpdate)	
 	
 	def onCheckForUpdate(self, evt):

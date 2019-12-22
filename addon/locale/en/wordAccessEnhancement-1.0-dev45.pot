@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: wordAccessEnhancement 1.0-dev44\n"
+"Project-Id-Version: wordAccessEnhancement 1.0-dev45\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
-"POT-Creation-Date: 2019-12-21 15:07+0100\n"
+"POT-Creation-Date: 2019-12-22 19:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4222,18 +4222,25 @@ msgstr ""
 msgid "Report current  sentence  "
 msgstr ""
 
-#. Translators: This is the label for a checkbox in the settings panel.
+#. Translators: This is the label for a group of editing options in the settings panel.
+#. Translators: The title of the dialog displayed while downloading add-on update.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:49
-msgid "Automatically check for &updates "
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:129
+msgid "Update"
 msgstr ""
 
 #. Translators: This is the label for a checkbox in the settings panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:53
+msgid "Automatically check for &updates "
+msgstr ""
+
+#. Translators: This is the label for a checkbox in the settings panel.
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:57
 msgid "Update also release versions to &developpement versions"
 msgstr ""
 
 #. Translators: This is the label for a button in the settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:57
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:61
 msgid "&Check for update"
 msgstr ""
 
@@ -4248,11 +4255,6 @@ msgstr ""
 msgid ""
 "The update is not compatible with this version of NVDA. Minimum NVDA "
 "version: {minYear}{minMajor}, last tested: {testedYear}.{testedMajor}."
-msgstr ""
-
-#. Translators: The title of the dialog displayed while downloading add-on update.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:129
-msgid "Update"
 msgstr ""
 
 #. Translators: The progress message indicating the name of the add-on being downloaded.
