@@ -19,7 +19,6 @@ import tones
 import eventHandler
 import queueHandler
 import keyboardHandler
-import string
 import textInfos
 import sayAllHandler
 import controlTypes
@@ -292,7 +291,7 @@ class MainWordDocumentEx(NVDAObjects.IAccessible.winword.WordDocument):
 			except:
 				return
 			info.expand(unit)
-			text = string.strip(info.text)
+			text = info.text.strip()
 			info.collapse()
 			if len(text) != 0:
 				if playSound:

@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: wordAccessEnhancement 1.0-dev45\n"
+"Project-Id-Version: wordAccessEnhancement 1.0-dev46\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
-"POT-Creation-Date: 2019-12-22 19:26+0100\n"
+"POT-Creation-Date: 2019-12-26 11:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2995,7 +2995,7 @@ msgstr ""
 
 #. Translators: message to say text is empty.
 #: appModules\winword\ww_fields.py:149 appModules\winword\ww_formfields.py:138
-#: appModules\winword\__init__.py:457
+#: appModules\winword\__init__.py:456
 msgid "Empty"
 msgstr ""
 
@@ -3818,14 +3818,14 @@ msgstr ""
 
 #. Translators: message to report column number.
 #: appModules\winword\ww_tables.py:196 appModules\winword\ww_tables.py:221
-#: appModules\winword\__init__.py:608
+#: appModules\winword\__init__.py:607
 #, python-format
 msgid "column %s"
 msgstr ""
 
 #. Translators: message to report row number.
 #: appModules\winword\ww_tables.py:198 appModules\winword\ww_tables.py:209
-#: appModules\winword\__init__.py:611
+#: appModules\winword\__init__.py:610
 #, python-format
 msgid "row %s"
 msgstr ""
@@ -3847,8 +3847,8 @@ msgid "Number of columns"
 msgstr ""
 
 #. Translators: message to the user to say  empty .
-#: appModules\winword\ww_tables.py:313 appModules\winword\__init__.py:366
-#: appModules\winword\__init__.py:377
+#: appModules\winword\ww_tables.py:313 appModules\winword\__init__.py:365
+#: appModules\winword\__init__.py:376
 msgid "empty"
 msgstr ""
 
@@ -3857,368 +3857,368 @@ msgstr ""
 msgid "table's limit"
 msgstr ""
 
-#: appModules\winword\__init__.py:133 appModules\winword\__init__.py:177
+#: appModules\winword\__init__.py:132 appModules\winword\__init__.py:176
 msgid "Table layer mode on"
 msgstr ""
 
-#: appModules\winword\__init__.py:147
+#: appModules\winword\__init__.py:146
 msgid " (Table layer mode)"
 msgstr ""
 
-#: appModules\winword\__init__.py:179
+#: appModules\winword\__init__.py:178
 msgid "Table layer mode off"
 msgstr ""
 
-#: appModules\winword\__init__.py:186
+#: appModules\winword\__init__.py:185
 msgid "Toggle table layer mode"
 msgstr ""
 
 #. Translators: message to user to indicate  report all cells mode is activated.
-#: appModules\winword\__init__.py:196
+#: appModules\winword\__init__.py:195
 msgid "Report all Cells"
 msgstr ""
 
 #. Translators: message to user to indicate report all cells mode is desactivated.
-#: appModules\winword\__init__.py:199
+#: appModules\winword\__init__.py:198
 msgid "Do not report all cells"
 msgstr ""
 
-#: appModules\winword\__init__.py:201
+#: appModules\winword\__init__.py:200
 msgid "activate or desactivate the report of all cells of row or column"
 msgstr ""
 
 #. Translators: The message reported when a user attempts to use a table movement command.
 #. when the cursor is not withnin a table.
-#: appModules\winword\__init__.py:218
+#: appModules\winword\__init__.py:217
 msgid "Not in table"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:312
+#: appModules\winword\__init__.py:311
 msgid "Move to the previous sentence"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:316
+#: appModules\winword\__init__.py:315
 msgid "Move to the next sentence"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:330
+#: appModules\winword\__init__.py:329
 msgid ""
 "Move to the previous paragraph( skip empty paragraphs if SkipEmptyParagraph "
 "flag is set to on) "
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:334
+#: appModules\winword\__init__.py:333
 msgid ""
 "Move to the next paragraph( skip empty paragraphs if SkipEmptyParagraph flag "
 "is set to on) "
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:346
+#: appModules\winword\__init__.py:345
 msgid "Insert a comment where the System caret is located."
 msgstr ""
 
 #. Translators: a message when there is no endnoe or footnote to report in Microsoft Word.
-#: appModules\winword\__init__.py:386
+#: appModules\winword\__init__.py:385
 msgid "no endnote or footnote"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:388
+#: appModules\winword\__init__.py:387
 msgid ""
 "Reports the text of the endnote or footnote where the System caret is "
 "located."
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:393
+#: appModules\winword\__init__.py:392
 msgid "Reports the text of the revision where the System caret is located."
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:400
+#: appModules\winword\__init__.py:399
 msgid "Display a dialog  to get word object informations in a range"
 msgstr ""
 
 #. Translators:  message in report location script.
-#: appModules\winword\__init__.py:409
+#: appModules\winword\__init__.py:408
 msgid "at {0} from left edge and {1} from top edge of the page"
 msgstr ""
 
 #. Translators: message in report location script.
-#: appModules\winword\__init__.py:415
+#: appModules\winword\__init__.py:414
 msgid "You are at the row {row}, column {column}  of table"
 msgstr ""
 
-#: appModules\winword\__init__.py:421
+#: appModules\winword\__init__.py:420
 msgid "you are at Line {line}, column {column} of page {page}"
 msgstr ""
 
-#: appModules\winword\__init__.py:427
+#: appModules\winword\__init__.py:426
 msgid "Selection begins at line {line}, column {column} of page {page}"
 msgstr ""
 
-#: appModules\winword\__init__.py:435
+#: appModules\winword\__init__.py:434
 msgid "at {0} from left edge and {1} from top edge of the page."
 msgstr ""
 
-#: appModules\winword\__init__.py:436
+#: appModules\winword\__init__.py:435
 msgid "It ends at line {line}, column {column} of page {page}"
 msgstr ""
 
 #. Translators: this is the title of informationdialog box to show appModule informations.
-#: appModules\winword\__init__.py:441
+#: appModules\winword\__init__.py:440
 msgid "Location information"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:449
+#: appModules\winword\__init__.py:448
 msgid ""
 "Report the  page number and line number relative to the page. Twice: display "
 "this information"
 msgstr ""
 
 #. Translators: message to say no row header.
-#: appModules\winword\__init__.py:461
+#: appModules\winword\__init__.py:460
 msgid "No row header"
 msgstr ""
 
 #. Translators: message to report row header.
-#: appModules\winword\__init__.py:464 appModules\winword\__init__.py:467
+#: appModules\winword\__init__.py:463 appModules\winword\__init__.py:466
 #, python-format
 msgid "Row header: %s"
 msgstr ""
 
 #. Translators: message to report no column header.
-#: appModules\winword\__init__.py:471
+#: appModules\winword\__init__.py:470
 msgid "No column header"
 msgstr ""
 
 #. Translators: message to report column header.
-#: appModules\winword\__init__.py:474 appModules\winword\__init__.py:477
+#: appModules\winword\__init__.py:473 appModules\winword\__init__.py:476
 #, python-format
 msgid "Column header: %s"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:480
+#: appModules\winword\__init__.py:479
 msgid "Table: report current headers"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:487
+#: appModules\winword\__init__.py:486
 msgid "Display document's informations"
 msgstr ""
 
-#: appModules\winword\__init__.py:507
+#: appModules\winword\__init__.py:506
 msgid "Table: report current cell"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:512
+#: appModules\winword\__init__.py:511
 msgid "Table: report all cells of current  row"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:518
+#: appModules\winword\__init__.py:517
 msgid "Table: report all cells  of current column"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:524
+#: appModules\winword\__init__.py:523
 msgid "Table: Report the nextt cell in the column"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:530
+#: appModules\winword\__init__.py:529
 msgid "Table: report the previous cell in the column"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:536
+#: appModules\winword\__init__.py:535
 msgid "Table: report the next cell in the  row"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:542
+#: appModules\winword\__init__.py:541
 msgid "Table: report the previous cell in the row"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:548
+#: appModules\winword\__init__.py:547
 msgid "Table: report the first cell of the  column"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:554
+#: appModules\winword\__init__.py:553
 msgid "Table: report the last cell of the column"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:561
+#: appModules\winword\__init__.py:560
 msgid "Table: report the first cell of the  row"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:567
+#: appModules\winword\__init__.py:566
 msgid "Table: report the last cell of the row"
 msgstr ""
 
 #. Translators: a message to say moving to start of row.
-#: appModules\winword\__init__.py:586
+#: appModules\winword\__init__.py:585
 msgid "Start of row {0}"
 msgstr ""
 
 #. Translators: a message to report column number.
 #. Translators: message to report row number.
-#: appModules\winword\__init__.py:588 appModules\winword\__init__.py:593
+#: appModules\winword\__init__.py:587 appModules\winword\__init__.py:592
 msgid " column {0}"
 msgstr ""
 
 #. Translators: message to say moving to end of row.
-#: appModules\winword\__init__.py:591
+#: appModules\winword\__init__.py:590
 msgid "End of row {0}"
 msgstr ""
 
 #. Translators: message to say moving to start of column.
-#: appModules\winword\__init__.py:596
+#: appModules\winword\__init__.py:595
 msgid "Start of column {0}"
 msgstr ""
 
 #. Translators: message to report row number.
-#: appModules\winword\__init__.py:598 appModules\winword\__init__.py:603
+#: appModules\winword\__init__.py:597 appModules\winword\__init__.py:602
 msgid " row {0}"
 msgstr ""
 
 #. Translators: message to say moving to end of column
-#: appModules\winword\__init__.py:601
+#: appModules\winword\__init__.py:600
 msgid "End of column {0}"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:627
+#: appModules\winword\__init__.py:626
 msgid "Table: move to next row"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:633
+#: appModules\winword\__init__.py:632
 msgid "Table: move to previous  row"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:639
+#: appModules\winword\__init__.py:638
 msgid "Table: move to next column"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:645
+#: appModules\winword\__init__.py:644
 msgid "Table: move to  previous column "
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:651
+#: appModules\winword\__init__.py:650
 msgid "Table: move to the first cell of row"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:657
+#: appModules\winword\__init__.py:656
 msgid "Table: move to  the last cell of row"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:663
+#: appModules\winword\__init__.py:662
 msgid "Table: move to the first cell of column"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:669
+#: appModules\winword\__init__.py:668
 msgid "Table: move to  the last cell of column "
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:677
+#: appModules\winword\__init__.py:676
 msgid "Table: move to next row and report all cells of row"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:683
+#: appModules\winword\__init__.py:682
 msgid "Table: move to prior row and report all cells of row"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:689
+#: appModules\winword\__init__.py:688
 msgid "Table: move to next columnand report all cells of column"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:695
+#: appModules\winword\__init__.py:694
 msgid "Table: move to  prior column  and report all cells of column"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:701
+#: appModules\winword\__init__.py:700
 msgid "Table: move to first cell of column and report all cells of row"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:707
+#: appModules\winword\__init__.py:706
 msgid "Table: move to last cell of column and report all cells of row"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:713
+#: appModules\winword\__init__.py:712
 msgid "Table: move to first cell of the row and report all cells of column"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:719
+#: appModules\winword\__init__.py:718
 msgid "Table: mMove to last cell of the row and report all cells of column"
 msgstr ""
 
 #. Translators: message to report skipping of empty paragraph when moving by paragraph.
-#: appModules\winword\__init__.py:894
+#: appModules\winword\__init__.py:893
 msgid "Skip empty paragraphs"
 msgstr ""
 
 #. Translators: message to report no skipping empty paragraph when moving by paragraph.
-#: appModules\winword\__init__.py:897
+#: appModules\winword\__init__.py:896
 msgid "Don't skip empty paragraphs"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:899
+#: appModules\winword\__init__.py:898
 msgid "Toggle on or off the option to skip empty paragraphs"
 msgstr ""
 
 #. focus on the pane not  not on an object of the pane
 #. Translators: message to ask user to hit tab key.
-#: appModules\winword\__init__.py:937 appModules\winword\__init__.py:983
+#: appModules\winword\__init__.py:936 appModules\winword\__init__.py:982
 msgid "Hit tab to move focus in the spelling checker pane"
 msgstr ""
 
 #. Translators: message to the user when word version is not supported.
-#: appModules\winword\__init__.py:970
+#: appModules\winword\__init__.py:969
 msgid "Not available for this Word version"
 msgstr ""
 
 #. Translators: message to  indicate the focus is not in spellAndGrammar checker.
-#: appModules\winword\__init__.py:978
+#: appModules\winword\__init__.py:977
 msgid "You are Not in the spelling checker"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:994
+#: appModules\winword\__init__.py:993
 msgid ""
 "Report error and suggestion displayed by the spelling checker.Twice:spell "
 "them. Third: say help text"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\__init__.py:1007
+#: appModules\winword\__init__.py:1006
 msgid "Report current  sentence  "
 msgstr ""
 
