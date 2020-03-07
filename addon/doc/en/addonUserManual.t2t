@@ -339,7 +339,12 @@ This add-on also allows for the automatic announcement of the new error and the 
 
 
 + History + 
-++ v1.0 (10/10/2019) ++ 
+++ v1.0.1 (18/02/2020) ++ 
+- correction of the documentation.
+- translation of the addon in Spanish by Gunther Melendez, changes by Rémy Ruiz.
+
+
+++ v1.0 (10/07/02/2020) ++ 
 This add-on changes name to avoid confusion with other add-ons. His version starts with 1.0. 
 - compatibility with NVDA 2019.3.
 - input gesture modifications:
@@ -352,6 +357,7 @@ This add-on changes name to avoid confusion with other add-ons. His version star
 - improvement of the accessibility of the spelling corrector of Word 2013 and 2016. 
 - deletion of the announcement of the header level  changes.
 - preparation of the compatibility to python 3. 
+
 
 
 ++ v3.1 (April 10, 2016) ++ 

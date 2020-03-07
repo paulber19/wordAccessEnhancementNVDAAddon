@@ -163,14 +163,14 @@ Le Bouton "Annuler" provoque l'abandon de l'insertion.
 Si une sélection est présente, le texte commenté est le texte de cette sélection. Sinon c'est le mot sous le focus.
 
 + Script de lecture de la note de bas de page ou de la note de fin +[HDR9]
-Ce script se lance à aide du geste de commande "key_report_footnote_endnote".
+Ce script se lance à l'aide du geste de commande "key_report_footnote_endnote".
 
 Il a pour but de lire la note de bas de page ou la note de fin  à la position du curseur.
 Dans  le cas où il n'y a aucun de ces deux éléments, un message vocal l'annonce.
 
 
 + Script de lecture de la modification de texte +[HDR10]
-Ce script se lance à aide du geste de commande "key_report_revision".
+Ce script se lance à l'aide du geste de commande "key_report_revision".
 
 Il a pour but d'annoncer la modification de texte à la position du curseur. 
 Il peut y avoir plusieurs modifications concernant cette position.
@@ -214,7 +214,7 @@ Le script "activer ou désactiver l'annonce de toutes les cellules" se lance à 
 Ce script est présenté dans la catégorie "Éditeur de texte Microsoft Word: complément d'accessiblité" du dialogue "Gestes de commandes" de NVDA.
 
 Ainsi,  si l'annonce de toutes les cellules est activée, en tapant:
-- "key_report_previousInRow ou "key_report_nextInRow": les cellules de la colonne précédente ou suivante sont annoncées.
+- "key_report_previousInRow" ou "key_report_nextInRow": les cellules de la colonne précédente ou suivante sont annoncées.
 - "key_report_previousInColumn" ou "key_report_nextInColumn": toutes les cellules de la lignes  précédente ou suivante sont annoncées.
 - "key_report_firstInRow" ou "key_report_lastInRow": toutes les cellules de la première ou dernière  colonne sont annoncées.
 - "key_report_firstInColumn" ou "key_report_lastInColumn": toutes les cellules de la première ou dernière ligne sont annoncées.
@@ -224,7 +224,7 @@ Pour désactiver l'annonce de toutes les cellules, il suffit de taper à nouveau
 
 ++ Déplacement dans le tableau ++
 L'extension installe  les scripts suivant pour se déplacer dans un tableau:
-- aller à la cellule précédente  dans la ligne: "key_moveTo_previousInRow.
+- aller à la cellule précédente  dans la ligne: "key_moveTo_previousInRow".
 - aller à la cellule suivante dans la ligne: "key_moveTo_nextInRow".
 - aller à la cellule précédente dans la colonne: "key_moveTo_previousInColumn".
 - aller à la cellule suivante dans la colonne: "key_moveTo_nextInColumn".
@@ -262,7 +262,7 @@ Pour cela il suffit de taper le geste de commande "key_layerMode" pour activer l
 
 Ainsi après avoir activer la couche de commande pour tableau, les gestes de commandes des scripts de déplacement sont remplacés par:
 
-- aller à la cellule précédente  dans la ligne: "key_layer_moveTo_previousInRow.
+- aller à la cellule précédente  dans la ligne: "key_layer_moveTo_previousInRow".
 - aller à la cellule suivante  dans la ligne: "key_layer_moveTo_nextInRow".
 - aller à la cellule précédente dans la colonne: "key_layer_moveTo_previousInColumn".
 - aller à la cellule suivante dans la colonne: "key_layer_moveTo_nextInColumn".
@@ -300,7 +300,7 @@ Cette extension ajoute les commandes suivantes spécifique pour  Microsoft Word.
  
 L'impossibilité de déplacer le curseur est signalé par un  message vocal indiquant qu'il n'y a plus d'élément correspondant à la commande.
 
-Les commandes du mode navigation non pris en charge  sont signalées par le message vocal Non supporté dans ce document" et toutes autres commandes,   par un bip sonore.
+Les commandes du mode navigation non pris en charge  sont signalées par le message vocal "Non supporté dans ce document" et toutes autres commandes,   par un bip sonore.
 
 + Déplacement de phrase en phrase +[HDR12]
 Les gestes de commandes suivants permettent de déplacer le curseur système de phrase en phrase:
@@ -312,8 +312,8 @@ Ces scripts sont présentés dans la catégorie "Éditeur de texte Microsoft Wor
 
 + Affichage des informations sur le document +[HDR13]
 Le geste de commande "key_document_infos" permet d'afficher dans une boite de dialogue certaines informations sur le document:
--  la position actuelle  dans le document comme : le numéro de page, le numéro de ligne, le numéro de section,
-- les propriétés du document comme: le nom du fichier, le nom de l'auteur, d la date de création,
+- la position actuelle  dans le document comme : le numéro de page, le numéro de ligne, le numéro de section,
+- les propriétés du document comme: le nom du fichier, le nom de l'auteur, de la date de création,
 - les statistiques comme: le nombre de pages, le nombre de lignes, le nombre de mots,
 - les informations sur les sections comme: les pieds de page, les notes de fin, les bordures,
 - les informations sur les tableaux comme: le nombre de lignes et colonnes, les bordures,
@@ -354,7 +354,12 @@ Cette extension permet  aussi l'annonce automatique de la nouvelle erreur et de 
 
 
 + Historique +
-++ v1.0 (10/10/2019) ++
+++ v1.0.1 (07/03/2020) ++
+- correction de la documentation.
+- traduction de l'extension en Espagnol par Gunther Melendez, changements par Rémy Ruiz.
+
+
+++ v1.0 (07/02/2020) ++
 Cette extension change de nom  pour éviter toute confusion avec d'autres extensions. Sa version repart à 1.0.
 - Compatibilité avec NVDA 2019.3.
 - modification de gestes de commandes:
@@ -372,9 +377,8 @@ Cette extension change de nom  pour éviter toute confusion avec d'autres extens
 - recherche de mise à jour automatique.
 
 
-
 ++ v3.1 (10 Avril 2016) ++
-- ajout de l'annonce de la colonne pour la commande clavier "key_line_page "
+- ajout de l'annonce de la colonne pour la commande clavier "key_line_page"
 
 
 ++ v3.0 (10 Mars 2016) ++
@@ -423,4 +427,4 @@ Cette extension change de nom  pour éviter toute confusion avec d'autres extens
 
 
 ++ v1.0 (24 janvier 2014) ++
-- Création de l'extension (anciennement module complémentaire). 
+- Création de l'extension (anciennement module complémentaire).

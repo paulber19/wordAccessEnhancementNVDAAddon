@@ -685,7 +685,7 @@ class MainWordDocumentEx(NVDAObjects.IAccessible.winword.WordDocument):
 		stopScriptTimer()
 		wx.CallAfter(self._moveToTableElement, position = "nextInRow", reportRow= False)
 	# Translators: a description for a script.
-	script_moveToAndReportNextColumn.__doc__ = _("Table: move to next columnand report all cells of column")
+	script_moveToAndReportNextColumn.__doc__ = _("Table: move to next column and report all cells of column")
 	
 	def script_moveToAndReportPreviousColumn(self,gesture):
 		stopScriptTimer()
@@ -697,7 +697,7 @@ class MainWordDocumentEx(NVDAObjects.IAccessible.winword.WordDocument):
 		stopScriptTimer()
 		wx.CallAfter(self._moveToTableElement, position = "firstInColumn", reportRow= True)
 	# Translators: a description for a script.
-	script_moveToStartOfColumnAndReportRow.__ = _("Table: move to first cell of column and report all cells of row")
+	script_moveToStartOfColumnAndReportRow.__doc__ = _("Table: move to first cell of column and report all cells of row")
 	
 	def script_moveToEndOfColumnAndReportRow(self, gesture):
 		stopScriptTimer()

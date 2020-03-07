@@ -11,6 +11,7 @@
 
 
 Cette extension complète les scripts intégrés dans la version de base de NVDA et apporte:
+
 * le script("windows+alt+F5") pour obtenir la liste de divers objets Word (commentaires, modifications, signets,...), 
 * le script ("Alt+éfacement") pour connaitre suivant le cas: le numéro de ligne, colonne  et de page de la position du curseur système,  le début  et la fin de la sélection, ou le numéro de ligne et colonne de la cellule courante d'un tableau (avec indication éventuelle de la position  par rapport au bord gauche et supérieur),
 * le script ("windows+alt+f2") pour insérer un commentaire  à la position du curseur,
@@ -32,6 +33,6 @@ Cette extension a été testée avec Microsoft Word 2013 et 2016.
 
 
 
-[1]: https://github.com/paulber007/AllMyNVDAAddons/raw/master/wordAccessEnhancement/wordAccessEnhancement-1.0.nvda-addon
+[1]: https://github.com/paulber007/AllMyNVDAAddons/raw/master/wordAccessEnhancement/wordAccessEnhancement-1.0.1.nvda-addon
 
 [2]: https://github.com/paulber007/AllMyNVDAAddons/tree/master/wordAccessEnhancement/dev

@@ -36,7 +36,7 @@ This module has been tested with Microsoft Word 2016 and 2013.
 """),
 
 	# version
-	"addon_version" : "1.0",
+	"addon_version" : "1.0.1",
 	# Author(s)
 	"addon_author" : "paulber19",
 	# URL for the add-on documentation support

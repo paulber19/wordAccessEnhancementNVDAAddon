@@ -1,0 +1,429 @@
+ADDON_SUMMARY - Manual del usuario
+Autor: ADDON_AUTHOR_NAME
+
+
+%!includeconf: ../addon_userManual.t2tconf
+%!includeconf: addon_informations.t2tconf
+%!includeconf: addon_keys.t2tconf
+
+
+URL: ADDON_AUTHOR_URL
+
+Descargar:
+- [Versión estable ADDON_VERSION ADDON_DOWNLOAD_SERVER1]
+- [Versión de desarrollo ADDON_DEV_URL]
+
+
+Compatibilidad:
+- versión mínima de NVDA requerida: : MINIMUM_NVDA_VERSION
+- última versión de NVDA probada: LAST_TESTED_NVDA_VERSION
+
+
+= Índice =[toc]
+%%toc
+
++ Introducción +
+
+++ Características ++
+Este complemento proporciona:
+- [un script #HDR1] para presentar los distintos tipos de objetos a la lista (como comentarios, palabras mal escritas, , ...),
+- [un script #HDR2] para anunciar la fila, columna y número de página de la posición o selección del cursor, es decir, la posición de la celda de la tabla actual,
+- [los saltos de párrafo vacío #HDR3] al saltar de un párrafo a otro,
+- [un script para insertar un comentario sin mover el foco #HDR5],
+- [un script  para leer la nota al pie o  al final #HDR9] en la posición del cursor,
+- [un script para leer la modificación del texto #HDR10] en la posición del cursor,
+- [scripts adicionales para las tablas #HDR7],
+- [Órdenes de teclado  específicos de Microsoft Word para una navegación rápida por el documento #HDR8],
+- [un script para pasar de una frase a otra #HDR12],
+- [un script para mostrar información sobre el documento #HDR13],
+- [Accesibilidad mejorada del corrector ortográfico de Word 2013 y 2016 #HDR14].
+
+
+
+++ Actualización ++
+La actualización del complemento por defecto se hace automáticamente poco tiempo después de iniciar NVDA (entre 20 y 600 segundos) y como máximo una vez al día.
+Puedes desactivar esta actualización desmarcando la opción "Buscar automáticamente actualizaciones" que se encuentra en las opciones del complemento, elemento de menú "Actualización".
+La versión del complemento puede ser:
+- Ya sea una versión estable: su número de versión es de tipo "1.0" por ejemplo.
+- Ya sea una versión de desarrollo: su número de versión es entonces de tipo "1.0-dev1", o "1.0-rc1", o "1.0-beta2".
+
+
+Por defecto, una versión estable se actualiza con la última versión estable (Número de versión superior).
+Sin embargo, es posible actualizar la versión actual estable con una versión de desarrollo de la próxima versión estable. Simplemente marcando la opción "Actualizar también versiones estable hacia versiones de desarrollo" situado en las opciones del complemento, elemento de menú "Actualización".
+
+Una versión de desarrollo se actualiza con una versión de desarrollo más reciente o con su versión estable.
+
+El botón "Buscar actualización" situado en las opciones del complemento, elemento de menú "Actualización", permite buscar inmediatamente una actualización
+
+
+
+++ Compatibilidad ++
+Este complemento fue probado con las versiones de Microsoft Word 2016 y 2013.
+
+
++ Script para elegir la lista de objetos para mostrar +[hdr1]
+Este script se inicia utilizando el gesto de entrada "key_choice".
+
+En respuesta a este gesto de entrada, aparece un cuadro de diálogo que muestra:
+
+- una lista para elegir el tipo de objeto a listar,
+- una lista para elegir la parte del documento en cuestión,
+- un botón para buscar y mostrar objetos,
+- un botón "Buscar y copiar al portapapeles" para buscar y copiar los objetos encontrados en el portapapeles,,
+- un botón cerrar
+
+
+Es posible salir de este cuadro de diálogo con el botón "Cerrar" o presionando la tecla "Escape".
+
+La lista ofrece los siguientes tipos de objetos:
+
+- las palabras mal escritas,
+- los errores gramaticales,
+- los comentarios,
+- los marcadores,
+- los cambios en el documento,
+- las notas al pie de página,
+- las notas al final del documento,
+- los objetos gráficos de la capa de texto,
+- los objetos gráficos de la capa de dibujo,
+- los hipervínculos,
+- los campos,
+- las tablas,
+- los títulos del documento,
+- los marcos,
+- las secciones.
+
+
+Las teclas "flecha arriba" y "flecha abajo" se mueven por la lista. 
+Con la tecla "Tabulador" se llega a la lista que presenta la elección de la parte del documento donde se buscarán los objetos del tipo seleccionado. 
+La lista ofrece las siguientes opciones:
+- "Posición del cursor": el objeto en la posición del cursor,
+- "Selección": los objetos ubicados en la selección (si hay una selección realizada),
+- "Documento": los objetos ubicados en el documento,
+- "Página": los objetos en la página actual,
+- "Desde el inicio del documento hasta el cursor": objetos ubicados entre el comienzo del documento y la posición del cursor,
+- "Desde el cursor hasta el final del documento": objetos ubicados entre la posición del cursor y el final del documento.
+
+
+Por defecto, la preselección se realiza en "documento". 
+Si se selecciona una parte del documento antes de la activación del script, la selección "selección" se preselecciona. De lo contrario, esta opción no está en la lista de opciones.
+
+ La elección realizada, la tecla "Intro" en la lista o presionar el botón "Buscar y mostrar" activa la recopilación de información para el tipo de objeto elegido y luego la visualización del cuadro de diálogo que presenta la lista de objetos recogido.
+La recolección puede tomar varios segundos. 
+
+Es posible mediante el botón "Buscar y copiar al portapapeles" para iniciar la colección y copiar la lista de objetos recopilados con su información en el portapapeles, posiblemente más detallada que la pantalla.
+
+El cuadro que presenta la lista de objetos recopilados depende del tipo de objeto seleccionado y tiene la siguiente forma general:
+
+- una lista que presenta información en forma de columnas,
+- uno o dos cuadros de texto (sólo lectura),
+- botones para activar una acción en el objeto seleccionado,
+- el botón "Cerrar".
+
+
+El botón "Cerrar" o presionar la tecla "Escape" cierra este cuadro de diálogo.
+
+En la lista, y sin abandonarla, es posible:
+
+- ir al lugar en el documento donde se encuentra el objeto seleccionado (presione la tecla "Intro"),
+- o para ciertos objetos, para eliminar el objeto seleccionado (presione la tecla "Suprimir"). 
+Al presionar la tecla "espacio" se anuncia el texto del primer campo o, si la tecla "Control" se presiona simultáneamente, el texto del segundo campo. 
+
+La información común a todos los objetos es:
+
+- el número del objeto en la lista,
+- el número de página y el número de línea donde está el objeto en el documento.
+
+
++ Script de anuncio de posición +[hdr2]
+Este script se ejecuta utilizando el gesto de entrada "key_line_page" en computadoras de escritorio o "key_laptop_line_page" en la configuración de la computadora portátil.
+
+En respuesta a este gesto de entrada, se anuncia según corresponda:
+
+- en el caso de una selección, la fila, la columna y el número de página del principio y el final, 
+- en el caso donde el foco está en una tabla, el número de fila y columna de la celda de la tabla, 
+- en otros casos, la fila, columna y número de página de la posición del foco.
+
+
+En cualquier caso, se anuncia la posición con respecto al borde izquierdo y al borde superior de la página.
+
+El número de línea es relativo a la página y el número de columna es relativo al comienzo de la línea.
+
+Una doble pulsación del gesto de entrada muestra esta información en la pantalla.
+
+
++ Script inserción de un commentario +[hdr5]
+Este script se inicia utilizando el gesto de entrada "key_insert_comment".
+
+En respuesta a este gesto de entrada, aparece un cuadro de diálogo que solicita ingresar el texto del comentario. 
+El texto puede estar en varias líneas. 
+El botón "Aceptar" valida la entrada. 
+El botón "Cancelar" hace que la inserción se abandone. 
+Si hay una selección presente, el texto comentado es el texto de esta selección. De lo contrario, es la palabra enfocada.
+
++ Script leer la nota al pie o al final +[HDR9]
+Este script se inicia utilizando el gesto de entrada "key_report_footnote_endnote".
+
+Está destinado a leer la nota al pie o la nota al final en la posición del cursor. 
+En el caso de que no haya ninguno de estos dos elementos, un mensaje de voz lo anuncia.
+
+
++ Script de lectura de la modificación del texto +[HDR10]
+Este script se inicia usando el gesto de entrada "key_report_revision".
+
+Está destinado a anunciar la edición de texto en la posición del cursor. 
+Puede haber varios cambios con respecto a esta posición. 
+El tipo, el autor, el texto de la modificación se anuncian. 
+Un mensaje de voz indica si no hay cambios en esta posición.
+
++ Saltar párrafos vacíos +[hdr3]
+En un documento de Word, NVDA proporciona la capacidad de moverse de un párrafo a otro utilizando las órdenes "key_next_paragraph" o "key_previous_paragraph".
+Pero el foco se da en el párrafo anterior o siguiente, independientemente de su contenido. 
+Este complemento ofrece la posibilidad de omitir los párrafos vacíos y enfocar el primer párrafo no vacío encontrado.
+
+El gesto de entrada "key_toggle_skip_empty_paragraph" habilita o deshabilita esta opción, que está habilitada de manera predeterminada al instalar el complemento.
+
+
+
++ Scripts para tablas +[hdr7]
+++ Anunciar elementos de la tabla ++
+El complemento instala scripts con su gesto de entrada para anunciar los elementos que componen una tabla (celda, fila y columna) sin tener que mover el cursor.
+
+Estos son:
+- anuncie la celda bajo el foco: "key_report_cell".
+- Anuncie todas las celdas en la línea actual: "key_report_row".
+- Anuncie todas las celdas en la columna actual: "key_report_column".
+- Anuncie la celda anterior en la fila: "key_report_previousInRow".
+- Anuncie la siguiente celda en la fila: "key_report_nextInRow".
+- Anuncie la celda anterior en la columna: "key_report_previousInColumn".
+- Anuncie la siguiente celda en la columna: "key_report_nextInColumn".
+- Anuncie la primera celda de la fila: "key_report_firstInRow".
+- Anuncie la última celda de la fila: "key_report_lastInRow".
+- Anuncie la primera celda de la columna: "key_report_firstInColumn".
+- Anuncie la última celda de la columna: "key_report_lastInColumn".
+
+
+Según la opción "encabezado de columna" en la sección "Formato de documento" de la configuración de NVDA, el contenido de la celda se anuncia solo o con los títulos de la fila y la columna.
+
+Estos scripts se presentan en la categoría "Editor de texto Microsoft Word: complemento de accesibilidad" del cuadro de diálogo "Gestos de entrada" de NVDA.
+++ Anuncio de todas las celdas ++
+Es posible anunciar todas las celdas en la fila o columnas cuando se utilizan   los gestos de entrada anteriores.
+El script "habilitar o deshabilitar el anuncio de todas las celdas" se inicia utilizando el gesto de entrada "key_sayAll".
+
+Este script se presenta en la categoría "Editor de texto Microsoft Word: complemento de accesibilidad" del cuadro de diálogo "Gestos de entrada" de NVDA.
+
+Entonces, si el anuncio de todas las celdas está habilitado, pulsando:
+- "key_report_previousInRow" o "key_report_nextInRow": se anuncian las celdas en la columna anterior o siguiente.
+- "key_report_previousInColumn" o "key_report_nextInColumn": se anuncian todas las celdas en las filas anteriores o siguientes.
+- ""key_report_firstInRow" ou "key_report_lastInRow": se anuncian todas las celdas en la primera o última columna.
+- key_report_firstInColumn" ou "key_report_lastInColumn": se anuncian todas las celdas en la primera o última fila.
+
+
+Para deshabilitar el anuncio de todas las celdas, simplemente pulsa el gesto de entrada "key_sayAll" nuevamente.
+
+++ Desplazándose en la tabla ++
+El complemento instala los siguientes scripts para desplazarse en una tabla:
+- ir a la celda anterior en la fila: "key_moveTo_previousInRow".
+- ir a la siguiente celda de la fila: "key_moveTo_nextInRow".
+- ir a la celda anterior en la columna: "key_moveTo_previousInColumn".
+- ir a la siguiente celda de la columna: "key_moveTo_nextInColumn".
+- ir a la primera celda de la fila: "key_moveTo_firstInRow".
+- ir a la última celda de la fila: "key_moveTo_lastInRow".
+- ir a la primera celda de la columna: "key_moveTo_firstInColumn".
+- ir a la última celda de la columna: "key_moveTo_lastInColumn".
+
+
+Después del desplazamiento, se anuncia la celda actual o el conjunto de celdas que componen la línea o la columna si se activa el anuncio de todas las celdas.
+
+El anuncio del contenido de cada celda está precedido por el anuncio del título correspondiente si se marca la opción "Encabezados de columna" (categoría "Formatear documentos".
+
+
+El complemento también instala, pero sin gestos de entrada, los siguientes scripts para mover en una tabla y anunciar las celdas de la fila o columna:
+- ir a la celda anterior en la fila y anuncie todas las celdas en la columna,
+- ir a la siguiente celda en la línea y anuncie todas las celdas en la columna,
+- ir a la celda anterior en la columna y anuncie todas las celdas de la fila,
+- ir a la siguiente celda de la columna y anuncie todas las celdas de la fila,
+- ir a la primera celda de la fila y anuncie todas las celdas de la columna,
+- ir a la última celda de la fila y anuncie todas las celdas de la columna,
+- ir a la primera celda de la columna y anuncie todas las celdas de la fila,
+- ir a la última celda de la columna y anuncie todas las celdas de la fila.
+
+Al usar el cuadro de diálogo "Gestos de entrada" de NVDA, es posible definir sus propios gestos de entrada.
+
+Estos scripts se presentan en la categoría "Editor de texto Microsoft Word: complemento de accesibilidad" del cuadro de diálogo "Gestos de entrada" de NVDA.
+
+
+
+++ Capa de órdenes para tablas ++
+El complemento permite modificar los gestos de entrada de los scripts anteriores, lo que requiere la combinación de varias teclas para usar solo las teclas de dirección para los desplazamientos.
+
+Para hacer esto, simplemente pulse el gesto de entrada "key_layerMode" para activar la capa de órdenes para una tabla.
+
+Por lo tanto, después de activar la capa de órdenes para una tabla, los gestos de entrada de los scripts de desplazamiento se reemplazan por:
+
+- ir a la celda anterior en la fila: "key_layer_moveTo_previousInRow".
+- ir a la siguiente celda en la fila: "key_layer_moveTo_nextInRow".
+- ir a la celda anterior en la columna: "key_layer_moveTo_previousInColumn".
+- ir a la siguiente celda de la columna: "key_layer_moveTo_nextInColumn".
+- ir a la primera celda de la fila: "key_layer_moveTo_firstInRow".
+- ir a la última celda de la fila: "key_layer_moveTo_lastInRow".
+- ir a la primera celda de la columna: "key_layer_moveTo_firstInColumn".
+- ir a la última celda de la columna: "key_layer_moveTo_lastInColumn".
+
+
+
+Estos scripts se presentan en la categoría "Editor de texto Microsoft Word: complemento de accesibilidad (capa de órdenes para tabla)" del cuadro de diálogo "Gestos de entrada" de NVDA.
+
+Para deshabilitar la capa de órdenes para una tabla, simplemente vuelva a pulsar "key_layerMode" o simplemente pulsar "key_escape".
+
+++ Anunciar el título de la fila y la columna ++
+El gesto de entrada "key_report_headers" permite conocer el título de la línea y la columna de la celda actual.
+
+
++ Órdenes para la navegación rápida en el documento +[HDR8]
+Para moverse rápidamente en el documento, NVDA ofrece el modo exploración que se activa y desactiva utilizando el gesto de entrada "NVDA + espacio".
+Cuando se activa este modo, ya no es posible escribir texto en el documento. 
+Cada tipo de elemento está asociado con una sola tecla en el teclado. Al presionar esta tecla, el cursor se coloca en el siguiente elemento del mismo tipo. Al pulsar esta misma tecla con mayúscula presionada, el cursor se posiciona en el elemento anterior del mismo tipo. 
+Estas órdenes son comunes a otras aplicaciones, como los navegadores de Internet.
+
+Este complemento agrega las siguientes órdenes específicos para Microsoft Word.
+- "j": comentario,
+- "y": campo,
+- ";": marcador,
+- "!": nota final,
+- ":": nota al pie,
+- "$": error de gramática,
+- "<": modificación de texto,
+- ")": sección,
+
+ 
+La imposibilidad de mover el cursor se indica mediante un mensaje de voz que indica que ya no hay ningún elemento correspondiente  a la órden.
+
+Las órdenes del modo exploración no admitidos se indican mediante el mensaje de voz "No admitido en este documento" y todas las demás órdenes, mediante un pitido.
+
++ Moverse de frase en frase +[HDR12]
+Los siguientes gestos de entrada se utilizan para mover el cursor del sistema de frase en frase:
+- "key_next_sentence": pasar a la siguiente frase",
+- "key_previous_sentence": pasar a la frase anterior.
+
+
+Estos scripts se presentan en la categoría "Editor de texto Microsoft Word: complemento de accesibilidad" del cuadro de diálogo "Gestos de entrada" de NVDA.
+
++ Visualización de la información del documento +[HDR13]
+El gesto de entrada "key_document_infos" muestra cierta información sobre el documento en un cuadro de diálogo:
+- la posición actual en el documento, como: número de página, número de línea, número de sección,
+- propiedades del documento como: nombre del archivo, nombre del autor, fecha de creación,
+- estadísticas como: el número de páginas, el número de líneas, el número de palabras,
+- información sobre secciones tales como: pies de página, notas finales, bordes,
+- información sobre tablas como: el número de filas y columnas, bordes,
+- el estado de las opciones específicas de Word como: seguimiento de cambios, revisión de ortografía o gramática mientras escribe.
+
+
+Dependiendo del número de errores ortográficos o gramaticales, el tiempo de visualización del cuadro de diálogo puede ser relativamente largo.
+
+La información que se muestra se puede copiar al portapapeles con el botón "Copiar al portapapeles" en el cuadro de diálogo.
+Este script se presenta en la categoría "Editor de texto Microsoft Word: complemento de accesibilidad" del cuadro de diálogo "Gestos de entrada" de NVDA.
+
++ Accesibilidad mejorada del corrector ortográfico en Word 2013 y 2016 +[HDR14]
+Cuando el foco se coloca en el documento, la tecla "f7" (acceso directo de Word) permite iniciar el corrector ortográfico o volver a él si ya está iniciado y la tecla "Esc" le permite volver al documento cuando el foco está en el corrector ortográfico.
+
+El complemento ofrece la posibilidad de utilizar también la tecla "f7" para ejecutar la misma acción que la tecla "Esc".
+
+Contrariamente a lo que verbaliza NVDA, en el primer lanzamiento del corrector, el foco puede no estar ubicado donde debería estar, es decir dentro del panel y en uno de sus botones o listas (Defecto de Word 2013).
+Esta es la razón por la cual el complemento puede pedirle que presione la tecla "tab" primero.
+
+Como NVDA no anuncia ni el error ni la sugerencia cuando el foco llega al corrector ortográfico, el complemento  intenta paliarlo.
+
+Un script permite anunciar esta información.
+
+ Se le asigna el gesto de entrada "key_spelling_checker_help".
+
+- Con una simple pulsación de este gesto, se anuncia el error y la sugerencia.
+- Con una doble pulsación de este gesto, esta información se detalla.
+- Con una triple pulsación de este gesto, se anuncia la ayuda del corrector.
+
+
+
+El gesto de entrada "key_report_CURRENT_SENTENCE" le permite escuchar nuevamente la frase afectada por el error.
+
+
+Estos scripts se presentan en la categoría "Editor de texto Microsoft Word: complemento de accesibilidad" del cuadro de diálogo "Gestos de entrada" de NVDA.
+
+Este complemento también permite el anuncio automático del nuevo error y su sugerencia presentada por el corrector ortográfico después del uso de uno de los botones como "Ignorar", "Modificar" o accesos directos de Word como "i", "m ".
+
+
++ Historial +
+++ v1.0.1 (07/03/2020) ++
+- corrección de documentación.
+- traducción del complemento en español por Gunther Melendez, cambios por Rémy Ruiz.
+
+
+++ v1.0 (07/02/2020) ++
+Este complemento cambia de nombre para evitar confusiones con otros complementos. Su versión comienza nuevamente en 1.0.
+- Compatibilidad con NVDA 2019.3.
+- modificación de gestos de entrada:
+ - reemplazo de la tecla NVDA con la tecla "windows" en combinación con la tecla "alt".
+ - eliminación de gestos de entrada de scripts de movimiento con anuncio de todas las celdas.
+- se añade script para activar o desactivar el anuncio de las celdas de la fila o la columna durante una consulta o un desplazamiento en una tabla.
+- se añade la capa de órdenes para tablas que ofrece la posibilidad de utilizar las teclas de flecha para moverse en las tablas.
+- se añade script para anunciar la celda actual.
+- se añade script "Información del documento".
+- accesibilidad mejorada del corrector ortográfico de Word 2013 y 2016.
+- eliminación del anuncio del nivel de título durante una modificación (compatible con NVDA).
+- eliminación, en modo navegación, del movimiento allí debido a un error ortográfico por "*" (compatible con NVDA: órden "w").
+- se añade la posibilidad de anunciar el contenido del primer o segundo campo con la tecla "espacio" en la lista de elementos (ver diálogo "Elección").
+- script Anunciar  la posición del cursor: muestra información en la pantalla presionando dos veces el gesto.
+- buscar  actualización automática.
+
+
+++ v3.1 (10 de Avril del 2016) ++
+- se añade el anuncio de columna para las órdenes de teclado "key_line_page"
+
+
+++ v3.0 (10 de Marzo  del 2016) ++
+- eliminación de scripts de movimiento rápido (duplicado con modo de navegación NVDA),
+- eliminación de los scripts para anunciar el título de las filas o columnas en la segunda pulsación (ahora usando la opción incluida en NVDA),
+- compatibilidad con NVDA 2016.1.
+
+
+++ v2.5 (22 de Junio del 2015) ((no publicado)) ++
+- cambio de las órdenes de teclado: "nvda+control+f6" a "alt+suprimir" y nvda +suprimir teclado numérico".
+- indicación de la posición relativa al borde izquierdo y superior (órdenes "alt + suprimir", "alt + suprimir teclado numérico")
+-  se añade búsqueda de objetos en la página actual (órdenes nvda + alt + f5)
+- compatibilidad con el modo exploración de NVDA (cambio de accesos directos de navegación)
+  
+  
+++ v2.4 (11 de Junio del 2015) ++
+- la corrección de bloqueo apareció desde NVDA 2015.1
+- se añade script  para seleccionar el modo de navegación rápida
+
+
+++ v2.3 (14 de Diciembre del 2014) ++
+- se añade órdenes para mover el foco a la frase anterior o siguiente ("alt + flecha arriba o flecha abajo")
+- corrección de documentación y traducción
+- corrección manifest.ini
+ 
+
+++ v2.2 (15 de Noviembre  del 2014) ++
+- se añade la navegación rápida
+- separación en dos categorías de objetos gráficos (los de la capa de texto, los de la capa de dibujo)
+- se añade script "nvda + alt + r" para leer la modificación del texto en el cursor,
+- se añade script "nvda + alt + e" para leer la nota final o nota al pie del cursor
+
+
+++ v2.1 (1 de Octubre del 2014) ++
+- se añade el botón "Buscar y mostrar",
+- se añade atajos para botones de cuadro de diálogo,
+- corrección de documentación
+- modificación del color de fondo de los elementos de las listas.
+- corrección del defecto de selección presionando el botón "Buscar y copiar al portapapeles"
+
+
+++ v2.0 (24 de Setiembre  del 2014) ++
+- compatibilidad con la versión 2014.3
+- se añade scripts para tablas
+- se añade script para activar o desactivar el salto de los párrafos vacíos
+
+
+++ v1.0 (24 de Enero del  2014) ++
+- Creación  del complemento.

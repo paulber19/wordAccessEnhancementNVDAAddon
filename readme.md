@@ -11,6 +11,7 @@
 
 
 This add-on adds extra functionality when working with Microsoft Word:
+
 * a  script ("windows+alt+f5")  to display a dialog box to choose between most of objects 's type to be listed (like comments, revisions, fields, endnotes, footnotes,spelling errors, grammar errors,...).
 * a script ("Alt+delete"") to announce line, column  and page of  cursor position, or start  and end ofselection, or currenttable's cell,
 * a script ("windows+alt+f2") to insert a comment,
@@ -28,6 +29,6 @@ This add-on adds extra functionality when working with Microsoft Word:
 This module has been tested with Microsoft Word 2016 and 2013.
 
 
-[1]: https://github.com/paulber007/AllMyNVDAAddons/raw/master/word/wordAccessEnhancement-1.0.nvda-addon
+[1]: https://github.com/paulber007/AllMyNVDAAddons/raw/master/word/wordAccessEnhancement-1.0.1.nvda-addon
 
 [2]: https://github.com/paulber007/AllMyNVDAAddons/tree/master/wordAccessEnhancement/dev

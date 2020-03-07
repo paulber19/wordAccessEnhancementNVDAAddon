@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: wordAccessEnhancement 1.0\n"
+"Project-Id-Version: wordAccessEnhancement 1.0.1\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
-"POT-Creation-Date: 2020-02-05 18:51+0100\n"
+"POT-Creation-Date: 2020-03-07 09:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4151,7 +4151,7 @@ msgstr ""
 
 #. Translators: a description for a script.
 #: appModules\winword\__init__.py:688
-msgid "Table: move to next columnand report all cells of column"
+msgid "Table: move to next column and report all cells of column"
 msgstr ""
 
 #. Translators: a description for a script.
@@ -4311,18 +4311,18 @@ msgid "Oops! There was a problem checking for updates. Please retry later"
 msgstr ""
 
 #. Translators: This is a label of a button appearing on UpdateCheckResult dialog.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:501
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:506
 msgid "&Yes"
 msgstr ""
 
 #. Translators: This is a label of a button appearing on UpdateCheckResult dialog.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:505
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:510
 msgid "&No"
 msgstr ""
 
 #. this prompt was triggered by auto update checker
 #. Translators: The label of a button to remind the user later about performing some action.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:509
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:514
 msgid "&Later"
 msgstr ""
 
