@@ -30,26 +30,21 @@ class WordGlobalPlugin(globalPluginHandler.GlobalPlugin):
 	
 	def installSettingsMenu(self):
 		self.preferencesMenu= gui.mainFrame.sysTrayIcon.preferencesMenu
-		from .ww_configGui import WordAddonSettingsDialog
+		from .ww_configGui import AddonSettingsDialog
 		self.menu = self.preferencesMenu.Append(wx.ID_ANY,
-			WordAddonSettingsDialog.title + " ...",
+			AddonSettingsDialog.title + " ...",
 			"")
 		gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.onMenu, self.menu)
 	
 	def deleteSettingsMenu(self):
 		try:
-			if wx.version().startswith("4"):
-				# for wxPython 4
-				self.preferencesMenu.Remove (self.menu )
-			else:
-				# for wxPython 3
-				self.preferencesMenu.RemoveItem (self.menu )
+			self.preferencesMenu.Remove (self.menu )
 		except:
 			pass
-	
+
 	def onMenu(self, evt):
-		from .ww_configGui import WordAddonSettingsDialog
-		gui.mainFrame._popupSettingsDialog(WordAddonSettingsDialog)
+		from .ww_configGui import AddonSettingsDialog
+		gui.mainFrame._popupSettingsDialog(AddonSettingsDialog)
 
 	def terminate(self):
 		self.deleteSettingsMenu()

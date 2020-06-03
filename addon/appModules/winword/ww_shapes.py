@@ -27,10 +27,6 @@ class Shape(CollectionElement):
 		self.start = item.Anchor.Start
 		self.end = item.Anchor.End
 		self.text = item.Anchor.text
-
-		r = self.parent.doc.range(self.start, self.start)
-		self.line = r.information(wdFirstCharacterLineNumber )
-		self.page = r.Information(wdActiveEndPageNumber )
 		self.alternativeText = ""
 		if item.AlternativeText:
 			self.alternativeText = item.AlternativeText
@@ -38,9 +34,8 @@ class Shape(CollectionElement):
 			self.title = item.Title
 		except:
 			self.title = ""
-
-		
-
+		self.setLineAndPageNumber()		
+	
 	def getTypeText(self):
 		typeTexts = {
 			-2 :  _("Mixed shape type"),#  msoShapeTypeMixed 

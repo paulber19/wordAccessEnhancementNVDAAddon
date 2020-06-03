@@ -24,10 +24,9 @@ class SpellingError(CollectionElement):
 		self.text = ""
 		if item.Text:
 			self.text = item.Text
-		r = self.parent.doc.range(self.start, self.end)
-		self.line = r.information(wdFirstCharacterLineNumber )
-		r.Collapse()
-		self.page = r.Information(wdActiveEndPageNumber )
+
+		r = self.doc.range(self.start, self.end)
+		self.setLineAndPageNumber(r)
 		r.expand(wdSentence)
 		self.sentence = r.Text
 

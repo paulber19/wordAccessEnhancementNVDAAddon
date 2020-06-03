@@ -70,6 +70,8 @@ def isOpened(dialog):
 	msg = _("%s dialog is allready open") %dialog.title
 	queueHandler.queueFunction(queueHandler.eventQueue, speech.speakMessage, msg)
 	return True
+
+
 class InformationDialog(wx.Dialog):
 	_instance = None
 	# Translators: this is the default title of Information dialog
@@ -77,12 +79,7 @@ class InformationDialog(wx.Dialog):
 	def __new__(cls, *args, **kwargs):
 		if InformationDialog._instance is not None:
 			return InformationDialog._instance
-		obj = super(InformationDialog, cls).__new__(cls, *args, **kwargs)
-		return obj
-	def __del__(self):
-		InformationDialog._instance = None
-		super(InformationDialog, cls).__del__()
-
+		return super(InformationDialog, cls).__new__(cls, *args, **kwargs)
 	
 	def __init__(self, parent, informationLabel = "", information= "" ):
 		if InformationDialog._instance is not None:
@@ -119,7 +116,9 @@ class InformationDialog(wx.Dialog):
 		closeButton.Bind(wx.EVT_BUTTON, lambda evt: self.Destroy())
 		self.tc.SetFocus()
 		self.SetEscapeId(wx.ID_CLOSE)
-	
+	def Destroy(self):
+		InformationDialog._instance = None
+		super(InformationDialog, self).Destroy()	
 	def onCopyToClipboardButton(self, event):
 		if api.copyToClip(self.information):
 			# Translators: message to the user when the information has been copied to clipboard

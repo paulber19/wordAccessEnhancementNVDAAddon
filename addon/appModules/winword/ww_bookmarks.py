@@ -32,18 +32,11 @@ class Bookmark(CollectionElement):
 
 		self.rangeStart = item.range.Start
 		self.rangeEnd = item.range.End
-		r = self.parent.doc.range (self.rangeStart, self.rangeStart)
-		self.line = r.information(wdFirstCharacterLineNumber )
-		#r.Collapse()
-		self.page = r.Information(wdActiveEndPageNumber )
-
-
-
+		r = self.doc.range (self.rangeStart, self.rangeStart)
+		self.setLineAndPageNumber(r)
 
 	
 	def get_storyTypeText(self ):
-
-
 		return wdStoryValueToText[self.storyType]
 
 	
@@ -57,8 +50,7 @@ Associated Ttext:
 """)
 		sInfo = sInfo.replace("\n", "\r\n")
 		return sInfo.format(page =self.page, line= self.line, text = self.bookmarkedText, storyTypeText = storyTypeText)
-		
-
+	
 	def speakInfo(self):
 		ui.message(self.name)
 class Bookmarks(Collection):

@@ -26,9 +26,8 @@ class GrammaticalError(CollectionElement):
 		self.text = ""
 		if item.Text:
 			self.text = item.Text
-		r = self.parent.doc.range(self.start, self.start)
-		self.line = r.information(wdFirstCharacterLineNumber )
-		self.page = r.Information(wdActiveEndPageNumber )
+		self.setLineAndPageNumber()
+
 		
 			
 	def formatInfos(self):

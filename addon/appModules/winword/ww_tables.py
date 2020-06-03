@@ -15,6 +15,7 @@ import ui
 import speech
 from NVDAObjects.window.winword import WordDocument
 import time
+import tones
 from .ww_wdConst import wdActiveEndPageNumber , wdFirstCharacterLineNumber , wdGoToTable
 from .ww_collection import Collection, CollectionElement,ReportDialog
 import sys
@@ -29,17 +30,15 @@ class Table(CollectionElement):
 	_rowPositions = {"nextInRow": "next", "previousInRow": "previous", "firstInRow": "first", "lastInRow": "last", "current": "current"}
 	_columnPositions = {"nextInColumn": "next", "previousInColumn": "previous", "firstInColumn": "first", "lastInColumn": "last", "current": "current"}
 	
-	def __init__(self, parent, item):
-		super(Table, self).__init__(parent, item)
-		self.columnsCount = item.Columns.Count
-		self.rowsCount = item.Rows.Count
-		self.range = item.Range
+	def __init__(self, parent, tableObj):
+		super(Table, self).__init__(parent, tableObj)
+		self.columnsCount = tableObj.Columns.Count
+		self.rowsCount = tableObj.Rows.Count
+		self.range = tableObj.Range
 		self.title = ""
-		self.uniform = item.uniform
-		self.start = item.range.Start
-		r = self.parent.doc.range (self.start, self.start)
-		self.line = r.information(wdFirstCharacterLineNumber )
-		self.page = r.Information(wdActiveEndPageNumber )
+		self.uniform = tableObj.uniform
+		self.start = tableObj.range.Start
+		self.setLineAndPageNumber()
 	
 	def formatInfos(self):
 		sInfo = _("""Page {page}, line {line}
@@ -79,6 +78,18 @@ Number of columns: {columnsCount}
 			if newCell is None or newCell.rowIndex  == rowIndex:
 				ui.message(_("Column's limit"))
 				newCell = None
+		elif position == "firstCellOfTable":
+			cells = self._getCellsOfRow(1)
+			newCell = self._getCellInCollection(cells, "first", None)
+			if newCell is None or ((newCell.columnIndex  == columnIndex) and (newCell.rowIndex  == rowIndex)):
+				ui.message(_("Table's start"))
+				newCell = None
+		elif position == "lastCellOfTable":
+			cells = self._getCellsOfRow(self.obj.Rows.Count)
+			newCell = self._getCellInCollection(cells, "last", None)
+			if newCell is None or ((newCell.columnIndex  == columnIndex) and (newCell.rowIndex  == rowIndex)):
+				ui.message(_("Table's end"))
+				newCell = None
 		else:
 			# error
 			log.warning("moveToCell error: %s, %s"%(type, whichOne))
@@ -86,6 +97,10 @@ Number of columns: {columnsCount}
 		if newCell == None:
 			return None
 		newCell.goTo()
+		if position in ["nextInRow", "nextInColumn", "lastInRow", "lastInColumn", "lastCellOfTable"] and self.isLastCellOfTable(newCell):
+			speech.speakMessage(_("Last cell"))
+		elif position in ["previousInRow", "previousInColumn", "firstInRow", "firstInColumn", "firstCellOfTable"] and self.isFirstCellOfTable(newCell):
+			speech.speakMessage(_("First cell"))
 		return newCell
 	
 	
@@ -112,7 +127,6 @@ Number of columns: {columnsCount}
 	def _getCellsOfRow(self, rowIndex):
 		cells = []
 		for i in range(1, self.columnsCount+1):
-
 			try:
 				cell = self.obj.cell(rowIndex, i)
 
@@ -129,17 +143,11 @@ Number of columns: {columnsCount}
 		for i in range(1, self.rowsCount+1):
 			try:
 				cell = self.obj.cell(i, columnIndex)
-
 			except:
 				continue
 			cells.append(Cell(self, cell))
-
-
-
 		return cells
-
-
-
+	
 	def sayElement(self, elementType, position, currentCell, reportAllCells = False):
 		printDebug ("sayElement: %s, %s, reportAllCells = %s"%(elementType, position, reportAllCells))
 		if elementType == "row":
@@ -165,7 +173,7 @@ Number of columns: {columnsCount}
 		newCell = None
 		row = None
 		if position == "current":
-			currentCell.sayText(self.parent, columnHeader)
+			currentCell.sayText(self.parent, reportColumnHeader = columnHeader)
 			return
 		
 		if position in self._rowPositions:
@@ -196,7 +204,7 @@ Number of columns: {columnsCount}
 				ui.message(_("column %s") %newCell.columnIndex)
 			elif row is False:
 				ui.message(_("row %s") %newCell.rowIndex)
-			newCell.sayText(self.parent, columnHeader = row if columnHeader is None else columnHeader)
+			newCell.sayText(self.parent, reportColumnHeader = row if columnHeader is None else columnHeader)
 
 	def sayRow(self, position, currentCell):
 		cells = self._getCellsOfColumn(currentCell.columnIndex)
@@ -225,15 +233,51 @@ Number of columns: {columnsCount}
 			self.sayCell("current", cell, columnHeader = False)
 
 
+	
+
+	def isLastCellOfTable(self, currentCell = None):
+		if currentCell.rowIndex != self.obj.Rows.Count:
+			return False
+		cells = self._getCellsOfRow(currentCell.rowIndex)
+		pos = self._rowPositions["nextInRow"]
+		index = self._getCellIndexInCollection(currentCell, cells)
+		newCell = self._getCellInCollection(cells, pos, index)
+		if newCell: return False
+		cells = self._getCellsOfColumn(currentCell.columnIndex)
+		pos = self._columnPositions["nextInColumn"]
+		index = self._getCellIndexInCollection(currentCell, cells)
+		newCell = self._getCellInCollection(cells, pos, index)
+		if newCell: return False
+		return True
+
+
+	def isFirstCellOfTable(self, currentCell ):
+		if currentCell.rowIndex != 1:
+			return False
+		cells = self._getCellsOfRow(currentCell.rowIndex)
+		pos = self._rowPositions["previousInRow"]
+		index = self._getCellIndexInCollection(currentCell, cells)
+		newCell = self._getCellInCollection(cells, pos, index)
+		if newCell: return False
+		cells = self._getCellsOfColumn(currentCell.columnIndex)
+		pos = self._columnPositions["previousInColumn"]
+		index = self._getCellIndexInCollection(currentCell, cells)
+		newCell = self._getCellInCollection(cells, pos, index)
+		if newCell: return False
+		return True
+
+
+	def isUniform (self):
+		return self.uniform
 class Tables(Collection):
 	_propertyName = (("Tables",Table),)
 	_name = (_("Table"), _("Tables"))
 	_wdGoToItem = wdGoToTable
-	def __init__(self, parent, obj, rangeType):
+	def __init__(self, parent, tablesObj, rangeType):
 		self.rangeType = rangeType
 		self.dialogClass = TablesDialog
 		self.noElement = _("No table")
-		super(Tables, self).__init__( parent, obj)
+		super(Tables, self).__init__( parent, tablesObj)
 		
 class TablesDialog(ReportDialog):
 
@@ -276,30 +320,21 @@ class TablesDialog(ReportDialog):
 
 
 class Cell(CollectionElement):
-	def __init__(self, parent,item ):
-		super(Cell, self).__init__(parent, item)
+	def __init__(self, parent,cellObj ):
+		super(Cell, self).__init__(parent, cellObj)
 		self.wordDocument = self.parent.parent
-		self.columnIndex = item.ColumnIndex
-		self.rowIndex = item.RowIndex
-		"""
-		self.height = item.Height
-		self.width = item.Width
-		self.heightRule = item.HeightRule #wdRowHeightRule
-		self.nestingLevel = item.NestingLevel
-		self.next = item.Next
-		self.previous = item.Previous
-		"""
-		self.range = item.Range
+		self.columnIndex = cellObj.ColumnIndex
+		self.rowIndex = cellObj.RowIndex
+		self.range = cellObj.Range
 		self.start = self.range.Start
-		#self.tables = item.Tables
 	
-	def sayText (self, wordDocument, columnHeader= None):
-		printDebug ("cell setText: columnHeader= %s"%columnHeader)
+	def sayText (self, wordDocument, reportColumnHeader= None):
+		printDebug ("cell setText: columnHeader= %s"%reportColumnHeader)
 		headerText = ""
 		reportTableHeadersFlag = config.conf['documentFormatting']["reportTableHeaders"]
 		if reportTableHeadersFlag:
-			if columnHeader is not None:
-				headerText=wordDocument.fetchAssociatedHeaderCellText(self.obj,columnHeader)
+			if reportColumnHeader is not None:
+				headerText=wordDocument.fetchAssociatedHeaderCellText(self.obj,reportColumnHeader)
 			else:
 				columnHeaderText=wordDocument.fetchAssociatedHeaderCellText(self.obj,columnHeader = True)
 				rowHeaderText=wordDocument.fetchAssociatedHeaderCellText(self.obj,columnHeader = False)
@@ -311,27 +346,6 @@ class Cell(CollectionElement):
 			ui.message(text)
 		else:
 			ui.message(_("empty"))
-
-	def moveToCell(self, type, whichOne ):
-		row = Row(self, self.row)
-		column = Column(self, self.column)
-		if type == "row":
-			if (whichOne in ["first", "previous"] and column.isFirst) or (whichOne in ["last", "next"] and column.isLast):
-				#table's limit
-				ui.message(_("table's limit"))
-				return False
-			newCell = row.getCell(whichOne, self.columnIndex)
-		elif type == "column":
-			if (whichOne in  ["first", "previous"] and row.isFirst) or (whichOne in ["last", "next"] and row.isLast):
-				#table's limit
-				ui.message(_("table's limit"))
-				return False
-			# move cell in column
-			newCell = column.getCell(whichOne, self.rowIndex)
-		else:
-			# error
-			log.error("moveToCell: invalid parameter %s" %type)
-		if newCell:
-			newCell.goTo()
-			return newCell
-		return False
+	
+	def select(self):
+		self.obj.Select()

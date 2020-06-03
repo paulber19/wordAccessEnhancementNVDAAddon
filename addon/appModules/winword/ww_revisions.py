@@ -29,12 +29,7 @@ class Revision(CollectionElement):
 		self.author = item.Author
 		self.date = item.date
 		self.type = item.type
-		r = self.parent.doc.range(self.start, self.end)
-		self.line = r.information(wdFirstCharacterLineNumber )
-		r.Collapse()
-		self.page = r.Information(wdActiveEndPageNumber )
-
-		
+		self.setLineAndPageNumber()
 	
 	def get_typeText(self ):
 		revisionTypeText = {

@@ -29,11 +29,9 @@ class Footnote(CollectionElement):
 		self.text = " "
 		if item.Range.Text:
 			self.text = item.Range.Text
-
-		r = self.parent.doc.range (self.start, self.end)
-		r.Collapse()
-		self.line = r.information(wdFirstCharacterLineNumber )
-		self.page = r.Information(wdActiveEndPageNumber )
+#		r = self.doc.range (self.start, self.end)
+		#r.Collapse()
+		self.setLineAndPageNumber()
 		
 			
 	def formatInfos(self):

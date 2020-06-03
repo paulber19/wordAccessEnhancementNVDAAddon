@@ -36,9 +36,21 @@ class CollectionElement(object):
 	def __init__(self, parent, obj):
 		printDebug("CollectionElement init")
 		self.parent = parent
-		self.doc = parent.doc
+		self.doc = obj.application.ActiveDocument
 		self.obj = obj
 		
+	def setLineAndPageNumber(self, rangeObj  = None):
+		if rangeObj is None:
+			rangeObj= self.doc.range(self.start, self.start)
+		# Informations method is not available when Word is not registered.
+		try:
+			self.line = rangeObj.Information(wdFirstCharacterLineNumber )
+			self.page = rangeObj.Information(wdActiveEndPageNumber )
+		except:
+			self.line = ""
+			self.page = ""
+
+
 	def goTo(self):
 		printDebug ("Collection goTo")
 		r = self.doc.range(self.start, self.start)

@@ -19,8 +19,8 @@
 % report in table
 %!PostProc (html): key_report_headers windows+alt+h
 %!PostProc (html): key_report_cell Windows+Alt+j
-%!PostProc (html): key_report_row Windows+Alt+;
-%!PostProc (html): key_report_column Windows+Alt+,
+%!PostProc (html): key_report_row Windows+Alt+k
+%!PostProc (html): key_report_column Windows+Alt+l
 %!PostProc (html): key_report_previousInRow windows+Alt+flèche gauche
 %!PostProc (html): key_report_nextInRow windows+Alt+flèche droite
 %!PostProc (html): key_report_previousInColumn windows+Alt+flèche haut
@@ -38,6 +38,8 @@
 %!PostProc (html): key_moveTo_lastInRow Windows+control+Fin
 %!PostProc (html): key_moveTo_firstInColumn Windows+control+Page précédente
 %!PostProc (html): key_moveTo_lastInColumn Windows+control+Page suivante
+%!PostProc (html): key_moveTo_firstCellOfTable windows+control+k
+%!PostProc (html): key_moveTo_lastCellOfTable windows+control+l
 % moving key definitions  when table layer mode is on
 %!PostProc (html): key_layer_moveTo_nextInRow Flèche Bas
 %!PostProc (html): key_layer_moveTo_previousInRow Flèche Haut
@@ -47,5 +49,16 @@
 %!PostProc (html): key_layer_moveTo_lastInRow Fin
 %!PostProc (html): key_layer_moveTo_firstInColumn Page précédente
 %!PostProc (html): key_layer_moveTo_lastInColumn Page suivante
-
-
+%!PostProc (html): key_layer_moveTo_firstCellOfTable k
+%!PostProc (html): key_layer_moveTo_lastCellOfTable l
+%!PostProc (html): key_AutomaticReading windows+alt+f3
+%!PostProc (html): key_RecordVoiceSettings windows+alt+f12
+% browseMode quick nav keys definitions
+%!PostProc (html): key_BrowseMode_grammaticalError $
+%!PostProc (html): key_BrowseMode_revision <
+%!PostProc (html): key_BrowseMode_comment j
+%!PostProc (html): key_BrowseMode_field z
+%!PostProc (html): key_BrowseMode_bookmark ;
+%!PostProc (html): key_BrowseMode_endnote :
+%!PostProc (html): key_BrowseMode_footnote !
+%!PostProc (html): key_BrowseMode_section )

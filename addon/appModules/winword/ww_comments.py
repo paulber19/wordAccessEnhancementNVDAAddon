@@ -61,10 +61,7 @@ class Comment(CollectionElement):
 		self.associatedText = ""
 		if r.text:
 			self.associatedText = r.text
-
-		r = self.parent.doc.range (self.associatedTextRange.start,  self.associatedTextRange.start)
-		self.line = r.information(wdFirstCharacterLineNumber )
-		self.page = r.Information(wdActiveEndPageNumber )
+		self.setLineAndPageNumber()
 	
 	def formatInfos(self):
 		sInfo = _("""Page {page}, line {line}

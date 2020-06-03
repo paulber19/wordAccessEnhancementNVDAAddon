@@ -28,6 +28,7 @@ sys.path.append(path)
 from ww_utils import printDebug
 from ww_py3Compatibility import _unicode, uniCHR
 from ww_NVDAStrings  import NVDAString
+from ww_addonConfigManager import _addonConfigManager
 del sys.path[-1]
 
 class BrowseModeTreeInterceptorEx(browseMode.BrowseModeTreeInterceptor):
@@ -67,13 +68,13 @@ class BrowseModeTreeInterceptorEx(browseMode.BrowseModeTreeInterceptor):
 		setattr(cls, funcName, script)
 		map["kb:shift+%s" % key] = scriptName
 
-
-
-
 # Add quick navigation scripts.
 BrowseModeTreeInterceptorEx._BrowseModeTreeInterceptorEx__gestures= browseMode.BrowseModeTreeInterceptor._BrowseModeTreeInterceptor__gestures.copy()
+from .ww_keyboard import getBrowseModeQuickNavKey
+
 qn = BrowseModeTreeInterceptorEx.addQuickNav
-qn("grammaticalError", key="$",
+qn("grammaticalError", 
+	key=getBrowseModeQuickNavKey("grammaticalError"),
 	# Translators: Input help message for a quick navigation command in browse mode.
 	nextDoc=_("moves to the next grammatical error"),
 	# Translators: Message presented when the browse mode element is not found.
@@ -84,7 +85,8 @@ qn("grammaticalError", key="$",
 	prevError=_("no previous grammatical error"))
 		
 	
-qn("revision", key="<",
+qn("revision", 
+	key= getBrowseModeQuickNavKey("revision"),
 	# Translators: Input help message for a quick navigation command in browse mode.
 	nextDoc=_("moves to the next revision"),
 	# Translators: Message presented when the browse mode element is not found.
@@ -94,7 +96,8 @@ qn("revision", key="<",
 	# Translators: Message presented when the browse mode element is not found.
 	prevError=_("no previous revision"))
 
-qn("comment", key="j",
+qn("comment", 
+	key= getBrowseModeQuickNavKey("comment"),
 	# Translators: Input help message for a quick navigation command in browse mode.
 	nextDoc=_("moves to the next comment"),
 	# Translators: Message presented when the browse mode element is not found.
@@ -104,7 +107,8 @@ qn("comment", key="j",
 	# Translators: Message presented when the browse mode element is not found.
 	prevError=_("no previous comment"))
 
-qn("field", key="y",
+qn("field", 
+	key= getBrowseModeQuickNavKey("field"),
 	# Translators: Input help message for a quick navigation command in browse mode.
 	nextDoc=_("moves to the next field"),
 	# Translators: Message presented when the browse mode element is not found.
@@ -115,7 +119,8 @@ qn("field", key="y",
 	prevError=_("no previous field"),
 	readUnit=textInfos.UNIT_LINE)
 
-qn("bookmark", key=";",
+qn("bookmark", 
+	key= getBrowseModeQuickNavKey("bookmark"),
 	# Translators: Input help message for a quick navigation command in browse mode.
 	nextDoc=_("moves to the next bookmark"),
 	# Translators: Message presented when the browse mode element is not found.
@@ -125,7 +130,8 @@ qn("bookmark", key=";",
 	# Translators: Message presented when the browse mode element is not found.
 	prevError=_("no previous bookmark"))
 
-qn("endnote", key="!",
+qn("endnote", 
+	key= getBrowseModeQuickNavKey("endnote"),
 	# Translators: Input help message for a quick navigation command in browse mode.
 	nextDoc=_("moves to the next endnote"),
 	# Translators: Message presented when the browse mode element is not found.
@@ -134,7 +140,8 @@ qn("endnote", key="!",
 	prevDoc=_("moves to the previous endnote"),
 	# Translators: Message presented when the browse mode element is not found.
 	prevError=_("no previous endnote"))
-qn("footnote", key=":",
+qn("footnote", 
+	key= getBrowseModeQuickNavKey("footnote"),
 	# Translators: Input help message for a quick navigation command in browse mode.
 	nextDoc=_("moves to the next footnote"),
 	# Translators: Message presented when the browse mode element is not found.
@@ -144,7 +151,8 @@ qn("footnote", key=":",
 	# Translators: Message presented when the browse mode element is not found.
 	prevError=_("no previous footnote"))
 
-qn("section", key=")",
+qn("section", 
+key= getBrowseModeQuickNavKey("section"),
 	# Translators: Input help message for a quick navigation command in browse mode.
 	nextDoc=_("moves to the next section"),
 	# Translators: Message presented when the browse mode element is not found.
@@ -160,9 +168,18 @@ class BrowseModeDocumentTreeInterceptorEx(BrowseModeTreeInterceptorEx, browseMod
 	pass
 
 
+from versionInfo import version_year, version_major
+NVDAVersion = [version_year, version_major]
+if  NVDAVersion < [2019,3]:
+	# automatic reading not available
+	BrowseModeWordDocumentTextInfoEx =BrowseModeWordDocumentTextInfo
+else:
+	from .ww_automaticReading import AutomaticReadingWordTextInfo
+	class BrowseModeWordDocumentTextInfoEx(AutomaticReadingWordTextInfo, BrowseModeWordDocumentTextInfo):
+		pass
 
 class WordDocumentTreeInterceptorEx(BrowseModeDocumentTreeInterceptorEx, WordDocumentTreeInterceptor):
-	TextInfo=BrowseModeWordDocumentTextInfo
+	TextInfo=BrowseModeWordDocumentTextInfoEx
 	def __init__(self,obj):
 		super(WordDocumentTreeInterceptorEx,self).__init__(obj)
 		# to keep WordDocumentEx scripts available in browseMode on
@@ -296,12 +313,28 @@ class FormFieldWinWordCollectionQuicknavIterator(WinWordCollectionQuicknavIterat
 class WordDocumentFootnoteQuickNavItem(WordDocumentCollectionQuickNavItem):
 	@property
 	def label(self):
+		# Translators: label for a footnote.
 		return _("Footnote {index}").format(index =self.collectionItem.index) 
 	def rangeFromCollectionItem(self,item):
 		return item.Reference
 			
 	def report(self,readUnit=None):
-		ui.message(_("Footnote {index}") .format(index = self.collectionItem.index))
+		textList = []
+		textList.append(self.label)
+		try:
+			# only for nvda version >= 2019.3
+			from .ww_footnotes import Footnote
+			index=int(self.collectionItem.Index)
+			doc = self.collectionItem.Application.ActiveDocument
+			footnoteObj = doc.FootNotes[index]
+			footnote = Footnote(self.collectionItem, footnoteObj)
+			from .ww_automaticReading import formatAutoSpeechSequence
+			if _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoFootnoteReadingOption(False):
+				textList.extend(formatAutoSpeechSequence([footnote.text]))
+		except:
+			pass
+		speech.speak(textList)
+
 
 
 	def moveTo(self):
@@ -492,9 +525,11 @@ class ElementsListDialog(wx.Dialog):
 		from .ww_tones import RepeatBeep
 		rb = RepeatBeep()
 		rb.start()
-		maxElement = None
-		if elType in ["grammaticalError","spellingError"]:
-			maxElement = 80
+		maxElements = None
+		if elType == "grammaticalError":
+			maxElements = 30
+		elif elType  == "spellingError":
+			maxElements = 80
 		if elType in ("link","button", "radioButton", "checkBox"):
 			# Links, buttons  , radio button, check box can be activated.
 			self.activateButton.Enable()
@@ -525,9 +560,10 @@ class ElementsListDialog(wx.Dialog):
 	
 				element=self.Element(item,parent)
 				self._elements.append(element)
-				if maxElement is not None:
-					maxElement -=1
-					if maxElement == 0:
+				if maxElements is not None:
+					maxElements -=1
+					print ("maxElements: %s"%maxElements)
+					if maxElements == 0:
 						break
 	
 				if not isAfterSelection:
@@ -550,7 +586,7 @@ class ElementsListDialog(wx.Dialog):
 		# Start with no filtering.
 		self.filterEdit.ChangeValue("")
 		self.filter("", newElementType=True)
-		self.sayNumberOfElements(maxElement is not None and maxElement == 0)
+		self.sayNumberOfElements(maxElements is not None and maxElements == 0)
 		
 	def sayNumberOfElements(self,limited = False ):
 		count = self.tree.Count

@@ -33,16 +33,20 @@ class Section(CollectionElement):
 		self.protectedForForms    = item.ProtectedForForms   
 		self.range = item.Range
 		self.start = self.range.Start
-		r = self.parent.doc.range (self.start, self.start)
-		self.lineStart = r.information(wdFirstCharacterLineNumber )
-		self.pageStart = r.Information(wdActiveEndPageNumber )
-		r = self.parent.doc.range (self.range.End-1, self.range.End-1)
-		self.lineEnd = r.information(wdFirstCharacterLineNumber )
-		self.pageEnd = r.Information(wdActiveEndPageNumber )
-
-
-
-
+		r = self.doc.range (self.start, self.start)
+		try:
+			self.lineStart = r.information(wdFirstCharacterLineNumber )
+			self.pageStart = r.Information(wdActiveEndPageNumber )
+		except:
+			self.lineStart = ""
+			self.pageStart = ""
+		r = self.doc.range (self.range.End-1, self.range.End-1)
+		try:
+			self.lineEnd = r.information(wdFirstCharacterLineNumber )
+			self.pageEnd = r.Information(wdActiveEndPageNumber )
+		except:
+			self.lineEnd = ""
+			self.pageEnd = ""
 	
 	def formatInfos(self):
 		(yes, no) = (_("yes"), _("no"))

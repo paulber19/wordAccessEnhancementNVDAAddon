@@ -40,12 +40,7 @@ class Frame(CollectionElement):
 		self.textWrap = item.TextWrap
 		self.orizontalDistanceFromText    = item.HorizontalDistanceFromText    # in points
 		self.verticalDistanceFromText    = item.VerticalDistanceFromText   # in points
-		r = self.parent.doc.range (self.range.Start, self.range.Start)
-		self.line = r.information(wdFirstCharacterLineNumber )
-		self.page = r.Information(wdActiveEndPageNumber )
-
-
-
+		self.setLineAndPageNumber()
 
 	
 	def formatInfos(self):

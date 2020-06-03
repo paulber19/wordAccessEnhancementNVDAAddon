@@ -50,9 +50,8 @@ class Heading(CollectionElement):
 		self.start = item.range.start
 		self.level = item.OutLineLevel
 		self.style = item.style.nameLocal
-		r = self.parent.doc.range (self.start, self.start)
-		self.line = r.information(wdFirstCharacterLineNumber )
-		self.page = r.Information(wdActiveEndPageNumber )
+		self.setLineAndPageNumber()
+
 
 
 

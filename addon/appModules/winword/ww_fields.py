@@ -53,11 +53,7 @@ class Field(CollectionElement):
 				self.name = item.Name
 		except:
 			pass
-
-		r = self.parent.doc.range (self.start, self.start)
-		self.line = r.information(wdFirstCharacterLineNumber )
-		self.page = r.Information(wdActiveEndPageNumber )
-
+		self.setLineAndPageNumber()
 
 	def goTo(self):
 		self.obj.Select()

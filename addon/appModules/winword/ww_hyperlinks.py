@@ -57,9 +57,8 @@ class Hyperlink(CollectionElement):
 		except:
 			self.shape = None
 		self.start = item.Range.Start
-		r= self.parent.doc.range (self.start, self.start)
-		self.line = r.information(wdFirstCharacterLineNumber )
-		self.page = r.Information(wdActiveEndPageNumber )
+		self.setLineAndPageNumber()
+
 		
 	def getTypeText(self):
 		msoHyperLinkTypes = {
