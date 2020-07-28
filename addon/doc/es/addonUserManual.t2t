@@ -401,6 +401,8 @@ Este gesto de entrada es modificable mediante el diálogo "Gestos de entrada" de
 Este script se encuentra en la categoría "ADDON_SUMMARY" de este diálogo.
 
 + Historial +
+++ v2.1 (28/07/2020) ++
+- Compatibilidad con NVDA 2020.2
 
 ++ v2.0 (16/04/2020) ++
 - puesta en compatibilidad con NVDA 2020.1.

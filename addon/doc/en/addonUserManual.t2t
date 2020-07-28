@@ -402,6 +402,9 @@ This input gesture can be modified using the "Input gestures"  dialog of NVDA.
 This script is in the "ADDON_SUMMARY"  category of this dialog.
 
 + History +
+++ v2.1 (28/07/2020) ++
+Compatibility with NVDA 2020.2
+
 ++ v2.0 (16/04/2020) ++
 - compatibility with NVDA 2020.1.
 - add scripts to move to the first or last cell in the table.

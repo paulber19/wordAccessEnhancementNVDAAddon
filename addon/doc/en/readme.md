@@ -7,7 +7,7 @@
 	* [developpement' versions][2]
 * Compatibility:
 	* Minimum required NVDA version:  2019.1
-	* Last NVDA version tested:  2020.1
+	* Last NVDA version tested:  2020.2
 
 
 This add-on adds extra functionality when working with Microsoft Word:
@@ -31,6 +31,6 @@ This add-on adds extra functionality when working with Microsoft Word:
 This module has been tested with Microsoft Word 2019, 2016 and 2013 (perhaps works also with Word 365).
 
 
-[1]: https://github.com/paulber007/AllMyNVDAAddons/raw/master/wordAccessEnhancement/wordAccessEnhancement-2.0.nvda-addon
+[1]: https://github.com/paulber007/AllMyNVDAAddons/raw/master/wordAccessEnhancement/wordAccessEnhancement-2.1.nvda-addon
 
 [2]: https://github.com/paulber007/AllMyNVDAAddons/tree/master/wordAccessEnhancement/dev

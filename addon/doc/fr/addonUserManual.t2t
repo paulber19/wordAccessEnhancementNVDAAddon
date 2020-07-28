@@ -401,6 +401,8 @@ Ce geste de commande est modifiable à l'aide du dialogue "Gestes de commande" d
 Ce script se trouve dans la catégorie "ADDON_SUMMARY" de ce dialogue.
 
 + Historique +
+++ v2.1 (28/07/2020) ++
+Compatibilité avec NVDA 2020.2
 
 ++ v2.0 (16/04/2020) ++
 - mise en compatibilité avec NVDA 2020.1.
