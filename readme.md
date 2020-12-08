@@ -1,22 +1,22 @@
-# Microsoft Word text editor:   accessibility enhancement #
+# Microsoft Word text editor: accessibility enhancement #
 
-* Author : PaulBer19
-* URL : paulber19@laposte.net
+* Author: PaulBer19
+* URL: paulber19@laposte.net
 * Download:
 	* [stable version][1]
 	* [developpement' versions][2]
 * Compatibility:
-	* Minimum required NVDA version:  2019.1
-	* Last NVDA version tested:  2020.2
+	* Minimum required NVDA version: 2019.1
+	* Last NVDA version tested: 2020.3
 
 
 This add-on adds extra functionality when working with Microsoft Word:
 
 * a script ("windows+alt+f5") to display a dialog box to choose between most of objects 's type to be listed (like comments, revisions, bookmarks, fields, endnotes, footnotes, spelling errors, grammar errors,...),
-* a script ("Alt+delete"") to announce line, column  and page of  cursor position, or start  and end of selection, or current table's cell,
+* a script ("Alt+delete"") to announce line, column and page of cursor position, or start and end of selection, or current table's cell,
 * a script ("windows+alt+f2") to insert a comment,
-* a script ("windows+alt+m") to report revision at cursor's  position,
-* a script ("windows+alt+n") to report endNote  or footNote at cursor's position,
+* a script ("windows+alt+m") to report revision at cursor's position,
+* a script ("windows+alt+n") to report endNote or footNote at cursor's position,
 * modify the NVDA scripts "control+downArrow" and "Control+Uparrow" (which moves the carret paragraph by paragraph) to skip the empty paragraph (optionnal),
 * some scripts to move in table and read table 's elements (row, column, cell),
 * adds specific Word browse mode command keys,
@@ -31,6 +31,5 @@ This add-on adds extra functionality when working with Microsoft Word:
 This module has been tested with Microsoft Word 2019, 2016 and 2013 (perhaps works also with Word 365).
 
 
-[1]: https://github.com/paulber007/AllMyNVDAAddons/raw/master/wordAccessEnhancement/wordAccessEnhancement-2.1.nvda-addon
-
+[1]: https://github.com/paulber007/AllMyNVDAAddons/raw/master/wordAccessEnhancement/wordAccessEnhancement-2.2.nvda-addon
 [2]: https://github.com/paulber007/AllMyNVDAAddons/tree/master/wordAccessEnhancement/dev

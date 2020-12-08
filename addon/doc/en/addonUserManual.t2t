@@ -1,4 +1,4 @@
-ADDON_SUMMARY - user's  manual
+ADDON_SUMMARY - user's manual
 Author: ADDON_AUTHOR_NAME
 
 
@@ -8,9 +8,11 @@ Author: ADDON_AUTHOR_NAME
 
 URL: ADDON_AUTHOR_URL
 
+[GitHub repository: ADDON_REPOSITORY ADDON_REPOSITORY]
+
 Download:
-- [stable version ADDON_VERSION ADDON_DOWNLOAD_SERVER1]
-- [developpement's version ADDON_DEV_URL]
+- [Current stable version: ADDON_CUR_VERSION ADDON_DOWNLOAD_SERVER1]
+- [developpement's versions ADDON_DEV_URL]
 
 
 Compatibility:
@@ -43,26 +45,39 @@ This add-on brings:
 
 
 ++ update ++
-The update of the extension is, by default, automatically a short time after the start of NVDA (about 10 seconds) and a maximum of once per day.
-It is possible to disable this update by unchecking the option "automatically check for updates" in the extension settings.
-The version of the extension can be:
+The update of the add-on is, by default, automatically a short time after the start of NVDA (about 10 seconds) and a maximum of once per day.
+It is possible to disable this update by unchecking the option "automatically check for updates" in the add-on's settings.
+The version of the add-on can be:
 - a stable version: its version number is "1.0" for example.
 - either a development version: the version number is of the type "1.0-dev1", or "1.0-rc1", or "1.0-beta2".
 
 
 By default, the stable version is updated with a stable version more recent (higher version number).
-But it is possible to update the stable version running with a development version of the next stable version. Just check the option "Update also update the stable release to the versions of development" located in the settings of the extension.
+But it is possible to update the stable version running with a development version of the next stable version. Just check the option "Update also update the stable release to the versions of development" located in the settings of the add-on.
 
-A development version is updated with a development version more recent or stable version.
+A development version is updated:
+- with a more recent development version,
+- with its stable version,
+- or with the latest stable version if the previous option is not checked.
 
-The button "Search for update" placed in the extension settings allows you to search immediately for an update.
 
+The button "Search for update" placed in the add-on's settings allows you to search immediately for an update.
+
+The "View history" button, placed in this same category, allows you to display the history of the current version in the browser.
+
+
+In the case of an automatic update and if a new version is detected, the "Update" dialog box is displayed to suggest:
+- either the immediate installation of the new version,
+- or to postpone the update until later. In this case, the search will be restarted at least one hour later.
+
+
+In the case of an update to a stable version, the "What's new" button offers the possibility of opening, in the browser, the history of the add-on and thus being able to know the new features of the proposed version.
 
 
 ++ Compatibility ++
-Tis version of module has been tested with Word  2019, 2016 and 2013.
+Tis version of module has been tested with Word 2019, 2016 and 2013.
 
-Warning: for the extension to work properly, the NVDA check box "Use UI Automation to access Microsoft Word document controls when available " should not be checked. It can be found in the "Advanced" category of NVDA settings.
+Warning: for the add-on to work properly, the NVDA check box "Use UI Automation to access Microsoft Word document controls when available " should not be checked. It can be found in the "Advanced" category of NVDA settings.
 
 
 
@@ -154,7 +169,7 @@ In response to this command, is announced following cases:
 In all cases, the position relative to the left edge and the top edge of the page is announced.
 The line number is relative to the page and the column number relative to the beginning of the line.
 
-A double pressure  of the keyboard command displays this information on the screen.
+A double pressure of the keyboard command displays this information on the screen.
 
 
 + Script to insert a comment+[hdr5]
@@ -190,7 +205,7 @@ The keyboard command key_toggle_skip_empty_paragraph enables or disables this op
 
 + Scripts for table +[hdr7]
 ++ Announcement of the elements of table ++
-The extension installs some scripts with their input gesture ,  to announce the components of a table ( cell, row, column) without the need to move the cursor.
+The add-on installs some scripts with their input gesture , to announce the components of a table ( cell, row, column) without the need to move the cursor.
 
 These are:
 - to report the cell under the focus: "key_report_cell".
@@ -205,9 +220,9 @@ These are:
 - Announce the first cell in the column: "key_report_firstInColumn".
 - Announce the last cell in the column: "key_report_lastInColumn".
 
-The announcement of the content of each cell is preceded by the announcement of the corresponding header if the  "Row/column headers" option ( "document formatting" setting category) is checked.
+The announcement of the content of each cell is preceded by the announcement of the corresponding header if the "Row/column headers" option ( "document formatting" setting category) is checked.
 
-These scripts are listed in the  "ADDON_SUMMARY" category of  "Input gestures" dialog of NVDA.
+These scripts are listed in the "ADDON_SUMMARY" category of "Input gestures" dialog of NVDA.
 
 
 ++ Announcement of all cells ++
@@ -215,7 +230,7 @@ It is possible to announce all the cells in that row or column during the use of
 
 The script "enable or disable the announcement of all the cells" will be launched using the input gesture "key_sayAll".
 
-This script is listed in the  "ADDON_SUMMARY" category of  "Input gestures" dialog of NVDA.
+This script is listed in the "ADDON_SUMMARY" category of "Input gestures" dialog of NVDA.
 
 Thus, if the announcement of all the cells is enabled, by typing:
 - "key_report_previousInRow or "key_report_nextInRow": the cells of the previous column or the next one are announced.
@@ -227,7 +242,7 @@ Thus, if the announcement of all the cells is enabled, by typing:
 To disable the announcement of all the cells, just type again the "key_sayAll" input gesture.
 
 ++ Move in the array ++
-The extension installs the following scripts for moving around in a table:
+The add-on installs the following scripts for moving around in a table:
 - go to the previous cell in the line: "key_moveTo_previousInRow.
 - go to the next cell in the line: "key_moveTo_nextInRow".
 - go to the previous cell in the column: "key_moveTo_previousInColumn".
@@ -242,13 +257,13 @@ The extension installs the following scripts for moving around in a table:
 
 After the displacement:
 - the cell is selected to be eventually copied with the shortcut "control + c".
- - current cell is announced or all the cells are  announced if the announcement of all cells  is activated.
+ - current cell is announced or all the cells are announced if the announcement of all cells is activated.
 
-The announcement of the content of each cell is preceded by the announcement of the corresponding header if the  "Row/column headers" option ( "document formatting" setting category) is checked.
+The announcement of the content of each cell is preceded by the announcement of the corresponding header if the "Row/column headers" option ( "document formatting" setting category) is checked.
 
 
 
-The extension installs also, but with no input gesture the scripts following to move around in a table and to announce to the cells of the row or columns :
+The add-on installs also, but with no input gesture the scripts following to move around in a table and to announce to the cells of the row or columns :
 - go to the previous cell in the line and announce all the cells of the column,
 - go to the next cell in the line and announce all of the cells of the columns,
 - go to the previous cell in the column and announce all the cells in the row,
@@ -261,14 +276,14 @@ The extension installs also, but with no input gesture the scripts following to 
 
 Using the dialog "Input gestures" of NVDA, it is possible to define their own input gesture.
 
-These scripts are listed in the  "ADDON_SUMMARY" category of  "Input gestures" dialog of NVDA.
+These scripts are listed in the "ADDON_SUMMARY" category of "Input gestures" dialog of NVDA.
 
 ++ table layer mode ++
-The extension allows you to modify the input gestures  of previous scripts which requires the combination of several keys to use only the arrow keys for movement.
+The add-on allows you to modify the input gestures of previous scripts which requires the combination of several keys to use only the arrow keys for movement.
 
-For this it is enough to type the   "key_layerMode"gesture  to activate the table layer mode .
+For this it is enough to type the "key_layerMode"gesture to activate the table layer mode .
 
-And after you activate the table layer mode, the script gestures   for moving in table,  are replaced by:
+And after you activate the table layer mode, the script gestures for moving in table, are replaced by:
 
 - go to the previous cell in the line: "key_layer_moveTo_previousInRow.
 - go to the next cell in the line: "key_layer_moveTo_nextInRow".
@@ -282,13 +297,13 @@ And after you activate the table layer mode, the script gestures   for moving in
 - go to the last cell of the table (last cell in the last row): "key_layer_moveTo_lastCellOfTable"
 
 
-These scripts are listed in the  "ADDON_SUMMARY (table layer mode)" category of  "Input gestures" dialog of NVDA.
+These scripts are listed in the "ADDON_SUMMARY (table layer mode)" category of "Input gestures" dialog of NVDA.
 
 To disable the Word layer mode, simply retype "key_layerMode", or simply taber "key_escape".
 
 
 ++ Announcement of the title of the row and column ++
-The  "key_report_headers"gesture allows yout to know the title of the row and the column for the current cell.
+The "key_report_headers"gesture allows yout to know the title of the row and the column for the current cell.
 
 
 
@@ -317,13 +332,13 @@ This add-on adds the following commands that are specific to Microsoft Word.
 Pressing a key not assigned to a command is indicated by the voice message Not available in this document".
 Unable to move the cursor is indicated by a voice message indicating that there are more element corresponding to the command.
 
-+ Moving  sentence by sentence +[HDR12]
++ Moving sentence by sentence +[HDR12]
 The following commands allow you to move the system cursor sentence by sentence:
 - "key_next_sentence" : move to the next sentence,
 - "key_previous_sentence" : move to the previous sentence.
 
 
-These scripts are listed in the  "ADDON_SUMMARY" category of  "Input gestures" dialog of NVDA.
+These scripts are listed in the "ADDON_SUMMARY" category of "Input gestures" dialog of NVDA.
 
 + Display information about the document +[HDR13]
 The gesture command "key_document_infos" allows to display in a dialog box some information about the document:
@@ -360,15 +375,15 @@ The third pressure, the help of the corrector is announced.
 
 The input gesture "key_report_current_sentence" allows you to hear the phrase affected by the error.
 
-These scripts are listed in the  "Microsoft ADDON_SUMMARY" category of  "Input gestures" dialog of NVDA.
+These scripts are listed in the "Microsoft ADDON_SUMMARY" category of "Input gestures" dialog of NVDA.
 
 This add-on also allows for the automatic announcement of the new error and the suggestion presented by the speller as a result the use of one of the buttons like "Ignore", "Modify", or shortcuts Word as "i", "m".
 
 
 + Automatic reading of comments and footnotes +[HDR15]
-For versions of NVDA greater than or equal to 2019.3 the extension allows the automatic reading of comments and footnotes when moving line by line, in navigation mode or "say it all".
+For versions of NVDA greater than or equal to 2019.3 the add-on allows the automatic reading of comments and footnotes when moving line by line, in navigation mode or "say it all".
 
-This is controlled by the "Automatic reading" option group in "Options" category of the extension configuration dialog.
+This is controlled by the "Automatic reading" option group in "Options" category of the add-on configuration dialog.
 
 In this group are:
 - the "Activate Automatic reading" option to activate or desactivate automatic reading,
@@ -376,20 +391,20 @@ In this group are:
 - the option "Footnote" to select footnotes reading in automatic reading,
 - the choice "Announce with" which allows you to choose between:
  - "nothing": the text is read as is.
- - "a beep at the beginning and end: the text is preceded by a high-pitched beep  and followed  by a lower frequency beep.
- - "another voice": the text is read with the  voice  and its settings,  recorded for the automatic reading.
+ - "a beep at the beginning and end: the text is preceded by a high-pitched beep and followed by a lower frequency beep.
+ - "another voice": the text is read with the voice and its settings, recorded for the automatic reading.
 - the button "Display voice's recorded settings" which opens the dialog box showing all of the voice parameters which will be used for automatic reading.
 
 
-To read the comments or endnote  with a different voice, it is necessary to previously record the vocal parameters for the voice by using the   "key_RecordVoiceSettings" gesture. This gesture corresspond to the "Record automatic reading voice's settings" script and can be changed using the "Input gestures"dialog of NVDA. 
+To read the comments or endnote with a different voice, it is necessary to previously record the vocal parameters for the voice by using the "key_RecordVoiceSettings" gesture. This gesture corresspond to the "Record automatic reading voice's settings" script and can be changed using the "Input gestures"dialog of NVDA.
 
-In order to easily find this voice and to possibly modify some of its settings, it is advisable to create a configuration profile that will be activated manually. 
+In order to easily find this voice and to possibly modify some of its settings, it is advisable to create a configuration profile that will be activated manually.
 
-Under this profile, it is then possible to define the voice and the voice parameters using the "Speech" category  of the NVDA's "Préférences"  menu.
+Under this profile, it is then possible to define the voice and the voice parameters using the "Speech" category of the NVDA's "Préférences" menu.
 
-Once this is done (the configuration of NVDA should be recorded. 
+Once this is done (the configuration of NVDA should be recorded.
 
-On Word and in order to save the voice parameters for the automatic reading, this profile must be activated manually. The strike of the  "key_RecordVoiceSettings" gesture  proceed to the record. 
+On Word and in order to save the voice parameters for the automatic reading, this profile must be activated manually. The strike of the "key_RecordVoiceSettings" gesture proceed to the record.
 
 
 The record is done, the profile can then be manually turned off to return to the voice parameters of the configuration profile active before the profil's manual activation.
@@ -397,100 +412,9 @@ The record is done, the profile can then be manually turned off to return to the
 
 The "Automatic reading" option can be modified using the "Activate / desactivate automatic reading" script associated to the "key_AutomaticReading" input gesture.
 
-This input gesture can be modified using the "Input gestures"  dialog of NVDA.
+This input gesture can be modified using the "Input gestures" dialog of NVDA.
 
-This script is in the "ADDON_SUMMARY"  category of this dialog.
+This script is in the "ADDON_SUMMARY" category of this dialog.
 
 + History +
-++ v2.1 (28/07/2020) ++
-Compatibility with NVDA 2020.2
-
-++ v2.0 (16/04/2020) ++
-- compatibility with NVDA 2020.1.
-- add scripts to move to the first or last cell in the table.
-- add of the announcement of the arrival of the first or last cell in the table.
-- selection of the cell after a displacement  by command in a table(to have the same behavior as standard when moving  by tabulation).
-- the number of line or column is announced in accordance with option "Cell coordinates" of the category "Document Formatting" of NVDA.
-- adaptation of scripts for the spell checker of Word 2019.
-- automatic reading of comments and footnotes (NVDA 2019.3 and above).
-- correction of a too long response time at the end of the document and when moving by paragraph.
-- compliance with NVDA for the compatibility test of extensions with NVDA.
-- browseMode quick navigation keys   configurable according to the language of NVDA.
-
-
-Changes for the user: the navigation mode command keys  and some command gestures have been modified to be compatible  with  a Qwerty keyboard.
-
-
-
-++ v1.0.1 (07/03/2020) ++
-- correction of the documentation.
-- translation of the addon in Spanish by Gunther Melendez, changes by Rémy Ruiz.
-
-
-++ v1.0 (07/02/2020) ++
-This add-on changes name to avoid confusion with other add-ons. His version starts with 1.0.
-- compatibility with NVDA 2019.3.
-- input gesture modifications:
-  - replacement of the key NVDA by pressing the "windows" in the combinations with the "alt" key.
- - suppression of the input gestures  of scripts   for moving with  announcement of all cells.
-- added script to enable or disable the announcement of the cells in that row or column during a displacement into a table.
-- add table layer mode bringing the possibility to use the arrow keys to move around the tables.
-- add the script to announce the current cell.
-- add the script "document Information",
-- improvement of the accessibility of the spelling corrector of Word 2013 and 2016.
-- deletion of the announcement of the header level  changes.
-- preparation of the compatibility to python 3.
-
-
-
-++ v3.1 (April 10, 2016) ++
-- adding the announcement of the column for the keyboard command "key_line_page"
-
-
-++ v3.0 (10 March 2016) ++
-- removal scripts of a fast-moving (duplicate with the mode of navigation of NVDA),
-- removal scripts to announce in the second support the title of the rows or columns (use now the option included in NVDA),
-- compatibility with NVDA 2016.1.
-
-
-++ v2.5 (22 June 2015) (not released) ++
-- change the keyboard command: "nvda+control+f6" "alt+backspace" and nvda + numpad delete".
-- indication of the position relative to the left and upper edge (command "alt + backspace"", "alt + numpad delete")
-- adding the search objects in the current page (command nvda+alt+f5)
-- compatibility mode with the navigation of NVDA (change navigation shortcuts)
-
-
-++ v2.4 (11 June 2015) ++
-- correction block appeared since NVDA 2015.1
-- add the script to select the mode quick navigation
-
-
-++ v2.3 (14 December 2014) ++
-- add command to move the focus to the previous or next sentence ("alt+ up or down Arrow")
-- correction of documentation and translation
-- fixed manifest.ini
-
-
-++ v2.2 (1, November 15, 2014) ++
-- added quick navigation
-- separation into two categories of objects graph (those in the text layer, the drawing layer)
-- add the script "nvda+alt+r" to read the text-editing cursor,
-- add the script "nvda+alt+e" to read the note at the end or bottom of the page to the cursor
-
-
-++ v2.1 (1 October 2014) ++
-- added button "Find and view",
-- adding shortcuts to the buttons of the dialog boxes,
-- Correction of the documentation
-- change the background color of the list items.
-- fixed default selection on pressing button "Search and copy to clipboard"
-
-
-++ v2.0 (24 September 2014) ++
-- compatibility with version 2014.3
-- added scripts for tables
-- added script for enabling or disabling the skip empty paragraphs
-
-
-++ v1.0 (24 January 2014) ++
-- Creation of the add-on
+The version history of this add-on is in the file: ["changes.html" changes.html]

@@ -1,6 +1,6 @@
-# appModules\winword\ww_tones.py
-# A part of WordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# appModules\winword\runInThread.py
+# A part of wordAccessEnhancement add-on
+# Copyright (C) 2020 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -8,22 +8,26 @@ import addonHandler
 from logHandler import log
 import tones
 import threading
-addonHandler.initTranslation()
+# import speech
 
 
 class RepeatTask(threading.Thread):
 	_delay = None
+	_armed = False
 
-	def __init__(self):
+	def __init__(self, isRunning=None):
 		if self._delay is None:
 			log.error("Cannot create repeatTask thread because delay is none")
 			return
-		self.noNextTask = True
+		self.isRunning = isRunning
 		super(RepeatTask, self).__init__()
 		self._stopevent = threading.Event()
 
 	def task(self):
+		# must be overwritten
 		return
+
+		tones.beep(400, 200)
 
 	def run(self):
 		if self._delay is None:
@@ -31,22 +35,25 @@ class RepeatTask(threading.Thread):
 			return
 		while not self._stopevent.isSet():
 			self._stopevent.wait(self._delay)
-			if self.noNextTask:
-				self.noNextTask = False
-			else:
-				self.task()
+			if self.isRunning is not None and not self.isRunning():
+				# interrupted before stop
+				# Translators: message to user to report an interuption before stop.
+				# speech.speakMessage(_("interrupted"))
+				break
+			self.task()
 
 	def stop(self):
-		self.noNextTask = True
 		self._stopevent.set()
 
 
 class RepeatBeep(RepeatTask):
-	def __init__(self, delay=2.0, beep=(200, 200)):
+	def __init__(self, delay=2.0, beep=(200, 200), isRunning=None):
 		self._delay = delay
 		self.beep = beep
-		super(RepeatBeep, self).__init__()
+		super(RepeatBeep, self).__init__(isRunning)
 
 	def task(self):
+		if self._stopevent.isSet():
+			return
 		(frequence, length) = self.beep
 		tones.beep(frequence, length)

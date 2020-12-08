@@ -1,0 +1,117 @@
+ADDON_SUMMARY - Historial
+Autor: ADDON_AUTHOR_NAME
+
+
+%!includeconf: ../addon_global.t2tconf
+%!includeconf: addon_informations.t2tconf
+
+
+URL: ADDON_AUTHOR_URL
+
+[Repositorio en GitHub: ADDON_REPOSITORY ADDON_REPOSITORY]
+
+Descarga:
+- [Versión actual: ADDON_CUR_VERSION ADDON_DOWNLOAD_SERVER1]
+- [Versión anterior: ADDON_PREV_VERSION ADDON_DOWNLOAD_PREVIOUS]
+- [Versiones de desarrollo ADDON_DEV_URL]
+
+
++ v2.2 (06/12/2020) +
+- compatibilidad con NVDA 2020.3.
+- corrección del conflicto de la tecla de navegación rápida para los marcadores (,"): "-" por defecto y "¡" para teclado español.
+- añadido el botón "Qué hay de nuevo" en el  cuadro de diálogo proponiendo la instalación de una nueva actualización.
+- añadido el botón "Ver historial" que se encuentra en la categoría "Actualización" en las "Opciones" del complemento.
+- limpieza del código con validación Flake8.
+
+
++ v2.1 (28/07/2020) +
+- Compatibilidad con NVDA 2020.2
+
+
++ v2.0 (16/04/2020) +
+- puesta en compatibilidad con NVDA 2020.1.
+- se añade los scripts para pasar a la primera o la última celda de la tabla.
+- se añade el anuncio de la llegada en la primera o la última celda.
+- selección de la celda después de una órden de desplazamiento en una tabla (para tener el mismo comportamiento estándar que al desplazarse mediante tabulación).
+- el número de fila o columna se anuncia de acuerdo con la opción "Coordenadas de celda" de la categoría "Formateado de documentos" de NVDA.
+- adaptación de los scripts para el corrector ortográfico de Word 2019.
+- lectura automática de comentarios y notas al pie de página (NVDA 2019.3 y más).
+- corrección de un largo tiempo de respuesta al final del documento y cuando se desplaza por párrafo.
+- puesta en conformidad con NVDA para la prueba de compatibilidad de los complementos con NVDA.
+- teclas de navegación rápida configurable según el idioma de NVDA.
+
+
++ v1.0.1 (07/03/2020) +
+- corrección de documentación.
+- traducción del complemento en español por Gunther Melendez, cambios por Rémy Ruiz.
+
+
++ v1.0 (07/02/2020) +
+Este complemento cambia de nombre para evitar confusiones con otros complementos. Su versión comienza nuevamente en 1.0.
+- Compatibilidad con NVDA 2019.3.
+- modificación de gestos de entrada:
+ - reemplazo de la tecla NVDA con la tecla "windows" en combinación con la tecla "alt".
+ - eliminación de gestos de entrada de scripts de movimiento con anuncio de todas las celdas.
+- se añade script para activar o desactivar el anuncio de las celdas de la fila o la columna durante una consulta o un desplazamiento en una tabla.
+- se añade la capa de órdenes para tablas que ofrece la posibilidad de utilizar las teclas de flecha para moverse en las tablas.
+- se añade script para anunciar la celda actual.
+- se añade script "Información del documento".
+- accesibilidad mejorada del corrector ortográfico de Word 2013 y 2016.
+- eliminación del anuncio del nivel de título durante una modificación (compatible con NVDA).
+- eliminación, en modo navegación, del movimiento allí debido a un error ortográfico por "*" (compatible con NVDA: órden "w").
+- se añade la posibilidad de anunciar el contenido del primer o segundo campo con la tecla "espacio" en la lista de elementos (ver diálogo "Elección").
+- script Anunciar la posición del cursor: muestra información en la pantalla presionando dos veces el gesto.
+- buscar actualización automática.
+
+
++ v3.1 (10 de Avril del 2016) +
+- se añade el anuncio de columna para las órdenes de teclado "key_line_page"
+
+
++ v3.0 (10 de Marzo del 2016) +
+- eliminación de scripts de movimiento rápido (duplicado con modo de navegación NVDA),
+- eliminación de los scripts para anunciar el título de las filas o columnas en la segunda pulsación (ahora usando la opción incluida en NVDA),
+- compatibilidad con NVDA 2016.1.
+
+
++ v2.5 (22 de Junio del 2015) ((no publicado)) +
+- cambio de las órdenes de teclado: "nvda+control+f6" a "alt+suprimir" y nvda +suprimir teclado numérico".
+- indicación de la posición relativa al borde izquierdo y superior (órdenes "alt + suprimir", "alt + suprimir teclado numérico")
+- se añade búsqueda de objetos en la página actual (órdenes nvda + alt + f5)
+- compatibilidad con el modo exploración de NVDA (cambio de accesos directos de navegación)
+
+
++ v2.4 (11 de Junio del 2015) +
+- la corrección de bloqueo apareció desde NVDA 2015.1
+- se añade script para seleccionar el modo de navegación rápida
+
+
++ v2.3 (14 de Diciembre del 2014) +
+- se añade órdenes para mover el foco a la frase anterior o siguiente ("alt + flecha arriba o flecha abajo")
+- corrección de documentación y traducción
+- corrección manifest.ini
+
+
++ v2.2 (15 de Noviembre del 2014) +
+- se añade la navegación rápida
+- separación en dos categorías de objetos gráficos (los de la capa de texto, los de la capa de dibujo)
+- se añade script "nvda + alt + r" para leer la modificación del texto en el cursor,
+- se añade script "nvda + alt + e" para leer la nota final o nota al pie del cursor
+
+
++ v2.1 (1 de Octubre del 2014) +
+- se añade el botón "Buscar y mostrar",
+- se añade atajos para botones de cuadro de diálogo,
+- corrección de documentación
+- modificación del color de fondo de los elementos de las listas.
+- corrección del defecto de selección presionando el botón "Buscar y copiar al portapapeles"
+
+
++ v2.0 (24 de Setiembre del 2014) +
+- compatibilidad con la versión 2014.3
+- se añade scripts para tablas
+- se añade script para activar o desactivar el salto de los párrafos vacíos
+
+
++ v1.0 (24 de Enero del 2014) +
+- Creación del complemento.

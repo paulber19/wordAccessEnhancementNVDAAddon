@@ -1,0 +1,122 @@
+ADDON_SUMMARY - Historique
+Auteur: ADDON_AUTHOR_NAME
+
+
+%!includeconf: ../addon_global.t2tconf
+%!includeconf: addon_informations.t2tconf
+
+URL: ADDON_AUTHOR_URL
+
+[Dépot GitHub: ADDON_REPOSITORY ADDON_REPOSITORY]
+
+Téléchargement:
+- [Version stable actuelle: ADDON_CUR_VERSION ADDON_DOWNLOAD_SERVER1]
+- [Version stable précédente: ADDON_PREV_VERSION ADDON_DOWNLOAD_PREVIOUS]
+- [versions de développement ADDON_DEV_URL]
+
+
+
++ v2.2 (06/12/2020) +
+- compatibilité avec NVDA 2020.3.
+- correction du conflit de la touche de navigation  rapide pour les signets (,"): "-" par défaut et "¡" pour clavier espagnol.
+- ajout du bouton "Quoi de neuf" dans le dialogue proposant l'installation d'une nouvelle mise à jour.
+- ajout du bouton "Voir l'historique" dans la catégorie "Mise à jour " des paramètres de l'extension.
+- nettoyage du code avec validation Flake8.
+
+
++ v2.1 (28/07/2020) +
+Compatibilité avec NVDA 2020.2
+
++ v2.0 (16/04/2020) +
+- mise en compatibilité avec NVDA 2020.1.
+- ajout des scripts pour se déplacer à la première ou dernière cellule du tableau.
+- ajout de l'annonce de l'arrivée sur la première ou dernière cellule du tableau.
+- sélection de la cellule après une commande de déplacement dans un tableau (pour avoir le même comportement  standard que lors d'un déplacement par tabulation).
+- le numéro de ligne ou colonne est annoncé conformément à l'option "Coordonnées des cellules" de la catégorie "Mise en forme des documents" de NVDA.
+- adaptation des scripts pour le correcteur orthographique de Word 2019.
+- lecture automatique des commentaires  et note de bas de page (NVDA 2019.3 et plus).
+- correction d'un temps de réponse trop long en fin de document et   lors d'un déplacement par paragraphe.
+- mise en conformité   avec NVDA pour le test de compatiblité des extensions avec NVDA.
+- touches de navigation rapide configurable  suivant le langage de NVDA.
+
+
+Changements:
+- la commande "y" pour sauter de champ en champ  est remplacé par "z".
+- le geste de commande "windows+alt+," est remplacé par "windows+alt+k".
+- le geste de commande "windows+alt+;" est remplacé par "windows+alt+l".
+
+
++ v1.0.1 (07/03/2020) +
+- correction de la documentation.
+- traduction de l'extension en Espagnol par Gunther Melendez, changements par Rémy Ruiz.
+
+
++ v1.0 (07/02/2020) +
+Cette extension change de nom  pour éviter toute confusion avec d'autres extensions. Sa version repart à 1.0.
+- Compatibilité avec NVDA 2019.3.
+- modification de gestes de commandes:
+ - remplacement de la touche NVDA par la touche "windows" dans les combinaisons avec la touche "alt".
+ - suppression   des gestes de commandes des scripts de  déplacement avec annonce de toutes les cellules.
+- ajout du script pour activer ou désactiver    l'annonce des cellules de la ligne ou de la colonne lors d'une consultation ou d'un déplacement dans un tableau.
+- ajout de la couche de commande  pour tableau amenant la possibilité d'utiliser    les touches de direction pour se déplacer dans les tableaux.
+- ajout du script pour annoncer la cellule courante.
+- ajout du script "Informations sur le document".
+- amélioration de l'accessibilité du correcteur orthographique de Word 2013 et 2016.
+- suppression de l'annonce du niveau de titre lors d'une modification (prise en charge par NVDA).
+- suppression, en mode navigation,  du déplacement à là faute d'ortographe  par "*" (pris en charge par NVDA: commande "w").
+- ajout de la possiblité d'annoncer le contenu du premier ou second  champ avec la touche "espace" dans la liste  des éléments (voir dialogue "Choix").
+- script Annoncer la position du curseur: affichage de l'information à l'écran  sur double appui du geste.
+- recherche de mise à jour automatique.
+
+
++ v3.1 (10 Avril 2016) +
+- ajout de l'annonce de la colonne pour la commande clavier "key_line_page"
+
+
++ v3.0 (10 Mars 2016) +
+- suppression des scripts de déplacement rapide (doublon avec le mode de navigation de NVDA),
+- suppression des scripts pour annoncer au second appui le titre des lignes ou colonnes (utilisation maintenant de l'option incluse dans  NVDA),
+- compatibilité avec NVDA 2016.1.
+
+
++ v2.5 (22 Juin 2015) (non diffusée) +
+- changement de commande clavier: "nvda+control+f6" en "alt+effacement" et nvda + numpad effacement".
+- indication de la position par rapport au bord gauche et supérieur (commande "alt + effacement", "alt + numpad effacement")
+- ajout de la recherche des objets dans la page courante (commande nvda+alt+f5)
+- compatibilité avec le mode navigation de NVDA (changement des raccourcis de navigation)
+
+
++ v2.4 (11 Juin 2015) +
+- correction de blocage  apparu depuis NVDA 2015.1
+- ajout du script pour sélectionner le mode de navigation rapide
+
+
++ v2.3 (14 Décembre 2014) +
+- ajout commande pour déplacer le focus à la précédente ou prochaine phrase ("alt+ Flèche haut ou bas")
+- correction de documentation et traduction
+- correction manifest.ini
+
+
++ v2.2 (1 15 Novembre 2014) +
+- ajout de la navigation rapide
+- séparation en deux catégories des objets graphique (ceux de la couche texte, ceux de la couche dessin)
+- ajout du script "nvda+alt+r" pour lire la modification de texte au curseur,
+- ajout du script "nvda+alt+e" pour lire la note de fin ou de bas de page  au curseur
+
+
++ v2.1 (1 Octobre 2014) +
+- ajout du bouton "Rechercher et afficher",
+- ajout des raccourcis pour les boutons des boites de dialogue,
+- Correction de la documentation
+- modification de la couleur de fond des éléments des listes.
+- correction du défaut de sélection sur appui sur bouton "Rechercher et copier dans presse-papier"
+
+
++ v2.0 (24 Septembre 2014) +
+- compatibilité avec La version 2014.3
+- ajout des scripts pour tableaux
+- ajout du script d'activation ou désactivation du saut des paragraphes vides
+
+
++ v1.0 (24 janvier 2014) +
+- Création de l'extension (anciennement module complémentaire).

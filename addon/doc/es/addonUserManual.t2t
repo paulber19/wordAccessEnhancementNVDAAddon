@@ -9,8 +9,10 @@ Autor: ADDON_AUTHOR_NAME
 
 URL: ADDON_AUTHOR_URL
 
+[Repositorio en GitHub: ADDON_REPOSITORY ADDON_REPOSITORY]
+
 Descargar:
-- [Versión estable ADDON_VERSION ADDON_DOWNLOAD_SERVER1]
+- [Versión estable: ADDON_CUR_VERSION ADDON_DOWNLOAD_SERVER1]
 - [Versión de desarrollo ADDON_DEV_URL]
 
 
@@ -26,17 +28,18 @@ Compatibilidad:
 
 ++ Características ++
 Este complemento proporciona:
+
 - [un script #HDR1] para presentar los distintos tipos de objetos a la lista (como comentarios, palabras mal escritas, , ...),
 - [un script #HDR2] para anunciar la fila, columna y número de página de la posición o selección del cursor, es decir, la posición de la celda de la tabla actual,
 - [los saltos de párrafo vacío #HDR3] al saltar de un párrafo a otro,
 - [un script para insertar un comentario sin mover el foco #HDR5],
-- [un script  para leer la nota al pie o  al final #HDR9] en la posición del cursor,
+- [un script para leer la nota al pie o al final #HDR9] en la posición del cursor,
 - [un script para leer la modificación del texto #HDR10] en la posición del cursor,
 - [scripts adicionales para las tablas #HDR7],
-- [Órdenes de teclado  específicos de Microsoft Word para una navegación rápida por el documento #HDR8],
+- [Órdenes de teclado específicos de Microsoft Word para una navegación rápida por el documento #HDR8],
 - [un script para pasar de una frase a otra #HDR12],
 - [un script para mostrar información sobre el documento #HDR13],
-- [Accesibilidad mejorada del corrector ortográfico de Word 2013 y 2016 #HDR14].
+- [Accesibilidad mejorada del corrector ortográfico #HDR14].
 - [lectura automática de comentarios y notas al pie de página #HDR15] (para NVDA 2019.3 y más).
 
 
@@ -52,11 +55,23 @@ La versión del complemento puede ser:
 Por defecto, una versión estable se actualiza con la última versión estable (Número de versión superior).
 Sin embargo, es posible actualizar la versión actual estable con una versión de desarrollo de la próxima versión estable. Simplemente marcando la opción "Actualizar también versiones estable hacia versiones de desarrollo" situado en las opciones del complemento, elemento de menú "Actualización".
 
-Una versión de desarrollo se actualiza con una versión de desarrollo más reciente o con su versión estable.
+
+Una versión de desarrollo se actualiza:
+- con una versión de desarrollo más reciente,
+- con su versión estable,
+- o la última versión estable si la opción anterior no está marcada.
+
 
 El botón "Buscar actualización" situado en las opciones del complemento, elemento de menú "Actualización", permite buscar inmediatamente una actualización
 
+El botón "Ver historial" situado en la misma categoría te permite ver el historial de la versión actual en el navegador.
 
+En el caso de una actualización automática, y si se detecta una nueva versión, el cuadro de diálogo "Actualización" aparece para proponer:
+- ya sea la instalación inmediata de la nueva versión,
+- ya sea para posponer la actualización a más tarde. En este caso, la búsqueda se reiniciará como mínimo una hora más tarde.
+
+
+Para una actualización de una versión estable, el botón "Qué hay de nuevo" ofrece la posibilidad, de abrir en el navegador, el historial del complemento y asi poder conocer las novedades de la versión propuesta.
 
 ++ Compatibilidad ++
 Este complemento fue probado con las versiones de Microsoft Word 2019, 2016 y 2013.
@@ -96,7 +111,7 @@ La lista ofrece los siguientes tipos de objetos:
 - las secciones.
 
 
-Las teclas "flecha arriba" y "flecha abajo" se mueven por la lista.
+Las teclas "flecha arriba" y "flecha abajo" permite moverse por la lista.
 Con la tecla "Tabulador" se llega a la lista que presenta la elección de la parte del documento donde se buscarán los objetos del tipo seleccionado.
 La lista ofrece las siguientes opciones:
 - "Posición del cursor": el objeto en la posición del cursor,
@@ -209,7 +224,7 @@ Según la opción "encabezado de columna" en la sección "Formato de documento" 
 
 Estos scripts se presentan en la categoría "ADDON_SUMMARY" del cuadro de diálogo "Gestos de entrada" de NVDA.
 ++ Anuncio de todas las celdas ++
-Es posible anunciar todas las celdas en la fila o columnas cuando se utilizan   los gestos de entrada anteriores.
+Es posible anunciar todas las celdas en la fila o columnas cuando se utilizan los gestos de entrada anteriores.
 El script "habilitar o deshabilitar el anuncio de todas las celdas" se inicia utilizando el gesto de entrada "key_sayAll".
 
 Este script se presenta en la categoría "ADDON_SUMMARY" del cuadro de diálogo "Gestos de entrada" de NVDA.
@@ -276,7 +291,7 @@ Por lo tanto, después de activar la capa de órdenes para una tabla, los gestos
 - ir a la primera celda de la columna: "key_layer_moveTo_firstInColumn".
 - ir a la última celda de la columna: "key_layer_moveTo_lastInColumn".
 - ir a la primera celda de la tabla (primera celda de la primera fila): "key_layer_moveTo_firstCellOfTable"
-- ir a la última celda de la tabla  (última celda de la última fila): "key_layer_moveTo_lastCellOfTable"
+- ir a la última celda de la tabla (última celda de la última fila): "key_layer_moveTo_lastCellOfTable"
 
 
 
@@ -290,7 +305,7 @@ El gesto de entrada "key_report_headers" permite conocer el título de la línea
 
 
 ++ Desplazamiento mediante tabulación en la tabla ++
-En una tabla, es posible pasar de celda en celda mediante tabulación pero llegado al final de la tabla, cualquier nueva tabulación provoca la creación de una nueva  fila.
+En una tabla, es posible pasar de celda en celda mediante tabulación pero llegado al final de la tabla, cualquier nueva tabulación provoca la creación de una nueva fila.
 Para evitar esto, el complemento añade el anuncio de la llegada en la primera o la última celda de la tabla.
 
 
@@ -312,7 +327,7 @@ Este complemento agrega las siguientes órdenes específicos para Microsoft Word
 - "key_BrowseMode_section": sección,
 
 
-La imposibilidad de mover el cursor se indica mediante un mensaje de voz que indica que ya no hay ningún elemento correspondiente  a la órden.
+La imposibilidad de mover el cursor se indica mediante un mensaje de voz que indica que ya no hay ningún elemento correspondiente a la órden.
 
 Las órdenes del modo exploración no admitidos se indican mediante el mensaje de voz "No admitido en este documento" y todas las demás órdenes, mediante un pitido.
 
@@ -347,7 +362,7 @@ El complemento ofrece la posibilidad de utilizar también la tecla "f7" para eje
 Contrariamente a lo que verbaliza NVDA, en el primer lanzamiento del corrector, el foco puede no estar ubicado donde debería estar, es decir dentro del panel y en uno de sus botones o listas.
 Esta es la razón por la cual el complemento puede pedirle que presione la tecla "tab" primero.
 
-Como NVDA no anuncia ni el error ni la sugerencia cuando el foco llega al corrector ortográfico, el complemento  intenta paliarlo.
+Como NVDA no anuncia ni el error ni la sugerencia cuando el foco llega al corrector ortográfico, el complemento intenta paliarlo.
 
 Un script permite anunciar esta información.
 
@@ -368,20 +383,20 @@ Este complemento también permite el anuncio automático del nuevo error y su su
 + Lectura automática de comentarios y notas al pie de página +[HDR15]
 Para las versiones de NVDA superior o igual a la 2019.3 el complemento permite la lectura automática de comentarios y notas al pie de página durante el movimiento por líneas, en modo Exploración o en "Verbalizar Todo".
 
-Esto es controlado por  el grupo opciones "Lectura automática" en la categoría "Opciones" en el diálogo de configuración del complemento.
+Esto es controlado por el grupo opciones "Lectura automática" en la categoría "Opciones" en el diálogo de configuración del complemento.
 
 En este grupo se encuentran:
 - la opción "Habilitar la lectura automática" para habilitar o deshabilitar la lectura automática,
 - la opción "Comentarios" para seleccionar la lectura de comentarios en lectura automática,
 - la opción "Notas al pie de página" para seleccionar la lectura de notas al pie de página en lectura automática,
-- la elección  "Leer con" que le permite elegir entre:
+- la elección "Leer con" que le permite elegir entre:
  - "nada": el texto se lee como tal.
  - "un pitido al inicio y al final": el texto leído está precedido por un pitido agudo y finalizado por un pitido más grave.
  - "otra voz": el texto se lee con las opciones de voz guardadas para la lectura automática.
 - el botón "Mostrar las opciones de voz guardadas": que abre el diálogo con todas las opciones de voz para ser utilizado en la lectura automática.
 
 
-Para leer un comentario o notas al pie de páginas con otra voz, se debe en primer lugar guardar las opciones de voz de esta voz mediante el gesto de entrada "key_RecordVoiceSettings". Este gesto corresponde al script "Guardar las opciones de voz para la lectura automática" y  es modificable mediante el cuadro de diálogo "Gestos de entrada" de NVDA.
+Para leer un comentario o notas al pie de páginas con otra voz, se debe en primer lugar guardar las opciones de voz de esta voz mediante el gesto de entrada "key_RecordVoiceSettings". Este gesto corresponde al script "Guardar las opciones de voz para la lectura automática" y es modificable mediante el cuadro de diálogo "Gestos de entrada" de NVDA.
 
 Para encontrar rápidamente esta voz y posiblemente cambiar algunas de sus opciones, es recomendable crear un perfil de configuración que se activa manualmente.
 
@@ -394,100 +409,11 @@ En Word y para guardar las opciones de voz para la lectura automática, este per
 
 Una vez guardado, el perfil puede ser desactivado manualmente para encontrar las opciones de voz del perfil de configuración activo antes de la activación manual del perfil.
 
-La opción "Lectura automática" puede ser modificado mediante el script "Habilitar o deshabilitar la lectura automática"  asociado con el gesto de entrada "key_AutomaticReading".
+La opción "Lectura automática" puede ser modificado mediante el script "Habilitar o deshabilitar la lectura automática" asociado con el gesto de entrada "key_AutomaticReading".
 
 Este gesto de entrada es modificable mediante el diálogo "Gestos de entrada" de NVDA.
 
 Este script se encuentra en la categoría "ADDON_SUMMARY" de este diálogo.
 
 + Historial +
-++ v2.1 (28/07/2020) ++
-- Compatibilidad con NVDA 2020.2
-
-++ v2.0 (16/04/2020) ++
-- puesta en compatibilidad con NVDA 2020.1.
-- se añade los scripts para pasar a la primera o la última celda de la tabla.
-- se añade el anuncio de la llegada en la primera o la última celda.
-- selección de la celda después de una órden de desplazamiento en una tabla (para tener el mismo comportamiento estándar que al desplazarse mediante tabulación).
-- el número de fila o columna se anuncia de acuerdo con la opción "Coordenadas de celda" de la categoría "Formateado de documentos" de NVDA.
-- adaptación de los scripts para el corrector ortográfico de Word 2019.
-- lectura automática de comentarios y notas al pie de página (NVDA 2019.3 y más).
-- corrección de un largo tiempo de respuesta al final del documento y cuando se desplaza por párrafo.
-- puesta en conformidad con NVDA para la prueba de compatibilidad de los complementos con NVDA.
-- teclas de navegación rápida configurable según el idioma de NVDA.
-
-
-++ v1.0.1 (07/03/2020) ++
-- corrección de documentación.
-- traducción del complemento en español por Gunther Melendez, cambios por Rémy Ruiz.
-
-
-++ v1.0 (07/02/2020) ++
-Este complemento cambia de nombre para evitar confusiones con otros complementos. Su versión comienza nuevamente en 1.0.
-- Compatibilidad con NVDA 2019.3.
-- modificación de gestos de entrada:
- - reemplazo de la tecla NVDA con la tecla "windows" en combinación con la tecla "alt".
- - eliminación de gestos de entrada de scripts de movimiento con anuncio de todas las celdas.
-- se añade script para activar o desactivar el anuncio de las celdas de la fila o la columna durante una consulta o un desplazamiento en una tabla.
-- se añade la capa de órdenes para tablas que ofrece la posibilidad de utilizar las teclas de flecha para moverse en las tablas.
-- se añade script para anunciar la celda actual.
-- se añade script "Información del documento".
-- accesibilidad mejorada del corrector ortográfico de Word 2013 y 2016.
-- eliminación del anuncio del nivel de título durante una modificación (compatible con NVDA).
-- eliminación, en modo navegación, del movimiento allí debido a un error ortográfico por "*" (compatible con NVDA: órden "w").
-- se añade la posibilidad de anunciar el contenido del primer o segundo campo con la tecla "espacio" en la lista de elementos (ver diálogo "Elección").
-- script Anunciar  la posición del cursor: muestra información en la pantalla presionando dos veces el gesto.
-- buscar  actualización automática.
-
-
-++ v3.1 (10 de Avril del 2016) ++
-- se añade el anuncio de columna para las órdenes de teclado "key_line_page"
-
-
-++ v3.0 (10 de Marzo  del 2016) ++
-- eliminación de scripts de movimiento rápido (duplicado con modo de navegación NVDA),
-- eliminación de los scripts para anunciar el título de las filas o columnas en la segunda pulsación (ahora usando la opción incluida en NVDA),
-- compatibilidad con NVDA 2016.1.
-
-
-++ v2.5 (22 de Junio del 2015) ((no publicado)) ++
-- cambio de las órdenes de teclado: "nvda+control+f6" a "alt+suprimir" y nvda +suprimir teclado numérico".
-- indicación de la posición relativa al borde izquierdo y superior (órdenes "alt + suprimir", "alt + suprimir teclado numérico")
--  se añade búsqueda de objetos en la página actual (órdenes nvda + alt + f5)
-- compatibilidad con el modo exploración de NVDA (cambio de accesos directos de navegación)
-
-
-++ v2.4 (11 de Junio del 2015) ++
-- la corrección de bloqueo apareció desde NVDA 2015.1
-- se añade script  para seleccionar el modo de navegación rápida
-
-
-++ v2.3 (14 de Diciembre del 2014) ++
-- se añade órdenes para mover el foco a la frase anterior o siguiente ("alt + flecha arriba o flecha abajo")
-- corrección de documentación y traducción
-- corrección manifest.ini
-
-
-++ v2.2 (15 de Noviembre  del 2014) ++
-- se añade la navegación rápida
-- separación en dos categorías de objetos gráficos (los de la capa de texto, los de la capa de dibujo)
-- se añade script "nvda + alt + r" para leer la modificación del texto en el cursor,
-- se añade script "nvda + alt + e" para leer la nota final o nota al pie del cursor
-
-
-++ v2.1 (1 de Octubre del 2014) ++
-- se añade el botón "Buscar y mostrar",
-- se añade atajos para botones de cuadro de diálogo,
-- corrección de documentación
-- modificación del color de fondo de los elementos de las listas.
-- corrección del defecto de selección presionando el botón "Buscar y copiar al portapapeles"
-
-
-++ v2.0 (24 de Setiembre  del 2014) ++
-- compatibilidad con la versión 2014.3
-- se añade scripts para tablas
-- se añade script para activar o desactivar el salto de los párrafos vacíos
-
-
-++ v1.0 (24 de Enero del  2014) ++
-- Creación  del complemento.
+El historial de las versiones del complemento está en el archivo ["changes.html" changes.html]
