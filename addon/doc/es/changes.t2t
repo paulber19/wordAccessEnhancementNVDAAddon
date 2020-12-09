@@ -16,6 +16,9 @@ Descarga:
 - [Versiones de desarrollo ADDON_DEV_URL]
 
 
++ v2.2.1 (09/12/2020) +
+actualización de la traducción al turco.
+
 + v2.2 (06/12/2020) +
 - compatibilidad con NVDA 2020.3.
 - corrección del conflicto de la tecla de navegación rápida para los marcadores (,"): "-" por defecto y "¡" para teclado español.
