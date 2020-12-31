@@ -8,6 +8,7 @@ import addonHandler
 import os
 import sys
 import gui
+from gui import nvdaControls
 from gui.settingsDialogs import MultiCategorySettingsDialog, SettingsPanel
 import wx
 import characterProcessing
@@ -43,6 +44,17 @@ SCT_Many = "__many__"
 class WordOptionsPanel(SettingsPanel):
 	# Translators: This is the label for the notepadPlusPlus settings dialog.
 	title = _("Options")
+	objectsToRead = [
+		"comment",
+		"footnote",
+		"endnote",
+		]
+	objectsToReadLabels = {
+	"comment" : _("Comment"),
+	"footnote" : _("Footnote"),
+	"endnote" : _("Endnote"),
+	}
+
 
 	def makeSettings(self, settingsSizer):
 
@@ -79,6 +91,21 @@ class WordOptionsPanel(SettingsPanel):
 			wx.CheckBox(self, wx.ID_ANY, label=labelText))
 		self.automaticReadingCheckBox.SetValue(
 			_addonConfigManager.toggleAutomaticReadingOption(False))
+		#Translators: This is the label for a list of checkboxes
+		# controlling which  object are automatically reading.
+		labelText = _("Concerned elements:")
+		choice =  [self.objectsToReadLabels[x]for x in self.objectsToRead]
+		self.objectsToReadCheckListBox = sHelper.addLabeledControl(labelText, nvdaControls.CustomCheckListBox, choices=choice)
+		checkedItems = []
+		if _addonConfigManager.toggleAutoCommentReadingOption(False):
+			checkedItems.append(self.objectsToRead.index("comment"))
+		if _addonConfigManager.toggleAutoFootnoteReadingOption(False):
+			checkedItems.append(self.objectsToRead.index("footnote"))
+		if _addonConfigManager.toggleAutoEndnoteReadingOption(False):
+			checkedItems.append(self.objectsToRead.index("endnote"))
+		self.objectsToReadCheckListBox.CheckedItems  = checkedItems
+		self.objectsToReadCheckListBox.Select(0)
+		"""
 		# Translators: This is the label for a checkbox in the settings panel.
 		labelText = _("&Comments")
 		self.autoCommentReadingCheckBox = group.addItem(
@@ -87,10 +114,11 @@ class WordOptionsPanel(SettingsPanel):
 			_addonConfigManager.toggleAutoCommentReadingOption(False))
 		# Translators: This is the label for a checkbox in the settings panel.
 		labelText = _("&Footnotes")
-		self.autoFootnoteReadingCheckBox = group.addItem(
+		self.automaticNoteReadingCheckBox = group.addItem(
 			wx.CheckBox(self, wx.ID_ANY, label=labelText))
-		self.autoFootnoteReadingCheckBox.SetValue(
+		self.automaticNoteReadingCheckBox.SetValue(
 			_addonConfigManager.toggleAutoFootnoteReadingOption(False))
+		"""
 		# Translators: This is the label for a checkbox in the settings panel.
 		labelText = _("Read &with:")
 		# Translators: choice labelsfor automatic reading.
@@ -109,6 +137,16 @@ class WordOptionsPanel(SettingsPanel):
 			# automatic reading is not available for nvda version less than nvda 2019.3
 			for item in range(0, group.sizer.GetItemCount()):
 				group.sizer.Hide(item)
+		choice = [x for x in range(5, 125, 5)]
+		choice = list(reversed(choice))
+		# translators: label for a list box in Options settings panel.
+		labelText = _("Maximum time of elements's search (in seconds:)")
+		self.elementsSearchMaxTimeListBox = sHelper.addLabeledControl(labelText, wx.Choice, choices=[str(x) for x in choice])
+		self.elementsSearchMaxTimeListBox.SetSelection(choice.index(_addonConfigManager.getElementsSearchMaxTime()))
+		# Translators: This is the label for a checkbox in the options settings panel.
+		labelText = _("Na&vigate in loop")
+		self.loopInNavigationModeOptionBox = sHelper.addItem(wx.CheckBox(self, wx.ID_ANY, label=labelText))
+		self.loopInNavigationModeOptionBox.SetValue(_addonConfigManager.toggleLoopInNavigationModeOption(False))
 
 	def onVoiceInformationButton(self, evt):
 
@@ -182,12 +220,19 @@ class WordOptionsPanel(SettingsPanel):
 			_addonConfigManager.togglePlaySoundOnSkippedParagraphOption()
 		if self.automaticReadingCheckBox.IsChecked() != _addonConfigManager.toggleAutomaticReadingOption(False):  # noqa:E501
 			_addonConfigManager.toggleAutomaticReadingOption()
-		if self.autoCommentReadingCheckBox.IsChecked() != _addonConfigManager.toggleAutoCommentReadingOption(False):  # noqa:E501
+		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("comment")) != _addonConfigManager.toggleAutoCommentReadingOption(False):  # noqa:E501
 			_addonConfigManager.toggleAutoCommentReadingOption()
-		if self.autoFootnoteReadingCheckBox.IsChecked() != _addonConfigManager.toggleAutoFootnoteReadingOption(False):  # noqa:E501
+		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("footnote")) != _addonConfigManager.toggleAutoFootnoteReadingOption(False):  # noqa:E501
 			_addonConfigManager.toggleAutoFootnoteReadingOption()
+		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("endnote")) != _addonConfigManager.toggleAutoEndnoteReadingOption(False):  # noqa:E501
+			_addonConfigManager.toggleAutoEndnoteReadingOption()
 		_addonConfigManager.setAutoReadingWithOption(
 			self.autoReadingWithChoiceBox .GetSelection())
+		elementsSearchMaxTime= int(self.elementsSearchMaxTimeListBox.GetString(self.elementsSearchMaxTimeListBox.GetSelection()))
+		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("endnote")) != _addonConfigManager.toggleAutoEndnoteReadingOption(False):  # noqa:E501
+			_addonConfigManager.setElementsSearchMaxTime(elementsSearchMaxTime)
+		if self.loopInNavigationModeOptionBox.IsChecked()  != _addonConfigManager.toggleLoopInNavigationModeOption(False):
+			_addonConfigManager.toggleLoopInNavigationModeOption()
 
 	def onSave(self):
 		self.saveSettingChanges()
@@ -231,11 +276,13 @@ class WordUpdatePanel(SettingsPanel):
 	def onSeeHistory(self, evt):
 		addon = addonHandler.getCodeAddon()
 		from languageHandler import curLang
-		lang = curLang
-		theFile = os.path.join(addon.path, "doc", lang, "changes.html")
+		theFile = os.path.join(addon.path, "doc", curLang, "changes.html")
 		if not os.path.exists(theFile):
-			lang = "en"
+			lang = curLang.split("_")[0]
 			theFile = os.path.join(addon.path, "doc", lang, "changes.html")
+			if not os.path.exists(theFile):
+				lang = "en"
+				theFile = os.path.join(addon.path, "doc", lang, "changes.html")
 		os.startfile(theFile)
 
 	def saveSettingChanges(self):

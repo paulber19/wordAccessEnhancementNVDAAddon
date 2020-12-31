@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: wordAccessEnhancement 2.2.1\n"
+"Project-Id-Version: wordAccessEnhancement 2.3\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
-"POT-Creation-Date: 2020-12-09 09:39+0100\n"
+"POT-Creation-Date: 2020-12-31 11:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,9 @@ msgid ""
 "\t* a script (NVDA+shift+f7\") to report spelling or grammatical error and "
 "suggested correction by the spelling checker,\n"
 "\t* a script (NVDA+control+f7\") to report current sentence under focus.\n"
-"* automatic reading of comments and footnotes (nvda 2019.3 and above).\n"
+"* automatic reading of some elements as comments ,  footnotes, or endnotes.\n"
+"\n"
+"\n"
 "This add-on has been tested with Microsoft Word 2019, 2016 and 2013 (perhaps "
 "works also with Word 365).\n"
 msgstr ""
@@ -70,38 +72,38 @@ msgid "%s - installation"
 msgstr ""
 
 #. Translators: Reported when text contains a comment.
-#: appModules\winword\ww_automaticReading.py:110
+#: appModules\winword\ww_automaticReading.py:112
 #, python-format
 msgid "comment of %s:"
 msgstr ""
 
-#: appModules\winword\ww_automaticReading.py:110
+#: appModules\winword\ww_automaticReading.py:112
 msgid "comment:"
 msgstr ""
 
 #. Translators: odd And Even Pages Header Footer information.
-#: appModules\winword\ww_automaticReading.py:894
+#: appModules\winword\ww_automaticReading.py:912
 #: appModules\winword\ww_document.py:211 appModules\winword\ww_document.py:287
 #: appModules\winword\ww_document.py:334 appModules\winword\ww_document.py:340
 #: appModules\winword\ww_document.py:453 appModules\winword\ww_document.py:821
 #: appModules\winword\ww_document.py:1022 appModules\winword\ww_sections.py:48
 #: appModules\winword\ww_sections.py:196
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:116
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:154
 msgid "yes"
 msgstr ""
 
-#: appModules\winword\ww_automaticReading.py:894
+#: appModules\winword\ww_automaticReading.py:912
 #: appModules\winword\ww_document.py:211 appModules\winword\ww_document.py:287
 #: appModules\winword\ww_document.py:335 appModules\winword\ww_document.py:341
 #: appModules\winword\ww_document.py:453 appModules\winword\ww_document.py:822
 #: appModules\winword\ww_document.py:1022 appModules\winword\ww_sections.py:48
 #: appModules\winword\ww_sections.py:196
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:116
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:154
 msgid "no"
 msgstr ""
 
 #. Translators: message to user to report automatic reading voice record.
-#: appModules\winword\ww_automaticReading.py:934
+#: appModules\winword\ww_automaticReading.py:952
 msgid "Current voice settings have beenset for automatic reading"
 msgstr ""
 
@@ -118,8 +120,8 @@ msgstr ""
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_bookmarks.py:61
-#: appModules\winword\ww_browseMode.py:272 appModules\winword\ww_choice.py:68
-#: appModules\winword\ww_elementsListDialog.py:39
+#: appModules\winword\ww_browseMode.py:319 appModules\winword\ww_choice.py:68
+#: appModules\winword\ww_elementsListDialog.py:42
 msgid "Bookmark"
 msgstr ""
 
@@ -212,199 +214,206 @@ msgstr ""
 msgid "Page {page}, line {line}"
 msgstr ""
 
-#: appModules\winword\ww_browseMode.py:31
+#: appModules\winword\ww_browseMode.py:33
 msgid "Extended browse mode for Microsoft Word"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:78
+#: appModules\winword\ww_browseMode.py:80
 msgid "moves to the next grammatical error"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:80
+#: appModules\winword\ww_browseMode.py:82
 msgid "no next grammatical error"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:82
+#: appModules\winword\ww_browseMode.py:84
 msgid "moves to the previous grammatical error"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:84
+#: appModules\winword\ww_browseMode.py:86
 msgid "no previous grammatical error"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:90
+#: appModules\winword\ww_browseMode.py:92
 msgid "moves to the next revision"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:92
+#: appModules\winword\ww_browseMode.py:94
 msgid "no next revision"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:94
+#: appModules\winword\ww_browseMode.py:96
 msgid "moves to the previous revision"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:96
+#: appModules\winword\ww_browseMode.py:98
 msgid "no previous revision"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:102
+#: appModules\winword\ww_browseMode.py:104
 msgid "moves to the next comment"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:104
+#: appModules\winword\ww_browseMode.py:106
 msgid "no next comment"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:106
+#: appModules\winword\ww_browseMode.py:108
 msgid "moves to the previous comment"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:108
+#: appModules\winword\ww_browseMode.py:110
 msgid "no previous comment"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:114
+#: appModules\winword\ww_browseMode.py:116
 msgid "moves to the next field"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:116
+#: appModules\winword\ww_browseMode.py:118
 msgid "no next field"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:118
+#: appModules\winword\ww_browseMode.py:120
 msgid "moves to the previous field"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:120
+#: appModules\winword\ww_browseMode.py:122
 msgid "no previous field"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:127
+#: appModules\winword\ww_browseMode.py:129
 msgid "moves to the next bookmark"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:129
+#: appModules\winword\ww_browseMode.py:131
 msgid "no next bookmark"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:131
+#: appModules\winword\ww_browseMode.py:133
 msgid "moves to the previous bookmark"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:133
+#: appModules\winword\ww_browseMode.py:135
 msgid "no previous bookmark"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:139
+#: appModules\winword\ww_browseMode.py:141
 msgid "moves to the next endnote"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:141
+#: appModules\winword\ww_browseMode.py:143
 msgid "no next endnote"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:143
+#: appModules\winword\ww_browseMode.py:145
 msgid "moves to the previous endnote"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:145
+#: appModules\winword\ww_browseMode.py:147
 msgid "no previous endnote"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:151
+#: appModules\winword\ww_browseMode.py:153
 msgid "moves to the next footnote"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:153
+#: appModules\winword\ww_browseMode.py:155
 msgid "no next footnote"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:155
+#: appModules\winword\ww_browseMode.py:157
 msgid "moves to the previous footnote"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:157
+#: appModules\winword\ww_browseMode.py:159
 msgid "no previous footnote"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:163
+#: appModules\winword\ww_browseMode.py:165
 msgid "moves to the next section"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:165
+#: appModules\winword\ww_browseMode.py:167
 msgid "no next section"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:167
+#: appModules\winword\ww_browseMode.py:169
 msgid "moves to the previous section"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:169
+#: appModules\winword\ww_browseMode.py:171
 msgid "no previous section"
 msgstr ""
 
-#: appModules\winword\ww_browseMode.py:273
+#. Translators: message to the user which indicates the return
+#. to the bottom of the page.
+#: appModules\winword\ww_browseMode.py:204
+msgid "Return to bottom of page"
+msgstr ""
+
+#. Translators: message to user which indicates the return
+#. to the top of the page.
+#: appModules\winword\ww_browseMode.py:209
+msgid "Return to top of page"
+msgstr ""
+
+#: appModules\winword\ww_browseMode.py:320
 msgid "{name} text: {text}"
 msgstr ""
 
-#: appModules\winword\ww_browseMode.py:277
+#: appModules\winword\ww_browseMode.py:324
 #, python-format
 msgid "Bookmark %s"
 msgstr ""
 
-#: appModules\winword\ww_browseMode.py:290
+#: appModules\winword\ww_browseMode.py:337
 msgid "Endnote{index}"
 msgstr ""
 
-#. Translators: endnote index.
-#: appModules\winword\ww_browseMode.py:298
-msgid "Endnote {index}"
-msgstr ""
-
 #. Translators: label for a footnote.
-#: appModules\winword\ww_browseMode.py:346
+#: appModules\winword\ww_browseMode.py:404
 msgid "Footnote {index}"
 msgstr ""
 
-#: appModules\winword\ww_browseMode.py:391
+#: appModules\winword\ww_browseMode.py:449
 #, python-format
 msgid "%s"
 msgstr ""
 
-#: appModules\winword\ww_browseMode.py:432
+#: appModules\winword\ww_browseMode.py:490
 #, python-format
 msgid "Section %s"
 msgstr ""
@@ -412,7 +421,7 @@ msgstr ""
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_choice.py:64
-#: appModules\winword\ww_elementsListDialog.py:63
+#: appModules\winword\ww_elementsListDialog.py:66
 #: appModules\winword\ww_spellingErrors.py:43
 msgid "Spelling error"
 msgstr ""
@@ -420,7 +429,7 @@ msgstr ""
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_choice.py:65
-#: appModules\winword\ww_elementsListDialog.py:66
+#: appModules\winword\ww_elementsListDialog.py:69
 #: appModules\winword\ww_grammaticalErrors.py:43
 msgid "Grammatical error"
 msgstr ""
@@ -435,10 +444,11 @@ msgstr ""
 #. wdFieldKeyWord
 #. msoChart
 #: appModules\winword\ww_choice.py:66 appModules\winword\ww_comments.py:97
-#: appModules\winword\ww_elementsListDialog.py:42
-#: appModules\winword\ww_elementsListDialog.py:420
+#: appModules\winword\ww_elementsListDialog.py:45
+#: appModules\winword\ww_elementsListDialog.py:433
 #: appModules\winword\ww_fields.py:141 appModules\winword\ww_formfields.py:134
 #: appModules\winword\ww_shapes.py:43
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:53
 msgid "Comment"
 msgstr ""
 
@@ -459,8 +469,8 @@ msgstr ""
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_choice.py:67
-#: appModules\winword\ww_elementsListDialog.py:57
-#: appModules\winword\ww_elementsListDialog.py:435
+#: appModules\winword\ww_elementsListDialog.py:60
+#: appModules\winword\ww_elementsListDialog.py:448
 #: appModules\winword\ww_revisions.py:110
 msgid "Revision"
 msgstr ""
@@ -468,16 +478,18 @@ msgstr ""
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_choice.py:69
-#: appModules\winword\ww_elementsListDialog.py:54
+#: appModules\winword\ww_elementsListDialog.py:57
 #: appModules\winword\ww_footnotes.py:38
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:54
 msgid "Footnote"
 msgstr ""
 
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_choice.py:70
-#: appModules\winword\ww_elementsListDialog.py:45
+#: appModules\winword\ww_elementsListDialog.py:48
 #: appModules\winword\ww_endnotes.py:41
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:55
 msgid "Endnote"
 msgstr ""
 
@@ -496,7 +508,7 @@ msgstr ""
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_choice.py:74
-#: appModules\winword\ww_elementsListDialog.py:48
+#: appModules\winword\ww_elementsListDialog.py:51
 #: appModules\winword\ww_fields.py:69
 msgid "Field"
 msgstr ""
@@ -515,8 +527,8 @@ msgstr ""
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_choice.py:77
-#: appModules\winword\ww_elementsListDialog.py:30
-#: appModules\winword\ww_elementsListDialog.py:408
+#: appModules\winword\ww_elementsListDialog.py:33
+#: appModules\winword\ww_elementsListDialog.py:421
 #: appModules\winword\ww_headings.py:62 appModules\winword\ww_headings.py:102
 msgid "Heading"
 msgstr ""
@@ -529,7 +541,7 @@ msgstr ""
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_choice.py:79
-#: appModules\winword\ww_elementsListDialog.py:60
+#: appModules\winword\ww_elementsListDialog.py:63
 #: appModules\winword\ww_sections.py:147 appModules\winword\ww_sections.py:269
 msgid "Section"
 msgstr ""
@@ -2683,44 +2695,44 @@ msgstr ""
 #. wdFieldAutoNumLegal
 #. wdFieldAutoNum
 #. wdFieldImport
-#: appModules\winword\ww_elementsListDialog.py:33
-#: appModules\winword\ww_elementsListDialog.py:411
+#: appModules\winword\ww_elementsListDialog.py:36
+#: appModules\winword\ww_elementsListDialog.py:424
 #: appModules\winword\ww_fields.py:178 appModules\winword\ww_formfields.py:171
 msgid "Link"
 msgstr ""
 
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
-#: appModules\winword\ww_elementsListDialog.py:36
-#: appModules\winword\ww_elementsListDialog.py:414
+#: appModules\winword\ww_elementsListDialog.py:39
+#: appModules\winword\ww_elementsListDialog.py:427
 msgid "Graphic"
 msgstr ""
 
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
-#: appModules\winword\ww_elementsListDialog.py:51
+#: appModules\winword\ww_elementsListDialog.py:54
 msgid "FormField"
 msgstr ""
 
 #. Translators: message to indicate the number of elements is limited.
-#: appModules\winword\ww_elementsListDialog.py:225
+#: appModules\winword\ww_elementsListDialog.py:234
 #, python-format
-msgid "limited to %s elements"
+msgid "more than %s elements"
 msgstr ""
 
-#: appModules\winword\ww_elementsListDialog.py:225
-#: appModules\winword\ww_elementsListDialog.py:228
+#: appModules\winword\ww_elementsListDialog.py:234
+#: appModules\winword\ww_elementsListDialog.py:237
 msgid "One element"
 msgstr ""
 
 #. Translators: message to the user to report number of elements
-#: appModules\winword\ww_elementsListDialog.py:228
+#: appModules\winword\ww_elementsListDialog.py:237
 #, python-format
 msgid "%s elements"
 msgstr ""
 
 #. Translators: message to the user when there is no element
-#: appModules\winword\ww_elementsListDialog.py:231
+#: appModules\winword\ww_elementsListDialog.py:240
 msgid "no element"
 msgstr ""
 
@@ -2735,7 +2747,7 @@ msgstr ""
 #. ("grammaticalError", _("Grammatical error")),
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
-#: appModules\winword\ww_elementsListDialog.py:447
+#: appModules\winword\ww_elementsListDialog.py:460
 msgid "Error"
 msgstr ""
 
@@ -4134,120 +4146,126 @@ msgid "Record automatic reading voice's settings"
 msgstr ""
 
 #. Translators: This is the label for the notepadPlusPlus settings dialog.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:45
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:46
 msgid "Options"
 msgstr ""
 
 #. Translators: This is the label for a group of editing options
 #. in the settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:52
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:64
 msgid "Paragraph"
 msgstr ""
 
 #. Translators: This is the label for a checkbox in the settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:58
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:70
 msgid "&Skip empty paragraphs"
 msgstr ""
 
 #. Translators: This is the label for a checkbox in the settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:64
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:76
 msgid "&Play sound when paragraph is skipped"
 msgstr ""
 
 #. Translators: This is the label for a group of editing options
 #. in the settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:71
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:83
 msgid "Automatic reading"
 msgstr ""
 
 #. Translators: This is the label for a checkbox in the settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:77
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:89
 msgid "&Activate automatic reading"
 msgstr ""
 
-#. Translators: This is the label for a checkbox in the settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:83
-msgid "&Comments"
+#. Translators: This is the label for a list of checkboxes
+#. controlling which  object are automatically reading.
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:96
+msgid "Concerned elements:"
 msgstr ""
 
 #. Translators: This is the label for a checkbox in the settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:89
-msgid "&Footnotes"
-msgstr ""
-
-#. Translators: This is the label for a checkbox in the settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:95
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:123
 msgid "Read &with:"
 msgstr ""
 
 #. Translators: choice labelsfor automatic reading.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:97
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:125
 msgid "nothing"
 msgstr ""
 
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:97
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:125
 msgid "a beep at start and end"
 msgstr ""
 
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:97
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:125
 msgid "another voice"
 msgstr ""
 
 #. translators: label for a button in Options settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:103
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:131
 msgid "&Display voice's recorded setting"
 msgstr ""
 
+#. translators: label for a list box in Options settings panel.
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:143
+msgid "Maximum time of elements's search (in seconds:)"
+msgstr ""
+
+#. Translators: This is the label for a checkbox in the options settings panel.
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:147
+msgid "Na&vigate in loop"
+msgstr ""
+
 #. Translators: message to user to report no automatic reading voice.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:136
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:174
 msgid "No voice recorded for automatic reading"
 msgstr ""
 
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:140
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:178
 #, python-format
 msgid "Synthetizer: %s"
 msgstr ""
 
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:143
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:181
 #, python-format
 msgid "Output device: %s"
 msgstr ""
 
 #. Translators: this is the title of informationdialog box
 #. to show voice profile informations.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:171
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:209
 msgid "Voice settings for automatic reading"
 msgstr ""
 
 #. Translators: This is the label for the Update panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:198
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:243
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:107
 msgid "Update"
 msgstr ""
 
 #. Translators: This is the label for a checkbox in the update settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:203
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:248
 msgid "Automatically check for &updates "
 msgstr ""
 
 #. Translators: This is the label for a checkbox in the update settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:209
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:254
 msgid "Update also release versions to &developpement versions"
 msgstr ""
 
 #. translators: label for a button in update settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:215
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:260
 msgid "&Check for update"
 msgstr ""
 
 #. translators: this is a label for a button in update settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:220
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:265
 msgid "View &history"
 msgstr ""
 
 #. Translators: title of add-on parameters dialog.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:255
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:268
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:302
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:315
 msgid "Settings"
 msgstr ""
 
@@ -4300,39 +4318,39 @@ msgid "The service is temporarily under maintenance. Please, try again later."
 msgstr ""
 
 #. Translators: message to user to report a new version.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:348
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:354
 #, python-format
 msgid "New version available, version %s. Do you want download it now?"
 msgstr ""
 
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:365
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:371
 #, python-format
 msgid "You are up-to-date. %s is the latest version."
 msgstr ""
 
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:372
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:378
 msgid "Oops! There was a problem checking for updates. Please retry later"
 msgstr ""
 
 #. Translators: This is a label of a button appearing
 #. on UpdateCheckResult dialog.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:549
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:555
 msgid "&Yes"
 msgstr ""
 
 #. Translators: This is a label of a button appearing
 #. on UpdateCheckResult dialog.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:554
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:560
 msgid "&No"
 msgstr ""
 
 #. Translators: The label of a button to remind the user later
 #. about performing some action.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:559
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:565
 msgid "&Later"
 msgstr ""
 
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:563
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:569
 msgid "Wha&t's new"
 msgstr ""
 

@@ -331,16 +331,22 @@ class CheckForAddonUpdate(object):
 			addonName=self.addon.manifest["name"],
 			releaseNotes="releaseNotes")
 		from languageHandler import curLang
-		lang = curLang.split("_")[0]
 		url = "{url}/{language}/changes.html".format(
 			url=basereleaseNoteURL,
-			language=lang)
+			language=curLang)
 		try:
 			urlopen(url)
 		except IOError:
+			lang = curLang.split("_")[0]
 			url = "{url}/{language}/changes.html".format(
 				url=basereleaseNoteURL,
-				language="en")
+				language=lang)
+			try:
+				urlopen(url)
+			except IOError:
+				url = "{url}/{language}/changes.html".format(
+					url=basereleaseNoteURL,
+					language="en")
 		return url
 
 	def availableUpdateDialog(self, version, url):

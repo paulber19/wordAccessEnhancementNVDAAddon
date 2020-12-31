@@ -14,7 +14,7 @@ import api
 import speech
 import wx
 import config
-from gui import mainFrame, guiHelper
+from gui import isInMessageBox, mainFrame, guiHelper
 import queueHandler
 from ww_NVDAStrings import NVDAString
 
@@ -153,16 +153,33 @@ def makeAddonWindowTitle(dialogTitle):
 	addonSummary = curAddon.manifest['summary']
 	return "%s - %s" % (addonSummary, dialogTitle)
 
-
-def myMessageBox(
-	message,
-	caption=wx.MessageBoxCaptionStr,
-	style=wx.OK | wx.CENTER,
-	parent=None):
-	# NVDA function modified to say in all cases the window content
+def myMessageBox(message, caption=wx.MessageBoxCaptionStr, style=wx.OK | wx.CENTER, parent=None):
+	"""Display a message dialog.
+	This should be used for all message dialogs
+	rather than using C{wx.MessageDialog} and C{wx.MessageBox} directly.
+	@param message: The message text.
+	@type message: str
+	@param caption: The caption (title) of the dialog.
+	@type caption: str
+	@param style: Same as for wx.MessageBox.
+	@type style: int
+	@param parent: The parent window (optional).
+	@type parent: C{wx.Window}
+	@return: Same as for wx.MessageBox.
+	@rtype: int
+	"""
 	global isInMessageBox
-	option = config.conf["presentation"]["reportObjectDescriptions"]
-	config.conf["presentation"]["reportObjectDescriptions"] = True
-	res = gui.messageBox(message, caption, style, parent or gui.mainFrame)
-	config.conf["presentation"]["reportObjectDescriptions"] = option
+
+	option = config.conf.profiles[0]["presentation"]["reportObjectDescriptions"]
+	config.conf.profiles[0]["presentation"]["reportObjectDescriptions"] = True
+	wasAlready = isInMessageBox
+	isInMessageBox = True
+	if not parent:
+		mainFrame.prePopup()
+	res = wx.MessageBox(message, caption, style, parent or mainFrame)
+	if not parent:
+		mainFrame.postPopup()
+	if not wasAlready:
+		isInMessageBox = False
+	config.conf.profiles[0]["presentation"]["reportObjectDescriptions"] = option
 	return res

@@ -38,14 +38,17 @@ ID_UpdateReleaseVersionsToDevVersions = "UpdateReleaseVersionsToDevVersions"
 # ID_SkipEmptyParagraphs= "SkipEmptyParagraphs"
 # ID_PlaySoundOnSkippedParagraph = "PlaySoundOnSkippedParagraph"
 # ID_UseQuickNavigationMode = "UseQuickNavigationMode"
+ID_ElementsSearchMaxTime = "ElementsSearchMaxTime"
 # Document section items
 ID_SkipEmptyParagraphs = "SkipEmptyParagraphs"
 ID_PlaySoundOnSkippedParagraph = "PlaySoundOnSkippedParagraph"
 ID_UseQuickNavigationMode = "UseQuickNavigationMode"
+ID_LoopInNavigationMode = "LoopInNavigationMode"
 # Automatic report section items
 ID_AutomaticReading = "AutomaticReading"
 ID_CommentReport = "CommentReport"
 ID_FootnoteReport = "FootnoteReport"
+ID_EndnoteReport = "EndnoteReport"
 ID_AutoReadingWith = "AutoReadingWith"
 ID_AutoReadingSynthName = "AutoReadingSynthName"
 ID_AutoReadingSynthSpeechSettings = "AutoReadingSynthSpeechSettings"
@@ -164,11 +167,72 @@ class AddonConfiguration20(BaseAddonConfiguration):
 		log.warning("%s: Merge with previous configuration version: %s" % (_addonName, previousVersion))  # noqa:E501
 
 
+class AddonConfiguration21(BaseAddonConfiguration):
+	_version = "2.1"
+	_GeneralConfSpec = """[{section}]
+	{configVersion} = string(default = "2.1")
+	{autoUpdateCheck} = boolean(default=True)
+	{updateReleaseVersionsToDevVersions} = boolean(default=False)
+	""".format(
+		section=SCT_General,
+		configVersion=ID_ConfigVersion,
+		autoUpdateCheck=ID_AutoUpdateCheck,
+		updateReleaseVersionsToDevVersions=ID_UpdateReleaseVersionsToDevVersions)
+
+
+	_DocumentConfSpec = """[{section}]
+	{skipEmptyParagraphs} = boolean(default=True)
+	{playSoundOnSkippedParagraph} =boolean(default=True)
+	{useQuickNavigationMode} = boolean(default=False)
+	{elementsSearchMaxTime} = integer(default = 20)
+	{loopInNavigationMode} = boolean(default=False)
+	""".format(
+		section=SCT_Document,
+		skipEmptyParagraphs=ID_SkipEmptyParagraphs,
+		playSoundOnSkippedParagraph=ID_PlaySoundOnSkippedParagraph,
+		useQuickNavigationMode=ID_UseQuickNavigationMode,
+		elementsSearchMaxTime = ID_ElementsSearchMaxTime,
+		loopInNavigationMode=ID_LoopInNavigationMode
+		)
+
+	_AutoReportConfSpec = """[{section}]
+	{automaticReading} = boolean(default=False)
+	{commentReport} =boolean(default=True)
+	{footnoteReport} = boolean(default=True)
+	{endnoteReport} = boolean(default=True)
+	{autoReadingWith} = integer(default=1)
+	""".format(
+		section=SCT_AutoReport,
+		automaticReading=ID_AutomaticReading,
+		commentReport=ID_CommentReport,
+		footnoteReport=ID_FootnoteReport,
+		endnoteReport = ID_EndnoteReport,
+		autoReadingWith=ID_AutoReadingWith)
+
+	configspec = ConfigObj(StringIO("""# addon Configuration File
+	{0}{1}{2}""".format(_GeneralConfSpec, _DocumentConfSpec, _AutoReportConfSpec)
+	), list_values=False, encoding="UTF-8")
+
+	def mergeWithPreviousConfigurationVersion(self, previousConfig):
+		previousVersion = previousConfig[SCT_General][ID_ConfigVersion]
+		if previousVersion != "1.0":
+			# nothing to do
+			return
+
+		# configuration 1.0 to 2.1
+		# 3 options are moved from General section to Document section
+		self[SCT_Document][ID_SkipEmptyParagraphs] = previousConfig[SCT_General][ID_SkipEmptyParagraphs]  # noqa:E501
+		self[SCT_Document][ID_PlaySoundOnSkippedParagraph] = previousConfig[SCT_General][ID_PlaySoundOnSkippedParagraph]  # noqa:E501
+		self[SCT_Document][ID_UseQuickNavigationMode] = previousConfig[SCT_General][ID_UseQuickNavigationMode]  # noqa:E501
+		log.warning("%s: Merge with previous configuration version: %s" % (_addonName, previousVersion))  # noqa:E501
+
+
 class AddonConfigurationManager():
-	_currentConfigVersion = "2.0"
+	_currentConfigVersion = "2.1"
 	_versionToConfiguration = {
 		"1.0": AddonConfiguration10,
 		"2.0": AddonConfiguration20,
+		"2.1": AddonConfiguration21,
 		}
 	# keep the synthetizer used for automatic reading
 	_autoReadingSynth = None
@@ -292,6 +356,17 @@ class AddonConfigurationManager():
 
 	def toggleUseQuickNavigationModeOption(self, toggle=True):
 		return self._toggleDocumentOption(ID_UseQuickNavigationMode, toggle)
+	
+	def toggleLoopInNavigationModeOption(self, toggle=True):
+		return self._toggleDocumentOption(ID_LoopInNavigationMode , toggle)
+	
+	def getElementsSearchMaxTime(self):
+		conf = self.addonConfig[SCT_Document]
+		return conf[ID_ElementsSearchMaxTime]
+
+	def setElementsSearchMaxTime(self, maxTime):
+		conf = self.addonConfig[SCT_Document]
+		conf[ID_ElementsSearchMaxTime] = maxTime
 
 	def _toggleAutoReportOption(self, id, toggle=True):
 		return self._toggleOption(SCT_AutoReport, id, toggle)
@@ -315,6 +390,8 @@ class AddonConfigurationManager():
 
 	def toggleAutoFootnoteReadingOption(self, toggle=True):
 		return self._toggleAutoReportOption(ID_FootnoteReport, toggle)
+	def toggleAutoEndnoteReadingOption(self, toggle=True):
+		return self._toggleAutoReportOption(ID_EndnoteReport, toggle)
 
 	def getAutoReadingSynthSettings(self):
 		if self._autoReadingSynth is None:

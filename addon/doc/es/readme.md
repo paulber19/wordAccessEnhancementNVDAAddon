@@ -7,8 +7,7 @@
 	* [Versión de desarrollo][2]
 * Compatibilidad:
 	* Versión mínima de NVDA requerida: 2019.1
-	* Última versión de NVDA probada: 2020.3
-
+	* Última versión de NVDA probada: 2020.4
 
 Este complemento complementa los scripts integrados en la versión básica de NVDA y proporciona:
 
@@ -25,12 +24,12 @@ Este complemento complementa los scripts integrados en la versión básica de NV
 * accesibilidad mejorada del corrector ortográfico de Word 2013 y 2016:
 	* el script ("NVDA+mayúscula+f7") para anunciar el error y la sugerencia,
 	* el script (NVDA+control+f7") para anunciar la frase actual bajo el foco.
-* lectura automática de comentarios y notas al pie de página (NVDA 2019.3 y superior).
+* lectura automática de algunos elementos como comentarios, notas al pie de página o notas finales.
 
 
 Este complemento ha sido probado con Microsoft Word 2019, 2016 y 2013 (quizá también funciona con Word 365).
 
 
 
-[1]: https://github.com/paulber007/AllMyNVDAAddons/raw/master/wordAccessEnhancement/wordAccessEnhancement-2.2.1.nvda-addon
+[1]: https://github.com/paulber007/AllMyNVDAAddons/raw/master/wordAccessEnhancement/wordAccessEnhancement-2.3.nvda-addon
 [2]: https://github.com/paulber007/AllMyNVDAAddons/tree/master/wordAccessEnhancement/dev

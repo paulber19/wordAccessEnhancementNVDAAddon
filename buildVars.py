@@ -38,12 +38,14 @@ addon_info = {
 * accessibility enhancement for spelling checker (Word 2013 and 2016):
 	* a script (NVDA+shift+f7") to report spelling or grammatical error and suggested correction by the spelling checker,
 	* a script (NVDA+control+f7") to report current sentence under focus.
-* automatic reading of comments and footnotes (nvda 2019.3 and above).
+* automatic reading of some elements as comments ,  footnotes, or endnotes.
+
+
 This add-on has been tested with Microsoft Word 2019, 2016 and 2013 (perhaps works also with Word 365).
 """),
 
 	# version
-	"addon_version": "2.2.1",
+	"addon_version": "2.3",
 	# Author(s)
 	"addon_author": "paulber19",
 	# URL for the add-on documentation support
@@ -51,10 +53,10 @@ This add-on has been tested with Microsoft Word 2019, 2016 and 2013 (perhaps wor
 	# Documentation file name
 	"addon_docFileName": "addonUserManual.html",
 	# Minimum NVDA version supported (e.g. "2018.3")
-	"addon_minimumNVDAVersion": "2019.1",
+	"addon_minimumNVDAVersion": "2019.3",
 	# Last NVDA version supported/tested
 	# (e.g. "2018.4", ideally more recent than minimum version)
-	"addon_lastTestedNVDAVersion": "2020.2",
+	"addon_lastTestedNVDAVersion": "2020.4",
 	# Add-on update channel (default is stable or None)
 	"addon_updateChannel": None,
 }
@@ -79,3 +81,8 @@ i18nSources = pythonSources
 # Paths are relative to the addon directory,
 # not to the root directory of your addon sources.
 excludedFiles = []
+
+# Base language for the NVDA add-on
+# If your add-on is written in a language other than english, modify this variable.
+# For example, set baseLanguage to "es" if your add-on is primarily written in spanish.
+baseLanguage = "en"

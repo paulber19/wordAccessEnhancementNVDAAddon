@@ -16,6 +16,14 @@ Descarga:
 - [Versiones de desarrollo ADDON_DEV_URL]
 
 
++ v2.3 (31/12/2020) +
+- compatibilidad con NVDA 2020.4.
+- se añadió la lectura automática  de las notas finales.
+- se añadió el tipo de elementos seleccionados en el título del diálogo "Lista de elementos" abierto con "NVDA+f7".
+- limitación  programable del tiempo de búsqueda de los elementos en el diálogo "Lista de elementos".
+- navegar en bucle opcional en modo Exploración.
+
+
 + v2.2.1 (09/12/2020) +
 actualización de la traducción al turco.
 

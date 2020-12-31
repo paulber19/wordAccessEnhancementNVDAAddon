@@ -40,7 +40,7 @@ Este complemento proporciona:
 - [un script para pasar de una frase a otra #HDR12],
 - [un script para mostrar información sobre el documento #HDR13],
 - [Accesibilidad mejorada del corrector ortográfico #HDR14].
-- [lectura automática de comentarios y notas al pie de página #HDR15] (para NVDA 2019.3 y más).
+- [la lectura automática de algunos elementos como comentarios, notas al pie de página o notas finales #HDR15].
 
 
 
@@ -331,6 +331,13 @@ La imposibilidad de mover el cursor se indica mediante un mensaje de voz que ind
 
 Las órdenes del modo exploración no admitidos se indican mediante el mensaje de voz "No admitido en este documento" y todas las demás órdenes, mediante un pitido.
 
+Los tipos de elementos asociados con estas nuevas órdenes se añaden en la lista de tipos del diálogo  "Lista de elementos" abierto con "NVDA+F7".
+
+Para algunos tipos como "palabras mal escritas", "errores gramaticales",...),", la búsqueda de elementos puede ser bastante larga.
+
+Por lo tanto, el tiempo de búsqueda se limita a 20 segundos de forma predeterminada. Este tiempo máximo se puede cambiar utilizando la lista desplegable "Tiempo máximo de búsqueda de elementos " en la categoría "Opciones" en el diálogo de configuración del complemento.
+
+
 + Moverse de frase en frase +[HDR12]
 Los siguientes gestos de entrada se utilizan para mover el cursor del sistema de frase en frase:
 - "key_next_sentence": pasar a la siguiente frase",
@@ -380,15 +387,14 @@ El gesto de entrada "key_report_CURRENT_SENTENCE" le permite escuchar nuevamente
 Estos scripts se presentan en la categoría "ADDON_SUMMARY" del cuadro de diálogo "Gestos de entrada" de NVDA.
 
 Este complemento también permite el anuncio automático del nuevo error y su sugerencia presentada por el corrector ortográfico después del uso de uno de los botones como "Ignorar", "Modificar" o accesos directos de Word como "i", "m ".
-+ Lectura automática de comentarios y notas al pie de página +[HDR15]
-Para las versiones de NVDA superior o igual a la 2019.3 el complemento permite la lectura automática de comentarios y notas al pie de página durante el movimiento por líneas, en modo Exploración o en "Verbalizar Todo".
++ Lectura automática de elementos +[HDR15]
+Para las versiones de NVDA superior o igual a la 2019.3 el complemento permite la lectura automática de algunos elementos (comentarios, notas al pie de página, notas finales) durante el movimiento por líneas, en modo Exploración o en "Verbalizar Todo".
 
 Esto es controlado por el grupo opciones "Lectura automática" en la categoría "Opciones" en el diálogo de configuración del complemento.
 
 En este grupo se encuentran:
 - la opción "Habilitar la lectura automática" para habilitar o deshabilitar la lectura automática,
-- la opción "Comentarios" para seleccionar la lectura de comentarios en lectura automática,
-- la opción "Notas al pie de página" para seleccionar la lectura de notas al pie de página en lectura automática,
+- la lista de casillas de verificación "Elementos concernientes" para seleccionar los elementos concernientes con la lectura automática, a saber: los comentarios, las notas al pie de página y las notas finales.
 - la elección "Leer con" que le permite elegir entre:
  - "nada": el texto se lee como tal.
  - "un pitido al inicio y al final": el texto leído está precedido por un pitido agudo y finalizado por un pitido más grave.
@@ -396,7 +402,7 @@ En este grupo se encuentran:
 - el botón "Mostrar las opciones de voz guardadas": que abre el diálogo con todas las opciones de voz para ser utilizado en la lectura automática.
 
 
-Para leer un comentario o notas al pie de páginas con otra voz, se debe en primer lugar guardar las opciones de voz de esta voz mediante el gesto de entrada "key_RecordVoiceSettings". Este gesto corresponde al script "Guardar las opciones de voz para la lectura automática" y es modificable mediante el cuadro de diálogo "Gestos de entrada" de NVDA.
+Para leer los elementos con otra voz, se debe en primer lugar guardar las opciones de voz de esta voz mediante el gesto de entrada "key_RecordVoiceSettings". Este gesto corresponde al script "Guardar las opciones de voz para la lectura automática" y es modificable mediante el cuadro de diálogo "Gestos de entrada" de NVDA.
 
 Para encontrar rápidamente esta voz y posiblemente cambiar algunas de sus opciones, es recomendable crear un perfil de configuración que se activa manualmente.
 

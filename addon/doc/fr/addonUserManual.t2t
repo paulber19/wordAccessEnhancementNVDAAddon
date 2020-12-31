@@ -39,7 +39,7 @@ Cette extension apporte:
 - [un script pour se déplacer de phrase en phrase #HDR12],
 - [un script pour afficher des informations sur le document #HDR13],
 - [une amélioration de l'accessibilité du correcteur orthographique #HDR14],
-- [la lecture automatique des commentaires et note de bas de page #HDR15] (pour NVDA 2019.3 et plus).
+- [la lecture automatique de certains éléments comme les commentaires,  les note de bas de  page ou les notes de fin  #HDR15].
 
 
 
@@ -329,6 +329,13 @@ L'impossibilité de déplacer le curseur est signalé par un message vocal indiq
 
 Les commandes du mode navigation non pris en charge sont signalées par le message vocal "Non supporté dans ce document" et toutes autres commandes, par un bip sonore.
 
+Les types d'éléments associés à ces nouvelles commandes sont ajoutés dans la liste des types du dialogue "Liste d'éléments" ouvert par "NVDA+F7".
+
+Pour certains types comme "mot mal orthographié", "erreur de grammaire", la recherche des éléments peut être assez longue.
+
+Le temps de la recherche est donc limitée à 20 secondes par défaut. Ce temps maximum peut être modifié  à l'aide de la liste déroulante "Temps maximum de la recherche des éléments" de la catégorie "Options" des paramètres de l'extension.
+
+
 + Déplacement de phrase en phrase +[HDR12]
 Les gestes de commandes suivants permettent de déplacer le curseur système de phrase en phrase:
 - "key_next_sentence" : déplacement à la prochaine phrase,
@@ -379,23 +386,22 @@ Ces scripts sont présentés dans la catégorie "ADDON_SUMMARY" du dialogue "ges
 
 Cette extension permet aussi l'annonce automatique de la nouvelle erreur et de sa suggestion présentée par le correcteur orthographique suite à l'utilisation d'un des boutons comme "Ignorer", "Modifier" ou des raccourcis Word comme "i", "m".
 
-+ Lecture automatique des commentaires et notes de bas de page +[HDR15]
-Pour les versions de NVDA supérieures ou égales, à la 2019.3 l'extension permet la lecture automatique des commentaires et note de bas de page lors d'un déplacement ligne par ligne, en mode navigation ou en "dire tout".
++ Lecture automatique d'éléments +[HDR15]
+Pour les versions de NVDA supérieures ou égales, à la 2019.3 l'extension permet la lecture automatique de certains éléments (commentaires ,  note de bas de page, note de fin) lors d'un déplacement ligne par ligne, en mode navigation ou en "dire tout".
 
 Ceci est contrôlé par le groupe d'options "Lecture automatique" de la catégorie "Options" du dialogue de paramétrage de l'extension.
 
 Dans ce groupe, se trouvent:
 - l'option "Activer la lecture automatique" pour activer ou désactiver la lecture automatique,
-- l'option "Commentaires" pour sélectionner la lecture des commentaires en lecture automatique,
-- l'option "Note de bas de page" pour sélectionner la lecture des notes de bas de page en lecture automatique,
+- la liste de cases à cochées "éléments concernés"   permettant de sélectionner  les éléments  concernés par la lecture automatique, à savoir: les commantaires, les note de bas de page et les notes de fin.
 - le choix "Lire avec" qui permet de choisir entre:
- - "rien": le texte est lu tel quel.
+ - "rien": le texte est lu avec la voix de la synthèse courante.
  - "un bip sonore en début et en fin": le texte lu est précédé d'un bip sonore aigu et terminé par un bip sonore plus grave.
  - "une autre voix": le texte est lu avec les paramètres vocaux enregistrée pour la lecture automatique.
 - le bouton "Afficher les paramètres vocaux enregistrés": qui ouvre la boite de dialogue présentant tous les paramètres vocaux qui seront utilisés en lecture automatique.
 
 
-Pour faire lire les commentaires ou note de bas de pages avec une autre voix, il faut auparavant enregistrer les paramètres vocaux de cette voix à l'aide du geste de commande "key_RecordVoiceSettings". Ce geste correspond au script "Enregistrer les paramètres vocaux pour la lecture automatique" et est modifiable à l'aide du dialogue "Gestes de commande" de NVDA.
+Pour faire lire les éléments avec une autre voix, il faut auparavant enregistrer les paramètres vocaux de cette voix à l'aide du geste de commande "key_RecordVoiceSettings". Ce geste correspond au script "Enregistrer les paramètres vocaux pour la lecture automatique" et est modifiable à l'aide du dialogue "Gestes de commande" de NVDA.
 
 Afin de retrouver facilement cette voix et de modifier éventuellement certains de ses paramètres, il est conseillé de créer un profil de configuration qui sera activé manuellement.
 

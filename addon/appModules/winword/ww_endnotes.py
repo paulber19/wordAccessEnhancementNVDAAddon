@@ -20,7 +20,7 @@ class Endnote(CollectionElement):
 		self.text = ""
 		if item.range.text:
 			self.text = item.range.text
-		self.setLineAndPageNumber(r)
+		self.setLineAndPageNumber()
 
 	def formatInfos(self):
 		sInfo = _("""Page {page}, line {line}

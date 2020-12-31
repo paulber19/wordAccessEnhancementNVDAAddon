@@ -18,7 +18,16 @@ Download:
 
 Sorry, but this document is an automatic translation from french language.
 
-+ v2.2.1 (12/09/2020) +
+
++ v2.3 (31/12/2020) +
+- compatibility with NVDA 2020.4
+- added automatic reading of endnotes.
+- addition of the type of element selected in the title of the "Elements's list" dialog opened by "nvda + f7".
+- programmable limitation of the element search time in the "Elements's list" dialog.
+- optional loop navigation in navigation mode.
+
+
++ v2.2.1 (09/12/2020) +
 updated Turkish translation.
 
 + v2.2 (06/12/2020) +

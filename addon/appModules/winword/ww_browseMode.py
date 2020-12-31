@@ -13,6 +13,9 @@ from NVDAObjects.window.winword import *  # noqa:F403
 from versionInfo import version_year, version_major
 from .ww_fields import Field
 from .ww_keyboard import getBrowseModeQuickNavKey
+from scriptHandler import getLastScriptRepeatCount, willSayAllResume
+import api
+import winsound
 import sys
 import os
 _curAddon = addonHandler.getCodeAddon()
@@ -24,7 +27,6 @@ from ww_addonConfigManager import _addonConfigManager  # noqa:E402
 del sys.path[-1]
 
 addonHandler.initTranslation()
-
 
 class BrowseModeTreeInterceptorEx(browseMode.BrowseModeTreeInterceptor):
 	__gestures = {}
@@ -174,6 +176,51 @@ del qn
 class BrowseModeDocumentTreeInterceptorEx(BrowseModeTreeInterceptorEx, browseMode.BrowseModeDocumentTreeInterceptor):
 	pass
 
+	def _quickNavScript(
+		self, gesture, itemType, direction, errorMessage, readUnit):
+		if itemType == "notLinkBlock":
+			iterFactory = self._iterNotLinkBlock
+		else:
+			iterFactory = lambda direction, info: self._iterNodesByType(  # noqa:E731
+				itemType, direction, info)
+		info = self.selection
+		try:
+			item = next(iterFactory(direction, info))
+		except NotImplementedError:
+			# Translators: a message when a particular quick nav command
+			# is not supported in the current document.
+			ui.message(NVDAString("Not supported in this document"))
+			return
+		except StopIteration:
+			if not _addonConfigManager.toggleLoopInNavigationModeOption(False):
+				ui.message(errorMessage)
+				return
+			# return to the top or bottom of page and continue search
+			if direction == "previous":
+				info = api.getReviewPosition().obj.makeTextInfo(textInfos.POSITION_LAST)
+				self._set_selection(info, reason="quickNav")
+				# Translators: message to the user which indicates the return
+				# to the bottom of the page.
+				msg = _("Return to bottom of page")
+			else:
+				info = None
+				# Translators: message to user which indicates the return
+				# to the top of the page.
+				msg = _("Return to top of page")
+			try:
+				item = next(iterFactory(direction, info))
+			except:  # noqa:E722
+				ui.message(errorMessage)
+				return
+			ui.message(msg)
+			winsound.PlaySound("default", 1)
+		# #8831: Report before moving because moving might change the focus, which
+		# might mutate the document, potentially invalidating info if it is
+		# offset-based.
+		if not gesture or not willSayAllResume(gesture):
+			item.report(readUnit=readUnit)
+		item.moveTo()
+
 
 NVDAVersion = [version_year, version_major]
 if NVDAVersion < [2019, 3]:
@@ -294,10 +341,21 @@ class WordDocumentEndnoteQuickNavItem(WordDocumentCollectionQuickNavItem):
 		return item.Reference
 
 	def report(self, readUnit=None):
-		# Translators: endnote index.
-		msg = _("Endnote {index}")
-		ui.message(msg.format(index=self.collectionItem.index))
-
+		textList = []
+		textList.append(self.label)
+		try:
+			# only for nvda version >= 2019.3
+			from .ww_endnotes import Endnote
+			index = int(self.collectionItem.Index)
+			doc = self.collectionItem.Application.ActiveDocument
+			endnoteObj = doc.EndNotes[index]
+			endnote = Endnote(self.collectionItem, endnoteObj)
+			from .ww_automaticReading import formatAutoSpeechSequence
+			if _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoEndnoteReadingOption(False):
+				textList.extend(formatAutoSpeechSequence([endnote.text]))
+		except:  # noqa:E722
+			pass
+		speech.speak(textList)
 
 class EndnoteWinWordCollectionQuicknavIterator(WinWordCollectionQuicknavIterator):
 	quickNavItemClass = WordDocumentEndnoteQuickNavItem

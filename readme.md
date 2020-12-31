@@ -6,8 +6,8 @@
 	* [stable version][1]
 	* [developpement' versions][2]
 * Compatibility:
-	* Minimum required NVDA version: 2019.1
-	* Last NVDA version tested: 2020.3
+	* Minimum required NVDA version: 2019.3
+	* Last NVDA version tested: 2020.4
 
 
 This add-on adds extra functionality when working with Microsoft Word:
@@ -25,11 +25,11 @@ This add-on adds extra functionality when working with Microsoft Word:
 * accessibility enhancement for spelling checker (Word 2013 and 2016):
 	* a script (NVDA+shift+f7") to report spelling or grammatical error and suggested correction by the spelling checker,
 	* a script (NVDA+control+f7") to report current sentence under focus.
-* automatic reading of comments and footnotes (nvda 2019.3 and above).
+* automatic reading of some elements as comments, footnotes or endnotes.
 
 
 This module has been tested with Microsoft Word 2019, 2016 and 2013 (perhaps works also with Word 365).
 
 
-[1]: https://github.com/paulber007/AllMyNVDAAddons/raw/master/wordAccessEnhancement/wordAccessEnhancement-2.2.1.nvda-addon
+[1]: https://github.com/paulber007/AllMyNVDAAddons/raw/master/wordAccessEnhancement/wordAccessEnhancement-2.3.nvda-addon
 [2]: https://github.com/paulber007/AllMyNVDAAddons/tree/master/wordAccessEnhancement/dev

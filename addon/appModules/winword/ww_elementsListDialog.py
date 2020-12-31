@@ -8,9 +8,11 @@ import addonHandler
 import wx
 import speech
 import gui
+import time
 import core
 import queueHandler
 from NVDAObjects.window.winword import *  # noqa:F403
+from gui.dpiScalingHelper import DpiScalingHelperMixinWithoutInit
 import sys
 import os
 _curAddon = addonHandler.getCodeAddon()
@@ -18,12 +20,13 @@ path = os.path.join(_curAddon.path, "shared")
 sys.path.append(path)
 from ww_py3Compatibility import uniCHR  # noqa:E402
 from ww_NVDAStrings import NVDAString  # noqa:E402
+from ww_addonConfigManager import _addonConfigManager  # noqa:E402
 del sys.path[-1]
 
 addonHandler.initTranslation()
 
 
-class ElementsListDialog(wx.Dialog):
+class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 	ELEMENT_TYPES = (
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
@@ -67,14 +70,13 @@ class ElementsListDialog(wx.Dialog):
 	)
 	Element = collections.namedtuple("Element", ("item", "parent"))
 	lastSelectedElementType = 0
-	_timer = None
+
 
 	def __init__(self, document):
-
+		self.dialogTitle = NVDAString("Elements List")
 		super(ElementsListDialog, self).__init__(
 			parent=gui.mainFrame,
-			# Translators: The title of the browse mode Elements List dialog.
-			title=NVDAString("Elements List"))
+			title=self.dialogTitle)
 		self.document = document
 		mainSizer = wx.BoxSizer(wx.VERTICAL)
 		contentsSizer = wx.BoxSizer(wx.VERTICAL)
@@ -82,10 +84,10 @@ class ElementsListDialog(wx.Dialog):
 		# Translators: The label of a list of items to select the type of element
 		# in the browse mode Elements List dialog.
 		childLabel = wx.StaticText(
-			self,
-			wx.NewId(),
+			parent=self,
 			label=NVDAString("&Type:"),
-			style=wx.ALIGN_CENTRE)
+			style=wx.ALIGN_CENTRE
+			)
 		childSizer.Add(childLabel, )
 		self.childListBox = wx.ListBox(
 			self,
@@ -102,7 +104,11 @@ class ElementsListDialog(wx.Dialog):
 		contentsSizer.Add(childSizer, flag=wx.EXPAND)
 		contentsSizer.AddSpacer(gui.guiHelper.SPACE_BETWEEN_VERTICAL_DIALOG_ITEMS)
 
-		self.tree = wx.TreeCtrl(self, size=wx.Size(500, 600), style=wx.TR_HAS_BUTTONS | wx.TR_HIDE_ROOT | wx.TR_LINES_AT_ROOT | wx.TR_SINGLE | wx.TR_EDIT_LABELS)
+		self.tree = wx.TreeCtrl(
+			self,
+			size=self.scaleSize((500, 300)),  # height is chosen to ensure the dialog will fit on an 800x600 screen
+			style=wx.TR_HAS_BUTTONS | wx.TR_HIDE_ROOT | wx.TR_LINES_AT_ROOT | wx.TR_SINGLE | wx.TR_EDIT_LABELS
+			)
 		self.tree.Bind(wx.EVT_SET_FOCUS, self.onTreeSetFocus)
 		self.tree.Bind(wx.EVT_CHAR, self.onTreeChar)
 		self.treeRoot = self.tree.AddRoot("root")
@@ -138,26 +144,28 @@ class ElementsListDialog(wx.Dialog):
 		self.tree.SetFocus()
 		self.initElementType(self.ELEMENT_TYPES[self.lastSelectedElementType][0])
 		self.CentreOnScreen()
+		self.refreshDialogTitle()
+
+	def refreshDialogTitle(self):
+		if self.childListBox.GetCount():
+			type = self.childListBox.GetStringSelection()
+			title = "%s - %s" % (self.dialogTitle, type)
+			self.SetTitle(title)
 
 	def onElementTypeChange(self, evt):
-		if self._timer:
-			self._timer.Stop()
 		elementType = self.childListBox.GetSelection()
 		# We need to make sure this gets executed after the focus event.
 		# Otherwise, NVDA doesn't seem to get the event.
 		# modified because of error when type spelling error type
 		wx.CallLater(100, self.initElementType, self.ELEMENT_TYPES[elementType][0])
 		self.lastSelectedElementType = elementType
-
+		self.refreshDialogTitle()
+	
 	def initElementType(self, elType):
 		from .ww_tones import RepeatBeep
 		rb = RepeatBeep()
 		rb.start()
-		maxElements = None
-		if elType == "grammaticalError":
-			maxElements = 30
-		elif elType == "spellingError":
-			maxElements = 80
+		self.startTime = int(time.time())
 		if elType in ("link", "button", "radioButton", "checkBox"):
 			# Links, buttons, radio button, check box can be activated.
 			self.activateButton.Enable()
@@ -173,6 +181,7 @@ class ElementsListDialog(wx.Dialog):
 		parentElements = []
 		isAfterSelection = False
 		try:
+			limited = False
 			for item in self.document._iterNodesByType(elType):
 				# Find the parent element, if any.
 				for parent in reversed(parentElements):
@@ -188,10 +197,9 @@ class ElementsListDialog(wx.Dialog):
 
 				element = self.Element(item, parent)
 				self._elements.append(element)
-				if maxElements is not None:
-					maxElements -= 1
-					if maxElements == 0:
-						break
+				if int(time.time())  - self.startTime > _addonConfigManager.getElementsSearchMaxTime():
+					limited = True
+					break
 
 				if not isAfterSelection:
 					isAfterSelection = item.isAfterSelection
@@ -213,7 +221,8 @@ class ElementsListDialog(wx.Dialog):
 		# Start with no filtering.
 		self.filterEdit.ChangeValue("")
 		self.filter("", newElementType=True)
-		self.sayNumberOfElements(maxElements is not None and maxElements == 0)
+		self.sayNumberOfElements(limited)
+
 
 	def sayNumberOfElements(self, limited=False):
 		count = self.tree.Count
@@ -222,16 +231,20 @@ class ElementsListDialog(wx.Dialog):
 		if count:
 			if limited:
 				# Translators: message to indicate the number of elements is limited.
-				msg = _("limited to %s elements") % str(count) if count > 1 else _("One element")
+				msg = _("more than %s elements") % str(count) if count > 1 else _("One element")
 			else:
 				# Translators: message to the user to report number of elements
 				msg = _("%s elements") % str(count) if count > 1 else _("One element")
 		else:
 			# Translators: message to the user when there is no element
 			msg = _("no element")
-		queueHandler.queueFunction(queueHandler.eventQueue, speech.speakMessage, msg)
+		wx.CallLater(100, queueHandler.queueFunction, queueHandler.eventQueue, speech.speakMessage, msg)
 
 	def onChildBoxFocus(self, evt):
+		if not hasattr(self, "sayNumberOfElementsEnabled"):
+			#  don't speak number of elements of first focus
+			self.sayNumberOfElementsEnabled = True
+			return
 		self.sayNumberOfElements()
 
 	def filter(self, filterText, newElementType=False):

@@ -79,10 +79,12 @@ def formatAutoSpeechSequence(seq):
 	return seq
 
 
-def getFootnotePropertiesSpeech(reason, value, footnote):
+def getNotePropertiesSpeech(reason, value, note):
 	seq = getPropertiesSpeech(reason=reason, value=value)
-	seq.extend(formatAutoSpeechSequence([footnote]))
+	seq.extend(formatAutoSpeechSequence([note]))
 	return seq
+
+
 
 
 class AutomaticReadingWordTextInfo(textInfos.TextInfo):
@@ -122,6 +124,18 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 		footnoteObj = doc.FootNotes[offset]
 		footnote = Footnote(self.obj, footnoteObj)
 		return footnote.text
+	
+	def getEndNote(self, endnoteReference):
+		from .ww_endnotes import Endnote
+		offset = int(endnoteReference)
+		if hasattr(self.obj, "rootNVDAObject"):
+			doc = self.obj.rootNVDAObject.WinwordApplicationObject.ActiveDocument
+		else:
+			doc = self.obj.WinwordApplicationObject.ActiveDocument
+		endnoteObj = doc.EndNotes[offset]
+		endnote = Endnote(self.obj, endnoteObj)
+		return endnote.text
+
 
 	def getFormatFieldSpeech(
 			self,
@@ -654,10 +668,14 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 		placeholderSequence = getPropertiesSpeech(reason=reason, placeholder=placeholderValue)
 		nameSequence = getPropertiesSpeech(reason=reason, name=name)
 		valueSequence = getPropertiesSpeech(reason=reason, value=value)
-		if role == 67 and _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoFootnoteReadingOption(False):
+		if role == controlTypes.ROLE_FOOTNOTE and _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoFootnoteReadingOption(False):
 			footnote = self.getFootnote(value)
 			if footnote != "":
-				valueSequence = getFootnotePropertiesSpeech(reason, value, footnote)   # "%s (%s)" % (value, footnote))
+				valueSequence = getNotePropertiesSpeech(reason, value, footnote)   # "%s (%s)" % (value, footnote))
+		if role == controlTypes.ROLE_ENDNOTE and _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoEndnoteReadingOption(False):
+			endnote = self.getEndNote(value)
+			if endnote != "":
+				valueSequence = getNotePropertiesSpeech(reason, value, endnote)
 		descriptionSequence = []
 		if config.conf["presentation"]["reportObjectDescriptions"]:
 			descriptionSequence = getPropertiesSpeech(
@@ -949,9 +967,9 @@ def _setSynth(synthName, speechSettings, temporary=False):
 		_suspendedSynth = (None, None)
 	# when changing sapi5 to sapi5, or oneCore to oneCore,
 	# if we don't change with another synthetizer, nothing appends.
-	# for NVDA version 2020.3,  we switch to embedded synthetizer.
+	# for NVDA version >= 2020.3,  we switch to embedded synthetizer.
 	NVDAVersion = [version_year, version_major]
-	if NVDAVersion == [2020, 3]:
+	if NVDAVersion >= [2020, 3]:
 		synthDriverHandler.setSynth("espeak")
 	else:
 		synthDriverHandler.setSynth(None)
@@ -975,11 +993,7 @@ def myCancelSpeech():
 	if _suspendedSynth[0] is None:
 		return
 	# restore main synth
-	textList = []
-	textList.append(SetSynthCommand(_suspendedSynth[0], _suspendedSynth[1], temporary=False))
-	textList.append(speech.commands.EndUtteranceCommand())
-	speech.speak(textList, priority=SpeechPriority.NOW)
-
+	_setSynth(_suspendedSynth[0], _suspendedSynth[1], temporary=False)
 
 def initialize():
 	global _NVDACancelSpeech

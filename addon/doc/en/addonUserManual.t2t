@@ -40,7 +40,7 @@ This add-on brings:
 - [a script is to move sentence by sentence #HDR12],
 - [a script to display document information #HDR13],
 - [improvement of the accessibility of the spelling corrector of Word 2013 and 2016 #HDR14].
-- [automatic reading of comments and footnotes #HDR15] (for NVDA 2019.3 and above).
+- [automatic reading of some elements as comments , footnotes or endnotes #HDR15].
 
 
 
@@ -332,6 +332,12 @@ This add-on adds the following commands that are specific to Microsoft Word.
 Pressing a key not assigned to a command is indicated by the voice message Not available in this document".
 Unable to move the cursor is indicated by a voice message indicating that there are more element corresponding to the command.
 
+The element types associated with these new commands are added to the type list of the "Element List" dialog opened by "NVDA + F7".
+
+For some types like "misspelled word," grammar error "searching for items can be quite long.
+
+The search time is therefore limited to 20 seconds by default. This maximum time can be changed using the "Maximum time to search for items" drop-down list in the "Options" category of the add-on settings.
+
 + Moving sentence by sentence +[HDR12]
 The following commands allow you to move the system cursor sentence by sentence:
 - "key_next_sentence" : move to the next sentence,
@@ -380,17 +386,16 @@ These scripts are listed in the "Microsoft ADDON_SUMMARY" category of "Input ges
 This add-on also allows for the automatic announcement of the new error and the suggestion presented by the speller as a result the use of one of the buttons like "Ignore", "Modify", or shortcuts Word as "i", "m".
 
 
-+ Automatic reading of comments and footnotes +[HDR15]
-For versions of NVDA greater than or equal to 2019.3 the add-on allows the automatic reading of comments and footnotes when moving line by line, in navigation mode or "say it all".
++ Automatic reading of elements +[HDR15]
+The add-on allows the automatic reading of some elements (comments, footnotes, endnotes) when moving line by line, in navigation mode or "say it all".
 
 This is controlled by the "Automatic reading" option group in "Options" category of the add-on configuration dialog.
 
 In this group are:
 - the "Activate Automatic reading" option to activate or desactivate automatic reading,
-- the "Comments" option to select comments reading in automatic reading,
-- the option "Footnote" to select footnotes reading in automatic reading,
+- the list of boxes checked "concerned elements" allowing to select the elements concerned by automatic reading, namely: the comments, the footnotes and the endnotes.
 - the choice "Announce with" which allows you to choose between:
- - "nothing": the text is read as is.
+  - "nothing": the text is read with the voice of the current synthesis.
  - "a beep at the beginning and end: the text is preceded by a high-pitched beep and followed by a lower frequency beep.
  - "another voice": the text is read with the voice and its settings, recorded for the automatic reading.
 - the button "Display voice's recorded settings" which opens the dialog box showing all of the voice parameters which will be used for automatic reading.
