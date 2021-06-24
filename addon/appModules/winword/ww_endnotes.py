@@ -5,7 +5,7 @@
 
 import addonHandler
 import textInfos
-from .ww_wdConst import wdGoToEndnote
+from .ww_wdConst import wdGoToEndnote, wdCollapseEnd
 from .ww_collection import Collection, CollectionElement, ReportDialog
 
 addonHandler.initTranslation()
@@ -21,6 +21,10 @@ class Endnote(CollectionElement):
 		if item.range.text:
 			self.text = item.range.text
 		self.setLineAndPageNumber()
+
+	def modifyText(self, text):
+		self.obj.Range.Text = text
+		self.text = text
 
 	def formatInfos(self):
 		sInfo = _("""Page {page}, line {line}
@@ -40,6 +44,14 @@ class Endnotes(Collection):
 	_propertyName = (("Endnotes", Endnote),)
 	_name = (_("Endnote"), _("Endnotes"))
 	_wdGoToItem = wdGoToEndnote
+	entryDialogStrings = {
+		# Translators: text of entry text box:
+		"entryBoxLabel": _("Enter the endnote's text"),
+		# Translators: title of insert dialog.
+		"insertDialogTitle": _("Endnote's insert"),
+		# Translators: title of modify dialog.
+		"modifyDialogTitle": _("Endnote's modification"),
+		}
 
 	def __init__(self, parent, focus, rangeType):
 		self.rangeType = rangeType
@@ -48,8 +60,19 @@ class Endnotes(Collection):
 		super(Endnotes, self).__init__(parent, focus)
 		self.__class__._elementUnit = textInfos.UNIT_CHARACTER
 
+	@classmethod
+	def insert(ols, wordApp, text):
+		doc = wordApp.ActiveDocument
+		selection = wordApp.Selection
+		selection.Collapse(wdCollapseEnd)
+		r = selection.Range
+		endnoteObj = doc.Endnotes.Add(r)
+		endnoteObj.range.text = text
+		r.Select()
+
 
 class EndnotesDialog(ReportDialog):
+	collectionClass = Endnotes
 
 	def __init__(self, parent, obj):
 		super(EndnotesDialog, self).__init__(parent, obj)
@@ -67,7 +90,10 @@ class EndnotesDialog(ReportDialog):
 		self.lcSize = (lcWidth, self._defaultLCWidth)
 		self.buttons = (
 			(100, _("&Go to"), self.goTo),
-			(101, _("&Delete"), self.delete)
+			(101, _("&Modify"), self.modifyTC1Text),
+			(102, _("&Delete"), self.delete),
+			(103, _("Delete &all"), self.deleteAll),
+
 			)
 		self.tc1 = {
 			"label": _("Note's text"),

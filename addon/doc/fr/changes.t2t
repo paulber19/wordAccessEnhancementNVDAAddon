@@ -1,18 +1,40 @@
 ADDON_SUMMARY - Historique
-Auteur: ADDON_AUTHOR_NAME
+Auteur : ADDON_AUTHOR_NAME
 
 
 %!includeconf: ../addon_global.t2tconf
 %!includeconf: addon_informations.t2tconf
 
-URL: ADDON_AUTHOR_URL
+URL : ADDON_AUTHOR_URL
 
-[Dépot GitHub: ADDON_REPOSITORY ADDON_REPOSITORY]
+[Dépot GitHub : ADDON_REPOSITORY ADDON_REPOSITORY]
 
-Téléchargement:
-- [Version stable actuelle: ADDON_CUR_VERSION ADDON_DOWNLOAD_SERVER1]
-- [Version stable précédente: ADDON_PREV_VERSION ADDON_DOWNLOAD_PREVIOUS]
+Téléchargement :
+- [Version stable actuelle : ADDON_CUR_VERSION ADDON_DOWNLOAD_SERVER1]
+- [Version stable précédente : ADDON_PREV_VERSION ADDON_DOWNLOAD_PREVIOUS]
 - [versions de développement ADDON_DEV_URL]
+
+
++ v3.0 (23/06/2021) +
+Compatibilité avec NVDA 2021.1. Les versions de NVDA antérieures à 2019.3 ne sont plus supportées.
+
+Nouvelles fonctionnalités :
+- Extension du script d'insertion d'un commentaire pour  insérer une note de bas de page ou de fin.
+- concernant le dialogue qui affiche la liste des éléments trouvés :
+ - ajout du bouton "Modifier" pour les comentaires, notes de bas de page et notes de fin.
+ - ajout du bouton "supprimer tout" pour les notes de bas de page et notes de fin.
+- ajout de la lecture automatique des textes insérés, effacés ou modifiés.
+
+
+Correction de bogues :
+- correction de l'erreur signalée lors de l'affichage des informations du document.
+- correction du bug de NVDA du non fonctionnement du script "nvda+f7" en mode édition: il n'est plus nécessaire d'activer au moins une fois auparavant, le mode navigation
+
+
+Autres changements :
+- réorganisation des paramètres de l'extension.
+- restructuration du manuel utilisateur
+- suppression du code spécifique à Python 2.7.
 
 
 + v2.3 (31/12/2020) +

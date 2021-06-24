@@ -11,29 +11,32 @@ import textInfos
 from textInfos import SpeechSequence
 from typing import List, Optional, Dict
 import synthDriverHandler
+import ui
 import speech.commands
 from speech import *  # noqa:F403
+from speech.types import logBadSequenceTypes
 import sys
 import os
-try:
-	# minimum nvda 2020.1
-	from controlTypes import OutputReason as OutputReason
-except ImportError:
-	# nvda 2019.3
-	OutputReason = str
 
 _curAddon = addonHandler.getCodeAddon()
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
 from ww_NVDAStrings import NVDAString  # noqa:E402
-from ww_addonConfigManager import _addonConfigManager, AutoReadingWith_Beep, AutoReadingWith_Voice  # noqa:E402
-from ww_py3Compatibility import baseString  # noqa:E402
+from ww_addonConfigManager import _addonConfigManager, AutoReadingWith_CurrentVoice, AutoReadingWith_Beep, AutoReadingWith_Voice  # noqa:E402
 del sys.path[-1]
 
 addonHandler.initTranslation()
 
 SCT_Speech = "speech"
 SCT_Many = "__many__"
+try:
+	# fornvda version <  2020.1
+	import controlTypes
+	REASON_FOCUS = controlTypes.REASON_FOCUS
+	OutputReason = str
+except AttributeError:
+	from controlTypes import OutputReason
+	REASON_FOCUS = OutputReason.FOCUS
 
 
 def formatVoiceAutoSpeechSequence(seq):
@@ -83,15 +86,104 @@ def getNotePropertiesSpeech(reason, value, note):
 	seq = getPropertiesSpeech(reason=reason, value=value)
 	seq.extend(formatAutoSpeechSequence([note]))
 	return seq
+_curSynthName = None
+_currentSpeechSettings = None
+def formatVoiceAutoReadingStartSequence(start=True):
+	global _curSynthName , _currentSpeechSettings 
+	autoReadingSynth = _addonConfigManager.getAutoReadingSynthSettings()
+	if not autoReadingSynth:
+		return []
+	seq = []
+	seq.append(speech.commands.EndUtteranceCommand())
+	if start:
+		# start use of automatic reading synth
+		_curSynthName = synthDriverHandler.getSynth().name
+		_currentSpeechSettings = getCurrentSpeechSettings()
+		(autoReadingSynthName, autoReadingSynthSpeechSettings) = (autoReadingSynth["synthName"], autoReadingSynth)
+		seq.append(SetSynthCommand(autoReadingSynthName, autoReadingSynthSpeechSettings, temporary=True))
+	else:
+		# restore main synth
+		seq.append(SetSynthCommand(_curSynthName, _currentSpeechSettings, temporary=False))
+		_curSynthName = None
+		_currentSpeechSettings = None
+	seq.append(speech.commands.EndUtteranceCommand())
+	return seq
 
 
+
+
+def startOrStopAutomaticReadingVoice(start=True):
+	seq = []
+	autoReadingWithOption = _addonConfigManager.getAutoReadingWithOption()
+	if autoReadingWithOption == AutoReadingWith_Beep:
+		seq.append(speech.commands.EndUtteranceCommand())
+		if start:
+			seq.append(speech.commands.BeepCommand(600, 40))
+		else:
+			seq.append(speech.commands.BeepCommand(400, 40))
+		seq.append(speech.commands.EndUtteranceCommand())
+	elif autoReadingWithOption == AutoReadingWith_Voice:
+		seq = formatVoiceAutoReadingStartSequence(start)
+	return seq
+
+def formatRevisionAutoReadingSequence(rangeObj, revision, text):
+	seq = []
+	autoReadingWithOption = _addonConfigManager.getAutoReadingWithOption()
+	autoReading =  autoReadingWithOption != AutoReadingWith_CurrentVoice
+	if revision:
+		# speak text and change voice if autoReading
+		if not autoReading:
+			seq.append(text)
+			return seq
+		from .ww_revisions import Revision
+		rev = Revision(None, rangeObj.Revisions[1])
+		seq.append(rev.FormatRevisionTypeAndAuthorText())
+		seq .extend(startOrStopAutomaticReadingVoice())
+	else:
+		# restore current voice if autoReading and speak text
+		if autoReading:
+			seq.extend(startOrStopAutomaticReadingVoice(False))
+		else:
+			seq.append(text)
+	print ("formatRevisionAutoReadingSequence seq: %s"%seq)
+	return seq
+	
+
+
+
+def  formatDeletedRevisionAutoReadingSequence(rangeObj, revision, text):
+	seq = []
+	if not revision or rangeObj.Revisions.Count== 0:
+		seq.append(text)
+		return seq
+	from .ww_revisions import Revision
+	rev = Revision(None, rangeObj.Revisions[1])
+	seq.append(rev.FormatRevisionTypeAndAuthorText())
+	seq.append(speech.commands.EndUtteranceCommand())
+	autoReadingWithOption = _addonConfigManager.getAutoReadingWithOption()
+	if autoReadingWithOption == AutoReadingWith_Voice:
+		seq.extend(startOrStopAutomaticReadingVoice())
+		seq.append(speech.commands.EndUtteranceCommand())
+		seq.append(rev.text)
+		seq.append(speech.commands.EndUtteranceCommand())
+		seq.extend(startOrStopAutomaticReadingVoice(False))
+	elif autoReadingWithOption == AutoReadingWith_Beep:
+		seq.append(speech.commands.BeepCommand(600, 40))
+		seq.append(speech.commands.EndUtteranceCommand())
+		seq.append(rev.text)
+		seq.append(speech.commands.EndUtteranceCommand())
+		seq.append(speech.commands.BeepCommand(400, 40))
+	else:
+		seq.append(rev.text)
+	seq.append(speech.commands.EndUtteranceCommand())
+	return seq
 
 
 class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 	def getCommentFormatFieldSpeech(self, commentReference):
 		# with UIA enabled, commentReference is a boolean (True)
 		if not(_addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoCommentReadingOption(False)) or\
-			type(commentReference) != baseString:
+			type(commentReference) != str:
 			# Translators: Reported when text contains a comment.
 			text = NVDAString("has comment")
 			return [text, ]
@@ -124,7 +216,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 		footnoteObj = doc.FootNotes[offset]
 		footnote = Footnote(self.obj, footnoteObj)
 		return footnote.text
-	
+
 	def getEndNote(self, endnoteReference):
 		from .ww_endnotes import Endnote
 		offset = int(endnoteReference)
@@ -135,7 +227,6 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 		endnoteObj = doc.EndNotes[offset]
 		endnote = Endnote(self.obj, endnoteObj)
 		return endnote.text
-
 
 	def getFormatFieldSpeech(
 			self,
@@ -148,7 +239,6 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			initialFormat: bool = False,
 	) -> SpeechSequence:
 		import speech
-		# from speech import getTableInfoSpeech
 		if not formatConfig:
 			formatConfig = config.conf["documentFormatting"]
 		textList = []
@@ -160,7 +250,6 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			)
 			if tableSequence:
 				textList.extend(tableSequence)
-
 		if formatConfig["reportPage"]:
 			pageNumber = attrs.get("page-number")
 			oldPageNumber = attrsCache.get("page-number") if attrsCache is not None else None
@@ -229,11 +318,10 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			oldHeadingLevel = attrsCache.get("heading-level") if attrsCache is not None else None
 			# headings should be spoken not only if they change, but also when beginning to speak lines or paragraphs
 			# Ensuring a similar experience to if a heading was a controlField
-			if headingLevel and (initialFormat and (reason == controlTypes.REASON_FOCUS or unit in (textInfos.UNIT_LINE, textInfos.UNIT_PARAGRAPH)) or headingLevel != oldHeadingLevel):
+			if headingLevel and (initialFormat and (reason == REASON_FOCUS or unit in (textInfos.UNIT_LINE, textInfos.UNIT_PARAGRAPH)) or headingLevel != oldHeadingLevel):
 				# Translators: Speaks the heading level (example output: heading level 2).
 				text = NVDAString("heading level %d") % headingLevel
 				textList.append(text)
-
 		if formatConfig["reportStyle"]:
 			style = attrs.get("style")
 			oldStyle = attrsCache.get("style") if attrsCache is not None else None
@@ -322,31 +410,47 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			revision = attrs.get("revision-insertion")
 			oldRevision = attrsCache.get("revision-insertion") if attrsCache is not None else None
 			if (revision or oldRevision is not None) and revision != oldRevision:
-				# Translators: Reported when text is marked as having been inserted
-				text = (
-					NVDAString("inserted") if revision
+				if revision:
+					# Translators: Reported when text is marked as having been inserted
+					text = NVDAString("inserted")
+				else:
 					# Translators: Reported when text is no longer marked as having been inserted.
-					else NVDAString("not inserted"))
-				textList.append(text)
+					text = NVDAString("not inserted")
+				if _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoInsertedTextReadingOption(False):
+					seq = formatRevisionAutoReadingSequence(self._rangeObj, revision, text)
+					textList.extend(seq)
+				else:
+					textList.append(text)
+			# deletion
 			revision = attrs.get("revision-deletion")
 			oldRevision = attrsCache.get("revision-deletion") if attrsCache is not None else None
 			if (revision or oldRevision is not None) and revision != oldRevision:
-				# Translators: Reported when text is marked as having been deleted
-				text = (
-					NVDAString("deleted") if revision
+				if revision:
+					# Translators: Reported when text is marked as having been deleted
+					text = NVDAString("deleted")
+				else:
 					# Translators: Reported when text is no longer marked as having been deleted.
-					else NVDAString("not deleted"))
-				textList.append(text)
+					text = NVDAString("not deleted")
+				if _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoDeletedTextReadingOption(False):
+					seq = formatDeletedRevisionAutoReadingSequence(self._rangeObj, revision, text)
+					textList.extend(seq)
+				else:
+					textList.append(text)
 			revision = attrs.get("revision")
 			oldRevision = attrsCache.get("revision") if attrsCache is not None else None
 			if (revision or oldRevision is not None) and revision != oldRevision:
 				if revision:
-					# Translators: Reported when text is revised.
+					# Translators: Reported when text is marked as having been revised.
 					text = NVDAString("revised %s") % revision
 				else:
-					# Translators: Reported when text is not revised.
+					# Translators: Reported when text is no longer marked as having been revised.
 					text = NVDAString("no revised %s") % oldRevision
-				textList.append(text)
+				if _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoRevisedTextReadingOption(False):
+					seq = formatRevisionAutoReadingSequence(self._rangeObj, revision, text)
+					textList.extend(seq)
+				else:
+					textList.append(text)
+		######
 		if formatConfig["reportEmphasis"]:
 			# marked text
 			marked = attrs.get("marked")
@@ -434,11 +538,10 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				)
 				textList.append(text)
 		try:
-			# for NVDA version > 2019.3
+			# for NVDA version >= 2020.4
 			reportSuperscriptsAndSubscripts = formatConfig["reportSuperscriptsAndSubscripts"]
-		except:  # noqa:E722
-			reportSuperscriptsAndSubscripts = True
-		# if formatConfig["reportSuperscriptsAndSubscripts"]:
+		except KeyError:
+			reportSuperscriptsAndSubscripts  = False
 		if reportSuperscriptsAndSubscripts:
 			textPosition = attrs.get("text-position")
 			oldTextPosition = attrsCache.get("text-position") if attrsCache is not None else None
@@ -607,8 +710,327 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 		# types.logBadSequenceTypes(textList)
 
 		return textList
-
 	def getControlFieldSpeech(
+			self,
+			attrs: textInfos.ControlField,
+			ancestorAttrs: List[textInfos.Field],
+			fieldType: str,
+			formatConfig: Optional[Dict[str, bool]] = None,
+			extraDetail: bool = False,
+			reason: Optional[OutputReason] = None
+	) -> SpeechSequence:
+		NVDAVersion = [version_year, version_major]
+		if NVDAVersion  >= [2021, 1]:
+			return self.getControlFieldSpeech_2021_1(
+				attrs,
+				ancestorAttrs,
+				fieldType,
+				formatConfig,
+				extraDetail,
+				reason,
+			)
+		else:
+			# for nvda version <= 2020.4
+			return self.getControlFieldSpeech_2020_4(
+				attrs,
+				ancestorAttrs,
+				fieldType,
+				formatConfig,
+				extraDetail,
+				reason,
+			)
+
+	def getControlFieldSpeech_2021_1(
+		self,
+		attrs: textInfos.ControlField,
+		ancestorAttrs: List[textInfos.Field],
+		fieldType: str,
+		formatConfig: Optional[Dict[str, bool]] = None,
+		extraDetail: bool = False,
+		reason: Optional[OutputReason] = None
+	) -> SpeechSequence:
+
+		if attrs.get('isHidden'):
+			return []
+		if not formatConfig:
+			formatConfig = config.conf["documentFormatting"]
+
+		presCat = attrs.getPresentationCategory(
+			ancestorAttrs,
+			formatConfig,
+			reason=reason,
+			extraDetail=extraDetail
+			)
+		childControlCount = int(attrs.get('_childcontrolcount', "0"))
+		role = attrs.get('role', controlTypes.ROLE_UNKNOWN)
+		if (
+			reason == REASON_FOCUS
+			or attrs.get('alwaysReportName', False)
+		):
+			name = attrs.get('name', "")
+		else:
+			name = ""
+		states = attrs.get('states', set())
+		keyboardShortcut = attrs.get('keyboardShortcut', "")
+		isCurrent = attrs.get('current', controlTypes.IsCurrent.NO)
+		placeholderValue = attrs.get('placeholder', None)
+		value = attrs.get('value', "")
+		if reason == REASON_FOCUS or attrs.get('alwaysReportDescription', False):
+			description = attrs.get('description', "")
+		else:
+			description = ""
+		level = attrs.get('level', None)
+
+		if presCat != attrs.PRESCAT_LAYOUT:
+			tableID = attrs.get("table-id")
+		else:
+			tableID = None
+
+		roleText = attrs.get('roleText')
+		landmark = attrs.get("landmark")
+		if roleText:
+			roleTextSequence = [roleText, ]
+		elif role == controlTypes.ROLE_LANDMARK and landmark:
+			roleTextSequence = [
+				f"{aria.landmarkRoles[landmark]} {controlTypes.roleLabels[controlTypes.ROLE_LANDMARK]}",
+			]
+		else:
+			roleTextSequence = getPropertiesSpeech(reason=reason, role=role)
+		stateTextSequence = getPropertiesSpeech(reason=reason, states=states, _role=role)
+		keyboardShortcutSequence = []
+		if config.conf["presentation"]["reportKeyboardShortcuts"]:
+			keyboardShortcutSequence = getPropertiesSpeech(
+				reason=reason, keyboardShortcut=keyboardShortcut
+			)
+		isCurrentSequence = getPropertiesSpeech(reason=reason, current=isCurrent)
+		placeholderSequence = getPropertiesSpeech(reason=reason, placeholder=placeholderValue)
+		nameSequence = getPropertiesSpeech(reason=reason, name=name)
+		valueSequence = getPropertiesSpeech(reason=reason, value=value)
+		if role == controlTypes.ROLE_FOOTNOTE and _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoFootnoteReadingOption(False):
+			footnote = self.getFootnote(value)
+			if footnote != "":
+				valueSequence = getNotePropertiesSpeech(reason, value, footnote)   # "%s (%s)" % (value, footnote))
+		if role == controlTypes.ROLE_ENDNOTE and _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoEndnoteReadingOption(False):
+			endnote = self.getEndNote(value)
+			if endnote != "":
+				valueSequence = getNotePropertiesSpeech(reason, value, endnote)
+		descriptionSequence = []
+		if config.conf["presentation"]["reportObjectDescriptions"]:
+			descriptionSequence = getPropertiesSpeech(
+				reason=reason, description=description
+			)
+		levelSequence = getPropertiesSpeech(reason=reason, positionInfo_level=level)
+
+		# Determine under what circumstances this node should be spoken.
+		# speakEntry: Speak when the user enters the control.
+		# speakWithinForLine: When moving by line, speak when the user is already within the control.
+		# speakExitForLine: When moving by line, speak when the user exits the control.
+		# speakExitForOther: When moving by word or character, speak when the user exits the control.
+		speakEntry = speakWithinForLine = speakExitForLine = speakExitForOther = False
+		if presCat == attrs.PRESCAT_SINGLELINE:
+			speakEntry = True
+			speakWithinForLine = True
+			speakExitForOther = True
+		elif presCat in (attrs.PRESCAT_MARKER, attrs.PRESCAT_CELL):
+			speakEntry = True
+		elif presCat == attrs.PRESCAT_CONTAINER:
+			speakEntry = True
+			speakExitForLine = bool(
+				attrs.get('roleText')
+				or role != controlTypes.ROLE_LANDMARK
+			)
+			speakExitForOther = True
+
+		# Determine the order of speech.
+		# speakContentFirst: Speak the content before the control field info.
+		speakContentFirst = (
+			reason == REASON_FOCUS
+			and presCat != attrs.PRESCAT_CONTAINER
+			and role not in (
+				controlTypes.ROLE_EDITABLETEXT,
+				controlTypes.ROLE_COMBOBOX,
+				controlTypes.ROLE_TREEVIEW,
+				controlTypes.ROLE_LIST,
+				controlTypes.ROLE_LANDMARK,
+				controlTypes.ROLE_REGION,
+			)
+			and not tableID
+			and controlTypes.STATE_EDITABLE not in states
+		)
+		# speakStatesFirst: Speak the states before the role.
+		speakStatesFirst = role == controlTypes.ROLE_LINK
+
+		containerContainsText = ""  #: used for item counts for lists
+
+		# Determine what text to speak.
+		# Special cases
+		if(
+			childControlCount
+			and fieldType == "start_addedToControlFieldStack"
+			and role == controlTypes.ROLE_LIST
+			and controlTypes.STATE_READONLY in states
+		):
+			# List.
+			# #7652: containerContainsText variable is set here, but the actual generation of all other output is
+			# handled further down in the general cases section.
+			# This ensures that properties such as name, states and level etc still get reported appropriately.
+			# Translators: Number of items in a list (example output: list with 5 items).
+			containerContainsText = NVDAString("with %s items") % childControlCount
+		elif fieldType == "start_addedToControlFieldStack" and role == controlTypes.ROLE_TABLE and tableID:
+			# Table.
+			rowCount = (attrs.get("table-rowcount-presentational") or attrs.get("table-rowcount"))
+			columnCount = (attrs.get("table-columncount-presentational") or attrs.get("table-columncount"))
+			tableSeq = nameSequence[:]
+			tableSeq.extend(roleTextSequence)
+			tableSeq.extend(stateTextSequence)
+			tableSeq.extend(
+				getPropertiesSpeech(
+					_tableID=tableID,
+					rowCount=rowCount,
+					columnCount=columnCount))
+			tableSeq.extend(levelSequence)
+			logBadSequenceTypes(tableSeq)
+			return tableSeq
+		elif (
+			nameSequence
+			and reason == REASON_FOCUS
+			and fieldType == "start_addedToControlFieldStack"
+			and role in (controlTypes.ROLE_GROUPING, controlTypes.ROLE_PROPERTYPAGE)
+		):
+			# #10095, #3321, #709: Report the name and description of groupings (such as fieldsets) and tab pages
+			nameAndRole = nameSequence[:]
+			nameAndRole.extend(roleTextSequence)
+			logBadSequenceTypes(nameAndRole)
+			return nameAndRole
+		elif (
+			fieldType in ("start_addedToControlFieldStack", "start_relative")
+			and role in (
+				controlTypes.ROLE_TABLECELL,
+				controlTypes.ROLE_TABLECOLUMNHEADER,
+				controlTypes.ROLE_TABLEROWHEADER
+			)
+			and tableID
+		):
+			# Table cell.
+			reportTableHeaders = formatConfig["reportTableHeaders"]
+			reportTableCellCoords = formatConfig["reportTableCellCoords"]
+			getProps = {
+				'rowNumber': (attrs.get("table-rownumber-presentational") or attrs.get("table-rownumber")),
+				'columnNumber': (attrs.get("table-columnnumber-presentational") or attrs.get("table-columnnumber")),
+				'rowSpan': attrs.get("table-rowsspanned"),
+				'columnSpan': attrs.get("table-columnsspanned"),
+				'includeTableCellCoords': reportTableCellCoords
+			}
+			if reportTableHeaders:
+				getProps['rowHeaderText'] = attrs.get("table-rowheadertext")
+				getProps['columnHeaderText'] = attrs.get("table-columnheadertext")
+			tableCellSequence = getPropertiesSpeech(_tableID=tableID, **getProps)
+			tableCellSequence.extend(stateTextSequence)
+			tableCellSequence.extend(isCurrentSequence)
+			logBadSequenceTypes(tableCellSequence)
+			return tableCellSequence
+
+		content = attrs.get("content")
+		# General cases.
+		if ((
+			speakEntry and ((
+				speakContentFirst
+				and fieldType in ("end_relative", "end_inControlFieldStack")
+			)
+			or (
+				not speakContentFirst
+				and fieldType in ("start_addedToControlFieldStack", "start_relative")
+			))
+			)
+			or (
+				speakWithinForLine
+				and not speakContentFirst
+				and not extraDetail
+				and fieldType == "start_inControlFieldStack"
+			)):
+			out = []
+			if content and speakContentFirst:
+				out.append(content)
+			if placeholderValue:
+				if valueSequence:
+					log.error(
+						f"valueSequence exists when expected none: "
+						f"valueSequence: {valueSequence!r} placeholderSequence: {placeholderSequence!r}"
+					)
+				valueSequence = placeholderSequence
+
+			# Avoid speaking name twice. Which may happen if this controlfield is labelled by
+			# one of it's internal fields. We determine this by checking for 'labelledByContent'.
+			# An example of this situation is a checkbox element that has aria-labelledby pointing to a child
+			# element.
+			if (
+				# Don't speak name when labelledByContent. It will be spoken by the subsequent controlFields instead.
+				attrs.get("IAccessible2::attribute_explicit-name", False)
+				and attrs.get("labelledByContent", False)
+			):
+				log.debug("Skipping name sequence: control field is labelled by content")
+			else:
+				out.extend(nameSequence)
+
+			out.extend(stateTextSequence if speakStatesFirst else roleTextSequence)
+			out.extend(roleTextSequence if speakStatesFirst else stateTextSequence)
+			out.append(containerContainsText)
+			out.extend(isCurrentSequence)
+			out.extend(valueSequence)
+			out.extend(descriptionSequence)
+			out.extend(levelSequence)
+			out.extend(keyboardShortcutSequence)
+			if content and not speakContentFirst:
+				out.append(content)
+
+			logBadSequenceTypes(out)
+			return out
+		elif (
+			fieldType in (
+				"end_removedFromControlFieldStack",
+				"end_relative",
+			)
+			and roleTextSequence
+			and (
+				(not extraDetail and speakExitForLine)
+				or (extraDetail and speakExitForOther))):
+			if all(isinstance(item, str) for item in roleTextSequence):
+				joinedRoleText = " ".join(roleTextSequence)
+				out = [
+					# Translators: Indicates end of something (example output: at the end of a list, speaks out of list).
+					NVDAString("out of %s") % joinedRoleText,
+				]
+			else:
+				out = roleTextSequence
+
+			logBadSequenceTypes(out)
+			return out
+
+		# Special cases
+		elif not speakEntry\
+			and fieldType in ("start_addedToControlFieldStack", "start_relative"):
+			out = []
+			if isCurrent != controlTypes.IsCurrent.NO:
+				out.extend(isCurrentSequence)
+			# Speak expanded / collapsed / level for treeview items (in ARIA treegrids)
+			if role == controlTypes.ROLE_TREEVIEWITEM:
+				if controlTypes.STATE_EXPANDED in states:
+					out.extend(
+						getPropertiesSpeech(reason=reason, states={controlTypes.STATE_EXPANDED}, _role=role)
+					)
+				elif controlTypes.STATE_COLLAPSED in states:
+					out.extend(
+						getPropertiesSpeech(reason=reason, states={controlTypes.STATE_COLLAPSED}, _role=role)
+					)
+				if levelSequence:
+					out.extend(levelSequence)
+			if role == controlTypes.ROLE_GRAPHIC and content:
+				out.append(content)
+			logBadSequenceTypes(out)
+		else:
+			return []
+
+	def getControlFieldSpeech_2020_4(
 			self,
 			attrs: textInfos.ControlField,
 			ancestorAttrs: List[textInfos.Field],
@@ -751,7 +1173,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 					rowCount=rowCount,
 					columnCount=columnCount))
 			tableSeq.extend(levelSequence)
-			types.logBadSequenceTypes(tableSeq)
+			logBadSequenceTypes(tableSeq)
 			return tableSeq
 		elif (
 			nameSequence
@@ -762,7 +1184,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			# #10095, #3321, #709: Report the name and description of groupings (such as fieldsets) and tab pages
 			nameAndRole = nameSequence[:]
 			nameAndRole.extend(roleTextSequence)
-			types.logBadSequenceTypes(nameAndRole)
+			logBadSequenceTypes(nameAndRole)
 			return nameAndRole
 		elif (
 			fieldType in ("start_addedToControlFieldStack", "start_relative")
@@ -789,7 +1211,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			tableCellSequence = getPropertiesSpeech(_tableID=tableID, **getProps)
 			tableCellSequence.extend(stateTextSequence)
 			tableCellSequence.extend(ariaCurrentSequence)
-			types.logBadSequenceTypes(tableCellSequence)
+			logBadSequenceTypes(tableCellSequence)
 			return tableCellSequence
 
 		# General cases.
@@ -846,7 +1268,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			if content and not speakContentFirst:
 				out.append(content)
 
-			types.logBadSequenceTypes(out)
+			logBadSequenceTypes(out)
 			return out
 		elif (
 			fieldType in (
@@ -866,7 +1288,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			else:
 				out = roleTextSequence
 
-			types.logBadSequenceTypes(out)
+			logBadSequenceTypes(out)
 			return out
 
 		# Special cases
@@ -879,7 +1301,6 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			return out
 		else:
 			return []
-
 
 class SetSynthCommand(speech.commands.CallbackCommand):
 	def __init__(self, synthName, speechSettings, temporary):
@@ -898,10 +1319,18 @@ class SetSynthCommand(speech.commands.CallbackCommand):
 
 def getSynthDisplayInfos(synth, synthConf):
 	conf = synthConf
-	import driverHandler
 	id = "id"
-	numericSynthSetting = [driverHandler.NumericDriverSetting, ]
-	booleanSynthSetting = [driverHandler.BooleanDriverSetting, ]
+	try:
+		# for nvda version <2021.1
+		import driverHandler
+		numericSynthSetting = [driverHandler.NumericDriverSetting, ]
+		booleanSynthSetting = [driverHandler.BooleanDriverSetting, ]
+	except AttributeError:
+		# for nvda version >= 2021.1
+		import autoSettingsUtils.driverSetting
+		numericSynthSetting = [autoSettingsUtils.driverSetting.NumericDriverSetting, ]
+		booleanSynthSetting = [autoSettingsUtils.driverSetting.BooleanDriverSetting, ]
+			
 	infos = []
 	for setting in synth.supportedSettings:
 		settingID = getattr(setting, id)
@@ -949,7 +1378,7 @@ def saveCurrentSpeechSettings():
 	autoReadingSynth.update(getCurrentSpeechSettings())
 	_addonConfigManager.saveAutoReadingSynthSettings(autoReadingSynth)
 	# Translators: message to user to report automatic reading voice record.
-	speech.speakMessage(_("Current voice settings have beenset for automatic reading"))
+	ui.message(_("Current voice settings have beenset for automatic reading"))
 
 
 # to memorize the suspended synth settings when automacic reading synth is running
@@ -967,9 +1396,9 @@ def _setSynth(synthName, speechSettings, temporary=False):
 		_suspendedSynth = (None, None)
 	# when changing sapi5 to sapi5, or oneCore to oneCore,
 	# if we don't change with another synthetizer, nothing appends.
-	# for NVDA version >= 2020.3,  we switch to embedded synthetizer.
+	# for NVDA version  2020.3or 2020.4,  we switch to embedded synthetizer.
 	NVDAVersion = [version_year, version_major]
-	if NVDAVersion >= [2020, 3]:
+	if NVDAVersion in [[2020, 3], [2020, 4]]:
 		synthDriverHandler.setSynth("espeak")
 	else:
 		synthDriverHandler.setSynth(None)
@@ -986,7 +1415,6 @@ _NVDACancelSpeech = None
 
 
 def myCancelSpeech():
-	from speech.priorities import SpeechPriority
 	global _suspendedSynth
 	_NVDACancelSpeech()
 	# if we are in automatic reading, we must restore previous synth.
@@ -994,6 +1422,7 @@ def myCancelSpeech():
 		return
 	# restore main synth
 	_setSynth(_suspendedSynth[0], _suspendedSynth[1], temporary=False)
+
 
 def initialize():
 	global _NVDACancelSpeech

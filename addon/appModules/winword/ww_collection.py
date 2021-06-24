@@ -1,6 +1,6 @@
 # appModules\winword\ww.collection.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2021 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -17,6 +17,14 @@ import controlTypes
 from .ww_wdConst import wdActiveEndPageNumber, wdFirstCharacterLineNumber
 import sys
 import os
+try:
+	# fornvda version <  2020.1
+	REASON_CARET = controlTypes.REASON_CARET
+except AttributeError:
+	from controlTypes import OutputReason
+	REASON_CARET = OutputReason.CARET
+
+
 _curAddon = addonHandler.getCodeAddon()
 debugToolsPath = os.path.join(_curAddon.path, "debugTools")
 sys.path.append(debugToolsPath)
@@ -29,8 +37,9 @@ del sys.path[-1]
 
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
-from ww_py3Compatibility import _unicode  # noqa:E402
-from ww_utils import myMessageBox  # noqa:E402
+from ww_utils import (
+	myMessageBox,
+	getSpeechMode, setSpeechMode, setSpeechMode_off)
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -157,12 +166,8 @@ class Collection(object):
 
 	def getElementsInCollection(self):
 		printDebug("Collection getElementsInCollection")
-		from .ww_runInThread import RepeatBeep
-		th = RepeatBeep(delay=2.0, beep=(200, 200))
-		# th.start()
 		objectsInCollection = self.getCollection()
 		if objectsInCollection is None:
-			th.stop()
 			return None
 		elements = []
 		startTime = time.time()
@@ -176,7 +181,6 @@ class Collection(object):
 			startTime = self.sayPercentage(
 				objectsInCollection.index(item), count, startTime)
 			if self.parent and self.parent.canceled:
-				th.stop()
 				return []
 			(obj, elementClass) = item
 			element = elementClass(self, obj)
@@ -187,9 +191,7 @@ class Collection(object):
 				printDebug("getElementsInCollection: except on element = elementClass")
 				speech.speakMessage(_("Sorry, There are too many elements to be treated "))
 				time.sleep(2.0)
-				th.stop()
 				return None
-		th.stop()
 		return elements
 
 	def getCollection(self):
@@ -216,7 +218,7 @@ class Collection(object):
 			end = self.selection.Start
 			r = self.doc.range(start, end)
 		elif self.rangeType == "page":
-			r = self.doc.Bookmarks("page").Range
+			r = self.doc.Bookmarks(r"\page").Range
 
 		elif self.rangeType == "focusToEnd":
 			start = self.selection.Start
@@ -257,8 +259,7 @@ class Collection(object):
 			api.copyToClip(sText)
 			# Translators: message to user when info copied to clipboard.
 			msg = _("{name}'s list has been copied to clipboard")
-			speech.speakMessage(msg.format(name=self._name[1]))
-			time.sleep(2.0)
+			wx.CallLater(30, speech.speakMessage, msg.format(name=self._name[1]))
 		else:
 			wx.CallAfter(self.dialogClass.run, self, makeChoiceDialog)
 
@@ -268,10 +269,10 @@ class Collection(object):
 			return ""
 		elif count == 1:
 			sTitle = ""
-			sSummary = _unicode("{title}: ").format(title=self.title)
+			sSummary = "{title}: ".format(title=self.title)
 		else:
-			sSummary = _unicode("{title}: {count}").format(title=elf.title, count=count)
-			sTitle = _unicode("{name} {index}:")
+			sSummary = "{title}: {count}".format(title=self.title, count=count)
+			sTitle = str("{name} {index}:")
 
 		sText = sSummary
 		for item in self.collection:
@@ -297,7 +298,7 @@ class Collection(object):
 	def speakContext(self, oldSpeechMode):
 		obj = api.getFocusObject()
 		if oldSpeechMode is not None:
-			speech.speechMode = oldSpeechMode
+			setSpeechMode(oldSpeechMode)
 		elementUnit = self._elementUnit
 		if elementUnit is None:
 			return
@@ -305,11 +306,10 @@ class Collection(object):
 			info = obj.makeTextInfo(textInfos.POSITION_CARET)
 		except:  # noqa:E722
 			return
-
 		info.expand(elementUnit)
 		speech.speakTextInfo(
 			info,
-			reason=controlTypes.REASON_CARET,
+			reason=REASON_CARET,
 			unit=elementUnit,
 			onlyInitialFields=False)
 
@@ -471,6 +471,8 @@ class ReportDialog(wx.Dialog):
 				text = self.TC2.GetValue()
 			elif self.tc1:
 				text = self.TC1.GetValue()
+			else:
+				return
 			wx.CallLater(30, speech.speakMessage, text)
 			return
 		elif id == self.entriesListID and (
@@ -510,13 +512,15 @@ class ReportDialog(wx.Dialog):
 			index, wx.LIST_STATE_FOCUSED, wx.LIST_STATE_FOCUSED)
 		item = self.collection[index]
 		if self.tc1:
-			self.TC1.Clear()
-			self.TC1.AppendText(self.get_tc1Datas(item))
-			self.TC1.SetInsertionPoint(0)
+			self.refreshTextControl(self.TC1, item)
+
 		if self.tc2:
-			self.TC2.Clear()
-			self.TC2.AppendText(self.get_tc2Datas(item))
-			self.TC2.SetInsertionPoint(0)
+			self.refreshTextControl(self.TC2, item)
+
+	def refreshTextControl(self, tc, item):
+		tc.Clear()
+		tc.AppendText(self.get_tc1Datas(item))
+		tc.SetInsertionPoint(0)
 
 	def onListItemSelected(self, evt):
 		index = evt.GetIndex()
@@ -543,8 +547,8 @@ class ReportDialog(wx.Dialog):
 		wx.CallAfter(self.parent.Close)
 		self.Close()
 		speech.cancelSpeech()
-		oldSpeechMode = speech.speechMode
-		speech.speechMode = speech.speechMode_off
+		oldSpeechMode = getSpeechMode()
+		setSpeechMode_off()
 		core.callLater(500, self.collectionObject.speakContext, oldSpeechMode)
 
 	def delete(self):
@@ -570,6 +574,29 @@ class ReportDialog(wx.Dialog):
 			return
 		self.collectionObject.deleteAll()
 		self.Close()
+
+	def _modifyTCText(self, tc):
+		index = self.entriesList.GetFocusedItem()
+		item = self.collection[index]
+		with wx.TextEntryDialog(
+			self,
+			self.collectionClass.entryDialogStrings["entryBoxLabel"],
+			self.collectionClass.entryDialogStrings["modifyDialogTitle"],
+			item.text,
+			style=wx.TextEntryDialogStyle | wx.TE_MULTILINE
+			) as entryDialog:
+			if entryDialog.ShowModal() != wx.ID_OK:
+				return
+			newText = entryDialog.Value
+			if newText == item.text:
+				# no change
+				return
+			item.modifyText(newText)
+			self.refreshTextControl(tc, item)
+			self.entriesList.SetFocus()
+
+	def modifyTC1Text(self):
+		self._modifyTCText(self.TC1)
 
 	@classmethod
 	def run(cls, collectionObject, makeChoiceDialog):

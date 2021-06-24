@@ -19,6 +19,30 @@ Download:
 Sorry, but this document is an automatic translation from french language.
 
 
+
++ v3.0 (06/23/2021) +
+Compatibility with NVDA 2021.1. Versions of NVDA prior to 2019.3 are no longer supported.
+
+
+New features:
+- Extension of the script for inserting a comment to insert a footnote or endnote.
+- concerning the dialog which displays the list of elements found:
+ - added "Edit" button for comments, footnotes and endnotes.
+ - added "delete all" button for footnotes and endnotes.
+- addition of automatic reading of inserted, deleted or modified texts.
+
+
+Bug fixes:
+- correction of the error reported when displaying document information.
+- correction of the NVDA bug of the "nvda + f7" script not working in edit mode: it is no longer necessary to activate at least once before, the navigation mode
+
+
+Other changes:
+- reorganization of the extension parameters.
+- restructuring of the user manual
+- removed code specific to Python 2.7.
+
+
 + v2.3 (31/12/2020) +
 - compatibility with NVDA 2020.4
 - added automatic reading of endnotes.

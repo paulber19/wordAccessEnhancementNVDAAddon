@@ -16,6 +16,28 @@ Descarga:
 - [Versiones de desarrollo ADDON_DEV_URL]
 
 
++ v3.0 (23/06/2021) +
+Compatibilidad con NVDA 2021.1. Las versiones de NVDA anteriores a la 2019.3 ya no son soportadas.
+
+Nuevas características:
+- Extensión del script de inserción de un comentario para insertar una nota al pie de página o nota final.
+- respecto al diálogo que muestra la lista de elementos encontrados:
+ - añadido el botón "Modificar" para los comentarios, notas al pie de página y notas finales.
+ - añadido el botón "suprimir todo" para las notas al pie de página y notas finales.
+- se añadió la lectura automática de los textos insertados, eliminados o modificados.
+
+
+Corrección de errores:
+- corrección del error informado al mostrar la información del documento.
+- corrección del error de NVDA del no funcionamiento del script "nvda+f7" en modo de edición: Ya no es necesario activarse al menos una vez antes, el modo Exploración
+
+
+Otros cambios:
+- reorganización de las opciones del complemento.
+- reestructuración del manual del usuario
+- eliminado código relativo a Python 2.7.
+
+
 + v2.3 (31/12/2020) +
 - compatibilidad con NVDA 2020.4.
 - se añadió la lectura automática  de las notas finales.

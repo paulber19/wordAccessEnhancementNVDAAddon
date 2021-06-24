@@ -19,7 +19,46 @@ from ww_utils import myMessageBox  # noqa:E402
 del sys.path[-1]
 
 addonHandler.initTranslation()
-
+revisionTypeText = {
+	# wdNoRevision
+	0: _("No revision"),
+	# wdRevisionInsert
+	1: _("Insertion"),
+	# wdRevisionDelete
+	2: _("Deletion"),
+	# wdRevisionProperty
+	3: _("Property changed"),
+	# wdRevisionParagraphNumber
+	4: _("Paragraph number changed"),
+	# wdRevisionDisplayField
+	5: _("Field display changed"),
+	# wdRevisionReconcile
+	6: _("Revision marked as reconciled conflict"),
+	# wdRevisionConflict
+	7: _("Revision marked as a conflict"),
+	# wdRevisionStyle
+	8: _("Style changed"),
+	# wdRevisionReplace
+	9: _("Replaced"),
+	# wdRevisionParagraphProperty
+	10: _("Paragraph property changed"),
+	# wdRevisionTableProperty
+	11: _("Table property changed"),
+	# wdRevisionSectionProperty
+	12: _("Section property changed"),
+	# wdRevisionStyleDefinition
+	13: _("Style definition changed"),
+	# wdRevisionMovedFrom
+	14: _("Content moved from"),
+	# wdRevisionMovedTo
+	15: _("Content moved to"),
+	# wdRevisionCellInsertion
+	16: _("Table cell inserted"),
+	# wdRevisionCellDeletion
+	17: _("Table cell deleted"),
+	# wdRevisionCellMerge
+	18: _("Table cells merged")
+	}
 
 class Revision(CollectionElement):
 	def __init__(self, parent, item):
@@ -36,47 +75,17 @@ class Revision(CollectionElement):
 		self.setLineAndPageNumber()
 
 	def get_typeText(self):
-		revisionTypeText = {
-			# wdNoRevision
-			0: _("No revision"),
-			# wdRevisionInsert
-			1: _("Insertion"),
-			# wdRevisionDelete
-			2: _("Deletion"),
-			# wdRevisionProperty
-			3: _("Property changed"),
-			# wdRevisionParagraphNumber
-			4: _("Paragraph number changed"),
-			# wdRevisionDisplayField
-			5: _("Field display changed"),
-			# wdRevisionReconcile
-			6: _("Revision marked as reconciled conflict"),
-			# wdRevisionConflict
-			7: _("Revision marked as a conflict"),
-			# wdRevisionStyle
-			8: _("Style changed"),
-			# wdRevisionReplace
-			9: _("Replaced"),
-			# wdRevisionParagraphProperty
-			10: _("Paragraph property changed"),
-			# wdRevisionTableProperty
-			11: _("Table property changed"),
-			# wdRevisionSectionProperty
-			12: _("Section property changed"),
-			# wdRevisionStyleDefinition
-			13: _("Style definition changed"),
-			# wdRevisionMovedFrom
-			14: _("Content moved from"),
-			# wdRevisionMovedTo
-			15: _("Content moved to"),
-			# wdRevisionCellInsertion
-			16: _("Table cell inserted"),
-			# wdRevisionCellDeletion
-			17: _("Table cell deleted"),
-			# wdRevisionCellMerge
-			18: _("Table cells merged")
-			}
 		return revisionTypeText[self.type]
+	def FormatRevisionTypeAndAuthorText(self):
+		from ww_addonConfigManager import _addonConfigManager
+		if not _addonConfigManager.toggleReportRevisionTypeWithAuthorOption(False):
+			author = ""
+		elif self.author != "":
+			# Translators: part of message to report author of revision
+			author= _("by %s") % self.author
+		revisionTypeText = self.get_typeText()
+		text = "%s %s" % (revisionTypeText, author)
+		return text
 
 	def accept(self):
 		self.obj.accept()

@@ -6,7 +6,7 @@
 
 import addonHandler
 import textInfos
-from .ww_wdConst import wdGoToFootnote
+from .ww_wdConst import wdGoToFootnote, wdCollapseEnd
 from .ww_collection import Collection, CollectionElement, ReportDialog
 
 addonHandler.initTranslation()
@@ -21,6 +21,10 @@ class Footnote(CollectionElement):
 		if item.Range.Text:
 			self.text = item.Range.Text
 		self.setLineAndPageNumber()
+
+	def modifyText(self, text):
+		self.obj.Range.Text = text
+		self.text = text
 
 	def formatInfos(self):
 		sInfo = _("""Page {page}, line {line}
@@ -37,6 +41,14 @@ class Footnotes(Collection):
 	_propertyName = (("Footnotes", Footnote),)
 	_name = (_("Footnote"), _("Footnotes"))
 	_wdGoToItem = wdGoToFootnote
+	entryDialogStrings = {
+		# Translators: text of entry text box:
+		"entryBoxLabel": _("Enter the footnote's text"),
+		# Translators: title of insert dialog.
+		"insertDialogTitle": _("Footnote's insert"),
+		# Translators: title of modify dialog.
+		"modifyDialogTitle": _("Footnote's modification"),
+		}
 
 	def __init__(self, parent, focus, rangeType):
 		self.rangeType = rangeType
@@ -45,8 +57,20 @@ class Footnotes(Collection):
 		super(Footnotes, self).__init__(parent, focus)
 		self.__class__._elementUnit = textInfos.UNIT_CHARACTER
 
+	@classmethod
+	def insert(cls, wordApp, text):
+		doc = wordApp.ActiveDocument
+		selection = wordApp.Selection
+		selection.Collapse(wdCollapseEnd)
+		r = selection.Range
+		footnoteObj = doc.Footnotes.Add(r)
+		footnoteObj.range.text = text
+		r.Select()
+
 
 class FootnotesDialog(ReportDialog):
+	collectionClass = Footnotes
+
 	def __init__(self, parent, obj):
 		super(FootnotesDialog, self).__init__(parent, obj)
 
@@ -63,7 +87,9 @@ class FootnotesDialog(ReportDialog):
 		self.lcSize = (lcWidth, self._defaultLCWidth)
 		self.buttons = (
 			(100, _("&Go to"), self.goTo),
-			(101, _("&Delete"), self.delete)
+			(101, _("&Modify"), self.modifyTC1Text),
+			(102, _("&Delete"), self.delete),
+			(103, _("Delete &all"), self.deleteAll),
 			)
 		self.tc1 = {
 			"label": _("Note's text"),

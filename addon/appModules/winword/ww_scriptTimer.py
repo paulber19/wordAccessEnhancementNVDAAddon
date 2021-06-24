@@ -3,15 +3,27 @@
 # Copyright (C) 2020 paulber19
 # This file is covered by the GNU General Public License.
 # See the file COPYING for more details.
+import wx
 
 # global timer
-GB_scriptTimer = None
+_scriptTimer = None
 # maximum delay for waiting new script call
 _delay = 250
 
 
+def delayScriptTask(func, *args, **kwargs):
+	global _scriptTimer
+	_scriptTimer = wx.CallLater(_delay, func, *args, **kwargs)
+
+
 def stopScriptTimer():
-	global GB_scriptTimer
-	if GB_scriptTimer is not None:
-		GB_scriptTimer.Stop()
-		GB_scriptTimer = None
+	global _scriptTimer
+	if _scriptTimer is None:
+		return
+	_scriptTimer.Stop()
+	_scriptTimer = None
+
+
+def clearScriptTimer():
+	global _scriptTimer
+	_scriptTimer = None

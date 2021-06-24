@@ -54,7 +54,8 @@ else:
 
 class UIAWordDocument(ww_wordDocumentBase.WordDocument, NVDAObjects.UIA.wordDocument.WordDocument):
 	treeInterceptorClass = UIAWordBrowseModeDocument
-	shouldCreateTreeInterceptor = False
+	shouldCreateTreeInterceptor = True
+	disableAutoPassThrough = True
 	announceEntireNewLine = True
 	TextInfo = UIAWordDocumentTextInfo
 	# Microsoft Word duplicates the full title of the document on this control, which is redundant as it appears in the title of the app itself.

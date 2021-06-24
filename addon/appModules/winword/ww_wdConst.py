@@ -535,3 +535,26 @@ wdSectionOddPage = 4  # Odd pages section break.
 # wd movement
 wdMove = 0
 wdExtend = 1
+wdCollapseEnd = 0
+wdCollapseStar = 1
+# WDCONTENTCONTROLTYPE ENUMERATION
+# Specifies a rich-text content control.
+wdContentControlRichText = 0
+# Specifies a text content control
+wdContentControlText = 1
+# Specifies a picture content control.
+wdContentControlPicture = 2
+# Specifies a combo box content control.
+wdContentControlComboBox = 3
+# Specifies a drop-down list content control.
+wdContentControlDropdownList = 4
+# Specifies a building block gallery content control.
+wdContentControlBuildingBlockGallery = 5
+# Specifies a date content control.
+wdContentControlDate = 6
+# Specifies a group content control.
+wdContentControlGroup = 7
+# Specifies a checkbox content control.
+wdContentControlCheckbox = 8
+# Specifies a repeating section content control.
+wdContentControlRepeatingSection = 9

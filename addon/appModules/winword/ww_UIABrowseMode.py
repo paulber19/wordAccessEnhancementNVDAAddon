@@ -5,7 +5,6 @@
 
 
 import addonHandler
-from NVDAObjects.window.winword import *  # noqa:F403
 import NVDAObjects
 from . import ww_browseMode
 from UIABrowseMode import UIATextAttributeQuicknavIterator
@@ -17,6 +16,9 @@ addonHandler.initTranslation()
 
 class UIAWordBrowseModeDocument(ww_browseMode.BrowseModeDocumentTreeInterceptorEx, NVDAObjects.UIA.wordDocument.WordBrowseModeDocument):
 	ElementsListDialog = ww_elementsListDialog.UIAElementsListDialog
+	def __init__(self, rootNVDAObject):
+		super(UIAWordBrowseModeDocument, self).__init__(rootNVDAObject)
+		self.passThrough = True
 
 	def _iterNodesByType(self, nodeType, direction="next", pos=None):
 		if nodeType == "comment":

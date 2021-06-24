@@ -13,16 +13,16 @@ from gui.settingsDialogs import MultiCategorySettingsDialog, SettingsPanel
 import wx
 import characterProcessing
 import speech
+from io import StringIO
 _curAddon = addonHandler.getCodeAddon()
 path = os.path.join(_curAddon.path, "shared")
 sys.path.append(path)
-from ww_py3Compatibility import importStringIO  # noqa:E402
 from ww_utils import InformationDialog  # noqa:E402
 from ww_NVDAStrings import NVDAString  # noqa:E402
 from ww_addonConfigManager import _addonConfigManager  # noqa:E402
 del sys.path[-1]
 
-StringIO = importStringIO()
+
 addonHandler.initTranslation()
 
 
@@ -42,19 +42,9 @@ SCT_Many = "__many__"
 
 
 class WordOptionsPanel(SettingsPanel):
-	# Translators: This is the label for the notepadPlusPlus settings dialog.
+	# Translators: This is the label for the Options panel.
 	title = _("Options")
-	objectsToRead = [
-		"comment",
-		"footnote",
-		"endnote",
-		]
-	objectsToReadLabels = {
-	"comment" : _("Comment"),
-	"footnote" : _("Footnote"),
-	"endnote" : _("Endnote"),
-	}
-
+	
 
 	def makeSettings(self, settingsSizer):
 
@@ -78,16 +68,60 @@ class WordOptionsPanel(SettingsPanel):
 			wx.CheckBox(self, wx.ID_ANY, label=labelText))
 		self.playSoundOnSkippedParagraphBox.SetValue(
 			_addonConfigManager.togglePlaySoundOnSkippedParagraphOption(False))
-		# Translators: This is the label for a group of editing options
-		# in the settings panel.
-		groupText = _("Automatic reading")
-		group = gui.guiHelper.BoxSizerHelper(
-			self,
-			sizer=wx.StaticBoxSizer(wx.StaticBox(self, label=groupText), wx.VERTICAL))
-		sHelper.addItem(group)
-		# Translators: This is the label for a checkbox in the settings panel.
+		# Translators: This is the label for a checkbox in the options settings panel.
+		labelText = _("Na&vigate in loop")
+		self.loopInNavigationModeOptionBox = sHelper.addItem(wx.CheckBox(self, wx.ID_ANY, label=labelText))
+		self.loopInNavigationModeOptionBox.SetValue(_addonConfigManager.toggleLoopInNavigationModeOption(False))
+		choice = [x for x in range(5, 125, 5)]
+		choice = list(reversed(choice))
+		# translators: label for a list box in Options settings panel.
+		labelText = _("Maximum time of elements's search (in seconds:)")
+		self.elementsSearchMaxTimeListBox = sHelper.addLabeledControl(labelText, wx.Choice, choices=[str(x) for x in choice])
+		self.elementsSearchMaxTimeListBox.SetSelection(choice.index(_addonConfigManager.getElementsSearchMaxTime()))
+
+	def postInit(self):
+		self.skipEmptyParagraphBox .SetFocus()
+
+	def saveSettingChanges(self):
+		if self.skipEmptyParagraphBox.IsChecked() != _addonConfigManager.toggleSkipEmptyParagraphsOption(False):  # noqa:E501
+			_addonConfigManager.toggleSkipEmptyParagraphsOption()
+		if self.playSoundOnSkippedParagraphBox.IsChecked() != _addonConfigManager.togglePlaySoundOnSkippedParagraphOption(False):  # noqa:E501
+			_addonConfigManager.togglePlaySoundOnSkippedParagraphOption()
+		if self.loopInNavigationModeOptionBox.IsChecked()  != _addonConfigManager.toggleLoopInNavigationModeOption(False):
+			_addonConfigManager.toggleLoopInNavigationModeOption()
+		elementsSearchMaxTime= int(self.elementsSearchMaxTimeListBox.GetString(self.elementsSearchMaxTimeListBox.GetSelection()))
+		_addonConfigManager.setElementsSearchMaxTime(elementsSearchMaxTime)
+
+	def onSave(self):
+		self.saveSettingChanges()
+
+
+class AutomaticReadingPanel(SettingsPanel):
+	# Translators: This is the label for the Automatic reading panel.
+	title = _("Automatic reading")
+	objectsToRead = [
+		"comment",
+		"footnote",
+		"endnote",
+		"insertedText",
+		"deletedText",
+		"revisedText",
+		]
+	objectsToReadLabels = {
+	"comment" : _("Comment"),
+	"footnote" : _("Footnote"),
+	"endnote" : _("Endnote"),
+	"insertedText": _("Inserted text"),
+	"deletedText": _("Deleted text"),
+	"revisedText": _("Revised text"),
+	}
+
+
+	def makeSettings(self, settingsSizer):
+		sHelper = gui.guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
+		# Translators: This is the label for a checkbox in the automatic reading settings panel.
 		labelText = _("&Activate automatic reading")
-		self.automaticReadingCheckBox = group.addItem(
+		self.automaticReadingCheckBox = sHelper.addItem(
 			wx.CheckBox(self, wx.ID_ANY, label=labelText))
 		self.automaticReadingCheckBox.SetValue(
 			_addonConfigManager.toggleAutomaticReadingOption(False))
@@ -103,50 +137,40 @@ class WordOptionsPanel(SettingsPanel):
 			checkedItems.append(self.objectsToRead.index("footnote"))
 		if _addonConfigManager.toggleAutoEndnoteReadingOption(False):
 			checkedItems.append(self.objectsToRead.index("endnote"))
+		if _addonConfigManager.toggleAutoInsertedTextReadingOption(False):
+			checkedItems.append(self.objectsToRead.index("insertedText"))
+		if _addonConfigManager.toggleAutoDeletedTextReadingOption(False):
+			checkedItems.append(self.objectsToRead.index("deletedText"))
+		if _addonConfigManager.toggleAutoRevisedTextReadingOption(False):
+			checkedItems.append(self.objectsToRead.index("revisedText"))
 		self.objectsToReadCheckListBox.CheckedItems  = checkedItems
 		self.objectsToReadCheckListBox.Select(0)
-		"""
-		# Translators: This is the label for a checkbox in the settings panel.
-		labelText = _("&Comments")
-		self.autoCommentReadingCheckBox = group.addItem(
-			wx.CheckBox(self, wx.ID_ANY, label=labelText))
-		self.autoCommentReadingCheckBox.SetValue(
-			_addonConfigManager.toggleAutoCommentReadingOption(False))
-		# Translators: This is the label for a checkbox in the settings panel.
-		labelText = _("&Footnotes")
-		self.automaticNoteReadingCheckBox = group.addItem(
-			wx.CheckBox(self, wx.ID_ANY, label=labelText))
-		self.automaticNoteReadingCheckBox.SetValue(
-			_addonConfigManager.toggleAutoFootnoteReadingOption(False))
-		"""
-		# Translators: This is the label for a checkbox in the settings panel.
+				# Translators: This is the label for a checkbox in the settings panel.
 		labelText = _("Read &with:")
-		# Translators: choice labelsfor automatic reading.
-		choice = [_("nothing"), _("a beep at start and end"), _("another voice")]
-		self.autoReadingWithChoiceBox = group.addLabeledControl(
+		choice = [
+			# Translators: a choice labels for automatic reading.
+			_("Current voice"),
+			# Translators: a choice labels for automatic reading.
+			_("Current voice and  beep at start and end"),
+			# Translators: a choice labels for automatic reading.
+			_("another voice")
+			]
+		self.autoReadingWithChoiceBox = sHelper.addLabeledControl(
 			labelText, wx.Choice, choices=choice)
 		self.autoReadingWithChoiceBox.SetSelection(
 			_addonConfigManager.getAutoReadingWithOption())
-		# translators: label for a button in Options settings panel.
+		# Translators:  this is a label for a checkbox
+			#  in automatic reading settings panel
+		labelText = _("&Report revision's type with author")
+		self.reportRevisionTypeWithAuthorCheckBox = sHelper.addItem(
+			wx.CheckBox(self, wx.ID_ANY, label=labelText))
+		self.reportRevisionTypeWithAuthorCheckBox.SetValue(
+			_addonConfigManager.toggleReportRevisionTypeWithAuthorOption(False))
+		# translators: label for a button in automatic reading settings panel.
 		labelText = _("&Display voice's recorded setting")
 		voiceInformationsButton = wx.Button(self, label=labelText)
-		group.addItem(voiceInformationsButton)
+		sHelper.addItem(voiceInformationsButton)
 		voiceInformationsButton.Bind(wx.EVT_BUTTON, self.onVoiceInformationButton)
-		from versionInfo import version_year, version_major
-		if [version_year, version_major] < [2019, 3]:
-			# automatic reading is not available for nvda version less than nvda 2019.3
-			for item in range(0, group.sizer.GetItemCount()):
-				group.sizer.Hide(item)
-		choice = [x for x in range(5, 125, 5)]
-		choice = list(reversed(choice))
-		# translators: label for a list box in Options settings panel.
-		labelText = _("Maximum time of elements's search (in seconds:)")
-		self.elementsSearchMaxTimeListBox = sHelper.addLabeledControl(labelText, wx.Choice, choices=[str(x) for x in choice])
-		self.elementsSearchMaxTimeListBox.SetSelection(choice.index(_addonConfigManager.getElementsSearchMaxTime()))
-		# Translators: This is the label for a checkbox in the options settings panel.
-		labelText = _("Na&vigate in loop")
-		self.loopInNavigationModeOptionBox = sHelper.addItem(wx.CheckBox(self, wx.ID_ANY, label=labelText))
-		self.loopInNavigationModeOptionBox.SetValue(_addonConfigManager.toggleLoopInNavigationModeOption(False))
 
 	def onVoiceInformationButton(self, evt):
 
@@ -211,13 +235,9 @@ class WordOptionsPanel(SettingsPanel):
 		InformationDialog.run(None, dialogTitle, infos)
 
 	def postInit(self):
-		self.skipEmptyParagraphBox .SetFocus()
+		self.automaticReadingCheckBox .SetFocus()
 
 	def saveSettingChanges(self):
-		if self.skipEmptyParagraphBox.IsChecked() != _addonConfigManager.toggleSkipEmptyParagraphsOption(False):  # noqa:E501
-			_addonConfigManager.toggleSkipEmptyParagraphsOption()
-		if self.playSoundOnSkippedParagraphBox.IsChecked() != _addonConfigManager.togglePlaySoundOnSkippedParagraphOption(False):  # noqa:E501
-			_addonConfigManager.togglePlaySoundOnSkippedParagraphOption()
 		if self.automaticReadingCheckBox.IsChecked() != _addonConfigManager.toggleAutomaticReadingOption(False):  # noqa:E501
 			_addonConfigManager.toggleAutomaticReadingOption()
 		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("comment")) != _addonConfigManager.toggleAutoCommentReadingOption(False):  # noqa:E501
@@ -226,16 +246,22 @@ class WordOptionsPanel(SettingsPanel):
 			_addonConfigManager.toggleAutoFootnoteReadingOption()
 		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("endnote")) != _addonConfigManager.toggleAutoEndnoteReadingOption(False):  # noqa:E501
 			_addonConfigManager.toggleAutoEndnoteReadingOption()
+		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("insertedText")) != _addonConfigManager.toggleAutoInsertedTextReadingOption(False):  # noqa:E501
+			_addonConfigManager.toggleAutoInsertedTextReadingOption()
+		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("deletedText")) != _addonConfigManager.toggleAutoDeletedTextReadingOption(False):  # noqa:E501
+			_addonConfigManager.toggleAutoDeletedTextReadingOption()		
+		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("revisedText")) != _addonConfigManager.toggleAutoRevisedTextReadingOption(False):  # noqa:E501
+			_addonConfigManager.toggleAutoRevisedTextReadingOption()		
 		_addonConfigManager.setAutoReadingWithOption(
 			self.autoReadingWithChoiceBox .GetSelection())
-		elementsSearchMaxTime= int(self.elementsSearchMaxTimeListBox.GetString(self.elementsSearchMaxTimeListBox.GetSelection()))
-		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("endnote")) != _addonConfigManager.toggleAutoEndnoteReadingOption(False):  # noqa:E501
-			_addonConfigManager.setElementsSearchMaxTime(elementsSearchMaxTime)
-		if self.loopInNavigationModeOptionBox.IsChecked()  != _addonConfigManager.toggleLoopInNavigationModeOption(False):
-			_addonConfigManager.toggleLoopInNavigationModeOption()
+		if self.reportRevisionTypeWithAuthorCheckBox.IsChecked() != _addonConfigManager.toggleReportRevisionTypeWithAuthorOption(False):  # noqa:E501
+			_addonConfigManager.toggleReportRevisionTypeWithAuthorOption()
+
 
 	def onSave(self):
 		self.saveSettingChanges()
+
+
 
 
 class WordUpdatePanel(SettingsPanel):
@@ -269,6 +295,7 @@ class WordUpdatePanel(SettingsPanel):
 
 	def onCheckForUpdate(self, evt):
 		from .updateHandler import addonUpdateCheck
+		self.saveSettingChanges()
 		releaseToDevVersion = self.updateReleaseVersionsToDevVersionsCheckBox.IsChecked()  # noqa:E501
 		wx.CallAfter(addonUpdateCheck, auto=False, releaseToDev=releaseToDevVersion)
 		self.Close()
@@ -306,6 +333,7 @@ class AddonSettingsDialog(MultiCategorySettingsDialog):
 
 	categoryClasses = [
 		WordOptionsPanel,
+		AutomaticReadingPanel,
 		WordUpdatePanel
 		]
 

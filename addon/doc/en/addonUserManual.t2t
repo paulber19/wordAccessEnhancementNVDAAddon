@@ -20,40 +20,41 @@ Compatibility:
 - last tested NVDA version: LAST_TESTED_NVDA_VERSION
 
 
+Traductors: automatic translation
+
+
 = Table of content =[toc]
 %%toc
-
-
 
 + Introduction +
 
 ++ Features ++
 This add-on brings:
-- [a-script #HDR1] to present the different types of objects to list (such as comments, misspelled words, etc.),
-- [a-script #HDR2] to announce the line number, column, and page the cursor position or selection, the position of the current cell of the table,
-- [the jump of the empty paragraphs #HDR3] when moving from paragraph to paragraph,
-- [a script to insert a comment without displacement of the focus #HDR5],
-- [a script to read the footnote or end note #HDR9] to the position of the cursor,
-- [a script to read the modified text #HDR10] to the position of the cursor,
-- [some scripts for the tables #HDR7],
-- [commands specific to Microsoft Word for a fast navigation in the document #HDR8],
-- [a script is to move sentence by sentence #HDR12],
-- [a script to display document information #HDR13],
-- [improvement of the accessibility of the spelling corrector of Word 2013 and 2016 #HDR14].
-- [automatic reading of some elements as comments , footnotes or endnotes #HDR15].
-
+- [the possibility to inspect the #hdr_inspect document]:
+ - by searching and displaying the elements of a given type of element in the whole document or only in a part of the document,
+ - by collecting and displaying information about the document,
+ - by specifying the cursor position.
+- the [insertion, at the cursor position, of a comment, a footnote or an endnote #hdr_insert],
+- [manual or automatic reading of elements such as comments, footnotes, endnotes or text revisions #hdr_reading],
+- [additions for #hdr_table tables],
+- [new commands specific to Microsoft Word for #hdr_navigation mode],
+- [improved accessibility of the #hdr_spellchecker spell checker],
+- [script recovery from NVDA #hdr_nvda] for:
+ - skip empty paragraphs when moving from paragraph to paragraph,
+ - allow movement from sentence to sentence in navigation mode.
 
 
 ++ update ++
-The update of the add-on is, by default, automatically a short time after the start of NVDA (about 10 seconds) and a maximum of once per day.
-It is possible to disable this update by unchecking the option "automatically check for updates" in the add-on's settings.
-The version of the add-on can be:
-- a stable version: its version number is "1.0" for example.
-- either a development version: the version number is of the type "1.0-dev1", or "1.0-rc1", or "1.0-beta2".
+By default, the add-on update is done automatically shortly after NVDA starts up (between 20 and 600 seconds) and at most once a day.
+It is possible to deactivate this update by unchecking the option "Automatically check for updates" found in the add-on settings, menu item "Update".
+The add-on version can be:
+- or a stable version: its version number is of the type "1.0" for example.
+- either a development version: its version number is then of the type "1.0-dev1", or "1.0-rc1", or "1.0-beta2".
 
 
-By default, the stable version is updated with a stable version more recent (higher version number).
-But it is possible to update the stable version running with a development version of the next stable version. Just check the option "Update also update the stable release to the versions of development" located in the settings of the add-on.
+By default, a stable version is updated to a more recent stable version (higher version number).
+But it is possible to update the current stable version with a development version of the next stable version. Just check the option "Update also  release versions to development versions" located in the add-on settings,  "Update" category.
+
 
 A development version is updated:
 - with a more recent development version,
@@ -61,365 +62,395 @@ A development version is updated:
 - or with the latest stable version if the previous option is not checked.
 
 
-The button "Search for update" placed in the add-on's settings allows you to search immediately for an update.
+The "Check for update" button in the add-on's settings, "Update" category, allows you to immediately search for an update.
 
 The "View history" button, placed in this same category, allows you to display the history of the current version in the browser.
-
 
 In the case of an automatic update and if a new version is detected, the "Update" dialog box is displayed to suggest:
 - either the immediate installation of the new version,
 - or to postpone the update until later. In this case, the search will be restarted at least one hour later.
 
-
-In the case of an update to a stable version, the "What's new" button offers the possibility of opening, in the browser, the history of the add-on and thus being able to know the new features of the proposed version.
+ 
+In the case of an update to a stable version, the "What's new" button offers the possibility of opening, in the browser, the history of the add-on and thus being able to know the novelties of the proposed version.
 
 
 ++ Compatibility ++
-Tis version of module has been tested with Word 2019, 2016 and 2013.
+This add-on has been tested with the 2019, 2016 and 2013 versions of Microsoft Word.
 
-Warning: for the add-on to work properly, the NVDA check box "Use UI Automation to access Microsoft Word document controls when available " should not be checked. It can be found in the "Advanced" category of NVDA settings.
+Warning: for the add-on to work properly, the NVDA checkbox "Use UI Automation to access Microsoft Word document controls when available" should not be checked. It can be found in the "Advanced" category of NVDA settings.
+
++ Document inspection +[hdr_inspect]
+++ Element search ++[hdr1]
+The add-on makes it possible to search and list the elements constituting the document for the following types of elements:
+- frame,
+- field,
+- form field,
+- comment,
+- grammatical error,
+- Hyperlink,
+- misspelled word,
+- modification of the text,
+- Footnote,
+- end note,
+- graphic object of the drawing layer,
+- graphic object of the text layer,
+- section.
+- bookmark,
+- table,
+- title.
 
 
 
-+ Script of choice from the list of objects to display +[hdr1]
-This script is triggered by the keyboard command "key_choice".
+To do this, it installs a script which is launched using the "key_choice" command gesture.
 
-In response to this command, a dialog box appears, showing:
-
-- a list to select the type of object to list,
-- a list to select the part of the document concerned,
-- a button to search and display objects,
-- a button "Search and copy to clipboard" to search for and copy the objects found in the clipboard,
+In response to this command, the "Find Items" dialog box appears, showing:
+- a list to choose the type of element to list,
+- a list to choose the part of the document concerned,
+- a button to search and display the elements,
+- a "Find and copy to clipboard" button to search and copy the elements found in the clipboard,
 - a button "Close
 
 
-It is possible to exit this dialog using the "Close" button or by pressing the key "Esc".
+It is possible to exit this dialog box using the "Close" button or by pressing the "Esc" key.
 
-The list offers the following types of objects:
+The "Up arrow" and "Down arrow" keys allow you to move through the list.
 
-- misspelled words,
-- errors in grammar,
-- comments,
-- bookmarks,
-- the changes to the document,
-- the footnotes at the bottom of the page
-- notes of the end of the document,
-- the graphic objects in the text layer,
-- the graphic objects of the drawing layer,
-- hyperlinks,
-- fields,
-- tables,
-- the titles of the document,
-- frames,
-- the sections.
+With the "Tab" key one arrives on the list which presents the choice of the part of the document in which it is necessary to look for the elements of the selected type.
+
+This list offers the following choices:
+- "cursor position": search for the element located at the cursor position,
+- "Selection": search for the elements located in the selection (if there is a selection made),
+- "Document": search for the elements located in the document,
+- "page": search for the elements located in the current page,
+- "Start of document at cursor": find the elements located between the start of the document and the position of the cursor,
+- "From the cursor to the end of the document": search for the elements located between the cursor position and the end of the document.
 
 
-The keys "Arrow up" and "down Arrow" can move in the list.
-With the "Tab" key it comes up on the list, which shows the choice of the part of the document, which will be searched for objects of the type selected.
-The list offers the following choices:
-- "position cursor": the object located at the cursor position,
-- "Selection" : the objects located in the selection (if a selection is made),
-- "Document" : the objects in the document,
-- "page": the objects located in the current page,
-- "The beginning of the document at the cursor" : the objects located between the beginning of the document and the position of the cursor,
-- "Cursor to end of document" : the objects located between the position of the cursor and the end of the document.
+By default, the preselection is made on "document".
 
-
-A pre-selection is made depending on the type of object.
-If a portion of the document is selected prior to activation of the script, the choice of "selection" is pre-selected.
+If a part of the document is selected before activating the script, the choice "selection" is preselected.
 Otherwise, this choice is not in the list of choices.
 
-The choice is made, the "Enter" key in the list or pressing the button "Search and view" triggers the collection of information for the chosen object type and then display the dialog box with the list of the objects collected.
-The collection can last several seconds.
+The choice made,the "Enter" key in the list or the press on the "Find and display" button triggers the collection of information for the type of elements chosen, then the display of the dialog box presenting the list of collected elements.
 
-It is possible by using the button "Search and copy to clipboard" to launch the collection, and copy the list of objects collected with their information in the clipboard, possibly more detailed than the display.
+The collection can take several seconds.
 
-The box which contains the list of the objects collected depends on the type of selected object and has the following general form:
 
-- a list with information in the form of columns,
-- one or two text boxes (read-only),
-- buttons to activate to cause an action on the selected object,
+It is possible by using the "Find and copy to clipboard" button to start the collection and copy the list of collected elements with their information to the clipboard, possibly more detailed than on display.
+
+The box that presents the list of collected elements depends on the type of object selected and has the following general form:
+- a list presenting information in the form of columns,
+- one or two text zones (read-only),
+- buttons to activate to trigger an action concerning the selected element such as:
+ - "Go to" to bring the cursor to the place where the element is located.
+ - "Modify" to modify the selected element.
+ - "Delete" to delete the element.
+ - "Delete all" to delete all the elements found.
 - the "Close" button.
 
 
-The "Close" button or press "Esc" closes the dialog box.
+The "Close" button or pressing the "Esc" key closes this dialog box.
 
-In the list, and without the exit, it is possible :
-
-- go to the place in the document where the selected object (pressing the "Enter" key),
-- for some objects, delete the selected object (pressing the "Del" key)
-
-
-The information common to all objects, are:
-
-- the number of the object in the list,
-- the page number and line number where the object is located in the document.
+In the list, and without leaving it, it is possible:
+- either go to the location in the document where the selected element is located (press the "Enter" key),
+- or for certain elements, to delete the selected element (press the "Delete" key)
 
 
-+ Script of announcement of the position +[hdr2]
-This script is triggered by the keyboard command "key_line_page".
+Pressing the "space" key announces the text of the first field or, if the "Control" key is pressed simultaneously, the text of the second field.
 
-In response to this command, is announced following cases:
+The information common to all the elements is:
+- the number of the element in the list,
+- the page number and line number where the element is located in the document.
 
-- in the case of a selection, the line number, column, and page of the beginning and end of the selection,
-- in the case where the focus is in a table, the line number and column of the cell current of the array,
-- in other cases, the line number, column, and page to the position of the focus.
+
+++ Display information on the document ++[HDR13]
+The "key_document_infos" command gesture is used to display certain information about the document in a dialog box:
+- the current position in the document such as: page number, line number, section number,
+- the document properties such as: the name of the file, the name of the author, the date of creation,
+- statistics such as: the number of pages, the number of lines, the number of words,
+- information on sections such as: footers, endnotes, borders,
+- information on tables such as: number of rows and columns, borders,
+- the status of specific Word options such as: tracking changes, checking spelling or grammar as you type.
+
+
+Depending on the number of spelling or grammar errors, the display time of the dialog box can be relatively long.
+
+The displayed information can be copied to the clipboard using the "Copy to clipboard" button in the dialog box.This script is presented in the "ADDON_SUMMARY" category of the NVDA "Command gestures" dialog.
+
+
+++ Announcement of the position of the system cursor ++[hdr2]
+This script is launched using the "key_line_page" (desktop computer configuration) or "key_laptop_line_page" (laptop computer configuration) gesture.
+
+In response to this command, is announced as appropriate:
+- in the case of a selection, the row, column and page number of the start and end of the selection,
+- if the system cursor is in a table, the row and column number of the current table cell,
+- in other cases, the line, column and page number of the cursor position.
 
 
 In all cases, the position relative to the left edge and the top edge of the page is announced.
-The line number is relative to the page and the column number relative to the beginning of the line.
 
-A double pressure of the keyboard command displays this information on the screen.
+The line number is relative to the page and the column number is relative to the beginning of the line.
+
+A double press of the input gesture displays this information on the screen.
 
 
-+ Script to insert a comment+[hdr5]
-This script is triggered by the keyboard command "key_insert_comment".
++ Element's insert +[hdr_insert]
+The add-on installs a script to facilitate element insertion at the cursor position. The supported item types are:
+- comment,
+- Footnote,
+- end note.
 
-In response to this command, a dialog box appears requesting that you enter the comment text.
+
+It is launched using the "key_insert_element" input gesture.
+
+In response to the command, a dialog box appears presenting:
+- the list of element types,
+- the "Insert" button,
+- the "Close" button.
+
+
+After selecting the desired type, the "Enter" key or the "Insert" button displays the dialog box for entering the text of the element.
+
 The text can be on multiple lines.
-The "OK" button validates the input.
-The "Cancel" Button causes the abandonment of the insertion.
-If a selection is present, the text commented on is the text of this selection; otherwise it is the word under focus.
 
-+ Script reading of the footnote or end note +[HDR9]
-This script is launched by using the keyboard command "key_report_footnote_endnote".
-It has for goal to read the footnote or end note to the position of the cursor.
-In the case where there is no of these two elements, a voice message announcement.
+The "OK" button validates the entry.
 
+The "Cancel" button or the validation without text causes the return to the previous dialog.
 
-+ Script reading of the text edit +[HDR10]
-This script is launched by using the keyboard command "key_report_revision".
-It is intended to announce the change of text at the cursor position.
-There may be several changes regarding this position.
-The type, the author, the text of the amendment shall be announced.
-A voice message indicates if there is no change to this position.
+For a comment, if a selection is present, the commented text is the text of this selection. Otherwise it is the word in focus.
 
-+ Skip empty paragraphs +[hdr3]
-In a Word document, NVDA provides the ability to move from paragraph to paragraph using the prompt, "key_next_paragraph" or "key_previous_paragraph".
-But The focus is given to the (previous or next regardless of its content.
-This add-on offers the possibility to skip empty paragraphs and give the focus to the first (non-blank found.
-
-The keyboard command key_toggle_skip_empty_paragraph enables or disables this option, which is enabled by default in the installation of the add-on.
++ Element's reading +[hdr_reading]
+++ Manual reading ++
+The add-on installs scripts to read certain items at the cursor position. Those are:
+- reading the footnote or endnote: "key_report_footnote_endnote".
+- reading of the text modification: "key_report_revision".
 
 
-
-+ Scripts for table +[hdr7]
-++ Announcement of the elements of table ++
-The add-on installs some scripts with their input gesture , to announce the components of a table ( cell, row, column) without the need to move the cursor.
-
-These are:
-- to report the cell under the focus: "key_report_cell".
-- Announce all the cells of the current line: "key_report_row".
-- Announce all the cells of the current column: "key_report_column".
-- Announce the previous cell in the line: "key_report_previousInRow".
-- Announce the next cell in the line: "key_report_nextInRow".
-- Announce the previous cell in the column: "key_report_previousInColumn".
-- Announce the next cell in the column: "key_report_nextInColumn".
-- Announce the first cell in the line: "key_report_firstInRow".
-- Announce the last cell in the line: "key_report_lastInRow".
-- Announce the first cell in the column: "key_report_firstInColumn".
-- Announce the last cell in the column: "key_report_lastInColumn".
-
-The announcement of the content of each cell is preceded by the announcement of the corresponding header if the "Row/column headers" option ( "document formatting" setting category) is checked.
-
-These scripts are listed in the "ADDON_SUMMARY" category of "Input gestures" dialog of NVDA.
+If there are no elements, a voice message announces it.
 
 
+For text modifications, the type, author and text of the modification are announced. There can be multiple changes to the cursor position.
+
+++ automatic reading ++[HDR15]
+The add-on allows the automatic reading of certain elements (comments, footnote, endnote, text revision) when moving line by line, in navigation mode or in "say all".
+
+This is controlled by the settings of the "Automatic reading" category of the add-on settings dialog.
+
+In this category are:
+- the "Activate automatic reading" option to activate or deactivate automatic reading,
+- the list of boxes checked "concerned elements" allowing to select the elements concerned by automatic reading, namely: the comments, the footnotes the endnotes, the inserted, deleted or revised texts.
+- the "Read with" choice which allows you to choose between:
+ - "Current voice": the text is read with the voice of the current synthesis.
+ - "Current voice and a beep at start and  end": the text read with the current voice is preceded by a high-pitched beep and ended by a deeper beep.
+ - "another voice": the text is read with the voice parameters recorded for automatic reading.
+- the "Display recorded voice parameters" button: which opens the dialog box presenting all the speech settings that will be used in automatic reading.
+
+
+To read the elements with another voice, you must first save the speech settings of this voice using the "key_RecordVoiceSettings" input gesture. This input gesture corresponds to the script "Record automatic reading voice's settings " and is editable using the NVDA "Input gestures" dialog.
+
+In order to easily find this voice and possibly modify some of its parameters, it is advisable to create a configuration profile which will be activated manually.
+
+Under this profile, it is then possible to define voice and speech settings using the "Speech" category of the NVDA settings dialog.
+
+Once this is done, the NVDA configuration should be saved.
+
+In Word and in order to save the voice settings for automatic reading , this profile must be activated manually. Hitting the "key_RecordVoiceSettings" input gesture will perform the recording.
+
+
+Once the recording is done, the profile can then be deactivated manually to find the voice parameters of the active configuration profile before manual activation of the profile.
+
+The "Activate automatic reading" option can be changed using the "Activate or desactivate  automatic reading" script associated with the "key_AutomaticReading" input gesture.
+
+This input gesture can be changed using the "Input gestures" NVDA dialog.
+
+This script is located in the "ADDON_SUMMARY" category of this dialog.
+
+
+
++ Complements for table +[hdr_table]
+++ Announcement of table elements ++
+The add-on installs scripts with their input gesture to announce the elements composing a table (cell, row, column) without needing to move the cursor.
+
+Those are:
+- announce the cell under the focus: "key_report_cell".
+- report all the cells of the current line: "key_report_row".
+- report all the cells of the current column: "key_report_column".
+- report the previous cell in the line: "key_report_previousInRow".
+- report the following cell in the line: "key_report_nextInRow".
+- report the previous cell in the column: "key_report_previousInColumn".- Announce the following cell in the column: "key_report_nextInColumn".
+- report the first cell of the line: "key_report_firstInRow".
+- report the last cell of the line: "key_report_lastInRow".
+- report the first cell of the column: "key_report_firstInColumn".
+- report the last cell of the column: "key_report_lastInColumn".
+
+
+Depending on the "column headers" option in the "Document formatting" category of NVDA settings, the cell content is announced alone or with the row and column titles.
+
+These scripts are shown in the "ADDON_SUMMARY" category of the NVDA "Command Gestures" dialog.
 ++ Announcement of all cells ++
-It is possible to announce all the cells in that row or column during the use of input gestures to commands previous.
+It is possible to have all the cells of the row or columns announced when using the previous command gestures.
 
-The script "enable or disable the announcement of all the cells" will be launched using the input gesture "key_sayAll".
+The script "activate or desactivate the report of all cells of row or column" is launched using the  "key_sayAll" input gesture.
 
-This script is listed in the "ADDON_SUMMARY" category of "Input gestures" dialog of NVDA.
+This script is presented in the "ADDON_SUMMARY" category of the NVDA "Command Gestures" dialog.
 
-Thus, if the announcement of all the cells is enabled, by typing:
-- "key_report_previousInRow or "key_report_nextInRow": the cells of the previous column or the next one are announced.
-- "key_report_previousInColumn" or "key_report_nextInColumn": all cells in the row previous or next are announced.
+Thus, if the announcement of all cells is activated, by typing:
+- "key_report_previousInRow" or "key_report_nextInRow": the cells of the previous or next column are announced.
+- "key_report_previousInColumn" or "key_report_nextInColumn": all the cells of the previous or next row are announced.
 - "key_report_firstInRow" or "key_report_lastInRow": all the cells of the first or last column are announced.
-- "key_report_firstInColumn" or "key_report_lastInColumn": all the cells of the first or last line are announced.
+- "key_report_firstInColumn" or "key_report_lastInColumn": all the cells of the first or last row are announced.
 
 
-To disable the announcement of all the cells, just type again the "key_sayAll" input gesture.
+To deactivate the announcement of all cells, simply type the "key_sayAll" command gesture again.
 
-++ Move in the array ++
-The add-on installs the following scripts for moving around in a table:
-- go to the previous cell in the line: "key_moveTo_previousInRow.
+++ Moving in the table ++
+The add-on installs the following scripts to move around table:
+- go to the previous cell in the line: "key_moveTo_previousInRow".
 - go to the next cell in the line: "key_moveTo_nextInRow".
 - go to the previous cell in the column: "key_moveTo_previousInColumn".
 - go to the next cell in the column: "key_moveTo_nextInColumn".
-- go to the first cell in the line: "key_moveTo_firstInRow".
-- go to the last cell in the line: "key_moveTo_lastInRow".
+- go to the first cell of the line: "key_moveTo_firstInRow".
+- go to the last cell of the line: "key_moveTo_lastInRow".
 - go to the first cell of the column: "key_moveTo_firstInColumn".
 - go to the last cell of the column: "key_moveTo_lastInColumn".
 - go to the first cell of the table (first cell of the first row): "key_moveTo_firstCellOfTable"
-- go to the last cell of the table (last cell in the last row): "key_moveTo_lastCellOfTable"
+- go to the last cell of the table (last cell of the last row): "key_moveTo_lastCellOfTable"
 
 
-After the displacement:
-- the cell is selected to be eventually copied with the shortcut "control + c".
- - current cell is announced or all the cells are announced if the announcement of all cells is activated.
+After  moving:
+- the cell is selected to be possibly copied with the shortcut "control + c".
+- is announced either the current cell, or all the cells making up the row or column if the announcement of all cells is activated.
 
-The announcement of the content of each cell is preceded by the announcement of the corresponding header if the "Row/column headers" option ( "document formatting" setting category) is checked.
+The announcement of the content of each cell is preceded by the report of the corresponding title if the "Column headers" option ("Document formatting" category is checked).
 
-
-
-The add-on installs also, but with no input gesture the scripts following to move around in a table and to announce to the cells of the row or columns :
-- go to the previous cell in the line and announce all the cells of the column,
-- go to the next cell in the line and announce all of the cells of the columns,
+The add-on also installs, but without input gesture, the following scripts to move in a table and announce the cells of the row or the column:
+- go to the previous cell in the row and announce all the cells in the column,
+- go to the next cell in the row and announce all the cells in the column,
 - go to the previous cell in the column and announce all the cells in the row,
 - go to the next cell in the column and announce all the cells in the row,
-- go to the first cell of the line and advertise all cells of the column,
-- go to the last cell in the line and announce all the cells of the column,
-- go to the first cell of the column and announce all the cells in the row,
-- go to the last cell of the column and announce all the cells in the row.
+- go to the first cell of the row and announce all the cells of the column,
+- go to the last cell of the row and announce all the cells of the column,
+- go to the first cell of the column and announce all the cells of the row,
+- go to the last cell of the column and announce all the cells of the row.
 
 
-Using the dialog "Input gestures" of NVDA, it is possible to define their own input gesture.
+Using "Input gestures" NVDA dialog, it is possible to define their own input gestures for them.
 
-These scripts are listed in the "ADDON_SUMMARY" category of "Input gestures" dialog of NVDA.
+These scripts are shown in the "ADDON_SUMMARY" category of the "Input Gestures" NVDA dialog.
 
-++ table layer mode ++
-The add-on allows you to modify the input gestures of previous scripts which requires the combination of several keys to use only the arrow keys for movement.
 
-For this it is enough to type the "key_layerMode"gesture to activate the table layer mode .
+++ Command layer for table ++
+The add-on allows to modify the gestures of commands of the previous scripts which requires the combination of several keys in order to use only the direction keys for the movements.
 
-And after you activate the table layer mode, the script gestures for moving in table, are replaced by:
+To do this, simply type the "key_layerMode" command gesture to activate the command layer for array.
 
-- go to the previous cell in the line: "key_layer_moveTo_previousInRow.
-- go to the next cell in the line: "key_layer_moveTo_nextInRow".
+So after activating the command layer for table, the command gestures of the movement scripts are replaced by:
+
+- go to the previous cell in the line: "key_layer_moveTo_previousInRow".
+- go to the following cell in the line: "key_layer_moveTo_nextInRow".
 - go to the previous cell in the column: "key_layer_moveTo_previousInColumn".
 - go to the next cell in the column: "key_layer_moveTo_nextInColumn".
-- go to the first cell in the line: "key_layer_moveTo_firstInRow".
-- go to the last cell in the line: "key_layer_moveTo_lastInRow".
+- go to the first cell of the line: "key_layer_moveTo_firstInRow".
+- go to the last cell of the line: "key_layer_moveTo_lastInRow".
 - go to the first cell of the column: "key_layer_moveTo_firstInColumn".
 - go to the last cell of the column: "key_layer_moveTo_lastInColumn".
 - go to the first cell of the table (first cell of the first row): "key_layer_moveTo_firstCellOfTable"
-- go to the last cell of the table (last cell in the last row): "key_layer_moveTo_lastCellOfTable"
+- go to the last cell of the table (last cell of the last row): "key_layer_moveTo_lastCellOfTable"
 
 
-These scripts are listed in the "ADDON_SUMMARY (table layer mode)" category of "Input gestures" dialog of NVDA.
+These scripts are then presented in the "ADDON_SUMMARY (command layer for array)" category of the "Input gestures" NVDA dialog.
 
-To disable the Word layer mode, simply retype "key_layerMode", or simply taber "key_escape".
+To deactivate the command layer for array, just type "key_layerMode" again, or simply type "key_escape".
 
+++ Announcement of row and column title ++
+The "key_report_headers" input gesture is used to find out the title of the row and of the column for the current cell.
 
-++ Announcement of the title of the row and column ++
-The "key_report_headers"gesture allows yout to know the title of the row and the column for the current cell.
+++ Moving by tab in the table ++
+In a table, it is possible to move from cell to cell by tabulation but at the end of the table, any new tabulation causes the creation of a new row.
+To prevent this, the add-on adds the arrival announcement in the first or last cell of the table.
 
++ New commands for navigation mode +[hdr_navigation]
+To move quickly in the document, NVDA offers a navigation mode that can be activated and deactivated using the "NVDA + space" input gesture.
+When this mode is activated, it is no longer possible to type text in the document.
 
+Each type of element is associated with a single key on the keyboard. By pressing this key the cursor is placed on the next element of the same type. By typing this same key with the capital letter pressed, the cursor is positioned on the previous element of the same type.
 
-++ Displacement by tabulation in the table ++
-In a table, it is possible to move from cell to cell by tabulation but reached the end of the table, any new tabulation causes the creation of a new line.
-To prevent this, the add-on adds the announcement of the arrival in the first or the last cell of the table.
-
-
-+ Commands for fast Navigation in the document+[HDR8]
-To move quickly through the document, NVDA offers a navigation mode that turns on and off using the keyboard command "NVDA + space".
-When this mode is enabled, it is no longer possible to type text in the document.
-Each element type is associated with a single key on the keyboard. By pressing this key the cursor is placed on the following element of the same type. Typing the same key with shift pressed down, the cursor is positioned on the previous item of the same type.
 These commands are common to other applications such as Internet browsers.
 
-This add-on adds the following commands that are specific to Microsoft Word.
-- "key_BrowseMode_comment" : comment,
-- "key_BrowseMode_field" : field,
-- "key_BrowseMode_bookmark" : bookmark,
-- "key_BrowseMode_endnote" : note of the end,
-- "key_BrowseMode_footnote" : note the foot of the page
-- "key_BrowseMode_grammaticalError" : error of grammar,
-- "key_BrowseMode_revision" : change of text,
-- "key_BrowseMode_section" : section,
+This add-on adds the following commands specific for Microsoft Word.
+- "key_BrowseMode_comment": comment,
+- "key_BrowseMode_field": field,
+- "key_BrowseMode_bookmark": bookmark,
+- "key_BrowseMode_endnote": end note,
+- "key_BrowseMode_footnote": footnote,
+- "key_BrowseMode_grammaticalError": grammar error,
+- "key_BrowseMode_revision": text modification,
+- "key_BrowseMode_section": section,
 
 
-Pressing a key not assigned to a command is indicated by the voice message Not available in this document".
-Unable to move the cursor is indicated by a voice message indicating that there are more element corresponding to the command.
+Unsupported navigation mode commands are indicated by the voice message "Not supported in this document" and all other commands by a beep.
 
-The element types associated with these new commands are added to the type list of the "Element List" dialog opened by "NVDA + F7".
+The inability to move the cursor is signaled by a voice message indicating that there is no longer any element corresponding to the command.
 
-For some types like "misspelled word," grammar error "searching for items can be quite long.
+The add-on adds the possibility of browsing in a loop, that is to say to return to the beginning or the end of the document, to continue the search for the next or previous element.
 
-The search time is therefore limited to 20 seconds by default. This maximum time can be changed using the "Maximum time to search for items" drop-down list in the "Options" category of the add-on settings.
+The "Browse in loop" option in the "Options" category controls this possibility.
 
-+ Moving sentence by sentence +[HDR12]
-The following commands allow you to move the system cursor sentence by sentence:
-- "key_next_sentence" : move to the next sentence,
-- "key_previous_sentence" : move to the previous sentence.
+The types of elements associated with these new commands are added to the list of types in the "List of elements" dialog opened by "NVDA + F7".
 
+For some types like "misspelled word", "grammar error", searching for items can be quite long.
 
-These scripts are listed in the "ADDON_SUMMARY" category of "Input gestures" dialog of NVDA.
+The search time is therefore limited to 20 seconds by default. This maximum time can be changed using the "Maximum item search time" drop-down list in the "Options" category of the add-on settings.
 
-+ Display information about the document +[HDR13]
-The gesture command "key_document_infos" allows to display in a dialog box some information about the document:
-- the current position in the document as : page number, line number, section number,
-- the properties of the document such as: the name of the file, the name of the author, the creation date,
-- statistics such as: the number of pages, number of lines, number of words,
-- the information on sections such as: footers, endnotes, borders,
-- the information on the tables such as: the number of rows and columns, borders,
-- the state of particular options of Word as: track changes, spelling or grammar as you type.
++ Improved accessibility of spell checker +[hdr_spellchecker]
+When the focus is positioned in the document, the "f7" key (Word shortcut) either starts the spell checker,either to return to it if it is already started and the "Escape" key allows you to return to the document when the focus is in the spell checker.
 
+The add-on gives the possibility to also use the "f7" key to perform the same action as the "Escape" key.
 
-Depending on the number of spelling mistakes or grammar, the display time of the dialog can be quite long.
+Contrary to what NVDA vocalizes, when launching the corrector for the first time, the focus may not be positioned where it should be, ie inside the pane and on one of its buttons or lists.
+This is why the add-on may require you to hit the "tab" key before anything else.
 
-The displayed information can be copied to the clipboard using the button "Copy to clipboard" in the dialog box.
+As neither the error nor the suggestion is announced by NVDA when the focus arrives in the spell checker, the add-on tries to fix it.
 
+A script allows this information to be announced.
 
-+ Improvement of the accessibility of the spelling corrector +[HDR14]
-When the focus is positioned in the document, the key "f7" (Word shortcut) allows you to launch the spell checker, or return to it if it is already launched and the key "Échapp" lets go back in the document when the focus is in the spell checker.
-
-The add-on gives the possibility to use also the key "F7" to perform the same action as the button "Échapp".
-
-Contrary to what NVDA vocalise, the first launch of the corrector, the focus is positioned not where it should be i.e. on the inside of the pane, and on one of its buttons, or lists.
-This is why the add-on request to type on the "tab" key before doing anything else.
-
-As neither the error nor the suggestion are not announced by NVDA to the arrival of the focus in the spelling corrector, the file add-on is supported.
-
-A script that allows you to hear the information.
-
-It is launched using the gesture command "key_spelling_checker_help".
-
-- The first pressure, the error and the suggestion are announced.
-- The second pressure, these information are worded.
-The third pressure, the help of the corrector is announced.
-
-The input gesture "key_report_current_sentence" allows you to hear the phrase affected by the error.
-
-These scripts are listed in the "Microsoft ADDON_SUMMARY" category of "Input gestures" dialog of NVDA.
-
-This add-on also allows for the automatic announcement of the new error and the suggestion presented by the speller as a result the use of one of the buttons like "Ignore", "Modify", or shortcuts Word as "i", "m".
+ The "key_spelling_checker_help" input gesture is assigned to it:
+- with a simple press of this gesture, the error and the suggestion are announced.
+- with a double press of this gesture, this information is spelled out.
+- with a triple press of this gesture, the help of the corrector is announced.
 
 
-+ Automatic reading of elements +[HDR15]
-The add-on allows the automatic reading of some elements (comments, footnotes, endnotes) when moving line by line, in navigation mode or "say it all".
 
-This is controlled by the "Automatic reading" option group in "Options" category of the add-on configuration dialog.
+The "key_report_CURRENT_SENTENCE" input gesture allows you to hear the sentence affected by the error again.
 
-In this group are:
-- the "Activate Automatic reading" option to activate or desactivate automatic reading,
-- the list of boxes checked "concerned elements" allowing to select the elements concerned by automatic reading, namely: the comments, the footnotes and the endnotes.
-- the choice "Announce with" which allows you to choose between:
-  - "nothing": the text is read with the voice of the current synthesis.
- - "a beep at the beginning and end: the text is preceded by a high-pitched beep and followed by a lower frequency beep.
- - "another voice": the text is read with the voice and its settings, recorded for the automatic reading.
-- the button "Display voice's recorded settings" which opens the dialog box showing all of the voice parameters which will be used for automatic reading.
+These scripts are shown in the "ADDON_SUMMARY" category of the "Input Gestures" NVDA dialog.
 
+This add-on also allows the automatic announcement of the new error and its suggestion presented by the spell checker following the use of one of the buttons like "Ignore", "Modify" or Word shortcuts like "i", "m ".
++ Resumption of scripts from NVDA +[hdr_nvda]
+++ Skip empty paragraphs ++[hdr3]
+In a Word document, NVDA provides the ability to move from paragraph to paragraph using the "key_next_paragraph" or "key_previous_paragraph" commands.
 
-To read the comments or endnote with a different voice, it is necessary to previously record the vocal parameters for the voice by using the "key_RecordVoiceSettings" gesture. This gesture corresspond to the "Record automatic reading voice's settings" script and can be changed using the "Input gestures"dialog of NVDA.
+But the focus is given to the preceding or following paragraph regardless of its content.
 
-In order to easily find this voice and to possibly modify some of its settings, it is advisable to create a configuration profile that will be activated manually.
+This add-on offers the possibility of blowing up empty paragraphs and giving focus to the first non-empty paragraph found.
 
-Under this profile, it is then possible to define the voice and the voice parameters using the "Speech" category of the NVDA's "Préférences" menu.
+The "Skip empty paragraphs" option in the "Options" category enables or disables this operation.
 
-Once this is done (the configuration of NVDA should be recorded.
+By default, this option is checked. Empty paragraphs are ignored.
 
-On Word and in order to save the voice parameters for the automatic reading, this profile must be activated manually. The strike of the "key_RecordVoiceSettings" gesture proceed to the record.
+It is also possible, at any time, to activate or deactivate this operation using the "key_toggle_skip_empty_paragraph" input gesture.
 
-
-The record is done, the profile can then be manually turned off to return to the voice parameters of the configuration profile active before the profil's manual activation.
+++ Moving from sentence to sentence ++[HDR12]
+NVDA provides the ability to move the system cursor from sentence to sentence with the following input gestures:
+- "key_next_sentence": move to the next sentence,
+- "key_previous_sentence": move to the previous sentence.
 
 
-The "Automatic reading" option can be modified using the "Activate / desactivate automatic reading" script associated to the "key_AutomaticReading" input gesture.
+But they are only operational in edit mode and not in browse mode.
 
-This input gesture can be modified using the "Input gestures" dialog of NVDA.
+To remove this limitation, the add-on replaces them with new scripts using the same command gestures.
 
-This script is in the "ADDON_SUMMARY" category of this dialog.
+These new scripts are shown in the "ADDON_SUMMARY" category of the "Input Gestures" NVDA dialog.
 
 + History +
-The version history of this add-on is in the file: ["changes.html" changes.html]
+The version history of this add-on is in the file ["changes.html" changes.html]

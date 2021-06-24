@@ -1,6 +1,6 @@
 # appModules\winword\ww_elementsListDialog.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2020 paulber19
+# Copyright (C) 2021 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -12,43 +12,45 @@ import time
 import core
 import queueHandler
 from NVDAObjects.window.winword import *  # noqa:F403
+import itertools
 from gui.dpiScalingHelper import DpiScalingHelperMixinWithoutInit
 import sys
 import os
 _curAddon = addonHandler.getCodeAddon()
 path = os.path.join(_curAddon.path, "shared")
 sys.path.append(path)
-from ww_py3Compatibility import uniCHR  # noqa:E402
 from ww_NVDAStrings import NVDAString  # noqa:E402
 from ww_addonConfigManager import _addonConfigManager  # noqa:E402
+from ww_utils import (
+	getSpeechMode, setSpeechMode, setSpeechMode_off)  # noqa:E402
 del sys.path[-1]
 
 addonHandler.initTranslation()
 
-
+import api
 class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 	ELEMENT_TYPES = (
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
-		("heading", _("Heading")),
+		("heading", NVDAString("heading").capitalize()),
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
-		("link", _("Link")),
+		("link", NVDAString("link").capitalize()),
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
-		("graphic", _("Graphic")),
+		("graphic", NVDAString("graphic").capitalize()),
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
-		("bookmark", _("Bookmark")),
+		("bookmark", NVDAString("bookmark").capitalize()),
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
-		("comment", _("Comment")),
+		("comment", NVDAString("comment").capitalize()),
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
-		("endnote", _("Endnote")),
+		("endnote", NVDAString("endnote").capitalize()),
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
-		("field", _("Field")),
+		("field", NVDAString("field").capitalize()),
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
 		("formfield", _("FormField")),
@@ -71,7 +73,6 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 	Element = collections.namedtuple("Element", ("item", "parent"))
 	lastSelectedElementType = 0
 
-
 	def __init__(self, document):
 		self.dialogTitle = NVDAString("Elements List")
 		super(ElementsListDialog, self).__init__(
@@ -85,7 +86,7 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 		# in the browse mode Elements List dialog.
 		childLabel = wx.StaticText(
 			parent=self,
-			label=NVDAString("&Type:"),
+			label=_("&Type:"),
 			style=wx.ALIGN_CENTRE
 			)
 		childSizer.Add(childLabel, )
@@ -127,7 +128,7 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 		bHelper = gui.guiHelper.ButtonHelper(wx.HORIZONTAL)
 		# Translators: The label of a button to activate an element
 		# in the browse mode Elements List dialog.
-		self.activateButton = bHelper.addButton(self, label=NVDAString("&Activate"))
+		self.activateButton = bHelper.addButton(self, label=_("&Activate"))
 		self.activateButton.Bind(wx.EVT_BUTTON, lambda evt: self.onAction(True))
 
 		# Translators: The label of a button to move to an element
@@ -142,6 +143,7 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 		self.SetSizer(mainSizer)
 
 		self.tree.SetFocus()
+		self.initElementTypeIsRunning = False
 		self.initElementType(self.ELEMENT_TYPES[self.lastSelectedElementType][0])
 		self.CentreOnScreen()
 		self.refreshDialogTitle()
@@ -153,18 +155,23 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 			self.SetTitle(title)
 
 	def onElementTypeChange(self, evt):
+		if self.initElementTypeIsRunning :
+			self.abort = True
+			wx.CallLater(100, self.onElementTypeChange, evt)
+			return
 		elementType = self.childListBox.GetSelection()
 		# We need to make sure this gets executed after the focus event.
 		# Otherwise, NVDA doesn't seem to get the event.
 		# modified because of error when type spelling error type
-		wx.CallLater(100, self.initElementType, self.ELEMENT_TYPES[elementType][0])
+		wx.CallLater(50, self.initElementType, self.ELEMENT_TYPES[elementType][0])
 		self.lastSelectedElementType = elementType
 		self.refreshDialogTitle()
-	
+
 	def initElementType(self, elType):
 		from .ww_tones import RepeatBeep
 		rb = RepeatBeep()
 		rb.start()
+		self.initElementTypeIsRunning  = True
 		self.startTime = int(time.time())
 		if elType in ("link", "button", "radioButton", "checkBox"):
 			# Links, buttons, radio button, check box can be activated.
@@ -176,6 +183,7 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 			self.SetAffirmativeId(self.moveButton.GetId())
 
 		# Gather the elements of this type.
+		self.abort = False
 		self._elements = []
 		self._initialElement = None
 		parentElements = []
@@ -183,6 +191,11 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 		try:
 			limited = False
 			for item in self.document._iterNodesByType(elType):
+				wx.Yield()
+				if self.abort:
+					rb.stop()
+					self.initElementTypeIsRunning  = False
+					return
 				# Find the parent element, if any.
 				for parent in reversed(parentElements):
 					if item.isChild(parent.item):
@@ -197,7 +210,8 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 
 				element = self.Element(item, parent)
 				self._elements.append(element)
-				if int(time.time())  - self.startTime > _addonConfigManager.getElementsSearchMaxTime():
+				elapsedTime = int(time.time()) - self.startTime 
+				if elapsedTime > _addonConfigManager.getElementsSearchMaxTime():
 					limited = True
 					break
 
@@ -222,8 +236,7 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 		self.filterEdit.ChangeValue("")
 		self.filter("", newElementType=True)
 		self.sayNumberOfElements(limited)
-
-
+		self.initElementTypeIsRunning  = False
 	def sayNumberOfElements(self, limited=False):
 		count = self.tree.Count
 		if not self.childListBox.HasFocus():
@@ -329,7 +342,7 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 		else:
 			# Search the list.
 			# We have to implement this ourselves, as tree views don't accept space as a search character.
-			char = uniCHR(evt.UnicodeKey).lower()
+			char = chr(evt.UnicodeKey).lower()
 			# IF the same character is typed twice, do the same search.
 			if self._searchText != char:
 				self._searchText += char
@@ -392,26 +405,32 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 		evt.Skip()
 
 	def onAction(self, activate):
-		self.Close()
+#		self.Close()
 		# Save off the last selected element type on to the class so its used in initialization next time.
 		self.__class__.lastSelectedElementType = self.lastSelectedElementType
 		item = self.tree.GetSelection()
 		item = self.tree.GetItemData(item).item
 		if activate:
+			self.Close()
 			item.activate()
 		else:
-
 			def move():
-				speech.cancelSpeech()
-				# #8831: Report before moving because moving might change the focus, which
-				# might mutate the document, potentially invalidating info if it is
-				# offset-based.
-				# item.report()
+				oldSpeechMode = getSpeechMode()
+				setSpeechMode_off()
+				self.Close()
+				api.processPendingEvents()
 				item.moveTo()
-				item.report()
+				def report():
+					speech.cancelSpeech()
+					setSpeechMode(oldSpeechMode)
+					item.report()
+				core.callLater(1, report)
+
 			# We must use core.callLater rather than wx.CallLater to ensure that the callback runs within NVDA's core pump.
 			# If it didn't, and it directly or indirectly called wx.Yield, it could start executing NVDA's core pump from within the yield, causing recursion.
-			core.callLater(100, move)
+			core.callLater(20, move)
+
+
 
 
 class UIAElementsListDialog(ElementsListDialog):
@@ -459,3 +478,4 @@ class UIAElementsListDialog(ElementsListDialog):
 		# in the browse mode Elements List dialog.
 		("error", _("Error")),
 		)
+	lastSelectedElementType = 0

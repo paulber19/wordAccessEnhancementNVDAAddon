@@ -8,13 +8,9 @@ import addonHandler
 import ui
 from .ww_wdConst import wdActiveEndPageNumber, wdFirstCharacterLineNumber, wdGoToSection  # noqa:E501
 from .ww_collection import Collection, CollectionElement, ReportDialog, convertPixelToUnit  # noqa:E501
-import sys
-import os
+
 _curAddon = addonHandler.getCodeAddon()
-path = os.path.join(_curAddon.path, "shared")
-sys.path.append(path)
-from ww_py3Compatibility import _unicode  # noqa:E402
-del sys.path[-1]
+
 
 addonHandler.initTranslation()
 
@@ -220,39 +216,39 @@ class PageSetup(object):
 		top = "%.2f cm" % convertPixelToUnit(self.topMargin)
 		bottom = "%.2f cm" % convertPixelToUnit(self.bottomMargin)
 		orientation = wdOrientations[self.orientation]
-		margins = _(_unicode("""Margins:
+		margins = _("""Margins:
 	Left,right: {left}, {right}
 	Top, bottom: {top}, {bottom}
 	Orientation: {orientation}
-		""")).format(
+		""").format(
 			left=left, right=right, top=top, bottom=bottom, orientation=orientation)
 		# paper
 		paperSize = wdPaperSize[self.paperSize]
 		width = "%.2f cm" % convertPixelToUnit(self.pageWidth)
 		height = "%.2f cm" % convertPixelToUnit(self.pageHeight)
 		sectionDirection = wdSectionDirection[self.sectionDirection]
-		paper = _(_unicode("""Paper:
+		paper = _("""Paper:
 	Format: {paperSize}
 	Height's heet: {height}
 	Width's sheet: {width}
 	Two pages per sheet: {twoPages}
-		""")) .format(
+		""") .format(
 			paperSize=paperSize, height=height, width=width,
 			twoPages=yes if self.twoPagesOnOne else no)
 		# page
 		chars = int(self.charsLine)
 		lines = int(self.linesPage)
-		pageFormat = _(_unicode("""Page:
+		pageFormat = _("""Page:
 	Chars number per line: {chars}
 	Lines number per page: {lines}
 	{sectionDirection}
-""")).format(chars=chars, lines=lines, sectionDirection=sectionDirection)
+""").format(chars=chars, lines=lines, sectionDirection=sectionDirection)
 
-		sInfo = (_unicode("""{disposition}
+		sInfo = ("""{disposition}
 {margins}
 {paper}
 {pageFormat}
-		""")).format(
+		""").format(
 			disposition=disposition, margins=margins,
 			paper=paper, pageFormat=pageFormat)
 		sInfo = sInfo.replace("\n", "\r\n")

@@ -1,6 +1,6 @@
 # appModules\winword\ww_funct.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2021 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -8,6 +8,13 @@ import addonHandler
 import api
 import ui
 import speech
+import os
+import sys
+_curAddon = addonHandler.getCodeAddon()
+path = os.path.join(_curAddon.path, "shared")
+sys.path.append(path)
+from ww_utils import setSpeechMode  # noqa:E402
+del sys.path[-1]
 
 addonHandler.initTranslation()
 
@@ -88,7 +95,7 @@ def sayActivePane():
 
 
 def sayActivePaneName(speechMode):
-	speech.speechMode = speechMode
+	setSpeechMode(speechMode)
 	oFocus = api.getFocusObject()
 	appVersion = oFocus.appModule.productVersion.split(".")[0]
 	if (appVersion >= Word_12) and not isWordActive():

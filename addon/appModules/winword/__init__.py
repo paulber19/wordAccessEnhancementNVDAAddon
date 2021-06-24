@@ -1,13 +1,13 @@
 # appModules\winword\__init__.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2021 paulber19
 # This file is covered by the GNU General Public License.
-# See the file COPYING for more details.
+
 
 import addonHandler
-from versionInfo import version_year, version_major
 import time
 import scriptHandler
+from scriptHandler import script
 import core
 import api
 import config
@@ -20,8 +20,15 @@ import speech
 import NVDAObjects.window.winword
 import NVDAObjects.UIA.wordDocument
 import NVDAObjects.IAccessible.winword
-from .ww_scriptTimer import GB_scriptTimer, stopScriptTimer, _delay
+from .ww_scriptTimer import stopScriptTimer, delayScriptTask
 import sys
+try:
+	# fornvda version <  2020.1
+	REASON_FOCUS = controlTypes.REASON_FOCUS
+except AttributeError:
+	from controlTypes import OutputReason
+	REASON_FOCUS = OutputReason.FOCUS
+
 _curAddon = addonHandler.getCodeAddon()
 debugToolsPath = os.path.join(_curAddon.path, "debugTools")
 sys.path.append(debugToolsPath)
@@ -36,17 +43,19 @@ del sys.path[-1]
 
 path = os.path.join(_curAddon.path, "shared")
 sys.path.append(path)
-from ww_utils import myMessageBox, maximizeWindow  # noqa:E402
-from ww_py3Compatibility import _unicode  # noqa:E402
 from ww_addonConfigManager import _addonConfigManager  # noqa:E402
+from ww_utils import (
+	myMessageBox, maximizeWindow,
+	getSpeechMode, setSpeechMode, setSpeechMode_off)  # noqa:E402
 del sys.path[-1]
 
 addonHandler.initTranslation()
-_addonSummary = _unicode(_curAddon.manifest['summary'])
+_addonSummary = _curAddon.manifest['summary']
 _scriptCategory = _addonSummary
 
 
 class AppModule(AppModule):
+	scriptCategory = _scriptCategory
 	layerMode = None
 	reportAllCellsFlag = False
 
@@ -56,10 +65,7 @@ class AppModule(AppModule):
 		# toggleDebugFlag()
 		# configuration load
 		self.hasFocus = False
-		# install input gesture for recording autoreading voice profil
-		NVDAVersion = [version_year, version_major]
-		if NVDAVersion >= [2019, 3]:
-			self.bindGesture("kb:windows+alt+f12", "setAutomaticReadingVoice")
+
 		self.checkUseUIAForWord = True
 
 	def terminate(self):
@@ -81,10 +87,9 @@ class AppModule(AppModule):
 	def event_appModule_gainFocus(self):
 		printDebug("Word: event_appModuleGainFocus")
 		self.hasFocus = True
-		NVDAVersion = [version_year, version_major]
-		if NVDAVersion >= [2019, 3]:
-			from . import ww_automaticReading
-			ww_automaticReading.initialize()
+
+		from . import ww_automaticReading
+		ww_automaticReading.initialize()
 		if self.checkUseUIAForWord and config.conf["UIA"]["useInMSWordWhenAvailable"]:
 			wx.CallAfter(
 				myMessageBox,
@@ -101,10 +106,8 @@ class AppModule(AppModule):
 	def event_appModule_loseFocus(self):
 		printDebug("Word: event_appModuleLoseFocus")
 		self.hasFocus = False
-		NVDAVersion = [version_year, version_major]
-		if NVDAVersion >= [2019, 3]:
-			from . import ww_automaticReading
-			ww_automaticReading.terminate()
+		from . import ww_automaticReading
+		ww_automaticReading.terminate()
 
 	def event_foreground(self, obj, nextHandler):
 		printDebug("word: event_foreground")
@@ -161,7 +164,13 @@ class AppModule(AppModule):
 				and obj.role == controlTypes.ROLE_BUTTON:
 				wx.CallLater(100, sc.sayErrorAndSuggestion, False, True)
 
+	@script(
+		# Translators: Input help mode message for toggle Skip Empty Paragraphs Option command.
+		description=_("Toggle on or off the option to skip empty paragraphs"),
+		gesture="kb:windows+alt+f4"
+	)
 	def script_toggleSkipEmptyParagraphsOption(self, gesture):
+		stopScriptTimer()
 		if _addonConfigManager.toggleSkipEmptyParagraphsOption():
 			# Translators: message to user
 			# to report skipping of empty paragraph when moving by paragraph.
@@ -170,15 +179,15 @@ class AppModule(AppModule):
 			# Translators: message to user
 			# to report no skipping empty paragraph when moving by paragraph.
 			speech.speakMessage(_("Don't skip empty paragraphs"))
-	# Translators: a description for a script.
-	script_toggleSkipEmptyParagraphsOption.__doc__ = _("Toggle on or off the option to skip empty paragraphs")  # noqa:E501
-	script_toggleSkipEmptyParagraphsOption.category = _scriptCategory
 
+	@script(
+		gesture="kb:f7"
+	)
 	def script_f7KeyStroke(self, gesture):
 		def verify(oldSpeechMode):
 			api.processPendingEvents()
 			speech.cancelSpeech()
-			speech.speechMode = oldSpeechMode
+			setSpeechMode(oldSpeechMode)
 			focus = api.getFocusObject()
 			from .ww_spellingChecker import SpellingChecker
 			sc = SpellingChecker(focus, self.WinwordVersion)
@@ -195,7 +204,7 @@ class AppModule(AppModule):
 				sc.sayErrorAndSuggestion(title=True, spell=False, focusOnSuggestion=True)
 				queueHandler.queueFunction(
 					queueHandler.eventQueue,
-					speech.speakObject, focus, controlTypes.REASON_FOCUS)
+					speech.speakObject, focus, REASON_FOCUS)
 		stopScriptTimer()
 		if not self.isSupportedVersion():
 			gesture.send()
@@ -205,8 +214,8 @@ class AppModule(AppModule):
 		sc = SpellingChecker(focus, self.WinwordVersion)
 		if not sc.isInSpellingChecker():
 			# moving to spelling checker
-			oldSpeechMode = speech.speechMode
-			speech.speechMode = speech.speechMode_off
+			oldSpeechMode = getSpeechMode()
+			setSpeechMode_off()
 			gesture.send()
 			core.callLater(500, verify, oldSpeechMode)
 			return
@@ -217,15 +226,21 @@ class AppModule(AppModule):
 		time.sleep(0.1)
 		api.processPendingEvents()
 		speech.cancelSpeech()
-		speech.speakObject(api.getFocusObject(), controlTypes.REASON_FOCUS)
+		speech.speakObject(api.getFocusObject(), REASON_FOCUS)
 
+	@script(
+		# Translators: Input help mode message for spellingChecker Helper command.
+		description=_(
+			"Report error and suggestion displayed by the spelling checker."
+			" Twice:spell them. Third: say help text"),
+		gesture="kb:nvda+shift+f7"
+	)
 	def script_spellingCheckerHelper(self, gesture):
-		global GB_scriptTimer
+		stopScriptTimer()
 		if not self.isSupportedVersion():
 			# Translators: message to the user when word version is not supported.
 			speech.speakMessage(_("Not available for this Word version"))
 			return
-		stopScriptTimer()
 		focus = api.getFocusObject()
 		from .ww_spellingChecker import SpellingChecker
 		sc = SpellingChecker(focus, self.WinwordVersion)
@@ -247,47 +262,75 @@ class AppModule(AppModule):
 		count = scriptHandler.getLastScriptRepeatCount()
 		count = scriptHandler.getLastScriptRepeatCount()
 		if count == 0:
-			GB_scriptTimer = core.callLater(
-				_delay, sc.sayErrorAndSuggestion, spell=False, focusOnSuggestion=False)
+			delayScriptTask(
+				sc.sayErrorAndSuggestion,
+				spell=False,
+				focusOnSuggestion=False)
 		elif count == 1:
-			GB_scriptTimer = core.callLater(
-				_delay, sc.sayErrorAndSuggestion, spell=True, focusOnSuggestion=False)
+			delayScriptTask(
+				sc.sayErrorAndSuggestion,
+				spell=True,
+				focusOnSuggestion=False)
 		else:
 			wx.CallAfter(sc.sayHelpText)
-	# Translators: a description for a script.
-	script_spellingCheckerHelper.__doc__ = _("Report error and suggestion displayed by the spelling checker.Twice:spell them. Third: say help text")  # noqa:E501
-	script_spellingCheckerHelper.category = _scriptCategory
 
 	def sayCurrentSentence(self):
 		selection = self.WinwordWindowObject.Application.Selection
 		queueHandler.queueFunction(
 			queueHandler.eventQueue, ui.message, selection.Sentences(1).Text)
 
+	@script(
+		# Translators: Input help mode message for report Current Sentence command.
+		description=_("Report current sentence "),
+		gesture="kb:nvda+control+f7"
+	)
 	def script_reportCurrentSentence(self, gesture):
 		stopScriptTimer()
 		wx.CallAfter(self.sayCurrentSentence)
-	# Translators: a description for a script.
-	script_reportCurrentSentence.__doc__ = _("Report current sentence ")
-	script_reportCurrentSentence.category = _scriptCategory
 
+	@script(
+		# Translators: Input help mode message for set automatic reading voice command.
+		description=_("Record automatic reading voice's settings"),
+		gesture="kb:windows+alt+f12"
+	)
 	def script_setAutomaticReadingVoice(self, gesture):
+		stopScriptTimer()
 		from .import ww_automaticReading
 		ww_automaticReading.saveCurrentSpeechSettings()
-
-	script_setAutomaticReadingVoice .__doc__ = _("Record automatic reading voice's settings")  # noqa:E501
-	script_setAutomaticReadingVoice .category = _scriptCategory
 
 	def script_test(self, gesture):
 		print("test word")
 		ui.message("test word")
+		focus = api.getFocusObject()
+		doc = focus.WinwordDocumentObject
+		selection= focus.WinwordSelectionObject
+		wdFieldFormCheckBox = 71
+		#ffield = doc.FormFields.Add( selection.range,wdFieldFormCheckBox) 
+		#ffield.CheckBox.Value = True
+		print ("formfields: %s"%doc.Formfields.Count)
+		print ("contentControls: %s"%doc.ContentControls.Count)
+		from .ww_wdConst import wdContentControlDropdownList , wdContentControlComboBox 
+		from .ww_contentControl import ContentControl
+		for item in doc.ContentControls:
+			contentControl = ContentControl(self, item)
+			print ("contentContent: %s"%contentControl.__dict__)
+			if item.type in [wdContentControlComboBox , wdContentControlDropdownList ]:
+				print ("entries: %s"%[x.Text for x in item.DropDownListEntries])
+				print ("entries: %s"%[x.Value for x in item.DropDownListEntries])
+				item.DropDownListEntries[2].Select()
+				
+		import textInfos
+		info = focus.makeTextInfo(textInfos.POSITION_CARET)
+		info.expand(textInfos.UNIT_STORY)
+		text = info.getTextWithFields()
+		#print ("text: %s"%text)
+
+		
+
+
+
+
 
 	__gestures = {
 		"kb:control+windows+alt+f12": "test",
-
-		# for spelling checker
-		"kb:f7": "f7KeyStroke",
-		"kb:nvda+shift+f7": "spellingCheckerHelper",
-		"kb:nvda+control+f7": "reportCurrentSentence",
-		# for empty paragraph
-		"kb:windows+alt+f4": "toggleSkipEmptyParagraphsOption",
 	}

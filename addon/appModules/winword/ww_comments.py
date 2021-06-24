@@ -5,14 +5,13 @@
 
 
 import addonHandler
-import wx
-import gui
 import config
 import textInfos
 from .ww_wdConst import wdGoToComment
 from .ww_collection import Collection, CollectionElement, ReportDialog
 
 addonHandler.initTranslation()
+
 
 def getReferenceAtFocus(focus):
 	info = focus.makeTextInfo(textInfos.POSITION_CARET)
@@ -31,37 +30,13 @@ def getReferenceAtFocus(focus):
 	return None
 
 
-def insertComment(wordApp):
-	def callback(result):
-		if result == wx.ID_OK:
-			text = d.GetValue()
-			comments = doc.Comments
-			r = doc.Range(selection.Start, selection.End)
-			comments.Add(r, text)
-		else:
-			pass
-	# ask the user to type the comment's text
-	d = wx.TextEntryDialog(
-			gui.mainFrame,
-			# Translators: text of message box dialog.
-			_("Enter the comment's text"),
-			# Translators: title of message box dialog.
-			_("Insert comment"),
-			style=wx.TE_MULTILINE | wx.OK | wx.CANCEL)
-	doc = wordApp.ActiveDocument
-	selection = wordApp.Selection
-	gui.runScriptModalDialog(d, callback)
-
-
 class Comment(CollectionElement):
 	def __init__(self, parent, item):
 		super(Comment, self).__init__(parent, item)
 		self.reference = item.Reference
-
 		self.text = ""
 		if item.Range.Text:
 			self.text = item.range.text
-
 		self.author = ""
 		if item.author:
 			self.author = item.Author
@@ -74,6 +49,10 @@ class Comment(CollectionElement):
 		if r.text:
 			self.associatedText = r.text
 		self.setLineAndPageNumber()
+
+	def modifyText(self, text):
+		self.obj.Range.Text = text
+		self.text = text
 
 	def formatInfos(self):
 		sInfo = _("""Page {page}, line {line}
@@ -96,6 +75,14 @@ class Comments(Collection):
 	_propertyName = (("Comments", Comment),)
 	_name = (_("Comment"), _("Comments"))
 	_wdGoToItem = wdGoToComment
+	entryDialogStrings = {
+		# Translators: text of entry text box:
+		"entryBoxLabel": _("Enter the comment's text"),
+		# Translators: title of insert dialog.
+		"insertDialogTitle": _("Comment's insert"),
+		# Translators: title of modification dialog.
+		"modifyDialogTitle": _("Comment's Modification"),
+		}
 
 	def __init__(self, parent, focus, rangeType):
 		self.rangeType = rangeType
@@ -106,8 +93,17 @@ class Comments(Collection):
 			self.reference = reference
 		super(Comments, self).__init__(parent, focus)
 
+	@classmethod
+	def insert(cls, wordApp, text):
+		doc = wordApp.ActiveDocument
+		selection = wordApp.Selection
+		comments = doc.Comments
+		r = doc.Range(selection.Start, selection.End)
+		comments.Add(r, text)
+
 
 class CommentsDialog(ReportDialog):
+	collectionClass = Comments
 
 	def __init__(self, parent, obj):
 		super(CommentsDialog, self).__init__(parent, obj)
@@ -128,8 +124,9 @@ class CommentsDialog(ReportDialog):
 
 		self.buttons = (
 			(100, _("&Go to"), self.goTo),
-			(101, _("&Delete"), self.delete),
-			(102, _("Delete &all"), self.deleteAll)
+			(101, _("&Modify"), self.modifyTC1Text),
+			(102, _("&Delete"), self.delete),
+			(103, _("Delete &all"), self.deleteAll),
 			)
 
 		self.tc1 = {

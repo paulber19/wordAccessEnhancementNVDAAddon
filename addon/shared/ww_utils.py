@@ -1,6 +1,6 @@
 # shared\winword\ww_utils.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2021 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -183,3 +183,29 @@ def myMessageBox(message, caption=wx.MessageBoxCaptionStr, style=wx.OK | wx.CENT
 		isInMessageBox = False
 	config.conf.profiles[0]["presentation"]["reportObjectDescriptions"] = option
 	return res
+
+def makeAddonWindowTitle(dialogTitle):
+	curAddon = addonHandler.getCodeAddon()
+	addonSummary = curAddon.manifest['summary']
+	return "%s - %s" % (addonSummary, dialogTitle)
+
+def getSpeechMode():
+	try:
+		# for nvda  version >= 2021.1
+		return speech.getState().speechMode
+	except AttributeError:
+		return speech.speechMode
+
+def setSpeechMode(mode):
+	try:
+		# for nvda version >= 2021.1
+		speech.setSpeechMode(mode)
+	except AttributeError:
+		speech.speechMode = mode
+
+def setSpeechMode_off():
+	try:
+		# for nvda version >= 2021.1
+		speech.setSpeechMode(speech.SpeechMode.off)
+	except AttributeError:
+		speech.speechMode = speech.speechMode_off

@@ -105,33 +105,34 @@ class HeaderFooter(object):
 	def __init__(self, winwordHeaderFooterObject):
 		self.winwordHeaderFooterObject = winwordHeaderFooterObject
 
-	def getRangeText(self):
+	def getRangeText(self, firstSection=False):
+		if not firstSection and self.winwordHeaderFooterObject.LinkToPrevious:
+			# Translators: text to report a header or footer linked to previous.
+			return _("linked to previous")
 		if self.winwordHeaderFooterObject.Range.Characters.Count > 1:
 			text = self.winwordHeaderFooterObject.range.text
-			return text[:-2]
+			return text
 		return ""
 
 	def getPageNumberAlignment(self):
-		pageNumbers = self.winwordHeaderFooterObject.PageNumbers
-		if pageNumbers.Count == 0:
-			return ""
 		alignmentToMsg = {
 			# Translators: text to indicate page number alignment to the left.
-			0: _("Page's number on the Left"),
+			0: _("Page's number on the Left"),  # wdAlignPageNumberLeft
 			# Translators: text to indicate page number alignment to the center.
-			1: _("Page's number Centered"),
+			1: _("Page's number Centered"),  # wdAlignPageNumberCenter
 			# Translators: text to indicate page numer alignment to the right.
-			2: _("Page's number on the Right"),
+			2: _("Page's number on the Right"),  # wdAlignPageNumberRight
 			# Translators: text to indicate page number alignment to inside.
-			3: _("Page number inside"),
+			3: _("Page number inside"),  # wdAlignPageNumberInside
 			# Translators: text to indicate page number alignment to outside.
-			4: _("Page's number Outside"),
+			4: _("Page's number Outside"),  # wdAlignPageNumberOutside
 			}
+		pageNumbers = self.winwordHeaderFooterObject.PageNumbers
+		if pageNumbers.Count == 0:
+			return None
 		alignment = pageNumbers(1).Alignment
-		try:
-			return alignmentToMsg[alignment]
-		except:  # noqa:E722
-			return ""
+		alignmentMsg = alignmentToMsg.get(alignment)
+		return alignmentMsg
 
 
 class PageSetup(object):
@@ -445,29 +446,102 @@ class Section(object):
 		self.sectionsCollection = sectionsCollection
 		self.activeDocument = self.sectionsCollection.activeDocument
 		self.winwordSectionObject = winwordSectionObject
+		self.sectionNumber =str(self.winwordSectionObject.index)
 		self.pageSetup = winwordSectionObject.PageSetup
 		self.protectedForForms = winwordSectionObject.ProtectedForForms
 
+	def getHeaderFootersInfos(self, pageSetup, indent=""):
+		curIndent = indent
+		textList = []
+		headers = self.winwordSectionObject.Headers
+		footers = self.winwordSectionObject.Footers
+		firstSection = self.sectionNumber == 1
+		if self.pageSetup.DifferentFirstPageHeaderFooter:
+			if headers(wdHeaderFooterFirstPage).exists:
+				headerFooter = HeaderFooter(headers(wdHeaderFooterFirstPage))
+				text = headerFooter.getRangeText(firstSection)
+				if text != "":
+					alignment = headerFooter.getPageNumberAlignment()
+					# Translators: first page header information
+					msg = _("First Page Header: %s") % text
+					if alignment:
+						msg = "%s, %s" %(msg, alignment)
+					textList.append(curIndent + msg)
+			if footers(wdHeaderFooterFirstPage).exists:
+				headerFooter = HeaderFooter(footers(wdHeaderFooterFirstPage))
+				text = headerFooter.getRangeText(firstSection)
+				if text != "":
+					alignment = headerFooter.getPageNumberAlignment()
+					# Translators: first page footer informations.
+					msg = _("First Page Footer: %s") % text
+					if alignment:
+						msg = "%s, %s" % (msg, alignment)
+					textList.append(curIndent + msg)
+		#if pageSetup.OddAndEvenPagesHeaderFooter\
+			#and isEvenNumber(self.winwordSectionObject.Range.Information(wdActiveEndAdjustedPageNumber)):  # noqa:E501
+		if pageSetup.OddAndEvenPagesHeaderFooter:
+			if headers(wdHeaderFooterEvenPages).exists:
+				headerFooter = HeaderFooter(headers(wdHeaderFooterEvenPages))
+				text = headerFooter.getRangeText(firstSection)
+				if text != "":
+					alignment = headerFooter.getPageNumberAlignment()
+					# Translators: event page header information
+					msg = _("Even Page Header: %s") % text
+					if alignment:
+						msg = "%s, %s" % (msg, alignment)
+					textList.append(curIndent + msg)
+			if footers(wdHeaderFooterEvenPages).exists:
+				headerFooter = HeaderFooter(footers(wdHeaderFooterEvenPages))
+				text = headerFooter.getRangeText(firstSection)
+				if text != "":
+					alignment = headerFooter.getPageNumberAlignment()
+					# Translators: Even Page Footer informations
+					msg = _("Even Page Footer: %s") % text
+					if  alignment:
+						msg = "%s, %s" % (msg, alignment)
+					textList.append(curIndent + msg)
+		headerFooter = HeaderFooter(headers(wdHeaderFooterPrimary))
+		text = headerFooter.getRangeText(firstSection)
+		if text != "":
+			alignment = headerFooter.getPageNumberAlignment()
+			# Translators: page header informations
+			msg = _("Page header: %s") % text
+			if alignment:
+				msg = "%s, %s" % (msg, alignment)
+			textList.append(curIndent + msg)
+		headerFooter = HeaderFooter(footers(wdHeaderFooterPrimary))
+		text = headerFooter.getRangeText(firstSection)
+		if text != "":
+			alignment = headerFooter.getPageNumberAlignment()
+			# Translators: page footer informations.
+			msg = _("Page Footer: %s") % text
+			if alignment:
+				msg = "%s, %s" % (msg, alignment)
+			textList.append(curIndent + msg)		
+		return textList
+
 	def getSectionInfos(self, indent=""):
 		textList = []
+		# Translators: title of section paragraph.
+		text = _("Section {index} of {count}:")
+		text = text.format(
+			index=self.sectionNumber,
+			count=str(self.winwordSectionObject.Parent.Sections.Count))
+		textList.append(indent + text)
+		curIndent = indent + "\t"
 		protectedText = _("yes") if self.protectedForForms else _("no")
 		# Translators: protection forforms information.
 		text = _("Text modification only in form fields: %s") % protectedText
-		textList.append(indent + text)
+		textList.append(curIndent + text)
 		# Translators: section's margin informations.
 		# msg_margins = _("{indent}Section' margins:\n{indent}\tLeft: {left}\n{indent}\tRight: {right}\n{indent}\tTop: {top}\n{indent}\tBottom: {bottom}") # noqa:E501
 		# Translators: section's miror margin informations
 		# msg_mirrorMargins = _("{indent}Section's argins:\n{indent}\tMirror Margins:\n{indent}\tinside: {left}\n{indent}\tOutside: {right}\n{indent}\ttop: {top}\n{indent}\tbottom {bottom}")  # noqa:E501
 		pageSetup = self.winwordSectionObject.PageSetup
+
+		"""
 		headers = self.winwordSectionObject.Headers
 		footers = self.winwordSectionObject.Footers
-		# Translators: title of section paragraph.
-		text = _("Section {index} of {count}:")
-		text = text.format(
-			index=str(self.winwordSectionObject.index),
-			count=str(self.winwordSectionObject.Parent.Sections.Count))
-		textList.append(indent + text)
-		curIndent = indent + "\t"
 		if self.pageSetup.DifferentFirstPageHeaderFooter:
 			if headers(wdHeaderFooterFirstPage).exists:
 				headerFooter = HeaderFooter(headers(wdHeaderFooterFirstPage))
@@ -475,56 +549,63 @@ class Section(object):
 				if text != "":
 					alignment = headerFooter.getPageNumberAlignment()
 					# Translators: first page header information
-					msg = curIndent + _("First Page Header: {text}, {alignment}").format(
-						text=text, aligment=alignment)
+					msg = _("First Page Header: %s") % text
+					if alignment:
+						msg = "%s, %s" %(msg, alignment)
 					textList.append(curIndent + msg)
 			if footers(wdHeaderFooterFirstPage).exists:
 				headerFooter = HeaderFooter(footers(wdHeaderFooterFirstPage))
 				text = headerFooter.getRangeText()
 				if text != "":
-					alignment = headerFooter.getPageNumberAllignment()
+					alignment = headerFooter.getPageNumberAlignment()
 					# Translators: first page footer informations.
-					msg = _("First Page Footer: {text}, {alignment}").format(
-						text=text, alignment=alignment)
+					msg = _("First Page Footer: %s") % text
+					if alignment:
+						msg = "%s, %s" % (msg, alignment)
 					textList.append(curIndent + msg)
-		else:
-			if pageSetup.OddAndEvenPagesHeaderFooter\
-				and isEvenNumber(self.winwordSectionObject.Range.Information(wdActiveEndAdjustedPageNumber)):  # noqa:E501
-				if headers(wdHeaderFooterEvenPages).exists:
-					headerFooter = HeaderFooter(headers(wdHeaderFooterEvenPages))
-					text = headerFooter.getRangeText()
-					if text != "":
-						alignment = headerFooter.getPageNumberAlignment()
-						# Translators: event page header information
-						msg = _("Even Page Header: {text}, {alignment}").format(
-							text=text, alignment=alignment)
-						textList.append(curIndent + msg)
-				if footers(wdHeaderFooterEvenPages).exists:
-					headerFooter = HeaderFooter(footers(wdHeaderFooterEvenPages))
-					text = headerFooter.getRangeText()
-					if text != "":
-						alignment = headerFooter.getPageNumberAlignment()
-						# Translators: Even Page Footer informations
-						msg = _("Even Page Footer: {text}, {alignment}").format(
-							text=text, alignment=alignment)
-						textList.append(curIndent + msg)
-			else:
-				headerFooter = HeaderFooter(headers(wdHeaderFooterPrimary))
+		#if pageSetup.OddAndEvenPagesHeaderFooter\
+			#and isEvenNumber(self.winwordSectionObject.Range.Information(wdActiveEndAdjustedPageNumber)):  # noqa:E501
+		if pageSetup.OddAndEvenPagesHeaderFooter:
+			if headers(wdHeaderFooterEvenPages).exists:
+				headerFooter = HeaderFooter(headers(wdHeaderFooterEvenPages))
 				text = headerFooter.getRangeText()
 				if text != "":
 					alignment = headerFooter.getPageNumberAlignment()
-					# Translators: page header informations
-					msg = curIndent + _("Page header: {text}, {alignment}").format(
-						text=text, aligment=alignment)
+					# Translators: event page header information
+					msg = _("Even Page Header: %s") % text
+					if alignment:
+						msg = "%s, %s" % (msg, alignment)
 					textList.append(curIndent + msg)
-				headerFooter = HeaderFooter(footers(wdHeaderFooterPrimary))
+			if footers(wdHeaderFooterEvenPages).exists:
+				headerFooter = HeaderFooter(footers(wdHeaderFooterEvenPages))
 				text = headerFooter.getRangeText()
 				if text != "":
 					alignment = headerFooter.getPageNumberAlignment()
-					# Translators: page footer informations.
-					msg = _("Page Footer: {text}, {alignment}").format(
-						text=text, alignment=alignment)
+					# Translators: Even Page Footer informations
+					msg = _("Even Page Footer: %s") % text
+					if  alignment:
+						msg = "%s, %s" % (msg, alignment)
 					textList.append(curIndent + msg)
+		headerFooter = HeaderFooter(headers(wdHeaderFooterPrimary))
+		text = headerFooter.getRangeText()
+		if text != "":
+			alignment = headerFooter.getPageNumberAlignment()
+			# Translators: page header informations
+			msg = _("Page header: %s") % text
+			if alignment:
+				msg = "%s, %s" % (msg, alignment)
+			textList.append(curIndent + msg)
+		headerFooter = HeaderFooter(footers(wdHeaderFooterPrimary))
+		text = headerFooter.getRangeText()
+		if text != "":
+			alignment = headerFooter.getPageNumberAlignment()
+			# Translators: page footer informations.
+			msg = _("Page Footer: %s") % text
+			if alignment:
+				msg = "%s, %s" % (msg, alignment)
+			textList.append(curIndent + msg)
+		"""
+		textList.extend(self.getHeaderFootersInfos(pageSetup, curIndent))
 		pageSetup = PageSetup(self.activeDocument, self.pageSetup)
 		textList.extend(pageSetup.getInfos(curIndent))
 		if not self.activeDocument.isProtected()\
@@ -532,7 +613,6 @@ class Section(object):
 			textList.append(Borders(
 				self.activeDocument,
 				self.winwordSectionObject.borders).getBordersDescription(curIndent))
-
 		return textList
 
 
@@ -822,7 +902,7 @@ class ActiveDocument(object):
 			if self.application.isCheckGrammarWithSpellingEnabled() else _("no")
 		# Translators: check grammar with speeling option information.
 		text = _("Check grammar with spelling: %s") % checkGrammarWithSpellingText
-		textList.append(text)
+		textList.append("\t" + text)
 		# Translators: text to indicate rack revision is activated.
 		text = _("Track revision: %s") % (
 			_("Yes") if self.winwordDocumentObject.TrackRevisions else _("No"))
@@ -1032,10 +1112,13 @@ class Table(object):
 		# Translators: spacing between cells.
 		text = _("Spacing between cells: %s") % pointsToDefaultUnits(self.spacing)
 		textList.append(indent + text)
-		if self.winwordTableObject.Borders.Enable:
-			textList.append(Borders(
+
+		textList.append(
+			Borders(
 				self.activeDocument,
-				self.winwordTableObject.borders).getBordersDescription(indent))
+				self.winwordTableObject.borders
+				).getBordersDescription(indent)
+			)
 		if self.tablesCount:
 			# Translators: number of tables contained in this table.
 			text = _("Contains %s tables") % self.tablesCount
@@ -1064,21 +1147,23 @@ class Borders (object):
 		return self._borderNames[borderIndex]
 
 	def getBordersDescription(self, indent=""):
+		if not self.enable:
+			return _("Without border")
 		borderCollection = self.winwordBordersObject
 		count = borderCollection.Count
 		if count == 0:
 			return ""
-		leftBorder = borderCollection(wdBorderLeft)
-		topBorder = borderCollection(wdBorderTop)
-		rightBorder = borderCollection(wdBorderRight)
-		bottomBorder = borderCollection(wdBorderBottom)
-		# see if oorders are uniform (four surrounding borders are the same)
-		lineStyle = leftBorder.LineStyle
-		lineWidth = leftBorder.LineWidth
 		description = []
 		# Translators: title of borders description
 		text = _("Borders:")
 		description.append(indent + text)
+		leftBorder = borderCollection(wdBorderLeft)
+		topBorder = borderCollection(wdBorderTop)
+		rightBorder = borderCollection(wdBorderRight)
+		bottomBorder = borderCollection(wdBorderBottom)
+		# see if orders are uniform (four surrounding borders are the same)
+		lineStyle = leftBorder.LineStyle
+		lineWidth = leftBorder.LineWidth
 		if (
 			leftBorder.Visible
 			and topBorder.Visible
@@ -1101,10 +1186,13 @@ class Borders (object):
 				artStyle = topBorder.ArtStyle
 			except:  # noqa:E722
 				artStyle = False
-
 			if artStyle:
 				artStyleText = border.getArtStyle()
-				msg = _("surrounding {color} {lineStyle} with width of {lineWidth} and art style {artStyle}")  # noqa:E501
+				# Translators:  colore and line style of borders.
+				msg = _(
+					"surrounding {color} {lineStyle}"
+					" with width of {lineWidth} and art style {artStyle}"
+				)
 				description.append(msg.format(
 					color=color, lineStyle=lineStyleText,
 					lineWidth=lineWidthText, artStyle=artStyleText))
@@ -1113,6 +1201,7 @@ class Borders (object):
 				description.append(msg.format(
 					color=color, lineStyle=lineStyleText, lineWidth=lineWidthText))
 			return " ".join(description)
+
 		# the borders are not uniform:
 		foundVisibleBorder = False
 		curIndent = indent + "\t"
@@ -1144,9 +1233,7 @@ class Borders (object):
 		if foundVisibleBorder:
 			return "\n".join(description)
 		# Translators: no border is visible
-			text = _("None")
-			description.append(text)
-			return " ".join(description)
+		return _("Without borders")
 
 
 class Border(object):

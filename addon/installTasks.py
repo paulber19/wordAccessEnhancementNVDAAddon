@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 # install.py
 # a part of wordAccessEnhancement add-on
-# Copyright 2018-2020 paulber19
+# Copyright 2018-2021 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -32,11 +32,7 @@ def onInstall():
 	import globalVars
 	import wx
 	import gui
-	import sys
-	if sys.version.startswith("3"):
-		curPath = os.path.dirname(__file__)
-	else:
-		curPath = os.path.dirname(__file__).decode("mbcs")
+	curPath = os.path.dirname(__file__)
 	from addonHandler import _availableAddons
 	addon = _availableAddons[curPath]
 	addonName = addon.manifest["name"]
@@ -76,10 +72,7 @@ def deleteFile(theFile):
 def deleteAddonConfig():
 	import globalVars
 	import sys
-	if sys.version.startswith("3"):
-		curPath = os.path.dirname(__file__)
-	else:
-		curPath = os.path.dirname(__file__).decode("mbcs")
+	curPath = os.path.dirname(__file__)
 	sys.path.append(curPath)
 	import buildVars
 	addonName = buildVars.addon_info["addon_name"]

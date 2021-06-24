@@ -1,6 +1,6 @@
 # appModules\winword\ww.choice.py
 # A part of WordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2021 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -19,6 +19,7 @@ from .ww_shapes import Shapes, InLineShapes
 from .ww_hyperlinks import Hyperlinks
 from .ww_fields import Fields
 from .ww_formfields import FormFields
+from .ww_contentControl import ContentControls
 from .ww_tables import Tables
 from .ww_headings import Headings
 from .ww_frames import Frames
@@ -37,7 +38,7 @@ del sys.path[-1]
 
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
-from ww_utils import putWindowOnForeground  # noqa:E402
+from ww_utils import putWindowOnForeground, makeAddonWindowTitle  # noqa:E402
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -45,6 +46,7 @@ addonHandler.initTranslation()
 _collectionClassDic = {
 	"bookmark": Bookmarks,
 	"comment": Comments,
+	"contentControl": ContentControls,
 	"endnote": Endnotes,
 	"field": Fields,
 	"formfield": FormFields,
@@ -61,22 +63,23 @@ _collectionClassDic = {
 	"table": Tables
 	}
 _wordObjectList = (
-			(_("Spelling error"), SpellingErrors, "document"),
-			(_("Grammatical error"), GrammaticalErrors, "document"),
-			(_("Comment"), Comments, "document"),
-			(_("Revision"), Revisions, "document"),
-			(_("Bookmark"), Bookmarks, "document"),
-			(_("Footnote"), Footnotes, "document"),
-			(_("Endnote"), Endnotes, "document"),
-			(_("Drawing layer object"), Shapes, "document"),
-			(_("Text layer object"), InLineShapes, "document"),
-			(_("Hyperlink"), Hyperlinks, "document"),
-			(_("Field"), Fields, "document"),
-			(_("Formfield"), FormFields, "document"),
-			(_("Table"), Tables, "document"),
-			(_("Heading"), Headings, "document"),
-			(_("Frame"), Frames, "document"),
-			(_("Section"), Sections, "document")
+			(SpellingErrors, "document"),
+			(GrammaticalErrors, "document"),
+			(Comments, "document"),
+			(Revisions, "document"),
+			(Bookmarks, "document"),
+			(Footnotes, "document"),
+			(Endnotes, "document"),
+			(Shapes, "document"),
+			(InLineShapes, "document"),
+			(Hyperlinks, "document"),
+			(Fields, "document"),
+			(FormFields, "document"),
+			(ContentControls, "document"),
+			(Tables, "document"),
+			(Headings, "document"),
+			(Frames, "document"),
+			(Sections, "document")
 			)
 
 
@@ -160,13 +163,13 @@ class PopulateAndReportCollection(wx.Dialog):
 
 class ChoiceDialog(wx.Dialog):
 	_instance = None
-	# Translators: title of Choice dialog
-	_title = _("%s - choice")
+	title = None
 
 	def __init__(self, parent=None, focus=None):
 		ChoiceDialog._instance = self
-		addonSummary = _curAddon.manifest["summary"]
-		title = self._title % addonSummary
+		# Translators: title of Choice dialog
+		dialogTitle = _("Elements's search")
+		title = ChoiceDialog.title = makeAddonWindowTitle(dialogTitle)
 		super(ChoiceDialog, self).__init__(
 			None, -1, title=title, style=wx.CAPTION | wx.CLOSE_BOX | wx.TAB_TRAVERSAL)
 		self.focus = focus
@@ -191,13 +194,15 @@ class ChoiceDialog(wx.Dialog):
 		super(ChoiceDialog, self).Destroy()
 
 	def initializeGUI(self):
-		self.lcLabel = _("Object's type:")
+		# Translators: label of the element's type listbox.
+		self.lcLabel = _("Element's type:")
 		self.lcSize = (300, 250)
 		self.lcID = 300
 		self.wordObjectList = _wordObjectList[:]
 		self.choice = []
-		for item in self.wordObjectList:
-			self.choice.append(item[0])
+		for (cls, r) in self.wordObjectList:
+			name = cls._name[0]
+			self.choice.append(name)
 		self.choice.sort()
 		self.rangeTypes = (
 			"focus", "selection",
@@ -298,9 +303,10 @@ class ChoiceDialog(wx.Dialog):
 
 	def getCollectionClassAndRangeType(self):
 		index = self.entriesList.GetSelection()
-		for item in self.wordObjectList:
-			if item[0] == self.choice[index]:
-				collectionClass = item[1]
+		for (cls, r) in self.wordObjectList:
+			name = cls._name[0]
+			if name == self.choice[index]:
+				collectionClass = cls
 				break
 
 		indexPart = self.lc2List.GetSelection()
@@ -369,9 +375,10 @@ class ChoiceDialog(wx.Dialog):
 			index = self.rangeTypes.index("selection")
 		else:
 			typeIndex = self.entriesList.GetSelection()
-			for item in self.wordObjectList:
-				if item[0] == self.choice[typeIndex]:
-					rangeType = item[2]
+			for (cls, rangeType) in self.wordObjectList:
+				name = cls._name[0]
+				if name == self.choice[typeIndex]:
+
 					break
 			title = self.rangeTitles[rangeType]
 			index = self.parts.index(title)

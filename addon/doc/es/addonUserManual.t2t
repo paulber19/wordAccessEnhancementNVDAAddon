@@ -28,20 +28,18 @@ Compatibilidad:
 
 ++ Características ++
 Este complemento proporciona:
-
-- [un script #HDR1] para presentar los distintos tipos de objetos a la lista (como comentarios, palabras mal escritas, , ...),
-- [un script #HDR2] para anunciar la fila, columna y número de página de la posición o selección del cursor, es decir, la posición de la celda de la tabla actual,
-- [los saltos de párrafo vacío #HDR3] al saltar de un párrafo a otro,
-- [un script para insertar un comentario sin mover el foco #HDR5],
-- [un script para leer la nota al pie o al final #HDR9] en la posición del cursor,
-- [un script para leer la modificación del texto #HDR10] en la posición del cursor,
-- [scripts adicionales para las tablas #HDR7],
-- [Órdenes de teclado específicos de Microsoft Word para una navegación rápida por el documento #HDR8],
-- [un script para pasar de una frase a otra #HDR12],
-- [un script para mostrar información sobre el documento #HDR13],
-- [Accesibilidad mejorada del corrector ortográfico #HDR14].
-- [la lectura automática de algunos elementos como comentarios, notas al pie de página o notas finales #HDR15].
-
+- [la posibilidad de inspeccionar el documento #hdr_inspect]:
+ - buscando y mostrando los elementos de un tipo de elemento dado en todos los documentos o solo en una parte del documento,
+ - recogiendo y mostrando la información sobre el documento,
+ - especificando la posición del cursor.
+- la [inserción, a la posición del cursor, un comentario, una nota al pie de página o una nota final #hdr_insert],
+- [la lectura manual o automática de algunos elementos como comentarios, notas al pie de página,  notas finales o modificación de texto #hdr_reading],
+- [funciones adicionales para las tablas #hdr_table],
+- [nuevas órdenes de teclado específicos de Microsoft Word para el modo Exploración #hdr_navigation],
+- [accesibilidad mejorada del corrector ortográfico #hdr_spellchecker],
+- [la recuperación de los scripts de NVDA #hdr_nvda] para:
+ - omitir los párrafos vacíos al saltar de un párrafo a otro,
+ - permitir el desplazamiento de una frase a otra en modo Exploración.
 
 
 ++ Actualización ++
@@ -78,88 +76,114 @@ Este complemento fue probado con las versiones de Microsoft Word 2019, 2016 y 20
 
 Advertencia: para el correcto funcionamiento del complemento, la casilla de verificación de NVDA "Utilizar UI Automation para acceder a controles de documento de Microsoft Word cuando esté disponible" no debe ser marcado. Se encuentra en la categoría Opciones "Avanzadas" de NVDA.
 
-+ Script para elegir la lista de objetos para mostrar +[hdr1]
-Este script se inicia utilizando el gesto de entrada "key_choice".
++ Inspección del documento +[hdr_inspect]
+++ Búsqueda de elementos ++[hdr1]
+El complemento permite buscar y enumerar los elementos que constituyen el documento para los siguientes tipos de elementos:
+- campo,
+- campo de formulario,
+- comentario,
+- encabezado,
+- error gramatical,
+- hipervínculo,
+- marcador,
+- marco,
+- modificación del texto,
+- nota al pie de página,
+- nota final,
+- objeto gráfico de la capa de dibujo,
+- objeto gráfico de la capa de texto,
+- palabra mal escrita,
+- sección,
+- tabla.
 
-En respuesta a este gesto de entrada, aparece un cuadro de diálogo que muestra:
 
+
+Para esto, se instala un script que se inicia utilizando el gesto de entrada "key_choice".
+
+En respuesta a este gesto de entrada, aparece un cuadro de diálogo "Búsqueda de elementos" que muestra:
 - una lista para elegir el tipo de objeto a listar,
 - una lista para elegir la parte del documento en cuestión,
-- un botón para buscar y mostrar objetos,
-- un botón "Buscar y copiar al portapapeles" para buscar y copiar los objetos encontrados en el portapapeles,,
-- un botón cerrar
+- un botón para buscar y mostrar elementos,
+- un botón "Buscar y copiar al portapapeles" para buscar y copiar los elementos encontrados en el portapapeles,,
+- un botón "Cerrar"
 
 
 Es posible salir de este cuadro de diálogo con el botón "Cerrar" o presionando la tecla "Escape".
 
-La lista ofrece los siguientes tipos de objetos:
-
-- las palabras mal escritas,
-- los errores gramaticales,
-- los comentarios,
-- los marcadores,
-- los cambios en el documento,
-- las notas al pie de página,
-- las notas al final del documento,
-- los objetos gráficos de la capa de texto,
-- los objetos gráficos de la capa de dibujo,
-- los hipervínculos,
-- los campos,
-- las tablas,
-- los títulos del documento,
-- los marcos,
-- las secciones.
-
-
 Las teclas "flecha arriba" y "flecha abajo" permite moverse por la lista.
-Con la tecla "Tabulador" se llega a la lista que presenta la elección de la parte del documento donde se buscarán los objetos del tipo seleccionado.
+
+Con la tecla "Tabulador" se llega a la lista que presenta la elección de la parte del documento donde se buscarán los elementos del tipo seleccionado.
+
 La lista ofrece las siguientes opciones:
-- "Posición del cursor": el objeto en la posición del cursor,
-- "Selección": los objetos ubicados en la selección (si hay una selección realizada),
-- "Documento": los objetos ubicados en el documento,
-- "Página": los objetos en la página actual,
-- "Desde el inicio del documento hasta el cursor": objetos ubicados entre el comienzo del documento y la posición del cursor,
-- "Desde el cursor hasta el final del documento": objetos ubicados entre la posición del cursor y el final del documento.
+- "Posición del cursor": buscar el elemento situado en la posición del cursor,
+- "Selección": buscar los elementos ubicados en la selección (si hay una selección realizada),
+- "Documento": buscar los elementos ubicados en el documento,
+- "Página": buscar los elementos ubicados en la página actual,
+- "Desde el inicio del documento hasta el cursor": buscar los elementos ubicados entre el comienzo del documento y la posición del cursor,
+- "Desde el cursor hasta el final del documento": buscar los elementos ubicados entre la posición del cursor y el final del documento.
 
 
 Por defecto, la preselección se realiza en "documento".
-Si se selecciona una parte del documento antes de la activación del script, la selección "selección" se preselecciona. De lo contrario, esta opción no está en la lista de opciones.
 
- La elección realizada, la tecla "Intro" en la lista o presionar el botón "Buscar y mostrar" activa la recopilación de información para el tipo de objeto elegido y luego la visualización del cuadro de diálogo que presenta la lista de objetos recogido.
+Si se selecciona una parte del documento antes de la activación del script, la selección "selección" se preselecciona.
+De lo contrario, esta opción no está en la lista de opciones.
+
+ La elección realizada, la tecla "Intro" en la lista o presionar el botón "Buscar y mostrar" activa la recopilación de información para el tipo de elementos elegido y luego la visualización del cuadro de diálogo que presenta la lista de elementos recolectados.
+ 
 La recolección puede tomar varios segundos.
 
-Es posible mediante el botón "Buscar y copiar al portapapeles" para iniciar la colección y copiar la lista de objetos recopilados con su información en el portapapeles, posiblemente más detallada que la pantalla.
+Es posible mediante el botón "Buscar y copiar al portapapeles" para iniciar la colección y copiar la lista de elementos recopilados con su información en el portapapeles, posiblemente más detallada que la pantalla.
 
-El cuadro que presenta la lista de objetos recopilados depende del tipo de objeto seleccionado y tiene la siguiente forma general:
-
+El cuadro que presenta la lista de elementos recopilados depende del tipo de objetos seleccionado y tiene la siguiente forma general:
 - una lista que presenta información en forma de columnas,
 - uno o dos cuadros de texto (sólo lectura),
-- botones para activar una acción en el objeto seleccionado,
+- botones para activar una acción con respecto al elemento seleccionado como:
+ - "Ir a" para llevar el cursor a donde está el elemento.
+ - "Modificar" para modificar el elemento seleccionado.
+ - "Suprimir" para eliminar el elemento.
+ - "Suprimir todo" para eliminar todos los elementos encontrados.
 - el botón "Cerrar".
 
 
 El botón "Cerrar" o presionar la tecla "Escape" cierra este cuadro de diálogo.
 
 En la lista, y sin abandonarla, es posible:
+- ya sea ir al lugar en el documento donde se encuentra el elemento seleccionado (presione la tecla "Intro"),
+- o ya sea para ciertos elementos, para eliminar el elemento seleccionado (presione la tecla "Suprimir").
 
-- ir al lugar en el documento donde se encuentra el objeto seleccionado (presione la tecla "Intro"),
-- o para ciertos objetos, para eliminar el objeto seleccionado (presione la tecla "Suprimir").
+
 Al presionar la tecla "espacio" se anuncia el texto del primer campo o, si la tecla "Control" se presiona simultáneamente, el texto del segundo campo.
 
-La información común a todos los objetos es:
 
-- el número del objeto en la lista,
-- el número de página y el número de línea donde está el objeto en el documento.
+La información común a todos los elementos es:
+- el número del elemento en la lista,
+- el número de página y el número de línea donde está el elemento en el documento.
 
 
-+ Script de anuncio de posición +[hdr2]
+++ Visualización de la información del documento ++[HDR13]
+El gesto de entrada "key_document_infos" muestra cierta información sobre el documento en un cuadro de diálogo:
+- la posición actual en el documento, como: número de página, número de línea, número de sección,
+- propiedades del documento como: nombre del archivo, nombre del autor, fecha de creación,
+- estadísticas como: el número de páginas, el número de líneas, el número de palabras,
+- información sobre secciones tales como: pies de página, notas finales, bordes,
+- información sobre tablas como: el número de filas y columnas, bordes,
+- el estado de las opciones específicas de Word como: seguimiento de cambios, revisión de ortografía o gramática mientras escribe.
+
+
+Dependiendo del número de errores ortográficos o gramaticales, el tiempo de visualización del cuadro de diálogo puede ser relativamente largo.
+
+La información que se muestra se puede copiar al portapapeles con el botón "Copiar al portapapeles" en el cuadro de diálogo.
+Este script se presenta en la categoría "ADDON_SUMMARY" del cuadro de diálogo "Gestos de entrada" de NVDA.
+
+
+
+++ Anuncio de posición del cursor del sistema ++[hdr2]
 Este script se ejecuta utilizando el gesto de entrada "key_line_page" en computadoras de escritorio o "key_laptop_line_page" en la configuración de la computadora portátil.
 
 En respuesta a este gesto de entrada, se anuncia según corresponda:
-
 - en el caso de una selección, la fila, la columna y el número de página del principio y el final,
-- en el caso donde el foco está en una tabla, el número de fila y columna de la celda de la tabla,
-- en otros casos, la fila, columna y número de página de la posición del foco.
+- en el caso donde el foco del Sistema está en una tabla, el número de fila y columna de la celda de la tabla,
+- en otros casos, la fila, columna y número de página de la posición del foco del Sistema.
 
 
 En cualquier caso, se anuncia la posición con respecto al borde izquierdo y al borde superior de la página.
@@ -169,40 +193,80 @@ El número de línea es relativo a la página y el número de columna es relativ
 Una doble pulsación del gesto de entrada muestra esta información en la pantalla.
 
 
-+ Script inserción de un commentario +[hdr5]
-Este script se inicia utilizando el gesto de entrada "key_insert_comment".
++ Inserción de elemento +[hdr_insert]
+El complemento instala un script para facilitar la inserción del elemento a la posición del cursor. Los tipos de  elementos soportados son:
+- comentario,
+- nota al pie de página,
+- nota final.
 
-En respuesta a este gesto de entrada, aparece un cuadro de diálogo que solicita ingresar el texto del comentario.
+
+Este script se inicia utilizando el gesto de entrada "key_insert_element".
+
+En respuesta a este gesto de entrada, aparece un cuadro de diálogo que muestra:
+- la lista de tipos de elementos,
+- el botón "Insertar",
+- el botón "Cerrar".
+
+
+Después de seleccionar el tipo deseado, la tecla "Intro" o el botón "Insertar" permite mostrar el cuadro de diálogo para introducir el texto  del elemento.
+
 El texto puede estar en varias líneas.
+
 El botón "Aceptar" valida la entrada.
-El botón "Cancelar" hace que la inserción se abandone.
-Si hay una selección presente, el texto comentado es el texto de esta selección. De lo contrario, es la palabra enfocada.
 
-+ Script leer la nota al pie o al final +[HDR9]
-Este script se inicia utilizando el gesto de entrada "key_report_footnote_endnote".
+El botón "Cancelar" o la validación sin texto provocará el regreso al diálogo anterior.
 
-Está destinado a leer la nota al pie o la nota al final en la posición del cursor.
-En el caso de que no haya ninguno de estos dos elementos, un mensaje de voz lo anuncia.
+Para un comentario, si hay una selección presente, el texto comentado es el texto de esta selección. De lo contrario, es la palabra enfocada.
 
-
-+ Script de lectura de la modificación del texto +[HDR10]
-Este script se inicia usando el gesto de entrada "key_report_revision".
-
-Está destinado a anunciar la edición de texto en la posición del cursor.
-Puede haber varios cambios con respecto a esta posición.
-El tipo, el autor, el texto de la modificación se anuncian.
-Un mensaje de voz indica si no hay cambios en esta posición.
-
-+ Saltar párrafos vacíos +[hdr3]
-En un documento de Word, NVDA proporciona la capacidad de moverse de un párrafo a otro utilizando las órdenes "key_next_paragraph" o "key_previous_paragraph".
-Pero el foco se da en el párrafo anterior o siguiente, independientemente de su contenido.
-Este complemento ofrece la posibilidad de omitir los párrafos vacíos y enfocar el primer párrafo no vacío encontrado.
-
-El gesto de entrada "key_toggle_skip_empty_paragraph" habilita o deshabilita esta opción, que está habilitada de manera predeterminada al instalar el complemento.
++ Lectura del elemento +[hdr_reading]
+++ Lectura manual ++
+El complemento instala scripts para leer algunos elementos en la posición del cursor. Estos son:
+- lectura de nota al pie de página o nota final: "key_report_footnote_endnote".
+- lectura de la modificación del texto: "key_report_revision".
 
 
+En el caso donde no hay elementos, un mensaje de voz lo anuncia.
 
-+ Scripts para tablas +[hdr7]
+
+Para la edición de texto, el tipo, el autor, el texto de la modificación se anuncian. Puede haber varios cambios en la posición del cursor.
+
+++ Lectura automática ++[HDR15]
+El complemento permite la lectura automática de algunos elementos (comentarios, notas al pie de página, notas finales) durante el movimiento por líneas, en modo Exploración o en "Verbalizar Todo".
+
+Esto es controlado por el grupo opciones "Lectura automática" en la categoría "Opciones" en el diálogo de configuración del complemento.
+
+En este grupo se encuentran:
+- la opción "Habilitar la lectura automática" para habilitar o deshabilitar la lectura automática,
+- la lista de casillas de verificación "Elementos concernientes" para seleccionar los elementos concernientes con la lectura automática, a saber: los comentarios, las notas al pie de página, las notas finales, los textos insertados, eliminados o modificados.
+- la elección "Leer con" que le permite elegir entre:
+ - "Voz actual": el texto se lee con la voz de la síntesis actual.
+ - "Voz actual y pitido al inicio y al final": el texto leído con la voz actual está precedido por un pitido agudo y finalizado por un pitido más grave.
+ - "otra voz": el texto se lee con las opciones de voz guardadas para la lectura automática.
+- el botón "Mostrar las opciones de voz guardadas": que abre el diálogo con todas las opciones de voz para ser utilizado en la lectura automática.
+
+
+Para leer los elementos con otra voz, se debe en primer lugar guardar las opciones de voz de esta voz mediante el gesto de entrada "key_RecordVoiceSettings". Este gesto corresponde al script "Guardar las opciones de voz para la lectura automática" y es modificable mediante el cuadro de diálogo "Gestos de entrada" de NVDA.
+
+Para encontrar rápidamente esta voz y posiblemente cambiar algunas de sus opciones, es recomendable crear un perfil de configuración que se activa manualmente.
+
+Bajo este perfil, es posible definir la voz y las opciones de voz mediante la categoría "Voz" en el cuadro de diálogo Opciones de NVDA.
+
+Una vez hecho esto, la configuración de NVDA debería ser guardada.
+
+En Word y para guardar las opciones de voz para la lectura automática, este perfil debe ser activado manualmente. La pulsación del gesto de entrada "key_RecordVoiceSettings" procederá para guardarlo.
+
+
+Una vez guardado, el perfil puede ser desactivado manualmente para encontrar las opciones de voz del perfil de configuración activo antes de la activación manual del perfil.
+
+La opción "Lectura automática" puede ser modificado mediante el script "Habilitar o deshabilitar la lectura automática" asociado con el gesto de entrada "key_AutomaticReading".
+
+Este gesto de entrada es modificable mediante el diálogo "Gestos de entrada" de NVDA.
+
+Este script se encuentra en la categoría "ADDON_SUMMARY" de este diálogo.
+
+
+
++ Funciones adicionales para tablas +[hdr_table]
 ++ Anunciar elementos de la tabla ++
 El complemento instala scripts con su gesto de entrada para anunciar los elementos que componen una tabla (celda, fila y columna) sin tener que mover el cursor.
 
@@ -303,33 +367,36 @@ Para deshabilitar la capa de órdenes para una tabla, simplemente vuelva a pulsa
 El gesto de entrada "key_report_headers" permite conocer el título de la línea y la columna de la celda actual.
 
 
-
 ++ Desplazamiento mediante tabulación en la tabla ++
 En una tabla, es posible pasar de celda en celda mediante tabulación pero llegado al final de la tabla, cualquier nueva tabulación provoca la creación de una nueva fila.
 Para evitar esto, el complemento añade el anuncio de la llegada en la primera o la última celda de la tabla.
 
 
-
-+ Órdenes para la navegación rápida en el documento +[HDR8]
++ Nuevas órdenes Para el modo exploración +[hdr_navigation]
 Para moverse rápidamente en el documento, NVDA ofrece el modo exploración que se activa y desactiva utilizando el gesto de entrada "NVDA + espacio".
 Cuando se activa este modo, ya no es posible escribir texto en el documento.
+
 Cada tipo de elemento está asociado con una sola tecla en el teclado. Al presionar esta tecla, el cursor se coloca en el siguiente elemento del mismo tipo. Al pulsar esta misma tecla con mayúscula presionada, el cursor se posiciona en el elemento anterior del mismo tipo.
 Estas órdenes son comunes a otras aplicaciones, como los navegadores de Internet.
 
-Este complemento agrega las siguientes órdenes específicos para Microsoft Word.
+Este complemento añade las siguientes órdenes específicos para Microsoft Word.
 - "key_BrowseMode_comment": comentario,
 - "key_BrowseMode_field": campo,
 - "key_BrowseMode_bookmark": marcador,
 - "key_BrowseMode_endnote": nota final,
-- "key_BrowseMode_footnote": nota al pie,
-- "key_BrowseMode_grammaticalError": error de gramática,
+- "key_BrowseMode_footnote": nota al pie de página,
+- "key_BrowseMode_grammaticalError": error gramatical,
 - "key_BrowseMode_revision": modificación de texto,
 - "key_BrowseMode_section": sección,
 
 
+Las órdenes del modo exploración no admitidos se indican mediante el mensaje de voz "No admitido en este documento" y todas las demás órdenes, mediante un pitido.
+
 La imposibilidad de mover el cursor se indica mediante un mensaje de voz que indica que ya no hay ningún elemento correspondiente a la órden.
 
-Las órdenes del modo exploración no admitidos se indican mediante el mensaje de voz "No admitido en este documento" y todas las demás órdenes, mediante un pitido.
+El complemento añade la posibilidad de navegar en bucle, es decir, para volver al principio o al final del documento, para continuar la búsqueda del elemento siguiente o anterior.
+
+La opción "Navegar en bucle" en la categoría "Opciones" controla esta posibilidad.
 
 Los tipos de elementos asociados con estas nuevas órdenes se añaden en la lista de tipos del diálogo  "Lista de elementos" abierto con "NVDA+F7".
 
@@ -337,31 +404,7 @@ Para algunos tipos como "palabras mal escritas", "errores gramaticales",...),", 
 
 Por lo tanto, el tiempo de búsqueda se limita a 20 segundos de forma predeterminada. Este tiempo máximo se puede cambiar utilizando la lista desplegable "Tiempo máximo de búsqueda de elementos " en la categoría "Opciones" en el diálogo de configuración del complemento.
 
-
-+ Moverse de frase en frase +[HDR12]
-Los siguientes gestos de entrada se utilizan para mover el cursor del sistema de frase en frase:
-- "key_next_sentence": pasar a la siguiente frase",
-- "key_previous_sentence": pasar a la frase anterior.
-
-
-Estos scripts se presentan en la categoría "ADDON_SUMMARY" del cuadro de diálogo "Gestos de entrada" de NVDA.
-
-+ Visualización de la información del documento +[HDR13]
-El gesto de entrada "key_document_infos" muestra cierta información sobre el documento en un cuadro de diálogo:
-- la posición actual en el documento, como: número de página, número de línea, número de sección,
-- propiedades del documento como: nombre del archivo, nombre del autor, fecha de creación,
-- estadísticas como: el número de páginas, el número de líneas, el número de palabras,
-- información sobre secciones tales como: pies de página, notas finales, bordes,
-- información sobre tablas como: el número de filas y columnas, bordes,
-- el estado de las opciones específicas de Word como: seguimiento de cambios, revisión de ortografía o gramática mientras escribe.
-
-
-Dependiendo del número de errores ortográficos o gramaticales, el tiempo de visualización del cuadro de diálogo puede ser relativamente largo.
-
-La información que se muestra se puede copiar al portapapeles con el botón "Copiar al portapapeles" en el cuadro de diálogo.
-Este script se presenta en la categoría "ADDON_SUMMARY" del cuadro de diálogo "Gestos de entrada" de NVDA.
-
-+ Accesibilidad mejorada del corrector ortográfico +[HDR14]
++ Accesibilidad mejorada del corrector ortográfico +[hdr_spellchecker]
 Cuando el foco se coloca en el documento, la tecla "f7" (acceso directo de Word) permite iniciar el corrector ortográfico o volver a él si ya está iniciado y la tecla "Esc" le permite volver al documento cuando el foco está en el corrector ortográfico.
 
 El complemento ofrece la posibilidad de utilizar también la tecla "f7" para ejecutar la misma acción que la tecla "Esc".
@@ -387,39 +430,29 @@ El gesto de entrada "key_report_CURRENT_SENTENCE" le permite escuchar nuevamente
 Estos scripts se presentan en la categoría "ADDON_SUMMARY" del cuadro de diálogo "Gestos de entrada" de NVDA.
 
 Este complemento también permite el anuncio automático del nuevo error y su sugerencia presentada por el corrector ortográfico después del uso de uno de los botones como "Ignorar", "Modificar" o accesos directos de Word como "i", "m ".
-+ Lectura automática de elementos +[HDR15]
-Para las versiones de NVDA superior o igual a la 2019.3 el complemento permite la lectura automática de algunos elementos (comentarios, notas al pie de página, notas finales) durante el movimiento por líneas, en modo Exploración o en "Verbalizar Todo".
++ Recuperación de los scripts de NVDA +[hdr_nvda]
+++ Omitir los párrafos vacíos ++[hdr3]
+En un documento de Word, NVDA proporciona la capacidad de moverse de un párrafo a otro utilizando las órdenes "key_next_paragraph" o "key_previous_paragraph".
+Pero el foco se da en el párrafo anterior o siguiente, independientemente de su contenido.
+Este complemento ofrece la posibilidad de omitir los párrafos vacíos y enfocar el primer párrafo no vacío encontrado.
 
-Esto es controlado por el grupo opciones "Lectura automática" en la categoría "Opciones" en el diálogo de configuración del complemento.
+La opción "Saltar los párrafos vacíos"" en la categoría "Opciones" habilita o deshabilita esta ejecución.
 
-En este grupo se encuentran:
-- la opción "Habilitar la lectura automática" para habilitar o deshabilitar la lectura automática,
-- la lista de casillas de verificación "Elementos concernientes" para seleccionar los elementos concernientes con la lectura automática, a saber: los comentarios, las notas al pie de página y las notas finales.
-- la elección "Leer con" que le permite elegir entre:
- - "nada": el texto se lee como tal.
- - "un pitido al inicio y al final": el texto leído está precedido por un pitido agudo y finalizado por un pitido más grave.
- - "otra voz": el texto se lee con las opciones de voz guardadas para la lectura automática.
-- el botón "Mostrar las opciones de voz guardadas": que abre el diálogo con todas las opciones de voz para ser utilizado en la lectura automática.
+Esta opción está marcada por defecto. Los párrafos vacíos son omitidos.
 
+En cualquier momento, también es posible habilitar o deshabilitar esta ejecución mediante el gesto de entrada "key_toggle_skip_empty_paragraph".
 
-Para leer los elementos con otra voz, se debe en primer lugar guardar las opciones de voz de esta voz mediante el gesto de entrada "key_RecordVoiceSettings". Este gesto corresponde al script "Guardar las opciones de voz para la lectura automática" y es modificable mediante el cuadro de diálogo "Gestos de entrada" de NVDA.
+++ Moverse de frase en frase ++[HDR12]
+NVDA ofrece la posibilidad de mover el cursor del sistema de frase en frase mediante  los siguientes gestos de entrada:
+- "key_next_sentence": pasar a la siguiente frase",
+- "key_previous_sentence": pasar a la frase anterior.
 
-Para encontrar rápidamente esta voz y posiblemente cambiar algunas de sus opciones, es recomendable crear un perfil de configuración que se activa manualmente.
+Pero es operativo solo en modo de edición y no en modo Exploración.
 
-Bajo este perfil, es posible definir la voz y las opciones de voz mediante la categoría "Voz" en el cuadro de diálogo Opciones de NVDA.
+Para eliminar esta limitación, el complemento los reemplaza con nuevos scripts usando los mismos gestos de entrada.
 
-Una vez hecho esto, la configuración de NVDA debería ser guardada.
+Estos nuevos scripts se presentan en la categoría "ADDON_SUMMARY" del cuadro de diálogo "Gestos de entrada" de NVDA.
 
-En Word y para guardar las opciones de voz para la lectura automática, este perfil debe ser activado manualmente. La pulsación del gesto de entrada "key_RecordVoiceSettings" procederá para guardarlo.
-
-
-Una vez guardado, el perfil puede ser desactivado manualmente para encontrar las opciones de voz del perfil de configuración activo antes de la activación manual del perfil.
-
-La opción "Lectura automática" puede ser modificado mediante el script "Habilitar o deshabilitar la lectura automática" asociado con el gesto de entrada "key_AutomaticReading".
-
-Este gesto de entrada es modificable mediante el diálogo "Gestos de entrada" de NVDA.
-
-Este script se encuentra en la categoría "ADDON_SUMMARY" de este diálogo.
 
 + Historial +
 El historial de las versiones del complemento está en el archivo ["changes.html" changes.html]

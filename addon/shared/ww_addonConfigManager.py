@@ -10,17 +10,10 @@ import os
 import config
 import globalVars
 from configobj import ConfigObj
-# ConfigObj 5.1.0 and later integrates validate module.
-try:
-	from configobj.validate import Validator
-except ImportError:
-	from validate import Validator
-from ww_py3Compatibility import importStringIO
-try:
-	import cPickle
-except ModuleNotFoundError:
-	import _pickle as cPickle
-StringIO = importStringIO()
+from configobj.validate import Validator
+from io import StringIO
+import _pickle as cPickle
+
 
 addonHandler.initTranslation()
 
@@ -49,11 +42,16 @@ ID_AutomaticReading = "AutomaticReading"
 ID_CommentReport = "CommentReport"
 ID_FootnoteReport = "FootnoteReport"
 ID_EndnoteReport = "EndnoteReport"
+ID_InsertedTextReport = "InsertedTextReport"
+ID_DeletedTextReport = "DeletedTextReport"
+ID_RevisedTextReport = "RevisedTextReport"
+ID_ReportRevisionTypeWithAuthor = "ReportRevisionTypeWithAuthor"
+
 ID_AutoReadingWith = "AutoReadingWith"
 ID_AutoReadingSynthName = "AutoReadingSynthName"
 ID_AutoReadingSynthSpeechSettings = "AutoReadingSynthSpeechSettings"
 # values for AutoReadingWith option
-AutoReadingWith_NoThing = 0
+AutoReadingWith_CurrentVoice = 0
 AutoReadingWith_Beep = 1
 AutoReadingWith_Voice = 2
 
@@ -200,6 +198,10 @@ class AddonConfiguration21(BaseAddonConfiguration):
 	{commentReport} =boolean(default=True)
 	{footnoteReport} = boolean(default=True)
 	{endnoteReport} = boolean(default=True)
+	{insertedTextReport} = boolean(default=True)
+	{deletedTextReport} = boolean(default=True)
+		{revisedTextReport} = boolean(default=True)
+				{reportRevisionTypeWithAuthor} = boolean(default=True)
 	{autoReadingWith} = integer(default=1)
 	""".format(
 		section=SCT_AutoReport,
@@ -207,6 +209,10 @@ class AddonConfiguration21(BaseAddonConfiguration):
 		commentReport=ID_CommentReport,
 		footnoteReport=ID_FootnoteReport,
 		endnoteReport = ID_EndnoteReport,
+		insertedTextReport=ID_InsertedTextReport,
+		deletedTextReport=ID_DeletedTextReport,
+		revisedTextReport=ID_RevisedTextReport,
+		reportRevisionTypeWithAuthor=ID_ReportRevisionTypeWithAuthor,
 		autoReadingWith=ID_AutoReadingWith)
 
 	configspec = ConfigObj(StringIO("""# addon Configuration File
@@ -392,7 +398,17 @@ class AddonConfigurationManager():
 		return self._toggleAutoReportOption(ID_FootnoteReport, toggle)
 	def toggleAutoEndnoteReadingOption(self, toggle=True):
 		return self._toggleAutoReportOption(ID_EndnoteReport, toggle)
+	def toggleAutoInsertedTextReadingOption(self, toggle=True):
+		return self._toggleAutoReportOption(ID_InsertedTextReport, toggle)
 
+	def toggleAutoDeletedTextReadingOption(self, toggle=True):
+		return self._toggleAutoReportOption(ID_DeletedTextReport, toggle)
+
+	def toggleReportRevisionTypeWithAuthorOption(self, toggle=True):
+		return self._toggleAutoReportOption(ID_ReportRevisionTypeWithAuthor, toggle)
+
+	def toggleAutoRevisedTextReadingOption(self, toggle=True):
+		return self._toggleAutoReportOption(ID_RevisedTextReport, toggle)
 	def getAutoReadingSynthSettings(self):
 		if self._autoReadingSynth is None:
 			path = os.path.join(

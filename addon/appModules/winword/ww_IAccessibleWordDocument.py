@@ -46,5 +46,6 @@ except ImportError:
 
 class IAccessibleWordDocument(ww_wordDocumentBase.WordDocument, WordDocument):
 	treeInterceptorClass = ww_browseMode.WordDocumentTreeInterceptorEx
-	shouldCreateTreeInterceptor = False
+	shouldCreateTreeInterceptor = True
+	disableAutoPassThrough = True
 	TextInfo = WindowWinwordWordDocumentTextInfo

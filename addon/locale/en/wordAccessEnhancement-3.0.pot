@@ -1,29 +1,28 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: wordAccessEnhancement 2.07\n"
+"Project-Id-Version: wordAccessEnhancement 3.0\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
-"POT-Creation-Date: 2021-05-23 09:51+0200\n"
-"PO-Revision-Date: 2021-05-27 11:50+0300\n"
-"Last-Translator: Paul ( french scriptNVDA list)\n"
-"Language-Team: cagrid@hotmail.com\n"
-"Language: tr\n"
+"POT-Creation-Date: 2021-06-24 11:10+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
-"X-Poedit-Basepath: ../../..\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.4.3\n"
-"X-Poedit-Bookmarks: -1,-1,-1,96,-1,-1,-1,-1,-1,-1\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SearchPath-0: .\n"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on to be shown
 #. on installation and add-on information.
 #: buildVars.py:23
 msgid "Microsoft Word text editor:   accessibility enhancement"
-msgstr "Microsoft Word Metin Editörü: Tamamlayıcı Erişilebilirlik"
+msgstr ""
 
 #. Add-on description
 #. Translators: Long description to be shown for this add-on
@@ -59,56 +58,28 @@ msgid ""
 "This add-on has been tested with Microsoft Word 2019, 2016 and 2013 (perhaps "
 "works also with Word 365).\n"
 msgstr ""
-"Bu eklenti, Microsoft Word ile çalışırken ekstra işlevsellik katar:\n"
-"* nesne türünü belirleyerek bir çok farklı nesnenin listelenmesi için bir "
-"komut tuşu (Windows + alt + f5 \") (yorumlar, revizyonlar, form alanları, "
-"sonnotlar, dipnotlar, yazım hataları, gramer hataları, ... gibi).\n"
-"* imleç konumunun satırını, sütununu ve sayfasını veya seçimin başlangıcı ve "
-"bitişini veya geçerli hücrenin hücresini bildirmek için bir komut tuşu "
-"(\"Alt + sil\" \"),\n"
-"* yorum eklemek için bir komut tuşu (\"windows+alt+f2\"),\n"
-"* imlecin bulunduğu konumdaki revizyonu bildiren bir komut (\"windows + alt "
-"+ m\"),\n"
-"* İmlecin konumundaki sonnot veya dipnotu bildirmek için bir komut "
-"(\"windows + alt + n\"),\n"
-"*  paragraf paragraf dolaşılırken kontrol+aşağı-yukarı yön tuşlarına "
-"basıldığında boş paragrafların atlanma olanağı (opsiyonel).\n"
-"* Tabloda hareket etmek ve tablonun öğelerini okumak için bazı komutlar "
-"(satır, sütun, hücre),\n"
-"* Word'e özel tarama kipi dolaşma komutları,\n"
-"* cümle cümle dolaşma imkanı (\"alt + aşağı ok\" ve \"alt + yukarı ok\" tuş "
-"komutları),\n"
-"* belge bilgilerini gösteren bir komut (windows+alt+f1\"),\n"
-"* yazım denetimi için erişilebilirlik geliştirme (Word 2013 ve 2016):\n"
-"\t* yazım veya dilbilgisi hatasını bildiren ve yazım denetleyicisi "
-"tarafından önerilen düzeltmeyi bildiren bir komut (NVDA+shift+f7\"),\n"
-"\t* Odak altındaki cümleyi bildiren bir komut (NVDA+control+f7\"),\n"
-"* yorumların ve dipnotların otomatik okunması, 2019.3 ve sonrası için "
-"geçerli.\n"
-"Bu modül Microsoft Word 2019, 2016 ve 2013 ile test edilmiştir. Belki ofis "
-"365 ile de çalışabilir.\n"
 
 #. Translators: the label of a message box dialog
 #. to ask the user if he wants keep current configuration settings.
 #: installTasks.py:49
 msgid "Do you want to keep current add-on configuration settings ?"
-msgstr "Eklentinin önceki ayarlarını korumak ister misiniz?"
+msgstr ""
 
 #. Translators: the title of a message box dialog.
 #: installTasks.py:51
 #, python-format
 msgid "%s - installation"
-msgstr "%s - Kurulumu"
+msgstr ""
 
 #. Translators: Reported when text contains a comment.
 #: appModules\winword\ww_automaticReading.py:204
 #, python-format
 msgid "comment of %s:"
-msgstr "%s açıklaması:"
+msgstr ""
 
 #: appModules\winword\ww_automaticReading.py:204
 msgid "comment:"
-msgstr "Açıklama"
+msgstr ""
 
 #. Translators: odd And Even Pages Header Footer information.
 #: appModules\winword\ww_automaticReading.py:1341
@@ -119,7 +90,7 @@ msgstr "Açıklama"
 #: appModules\winword\ww_sections.py:192
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:178
 msgid "yes"
-msgstr "Evet"
+msgstr ""
 
 #: appModules\winword\ww_automaticReading.py:1341
 #: appModules\winword\ww_document.py:212 appModules\winword\ww_document.py:288
@@ -129,12 +100,12 @@ msgstr "Evet"
 #: appModules\winword\ww_sections.py:192
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:178
 msgid "no"
-msgstr "Hayır"
+msgstr ""
 
 #. Translators: message to user to report automatic reading voice record.
 #: appModules\winword\ww_automaticReading.py:1381
 msgid "Current voice settings have beenset for automatic reading"
-msgstr "Geçerli ses konfigürasyonu otomatik okuma için ayarlandı"
+msgstr ""
 
 #. Translators: information of bookmark element.
 #: appModules\winword\ww_bookmarks.py:44
@@ -145,104 +116,105 @@ msgid ""
 "Associated Ttext:\n"
 "{text}\n"
 msgstr ""
-"Sayfa {page}, satır {line}\n"
-"Tür: {storyTypeText}\n"
-"İlgili metin:\n"
-"{text}\n"
 
 #. Translators: name of collection element type
 #: appModules\winword\ww_bookmarks.py:61
 #: appModules\winword\ww_browseMode.py:351
 msgid "Bookmark"
-msgstr "Yer imi"
+msgstr ""
 
 #: appModules\winword\ww_bookmarks.py:61 appModules\winword\ww_bookmarks.py:77
 #: appModules\winword\ww_headerFooters.py:67
 msgid "Bookmarks"
-msgstr "Yer imleri"
+msgstr ""
 
 #. Translators: text to report no bookmark.
 #: appModules\winword\ww_bookmarks.py:68
 msgid "No bookmark"
-msgstr "Yer imi yok"
+msgstr ""
 
 #: appModules\winword\ww_bookmarks.py:79 appModules\winword\ww_comments.py:114
 #: appModules\winword\ww_contentControl.py:93
 #: appModules\winword\ww_endnotes.py:83 appModules\winword\ww_fields.py:86
-#: appModules\winword\ww_footnotes.py:80 appModules\winword\ww_formfields.py:78
+#: appModules\winword\ww_footnotes.py:80
+#: appModules\winword\ww_formfields.py:78
 #: appModules\winword\ww_grammaticalErrors.py:69
 #: appModules\winword\ww_headerFooters.py:69
 #: appModules\winword\ww_hyperlinks.py:95
 #: appModules\winword\ww_revisions.py:154 appModules\winword\ww_shapes.py:178
 #: appModules\winword\ww_spellingErrors.py:69
 msgid "Number"
-msgstr "Sayı"
+msgstr ""
 
 #: appModules\winword\ww_bookmarks.py:80 appModules\winword\ww_comments.py:115
 #: appModules\winword\ww_contentControl.py:94
 #: appModules\winword\ww_endnotes.py:84 appModules\winword\ww_fields.py:87
-#: appModules\winword\ww_footnotes.py:81 appModules\winword\ww_formfields.py:79
-#: appModules\winword\ww_frames.py:73
+#: appModules\winword\ww_footnotes.py:81
+#: appModules\winword\ww_formfields.py:79 appModules\winword\ww_frames.py:73
 #: appModules\winword\ww_grammaticalErrors.py:70
 #: appModules\winword\ww_headerFooters.py:70
-#: appModules\winword\ww_headings.py:104 appModules\winword\ww_hyperlinks.py:96
+#: appModules\winword\ww_headings.py:104
+#: appModules\winword\ww_hyperlinks.py:96
 #: appModules\winword\ww_revisions.py:155 appModules\winword\ww_shapes.py:179
 #: appModules\winword\ww_spellingErrors.py:70
 #: appModules\winword\ww_tables.py:319
 msgid "Location"
-msgstr "konum"
+msgstr ""
 
 #: appModules\winword\ww_bookmarks.py:81
 #: appModules\winword\ww_headerFooters.py:71
 #: appModules\winword\ww_hyperlinks.py:97 appModules\winword\ww_shapes.py:180
 msgid "Name"
-msgstr "isim"
+msgstr ""
 
 #: appModules\winword\ww_bookmarks.py:82
 #: appModules\winword\ww_headerFooters.py:72
 msgid "Story type"
-msgstr "tür"
+msgstr ""
 
 #: appModules\winword\ww_bookmarks.py:91 appModules\winword\ww_comments.py:126
 #: appModules\winword\ww_contentControl.py:102
 #: appModules\winword\ww_endnotes.py:92 appModules\winword\ww_fields.py:95
-#: appModules\winword\ww_footnotes.py:89 appModules\winword\ww_formfields.py:87
-#: appModules\winword\ww_frames.py:84
+#: appModules\winword\ww_footnotes.py:89
+#: appModules\winword\ww_formfields.py:87 appModules\winword\ww_frames.py:84
 #: appModules\winword\ww_grammaticalErrors.py:79
 #: appModules\winword\ww_headerFooters.py:81
 #: appModules\winword\ww_headings.py:113
 #: appModules\winword\ww_hyperlinks.py:107
-#: appModules\winword\ww_revisions.py:167 appModules\winword\ww_sections.py:276
-#: appModules\winword\ww_shapes.py:192
+#: appModules\winword\ww_revisions.py:167
+#: appModules\winword\ww_sections.py:276 appModules\winword\ww_shapes.py:192
 #: appModules\winword\ww_spellingErrors.py:77
 #: appModules\winword\ww_tables.py:331
 msgid "&Go to"
-msgstr "&Git"
+msgstr ""
 
 #: appModules\winword\ww_bookmarks.py:92 appModules\winword\ww_comments.py:128
 #: appModules\winword\ww_contentControl.py:103
 #: appModules\winword\ww_endnotes.py:94 appModules\winword\ww_fields.py:96
-#: appModules\winword\ww_footnotes.py:91 appModules\winword\ww_formfields.py:88
-#: appModules\winword\ww_frames.py:85 appModules\winword\ww_headerFooters.py:82
+#: appModules\winword\ww_footnotes.py:91
+#: appModules\winword\ww_formfields.py:88 appModules\winword\ww_frames.py:85
+#: appModules\winword\ww_headerFooters.py:82
 #: appModules\winword\ww_hyperlinks.py:108 appModules\winword\ww_shapes.py:193
 #: appModules\winword\ww_tables.py:332
 msgid "&Delete"
-msgstr "&Sil"
+msgstr ""
 
 #: appModules\winword\ww_bookmarks.py:93 appModules\winword\ww_comments.py:129
 #: appModules\winword\ww_contentControl.py:104
 #: appModules\winword\ww_endnotes.py:95 appModules\winword\ww_fields.py:97
-#: appModules\winword\ww_footnotes.py:92 appModules\winword\ww_formfields.py:89
+#: appModules\winword\ww_footnotes.py:92
+#: appModules\winword\ww_formfields.py:89
 #: appModules\winword\ww_headerFooters.py:83
 msgid "Delete &all"
-msgstr "&Tümünü sil"
+msgstr ""
 
 #: appModules\winword\ww_bookmarks.py:96
 #: appModules\winword\ww_headerFooters.py:86
 msgid "Bookmark's text"
-msgstr "Yer imi metni"
+msgstr ""
 
-#: appModules\winword\ww_bookmarks.py:102 appModules\winword\ww_comments.py:143
+#: appModules\winword\ww_bookmarks.py:102
+#: appModules\winword\ww_comments.py:143
 #: appModules\winword\ww_contentControl.py:118
 #: appModules\winword\ww_endnotes.py:105 appModules\winword\ww_fields.py:110
 #: appModules\winword\ww_footnotes.py:102
@@ -251,271 +223,272 @@ msgstr "Yer imi metni"
 #: appModules\winword\ww_headerFooters.py:92
 #: appModules\winword\ww_headings.py:119
 #: appModules\winword\ww_hyperlinks.py:118
-#: appModules\winword\ww_revisions.py:229 appModules\winword\ww_sections.py:282
-#: appModules\winword\ww_sections.py:284 appModules\winword\ww_shapes.py:202
+#: appModules\winword\ww_revisions.py:229
+#: appModules\winword\ww_sections.py:282 appModules\winword\ww_sections.py:284
+#: appModules\winword\ww_shapes.py:202
 #: appModules\winword\ww_spellingErrors.py:89
 #: appModules\winword\ww_tables.py:339
 msgid "Page {page}, line {line}"
-msgstr "Sayfa {page}, satır {line}"
+msgstr ""
 
 #: appModules\winword\ww_browseMode.py:46
 msgid "Extended browse mode for Microsoft Word"
-msgstr "Microsoft Word için genişletilmiş tarama kipi"
+msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
 #: appModules\winword\ww_browseMode.py:106
 msgid "moves to the next grammatical error"
-msgstr "Sonraki dilbilgisi hatasına git"
+msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
 #: appModules\winword\ww_browseMode.py:108
 msgid "no next grammatical error"
-msgstr "İleride dilbilgisi hatası yok"
+msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
 #: appModules\winword\ww_browseMode.py:110
 msgid "moves to the previous grammatical error"
-msgstr "Önceki dilbilgisi hatasına git"
+msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
 #: appModules\winword\ww_browseMode.py:112
 msgid "no previous grammatical error"
-msgstr "Geride dilbilgisi hatası yok"
+msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
 #: appModules\winword\ww_browseMode.py:118
 msgid "moves to the next revision"
-msgstr "Sonraki metin değişikliğine git"
+msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
 #: appModules\winword\ww_browseMode.py:120
 msgid "no next revision"
-msgstr "İleride revizyon yok"
+msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
 #: appModules\winword\ww_browseMode.py:122
 msgid "moves to the previous revision"
-msgstr "Önceki metin değişikliğine git"
+msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
 #: appModules\winword\ww_browseMode.py:124
 msgid "no previous revision"
-msgstr "Geride revizyon yok"
+msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
 #: appModules\winword\ww_browseMode.py:130
 msgid "moves to the next comment"
-msgstr "Sonraki açıklamaya git"
+msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
 #: appModules\winword\ww_browseMode.py:132
 msgid "no next comment"
-msgstr "İleride açıklama yok"
+msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
 #: appModules\winword\ww_browseMode.py:134
 msgid "moves to the previous comment"
-msgstr "Önceki açıklamaya git"
+msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
 #: appModules\winword\ww_browseMode.py:136
 msgid "no previous comment"
-msgstr "Geride açıklama yok"
+msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
 #: appModules\winword\ww_browseMode.py:142
 msgid "moves to the next field"
-msgstr "Sonraki alana git"
+msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
 #: appModules\winword\ww_browseMode.py:144
 msgid "no next field"
-msgstr "İleride alan yok"
+msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
 #: appModules\winword\ww_browseMode.py:146
 msgid "moves to the previous field"
-msgstr "Önceki alana git"
+msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
 #: appModules\winword\ww_browseMode.py:148
 msgid "no previous field"
-msgstr "Geride alan yok"
+msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
 #: appModules\winword\ww_browseMode.py:155
 msgid "moves to the next bookmark"
-msgstr "Sonraki yer imine git"
+msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
 #: appModules\winword\ww_browseMode.py:157
 msgid "no next bookmark"
-msgstr "İleride yer imi yok"
+msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
 #: appModules\winword\ww_browseMode.py:159
 msgid "moves to the previous bookmark"
-msgstr "Önceki yer imine git"
+msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
 #: appModules\winword\ww_browseMode.py:161
 msgid "no previous bookmark"
-msgstr "Geride yer imi yok"
+msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
 #: appModules\winword\ww_browseMode.py:167
 msgid "moves to the next endnote"
-msgstr "Sonraki sonnota git"
+msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
 #: appModules\winword\ww_browseMode.py:169
 msgid "no next endnote"
-msgstr "İleride sonnot yok"
+msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
 #: appModules\winword\ww_browseMode.py:171
 msgid "moves to the previous endnote"
-msgstr "önceki sonnota git"
+msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
 #: appModules\winword\ww_browseMode.py:173
 msgid "no previous endnote"
-msgstr "Geride sonnot yok"
+msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
 #: appModules\winword\ww_browseMode.py:179
 msgid "moves to the next footnote"
-msgstr "Sonraki dipnota git"
+msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
 #: appModules\winword\ww_browseMode.py:181
 msgid "no next footnote"
-msgstr "İleride dipnot yok"
+msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
 #: appModules\winword\ww_browseMode.py:183
 msgid "moves to the previous footnote"
-msgstr "Önceki dipnota git"
+msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
 #: appModules\winword\ww_browseMode.py:185
 msgid "no previous footnote"
-msgstr "Geride dipnot yok"
+msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
 #: appModules\winword\ww_browseMode.py:191
 msgid "moves to the next section"
-msgstr "Sonraki bölüme git"
+msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
 #: appModules\winword\ww_browseMode.py:193
 msgid "no next section"
-msgstr "İleride bölüm yok"
+msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
 #: appModules\winword\ww_browseMode.py:195
 msgid "moves to the previous section"
-msgstr "Önceki bölüme git"
+msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
 #: appModules\winword\ww_browseMode.py:197
 msgid "no previous section"
-msgstr "Geride bölüm yok"
+msgstr ""
 
 #. Translators: message to the user which indicates the return
 #. to the bottom of the page.
 #: appModules\winword\ww_browseMode.py:230
 msgid "Return to bottom of page"
-msgstr "Sayfanın sonuna dön"
+msgstr ""
 
 #. Translators: message to user which indicates the return
 #. to the top of the page.
 #: appModules\winword\ww_browseMode.py:235
 msgid "Return to top of page"
-msgstr "Sayfanın başına dön"
+msgstr ""
 
 #: appModules\winword\ww_browseMode.py:352
 msgid "{name} text: {text}"
-msgstr "{name} metin: {text}"
+msgstr ""
 
 #: appModules\winword\ww_browseMode.py:356
 #, python-format
 msgid "Bookmark %s"
-msgstr "Yer imi %s"
+msgstr ""
 
 #: appModules\winword\ww_browseMode.py:369
 msgid "Endnote{index}"
-msgstr "Sonnot {index}"
+msgstr ""
 
 #. Translators: field index and type.
 #: appModules\winword\ww_browseMode.py:405
 msgid "Field {index}, type: {type}"
-msgstr "Alan {index}, tür: {type}"
+msgstr ""
 
 #. Translators: label for a footnote.
 #: appModules\winword\ww_browseMode.py:437
 msgid "Footnote {index}"
-msgstr "dipnot {index}"
+msgstr ""
 
 #: appModules\winword\ww_browseMode.py:482
 #, python-format
 msgid "%s"
-msgstr "%s"
+msgstr ""
 
 #: appModules\winword\ww_browseMode.py:519
 msgid "Section {index}"
-msgstr "Bölüm {index}"
+msgstr ""
 
 #: appModules\winword\ww_browseMode.py:523
 #, python-format
 msgid "Section %s"
-msgstr "Bölüm %s"
+msgstr ""
 
 #. Translators: title of dialog.
 #: appModules\winword\ww_choice.py:92
 msgid "Informations 's collection"
-msgstr "Informations 's collection"
+msgstr ""
 
 #. Translators: message to user for waiting result
 #. Translators: message to user for waiting.
 #: appModules\winword\ww_choice.py:98 appModules\winword\ww_document.py:945
 msgid "Please wait"
-msgstr "Lütfen bekleyin"
+msgstr ""
 
 #. Translators: label of interrupt to clipboard button.
 #: appModules\winword\ww_choice.py:127
 msgid "&interrupt"
-msgstr "Du&rdur"
+msgstr ""
 
 #: appModules\winword\ww_choice.py:129
 msgid "&Cancel"
-msgstr "&İptal"
+msgstr ""
 
 #: appModules\winword\ww_choice.py:156
 msgid "Interrupted"
-msgstr "Kesildi"
+msgstr ""
 
 #. Translators: title of Choice dialog
 #: appModules\winword\ww_choice.py:171
 msgid "Elements's search"
-msgstr "Öğe arama"
+msgstr ""
 
 #. Translators: label of the element's type listbox.
 #: appModules\winword\ww_choice.py:198
 msgid "Element's type:"
-msgstr "Öğe türü:"
+msgstr ""
 
 #: appModules\winword\ww_choice.py:211
 msgid "Part of document:"
-msgstr "Belge kısmı"
+msgstr ""
 
 #: appModules\winword\ww_choice.py:215
 msgid "Cursor's positionFocus"
-msgstr "İmleç konumu"
+msgstr ""
 
 #: appModules\winword\ww_choice.py:216
 msgid "Document"
-msgstr "belge"
+msgstr ""
 
 #. wdFieldDate
 #. wdFieldTime
@@ -523,123 +496,123 @@ msgstr "belge"
 #: appModules\winword\ww_contentControl.py:163
 #: appModules\winword\ww_fields.py:155 appModules\winword\ww_formfields.py:148
 msgid "Page"
-msgstr "sayfa"
+msgstr ""
 
 #: appModules\winword\ww_choice.py:218
 msgid "Selection"
-msgstr "seçim"
+msgstr ""
 
 #: appModules\winword\ww_choice.py:219
 msgid "Focus to end"
-msgstr "İmleçten belge sonuna"
+msgstr ""
 
 #: appModules\winword\ww_choice.py:220
 msgid "Start to focus"
-msgstr "Baştan imleç konumuna"
+msgstr ""
 
 #. Translators: label of a button
 #: appModules\winword\ww_choice.py:270
 msgid "Search an&d display"
-msgstr "Ara ve &listele"
+msgstr ""
 
 #: appModules\winword\ww_choice.py:278
 msgid "Search and C&opy to clipboard"
-msgstr "Ara ve panoya ko&pyala"
+msgstr ""
 
 #: appModules\winword\ww_choice.py:285 appModules\winword\ww_collection.py:422
 msgid "&Close"
-msgstr "&Kapat"
+msgstr ""
 
 #: appModules\winword\ww_collection.py:49
 msgid "28.35"
-msgstr "28.35"
+msgstr ""
 
 #: appModules\winword\ww_collection.py:105
 #: appModules\winword\ww_collection.py:115
 #, python-format
 msgid "%s at cursor's position"
-msgstr "imleç konumunda %s "
+msgstr ""
 
 #: appModules\winword\ww_collection.py:106
 #: appModules\winword\ww_collection.py:116
 #, python-format
 msgid "%s in the selection"
-msgstr "Seçim içinde %s"
+msgstr ""
 
 #: appModules\winword\ww_collection.py:107
 #: appModules\winword\ww_collection.py:117
 #, python-format
 msgid "%s in the document"
-msgstr "Belgede %s"
+msgstr ""
 
 #: appModules\winword\ww_collection.py:108
 #: appModules\winword\ww_collection.py:118
 #, python-format
 msgid "%s in the page"
-msgstr "Sayfada %s"
+msgstr ""
 
 #: appModules\winword\ww_collection.py:109
 #, python-format
 msgid "%s between start of document and cursor's position"
-msgstr "Belge başı ile imleç arasında %s"
+msgstr ""
 
 #: appModules\winword\ww_collection.py:110
 #, python-format
 msgid "%s between cursor's position and end of document"
-msgstr "imleç konumu ile belge sonu arasında %s"
+msgstr ""
 
 #: appModules\winword\ww_collection.py:119
 #, python-format
 msgid "%s between document's start and cursor's position"
-msgstr "Belge başı ile imleç arasında %s"
+msgstr ""
 
 #. noqa:E501
 #: appModules\winword\ww_collection.py:120
 #, python-format
 msgid "%s between cursor's position and document's end"
-msgstr "imleç ile belge sonu arasında %s"
+msgstr ""
 
 #: appModules\winword\ww_collection.py:138
 #, python-format
 msgid "%s percent"
-msgstr "yüzde %s"
+msgstr ""
 
 #: appModules\winword\ww_collection.py:192
 msgid "Sorry, There are too many elements to be treated "
-msgstr "Üzgünüm, meşgul olunacak çok fazla öğe var"
+msgstr ""
 
 #: appModules\winword\ww_collection.py:228
 msgid "Please wait."
-msgstr "Lütfen bekleyin"
+msgstr ""
 
 #. Translators: message to user when info copied to clipboard.
 #: appModules\winword\ww_collection.py:261
 msgid "{name}'s list has been copied to clipboard"
-msgstr "{name} listesi panoya kopyalandı"
+msgstr ""
 
 #: appModules\winword\ww_collection.py:293
 msgid "{count} {element}"
-msgstr "{count} {element}"
+msgstr ""
 
 #. Translators: text of a message box dialog.
 #: appModules\winword\ww_collection.py:483
 msgid "Are you sure you wish to delete this items?"
-msgstr "Bu öğeleri silmek istediğinize emin misiniz?"
+msgstr ""
 
 #. Translators: title of a message box dialog.
 #: appModules\winword\ww_collection.py:485
 msgid "Deletion of items"
-msgstr "Öğeler siliniyor"
+msgstr ""
 
 #. Translators: text of a message box dialog.
 #: appModules\winword\ww_collection.py:570
 msgid "Are you sure you wish to delete all items?"
-msgstr "Tüm öğeleri silmek istediğinize emin misiniz?"
+msgstr ""
 
 #. Translators: title of a message box dialog.
 #: appModules\winword\ww_collection.py:572
 msgid "Deletion of all items"
-msgstr "Tüm öğeler siliniyor"
+msgstr ""
 
 #: appModules\winword\ww_comments.py:58
 msgid ""
@@ -651,13 +624,6 @@ msgid ""
 "Commented text:\n"
 "{commentedText}\n"
 msgstr ""
-"sayfa {page}, satır {line}\n"
-"Yazar: {author}\n"
-"Tarih: {date}\n"
-"Açıklama metni:\n"
-"{text}\n"
-"Açıklama metni:\n"
-"{commentedText}\n"
 
 #. wdFieldKeyWord
 #. Translators: The label of a list item to select the type of element
@@ -675,34 +641,34 @@ msgstr ""
 #: appModules\winword\ww_wordDocumentBase.py:1080
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:111
 msgid "Comment"
-msgstr "açıklama"
+msgstr ""
 
 #: appModules\winword\ww_comments.py:76
 msgid "Comments"
-msgstr "Açıklamalar"
+msgstr ""
 
 #. Translators: text of entry text box:
 #: appModules\winword\ww_comments.py:80
 msgid "Enter the comment's text"
-msgstr "Açıklama metnini girin"
+msgstr ""
 
 #. Translators: title of insert dialog.
 #: appModules\winword\ww_comments.py:82
 msgid "Comment's insert"
-msgstr "Yorum ekle"
+msgstr ""
 
 #. Translators: title of modification dialog.
 #: appModules\winword\ww_comments.py:84
 msgid "Comment's Modification"
-msgstr "Yorum düzenle"
+msgstr ""
 
 #: appModules\winword\ww_comments.py:90
 msgid "No comment"
-msgstr "Açıklama yok"
+msgstr ""
 
 #: appModules\winword\ww_comments.py:112
 msgid "Comments:"
-msgstr "Açıklamalar"
+msgstr ""
 
 #. wdFieldSubject
 #: appModules\winword\ww_comments.py:116
@@ -711,7 +677,7 @@ msgstr "Açıklamalar"
 #: appModules\winword\ww_formfields.py:132
 #: appModules\winword\ww_revisions.py:157
 msgid "Author"
-msgstr "yazar"
+msgstr ""
 
 #. wdFieldCreateDate
 #. wdFieldSaveDate
@@ -728,95 +694,92 @@ msgstr "yazar"
 #: appModules\winword\ww_fields.py:153 appModules\winword\ww_formfields.py:146
 #: appModules\winword\ww_revisions.py:158
 msgid "Date"
-msgstr "Tarih"
+msgstr ""
 
 #: appModules\winword\ww_comments.py:127 appModules\winword\ww_endnotes.py:93
 #: appModules\winword\ww_footnotes.py:90
 msgid "&Modify"
-msgstr "De&ğiştir"
+msgstr ""
 
 #: appModules\winword\ww_comments.py:133
 msgid "Comment's text"
-msgstr "Açıklama metni"
+msgstr ""
 
 #: appModules\winword\ww_comments.py:137
 msgid "Commented text"
-msgstr "Açıklama metni"
+msgstr ""
 
 #: appModules\winword\ww_contentControl.py:18
 msgid "rich-text content control"
-msgstr "zengin metin içerik kontrolü"
+msgstr ""
 
 #: appModules\winword\ww_contentControl.py:19
 msgid "Text content control"
-msgstr "Metin içerik kontrolü"
+msgstr ""
 
 #: appModules\winword\ww_contentControl.py:20
 msgid "picture content control"
-msgstr "resim içerik kontrolü"
+msgstr ""
 
 #: appModules\winword\ww_contentControl.py:21
 msgid "combo box content control"
-msgstr "Seçim kutusu içerik kontrolü"
+msgstr ""
 
 #: appModules\winword\ww_contentControl.py:22
 msgid "drop-down list content control"
-msgstr "açılır liste içerik kontrolü"
+msgstr ""
 
 #: appModules\winword\ww_contentControl.py:23
 msgid "building block gallery content control"
-msgstr "yapı taşı galeri içerik kontrolü"
+msgstr ""
 
 #: appModules\winword\ww_contentControl.py:24
 msgid "date content control"
-msgstr "tarih içerik kontrolü"
+msgstr ""
 
 #: appModules\winword\ww_contentControl.py:25
 msgid "group content control"
-msgstr "grup içerik kontrolü"
+msgstr ""
 
 #: appModules\winword\ww_contentControl.py:26
 msgid "checkbox content control"
-msgstr "onay kutusu içerik kontrolü"
+msgstr ""
 
 #: appModules\winword\ww_contentControl.py:27
 msgid "repeating section content control"
-msgstr "yinelenen bölüm içerik kontrolü"
+msgstr ""
 
 #: appModules\winword\ww_contentControl.py:49
 msgid "checked"
-msgstr "işaretli"
+msgstr ""
 
 #. Translators: information of content control element.
 #: appModules\winword\ww_contentControl.py:64
 #: appModules\winword\ww_fields.py:49 appModules\winword\ww_formfields.py:41
 msgid "Page {page}, line {line}\n"
-msgstr "Sayfa {page}, satır {line}\n"
+msgstr ""
 
 #. Translators: name of collection element type
 #: appModules\winword\ww_contentControl.py:75
-#| msgid "Content moved to"
 msgid "Content control"
-msgstr "İçerik kontrolü"
+msgstr ""
 
 #: appModules\winword\ww_contentControl.py:75
 #: appModules\winword\ww_contentControl.py:91
-#| msgid "Content moved to"
 msgid "Content controls"
-msgstr "İçerik kontrolleri"
+msgstr ""
 
 #. Translators: text to report no content control.
 #: appModules\winword\ww_contentControl.py:82
-#| msgid "no next comment"
 msgid "No content control"
-msgstr "İçerik kontrolü yok"
+msgstr ""
 
 #: appModules\winword\ww_contentControl.py:95
 #: appModules\winword\ww_fields.py:88 appModules\winword\ww_formfields.py:80
 #: appModules\winword\ww_hyperlinks.py:98
 #: appModules\winword\ww_revisions.py:156
 msgid "Type"
-msgstr "tür"
+msgstr ""
 
 #. wdFieldTOC
 #. wdFieldInfo
@@ -825,31 +788,31 @@ msgstr "tür"
 #: appModules\winword\ww_document.py:868 appModules\winword\ww_fields.py:137
 #: appModules\winword\ww_formfields.py:130 appModules\winword\ww_tables.py:320
 msgid "Title"
-msgstr "başlık"
+msgstr ""
 
 #: appModules\winword\ww_contentControl.py:112
 msgid "Status or content"
-msgstr "Durum veya içerik"
+msgstr ""
 
 #. Translators: message to say text is empty.
 #: appModules\winword\ww_contentControl.py:132
 #: appModules\winword\ww_fields.py:124 appModules\winword\ww_formfields.py:117
 #: appModules\winword\ww_wordDocumentBase.py:353
 msgid "Empty"
-msgstr "Boş"
+msgstr ""
 
 #. wdFieldEmpty
 #: appModules\winword\ww_contentControl.py:133
 #: appModules\winword\ww_fields.py:125 appModules\winword\ww_formfields.py:118
 msgid "Ref"
-msgstr "Ref"
+msgstr ""
 
 #. wdFieldRef
 #. wdFieldIndexEntry
 #: appModules\winword\ww_contentControl.py:135
 #: appModules\winword\ww_fields.py:127 appModules\winword\ww_formfields.py:120
 msgid "FootnoteRef"
-msgstr "référence de Note de bas de page"
+msgstr ""
 
 #. wdFieldFootnoteRef
 #. wdFieldSet
@@ -859,7 +822,7 @@ msgstr "référence de Note de bas de page"
 #: appModules\winword\ww_contentControl.py:140
 #: appModules\winword\ww_fields.py:132 appModules\winword\ww_formfields.py:125
 msgid "StyleRef"
-msgstr "Stil Referansı"
+msgstr ""
 
 #. wdFieldStyleRef
 #. wdFieldRefDoc
@@ -867,45 +830,45 @@ msgstr "Stil Referansı"
 #: appModules\winword\ww_contentControl.py:143
 #: appModules\winword\ww_fields.py:135 appModules\winword\ww_formfields.py:128
 msgid "TOC"
-msgstr "İçindekiler"
+msgstr ""
 
 #. wdFieldTitle
 #: appModules\winword\ww_contentControl.py:146
 #: appModules\winword\ww_document.py:869 appModules\winword\ww_fields.py:138
 #: appModules\winword\ww_formfields.py:131
 msgid "Subject"
-msgstr "Konu"
+msgstr ""
 
 #. wdFieldAuthor
 #: appModules\winword\ww_contentControl.py:148
 #: appModules\winword\ww_fields.py:140 appModules\winword\ww_formfields.py:133
 msgid "Keyword"
-msgstr "Anahtar sözcükler"
+msgstr ""
 
 #. wdFieldComments
 #. wdFieldLastSavedBy
 #: appModules\winword\ww_contentControl.py:151
 #: appModules\winword\ww_fields.py:143 appModules\winword\ww_formfields.py:136
 msgid "CreateDate"
-msgstr "création de date"
+msgstr ""
 
 #. wdFieldPage
 #: appModules\winword\ww_contentControl.py:164
 #: appModules\winword\ww_fields.py:156 appModules\winword\ww_formfields.py:149
 msgid "Expression"
-msgstr "expression"
+msgstr ""
 
 #. wdFieldExpression
 #: appModules\winword\ww_contentControl.py:165
 #: appModules\winword\ww_fields.py:157 appModules\winword\ww_formfields.py:150
 msgid "Quote"
-msgstr "code"
+msgstr ""
 
 #. wdFieldQuote
 #: appModules\winword\ww_contentControl.py:166
 #: appModules\winword\ww_fields.py:158 appModules\winword\ww_formfields.py:151
 msgid "Include"
-msgstr "inclus"
+msgstr ""
 
 #. wdFieldInclude
 #. wdFieldPageRef
@@ -953,79 +916,79 @@ msgstr "inclus"
 #: appModules\winword\ww_elementsListDialog.py:443
 #: appModules\winword\ww_fields.py:178 appModules\winword\ww_formfields.py:171
 msgid "Link"
-msgstr "Link"
+msgstr ""
 
 #. wdFieldLink
 #: appModules\winword\ww_contentControl.py:187
 #: appModules\winword\ww_fields.py:179 appModules\winword\ww_formfields.py:172
 msgid "Symbol"
-msgstr "symbôle"
+msgstr ""
 
 #. Translators: text to indicate page number alignment to the left.
 #: appModules\winword\ww_document.py:33 appModules\winword\ww_document.py:120
 msgid "Page's number on the Left"
-msgstr "Sayfa numarası solda"
+msgstr ""
 
 #. Translators: text to indicate page number alignment to the center.
 #. wdAlignPageNumberLeft
 #. Translators: text to indicate page number alignment to the center.
 #: appModules\winword\ww_document.py:35 appModules\winword\ww_document.py:122
 msgid "Page's number Centered"
-msgstr "Sayfa numarası ortalı"
+msgstr ""
 
 #. Translators: text to indicate page numer alignment to the right.
 #. wdAlignPageNumberCenter
 #. Translators: text to indicate page numer alignment to the right.
 #: appModules\winword\ww_document.py:37 appModules\winword\ww_document.py:124
 msgid "Page's number on the Right"
-msgstr "Sayfa numarası sağda"
+msgstr ""
 
 #. Translators: text to indicate page number alignment to inside.
 #. wdAlignPageNumberRight
 #. Translators: text to indicate page number alignment to inside.
 #: appModules\winword\ww_document.py:39 appModules\winword\ww_document.py:126
 msgid "Page number inside"
-msgstr "Sayfa numarası içte"
+msgstr ""
 
 #. Translators: text to indicate page number alignment to outside.
 #. wdAlignPageNumberInside
 #. Translators: text to indicate page number alignment to outside.
 #: appModules\winword\ww_document.py:41 appModules\winword\ww_document.py:128
 msgid "Page's number Outside"
-msgstr "Sayfa numarası dışta"
+msgstr ""
 
 #. Translators: text to report a header or footer linked to previous.
 #: appModules\winword\ww_document.py:111
 msgid "linked to previous"
-msgstr "öncekine bağlı"
+msgstr ""
 
 #. Translators: column information.
 #: appModules\winword\ww_document.py:190
 msgid "Column {index}: {wide} wide"
-msgstr "Sütun {index}: genişlik {wide}"
+msgstr ""
 
 #. Translators: column information.
 #: appModules\winword\ww_document.py:194
 #, python-format
 msgid "with %s spacing after"
-msgstr "%s boşluktan sonar"
+msgstr ""
 
 #. Translators: title of section's text column paragraph.
 #: appModules\winword\ww_document.py:204
 msgid "Text columns:"
-msgstr "Metin Sütunları:"
+msgstr ""
 
 #. Translators: text to indicate text column index.
 #: appModules\winword\ww_document.py:210
 #, python-format
 msgid "Number of Text columns: %s"
-msgstr "Metin sütunlarının sayısı: %s"
+msgstr ""
 
 #. Translators: text to indicate lines between text columns.
 #: appModules\winword\ww_document.py:214
 #, python-format
 msgid "Line between columns: %s"
-msgstr "Sütunlar arasındaki çizgi: %s"
+msgstr ""
 
 #. Translators: text to indicate text column style
 #: appModules\winword\ww_document.py:219
@@ -1033,25 +996,23 @@ msgid ""
 "Style: columns' wide = {wide} (evenly spaced), gap between columns = "
 "{spacing}"
 msgstr ""
-"stil: sütun genişliği = {wide} (eşit aralıklı),  sütunlar arasındaki boşluk "
-"= {spacing}"
 
 #. Translators: text to indicate text column style.
 #: appModules\winword\ww_document.py:226
 msgid "Style: various column wide"
-msgstr "Stil: çeşitli sütun genişliği"
+msgstr ""
 
 #: appModules\winword\ww_document.py:234
 msgid "on the left side"
-msgstr "sol tarafta"
+msgstr ""
 
 #: appModules\winword\ww_document.py:235
 msgid "on the right side"
-msgstr "sağ tarafta"
+msgstr ""
 
 #: appModules\winword\ww_document.py:236
 msgid "on the top side"
-msgstr "Üst tarafta"
+msgstr ""
 
 #. Translators: gutter information.
 #: appModules\winword\ww_document.py:244
@@ -1066,180 +1027,180 @@ msgstr ""
 #. Translators: margins information.
 #: appModules\winword\ww_document.py:262
 msgid "Margins:"
-msgstr "Kenar boşlukları:"
+msgstr ""
 
 #. Translators: miror inside margin information:
 #: appModules\winword\ww_document.py:267
 #, python-format
 msgid "Inside: %s"
-msgstr "içeriden: %s"
+msgstr ""
 
 #. Translators: miror outside margin information.
 #: appModules\winword\ww_document.py:269
 #, python-format
 msgid "Outside: %s"
-msgstr "Dışarıdan: %s"
+msgstr ""
 
 #. Translators: left margin information.
 #: appModules\winword\ww_document.py:272
 #, python-format
 msgid "Left: %s"
-msgstr "sol: %s"
+msgstr ""
 
 #. translators: right margin information.
 #: appModules\winword\ww_document.py:274
 #, python-format
 msgid "Right: %s"
-msgstr "sağ: %s"
+msgstr ""
 
 #. Translators: top margin information.
 #: appModules\winword\ww_document.py:278
 #, python-format
 msgid "Top: %s"
-msgstr "Üst: %s"
+msgstr ""
 
 #. Translators: bottom margin information.
 #: appModules\winword\ww_document.py:281
 #, python-format
 msgid "Bottom: %s"
-msgstr "Alt: %s"
+msgstr ""
 
 #: appModules\winword\ww_document.py:286
 #, python-format
 msgid "Orientation: %s"
-msgstr "Oryantasyon: %s"
+msgstr ""
 
 #. Translators: self.twoPagesOnOne information.
 #: appModules\winword\ww_document.py:290
 #, python-format
 msgid "Print two pages per sheet: %s"
-msgstr "Yaprak başına iki sayfa yazdırma: %s"
+msgstr ""
 
 #: appModules\winword\ww_document.py:298
 msgid "Landscape"
-msgstr "Yatay"
+msgstr ""
 
 #: appModules\winword\ww_document.py:299 appModules\winword\ww_sections.py:75
 msgid "Portrait"
-msgstr "Dikey"
+msgstr ""
 
 #: appModules\winword\ww_document.py:308 appModules\winword\ww_sections.py:86
 msgid "top"
-msgstr "üst"
+msgstr ""
 
 #: appModules\winword\ww_document.py:309
 msgid "centered"
-msgstr "Ortalı"
+msgstr ""
 
 #: appModules\winword\ww_document.py:310
 msgid "justified"
-msgstr "İki yana yaslı"
+msgstr ""
 
 #. wdAlignVerticalJustify
 #: appModules\winword\ww_document.py:311 appModules\winword\ww_sections.py:89
 msgid "bottom"
-msgstr "Alt"
+msgstr ""
 
 #: appModules\winword\ww_document.py:320
 msgid "Continuous"
-msgstr "sürekli"
+msgstr ""
 
 #: appModules\winword\ww_document.py:321
 msgid "Even pages "
-msgstr "çift sayfa"
+msgstr ""
 
 #: appModules\winword\ww_document.py:322
 msgid "New column"
-msgstr "yeni sütun"
+msgstr ""
 
 #: appModules\winword\ww_document.py:323
 msgid "New page"
-msgstr "yeni sayfa"
+msgstr ""
 
 #: appModules\winword\ww_document.py:324
 msgid "Odd pages"
-msgstr "tek sayfa"
+msgstr ""
 
 #. Translators: title of disposition information .
 #: appModules\winword\ww_document.py:329
 msgid "Disposition:"
-msgstr "Yapı:"
+msgstr ""
 
 #. Translators: section startinformation.
 #: appModules\winword\ww_document.py:333
 #, python-format
 msgid "Sectionstart: %s"
-msgstr "Bölüm başlangıcı: %s"
+msgstr ""
 
 #. Translators: different First Page information.
 #: appModules\winword\ww_document.py:338
 #, python-format
 msgid "Different first page: %s"
-msgstr "Farklı ilk sayfa: %s"
+msgstr ""
 
 #. Translators: different odd and even page informations.
 #: appModules\winword\ww_document.py:344
 #, python-format
 msgid "Different Odd and even pages: %s"
-msgstr "Farklı Tek ve çift sayfalar: %s"
+msgstr ""
 
 #. Translators: distance between footer and bottom information.
 #: appModules\winword\ww_document.py:347
 #, python-format
 msgid "Distance between footer and bottom: %s"
-msgstr "Altbilgi ve alt arasındaki mesafe: %s"
+msgstr ""
 
 #. Translators: distance between header and top information.
 #: appModules\winword\ww_document.py:351
 #, python-format
 msgid "Distance between header and top: %s"
-msgstr "Üstbilgi ve üst arasındaki mesafe: %s"
+msgstr ""
 
 #. Translators: vertical alignment information.
 #: appModules\winword\ww_document.py:356
 #, python-format
 msgid "Vertical alignment: %s"
-msgstr "Dikey hizalama: %s"
+msgstr ""
 
 #: appModules\winword\ww_document.py:363
 msgid " 10 inches wide, 14 inches long"
-msgstr "25,4 x 35,56 cm (10x14inches)"
+msgstr ""
 
 #: appModules\winword\ww_document.py:364
 msgid "Legal 11 inches wide, 17 inches long"
-msgstr "27,9 x 43,2 cm (11x17 inches)"
+msgstr ""
 
 #: appModules\winword\ww_document.py:365
 msgid "A3 dimensions"
-msgstr "A3"
+msgstr ""
 
 #: appModules\winword\ww_document.py:366
 msgid "A4 dimensions"
-msgstr "A4"
+msgstr ""
 
 #: appModules\winword\ww_document.py:367
 msgid "Small A4 dimensions"
-msgstr "Küçük a4"
+msgstr ""
 
 #: appModules\winword\ww_document.py:368
 msgid "A5 dimensions"
-msgstr "A5"
+msgstr ""
 
 #: appModules\winword\ww_document.py:369
 msgid "B4 dimensions"
-msgstr "B4"
+msgstr ""
 
 #: appModules\winword\ww_document.py:370
 msgid "B5 dimensions"
-msgstr "B5"
+msgstr ""
 
 #: appModules\winword\ww_document.py:371
 msgid "C sheet dimensions"
-msgstr "C sayfası"
+msgstr ""
 
 #: appModules\winword\ww_document.py:372
 msgid "Custom paper size"
-msgstr "Özel boyut"
+msgstr ""
 
 #: appModules\winword\ww_document.py:373
 msgid "D sheet dimensions"
@@ -1372,553 +1333,555 @@ msgstr ""
 #. Translators: paper information title.
 #: appModules\winword\ww_document.py:415
 msgid "Paper:"
-msgstr "kağıt:"
+msgstr ""
 
 #. Translators: paper size information.
 #: appModules\winword\ww_document.py:419
 #, python-format
 msgid "Paper size: %s"
-msgstr "Kağıt boyutu: %s"
+msgstr ""
 
 #. Translators: # height and width page information.
 #: appModules\winword\ww_document.py:422
 msgid "Page's size: {height}height, {width} width"
-msgstr "Sayfa boyutu: yükseklik {height}, genişlik {width}"
+msgstr ""
 
 #. Translators: first page header information
 #: appModules\winword\ww_document.py:466
 #, python-format
 msgid "First Page Header: %s"
-msgstr "İlk Sayfa üst bilgisi: %s"
+msgstr ""
 
 #. Translators: first page footer informations.
 #: appModules\winword\ww_document.py:476
 #, python-format
 msgid "First Page Footer: %s"
-msgstr "İlk Sayfa Altbilgisi: %s"
+msgstr ""
 
 #. Translators: event page header information
 #: appModules\winword\ww_document.py:489
 #, python-format
 msgid "Even Page Header: %s"
-msgstr "Çift Sayfa üst bilgisi: %s"
+msgstr ""
 
 #. Translators: Even Page Footer informations
 #: appModules\winword\ww_document.py:499
 #, python-format
 msgid "Even Page Footer: %s"
-msgstr "Çift Sayfa Altbilgisi: %s"
+msgstr ""
 
 #. Translators: page header informations
 #: appModules\winword\ww_document.py:508
 #, python-format
 msgid "Page header: %s"
-msgstr "Sayfa başlığı: %s"
+msgstr ""
 
 #. Translators: page footer informations.
 #: appModules\winword\ww_document.py:517
 #, python-format
 msgid "Page Footer: %s"
-msgstr "Sayfa altbilgisi: %s"
+msgstr ""
 
 #. Translators: title of section paragraph.
 #: appModules\winword\ww_document.py:526
 msgid "Section {index} of {count}:"
-msgstr "Bölüm {index} bölü {count}:"
+msgstr ""
 
 #. Translators: protection forforms information.
 #: appModules\winword\ww_document.py:534
 #, python-format
 msgid "Text modification only in form fields: %s"
-msgstr "Yalnızca form alanlarında metin değişikliği: %s"
+msgstr ""
 
 #. Translators: title of section paragraph.
 #: appModules\winword\ww_document.py:630
 msgid "Document's sections:"
-msgstr "Belgenin bölümleri:"
+msgstr ""
 
 #. Translators: title of position paragraph.
 #: appModules\winword\ww_document.py:693
 msgid "Position in the document:"
-msgstr "Belgedeki konumu:"
+msgstr ""
 
 #. Translators: position informations.
 #: appModules\winword\ww_document.py:697
 msgid "In section {section}, page {page}"
-msgstr "bölüm {section}, sayfa {page}"
+msgstr ""
 
 #. Translators: table uniform information
-#: appModules\winword\ww_document.py:705 appModules\winword\ww_document.py:1083
+#: appModules\winword\ww_document.py:705
+#: appModules\winword\ww_document.py:1083
 msgid "uniform"
-msgstr "Tek tip"
+msgstr ""
 
-#: appModules\winword\ww_document.py:705 appModules\winword\ww_document.py:1083
+#: appModules\winword\ww_document.py:705
+#: appModules\winword\ww_document.py:1083
 msgid "non-uniform"
-msgstr "tek tip değil"
+msgstr ""
 
 #. Translators: In table informations.
 #: appModules\winword\ww_document.py:707
 msgid "In a {uniform} table"
-msgstr "Tek tip tabloda"
+msgstr ""
 
 #. Translators: cell positions in table.
 #: appModules\winword\ww_document.py:712
 msgid " Cell row {row} , column {col} of table {tableIndex}"
-msgstr "Hücre satırı {row} , sütun {col}, tablo {tableIndex}"
+msgstr ""
 
 #. Translators: in section and column position.
 #: appModules\winword\ww_document.py:719
 msgid "In section {section}, text column {textColumn}"
-msgstr "Bölüm {section}, metin sütunu {textColumn}"
+msgstr ""
 
 #. Translators: just in section.
 #: appModules\winword\ww_document.py:724
 #, python-format
 msgid "In section {%s"
-msgstr "Bölüm {%s"
+msgstr ""
 
 #. Translators: indicate line and column position in the page.
 #: appModules\winword\ww_document.py:729
 msgid "On line {line} of the page {page}, column {col}"
-msgstr "Satır {line}, sayfa {page}, sütun {col}"
+msgstr ""
 
 #: appModules\winword\ww_document.py:763
 msgid "Allow only revisions"
-msgstr "Yalnızca düzeltmelere izin ver"
+msgstr ""
 
 #: appModules\winword\ww_document.py:764
 msgid "Allow only comments"
-msgstr "sadece açıklamalara izin ver"
+msgstr ""
 
 #: appModules\winword\ww_document.py:765
 msgid "Allow only form fields"
-msgstr "yalnızca form alanlarına izin ver"
+msgstr ""
 
 #: appModules\winword\ww_document.py:766
 msgid "Read-only"
-msgstr "Salt okunur"
+msgstr ""
 
 #. noqa:E722
 #: appModules\winword\ww_document.py:771
 msgid "No protection"
-msgstr "Koruma yok"
+msgstr ""
 
 #. Translators: title of statistics paragraph.
 #: appModules\winword\ww_document.py:783
 msgid "Statistics:"
-msgstr "istatistikler:"
+msgstr ""
 
 #. Translators: text to indicate number of pages
 #: appModules\winword\ww_document.py:787
 #, python-format
 msgid "Pages: %s"
-msgstr "Sayfalar: %s"
+msgstr ""
 
 #. Translators: text to indicate number of lines.
 #: appModules\winword\ww_document.py:790
 #, python-format
 msgid "Lines: %s"
-msgstr "Satırlar: %s"
+msgstr ""
 
 #. Translators: text to indicate number of words
 #: appModules\winword\ww_document.py:793
 #, python-format
 msgid "Words: %s"
-msgstr "Sözcükler: %s"
+msgstr ""
 
 #. Translators: text to indicate number of characters
 #: appModules\winword\ww_document.py:796
 #, python-format
 msgid "Characters: %s"
-msgstr "Karakterler: %s"
+msgstr ""
 
 #. Translators: text to indicate number of paragraphs
 #: appModules\winword\ww_document.py:799
 #, python-format
 msgid "Paragraphs: %s"
-msgstr "paragraflar: %s"
+msgstr ""
 
 #. Translators: text to indicate number of sections.
 #: appModules\winword\ww_document.py:803
 #, python-format
 msgid "Sections: %s"
-msgstr "Bölümler: %s"
+msgstr ""
 
 #. Translators: text to indicate number of comments.
 #: appModules\winword\ww_document.py:807
 #, python-format
 msgid "Comments: %s"
-msgstr "Açıklamalar: %s"
+msgstr ""
 
 #. Translators:text to indicate number of tables.
 #: appModules\winword\ww_document.py:811
 #, python-format
 msgid "Tables: %s"
-msgstr "Tablolar: %s"
+msgstr ""
 
 #. Translators: text to indicate number of shape objects.
 #: appModules\winword\ww_document.py:815
 #, python-format
 msgid "Shape objects: %s"
-msgstr "Metin katmanındaki grafik nesneleri: %s"
+msgstr ""
 
 #. Translators: text to indicate number of inLine shape objects.
 #: appModules\winword\ww_document.py:819
 #, python-format
 msgid "InLineShape objects: %s"
-msgstr "InLineShape nesneleri: %s"
+msgstr ""
 
 #. Translators: text to indicate number of endnotes .
 #: appModules\winword\ww_document.py:823
 #, python-format
 msgid "Endnotes: %s"
-msgstr "Son Notlar: %s"
+msgstr ""
 
 #. Translators: text to indicate number of footnotes.
 #: appModules\winword\ww_document.py:827
 #, python-format
 msgid "Footnotes: %s"
-msgstr "Dipnotlar: %s"
+msgstr ""
 
 #. Translators: text to indicate number of fields.
 #: appModules\winword\ww_document.py:831
 #, python-format
 msgid "Fields: %s"
-msgstr "Alanlar: %s"
+msgstr ""
 
 #. Translators: text to indicate number of formfields.
 #: appModules\winword\ww_document.py:835
 #, python-format
 msgid "Formfields: %s"
-msgstr "Form alanları: %s"
+msgstr ""
 
 #. Translators: text to indicate number of frames.
 #: appModules\winword\ww_document.py:839
 #, python-format
 msgid "Frames: %s"
-msgstr "Çerçeveler: %s"
+msgstr ""
 
 #. Translators: text to indicate number of hyperlinks.
 #: appModules\winword\ww_document.py:843
 #, python-format
 msgid "Hyperlinks: %s"
-msgstr "Köprüler: %s"
+msgstr ""
 
 #. Translators: text to indicate number of lists.
 #: appModules\winword\ww_document.py:847
 #, python-format
 msgid "Lists: %s"
-msgstr "Listeler: %s"
+msgstr ""
 
 #. Translators: text to indicate number of bookmarks.
 #: appModules\winword\ww_document.py:851
 #, python-format
 msgid "Bookmarks: %s"
-msgstr "Yer imleri: %s"
+msgstr ""
 
 #. Translators: text to indicate number of spelling errors.
 #: appModules\winword\ww_document.py:855
 #, python-format
 msgid "Spelling errors: %s"
-msgstr "Yazım hataları: %s"
+msgstr ""
 
 #. Translators: text to indicate number of grammatical errors.
 #: appModules\winword\ww_document.py:859
 #, python-format
 msgid "Grammatical errors: %s"
-msgstr "Dilbilgisi hataları: %s"
+msgstr ""
 
 #: appModules\winword\ww_document.py:866
 msgid "Creation date"
-msgstr "Oluşturma tarihi"
+msgstr ""
 
 #: appModules\winword\ww_document.py:867
 msgid "Revision number"
-msgstr "Revizyon numarası"
+msgstr ""
 
 #: appModules\winword\ww_document.py:870
 msgid "Compagny"
-msgstr "şirket"
+msgstr ""
 
 #. Translators: document informations
 #: appModules\winword\ww_document.py:874
 msgid "Document's properties:"
-msgstr "Belge Özellikleri:"
+msgstr ""
 
 #: appModules\winword\ww_document.py:876
 #, python-format
 msgid "File name: %s"
-msgstr "Dosya adı: %s"
+msgstr ""
 
 #: appModules\winword\ww_document.py:884
 #, python-format
 msgid "Protection: %s"
-msgstr "Koruma: %s"
+msgstr ""
 
 #. Translators: title of options paragraph.
 #: appModules\winword\ww_document.py:891
 msgid "Specific options:"
-msgstr "Özel seçenekler:"
+msgstr ""
 
 #. Translators: text to indicate check spelling as you type.
 #: appModules\winword\ww_document.py:894
 #, python-format
 msgid "Check spelling as you type: %s"
-msgstr "Yazarken yazımı denetle: %s"
+msgstr ""
 
 #: appModules\winword\ww_document.py:895 appModules\winword\ww_document.py:899
 #: appModules\winword\ww_document.py:908
 msgid "Yes"
-msgstr "Evet"
+msgstr ""
 
 #: appModules\winword\ww_document.py:895 appModules\winword\ww_document.py:899
 #: appModules\winword\ww_document.py:908
 msgid "No"
-msgstr "Hayır"
+msgstr ""
 
 #. Translators: text to indicate check grammar as you type.
 #: appModules\winword\ww_document.py:898
 #, python-format
 msgid "Check grammar as you type: %s"
-msgstr "Yazarken dilbilgisini denetle %s"
+msgstr ""
 
 #. Translators: check grammar with speeling option information.
 #: appModules\winword\ww_document.py:904
 #, python-format
 msgid "Check grammar with spelling: %s"
-msgstr "Yazım ile dilbilgisini denetle: %s"
+msgstr ""
 
 #. Translators: text to indicate rack revision is activated.
 #: appModules\winword\ww_document.py:907
 #, python-format
 msgid "Track revision: %s"
-msgstr "Değişiklikleri izle: %s"
+msgstr ""
 
 #. Translators: title of tables informations
 #: appModules\winword\ww_document.py:929
 msgid "Document's tables:"
-msgstr "Belgenin Tabloları:"
+msgstr ""
 
 #. Translators: table information
 #: appModules\winword\ww_document.py:935
 msgid "Table {index} of {count}:"
-msgstr "Tablo {index} bölü {count}:"
+msgstr ""
 
 #: appModules\winword\ww_document.py:953
 msgid "Document's informations"
-msgstr "Belge bilgileri"
+msgstr ""
 
 #: appModules\winword\ww_document.py:958
 msgid "Aqua"
-msgstr "Mavi"
+msgstr ""
 
 #: appModules\winword\ww_document.py:959
 msgid "Black"
-msgstr "Siyah"
+msgstr ""
 
 #: appModules\winword\ww_document.py:960
 msgid "Blue"
-msgstr "Mavi"
+msgstr ""
 
 #: appModules\winword\ww_document.py:961
 msgid "BlueGray"
-msgstr "mavi gri"
+msgstr ""
 
 #: appModules\winword\ww_document.py:962
 msgid "BrightGreen"
-msgstr "Parlak yeşil"
+msgstr ""
 
 #: appModules\winword\ww_document.py:963
 msgid "Brown"
-msgstr "kahverengi"
+msgstr ""
 
 #: appModules\winword\ww_document.py:964
 msgid "DarkBlue"
-msgstr "lacivert"
+msgstr ""
 
 #: appModules\winword\ww_document.py:965
 msgid "DarkGreen"
-msgstr "koyu yeşil"
+msgstr ""
 
 #: appModules\winword\ww_document.py:966
 msgid "DarkRed"
-msgstr "koyu kırmızı"
+msgstr ""
 
 #: appModules\winword\ww_document.py:967
 msgid "DarkTeal"
-msgstr "Koyu deniz mavisi"
+msgstr ""
 
 #: appModules\winword\ww_document.py:968
 msgid "DarkYellow"
-msgstr "koyu sarı"
+msgstr ""
 
 #: appModules\winword\ww_document.py:969
 msgid "Gold"
-msgstr "Altın"
+msgstr ""
 
 #: appModules\winword\ww_document.py:970
 msgid "Gray05"
-msgstr "gri 05"
+msgstr ""
 
 #: appModules\winword\ww_document.py:971
 msgid "Gray10"
-msgstr "gri 10"
+msgstr ""
 
 #: appModules\winword\ww_document.py:972
 msgid "Gray125"
-msgstr "gri 125"
+msgstr ""
 
 #: appModules\winword\ww_document.py:973
 msgid "Gray15"
-msgstr "gri 15"
+msgstr ""
 
 #: appModules\winword\ww_document.py:974
 msgid "Gray20"
-msgstr "gri 20"
+msgstr ""
 
 #: appModules\winword\ww_document.py:975
 msgid "Gray25"
-msgstr "gri 25"
+msgstr ""
 
 #: appModules\winword\ww_document.py:976
 msgid "Gray30"
-msgstr "gri 30"
+msgstr ""
 
 #: appModules\winword\ww_document.py:977
 msgid "Gray35"
-msgstr "gri 35"
+msgstr ""
 
 #: appModules\winword\ww_document.py:978
 msgid "Gray375"
-msgstr "gri 375"
+msgstr ""
 
 #: appModules\winword\ww_document.py:979
 msgid "Gray40"
-msgstr "gri 40"
+msgstr ""
 
 #: appModules\winword\ww_document.py:980
 msgid "Gray45"
-msgstr "gri 45"
+msgstr ""
 
 #: appModules\winword\ww_document.py:981
 msgid "Gray50"
-msgstr "gri 50"
+msgstr ""
 
 #: appModules\winword\ww_document.py:982
 msgid "Gray55"
-msgstr "gri 55"
+msgstr ""
 
 #: appModules\winword\ww_document.py:983
 msgid "Gray60"
-msgstr "gri 60"
+msgstr ""
 
 #: appModules\winword\ww_document.py:984
 msgid "Gray625"
-msgstr "gri 625"
+msgstr ""
 
 #: appModules\winword\ww_document.py:985
 msgid "Gray65"
-msgstr "gri 65"
+msgstr ""
 
 #: appModules\winword\ww_document.py:986
 msgid "Gray70"
-msgstr "gri 70"
+msgstr ""
 
 #: appModules\winword\ww_document.py:987
 msgid "Gray75"
-msgstr "gri 75"
+msgstr ""
 
 #: appModules\winword\ww_document.py:988
 msgid "Gray80"
-msgstr "gri 80"
+msgstr ""
 
 #: appModules\winword\ww_document.py:989
 msgid "Gray85"
-msgstr "gri 85"
+msgstr ""
 
 #: appModules\winword\ww_document.py:990
 msgid "Gray875"
-msgstr "gri 875"
+msgstr ""
 
 #: appModules\winword\ww_document.py:991
 msgid "Gray90"
-msgstr "gri 90"
+msgstr ""
 
 #: appModules\winword\ww_document.py:992
 msgid "Gray95"
-msgstr "Gri95"
+msgstr ""
 
 #: appModules\winword\ww_document.py:993
 msgid "Green"
-msgstr "Yeşil"
+msgstr ""
 
 #: appModules\winword\ww_document.py:994
 msgid "Indigo"
-msgstr "çivit"
+msgstr ""
 
 #: appModules\winword\ww_document.py:995
 msgid "Lavender"
-msgstr "lavanta"
+msgstr ""
 
 #: appModules\winword\ww_document.py:996
 msgid "LightBlue"
-msgstr "açık mavi"
+msgstr ""
 
 #: appModules\winword\ww_document.py:997
 msgid "LightGreen"
-msgstr "Açık yeşil"
+msgstr ""
 
 #: appModules\winword\ww_document.py:998
 msgid "LightOrange"
-msgstr "Açık turuncu"
+msgstr ""
 
 #: appModules\winword\ww_document.py:999
 msgid "LightTurquoise"
-msgstr "Açık turkuaz"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1000
 msgid "LightYellow"
-msgstr "Açık sarı"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1001
 msgid "Lime"
-msgstr "Misket Limonu"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1002
 msgid "OliveGreen"
-msgstr "Zeytin yeşili"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1003
 msgid "Orange"
-msgstr "Turuncu"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1004
 msgid "PaleBlue"
-msgstr "Soluk mavi"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1005
 msgid "Pink"
-msgstr "Pembe"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1006
 msgid "Plum"
-msgstr "Erik"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1007
 msgid "Red"
-msgstr "Kırmızı"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1008
 msgid "Rose"
-msgstr "rose"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1009
 msgid "SeaGreen"
-msgstr "Su yeşili"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1010
 msgid "SkyBlue"
-msgstr "Gök mavisi"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1011
 msgid "Tan"
@@ -1930,143 +1893,140 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1013
 msgid "Turquoise"
-msgstr "turkuaz"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1014
 msgid "Violet"
-msgstr "menekşe"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1015
 msgid "White"
-msgstr "Beyaz"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1016
 msgid "Yellow"
-msgstr "sarı"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1084
 msgid " nested"
-msgstr "İç içe"
+msgstr ""
 
 #. Translators:  table informations.
 #: appModules\winword\ww_document.py:1086
 msgid "table {nested} {uniform} of {rows} rows, {columns} columns"
-msgstr "tablo {nested} {uniform}, {rows} satır, {columns} sütun"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1091
 msgid "Localized at {page} page , {line} line"
-msgstr "Bulunduğu sayfa {page}, satır {line}"
+msgstr ""
 
 #. Translators: title of table.
 #: appModules\winword\ww_document.py:1096
 #, python-format
 msgid "Title: %s"
-msgstr "Başlık: %s"
+msgstr ""
 
 #. Translators: table's description.
 #: appModules\winword\ww_document.py:1100
 #, python-format
 msgid "Description: %s"
-msgstr "Tarif: %s"
+msgstr ""
 
 #. Translators: allow auto fit information.
 #: appModules\winword\ww_document.py:1104
 #, python-format
 msgid "Automatic resize to fit content: %s"
-msgstr "İçeriğe uyması için otomatik yeniden boyutlandırma: %s"
+msgstr ""
 
 #. Translators: top paddding information.
 #: appModules\winword\ww_document.py:1107
 #, python-format
 msgid "Top padding: %s"
-msgstr "Üst doldurma: %s"
+msgstr ""
 
 #. Translators: bottom padding information.
 #: appModules\winword\ww_document.py:1110
 #, python-format
 msgid "Bottom padding: %s"
-msgstr "Alt doldurma: %s"
+msgstr ""
 
 #. Translators: spacing between cells.
 #: appModules\winword\ww_document.py:1113
 #, python-format
 msgid "Spacing between cells: %s"
-msgstr "Hücreler arasındaki boşluk: %s"
+msgstr ""
 
 #. Translators: number of tables contained in this table.
 #: appModules\winword\ww_document.py:1124
 #, python-format
 msgid "Contains %s tables"
-msgstr "%s tabloya sahip"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1131
 msgid "Bottom"
-msgstr "alt"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1132
 msgid "Diagonal down"
-msgstr "Çapraz aşağı"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1133
 msgid "Diagonal up"
-msgstr "Çapraz yukarı"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1134
 msgid "Horizontal"
-msgstr "Yatay"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1135
 msgid "Left"
-msgstr "sol"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1136
 msgid "Right"
-msgstr "sağ"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1137
 msgid "Top"
-msgstr "üst"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1138
 msgid "Vertical"
-msgstr "Dikey"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1151
 msgid "Without border"
-msgstr "Kenarlıksız"
+msgstr ""
 
 #. Translators: title of borders description
 #: appModules\winword\ww_document.py:1158
 msgid "Borders:"
-msgstr "sınırlar:"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1193
 msgid ""
 "surrounding {color} {lineStyle} with width of {lineWidth} and art style "
 "{artStyle}"
 msgstr ""
-"çevreleyen {color} {lineStyle} genişlik  {lineWidth} ve sanat tarsi "
-"{artStyle}"
 
 #: appModules\winword\ww_document.py:1200
 msgid "surrounding {color} {lineStyle} with width of {lineWidth}"
-msgstr "çevreleyen {color} {lineStyle} genişlik  {lineWidth}"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1223
 msgid ""
 "{name}= {color} {lineStyle} with width of {lineWidth} and art style "
 "{artStyle}"
 msgstr ""
-"{name}= {color} {lineStyle} genişlik {lineWidth} ve sanat tarsi {artStyle}"
 
 #: appModules\winword\ww_document.py:1228
 msgid "{name}= {color} {lineStyle} with width of {lineWidth}"
-msgstr "{name}= {color} {lineStyle} genişlik {lineWidth}"
+msgstr ""
 
 #. Translators: no border is visible
 #: appModules\winword\ww_document.py:1236
 msgid "Without borders"
-msgstr "Kenarlıksız"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1245
 msgid "Dash Dot"
@@ -2111,7 +2071,7 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1256
 msgid "None"
-msgstr "Yok"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1257
 msgid "Outset"
@@ -2163,57 +2123,57 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1269
 msgid "Triple"
-msgstr "Üçlü"
+msgstr ""
 
 #. noqa:E722
 #: appModules\winword\ww_document.py:1275
 msgid "mixed"
-msgstr "karışık"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1276
 #, python-format
 msgid "%s line"
-msgstr "%s satır"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1280
 msgid "0.25 points"
-msgstr "0.25 punto"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1281
 msgid "0.5 points"
-msgstr "0.5 punto"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1282
 msgid "0.75 points"
-msgstr "0.75 punto"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1283
 msgid "1 point"
-msgstr "1 punto"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1284
 msgid "1.5 points"
-msgstr "1.5 punto"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1285
 msgid "2.25 points"
-msgstr "2.25 punto"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1286
 msgid "3 points"
-msgstr "3 punto"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1287
 msgid "4.5 points"
-msgstr "4.5 punto"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1288
 msgid "6 points"
-msgstr "6 punto"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1289
 msgid "custom width"
-msgstr "Özel genişlik"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1300
 msgid "Apples"
@@ -2465,7 +2425,7 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1362
 msgid "Film"
-msgstr "Film"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1363
 msgid "Firecrackers"
@@ -2493,11 +2453,11 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1369
 msgid "FlowersRedRose"
-msgstr "Kırmızı güller"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1370
 msgid "FlowersRoses"
-msgstr "Güller"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1371
 msgid "FlowersTeacup"
@@ -2505,7 +2465,7 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1372
 msgid "FlowersTiny"
-msgstr "Küçük çiçekler"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1373
 msgid "Gems"
@@ -2601,7 +2561,7 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1396
 msgid "MusicNotes"
-msgstr "Müzik notaları"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1397
 msgid "Northwest"
@@ -2661,11 +2621,11 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1411
 msgid "PostageStamp"
-msgstr "Posta pulu"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1412
 msgid "Pumpkin1"
-msgstr "Balkabağı 1"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1413
 msgid "PushPinNote1"
@@ -2677,11 +2637,11 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1415
 msgid "Pyramids"
-msgstr "piramit"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1416
 msgid "PyramidsAbove"
-msgstr "Yukarıda piramitler"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1417
 msgid "Quadrants"
@@ -2689,11 +2649,11 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1418
 msgid "Rings"
-msgstr "halkalar"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1419
 msgid "Safari"
-msgstr "Safari"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1420
 msgid "Sawtooth"
@@ -2705,7 +2665,7 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1422
 msgid "ScaredCat"
-msgstr "Korkmuş kedi"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1423
 msgid "Seattle"
@@ -2717,7 +2677,7 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1425
 msgid "SharksTeeth"
-msgstr "Köpek dişi"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1426
 msgid "ShorebirdTracks"
@@ -2725,7 +2685,7 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1427
 msgid "Skyrocket"
-msgstr "havai fişek"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1428
 msgid "SnowflakeFancy"
@@ -2745,11 +2705,11 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1432
 msgid "Stars"
-msgstr "yıldızlar"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1433
 msgid "Stars3D"
-msgstr "3B yıldızlar"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1434
 msgid "StarsBlack"
@@ -2765,23 +2725,23 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1437
 msgid "Sun"
-msgstr "Güneş"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1438
 msgid "Swirligig"
-msgstr "türbülans"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1439
 msgid "TornPaper"
-msgstr "Yırtık kağıt"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1440
 msgid "TornPaperBlack"
-msgstr "Siyah yırtık kağıt"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1441
 msgid "Trees"
-msgstr "ağaçlar"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1442
 msgid "TriangleParty"
@@ -2789,7 +2749,7 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1443
 msgid "Triangles"
-msgstr "üçgenler"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1444
 msgid "Tribal1"
@@ -2841,15 +2801,15 @@ msgstr ""
 
 #: appModules\winword\ww_document.py:1456
 msgid "WeavingRibbon"
-msgstr "Oluklu şerit"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1457
 msgid "WeavingStrips"
-msgstr "Oluklu şeritler"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1458
 msgid "WhiteFlowers"
-msgstr "Beyaz çiçekler"
+msgstr ""
 
 #: appModules\winword\ww_document.py:1459
 msgid "Woodwork"
@@ -2875,7 +2835,7 @@ msgstr ""
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_elementsListDialog.py:56
 msgid "FormField"
-msgstr "Form alanı"
+msgstr ""
 
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
@@ -2884,7 +2844,7 @@ msgstr "Form alanı"
 #: appModules\winword\ww_wordDocumentBase.py:1080
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:112
 msgid "Footnote"
-msgstr "Dipnot"
+msgstr ""
 
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
@@ -2906,73 +2866,73 @@ msgstr "Dipnot"
 #: appModules\winword\ww_elementsListDialog.py:467
 #: appModules\winword\ww_revisions.py:119
 msgid "Revision"
-msgstr "Değişiklik"
+msgstr ""
 
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_elementsListDialog.py:65
 #: appModules\winword\ww_sections.py:143 appModules\winword\ww_sections.py:265
 msgid "Section"
-msgstr "Bölüm"
+msgstr ""
 
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_elementsListDialog.py:68
 #: appModules\winword\ww_spellingErrors.py:43
 msgid "Spelling error"
-msgstr "Yazım hatası"
+msgstr ""
 
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_elementsListDialog.py:71
 #: appModules\winword\ww_grammaticalErrors.py:43
 msgid "Grammatical error"
-msgstr "Dilbilgisi hatası"
+msgstr ""
 
 #: appModules\winword\ww_elementsListDialog.py:89
 msgid "&Type:"
-msgstr "&Tür:"
+msgstr ""
 
 #. Translators: The label of a button to activate an element
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_elementsListDialog.py:131
 msgid "&Activate"
-msgstr "&Etkinleştir"
+msgstr ""
 
 #. Translators: message to indicate the number of elements is limited.
 #: appModules\winword\ww_elementsListDialog.py:247
 #, python-format
 msgid "more than %s elements"
-msgstr "%s öğeden fazla"
+msgstr ""
 
 #: appModules\winword\ww_elementsListDialog.py:247
 #: appModules\winword\ww_elementsListDialog.py:250
 msgid "One element"
-msgstr "bir öğe"
+msgstr ""
 
 #. Translators: message to the user to report number of elements
 #: appModules\winword\ww_elementsListDialog.py:250
 #, python-format
 msgid "%s elements"
-msgstr "%s öğe"
+msgstr ""
 
 #. Translators: message to the user when there is no element
 #: appModules\winword\ww_elementsListDialog.py:253
 msgid "no element"
-msgstr "Öğe yok"
+msgstr ""
 
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_elementsListDialog.py:440
 #: appModules\winword\ww_headings.py:62 appModules\winword\ww_headings.py:102
 msgid "Heading"
-msgstr "başlık"
+msgstr ""
 
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_elementsListDialog.py:446
 msgid "Graphic"
-msgstr "grafik"
+msgstr ""
 
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
@@ -2987,7 +2947,7 @@ msgstr "grafik"
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_elementsListDialog.py:479
 msgid "Error"
-msgstr "hata:"
+msgstr ""
 
 #: appModules\winword\ww_endnotes.py:30
 msgid ""
@@ -2995,66 +2955,63 @@ msgid ""
 "Note's ttext:\n"
 "{text}\n"
 msgstr ""
-"Sayfa {page}, satır {line}\n"
-"Not metni:\n"
-"{text}\n"
 
 #: appModules\winword\ww_endnotes.py:45
 #: appModules\winword\ww_wordDocumentBase.py:1080
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:113
 msgid "Endnote"
-msgstr "Sonnot"
+msgstr ""
 
 #: appModules\winword\ww_endnotes.py:45
 msgid "Endnotes"
-msgstr "Son Notlar"
+msgstr ""
 
 #. Translators: text of entry text box:
 #: appModules\winword\ww_endnotes.py:49
 msgid "Enter the endnote's text"
-msgstr "Son not metnini girin"
+msgstr ""
 
 #. Translators: title of insert dialog.
 #: appModules\winword\ww_endnotes.py:51
 msgid "Endnote's insert"
-msgstr "Son not ekle"
+msgstr ""
 
 #. Translators: title of modify dialog.
 #: appModules\winword\ww_endnotes.py:53
 msgid "Endnote's modification"
-msgstr "Son not düzenle"
+msgstr ""
 
 #: appModules\winword\ww_endnotes.py:59
 msgid "No endnote"
-msgstr "Son not yok"
+msgstr ""
 
 #: appModules\winword\ww_endnotes.py:81 appModules\winword\ww_footnotes.py:78
 msgid "Notes:"
-msgstr "Notlar:"
+msgstr ""
 
 #: appModules\winword\ww_endnotes.py:99 appModules\winword\ww_footnotes.py:95
 msgid "Note's text"
-msgstr "Not metni"
+msgstr ""
 
 #: appModules\winword\ww_fields.py:69
 msgid "Field"
-msgstr "Alan"
+msgstr ""
 
 #: appModules\winword\ww_fields.py:69 appModules\winword\ww_fields.py:84
 msgid "Fields"
-msgstr "Alanlar"
+msgstr ""
 
 #: appModules\winword\ww_fields.py:75
 msgid "No field"
-msgstr "Alan yok"
+msgstr ""
 
 #: appModules\winword\ww_fields.py:100 appModules\winword\ww_formfields.py:92
 msgid "Result"
-msgstr "sonuç"
+msgstr ""
 
 #: appModules\winword\ww_fields.py:104
 msgid "Code"
-msgstr "kod"
+msgstr ""
 
 #: appModules\winword\ww_footnotes.py:30
 msgid ""
@@ -3062,52 +3019,49 @@ msgid ""
 "Note's Ttext:\n"
 "{text}\n"
 msgstr ""
-"Sayfa {page}, satır {line}\n"
-"Not metni:\n"
-"{text}\n"
 
 #: appModules\winword\ww_footnotes.py:42
 msgid "Footnotes"
-msgstr "Dipnotlar"
+msgstr ""
 
 #. Translators: text of entry text box:
 #: appModules\winword\ww_footnotes.py:46
 msgid "Enter the footnote's text"
-msgstr "Dipnot metnini girin"
+msgstr ""
 
 #. Translators: title of insert dialog.
 #: appModules\winword\ww_footnotes.py:48
 msgid "Footnote's insert"
-msgstr "Dipnot ekle"
+msgstr ""
 
 #. Translators: title of modify dialog.
 #: appModules\winword\ww_footnotes.py:50
 msgid "Footnote's modification"
-msgstr "Dipnot düzenle"
+msgstr ""
 
 #: appModules\winword\ww_footnotes.py:56
 msgid "No footnote"
-msgstr "Dipnot yok"
+msgstr ""
 
 #: appModules\winword\ww_formfields.py:61
 msgid "Formfield"
-msgstr "Form alanı"
+msgstr ""
 
 #: appModules\winword\ww_formfields.py:61
 msgid "Formfields"
-msgstr "Form alanları"
+msgstr ""
 
 #: appModules\winword\ww_formfields.py:67
 msgid "No formfield"
-msgstr "Form alanı yok"
+msgstr ""
 
 #: appModules\winword\ww_formfields.py:76
 msgid "FormFields"
-msgstr "Form alanları"
+msgstr ""
 
 #: appModules\winword\ww_formfields.py:97
 msgid "Status"
-msgstr "Durum"
+msgstr ""
 
 #: appModules\winword\ww_frames.py:42
 msgid ""
@@ -3116,104 +3070,100 @@ msgid ""
 "Width:\n"
 "{width}\n"
 msgstr ""
-"Sayfa {page}, satır {line}\n"
-"Yükseklik: {height}\n"
-"Genişlik:\n"
-"{width}\n"
 
 #: appModules\winword\ww_frames.py:55 appModules\winword\ww_frames.py:72
 msgid "Frame"
-msgstr "Çerçeve"
+msgstr ""
 
 #: appModules\winword\ww_frames.py:55 appModules\winword\ww_frames.py:70
 msgid "Frames"
-msgstr "Çaerçeveler"
+msgstr ""
 
 #: appModules\winword\ww_frames.py:61
 msgid "No frame"
-msgstr "Çerçeve yok"
+msgstr ""
 
 #: appModules\winword\ww_frames.py:74
 msgid "Width"
-msgstr "genişlik"
+msgstr ""
 
 #: appModules\winword\ww_frames.py:75
 msgid "Height"
-msgstr "yükseklik"
+msgstr ""
 
 #: appModules\winword\ww_funct old.py:58
 msgid "Main text story"
-msgstr "Ana metin akışı"
+msgstr ""
 
 #: appModules\winword\ww_funct old.py:59
 msgid "Footnotes story"
-msgstr "Dipnot akışı"
+msgstr ""
 
 #: appModules\winword\ww_funct old.py:60
 msgid "Endnotes story"
-msgstr "Son not akışı"
+msgstr ""
 
 #: appModules\winword\ww_funct old.py:61
 msgid "Comments story"
-msgstr "Yorum akışı"
+msgstr ""
 
 #: appModules\winword\ww_funct old.py:62
 msgid "Text frame story"
-msgstr "Metin çerçevesi akışı"
+msgstr ""
 
 #: appModules\winword\ww_funct old.py:63
 msgid "Even pages header story"
-msgstr "Çift sayfa başlık akışı"
+msgstr ""
 
 #: appModules\winword\ww_funct old.py:64
 msgid "Primary header story"
-msgstr "Birincil başlık akışı"
+msgstr ""
 
 #: appModules\winword\ww_funct old.py:65
 msgid "Even pages footer story"
-msgstr "Çift sayfa altbilgi akışı"
+msgstr ""
 
 #: appModules\winword\ww_funct old.py:66
 msgid "Primary footer story"
-msgstr "Birincil altbilgi akışı"
+msgstr ""
 
 #: appModules\winword\ww_funct old.py:67
 msgid "First page header story"
-msgstr "İlk sayfa başlık akışı"
+msgstr ""
 
 #: appModules\winword\ww_funct old.py:68
 msgid "First page footer story"
-msgstr "İlk sayfa altbilgi akışı"
+msgstr ""
 
 #: appModules\winword\ww_funct old.py:69
 msgid "Footnote separator story"
-msgstr "Dipnot ayraç akışı"
+msgstr ""
 
 #: appModules\winword\ww_funct old.py:70
 msgid "Footnote continuation separator story"
-msgstr "Dipnot devam ayraç akışı"
+msgstr ""
 
 #. noqa:E501
 #: appModules\winword\ww_funct old.py:71
 msgid "Footnote continuation notice story"
-msgstr "Dipnot devam bildirim akışı"
+msgstr ""
 
 #: appModules\winword\ww_funct old.py:72
 msgid "Endnote separator story"
-msgstr "Sonnot ayraç akışı"
+msgstr ""
 
 #: appModules\winword\ww_funct old.py:73
 msgid "Endnote continuation separator story"
-msgstr "Sonnot devam ayraç akışı"
+msgstr ""
 
 #. noqa:E501
 #: appModules\winword\ww_funct old.py:74
 msgid "Endnote continuation notice story"
-msgstr "Sonnot devam bildirim akışı"
+msgstr ""
 
 #: appModules\winword\ww_funct old.py:91
 msgid "Frame {name} document pane {index}"
-msgstr "Çerçeve {name} belge bölmesi {index}"
+msgstr ""
 
 #: appModules\winword\ww_grammaticalErrors.py:28
 msgid ""
@@ -3221,52 +3171,47 @@ msgid ""
 "Ttext involved:\n"
 "{text}\n"
 msgstr ""
-"Sayfa {page}, satır {line}\n"
-"İlgili metin:\n"
-"{text}\n"
 
 #: appModules\winword\ww_grammaticalErrors.py:43
 msgid "Grammatical errors"
-msgstr "Dilbilgisi hataları"
+msgstr ""
 
 #: appModules\winword\ww_grammaticalErrors.py:49
 msgid "No gramatical error"
-msgstr "Dilbilgisi hatası yok"
+msgstr ""
 
 #: appModules\winword\ww_grammaticalErrors.py:53
 msgid "Not available, Check grammar as you type is not activated"
 msgstr ""
-"Impossible, la vérification de la grammaire au cours de la frappe n'est pas "
-"activée."
 
 #: appModules\winword\ww_grammaticalErrors.py:67
 #: appModules\winword\ww_spellingErrors.py:67
 msgid "Errors:"
-msgstr "hatalar:"
+msgstr ""
 
 #: appModules\winword\ww_grammaticalErrors.py:82
 #: appModules\winword\ww_spellingErrors.py:85
 msgid "Involved sentence"
-msgstr "İlgili cümle"
+msgstr ""
 
 #. Translators: name of collection element type
 #: appModules\winword\ww_headerFooters.py:51
 msgid "Header/Footer"
-msgstr "Üstbilgi / Altbilgi"
+msgstr ""
 
 #: appModules\winword\ww_headerFooters.py:51
 msgid "Headers/Footers"
-msgstr "Üstbilgiler / Altbilgiler"
+msgstr ""
 
 #. Translators: text to report no bookmark.
 #: appModules\winword\ww_headerFooters.py:58
 msgid "No header or footer"
-msgstr "Üst bilgi veya alt bilgi yok"
+msgstr ""
 
 #: appModules\winword\ww_headings.py:44
 #, python-format
 msgid "heading level %s"
-msgstr "Titre niveau %s"
+msgstr ""
 
 #: appModules\winword\ww_headings.py:48
 msgid ""
@@ -3276,44 +3221,40 @@ msgid ""
 "\tStyle: {style}\n"
 "\t"
 msgstr ""
-"\tPage {page}, ligne {line}\n"
-"\tTexte: {text}\n"
-"\tNiveau: {level}\n"
-"\tStyle: {style}"
 
 #: appModules\winword\ww_headings.py:62 appModules\winword\ww_headings.py:100
 msgid "Headings"
-msgstr "Başlıklar"
+msgstr ""
 
 #: appModules\winword\ww_headings.py:68
 msgid "No heading"
-msgstr "Başlık yok"
+msgstr ""
 
 #: appModules\winword\ww_headings.py:103
 msgid "Text"
-msgstr "metin"
+msgstr ""
 
 #: appModules\winword\ww_headings.py:105
 msgid "Level"
-msgstr "seviye"
+msgstr ""
 
 #: appModules\winword\ww_headings.py:106
 msgid "Style"
-msgstr "stil"
+msgstr ""
 
 #: appModules\winword\ww_hyperlinks.py:55
 msgid "Hyperlink to range"
-msgstr "Köprü"
+msgstr ""
 
 #. msoHyperlinkRange
 #: appModules\winword\ww_hyperlinks.py:56
 msgid "Hyperlink to shape"
-msgstr "Şekle köprü"
+msgstr ""
 
 #. msoHyperlinkShape
 #: appModules\winword\ww_hyperlinks.py:57
 msgid "Hyperlink to inLine Shape"
-msgstr "Satır içi şekle Köprü"
+msgstr ""
 
 #: appModules\winword\ww_hyperlinks.py:63
 msgid ""
@@ -3323,129 +3264,125 @@ msgid ""
 "Address: {address}\n"
 "Sub-address: {subAddress}\n"
 msgstr ""
-"Sayfa {page}, satır {line}\n"
-"Ad: {name}\n"
-"Tür: {type}\n"
-"Adres: {address}\n"
-"Alt adres: {subAddress}\n"
 
 #: appModules\winword\ww_hyperlinks.py:78
 msgid "Hyperlink"
-msgstr "Köprü"
+msgstr ""
 
 #: appModules\winword\ww_hyperlinks.py:78
 #: appModules\winword\ww_hyperlinks.py:93
 msgid "Hyperlinks"
-msgstr "Köprüler"
+msgstr ""
 
 #: appModules\winword\ww_hyperlinks.py:84
 msgid "No hyperlink"
-msgstr "Köprü yok"
+msgstr ""
 
 #: appModules\winword\ww_hyperlinks.py:112
 msgid "Text to display"
-msgstr "Görüntülenecek metin"
+msgstr ""
 
 #. wdNoRevision
-#: appModules\winword\ww_revisions.py:24 appModules\winword\ww_revisions.py:125
+#: appModules\winword\ww_revisions.py:24
+#: appModules\winword\ww_revisions.py:125
 msgid "No revision"
-msgstr "Değişiklik yok"
+msgstr ""
 
 #. wdRevisionInsert
 #: appModules\winword\ww_revisions.py:26
 msgid "Insertion"
-msgstr "Ekleme"
+msgstr ""
 
 #. wdRevisionDelete
 #: appModules\winword\ww_revisions.py:28
 msgid "Deletion"
-msgstr "Silme"
+msgstr ""
 
 #. wdRevisionProperty
 #: appModules\winword\ww_revisions.py:30
 msgid "Property changed"
-msgstr "Özellikler değişti"
+msgstr ""
 
 #. wdRevisionParagraphNumber
 #: appModules\winword\ww_revisions.py:32
 msgid "Paragraph number changed"
-msgstr "Paragraf numarası değiştirildi"
+msgstr ""
 
 #. wdRevisionDisplayField
 #: appModules\winword\ww_revisions.py:34
 msgid "Field display changed"
-msgstr "Alan gösterimi değiştirildi"
+msgstr ""
 
 #. wdRevisionReconcile
 #: appModules\winword\ww_revisions.py:36
 msgid "Revision marked as reconciled conflict"
-msgstr "Değişiklik çözümlenen çatışma olarak işaretlendi"
+msgstr ""
 
 #. wdRevisionConflict
 #: appModules\winword\ww_revisions.py:38
 msgid "Revision marked as a conflict"
-msgstr "Değişiklik çatışma olarak işaretlendi"
+msgstr ""
 
 #. wdRevisionStyle
 #: appModules\winword\ww_revisions.py:40
 msgid "Style changed"
-msgstr "Stil değişti"
+msgstr ""
 
 #. wdRevisionReplace
 #: appModules\winword\ww_revisions.py:42
 msgid "Replaced"
-msgstr "Yerine eklendi"
+msgstr ""
 
 #. wdRevisionParagraphProperty
 #: appModules\winword\ww_revisions.py:44
 msgid "Paragraph property changed"
-msgstr "Paragraf özelliği değişti"
+msgstr ""
 
 #. wdRevisionTableProperty
 #: appModules\winword\ww_revisions.py:46
 msgid "Table property changed"
-msgstr "Tablo özelliği değişti"
+msgstr ""
 
 #. wdRevisionSectionProperty
 #: appModules\winword\ww_revisions.py:48
 msgid "Section property changed"
-msgstr "Bölüm özelliği değişti"
+msgstr ""
 
 #. wdRevisionStyleDefinition
 #: appModules\winword\ww_revisions.py:50
 msgid "Style definition changed"
-msgstr "Stil tanımı değişti"
+msgstr ""
 
 #. wdRevisionMovedFrom
 #: appModules\winword\ww_revisions.py:52
 msgid "Content moved from"
-msgstr "İçerik şuradan taşındı"
+msgstr ""
 
 #. wdRevisionMovedTo
 #: appModules\winword\ww_revisions.py:54
 msgid "Content moved to"
-msgstr "İçerik şuraya taşındı"
+msgstr ""
 
 #. wdRevisionCellInsertion
 #: appModules\winword\ww_revisions.py:56
 msgid "Table cell inserted"
-msgstr "Tablo hücresi eklendi"
+msgstr ""
 
 #. wdRevisionCellDeletion
 #: appModules\winword\ww_revisions.py:58
 msgid "Table cell deleted"
-msgstr "Tablo hücresi silindi"
+msgstr ""
 
 #. wdRevisionCellMerge
 #: appModules\winword\ww_revisions.py:60
 msgid "Table cells merged"
-msgstr "Tablo hücreleri birleştirildi"
+msgstr ""
 
 #. Translators: part of message to report author of revision
 #: appModules\winword\ww_revisions.py:85
 #, python-format
 msgid "by %s"
-msgstr "%s tarafından"
+msgstr ""
 
 #: appModules\winword\ww_revisions.py:98
 msgid ""
@@ -3456,50 +3393,44 @@ msgid ""
 "Revision's ttext:\n"
 "{text}\n"
 msgstr ""
-"Sayfa {page}, satır {line}\n"
-"Yazar: {author}\n"
-"Tarih: {date}\n"
-"Tür: {type}\n"
-"Metin değişikliği:\n"
-"{text}\n"
 
 #: appModules\winword\ww_revisions.py:113
 msgid "{type} by {author} {text}"
-msgstr "{type}, {author} {text} tarafından"
+msgstr ""
 
 #: appModules\winword\ww_revisions.py:119
 msgid "Revisions"
-msgstr "Değişiklikler"
+msgstr ""
 
 #: appModules\winword\ww_revisions.py:140
 msgid "revision track is not activated"
-msgstr "Değişiklik izlemesi etkin değil."
+msgstr ""
 
 #: appModules\winword\ww_revisions.py:152
 msgid "Revisions:"
-msgstr "Değişiklikler:"
+msgstr ""
 
 #: appModules\winword\ww_revisions.py:168
 msgid "&Accept"
-msgstr "K&abul et"
+msgstr ""
 
 #: appModules\winword\ww_revisions.py:169
 msgid "&Reject"
-msgstr "&reddet"
+msgstr ""
 
 #: appModules\winword\ww_revisions.py:173
 msgid "Revision's text"
-msgstr "Metin Değişikliği"
+msgstr ""
 
 #. Translators: text of message
 #: appModules\winword\ww_revisions.py:187
 msgid "Are you sure you wish to reject this items?"
-msgstr "Bu öğeleri reddetmek istediğinize emin misiniz?"
+msgstr ""
 
 #. Translators: title of message box dialog.
 #: appModules\winword\ww_revisions.py:189
 msgid "Reject of items"
-msgstr "Öğe Reddi"
+msgstr ""
 
 #: appModules\winword\ww_sections.py:55
 msgid ""
@@ -3511,56 +3442,49 @@ msgid ""
 "{pageSetup}\n"
 "\t\t"
 msgstr ""
-"Başlangıç: Page {pageStart}, line {lineStart}\n"
-"Son: Page {pageEnd}, line {lineEnd}\n"
-"Üst bilgi: {header}\n"
-"Alt bilgi: {footer}\n"
-"Girdi korumalı: {protected}\n"
-"{pageSetup}\n"
-"\t\t"
 
 #: appModules\winword\ww_sections.py:70
 msgid "page {page} line {line}"
-msgstr "sayfa {page} satır {line}"
+msgstr ""
 
 #. wdOrientPortrait,
 #: appModules\winword\ww_sections.py:76
 msgid "land scape"
-msgstr "Yatay"
+msgstr ""
 
 #: appModules\winword\ww_sections.py:79
 msgid "continue"
-msgstr "sürekli"
+msgstr ""
 
 #. wdSectionContinuous
 #: appModules\winword\ww_sections.py:80
 msgid "new column"
-msgstr "yeni sütun"
+msgstr ""
 
 #. wdSectionNewColumn
 #: appModules\winword\ww_sections.py:81
 msgid "new page"
-msgstr "yeni sayfa"
+msgstr ""
 
 #. wdSectionNewPage
 #: appModules\winword\ww_sections.py:82
 msgid "even page"
-msgstr "çift sayfa"
+msgstr ""
 
 #. wdSectionEvenPage
 #: appModules\winword\ww_sections.py:83
 msgid "odd page"
-msgstr "Tek sayfa"
+msgstr ""
 
 #. wdAlignVerticalTop
 #: appModules\winword\ww_sections.py:87
 msgid "center"
-msgstr "Ortalı"
+msgstr ""
 
 #. wdAlignVerticalCenter
 #: appModules\winword\ww_sections.py:88
 msgid "justify"
-msgstr "İki yana yaslı"
+msgstr ""
 
 #. wdPaper10x14
 #. wdPaper11x17
@@ -3604,24 +3528,24 @@ msgstr "İki yana yaslı"
 #. wdPaperEnvelopeMonarch
 #: appModules\winword\ww_sections.py:132
 msgid "custom"
-msgstr "kişiselleştirilmiş"
+msgstr ""
 
 #: appModules\winword\ww_sections.py:136
 msgid "Right alignment, right to left reading"
-msgstr "Sağa hizalı, sağdan sola okuma"
+msgstr ""
 
 #. wdSectionDirectionRtl
 #: appModules\winword\ww_sections.py:137
 msgid "Left alignment, left to right reading"
-msgstr "Sola hizalı, soldan sağa okuma"
+msgstr ""
 
 #: appModules\winword\ww_sections.py:143 appModules\winword\ww_sections.py:263
 msgid "Sections"
-msgstr "Bölümler"
+msgstr ""
 
 #: appModules\winword\ww_sections.py:150
 msgid "No section"
-msgstr "Bölüm yok"
+msgstr ""
 
 #: appModules\winword\ww_sections.py:202
 msgid ""
@@ -3634,14 +3558,6 @@ msgid ""
 "\tVertical alignment: {verticalAlignment}\n"
 "\t\t"
 msgstr ""
-"Düzen:\n"
-"\tBölüm başlangıcı: {start}\n"
-"\tÜstbilgi / altbilgi çift veya tek sayfalar farklı: {oddAndEven}\n"
-"\tÜstbilgi / altbilgi ilk sayfa farklı: {firstPage}\n"
-"\tÜst bilginin tepe ile arasındaki mesafe: {headerDistance}\n"
-"\tAlt bilginin diple arasındaki mesafe: {footerDistance}\n"
-"\tDikey hizalama: {verticalAlignment}\n"
-"\t\t"
 
 #: appModules\winword\ww_sections.py:219
 msgid ""
@@ -3651,11 +3567,6 @@ msgid ""
 "\tOrientation: {orientation}\n"
 "\t\t"
 msgstr ""
-"Kenar boşlukları:\n"
-"\tSol,sağ: {left}, {right}\n"
-"\tÜst, alt: {top}, {bottom}\n"
-"\tOryantasyon: {orientation}\n"
-"\t\t"
 
 #: appModules\winword\ww_sections.py:230
 msgid ""
@@ -3666,12 +3577,6 @@ msgid ""
 "\tTwo pages per sheet: {twoPages}\n"
 "\t\t"
 msgstr ""
-"Kağıt:\n"
-"\tFormat: {paperSize}\n"
-"\tSayfa uzunluğu: {height}\n"
-"\tSayfa genişliği: {width}\n"
-"\tYaprak başına iki sayfa: {twoPages}\n"
-"\t\t"
 
 #: appModules\winword\ww_sections.py:241
 msgid ""
@@ -3680,27 +3585,23 @@ msgid ""
 "\tLines number per page: {lines}\n"
 "\t{sectionDirection}\n"
 msgstr ""
-"Sayfa:\n"
-"\tSatır başına karakter sayısı: {chars}\n"
-"\tSayfa başına satır sayısı: {lines}\n"
-"\t{sectionDirection}\n"
 
 #: appModules\winword\ww_sections.py:266
 msgid "Start"
-msgstr "başlangıç"
+msgstr ""
 
 #: appModules\winword\ww_sections.py:267
 msgid "End"
-msgstr "Son"
+msgstr ""
 
 #: appModules\winword\ww_shapes.py:39
 msgid "Mixed shape type"
-msgstr "Karışık şekil türü"
+msgstr ""
 
 #. msoShapeTypeMixed
 #: appModules\winword\ww_shapes.py:40
 msgid "AutoShape"
-msgstr "Otomatik Şekil"
+msgstr ""
 
 #. msoAutoShape
 #: appModules\winword\ww_shapes.py:41
@@ -3710,7 +3611,7 @@ msgstr ""
 #. msoCallout
 #: appModules\winword\ww_shapes.py:42
 msgid "Chart"
-msgstr "Grafik"
+msgstr ""
 
 #. msoComment
 #: appModules\winword\ww_shapes.py:44
@@ -3720,110 +3621,110 @@ msgstr ""
 #. msoFreeform
 #: appModules\winword\ww_shapes.py:45
 msgid "Group"
-msgstr "grup"
+msgstr ""
 
 #. msoGroup
 #: appModules\winword\ww_shapes.py:46 appModules\winword\ww_shapes.py:108
 msgid "Embedded OLE object"
-msgstr "Gömülü OLE nesnesi"
+msgstr ""
 
 #. msoEmbeddedOLEObject
 #: appModules\winword\ww_shapes.py:47
 msgid "Form control"
-msgstr "Form kontrolü"
+msgstr ""
 
 #. msoFormControl
 #: appModules\winword\ww_shapes.py:48
 msgid "Line"
-msgstr "çizgi"
+msgstr ""
 
 #. msoLine
 #. wdInlineShapeEmbeddedOLEObject
 #: appModules\winword\ww_shapes.py:49 appModules\winword\ww_shapes.py:109
 msgid "Linked OLE object"
-msgstr "Bağlantılı OLE nesnesi"
+msgstr ""
 
 #. msoLinkedOLEObject
 #. wdInlineShapePicture
 #: appModules\winword\ww_shapes.py:50 appModules\winword\ww_shapes.py:111
 msgid "Linked picture"
-msgstr "Bağlantılı görüntü"
+msgstr ""
 
 #. msoLinkedPicture
 #. wdInlineShapeLinkedPicture
 #: appModules\winword\ww_shapes.py:51 appModules\winword\ww_shapes.py:112
 msgid "OLE control object"
-msgstr "OLE Nesne Kontrolü"
+msgstr ""
 
 #. msoOLEControlObject
 #. wdInlineShapeLinkedOLEObject
 #: appModules\winword\ww_shapes.py:52 appModules\winword\ww_shapes.py:110
 msgid "Picture"
-msgstr "görüntü"
+msgstr ""
 
 #. msoPicture
 #: appModules\winword\ww_shapes.py:53
 msgid "Placeholder"
-msgstr "Yer tutucu"
+msgstr ""
 
 #. msoPlaceholder
 #: appModules\winword\ww_shapes.py:54
 msgid "Text effect"
-msgstr "Metin efekti"
+msgstr ""
 
 #. msoTextEffect
 #: appModules\winword\ww_shapes.py:55
 msgid "Media. "
-msgstr "Medya"
+msgstr ""
 
 #. msoMedia
 #: appModules\winword\ww_shapes.py:56
 msgid "Text box"
-msgstr "Metin kutusu"
+msgstr ""
 
 #. msoTextBox
 #. msoScriptAnchor
 #: appModules\winword\ww_shapes.py:58 appModules\winword\ww_tables.py:301
 #: appModules\winword\ww_tables.py:318
 msgid "Table"
-msgstr "Tablo"
+msgstr ""
 
 #. msoTable
 #: appModules\winword\ww_shapes.py:59
 msgid "Canvas"
-msgstr "Tuval"
+msgstr ""
 
 #. msoCanvas
 #: appModules\winword\ww_shapes.py:60
 msgid "Diagram"
-msgstr "grafik"
+msgstr ""
 
 #. msoDiagram
 #: appModules\winword\ww_shapes.py:61
 msgid "Ink"
-msgstr "Ink"
+msgstr ""
 
 #. msoInk
 #: appModules\winword\ww_shapes.py:62
 msgid "Ink comment"
-msgstr "INK Yorum"
+msgstr ""
 
 #. msoInkComment
 #. wdInlineShapeDiagram
 #. wdInlineShapeLockedCanvas
 #: appModules\winword\ww_shapes.py:63 appModules\winword\ww_shapes.py:122
 msgid "Smart art"
-msgstr "Smart art"
+msgstr ""
 
 #. msoSmartArt
 #: appModules\winword\ww_shapes.py:64
 msgid "Slicer"
-msgstr "dilimleyici"
+msgstr ""
 
 #. msoSlicer
 #: appModules\winword\ww_shapes.py:65
 msgid "Web video"
-msgstr "Web videosu"
+msgstr ""
 
 #: appModules\winword\ww_shapes.py:72
 msgid ""
@@ -3835,45 +3736,38 @@ msgid ""
 "Alternative text:\n"
 "{alternativeText}\n"
 msgstr ""
-"Sayfa {page}, satır {line}\n"
-"Ad: {name}\n"
-"Tür: {typeText}\n"
-"genişlik: {width}\n"
-"yükseklik: {height}\n"
-"Alternatif metin:\n"
-"{alternativeText}\n"
 
 #. wdInlineShapeOLEControlObject
 #: appModules\winword\ww_shapes.py:113
 msgid "Horizontal line"
-msgstr "Yatay çizgi"
+msgstr ""
 
 #. wdInlineShapeHorizontalLine
 #: appModules\winword\ww_shapes.py:114
 msgid "Picture with horizontal line"
-msgstr "Yatay çizgi ile görüntü"
+msgstr ""
 
 #. wdInlineShapePictureHorizontalLine
 #: appModules\winword\ww_shapes.py:115
 msgid "Linked picture with horizontal line"
-msgstr "Yatay çizgiyle bağlantılı resim"
+msgstr ""
 
 #. wdInlineShapeLinkedPictureHorizontalLine # noqa:E501
 #: appModules\winword\ww_shapes.py:116
 msgid "Picture used as a bullet"
-msgstr "Madde işareti olarak kullanılan resim"
+msgstr ""
 
 #. wdInlineShapePictureBullet
 #. wdInlineShapeScriptAnchor
 #: appModules\winword\ww_shapes.py:118
 msgid "OWS anchor"
-msgstr "OWS çapa"
+msgstr ""
 
 #. wdInlineShapeOWSAnchor
 #. wdInlineShapeChart
 #: appModules\winword\ww_shapes.py:120
 msgid "Inline diagram"
-msgstr "Satır içi diyagramı"
+msgstr ""
 
 #: appModules\winword\ww_shapes.py:130
 msgid ""
@@ -3884,108 +3778,100 @@ msgid ""
 "Alternative ttext:\n"
 "{alternativeText}\n"
 msgstr ""
-"Sayfa {page}, satır {line}\n"
-"Tür: {typeText}\n"
-"Genişlik: {width}\n"
-"Yükseklik: {height}\n"
-"Alternatif metin:\n"
-"{alternativeText}\n"
 
 #: appModules\winword\ww_shapes.py:148
 msgid "Drawing layer object"
-msgstr "Çizim katmanı nesnesi"
+msgstr ""
 
 #: appModules\winword\ww_shapes.py:148
 msgid "Drawing layer objects"
-msgstr "Çizim katmanı nesneleri"
+msgstr ""
 
 #: appModules\winword\ww_shapes.py:154 appModules\winword\ww_shapes.py:166
 msgid "No object"
-msgstr "Nesne yok"
+msgstr ""
 
 #: appModules\winword\ww_shapes.py:160
 msgid "Text layer object"
-msgstr "Metin katmanı nesnesi"
+msgstr ""
 
 #: appModules\winword\ww_shapes.py:160
 msgid "Text layer objects"
-msgstr "Metin katmanı nesneleri"
+msgstr ""
 
 #: appModules\winword\ww_shapes.py:176
 msgid "Objects:"
-msgstr "nesneler:"
+msgstr ""
 
 #: appModules\winword\ww_shapes.py:182
 msgid "Height(in centimeter)"
-msgstr "Yükseklik, santimetre cinsinden "
+msgstr ""
 
 #: appModules\winword\ww_shapes.py:183
 msgid "Width (in centimeter)"
-msgstr "Genişlik, santimetre cinsinden"
+msgstr ""
 
 #: appModules\winword\ww_shapes.py:196
 msgid "Alternative text"
-msgstr "Alternatif metin"
+msgstr ""
 
 #. Translators: message to indicate the spell or grammar error.
 #: appModules\winword\ww_spellingChecker.py:118
 #: appModules\winword\ww_spellingChecker.py:250
 #, python-format
 msgid "Error: %s"
-msgstr "Hata: %s"
+msgstr ""
 
 #. Translators: message to indicate the suggested correction.
 #: appModules\winword\ww_spellingChecker.py:129
 #: appModules\winword\ww_spellingChecker.py:270
 #, python-format
 msgid "Suggestion: %s"
-msgstr "Öneri: %s"
+msgstr ""
 
 #. Translators: message to user that there is no help.
 #: appModules\winword\ww_spellingChecker.py:148
 #: appModules\winword\ww_spellingChecker.py:341
 msgid "No explanation help"
-msgstr "Açıklama yardımı yok"
+msgstr ""
 
 #. Translators: message to user to report no suggestion.
 #: appModules\winword\ww_spellingChecker.py:262
 msgid "No suggestion"
-msgstr "Öneri yok"
+msgstr ""
 
 #. Translators: message to user to report most of one suggestions.
 #: appModules\winword\ww_spellingChecker.py:281
 #, python-format
 msgid "%s suggestions"
-msgstr "Öneriler: %s"
+msgstr ""
 
 #. Translators: message to user to report one suggestion.
 #: appModules\winword\ww_spellingChecker.py:287
 msgid "One suggestions"
-msgstr "Bir öneri"
+msgstr ""
 
 #: appModules\winword\ww_spellingErrors.py:33
 msgid ""
 "Page {page}, line {line}\n"
 "Word: {word}\n"
 msgstr ""
-"Sayfa {page}, satır {line}\n"
-"Sözcük: {word}\n"
 
 #: appModules\winword\ww_spellingErrors.py:43
 msgid "Spelling errors"
-msgstr "Yanlış yazılmış sözcükler"
+msgstr ""
 
 #: appModules\winword\ww_spellingErrors.py:49
 msgid "No spelling error"
-msgstr "Yanlış yazılmış sözcük yok"
+msgstr ""
 
 #: appModules\winword\ww_spellingErrors.py:53
 msgid "Not available, Check spelling as you type is not activated"
-msgstr "Olanaklı değil, yazarken yazım denetimi etkin değil."
+msgstr ""
 
 #: appModules\winword\ww_spellingErrors.py:81
 msgid "Mispelled word"
-msgstr "Yanlış yazılan sözcük"
+msgstr ""
 
 #: appModules\winword\ww_tables.py:54
 msgid ""
@@ -3994,472 +3880,458 @@ msgid ""
 "Number of rows: {rowsCount}\n"
 "Number of columns: {columnsCount}\n"
 msgstr ""
-"Sayfa {page}, satır {line}\n"
-"Başlık: {title}\n"
-"Satır sayısı: {rowsCount}\n"
-"Sütun sayısı: {columnsCount}\n"
 
 #: appModules\winword\ww_tables.py:94 appModules\winword\ww_tables.py:223
 #: appModules\winword\ww_tables.py:253
 msgid "Row's limit"
-msgstr "Satır sonu"
+msgstr ""
 
 #: appModules\winword\ww_tables.py:103 appModules\winword\ww_tables.py:225
 #: appModules\winword\ww_tables.py:240
 msgid "Column's limit"
-msgstr "Sütun sonu"
+msgstr ""
 
 #: appModules\winword\ww_tables.py:111
 msgid "Table's start"
-msgstr "Tablo başı"
+msgstr ""
 
 #: appModules\winword\ww_tables.py:119
 msgid "Table's end"
-msgstr "tablo sonu"
+msgstr ""
 
 #. noqa:E501
 #: appModules\winword\ww_tables.py:129
 #: appModules\winword\ww_wordDocumentBase.py:1031
 msgid "Last cell"
-msgstr "Son hücre"
+msgstr ""
 
 #. noqa:E501
 #: appModules\winword\ww_tables.py:131
 #: appModules\winword\ww_wordDocumentBase.py:1033
 msgid "First cell"
-msgstr "İlk hücre"
+msgstr ""
 
 #: appModules\winword\ww_tables.py:228 appModules\winword\ww_tables.py:255
 #, python-format
 msgid "column %s"
-msgstr "sütun %s"
+msgstr ""
 
 #: appModules\winword\ww_tables.py:230 appModules\winword\ww_tables.py:243
 #, python-format
 msgid "row %s"
-msgstr "satır %s"
+msgstr ""
 
 #: appModules\winword\ww_tables.py:301 appModules\winword\ww_tables.py:316
 msgid "Tables"
-msgstr "Tablolar"
+msgstr ""
 
 #: appModules\winword\ww_tables.py:307
 msgid "No table"
-msgstr "tablo yok"
+msgstr ""
 
 #: appModules\winword\ww_tables.py:321
 msgid "Number of rows"
-msgstr "Satır sayısı"
+msgstr ""
 
 #: appModules\winword\ww_tables.py:322
 msgid "Number of columns"
-msgstr "Sütun sayısı"
+msgstr ""
 
 #. Translators: message to the user to say empty .
 #: appModules\winword\ww_tables.py:387
 #: appModules\winword\ww_wordDocumentBase.py:886
 #: appModules\winword\ww_wordDocumentBase.py:897
 msgid "empty"
-msgstr "boş"
+msgstr ""
 
 #. Translators: The message reported for a comment in Microsoft Word
 #: appModules\winword\ww_UIAWordDocument.py:238
 msgid "{comment} by {author} on {date}"
-msgstr "{comment}, {author} tarafından, {date} tarihinde"
+msgstr ""
 
 #. Translators: a message to report row number.
 #: appModules\winword\ww_wordDocumentBase.py:155
 #, python-format
 msgid " row %s"
-msgstr "satır %s"
+msgstr ""
 
 #. Translators: a message to report column number.
 #: appModules\winword\ww_wordDocumentBase.py:157
 #, python-format
 msgid " column %s"
-msgstr "sütun %s"
+msgstr ""
 
 #. Translators: message to report row and column number.
 #: appModules\winword\ww_wordDocumentBase.py:159
 msgid " row {rowIndex}, column {columnIndex}"
-msgstr " satır {rowIndex}, sütun {columnIndex}"
+msgstr ""
 
 #. Translators: a message to say moving to start of row.
 #: appModules\winword\ww_wordDocumentBase.py:165
 msgid "Start of row {0}"
-msgstr "Satırın başı {0}"
+msgstr ""
 
 #. Translators: message to say moving to end of row.
 #: appModules\winword\ww_wordDocumentBase.py:170
 msgid "End of row {0}"
-msgstr "Satırın sonu {0}"
+msgstr ""
 
 #. Translators: message to say moving to start of column.
 #: appModules\winword\ww_wordDocumentBase.py:175
 msgid "Start of column {0}"
-msgstr "Sütun başı {0}"
+msgstr ""
 
 #. Translators: message to say moving to end of column
 #: appModules\winword\ww_wordDocumentBase.py:180
 msgid "End of column {0}"
-msgstr "Sütun sonu {0}"
+msgstr ""
 
 #. Translators: a description for a script.
 #: appModules\winword\ww_wordDocumentBase.py:212
 msgid "Table: move to next row"
-msgstr "Tablo: sonraki satıra git"
+msgstr ""
 
 #. Translators: a description for a script.
 #: appModules\winword\ww_wordDocumentBase.py:217
 msgid "Table: move to previous row"
-msgstr "Tablo: önceki satıra git"
+msgstr ""
 
 #. Translators: a description for a script.
 #: appModules\winword\ww_wordDocumentBase.py:222
 msgid "Table: move to next column"
-msgstr "Tablo: sonraki sütuna git"
+msgstr ""
 
 #. Translators: a description for a script.
 #: appModules\winword\ww_wordDocumentBase.py:227
 msgid "Table: move to previous column "
-msgstr "Tablo: önceki sütuna git"
+msgstr ""
 
 #. Translators: a description for a script.
 #: appModules\winword\ww_wordDocumentBase.py:232
 msgid "Table: move to the first cell of row"
-msgstr "Tablo: Satırın ilk hücresine git"
+msgstr ""
 
 #. Translators: a description for a script.
 #: appModules\winword\ww_wordDocumentBase.py:237
 msgid "Table: move to the last cell of row"
-msgstr "Tablo: Satırın son hücresine git"
+msgstr ""
 
 #. Translators: a description for a script.
 #: appModules\winword\ww_wordDocumentBase.py:242
 msgid "Table: move to the first cell of column"
-msgstr "Tablo: sütunun ilk hücresine git"
+msgstr ""
 
 #. Translators: a description for a script.
 #: appModules\winword\ww_wordDocumentBase.py:247
 msgid "Table: move to the last cell of column "
-msgstr "Tablo: Sütunun son hücresine git"
+msgstr ""
 
 #. Translators: a description for a script.
 #: appModules\winword\ww_wordDocumentBase.py:252
 msgid "Table: move to first cell of table"
-msgstr "Tablo: tablonun ilk hücresine git"
+msgstr ""
 
 #. Translators: a description for a script.
 #: appModules\winword\ww_wordDocumentBase.py:257
 msgid "Table: move to last cell of table"
-msgstr "Tablo: tablonun son hücresine git"
+msgstr ""
 
 #. Translators: Input help mode message for report current headers command.
 #: appModules\winword\ww_wordDocumentBase.py:345
 msgid "Table: report current headers"
-msgstr "Tablo: mevcut başlıkları bildir"
+msgstr ""
 
 #. Translators: message to say no row header.
 #: appModules\winword\ww_wordDocumentBase.py:357
 msgid "No row header"
-msgstr "Satır için başlık yok"
+msgstr ""
 
 #. Translators: message to report row header.
 #: appModules\winword\ww_wordDocumentBase.py:360
 #: appModules\winword\ww_wordDocumentBase.py:363
 #, python-format
 msgid "Row header: %s"
-msgstr "Satır için başlık: %s"
+msgstr ""
 
 #. Translators: message to report no column header.
 #: appModules\winword\ww_wordDocumentBase.py:367
 msgid "No column header"
-msgstr "Sütun başlığı yok"
+msgstr ""
 
 #. Translators: message to report column header.
 #: appModules\winword\ww_wordDocumentBase.py:370
 #: appModules\winword\ww_wordDocumentBase.py:373
 #, python-format
 msgid "Column header: %s"
-msgstr "Sütun için başlık: %s"
+msgstr ""
 
 #. Translators: Input help mode message for report current cell command.
 #: appModules\winword\ww_wordDocumentBase.py:378
 msgid "Table: report current cell"
-msgstr "Tablo: mevcut hücreyi bildir"
+msgstr ""
 
 #. Translators: Input help mode message for report current row command.
 #: appModules\winword\ww_wordDocumentBase.py:389
 msgid "Table: report all cells of current row"
-msgstr "Tablo: Mevcut satırdaki tüm hücreleri bildir"
+msgstr ""
 
 #. Translators: Input help mode message for report current column command.
 #: appModules\winword\ww_wordDocumentBase.py:396
 msgid "Table: report all cells of current column"
-msgstr "Tablo: mevcut sütunun tüm hücrelerini bildir"
+msgstr ""
 
 #. Translators: Input help mode message for report next cell in column command.
 #: appModules\winword\ww_wordDocumentBase.py:404
 msgid "Table: Report the nextt cell in the column"
-msgstr "Tablo: Sütundaki sonraki hücreyi bildir"
+msgstr ""
 
 #. Translators: Input help mode message for report previous cell in column command.
 #: appModules\winword\ww_wordDocumentBase.py:412
 msgid "Table: report the previous cell in the column"
-msgstr "Tablo: sütundaki önceki hücreyi bildir"
+msgstr ""
 
 #. Translators: Input help mode message for report next cell in row command.
 #: appModules\winword\ww_wordDocumentBase.py:420
 msgid "Table: report the next cell in the row"
-msgstr "Tablo: satırdaki sonraki hücreyi bildir"
+msgstr ""
 
 #. Translators: Input help mode message for report previous cell in row command.
 #: appModules\winword\ww_wordDocumentBase.py:428
 msgid "Table: report the previous cell in the row"
-msgstr "Tablo: satırdaki önceki hücreyi bildir"
+msgstr ""
 
 #. Translators: Input help mode message for report first cell of column command.
 #: appModules\winword\ww_wordDocumentBase.py:436
 msgid "Table: report the first cell of the column"
-msgstr "Tablo: sütundaki ilk hücreyi bildir"
+msgstr ""
 
 #. Translators: Input help mode message for report last cell of column command.
 #: appModules\winword\ww_wordDocumentBase.py:444
 msgid "Table: report the last cell of the column"
-msgstr "Tablo: sütundaki son hücreyi bildir"
+msgstr ""
 
 #. Translators: Input help mode message for report first cell of row command.
 #: appModules\winword\ww_wordDocumentBase.py:452
 msgid "Table: report the first cell of the row"
-msgstr "Tablo: satırdaki ilk hücreyi bildir"
+msgstr ""
 
 #. Translators: Input help mode message for report last cell of row command.
 #: appModules\winword\ww_wordDocumentBase.py:460
 msgid "Table: report the last cell of the row"
-msgstr "Tablo: satırdaki son hücreyi bildir"
+msgstr ""
 
 #. Translators: Input help mode message for move to and report next row command.
 #: appModules\winword\ww_wordDocumentBase.py:469
 msgid "Table: move to next row and report all cells of row"
-msgstr "Tablo: sonraki satıra git ve tüm hücreleri oku"
+msgstr ""
 
 #. Translators: Input help mode message for move to and report Previous row command.
 #: appModules\winword\ww_wordDocumentBase.py:477
 msgid "Table: move to previous row and report all cells of row"
-msgstr "Tablo: önceki satıra git ve satırın tüm hücrelerini oku"
+msgstr ""
 
 #. Translators: Input help mode message for move to and report next column command.
 #: appModules\winword\ww_wordDocumentBase.py:485
 msgid "Table: move to next column and report all cells of column"
-msgstr "Tablo: sonraki sütuna git ve sütun hücrelerini oku"
+msgstr ""
 
 #. Translators: Input help mode message for move to and report previous column command.
 #: appModules\winword\ww_wordDocumentBase.py:492
 msgid "Table: move to prior column and report all cells of column"
-msgstr "Tablo: önceki sütuna git ve tüm hücreleri oku"
+msgstr ""
 
 #: appModules\winword\ww_wordDocumentBase.py:501
 msgid "Table: move to first cell of column and report all cells of row"
-msgstr "Tablo: sütunun ilk hücresine git ve satırın tüm hücrelerini oku"
+msgstr ""
 
 #: appModules\winword\ww_wordDocumentBase.py:511
 msgid "Table: move to last cell of column and report all cells of row"
-msgstr "Tablo: sütunun son hücresine git ve satırın tüm hücrelerini oku"
+msgstr ""
 
 #: appModules\winword\ww_wordDocumentBase.py:521
 msgid "Table: move to first cell of the row and report all cells of column"
-msgstr "Tablo: satırın ilk hücresine git ve sütunun tüm hücrelerini oku"
+msgstr ""
 
 #: appModules\winword\ww_wordDocumentBase.py:531
 msgid "Table: move to last cell of the row and report all cells of column"
-msgstr "Tablo: satırın son hücresine git ve sütunun tüm hücrelerini oku"
+msgstr ""
 
 #: appModules\winword\ww_wordDocumentBase.py:572
 #: appModules\winword\ww_wordDocumentBase.py:622
 msgid "Table layer mode on"
-msgstr "Tablo modu açık"
+msgstr ""
 
 #: appModules\winword\ww_wordDocumentBase.py:589
 msgid " (Table layer mode)"
-msgstr " (tablo katmanı)"
+msgstr ""
 
 #: appModules\winword\ww_wordDocumentBase.py:624
 msgid "Table layer mode off"
-msgstr "Tablo modu kapalı"
+msgstr ""
 
 #. Translators: Input help mode message for toggle layer mode command.
 #: appModules\winword\ww_wordDocumentBase.py:628
 msgid "Toggle table layer mode"
-msgstr "Tablo modunu açıp kapat"
+msgstr ""
 
 #: appModules\winword\ww_wordDocumentBase.py:644
 msgid "activate or desactivate the report of all cells of row or column"
 msgstr ""
-"Tüm satır veya sütun hücrelerinin bildirimini etkinleştir veya devre dışı "
-"bırak"
 
 #. Translators: message to user to indicate
 #. report all cells mode is activated.
 #: appModules\winword\ww_wordDocumentBase.py:653
 msgid "Report all Cells"
-msgstr "Tüm hücreleri duyur"
+msgstr ""
 
 #. Translators: message to user to indicate
 #. report all cells mode is desactivated.
 #: appModules\winword\ww_wordDocumentBase.py:657
 msgid "Do not report all cells"
-msgstr "Tüm hücreleri duyurma"
+msgstr ""
 
 #. Translators: Input help mode message for toggle automatic reading command.
 #: appModules\winword\ww_wordDocumentBase.py:662
 msgid "activate or desactivate automatic reading"
-msgstr "otomatik okumayı etkinleştir veya devre dışı bırak"
+msgstr ""
 
 #. Translators: message to user to indicate automatic reading enabled.
 #: appModules\winword\ww_wordDocumentBase.py:668
 msgid "Automatic reading enabled"
-msgstr "Otomatik okuma etkin"
+msgstr ""
 
 #. Translators: message to user to indicate automatic reading disabled.
 #: appModules\winword\ww_wordDocumentBase.py:671
 msgid "Automatic reading disabled"
-msgstr "Otomatik okuma devre dışı"
+msgstr ""
 
 #. Translators: The message reported
 #. when a user attempts to use a table movement command.
 #. when the cursor is not withnin a table.
 #: appModules\winword\ww_wordDocumentBase.py:682
 msgid "Not in table"
-msgstr "Tabloda değil"
+msgstr ""
 
 #: appModules\winword\ww_wordDocumentBase.py:756
 msgid "No other paragraph"
-msgstr "Başka paragraf yok"
+msgstr ""
 
 #: appModules\winword\ww_wordDocumentBase.py:760
 #: appModules\winword\ww_wordDocumentBase.py:768
 msgid "No other sentence"
-msgstr "Başka cümle yok"
+msgstr ""
 
 #. Translators: Input help mode message for next sentence command.
 #: appModules\winword\ww_wordDocumentBase.py:806
 msgid "Move to the next sentence"
-msgstr "Odağı bir sonraki cümleye taşır"
+msgstr ""
 
 #. Translators: Input help mode message for previous sentence command.
 #: appModules\winword\ww_wordDocumentBase.py:815
 msgid "Move to the previous sentence"
-msgstr "Odağı bir önceki cümleye taşır"
+msgstr ""
 
 #: appModules\winword\ww_wordDocumentBase.py:825
 msgid ""
 "Move to the next paragraph (skip empty paragraphs if \"Skip Empty Paragraph"
 "\" option is set to on) "
 msgstr ""
-"Odağı sonraki paragrafa taşı (boş paragrafları atlama seçeneği "
-"etkinleştirilmişse  boş paragraflar atla)"
 
 #: appModules\winword\ww_wordDocumentBase.py:837
 msgid ""
 "Move to the previous paragraph (skip empty paragraphs if \"Skip Empty "
 "Paragraph\" option is set to on) "
 msgstr ""
-"Odağı önceki paragrafa taşı (boş paragrafları atlama seçeneği "
-"etkinleştirilmişse  boş paragraflar atla)"
 
 #. Translators: Input help mode message for insert comment command.
 #: appModules\winword\ww_wordDocumentBase.py:848
 msgid ""
 "Insert an element (comment, footnote, endnote) where the System caret is "
 "located."
-msgstr "Sistem imlecinin bulunduğu yere bir öğe (yorum, dipnot, son not) ekle."
+msgstr ""
 
 #: appModules\winword\ww_wordDocumentBase.py:862
 msgid ""
 "Reports the text of the endnote or footnote where the System caret is "
 "located."
-msgstr "İmleç konumundaki dipnot veya sonnot metnini okur"
+msgstr ""
 
 #. Translators: a message when there is no endnoe or footnote
 #. to report in Microsoft Word.
 #: appModules\winword\ww_wordDocumentBase.py:906
 msgid "no endnote or footnote"
-msgstr "İmleç konumunda son not veya dipnot yok"
+msgstr ""
 
 #: appModules\winword\ww_wordDocumentBase.py:911
 msgid "Reports the text of the revision where the System caret is located."
-msgstr "İmleç konumundaki değişiklik metnini okur"
+msgstr ""
 
 #: appModules\winword\ww_wordDocumentBase.py:921
 msgid "Display a dialog to get word object informations in a range"
 msgstr ""
-"Belgedeki nesneleri türlerine göre görüntüleyebileceğiniz bir iletişim "
-"kutusu açar"
 
 #: appModules\winword\ww_wordDocumentBase.py:932
 msgid ""
 "Report the page number and line number relative to the page. Twice: display "
 "this information"
 msgstr ""
-"Sayfa numarasını ve sayfa içinde satır numarasını bildir. İki kez: bu "
-"bilgiyi geçici ekranda göster"
 
 #. Translators: message in report location script.
 #: appModules\winword\ww_wordDocumentBase.py:947
 msgid "at {0} from left edge and {1} from top edge of the page"
-msgstr "Sol kenardan {0} ve üst kenardan {1} uzakta"
+msgstr ""
 
 #. Translators: message in report location script.
 #: appModules\winword\ww_wordDocumentBase.py:954
 msgid "You are at the row {row}, column {column} of table"
-msgstr "Satır {row}, sütun {column} "
+msgstr ""
 
 #. Translators: message to user to report location in page.
 #: appModules\winword\ww_wordDocumentBase.py:962
 msgid "you are at Line {line}, column {column} of page {page}"
-msgstr "Satır {line}, sütun {column} sayfa {page}"
+msgstr ""
 
 #. Translators: message to user
 #: appModules\winword\ww_wordDocumentBase.py:970
 msgid "Selection begins at line {line}, column {column} of page {page}"
-msgstr "Seçim başlangıcı sayfa {page}, satır {line}, sütun {column} "
+msgstr ""
 
 #. Translators: text to report position.
 #: appModules\winword\ww_wordDocumentBase.py:982
 msgid "at {0} from left edge and {1} from top edge of the page."
-msgstr "soldan {0} ve yukarıdan {1} uzaklıkta."
+msgstr ""
 
 #. Translators: text to report location.
 #: appModules\winword\ww_wordDocumentBase.py:985
 msgid "It ends at line {line}, column {column} of page {page}"
-msgstr "Seçim sonu, satır {line}, sütun {column} sayfa {page}"
+msgstr ""
 
 #. Translators: this is the title of informationdialog box
 #. to show location informations.
 #: appModules\winword\ww_wordDocumentBase.py:992
 msgid "Location information"
-msgstr "Konum bilgisi"
+msgstr ""
 
 #. Translators: Input help mode message for report document informations command.
 #: appModules\winword\ww_wordDocumentBase.py:999
 msgid "Display document's informations"
-msgstr "Belge bilgilerini görüntüler"
+msgstr ""
 
 #. Translators: This is the title of the InsertElementDialog dialog.
 #: appModules\winword\ww_wordDocumentBase.py:1069
 msgid "Insert element"
-msgstr "Öğe ekle"
+msgstr ""
 
 #. Translators: This is a label appearing on Insert Element dialog.
 #: appModules\winword\ww_wordDocumentBase.py:1079
 msgid "Element's &type:"
-msgstr "Öğe &türü:"
+msgstr ""
 
 #. Translators: This is a label of a button appearing
 #. on Insert Element Dialog.
 #: appModules\winword\ww_wordDocumentBase.py:1090
 msgid "&Insert"
-msgstr "&Ekle"
+msgstr ""
 
 #. Translators: message to user
 #: appModules\winword\__init__.py:97
@@ -4468,314 +4340,296 @@ msgid ""
 "controls when available\")\" option. For the add-on to work properly, it is "
 "recommended not to check this option."
 msgstr ""
-"\"Kullanılabilir olduğunda Microsoft Word belge kontrollerine erişmek için "
-"Kullanıcı Arabirimi Otomasyonunu Kullan\") \"seçeneğini işaretlemişsiniz. "
-"Eklentinin düzgün çalışması için bu seçeneğin işaretlenmemesi önerilir."
 
 #. Translators: dialog title.
 #: appModules\winword\__init__.py:99
 msgid "Warning"
-msgstr "Uyarı"
+msgstr ""
 
 #. Translators: Input help mode message for toggle Skip Empty Paragraphs Option command.
 #: appModules\winword\__init__.py:169
 msgid "Toggle on or off the option to skip empty paragraphs"
 msgstr ""
-"Boş paragrafların atlanması seçeneğini etkinleştirip devre dışı bırakır"
 
 #. Translators: message to user
 #. to report skipping of empty paragraph when moving by paragraph.
 #: appModules\winword\__init__.py:177
 msgid "Skip empty paragraphs"
-msgstr "Boş paragrafları atla"
+msgstr ""
 
 #. Translators: message to user
 #. to report no skipping empty paragraph when moving by paragraph.
 #: appModules\winword\__init__.py:181
 msgid "Don't skip empty paragraphs"
-msgstr "Boş paragrafları atlama"
+msgstr ""
 
 #. Translators: message to ask user to hit tab key.
 #: appModules\winword\__init__.py:202 appModules\winword\__init__.py:260
 msgid "Hit tab to move focus in the spelling checker pane"
-msgstr "Odağı yazım denetleyici bölmesine taşımak için \"Sekme\" tuşuna basın"
+msgstr ""
 
 #: appModules\winword\__init__.py:234
 msgid ""
 "Report error and suggestion displayed by the spelling checker. Twice:spell "
 "them. Third: say help text"
 msgstr ""
-"Yazım denetleyicisi tarafından görüntülenen hatayı ve öneriyi bildir. İki "
-"kez:bilgiyi kodla. Üç kez: yardım metnini oku"
 
 #. Translators: message to the user when word version is not supported.
 #: appModules\winword\__init__.py:242
 msgid "Not available for this Word version"
-msgstr "Bu Word sürümü için mevcut değil"
+msgstr ""
 
 #. Translators: message to indicate the focus is not in spellAndGrammar checker. # noqa:E501
 #: appModules\winword\__init__.py:252
 msgid "You are Not in the spelling checker"
-msgstr "Yazım denetleyicisinde değilsiniz"
+msgstr ""
 
 #. Translators: Input help mode message for report Current Sentence command.
 #: appModules\winword\__init__.py:284
 msgid "Report current sentence "
-msgstr "Mevcut cümleyi oku"
+msgstr ""
 
 #. Translators: Input help mode message for set automatic reading voice command.
 #: appModules\winword\__init__.py:293
 msgid "Record automatic reading voice's settings"
-msgstr "Otomatik okuma ses ayarlarını kaydet"
+msgstr ""
 
 #. Translators: This is the label for the Options panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:46
 msgid "Options"
-msgstr "Seçenekler"
+msgstr ""
 
 #. Translators: This is the label for a group of editing options
 #. in the settings panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:54
 msgid "Paragraph"
-msgstr "Paragraf"
+msgstr ""
 
 #. Translators: This is the label for a checkbox in the settings panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:60
 msgid "&Skip empty paragraphs"
-msgstr "&Boş paragrafları atla"
+msgstr ""
 
 #. Translators: This is the label for a checkbox in the settings panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:66
 msgid "&Play sound when paragraph is skipped"
-msgstr "Paragraf atlandığında &ses çal"
+msgstr ""
 
 #. Translators: This is the label for a checkbox in the options settings panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:72
 msgid "Na&vigate in loop"
-msgstr "Dö&ngü içinde gezin"
+msgstr ""
 
 #. translators: label for a list box in Options settings panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:78
 msgid "Maximum time of elements's search (in seconds:)"
-msgstr "Öğe listelenmesi için verilen maksimum süre (saniye cinsinden:)"
+msgstr ""
 
 #. Translators: This is the label for the Automatic reading panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:101
 msgid "Automatic reading"
-msgstr "Otomatik okuma"
+msgstr ""
 
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:114
-#| msgid "Commented text"
 msgid "Inserted text"
-msgstr "Eklenen metin"
+msgstr ""
 
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:115
-#| msgid "Commented text"
 msgid "Deleted text"
-msgstr "silinen metin"
+msgstr ""
 
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:116
-#| msgid "Revision's text"
 msgid "Revised text"
-msgstr "revize metin"
+msgstr ""
 
 #. Translators: This is the label for a checkbox in the automatic reading settings panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:123
 msgid "&Activate automatic reading"
-msgstr "&Otomatik okumayı etkinleştir"
+msgstr ""
 
 #. Translators: This is the label for a list of checkboxes
 #. controlling which  object are automatically reading.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:130
 msgid "Concerned elements:"
-msgstr "İlgili ögeler:"
+msgstr ""
 
 #. Translators: This is the label for a checkbox in the settings panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:149
 msgid "Read &with:"
-msgstr "&Şununla oku:"
+msgstr ""
 
 #. Translators: a choice labels for automatic reading.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:152
 msgid "Current voice"
-msgstr "Mevcut ses"
+msgstr ""
 
 #. Translators: a choice labels for automatic reading.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:154
 msgid "Current voice and  beep at start and end"
-msgstr "Mevcut ses ve  başta ve sonda bip sesi"
+msgstr ""
 
 #. Translators: a choice labels for automatic reading.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:156
 msgid "another voice"
-msgstr "başka bir ses"
+msgstr ""
 
 #. Translators:  this is a label for a checkbox
 #. in automatic reading settings panel
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:164
 msgid "&Report revision's type with author"
-msgstr "&Revizyon türünü yazarla birlikte bildir"
+msgstr ""
 
 #. translators: label for a button in automatic reading settings panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:170
 msgid "&Display voice's recorded setting"
-msgstr "&Kaydedilmiş ses ayarlarını göster"
+msgstr ""
 
 #. Translators: message to user to report no automatic reading voice.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:198
 msgid "No voice recorded for automatic reading"
-msgstr "Otomatik okuma için ses kaydedilmedi"
+msgstr ""
 
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:202
 #, python-format
 msgid "Synthetizer: %s"
-msgstr "Sentezleyici: %s"
+msgstr ""
 
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:205
 #, python-format
 msgid "Output device: %s"
-msgstr "Çıktı aygıtı: %s"
+msgstr ""
 
 #. Translators: this is the title of informationdialog box
 #. to show voice profile informations.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:233
 msgid "Voice settings for automatic reading"
-msgstr "Otomatik okuma için ses ayarları"
+msgstr ""
 
 #. Translators: This is the label for the Update panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:269
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:107
 msgid "Update"
-msgstr "Güncelleme"
+msgstr ""
 
 #. Translators: This is the label for a checkbox in the update settings panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:274
 msgid "Automatically check for &updates "
-msgstr "Güncellemeleri &otomatik olarak kontrol et"
+msgstr ""
 
 #. Translators: This is the label for a checkbox in the update settings panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:280
 msgid "Update also release versions to &developpement versions"
-msgstr "Ana &sürümleri geliştirme sürümleriyle de güncelle"
+msgstr ""
 
 #. translators: label for a button in update settings panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:286
 msgid "&Check for update"
-msgstr "&Güncellemeleri Denetle"
+msgstr ""
 
 #. translators: this is a label for a button in update settings panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:291
 msgid "View &history"
-msgstr "&Geçmişi görüntüle"
+msgstr ""
 
 #. Translators: title of add-on parameters dialog.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:328
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:342
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:329
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:343
 msgid "Settings"
-msgstr "Ayarlar"
+msgstr ""
 
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:60
-#| msgid ""
-#| "The update is not compatible with this version of NVDA. Minimum NVDA "
-#| "version: {minYear}{minMajor}, last tested: {testedYear}.{testedMajor}."
 msgid ""
 "The update is not compatible with this version of NVDA. Minimum NVDA "
 "version: {minYear}.{minMajor}, last tested: {testedYear}.{testedMajor}."
 msgstr ""
-"Güncelleme, NVDA'nın bu sürümü ile uyumlu değil. Minimum NVDA sürümü: "
-"{minYear}.{minMajor}, son test: {testedYear}.{testedMajor}."
 
 #. Translators: The progress message
 #. indicating the name of the add-on being downloaded.
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:110
 msgid "Downloading {name}"
-msgstr "{name} indiriliyor"
+msgstr ""
 
 #. Translators: A message indicating that an error occurred
 #. while downloading an update to NVDA.
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:125
 msgid "Error downloading update for {name}."
-msgstr "{name} İçin güncelleme indirilirken hata oluştu."
+msgstr ""
 
 #. Translators: message to user
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:184
 msgid "Cannot update {name} - missing file or invalid file format"
-msgstr "{name} güncellenemedi - eksik dosya veya geçersiz dosya biçimi"
+msgstr ""
 
 #. Translators: The title of the dialog
 #. presented while an Addon is being updated.
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:220
 msgid "Updating"
-msgstr "Güncelleniyor"
+msgstr ""
 
 #. Translators: The message displayed while an addon is being updated.
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:222
 msgid "Please wait while the add-on is being updated."
-msgstr "Eklenti güncellenirken lütfen bekleyin."
+msgstr ""
 
 #. Translators: The message displayed when an error occurs
 #. when installing an add-on package.
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:233
 msgid "Failed to update {name} add-on"
-msgstr "{name} eklenti Güncellemesi başarısız oldu"
+msgstr ""
 
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:291
 msgid "{summary} - update"
-msgstr "{summary} - güncelleme"
+msgstr ""
 
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:301
 msgid "The service is temporarily under maintenance. Please, try again later."
 msgstr ""
-"Hizmet geçici olarak bakım altında. Lütfen daha sonra tekrar deneyiniz."
 
 #. Translators: message to user to report a new version.
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:354
 #, python-format
-#| msgid "New version available, version %s. Do you want download it now?"
 msgid "New version%s is available. Do you want to download it now?"
-msgstr "Yeni sürüm %s var. Şimdi indirmek ister misin?"
+msgstr ""
 
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:371
 #, python-format
 msgid "You are up-to-date. %s is the latest version."
-msgstr "Güncelsin. %s en son sürüm."
+msgstr ""
 
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:378
 msgid "Oops! There was a problem checking for updates. Please retry later"
 msgstr ""
-"Hata! Güncellemeler kontrol edilirken bir sorun oluştu. Lütfen daha sonra "
-"tekrar dene"
 
 #. Translators: This is a label of a button appearing
 #. on UpdateCheckResult dialog.
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:535
 msgid "&Yes"
-msgstr "&Evet"
+msgstr ""
 
 #. Translators: This is a label of a button appearing
 #. on UpdateCheckResult dialog.
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:540
 msgid "&No"
-msgstr "&Hayır"
+msgstr ""
 
 #. Translators: The label of a button to remind the user later
 #. about performing some action.
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:545
 msgid "&Later"
-msgstr "&Sonra"
+msgstr ""
 
 #: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:549
 msgid "Wha&t's new"
-msgstr "Ne &yeni"
+msgstr ""
 
 #. Translators: this is the default title of Information dialog.
 #: shared\ww_informationDialog.py:38
 msgid "Informations"
-msgstr "Bilgiler"
+msgstr ""
 
 #: shared\ww_informationDialog.py:69 shared\ww_utils.py:107
 msgid "Co&py to Clipboard"
-msgstr "Panoya ko&pyala"
+msgstr ""
 
 #. Translators: message to the user when the information has been copied
 #. to clipboard.
@@ -4783,7 +4637,7 @@ msgstr "Panoya ko&pyala"
 #. to clipboard
 #: shared\ww_informationDialog.py:90 shared\ww_utils.py:128
 msgid "Copied"
-msgstr "Kopyalandı"
+msgstr ""
 
 #. Translators: message to the user when the information cannot be copied
 #. to clipboard.
@@ -4791,59 +4645,16 @@ msgstr "Kopyalandı"
 #. to clipboard
 #: shared\ww_informationDialog.py:97 shared\ww_utils.py:135
 msgid "Error, the information cannot be copied to the clipboard"
-msgstr "Hata: Bilgiler panoya kopyalanamıyor"
+msgstr ""
 
 #. Translators: the label of a message box dialog.
 #: shared\ww_utils.py:63
 #, python-format
 msgid "%s dialog is allready open"
-msgstr "%s iletişim kutusu zaten açık"
+msgstr ""
 
 #. Translators: this is the default title of Information dialog
 #: shared\ww_utils.py:71
 #, python-format
 msgid "%s add-on - Informations"
-msgstr "%s eklentisi - Bilgiler"
-
-#~ msgid "Object's type:"
-#~ msgstr "Nesne türü:"
-
-#~ msgid "First Page Header: {text}, {alignment}"
-#~ msgstr "İlk Sayfa Başlık bilgisi: {text}, {alignment}"
-
-#~ msgid "First Page Footer: {text}, {alignment}"
-#~ msgstr "İlk Sayfa Altbilgisi: {text}, {alignment}"
-
-#~ msgid "Even Page Header: {text}, {alignment}"
-#~ msgstr "Çift Sayfa Başlık bilgisi: {text}, {alignment}"
-
-#~ msgid "Even Page Footer: {text}, {alignment}"
-#~ msgstr "Çift Sayfa Altbilgisi: {text}, {alignment}"
-
-#~ msgid "Page header: {text}, {alignment}"
-#~ msgstr "Sayfa üst bilgisi: {text}, {alignment}"
-
-#~ msgid "Page Footer: {text}, {alignment}"
-#~ msgstr "Sayfa alt bilgisi: {text}, {alignment}"
-
-#~ msgid "nothing"
-#~ msgstr "Hiçbir şey yapma"
-
-#, python-format
-#~ msgid "%s - choice"
-#~ msgstr "%s - seçim"
-
-#~ msgid "Insert comment"
-#~ msgstr "Açıklama ekleme"
-
-#~ msgid "Endnote {index}"
-#~ msgstr "Sonnot {index}"
-
-#~ msgid "&Comments"
-#~ msgstr "A&çıklamalar"
-
-#~ msgid "&Footnotes"
-#~ msgstr "&Dipnotlar"
-
-#~ msgid "Select smaller part of document"
-#~ msgstr "Belgenin daha küçük bir bölümünü seçin"
+msgstr ""

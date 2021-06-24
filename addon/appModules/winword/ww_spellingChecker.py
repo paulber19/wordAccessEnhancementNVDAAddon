@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 # appModules\word\appModules/winword/ww_spellingChecker.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2021 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -12,7 +12,15 @@ import eventHandler
 import queueHandler
 import controlTypes
 import speech
-
+from .ww_scriptTimer import clearScriptTimer
+import os
+import sys
+_curAddon = addonHandler.getCodeAddon()
+path = os.path.join(_curAddon.path, "shared")
+sys.path.append(path)
+from ww_utils import (
+	getSpeechMode, setSpeechMode, setSpeechMode_off)  # noqa:E402
+del sys.path[-1]
 addonHandler.initTranslation()
 
 ID_InSpellingChecker_No = 0
@@ -91,6 +99,7 @@ class SpellingChecker_2016(object):
 
 	def sayErrorAndSuggestion(
 		self, title=False, spell=False, focusOnSuggestion=False):
+		clearScriptTimer()
 		infos = self.getErrorInformations()
 		if title and infos["title"] is not None:
 			queueHandler.queueFunction(
@@ -222,7 +231,7 @@ class SpellingChecker_2019(object):
 
 	def sayErrorAndSuggestion(
 		self, title=False, spell=False, focusOnSuggestion=False):
-
+		clearScriptTimer()
 		infos = self.getErrorInformations()
 		if title and infos["title"] is not None:
 			queueHandler.queueFunction(
@@ -303,8 +312,8 @@ class SpellingChecker_2019(object):
 			button = getDisplayExplanationButton()
 			if button is None:
 				return None
-			oldSpeechMode = speech.speechMode
-			speech.speechMode = speech.speechMode_off
+			oldSpeechMode = getSpeechMode()
+			setSpeechMode_off()
 			stateHasChanged = False
 			if controlTypes.STATE_PRESSED not in button.states:
 				button.doAction()
@@ -316,7 +325,7 @@ class SpellingChecker_2019(object):
 				button.doAction()
 			focus.setFocus()
 			api.processPendingEvents()
-			speech.speechMode = oldSpeechMode
+			setSpeechMode(oldSpeechMode)
 			speech.cancelSpeech()
 			return "\r\n".join(textList)
 

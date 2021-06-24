@@ -1,41 +1,69 @@
 # appModules\winword\ww_browsemode.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2021 paulber19
 # This file is covered by the GNU General Public License.
 
 
 import addonHandler
 import ui
 import textInfos
-import sayAllHandler
+try:
+	# for nvda version < 2021.1
+	from sayAllHandler import CURSOR_CARET
+except (AttributeError, ImportError):
+	from speech.sayAll import CURSOR
+	CURSOR_CARET =  CURSOR.CARET
 import speech
+import speech.commands
 from NVDAObjects.window.winword import *  # noqa:F403
 from versionInfo import version_year, version_major
 from .ww_fields import Field
 from .ww_keyboard import getBrowseModeQuickNavKey
-from scriptHandler import getLastScriptRepeatCount, willSayAllResume
+from scriptHandler import willSayAllResume
 import api
 import winsound
 import sys
 import os
+try:
+	# for nvda version < 2021.1
+	REASON_QUICKNAV = browseMode.REASON_QUICKNAV
+except AttributeError:
+	from controlTypes import OutputReason
+	REASON_QUICKNAV = OutputReason.QUICKNAV
+
 _curAddon = addonHandler.getCodeAddon()
 path = os.path.join(_curAddon.path, "shared")
 sys.path.append(path)
-from ww_py3Compatibility import _unicode  # noqa:E402
 from ww_NVDAStrings import NVDAString  # noqa:E402
-from ww_addonConfigManager import _addonConfigManager  # noqa:E402
+from ww_addonConfigManager import _addonConfigManager , AutoReadingWith_Beep  # noqa:E402
 del sys.path[-1]
 
 addonHandler.initTranslation()
+
 
 class BrowseModeTreeInterceptorEx(browseMode.BrowseModeTreeInterceptor):
 	__gestures = {}
 	scriptCategory = _("Extended browse mode for Microsoft Word")
 
+
+	def __init__(self, rootNVDAObject):
+		super(BrowseModeTreeInterceptorEx, self).__init__(rootNVDAObject)
+		# to be able to move sentences by sentence in navigation mode.
+		# collapseOrExpandControl script is not usefull in word.
+		try:
+			del self._gestureMap["kb:alt+uparrow"]
+		except KeyError:
+			pass
+		try:
+			del self._gestureMap["kb:alt+downarrow"]
+		except KeyError:
+			pass
+
+
+
 	@classmethod
 	def addQuickNav(cls, itemType, key, nextDoc, nextError, prevDoc, prevError, readUnit=None):
 		map = cls.__gestures
-
 		"""Adds a script for the given quick nav item.
 		@param itemType: The type of item, I.E. "heading" "Link" ...
 		@param key: The quick navigation key to bind to the script. Shift is automatically added for the previous item gesture. E.G. h for heading
@@ -53,7 +81,7 @@ class BrowseModeTreeInterceptorEx(browseMode.BrowseModeTreeInterceptor):
 		script = lambda self, gesture: self._quickNavScript(gesture, itemType, "next", nextError, readUnit)  # noqa:E731
 		script.__doc__ = nextDoc
 		script.__name__ = funcName
-		script.resumeSayAllMode = sayAllHandler.CURSOR_CARET
+		script.resumeSayAllMode = CURSOR_CARET
 		setattr(cls, funcName, script)
 		if key is not None:
 			map["kb:%s" % key] = scriptName
@@ -62,15 +90,13 @@ class BrowseModeTreeInterceptorEx(browseMode.BrowseModeTreeInterceptor):
 		script = lambda self, gesture: self._quickNavScript(gesture, itemType, "previous", prevError, readUnit)  # noqa:E731
 		script.__doc__ = prevDoc
 		script.__name__ = funcName
-		script.resumeSayAllMode = sayAllHandler.CURSOR_CARET
+		script.resumeSayAllMode = CURSOR_CARET
 		setattr(cls, funcName, script)
 		if key is not None:
 			map["kb:shift+%s" % key] = scriptName
 
-
 # Add quick navigation scripts.
-BrowseModeTreeInterceptorEx._BrowseModeTreeInterceptorEx__gestures = browseMode.BrowseModeTreeInterceptor._BrowseModeTreeInterceptor__gestures.copy()
-
+#BrowseModeTreeInterceptorEx._BrowseModeTreeInterceptorEx__gestures = browseMode.BrowseModeTreeInterceptor._BrowseModeTreeInterceptor__gestures.copy()
 
 qn = BrowseModeTreeInterceptorEx.addQuickNav
 qn(
@@ -234,10 +260,13 @@ else:
 
 
 class WordDocumentTreeInterceptorEx(BrowseModeDocumentTreeInterceptorEx, WordDocumentTreeInterceptor):
+	disableAutoPassThrough = True
 	TextInfo = BrowseModeWordDocumentTextInfoEx
 
 	def __init__(self, obj):
 		super(WordDocumentTreeInterceptorEx, self).__init__(obj)
+		self.passThrough = True
+		browseMode.reportPassThrough.last = True
 		# to keep WordDocumentEx scripts available in browseMode on
 		gestures = [
 			"kb:alt+upArrow",
@@ -287,6 +316,10 @@ class WordDocumentTreeInterceptorEx(BrowseModeDocumentTreeInterceptorEx, WordDoc
 			return SpellingErrorWinWordCollectionQuicknavIterator(nodeType, self, direction, rangeObj, includeCurrent).iterate()
 		elif nodeType == "section":
 			return SectionWinWordCollectionQuicknavIterator(nodeType, self, direction, rangeObj, includeCurrent).iterate()
+		elif nodeType=="annotation":
+			comments=CommentWinWordCollectionQuicknavIterator(nodeType,self,direction,rangeObj,includeCurrent).iterate()
+			revisions=RevisionWinWordCollectionQuicknavIterator(nodeType,self,direction,rangeObj,includeCurrent).iterate()
+			return browseMode.mergeQuickNavItemIterators([comments,revisions],direction)
 		return super(WordDocumentTreeInterceptorEx, self)._iterNodesByType(nodeType, direction, pos)
 
 
@@ -298,9 +331,8 @@ class WordDocumentCommentQuickNavItemEx(WordDocumentCommentQuickNavItem):
 		text = self.collectionItem.range.text
 		if text is None:
 			text = ""
-		msg = NVDAString(_unicode("comment: {text} by {author} on {date}"))
+		msg = NVDAString("comment: {text} by {author} on {date}")
 		return msg.format(author=author, text=text, date=date)
-
 
 class CommentWinWordCollectionQuicknavIterator(WinWordCollectionQuicknavIterator):
 	quickNavItemClass = WordDocumentCommentQuickNavItemEx
@@ -357,6 +389,7 @@ class WordDocumentEndnoteQuickNavItem(WordDocumentCollectionQuickNavItem):
 			pass
 		speech.speak(textList)
 
+
 class EndnoteWinWordCollectionQuicknavIterator(WinWordCollectionQuicknavIterator):
 	quickNavItemClass = WordDocumentEndnoteQuickNavItem
 
@@ -369,7 +402,7 @@ class WordDocumentFieldQuickNavItem(WordDocumentCollectionQuickNavItem):
 	def label(self):
 		typeText = Field._getTypeText(self.collectionItem.type)
 		# Translators: field index and type.
-		msg = _(_unicode("Field {index}, type: {type}"))
+		msg = _("Field {index}, type: {type}")
 		return msg.format(index=self.collectionItem.index, type=typeText)
 
 	def rangeFromCollectionItem(self, item):
@@ -386,7 +419,7 @@ class FieldWinWordCollectionQuicknavIterator(WinWordCollectionQuicknavIterator):
 class WordDocumentFormFieldQuickNavItem(WordDocumentCollectionQuickNavItem):
 	@property
 	def label(self):
-		msg = _unicode("{name}")
+		msg = "{name}"
 		return msg.format(name=self.collectionItem.Name)
 
 
@@ -427,7 +460,7 @@ class WordDocumentFootnoteQuickNavItem(WordDocumentCollectionQuickNavItem):
 	def moveTo(self):
 		info = self.textInfo.copy()
 		info.collapse()
-		self.document._set_selection(info, reason=browseMode.REASON_QUICKNAV)
+		self.document._set_selection(info, reason=REASON_QUICKNAV)
 
 
 class FootnoteWinWordCollectionQuicknavIterator(WinWordCollectionQuicknavIterator):
@@ -440,7 +473,7 @@ class FootnoteWinWordCollectionQuicknavIterator(WinWordCollectionQuicknavIterato
 class WordDocumentShapeQuickNavItem(WordDocumentCollectionQuickNavItem):
 	@property
 	def label(self):
-		return _unicode("%s") % self.collectionItem.name
+		return "%s" % self.collectionItem.name
 
 	def rangeFromCollectionItem(self, item):
 		return item.Anchor
@@ -465,7 +498,7 @@ class WordDocumentGrammaticalErrorQuickNavItem(WordDocumentCollectionQuickNavIte
 		text = self.collectionItem.text
 		if len(text) > 100:
 			text = "%s ..." % text[:100]
-		msg = _(_unicode("{text}"))
+		msg = "{text}"
 		return msg.format(text=text)
 
 	def rangeFromCollectionItem(self, item):
@@ -483,7 +516,7 @@ class WordDocumentSectionQuickNavItem(WordDocumentCollectionQuickNavItem):
 	@property
 	def label(self):
 
-		msg = _(_unicode("Section {index}"))
+		msg = _("Section {index}")
 		return msg.format(index=self.collectionItem.index)
 
 	def report(self, readUnit=None):
@@ -495,3 +528,53 @@ class SectionWinWordCollectionQuicknavIterator(WinWordCollectionQuicknavIterator
 
 	def collectionFromRange(self, rangeObj):
 		return rangeObj.Sections
+class WordDocumentRevisionQuickNavItemEx(WordDocumentRevisionQuickNavItem):
+	def report(self,readUnit=None):
+		from .ww_revisions import revisionTypeText
+		revisionType = self.collectionItem.type
+		revisionTypeText = revisionTypeText.get(revisionType)
+		info=self.textInfo
+		if readUnit:
+			fieldInfo = info.copy()
+			info.collapse()
+			info.move(readUnit, 1, endPoint="end")
+			if info.compareEndPoints(fieldInfo, "endToEnd") > 0:
+				# We've expanded past the end of the field, so limit to the end of the field.
+				info.setEndPoint(fieldInfo, "endToEnd")
+		try:
+			# fornvda version <  2020.1
+			REASON_FOCUS = controlTypes.Reason.FOCUS
+		except AttributeError:
+			REASON_FOCUS = OutputReason.FOCUS
+		if revisionType == wdRevisionDelete:
+			info.expand(textInfos.UNIT_CHARACTER)
+			speech.speakTextInfo(info, useCache=False, reason=REASON_FOCUS)
+			return
+		autoReadingWith = _addonConfigManager.getAutoReadingWithOption()
+		autoReadingWithBeep =  _addonConfigManager.toggleAutomaticReadingOption(False)  and (autoReadingWith == AutoReadingWith_Beep)
+		autoReading = autoReadingWithBeep  and (
+			(revisionType == wdRevisionInsert) and (_addonConfigManager.toggleAutoInsertedTextReadingOption(False))
+			or _addonConfigManager.toggleAutoRevisedTextReadingOption(False))
+		if autoReading:
+			# we don't ear automatic reading beep in navigation mode
+			formatConfig=config.conf["documentFormatting"]
+			formatConfig=formatConfig.copy()
+			formatConfig["reportRevisions"] = False
+			seq = []
+			from .ww_revisions import Revision
+			rev = Revision(None, self.collectionItem)
+			seq.append(rev.FormatRevisionTypeAndAuthorText())
+			seq.append(speech.commands.EndUtteranceCommand())
+			speech.speak(seq)
+			speech.speakTextInfo(info, useCache=False, reason=REASON_FOCUS, formatConfig=formatConfig)
+			return
+		speech.speakTextInfo(info, useCache=False, reason=REASON_FOCUS )
+
+
+
+
+
+class RevisionWinWordCollectionQuicknavIterator(WinWordCollectionQuicknavIterator):
+	quickNavItemClass=WordDocumentRevisionQuickNavItemEx
+	def collectionFromRange(self,rangeObj):
+		return rangeObj.revisions
