@@ -1,12 +1,12 @@
-# shared\winword\ww_informationDialog.py
+# shared\ww_informationDialog.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2021 paulber19
 # This file is covered by the GNU General Public License.
-
+# See the file COPYING for more details.
 
 import addonHandler
 import api
-import speech
+import ui
 import wx
 import time
 from gui import guiHelper, mainFrame
@@ -29,7 +29,9 @@ class InformationDialog(wx.Dialog):
 		self,
 		parent,
 		dialogTitle,
-		informationLabel, information, insertionPointOnLastLine):
+		informationLabel,
+		information,
+		insertionPointOnLastLine):
 		if InformationDialog._instance is not None:
 			return
 		InformationDialog._instance = self
@@ -66,11 +68,17 @@ class InformationDialog(wx.Dialog):
 			guiHelper.ButtonHelper(wx.HORIZONTAL))
 		# Translators: label of copy to clipboard button.
 		copyToClipboardButton = bHelper.addButton(
-			self, id=wx.ID_ANY, label=_("Co&py to Clipboard"))
+			self,
+			id=wx.ID_ANY,
+			label=_("Co&py to Clipboard"))
 		closeButton = bHelper.addButton(
-			self, id=wx.ID_CLOSE, label=NVDAString("&Close"))
+			self,
+			id=wx.ID_CLOSE,
+			label=NVDAString("&Close"))
 		mainSizer.Add(
-			sHelper.sizer, border=guiHelper.BORDER_FOR_DIALOGS, flag=wx.ALL)
+			sHelper.sizer,
+			border=guiHelper.BORDER_FOR_DIALOGS,
+			flag=wx.ALL)
 		mainSizer.Fit(self)
 		self.SetSizer(mainSizer)
 		# events
@@ -88,28 +96,29 @@ class InformationDialog(wx.Dialog):
 			# Translators: message to the user when the information has been copied
 			# to clipboard.
 			text = _("Copied")
-			speech.speakMessage(text)
+			ui.message(text)
 			time.sleep(0.8)
 			self.Close()
 		else:
-			# Translators: message to the user when the information cannot be copied
-			# to clipboard.
+			# Translators: message to the user when the information
+			# cannot be copied to clipboard.
 			text = _("Error, the information cannot be copied to the clipboard")
-			speech.speakMessage(text)
+			ui.message(text)
 
 	@classmethod
 	def run(
-			cls,
-			parent,
-			dialogTitle,
-			informationLabel, information, insertionPointOnLastLine=False):
+		cls, parent, dialogTitle,
+		informationLabel, information, insertionPointOnLastLine=False):
 		if isOpened(InformationDialog):
 			return
 		if parent is None:
 			mainFrame.prePopup()
 		d = InformationDialog(
 			parent or mainFrame,
-			dialogTitle, informationLabel, information, insertionPointOnLastLine)
+			dialogTitle,
+			informationLabel,
+			information,
+			insertionPointOnLastLine)
 		d.CentreOnScreen()
 		d.Show()
 		if parent is None:

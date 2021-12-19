@@ -15,6 +15,9 @@ Téléchargement :
 - [versions de développement ADDON_DEV_URL]
 
 
++ v3.1 (19/12/2021) +
+Compatibilité avec NVDA 2021.3. Les versions de NVDA antérieures à 2020.4 ne sont plus supportées.
+
 + v3.0 (23/06/2021) +
 Compatibilité avec NVDA 2021.1. Les versions de NVDA antérieures à 2019.3 ne sont plus supportées.
 

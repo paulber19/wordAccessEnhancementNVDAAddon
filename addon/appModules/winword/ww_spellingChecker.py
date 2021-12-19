@@ -10,7 +10,34 @@ import api
 import ui
 import eventHandler
 import queueHandler
-import controlTypes
+try:
+	# for nvda version >= 2021.2
+	from controlTypes.role import Role
+	ROLE_LIST = Role.LIST
+	ROLE_PANE = Role.PANE
+	ROLE_STATICTEXT = Role.STATICTEXT
+	ROLE_LINK = Role.LINK
+	ROLE_GROUPING = Role.GROUPING
+	ROLE_SPLITBUTTON = Role.SPLITBUTTON
+	ROLE_TOGGLEBUTTON = Role.TOGGLEBUTTON
+	from controlTypes.state import State
+	STATE_SELECTED  = State.SELECTED 
+	STATE_INVISIBLE  = State.INVISIBLE 
+	STATE_FOCUSED  = State.FOCUSED 
+	STATE_PRESSED  = State.PRESSED 
+except ImportError:
+	from controlTypes import (
+	ROLE_LIST, ROLE_PANE,
+	ROLE_STATICTEXT, ROLE_LINK,
+	ROLE_GROUPING, ROLE_SPLITBUTTON,
+	ROLE_TOGGLEBUTTON,
+	
+	)
+	from controlTypes import (
+	STATE_SELECTED , STATE_INVISIBLE ,
+	STATE_FOCUSED , STATE_PRESSED 
+	)
+	
 import speech
 from .ww_scriptTimer import clearScriptTimer
 import os
@@ -82,16 +109,16 @@ class SpellingChecker_2016(object):
 		infos["error"] = pane.firstChild.name if pane.firstChild is not None else ""
 		oList = None
 		for o in pane.children:
-			if o.role == controlTypes.ROLE_LIST:
+			if o.role == ROLE_LIST:
 				oList = o
 				break
 		if oList:
-			if oList.firstChild.role == controlTypes.ROLE_PANE:
+			if oList.firstChild.role == ROLE_PANE:
 				childs = oList.firstChild.firstChild.children
 			else:
 				childs = oList.children
 			for o in childs:
-				if o.name and controlTypes.STATE_SELECTED in o.states:
+				if o.name and STATE_SELECTED in o.states:
 					# Translators: message to indicate the suggested correction.
 					infos["suggestion"] = o.name
 					break
@@ -138,8 +165,8 @@ class SpellingChecker_2016(object):
 		def getExplanationText():
 			textList = []
 			for o in self.pane.children[1:]:
-				if o.role in [controlTypes.ROLE_STATICTEXT, controlTypes.ROLE_LINK]\
-					and controlTypes.STATE_INVISIBLE not in o.states:
+				if o.role in [ROLE_STATICTEXT, ROLE_LINK]\
+					and STATE_INVISIBLE not in o.states:
 					textList.append(o.name)
 			if len(textList):
 				return "\n".join(textList)
@@ -176,17 +203,17 @@ class SpellingChecker_2019(object):
 
 		def getSelectedSuggestion(pane):
 			oSuggestions = pane.getChild(1)
-			if oSuggestions.role == controlTypes.ROLE_GROUPING:
+			if oSuggestions.role == ROLE_GROUPING:
 				suggestionCount = oSuggestions .childCount-1
 				if suggestionCount:
 					sg = None
 					firstSuggestion = None
 					for o in oSuggestions.children:
-						if o.role != controlTypes.ROLE_SPLITBUTTON:
+						if o.role != ROLE_SPLITBUTTON:
 							continue
 						if firstSuggestion is None:
 							firstSuggestion = o
-						if controlTypes.STATE_FOCUSED in o.states:
+						if STATE_FOCUSED in o.states:
 							sg = o
 							break
 					if sg:
@@ -206,7 +233,7 @@ class SpellingChecker_2019(object):
 		# grammar or spelling
 		o = errorObj.getChild(1)
 		spelling = True
-		if o.role == controlTypes.ROLE_TOGGLEBUTTON:
+		if o.role == ROLE_TOGGLEBUTTON:
 			# grammar error
 			spelling = False
 		error = ""
@@ -300,8 +327,8 @@ class SpellingChecker_2019(object):
 		def getDisplayExplanationButton():
 			button = None
 			for o in self.pane.firstChild.children:
-				if o.role == controlTypes.ROLE_TOGGLEBUTTON\
-					and controlTypes.STATE_INVISIBLE not in o.states:
+				if o.role == ROLE_TOGGLEBUTTON\
+					and STATE_INVISIBLE not in o.states:
 					button = o
 					break
 
@@ -315,7 +342,7 @@ class SpellingChecker_2019(object):
 			oldSpeechMode = getSpeechMode()
 			setSpeechMode_off()
 			stateHasChanged = False
-			if controlTypes.STATE_PRESSED not in button.states:
+			if STATE_PRESSED not in button.states:
 				button.doAction()
 				stateHasChanged = True
 			oText = button.next

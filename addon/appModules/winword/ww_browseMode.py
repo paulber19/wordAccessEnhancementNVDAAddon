@@ -25,11 +25,22 @@ import winsound
 import sys
 import os
 try:
-	# for nvda version < 2021.1
-	REASON_QUICKNAV = browseMode.REASON_QUICKNAV
-except AttributeError:
-	from controlTypes import OutputReason
+	# for nvda version >= 2021.2
+	from controlTypes.outputReason import OutputReason
 	REASON_QUICKNAV = OutputReason.QUICKNAV
+except ImportError:
+	try:
+		# for nvda version == 2021.1
+		from controlTypes import OutputReason
+		REASON_QUICKNAV = OutputReason.QUICKNAV
+		REASON_FOCUS = OutputReason.FOCUS
+	except ImportError:
+		# for nvda version < 2021.1
+		REASON_QUICKNAV = browseMode.REASON_QUICKNAV
+		import controlTypes
+		REASON_FOCUS = controlTypes.Reason.FOCUS
+
+
 
 _curAddon = addonHandler.getCodeAddon()
 path = os.path.join(_curAddon.path, "shared")
@@ -541,11 +552,6 @@ class WordDocumentRevisionQuickNavItemEx(WordDocumentRevisionQuickNavItem):
 			if info.compareEndPoints(fieldInfo, "endToEnd") > 0:
 				# We've expanded past the end of the field, so limit to the end of the field.
 				info.setEndPoint(fieldInfo, "endToEnd")
-		try:
-			# fornvda version <  2020.1
-			REASON_FOCUS = controlTypes.Reason.FOCUS
-		except AttributeError:
-			REASON_FOCUS = OutputReason.FOCUS
 		if revisionType == wdRevisionDelete:
 			info.expand(textInfos.UNIT_CHARACTER)
 			speech.speakTextInfo(info, useCache=False, reason=REASON_FOCUS)

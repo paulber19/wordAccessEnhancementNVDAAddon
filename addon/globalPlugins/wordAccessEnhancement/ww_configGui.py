@@ -17,7 +17,7 @@ from io import StringIO
 _curAddon = addonHandler.getCodeAddon()
 path = os.path.join(_curAddon.path, "shared")
 sys.path.append(path)
-from ww_utils import InformationDialog  # noqa:E402
+from ww_informationDialog import InformationDialog  # noqa:E402
 from ww_NVDAStrings import NVDAString  # noqa:E402
 from ww_addonConfigManager import _addonConfigManager  # noqa:E402
 del sys.path[-1]
@@ -232,7 +232,7 @@ class AutomaticReadingPanel(SettingsPanel):
 # to show voice profile informations.
 		dialogTitle = _("Voice settings for automatic reading")
 		infos = "\r\n".join(textList)
-		InformationDialog.run(None, dialogTitle, infos)
+		InformationDialog.run(None, dialogTitle, "", infos, False)
 
 	def postInit(self):
 		self.automaticReadingCheckBox .SetFocus()

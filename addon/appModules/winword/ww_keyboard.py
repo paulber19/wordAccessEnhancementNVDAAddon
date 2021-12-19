@@ -1,6 +1,6 @@
 # appModules\winword\ww_keyboard.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2020 paulber19
+# Copyright (C) 2020-2021 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -29,16 +29,15 @@ _browseModeQuickNavConfigSpec = """
 
 
 def getKeyboardKeysIniFilePath():
-	from languageHandler import curLang
+	from languageHandler import getLanguage
+	curLang = getLanguage()
 	langs = [curLang, ]
 	addonFolderPath = addonHandler.getCodeAddon().path
-	lang = curLang
-	if '_' in lang:
-		langs.append(lang.split("_")[0])
+	if '_' in curLang:
+		langs.append(curLang.split("_")[0])
 	langs.append("en")
 	for lang in langs:
 		langDir = os.path.join(addonFolderPath, "locale", lang)
-
 		if os.path.exists(langDir):
 			file = os.path.join(langDir, "keyboard.ini")
 			if os.path.isfile(file):

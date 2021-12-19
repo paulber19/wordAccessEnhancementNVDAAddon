@@ -18,11 +18,17 @@ from .ww_wdConst import wdActiveEndPageNumber, wdFirstCharacterLineNumber
 import sys
 import os
 try:
-	# fornvda version <  2020.1
-	REASON_CARET = controlTypes.REASON_CARET
-except AttributeError:
-	from controlTypes import OutputReason
+	# for nvda version >= 2021.2
+	from controlTypes.outputReason import OutputReason
 	REASON_CARET = OutputReason.CARET
+except ImportError:
+	try:
+		# for nvda version == 2021.1
+		from controlTypes import OutputReason
+		REASON_CARET = OutputReason.CARET		
+	except AttributeError:
+		# fornvda version <  2020.1
+		REASON_CARET = controlTypes.REASON_CARET
 
 
 _curAddon = addonHandler.getCodeAddon()
@@ -38,8 +44,8 @@ del sys.path[-1]
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
 from ww_utils import (
-	myMessageBox,
 	getSpeechMode, setSpeechMode, setSpeechMode_off)
+from ww_messageBox import myMessageBox  # noqa:E402
 del sys.path[-1]
 
 addonHandler.initTranslation()

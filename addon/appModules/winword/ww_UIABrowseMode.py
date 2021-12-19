@@ -7,7 +7,11 @@
 import addonHandler
 import NVDAObjects
 from . import ww_browseMode
-from UIABrowseMode import UIATextAttributeQuicknavIterator
+try:
+	# for nvda version >= 2022.1
+	from UIAHandler.browseMode import UIATextAttributeQuicknavIterator
+except ImportError:
+	from UIABrowseMode import UIATextAttributeQuicknavIterator
 from NVDAObjects.UIA.wordDocument import CommentUIATextInfoQuickNavItem, RevisionUIATextInfoQuickNavItem
 from .import ww_elementsListDialog
 

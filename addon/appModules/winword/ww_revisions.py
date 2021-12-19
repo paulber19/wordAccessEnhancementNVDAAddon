@@ -1,6 +1,6 @@
 # appModules\winword\ww_revisions.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2021 paulber19
 # This file is covered by the GNU General Public License.
 
 import addonHandler
@@ -15,7 +15,7 @@ from .ww_collection import Collection, CollectionElement, ReportDialog
 _curAddon = addonHandler.getCodeAddon()
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
-from ww_utils import myMessageBox  # noqa:E402
+from ww_messageBox import myMessageBox  # noqa:E402
 del sys.path[-1]
 
 addonHandler.initTranslation()

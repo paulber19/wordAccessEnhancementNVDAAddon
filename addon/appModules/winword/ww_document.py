@@ -13,7 +13,7 @@ import os
 _curAddon = addonHandler.getCodeAddon()
 path = os.path.join(_curAddon.path, "shared")
 sys.path.append(path)
-from ww_utils import InformationDialog  # noqa:E402
+from ww_informationDialog import InformationDialog  # noqa:E402
 from ww_NVDAStrings import NVDAString  # noqa:E402
 del sys.path[-1]
 
@@ -950,7 +950,8 @@ class ActiveDocument(object):
 		infos = self.getMainDocumentInformations()
 		self.winwordDocumentObject.Saved = saved
 		rb.stop()
-		InformationDialog.run(None, _("Document's informations"), infos)
+		# Translation: title of information dialog.
+		InformationDialog.run(None, _("Document's informations"), "", infos, False)
 
 
 def getColorDescription(color, colorIndex=None):

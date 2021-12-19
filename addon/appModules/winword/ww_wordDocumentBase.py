@@ -22,7 +22,6 @@ try:
 except (AttributeError, ImportError):
 	from speech.sayAll import CURSOR
 	CURSOR_CARET =  CURSOR.CARET
-import controlTypes
 import speech
 import braille
 import NVDAObjects.window.winword
@@ -39,13 +38,28 @@ from . import ww_document
 from .ww_scriptTimer import stopScriptTimer
 import sys
 try:
-	# fornvda version <  2020.1
-	REASON_CARET = controlTypes.REASON_CARET
-	REASON_FOCUS = controlTypes.REASON_FOCUS
-except AttributeError:
-	from controlTypes import OutputReason
+	# for nvda version >= 2021.2
+	from controlTypes.role import Role
+	ROLE_FOOTNOTE = Role.FOOTNOTE
+	ROLE_ENDNOTE = Role.ENDNOTE
+	from controlTypes.outputReason import OutputReason
 	REASON_CARET = OutputReason.CARET
 	REASON_FOCUS = OutputReason.FOCUS
+except ImportError:
+	from controlTypes import (
+	ROLE_FOOTNOTE, ROLE_ENDNOTE,
+	)
+	try:
+		# for nvda version == 2021.1
+		from controlTypes import OutputReason
+		REASON_CARET = OutputReason.CARET
+		REASON_FOCUS = OutputReason.FOCUS
+	except AttributeError:
+		# fornvda version <  2020.1
+		REASON_CARET = controlTypes.REASON_CARET
+		REASON_FOCUS = controlTypes.REASON_FOCUS
+
+
 
 _curAddon = addonHandler.getCodeAddon()
 debugToolsPath = os.path.join(_curAddon.path, "debugTools")
@@ -876,7 +890,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 			start = self.WinwordDocumentObject.content.start
 			end = self.WinwordDocumentObject.content.end
 			range = self.WinwordDocumentObject.range(start, end)
-			if role == controlTypes.ROLE_FOOTNOTE:
+			if role == ROLE_FOOTNOTE:
 				val = field.field.get('value')
 				try:
 					col = range.footNotes
@@ -888,7 +902,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 					return
 				except:  # noqa:E722
 					break
-			if role == controlTypes.ROLE_ENDNOTE:
+			if role == ROLE_ENDNOTE:
 				val = field.field.get('value')
 				try:
 					text = range.EndNotes[int(val)].range.text

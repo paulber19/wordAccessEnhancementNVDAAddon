@@ -15,7 +15,6 @@ import os
 import wx
 import ui
 import queueHandler
-import controlTypes
 import speech
 import NVDAObjects.window.winword
 import NVDAObjects.UIA.wordDocument
@@ -23,11 +22,26 @@ import NVDAObjects.IAccessible.winword
 from .ww_scriptTimer import stopScriptTimer, delayScriptTask
 import sys
 try:
-	# fornvda version <  2020.1
-	REASON_FOCUS = controlTypes.REASON_FOCUS
-except AttributeError:
-	from controlTypes import OutputReason
+	# for nvda >= 2021.2
+	from  controlTypes.role import Role
+	ROLE_BUTTON  = Role.BUTTON 
+	ROLE_PANE = Role.PANE
+	from controlTypes.outputReason import OutputReason
+	from controlTypes.role import _roleLabels as roleLabels
 	REASON_FOCUS = OutputReason.FOCUS
+except ImportError:
+	import controlTypes
+	ROLE_PANE = controlTypes.ROLE_PANE
+	ROLE_BUTTON  = controlTypes.ROLE_BUTTON 
+	from controlTypes import roleLabels
+	try:
+		# for nvda version == 2021.1
+		from controlTypes import OutputReason
+		REASON_FOCUS = OutputReason.FOCUS
+	except AttributeError:
+		# fornvda version <  2020.1
+		REASON_FOCUS = controlTypes.REASON_FOCUS
+
 
 _curAddon = addonHandler.getCodeAddon()
 debugToolsPath = os.path.join(_curAddon.path, "debugTools")
@@ -40,13 +54,13 @@ except ImportError:
 	def printDebug(msg): return
 	def toggleDebugFlag(): return
 del sys.path[-1]
-
-path = os.path.join(_curAddon.path, "shared")
-sys.path.append(path)
+sharedPath = os.path.join(_curAddon.path, "shared")
+sys.path.append(sharedPath)
 from ww_addonConfigManager import _addonConfigManager  # noqa:E402
 from ww_utils import (
-	myMessageBox, maximizeWindow,
+	maximizeWindow,
 	getSpeechMode, setSpeechMode, setSpeechMode_off)  # noqa:E402
+from ww_messageBox import myMessageBox  # noqa:E402
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -119,7 +133,7 @@ class AppModule(AppModule):
 
 	def event_gainFocus(self, obj, nextHandler):
 		printDebug("Word: event_gainFocus: %s, %s" % (
-			controlTypes.roleLabels.get(obj.role), obj.windowClassName))
+			roleLabels.get(obj.role), obj.windowClassName))
 		if not hasattr(self, "WinwordWindowObject"):
 			try:
 				self.WinwordWindowObject = obj.WinwordWindowObject
@@ -133,7 +147,7 @@ class AppModule(AppModule):
 			# to suppress double announce of document window title
 			return
 		# for spelling and grammar check ending window
-		if obj.role == controlTypes.ROLE_BUTTON and obj.name.lower() == "ok":
+		if obj.role == ROLE_BUTTON and obj.name.lower() == "ok":
 			foreground = api.getForegroundObject()
 			if foreground.windowClassName == "#32770"\
 				and foreground.name == "Microsoft Word":
@@ -150,7 +164,7 @@ class AppModule(AppModule):
 		return False
 
 	def event_typedCharacter(self, obj, nextHandler, ch):
-		printDebug("event_typedCharacter: %s, ch= %s" % (controlTypes.roleLabels.get(obj.role), ch))  # noqa:E501
+		printDebug("event_typedCharacter: %s, ch= %s" % (roleLabels.get(obj.role), ch))  # noqa:E501
 		nextHandler()
 		if not self.isSupportedVersion():
 			return
@@ -161,7 +175,7 @@ class AppModule(AppModule):
 			# after a presse button or character shortcut hit.
 			if ch > "a" and ch < "z"\
 				or ord(ch) in [wx.WXK_SPACE, wx.WXK_RETURN]\
-				and obj.role == controlTypes.ROLE_BUTTON:
+				and obj.role == ROLE_BUTTON:
 				wx.CallLater(100, sc.sayErrorAndSuggestion, False, True)
 
 	@script(
@@ -193,7 +207,7 @@ class AppModule(AppModule):
 			sc = SpellingChecker(focus, self.WinwordVersion)
 			if not sc.isInSpellingChecker():
 				return
-			if focus.role == controlTypes.ROLE_PANE:
+			if focus.role == ROLE_PANE:
 				# focus on the pane not not on an object of the pane
 				queueHandler.queueFunction(
 					queueHandler.eventQueue,
@@ -251,7 +265,7 @@ class AppModule(AppModule):
 				# Translators: message to indicate the focus is not in spellAndGrammar checker. # noqa:E501
 				_("You are Not in the spelling checker"))
 			return
-		if focus.role == controlTypes.ROLE_PANE:
+		if focus.role == ROLE_PANE:
 			# focus on the pane not not on an object of the pane
 			queueHandler.queueFunction(
 				queueHandler.eventQueue,
