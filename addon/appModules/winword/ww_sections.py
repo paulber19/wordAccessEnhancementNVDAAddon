@@ -1,13 +1,13 @@
 # appModules\winword\ww_sections.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
 import addonHandler
 import ui
-from .ww_wdConst import wdActiveEndPageNumber, wdFirstCharacterLineNumber, wdGoToSection  # noqa:E501
-from .ww_collection import Collection, CollectionElement, ReportDialog, convertPixelToUnit  # noqa:E501
+from .ww_wdConst import wdActiveEndPageNumber, wdFirstCharacterLineNumber, wdGoToSection
+from .ww_collection import Collection, CollectionElement, ReportDialog, convertPixelToUnit
 
 _curAddon = addonHandler.getCodeAddon()
 
@@ -29,14 +29,14 @@ class Section(CollectionElement):
 		try:
 			self.lineStart = r.information(wdFirstCharacterLineNumber)
 			self.pageStart = r.Information(wdActiveEndPageNumber)
-		except:  # noqa:E722
+		except Exception:
 			self.lineStart = ""
 			self.pageStart = ""
-		r = self.doc.range(self.range.End-1, self.range.End-1)
+		r = self.doc.range(self.range.End - 1, self.range.End - 1)
 		try:
 			self.lineEnd = r.information(wdFirstCharacterLineNumber)
 			self.pageEnd = r.Information(wdActiveEndPageNumber)
-		except:  # noqa:E722
+		except Exception:
 			self.lineEnd = ""
 			self.pageEnd = ""
 
@@ -74,14 +74,14 @@ Protected for forms: {protected}
 wdOrientations = {
 	0: _("Portrait"),  # wdOrientPortrait,
 	1: _("land scape")  # wdOrientLandscape
-	}
+}
 wdSectionStart = {
-		0: _("continue"),  # wdSectionContinuous
-		1: _("new column"),  # wdSectionNewColumn
-		2: _("new page"),  # wdSectionNewPage
-		3: _("even page"),  # wdSectionEvenPage
-		4: _("odd page")  # wdSectionOddPage
-		}
+	0: _("continue"),  # wdSectionContinuous
+	1: _("new column"),  # wdSectionNewColumn
+	2: _("new page"),  # wdSectionNewPage
+	3: _("even page"),  # wdSectionEvenPage
+	4: _("odd page")  # wdSectionOddPage
+}
 wdVerticalAlignment = {
 	0: _("top"),  # wdAlignVerticalTop
 	1: _("center"),  # wdAlignVerticalCenter
@@ -131,11 +131,11 @@ wdPaperSize = {
 	39: "envelope Monarch",  # wdPaperEnvelopeMonarch
 	41: _("custom"),  # wdPaperCustom
 	40: "envelope personal",  # wdPaperEnvelopePersonal
-	}
+}
 wdSectionDirection = {
 	0: _("Right alignment, right to left reading"),  # wdSectionDirectionRtl
 	1: _("Left alignment, left to right reading")  # wdSectionDirectionLtr
-	}
+}
 
 
 class Sections(Collection):
@@ -265,7 +265,7 @@ class SectionsDialog(ReportDialog):
 			(_("Section"), 100),
 			(_("Start"), 150),
 			(_("End"), 150),
-			)
+		)
 		lcWidth = 0
 		for column in self.lcColumns:
 			lcWidth = lcWidth + column[1]
@@ -274,7 +274,7 @@ class SectionsDialog(ReportDialog):
 
 		self.buttons = (
 			(100, _("&Go to"), self.goTo),
-			)
+		)
 		self.tc1 = None
 		self.tc2 = None
 
@@ -283,6 +283,6 @@ class SectionsDialog(ReportDialog):
 			page=element.pageStart, line=element.lineStart)
 		end = (_("Page {page}, line {line}")).format(
 			page=element.pageEnd, line=element.lineEnd)
-		index = self.collection.index(element)+1
+		index = self.collection.index(element) + 1
 		datas = (index, start, end)
 		return datas

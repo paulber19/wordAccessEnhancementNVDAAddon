@@ -1,33 +1,35 @@
 # appModules\winword\ww_elementsListDialog.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2021 paulber19
+# Copyright (C) 2021- 2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
 import addonHandler
+from logHandler import log
 import wx
+import collections
 import speech
 import gui
 import time
 import core
 import queueHandler
-from NVDAObjects.window.winword import *  # noqa:F403
 import itertools
 from gui.dpiScalingHelper import DpiScalingHelperMixinWithoutInit
 import sys
 import os
+import api
 _curAddon = addonHandler.getCodeAddon()
 path = os.path.join(_curAddon.path, "shared")
 sys.path.append(path)
-from ww_NVDAStrings import NVDAString  # noqa:E402
-from ww_addonConfigManager import _addonConfigManager  # noqa:E402
+from ww_NVDAStrings import NVDAString
+from ww_addonConfigManager import _addonConfigManager
 from ww_utils import (
-	getSpeechMode, setSpeechMode, setSpeechMode_off)  # noqa:E402
+	getSpeechMode, setSpeechMode, setSpeechMode_off)
 del sys.path[-1]
 
 addonHandler.initTranslation()
 
-import api
+
 class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 	ELEMENT_TYPES = (
 		# Translators: The label of a list item to select the type of element
@@ -88,7 +90,7 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 			parent=self,
 			label=_("&Type:"),
 			style=wx.ALIGN_CENTRE
-			)
+		)
 		childSizer.Add(childLabel, )
 		self.childListBox = wx.ListBox(
 			self,
@@ -109,7 +111,7 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 			self,
 			size=self.scaleSize((500, 300)),  # height is chosen to ensure the dialog will fit on an 800x600 screen
 			style=wx.TR_HAS_BUTTONS | wx.TR_HIDE_ROOT | wx.TR_LINES_AT_ROOT | wx.TR_SINGLE | wx.TR_EDIT_LABELS
-			)
+		)
 		self.tree.Bind(wx.EVT_SET_FOCUS, self.onTreeSetFocus)
 		self.tree.Bind(wx.EVT_CHAR, self.onTreeChar)
 		self.treeRoot = self.tree.AddRoot("root")
@@ -155,7 +157,7 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 			self.SetTitle(title)
 
 	def onElementTypeChange(self, evt):
-		if self.initElementTypeIsRunning :
+		if self.initElementTypeIsRunning:
 			self.abort = True
 			wx.CallLater(100, self.onElementTypeChange, evt)
 			return
@@ -171,7 +173,7 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 		from .ww_tones import RepeatBeep
 		rb = RepeatBeep()
 		rb.start()
-		self.initElementTypeIsRunning  = True
+		self.initElementTypeIsRunning = True
 		self.startTime = int(time.time())
 		if elType in ("link", "button", "radioButton", "checkBox"):
 			# Links, buttons, radio button, check box can be activated.
@@ -194,23 +196,25 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 				wx.Yield()
 				if self.abort:
 					rb.stop()
-					self.initElementTypeIsRunning  = False
+					self.initElementTypeIsRunning = False
 					return
 				# Find the parent element, if any.
 				for parent in reversed(parentElements):
 					if item.isChild(parent.item):
 						break
 					else:
-						# We're not a child of this parent, so this parent has no more children and can be removed from the stack.
+						# We're not a child of this parent, so this parent has no more children
+						# and can be removed from the stack.
 						parentElements.pop()
 				else:
 					# No parent found, so we're at the root.
-					# Note that parentElements will be empty at this point, as all parents are no longer relevant and have thus been removed from the stack.
+					# Note that parentElements will be empty at this point, as all parents are no longer relevant
+					# and have thus been removed from the stack.
 					parent = None
 
 				element = self.Element(item, parent)
 				self._elements.append(element)
-				elapsedTime = int(time.time()) - self.startTime 
+				elapsedTime = int(time.time()) - self.startTime
 				if elapsedTime > _addonConfigManager.getElementsSearchMaxTime():
 					limited = True
 					break
@@ -229,14 +233,15 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 				# This could be the parent of a subsequent element, so add it to the parents stack.
 				parentElements.append(element)
 
-		except:  # noqa:E722
+		except Exception:
 			log.error("initElementType: Can not find all elements")
 		rb.stop()
 		# Start with no filtering.
 		self.filterEdit.ChangeValue("")
 		self.filter("", newElementType=True)
 		self.sayNumberOfElements(limited)
-		self.initElementTypeIsRunning  = False
+		self.initElementTypeIsRunning = False
+
 	def sayNumberOfElements(self, limited=False):
 		count = self.tree.Count
 		if not self.childListBox.HasFocus():
@@ -264,8 +269,9 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 		# If this is a new element type, use the element nearest the cursor.
 		# Otherwise, use the currently selected element.
 		try:
-			defaultElement = self._initialElement if newElementType else self.tree.GetItemData(self.tree.GetSelection())
-		except:  # noqa:E722
+			defaultElement = self._initialElement if newElementType else self.tree.GetItemData(
+				self.tree.GetSelection())
+		except Exception:
 			defaultElement = self._initialElement
 		# Clear the tree.
 		self.tree.DeleteChildren(self.treeRoot)
@@ -302,7 +308,8 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 		# If there's no default item, use the first item in the tree.
 		self.tree.SelectItem(defaultItem or self.tree.GetFirstChild(self.treeRoot)[0])
 		# Enable the button(s).
-		# If the activate button isn't the default button, it is disabled for this element type and shouldn't be enabled here.
+		# If the activate button isn't the default button, it is disabled for this element type
+		# and shouldn't be enabled here.
 		if self.AffirmativeId == self.activateButton.Id:
 			self.activateButton.Enable()
 		self.moveButton.Enable()
@@ -375,7 +382,8 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 
 		# First try searching from the current item.
 		# Failing that, search from the first item.
-		items = itertools.chain(self._iterReachableTreeItemsFromItem(item), self._iterReachableTreeItemsFromItem(self.tree.GetFirstChild(self.treeRoot)[0]))
+		items = itertools.chain(self._iterReachableTreeItemsFromItem(
+			item), self._iterReachableTreeItemsFromItem(self.tree.GetFirstChild(self.treeRoot)[0]))
 		if len(searchText) == 1:
 			# If only a single character has been entered, skip (search after) the current item.
 			next(items)
@@ -405,8 +413,6 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 		evt.Skip()
 
 	def onAction(self, activate):
-#		self.Close()
-		# Save off the last selected element type on to the class so its used in initialization next time.
 		self.__class__.lastSelectedElementType = self.lastSelectedElementType
 		item = self.tree.GetSelection()
 		item = self.tree.GetItemData(item).item
@@ -420,17 +426,18 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 				self.Close()
 				api.processPendingEvents()
 				item.moveTo()
+
 				def report():
 					speech.cancelSpeech()
 					setSpeechMode(oldSpeechMode)
 					item.report()
 				core.callLater(1, report)
 
-			# We must use core.callLater rather than wx.CallLater to ensure that the callback runs within NVDA's core pump.
-			# If it didn't, and it directly or indirectly called wx.Yield, it could start executing NVDA's core pump from within the yield, causing recursion.
+			# We must use core.callLater rather than wx.CallLater to ensure that the callback runs
+			# within NVDA's core pump.
+			# If it didn't, and it directly or indirectly called wx.Yield, it could start executing NVDA's core
+			# pump from within the yield, causing recursion.
 			core.callLater(20, move)
-
-
 
 
 class UIAElementsListDialog(ElementsListDialog):
@@ -477,5 +484,5 @@ class UIAElementsListDialog(ElementsListDialog):
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
 		("error", _("Error")),
-		)
+	)
 	lastSelectedElementType = 0

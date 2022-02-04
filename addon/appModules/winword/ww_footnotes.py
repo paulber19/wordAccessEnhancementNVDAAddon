@@ -1,6 +1,6 @@
 # appModules\winword\ww_footnotes.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -48,7 +48,7 @@ class Footnotes(Collection):
 		"insertDialogTitle": _("Footnote's insert"),
 		# Translators: title of modify dialog.
 		"modifyDialogTitle": _("Footnote's modification"),
-		}
+	}
 
 	def __init__(self, parent, focus, rangeType):
 		self.rangeType = rangeType
@@ -79,7 +79,7 @@ class FootnotesDialog(ReportDialog):
 		self.lcColumns = (
 			(_("Number"), 100),
 			(_("Location"), 150),
-			)
+		)
 		lcWidth = 0
 		for column in self.lcColumns:
 			lcWidth = lcWidth + column[1]
@@ -90,7 +90,7 @@ class FootnotesDialog(ReportDialog):
 			(101, _("&Modify"), self.modifyTC1Text),
 			(102, _("&Delete"), self.delete),
 			(103, _("Delete &all"), self.deleteAll),
-			)
+		)
 		self.tc1 = {
 			"label": _("Note's text"),
 			"size": (800, 200)
@@ -101,7 +101,7 @@ class FootnotesDialog(ReportDialog):
 	def get_lcColumnsDatas(self, element):
 		location = _("Page {page}, line {line}") .format(
 			page=element.page, line=element.line)
-		index = self.collection.index(element)+1
+		index = self.collection.index(element) + 1
 		datas = (index, location)
 		return datas
 

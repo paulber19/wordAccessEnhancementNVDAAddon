@@ -68,14 +68,14 @@ class SpellingErrorsDialog(ReportDialog):
 		self.lcColumns = (
 			(_("Number"), 100),
 			(_("Location"), 150),
-			)
+		)
 		lcWidth = 0
 		for column in self.lcColumns:
 			lcWidth = lcWidth + column[1]
 		self.lcSize = (lcWidth, self._defaultLCWidth)
 		self.buttons = (
 			(100, _("&Go to"), self.goTo),
-			)
+		)
 
 		self.tc1 = {
 			"label": _("Mispelled word"),
@@ -88,7 +88,7 @@ class SpellingErrorsDialog(ReportDialog):
 	def get_lcColumnsDatas(self, element):
 		location = _("Page {page}, line {line}") .format(
 			page=element.page, line=element.line)
-		index = self.collection.index(element)+1
+		index = self.collection.index(element) + 1
 		datas = (index, location)
 		return datas
 

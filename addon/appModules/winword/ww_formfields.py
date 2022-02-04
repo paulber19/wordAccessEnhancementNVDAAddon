@@ -22,7 +22,7 @@ class FormField(CollectionElement):
 		try:
 			if item.Result.Text:
 				self.resultText = item.Result.Text
-		except:  # noqa:E722
+		except Exception:
 			pass
 		self.statusText = item.StatusText
 		self.start = item.range.Start
@@ -30,7 +30,7 @@ class FormField(CollectionElement):
 		try:
 			if item.name:
 				self.name = item.Name
-		except:  # noqa:E722
+		except Exception:
 			pass
 		self.setLineAndPageNumber()
 
@@ -48,7 +48,7 @@ class FormField(CollectionElement):
 	def _getTypeText(cls, type):
 		try:
 			text = wdFieldTypes[type]
-		except:  # noqa:E722
+		except Exception:
 			text = str(type)
 		return text
 
@@ -78,7 +78,7 @@ class FormFieldsDialog(ReportDialog):
 			(_("Number"), 100),
 			(_("Location"), 150),
 			(_("Type"), 300)
-			)
+		)
 		lcWidth = 0
 		for column in self.lcColumns:
 			lcWidth = lcWidth + column[1]
@@ -87,22 +87,22 @@ class FormFieldsDialog(ReportDialog):
 			(100, _("&Go to"), self.goTo),
 			(101, _("&Delete"), self.delete),
 			(102, _("Delete &all"), self.deleteAll)
-			)
+		)
 		self.tc1 = {
-			"label":   _("Result"),
+			"label": _("Result"),
 			"size": (800, 200)
 		}
 
 		self.tc2 = {
-			"label":   _("Status"),
+			"label": _("Status"),
 			"size": (800, 200)
-			}
+		}
 
 	def get_lcColumnsDatas(self, element):
 		typeText = element.getTypeText()
 		location = (_("Page {page}, line {line}")).format(
 			page=element.page, line=element.line)
-		index = self.collection.index(element)+1
+		index = self.collection.index(element) + 1
 		datas = (index, location, typeText)
 		return datas
 
@@ -206,4 +206,4 @@ wdFieldTypes = {
 	93: "AddressBlock",  # wdFieldAddressBlock
 	94: "GreetingLine ",  # wdFieldGreetingLine
 	95: "Shape"  # wdFieldShape
-	}
+}

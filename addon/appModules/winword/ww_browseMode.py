@@ -1,21 +1,32 @@
 # appModules\winword\ww_browsemode.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2021 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
 import addonHandler
 import ui
+import browseMode
 import textInfos
+import config
 try:
 	# for nvda version < 2021.1
 	from sayAllHandler import CURSOR_CARET
 except (AttributeError, ImportError):
 	from speech.sayAll import CURSOR
-	CURSOR_CARET =  CURSOR.CARET
+	CURSOR_CARET = CURSOR.CARET
 import speech
 import speech.commands
-from NVDAObjects.window.winword import *  # noqa:F403
+from NVDAObjects.window.winword import (
+	WinWordCollectionQuicknavIterator, WordDocumentRevisionQuickNavItem,
+	WordDocumentCollectionQuickNavItem, WordDocumentCommentQuickNavItem,
+	SpellingErrorWinWordCollectionQuicknavIterator, ChartWinWordCollectionQuicknavIterator,
+	GraphicWinWordCollectionQuicknavIterator, WordDocumentTreeInterceptor,
+	BrowseModeWordDocumentTextInfo,
+	wdRevisionInsert,
+	wdRevisionDelete
+)
+# from NVDAObjects.window.winword import *
 from versionInfo import version_year, version_major
 from .ww_fields import Field
 from .ww_keyboard import getBrowseModeQuickNavKey
@@ -40,13 +51,11 @@ except ImportError:
 		import controlTypes
 		REASON_FOCUS = controlTypes.Reason.FOCUS
 
-
-
 _curAddon = addonHandler.getCodeAddon()
 path = os.path.join(_curAddon.path, "shared")
 sys.path.append(path)
-from ww_NVDAStrings import NVDAString  # noqa:E402
-from ww_addonConfigManager import _addonConfigManager , AutoReadingWith_Beep  # noqa:E402
+from ww_NVDAStrings import NVDAString
+from ww_addonConfigManager import _addonConfigManager, AutoReadingWith_Beep
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -55,7 +64,6 @@ addonHandler.initTranslation()
 class BrowseModeTreeInterceptorEx(browseMode.BrowseModeTreeInterceptor):
 	__gestures = {}
 	scriptCategory = _("Extended browse mode for Microsoft Word")
-
 
 	def __init__(self, rootNVDAObject):
 		super(BrowseModeTreeInterceptorEx, self).__init__(rootNVDAObject)
@@ -70,26 +78,27 @@ class BrowseModeTreeInterceptorEx(browseMode.BrowseModeTreeInterceptor):
 		except KeyError:
 			pass
 
-
-
 	@classmethod
 	def addQuickNav(cls, itemType, key, nextDoc, nextError, prevDoc, prevError, readUnit=None):
 		map = cls.__gestures
 		"""Adds a script for the given quick nav item.
 		@param itemType: The type of item, I.E. "heading" "Link" ...
-		@param key: The quick navigation key to bind to the script. Shift is automatically added for the previous item gesture. E.G. h for heading
+		@param key: The quick navigation key to bind to the script.
+		Shift is automatically added for the previous item gesture. E.G. h for heading
 		@param nextDoc: The command description to bind to the script that yields the next quick nav item.
 		@param nextError: The error message if there are no more quick nav items of type itemType in this direction.
 		@param prevDoc: The command description to bind to the script that yields the previous quick nav item.
 		@param prevError: The error message if there are no more quick nav items of type itemType in this direction.
-		@param readUnit: The unit (one of the textInfos.UNIT_* constants) to announce when moving to this type of item.
+		@param readUnit: The unit (one of the textInfos.UNIT_* constants)
+		to announce when moving to this type of item.
 			For example, only the line is read when moving to tables to avoid reading a potentially massive table.
 			If None, the entire item will be announced.
 		"""
 		scriptSuffix = itemType[0].upper() + itemType[1:]
 		scriptName = "next%s" % scriptSuffix
 		funcName = "script_%s" % scriptName
-		script = lambda self, gesture: self._quickNavScript(gesture, itemType, "next", nextError, readUnit)  # noqa:E731
+		script = lambda self, gesture: self._quickNavScript(
+			gesture, itemType, "next", nextError, readUnit)
 		script.__doc__ = nextDoc
 		script.__name__ = funcName
 		script.resumeSayAllMode = CURSOR_CARET
@@ -98,7 +107,8 @@ class BrowseModeTreeInterceptorEx(browseMode.BrowseModeTreeInterceptor):
 			map["kb:%s" % key] = scriptName
 		scriptName = "previous%s" % scriptSuffix
 		funcName = "script_%s" % scriptName
-		script = lambda self, gesture: self._quickNavScript(gesture, itemType, "previous", prevError, readUnit)  # noqa:E731
+		script = lambda self, gesture: self._quickNavScript(
+			gesture, itemType, "previous", prevError, readUnit)
 		script.__doc__ = prevDoc
 		script.__name__ = funcName
 		script.resumeSayAllMode = CURSOR_CARET
@@ -106,9 +116,8 @@ class BrowseModeTreeInterceptorEx(browseMode.BrowseModeTreeInterceptor):
 		if key is not None:
 			map["kb:shift+%s" % key] = scriptName
 
-# Add quick navigation scripts.
-#BrowseModeTreeInterceptorEx._BrowseModeTreeInterceptorEx__gestures = browseMode.BrowseModeTreeInterceptor._BrowseModeTreeInterceptor__gestures.copy()
 
+# Add quick navigation scripts.
 qn = BrowseModeTreeInterceptorEx.addQuickNav
 qn(
 	"grammaticalError",
@@ -210,7 +219,8 @@ qn(
 del qn
 
 
-class BrowseModeDocumentTreeInterceptorEx(BrowseModeTreeInterceptorEx, browseMode.BrowseModeDocumentTreeInterceptor):
+class BrowseModeDocumentTreeInterceptorEx(
+	BrowseModeTreeInterceptorEx, browseMode.BrowseModeDocumentTreeInterceptor):
 	pass
 
 	def _quickNavScript(
@@ -218,7 +228,7 @@ class BrowseModeDocumentTreeInterceptorEx(BrowseModeTreeInterceptorEx, browseMod
 		if itemType == "notLinkBlock":
 			iterFactory = self._iterNotLinkBlock
 		else:
-			iterFactory = lambda direction, info: self._iterNodesByType(  # noqa:E731
+			iterFactory = lambda direction, info: self._iterNodesByType(
 				itemType, direction, info)
 		info = self.selection
 		try:
@@ -246,7 +256,7 @@ class BrowseModeDocumentTreeInterceptorEx(BrowseModeTreeInterceptorEx, browseMod
 				msg = _("Return to top of page")
 			try:
 				item = next(iterFactory(direction, info))
-			except:  # noqa:E722
+			except Exception:
 				ui.message(errorMessage)
 				return
 			ui.message(msg)
@@ -287,7 +297,7 @@ class WordDocumentTreeInterceptorEx(BrowseModeDocumentTreeInterceptorEx, WordDoc
 		for gest in gestures:
 			try:
 				self.removeGestureBinding(gest)
-			except:  # noqa:E722
+			except Exception:
 				pass
 
 	def _get_ElementsListDialog(self):
@@ -301,36 +311,53 @@ class WordDocumentTreeInterceptorEx(BrowseModeDocumentTreeInterceptorEx, WordDoc
 			rangeObj = self.rootNVDAObject.WinwordDocumentObject.range(0, 0)
 		includeCurrent = False if pos else True
 		if nodeType == "bookmark":
-			return BookmarkWinWordCollectionQuicknavIterator(nodeType, self, direction, rangeObj, includeCurrent).iterate()
+			return BookmarkWinWordCollectionQuicknavIterator(
+				nodeType, self, direction, rangeObj, includeCurrent).iterate()
 		elif nodeType == "comment":
-			return CommentWinWordCollectionQuicknavIterator(nodeType, self, direction, rangeObj, includeCurrent).iterate()
+			return CommentWinWordCollectionQuicknavIterator(
+				nodeType, self, direction, rangeObj, includeCurrent).iterate()
 		elif nodeType == "revision":
-			return RevisionWinWordCollectionQuicknavIterator(nodeType, self, direction, rangeObj, includeCurrent).iterate()
+			return RevisionWinWordCollectionQuicknavIterator(
+				nodeType, self, direction, rangeObj, includeCurrent).iterate()
 		elif nodeType == "endnote":
-			return EndnoteWinWordCollectionQuicknavIterator(nodeType, self, direction, rangeObj, includeCurrent).iterate()
+			return EndnoteWinWordCollectionQuicknavIterator(
+				nodeType, self, direction, rangeObj, includeCurrent).iterate()
 		elif nodeType == "field":
-			fields = FieldWinWordCollectionQuicknavIterator(nodeType, self, direction, rangeObj, includeCurrent).iterate()
-			formfields = FormFieldWinWordCollectionQuicknavIterator(nodeType, self, direction, rangeObj, includeCurrent).iterate()
+			fields = FieldWinWordCollectionQuicknavIterator(
+				nodeType, self, direction, rangeObj, includeCurrent).iterate()
+			formfields = FormFieldWinWordCollectionQuicknavIterator(
+				nodeType, self, direction, rangeObj, includeCurrent).iterate()
 			return browseMode.mergeQuickNavItemIterators([fields, formfields], direction)
 		elif nodeType == "formfield":
-			return FormFieldWinWordCollectionQuicknavIterator(nodeType, self, direction, rangeObj, includeCurrent).iterate()
+			return FormFieldWinWordCollectionQuicknavIterator(
+				nodeType, self, direction, rangeObj, includeCurrent).iterate()
 		elif nodeType == "footnote":
-			return FootnoteWinWordCollectionQuicknavIterator(nodeType, self, direction, rangeObj, includeCurrent).iterate()
+			return FootnoteWinWordCollectionQuicknavIterator(
+				nodeType, self, direction, rangeObj, includeCurrent).iterate()
 		elif nodeType == "graphic":
-			graphics = GraphicWinWordCollectionQuicknavIterator(nodeType, self, direction, rangeObj, includeCurrent).iterate()
-			charts = ChartWinWordCollectionQuicknavIterator(nodeType, self, direction, rangeObj, includeCurrent).iterate()
-			shapes = ShapeWinWordCollectionQuicknavIterator(nodeType, self, direction, rangeObj, includeCurrent).iterate()
-			return browseMode.mergeQuickNavItemIterators([graphics, charts, shapes], direction)
+			graphics = GraphicWinWordCollectionQuicknavIterator(
+				nodeType, self, direction, rangeObj, includeCurrent).iterate()
+			charts = ChartWinWordCollectionQuicknavIterator(
+				nodeType, self, direction, rangeObj, includeCurrent).iterate()
+			shapes = ShapeWinWordCollectionQuicknavIterator(
+				nodeType, self, direction, rangeObj, includeCurrent).iterate()
+			return browseMode.mergeQuickNavItemIterators(
+				[graphics, charts, shapes], direction)
 		elif nodeType == "grammaticalError":
-			return GrammaticalErrorWinWordCollectionQuicknavIterator(nodeType, self, direction, rangeObj, includeCurrent).iterate()
+			return GrammaticalErrorWinWordCollectionQuicknavIterator(
+				nodeType, self, direction, rangeObj, includeCurrent).iterate()
 		elif nodeType == "spellingError":
-			return SpellingErrorWinWordCollectionQuicknavIterator(nodeType, self, direction, rangeObj, includeCurrent).iterate()
+			return SpellingErrorWinWordCollectionQuicknavIterator(
+				nodeType, self, direction, rangeObj, includeCurrent).iterate()
 		elif nodeType == "section":
-			return SectionWinWordCollectionQuicknavIterator(nodeType, self, direction, rangeObj, includeCurrent).iterate()
-		elif nodeType=="annotation":
-			comments=CommentWinWordCollectionQuicknavIterator(nodeType,self,direction,rangeObj,includeCurrent).iterate()
-			revisions=RevisionWinWordCollectionQuicknavIterator(nodeType,self,direction,rangeObj,includeCurrent).iterate()
-			return browseMode.mergeQuickNavItemIterators([comments,revisions],direction)
+			return SectionWinWordCollectionQuicknavIterator(
+				nodeType, self, direction, rangeObj, includeCurrent).iterate()
+		elif nodeType == "annotation":
+			comments = CommentWinWordCollectionQuicknavIterator(
+				nodeType, self, direction, rangeObj, includeCurrent).iterate()
+			revisions = RevisionWinWordCollectionQuicknavIterator(
+				nodeType, self, direction, rangeObj, includeCurrent).iterate()
+			return browseMode.mergeQuickNavItemIterators([comments, revisions], direction)
 		return super(WordDocumentTreeInterceptorEx, self)._iterNodesByType(nodeType, direction, pos)
 
 
@@ -344,6 +371,7 @@ class WordDocumentCommentQuickNavItemEx(WordDocumentCommentQuickNavItem):
 			text = ""
 		msg = NVDAString("comment: {text} by {author} on {date}")
 		return msg.format(author=author, text=text, date=date)
+
 
 class CommentWinWordCollectionQuicknavIterator(WinWordCollectionQuicknavIterator):
 	quickNavItemClass = WordDocumentCommentQuickNavItemEx
@@ -394,9 +422,10 @@ class WordDocumentEndnoteQuickNavItem(WordDocumentCollectionQuickNavItem):
 			endnoteObj = doc.EndNotes[index]
 			endnote = Endnote(self.collectionItem, endnoteObj)
 			from .ww_automaticReading import formatAutoSpeechSequence
-			if _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoEndnoteReadingOption(False):
+			if _addonConfigManager.toggleAutomaticReadingOption(False) and (
+				_addonConfigManager.toggleAutoEndnoteReadingOption(False)):
 				textList.extend(formatAutoSpeechSequence([endnote.text]))
-		except:  # noqa:E722
+		except Exception:
 			pass
 		speech.speak(textList)
 
@@ -462,9 +491,10 @@ class WordDocumentFootnoteQuickNavItem(WordDocumentCollectionQuickNavItem):
 			footnoteObj = doc.FootNotes[index]
 			footnote = Footnote(self.collectionItem, footnoteObj)
 			from .ww_automaticReading import formatAutoSpeechSequence
-			if _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoFootnoteReadingOption(False):
+			if _addonConfigManager.toggleAutomaticReadingOption(False) and (
+				_addonConfigManager.toggleAutoFootnoteReadingOption(False)):
 				textList.extend(formatAutoSpeechSequence([footnote.text]))
-		except:  # noqa:E722
+		except Exception:
 			pass
 		speech.speak(textList)
 
@@ -499,7 +529,7 @@ class ShapeWinWordCollectionQuicknavIterator(WinWordCollectionQuicknavIterator):
 	def collectionFromRange(self, rangeObj):
 		try:
 			return rangeObj.ShapeRange
-		except:  # noqa:E722
+		except Exception:
 			return None
 
 
@@ -539,12 +569,14 @@ class SectionWinWordCollectionQuicknavIterator(WinWordCollectionQuicknavIterator
 
 	def collectionFromRange(self, rangeObj):
 		return rangeObj.Sections
+
+
 class WordDocumentRevisionQuickNavItemEx(WordDocumentRevisionQuickNavItem):
-	def report(self,readUnit=None):
+	def report(self, readUnit=None):
 		from .ww_revisions import revisionTypeText
 		revisionType = self.collectionItem.type
 		revisionTypeText = revisionTypeText.get(revisionType)
-		info=self.textInfo
+		info = self.textInfo
 		if readUnit:
 			fieldInfo = info.copy()
 			info.collapse()
@@ -557,14 +589,15 @@ class WordDocumentRevisionQuickNavItemEx(WordDocumentRevisionQuickNavItem):
 			speech.speakTextInfo(info, useCache=False, reason=REASON_FOCUS)
 			return
 		autoReadingWith = _addonConfigManager.getAutoReadingWithOption()
-		autoReadingWithBeep =  _addonConfigManager.toggleAutomaticReadingOption(False)  and (autoReadingWith == AutoReadingWith_Beep)
-		autoReading = autoReadingWithBeep  and (
+		autoReadingWithBeep = _addonConfigManager.toggleAutomaticReadingOption(
+			False) and (autoReadingWith == AutoReadingWith_Beep)
+		autoReading = autoReadingWithBeep and (
 			(revisionType == wdRevisionInsert) and (_addonConfigManager.toggleAutoInsertedTextReadingOption(False))
 			or _addonConfigManager.toggleAutoRevisedTextReadingOption(False))
 		if autoReading:
 			# we don't ear automatic reading beep in navigation mode
-			formatConfig=config.conf["documentFormatting"]
-			formatConfig=formatConfig.copy()
+			formatConfig = config.conf["documentFormatting"]
+			formatConfig = formatConfig.copy()
 			formatConfig["reportRevisions"] = False
 			seq = []
 			from .ww_revisions import Revision
@@ -574,13 +607,11 @@ class WordDocumentRevisionQuickNavItemEx(WordDocumentRevisionQuickNavItem):
 			speech.speak(seq)
 			speech.speakTextInfo(info, useCache=False, reason=REASON_FOCUS, formatConfig=formatConfig)
 			return
-		speech.speakTextInfo(info, useCache=False, reason=REASON_FOCUS )
-
-
-
+		speech.speakTextInfo(info, useCache=False, reason=REASON_FOCUS)
 
 
 class RevisionWinWordCollectionQuicknavIterator(WinWordCollectionQuicknavIterator):
-	quickNavItemClass=WordDocumentRevisionQuickNavItemEx
-	def collectionFromRange(self,rangeObj):
+	quickNavItemClass = WordDocumentRevisionQuickNavItemEx
+
+	def collectionFromRange(self, rangeObj):
 		return rangeObj.revisions

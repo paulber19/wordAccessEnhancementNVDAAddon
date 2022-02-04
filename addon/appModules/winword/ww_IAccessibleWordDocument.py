@@ -1,6 +1,6 @@
 # appModules\winword\__init__.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 # See the file COPYING for more details.
 
@@ -19,8 +19,12 @@ sys.path.append(debugToolsPath)
 try:
 	from appModuleDebug import printDebug, toggleDebugFlag
 except ImportError:
-	def printDebug(msg): return
-	def toggleDebugFlag(): return
+
+	def printDebug(msg):
+		return
+
+	def toggleDebugFlag():
+		return
 del sys.path[-1]
 
 addonHandler.initTranslation()

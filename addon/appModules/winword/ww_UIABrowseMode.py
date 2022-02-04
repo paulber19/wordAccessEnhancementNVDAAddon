@@ -1,6 +1,6 @@
 # appModules\winword\ww_browsemode.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -18,8 +18,11 @@ from .import ww_elementsListDialog
 addonHandler.initTranslation()
 
 
-class UIAWordBrowseModeDocument(ww_browseMode.BrowseModeDocumentTreeInterceptorEx, NVDAObjects.UIA.wordDocument.WordBrowseModeDocument):
+class UIAWordBrowseModeDocument(
+	ww_browseMode.BrowseModeDocumentTreeInterceptorEx,
+	NVDAObjects.UIA.wordDocument.WordBrowseModeDocument):
 	ElementsListDialog = ww_elementsListDialog.UIAElementsListDialog
+
 	def __init__(self, rootNVDAObject):
 		super(UIAWordBrowseModeDocument, self).__init__(rootNVDAObject)
 		self.passThrough = True

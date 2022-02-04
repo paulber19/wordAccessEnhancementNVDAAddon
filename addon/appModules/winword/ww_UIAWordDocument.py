@@ -1,15 +1,14 @@
 # appModules\winword\ww_UIAWordDocument.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2020 paulber19
+# Copyright (C) 2020-2022 paulber19
 # This file is covered by the GNU General Public License.
 # See the file COPYING for more details.
 
 import addonHandler
 import os
-import textInfos
-import UIAHandler
 from . import ww_wordDocumentBase
 import NVDAObjects.UIA.wordDocument
+import uuid
 from comtypes import COMError
 from tableUtils import HeaderCellTracker
 from .ww_UIABrowseMode import UIAWordBrowseModeDocument
@@ -21,12 +20,15 @@ sys.path.append(debugToolsPath)
 try:
 	from appModuleDebug import printDebug, toggleDebugFlag
 except ImportError:
-	def printDebug(msg): return
-	def toggleDebugFlag(): return
+
+	def printDebug(msg):
+		return
+
+	def toggleDebugFlag():
+		return
 del sys.path[-1]
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
-from ww_NVDAStrings import NVDAString  # noqa:E402
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -58,7 +60,8 @@ class UIAWordDocument(ww_wordDocumentBase.WordDocument, NVDAObjects.UIA.wordDocu
 	disableAutoPassThrough = True
 	announceEntireNewLine = True
 	TextInfo = UIAWordDocumentTextInfo
-	# Microsoft Word duplicates the full title of the document on this control, which is redundant as it appears in the title of the app itself.
+	# Microsoft Word duplicates the full title of the document on this control,
+	# which is redundant as it appears in the title of the app itself.
 	name = u""
 
 	def initOverlayClass(self):
@@ -74,7 +77,7 @@ class UIAWordDocument(ww_wordDocumentBase.WordDocument, NVDAObjects.UIA.wordDocu
 		numHeaderRows = 0
 		for rowIndex in range(rows.count):
 			try:
-				row = rows.item(rowIndex+1)
+				row = rows.item(rowIndex + 1)
 			except COMError:
 				break
 			try:
@@ -86,7 +89,12 @@ class UIAWordDocument(ww_wordDocumentBase.WordDocument, NVDAObjects.UIA.wordDocu
 			else:
 				break
 		if numHeaderRows > 0:
-			headerCellTracker.addHeaderCellInfo(rowNumber=1, columnNumber=1, rowSpan=numHeaderRows, isColumnHeader=True, isRowHeader=False)
+			headerCellTracker.addHeaderCellInfo(
+				rowNumber=1,
+				columnNumber=1,
+				rowSpan=numHeaderRows,
+				isColumnHeader=True,
+				isRowHeader=False)
 
 	def populateHeaderCellTrackerFromBookmarks(self, headerCellTracker, bookmarks):
 		for x in bookmarks:
@@ -105,7 +113,12 @@ class UIAWordDocument(ww_wordDocumentBase.WordDocument, NVDAObjects.UIA.wordDocu
 				headerCell = x.range.cells.item(1)
 			except COMError:
 				continue
-			headerCellTracker.addHeaderCellInfo(rowNumber=headerCell.rowIndex, columnNumber=headerCell.columnIndex, name=name, isColumnHeader=isColumnHeader, isRowHeader=isRowHeader)
+			headerCellTracker.addHeaderCellInfo(
+				rowNumber=headerCell.rowIndex,
+				columnNumber=headerCell.columnIndex,
+				name=name,
+				isColumnHeader=isColumnHeader,
+				isRowHeader=isRowHeader)
 
 	_curHeaderCellTrackerTable = None
 	_curHeaderCellTracker = None
@@ -152,7 +165,12 @@ class UIAWordDocument(ww_wordDocumentBase.WordDocument, NVDAObjects.UIA.wordDocu
 			self.WinwordDocumentObject.bookmarks[oldInfo.name].delete()
 			oldInfo.name = name
 		else:
-			headerCellTracker.addHeaderCellInfo(rowNumber=rowNumber, columnNumber=columnNumber, name=name, isColumnHeader=isColumnHeader, isRowHeader=isRowHeader)
+			headerCellTracker.addHeaderCellInfo(
+				rowNumber=rowNumber,
+				columnNumber=columnNumber,
+				name=name,
+				isColumnHeader=isColumnHeader,
+				isRowHeader=isRowHeader)
 		self.WinwordDocumentObject.bookmarks.add(name, cell.range)
 		return True
 
@@ -182,7 +200,8 @@ class UIAWordDocument(ww_wordDocumentBase.WordDocument, NVDAObjects.UIA.wordDocu
 		rowNumber = cell.rowIndex
 		columnNumber = cell.columnIndex
 		headerCellTracker = self.getHeaderCellTrackerForTable(table)
-		for info in headerCellTracker.iterPossibleHeaderCellInfosFor(rowNumber, columnNumber, columnHeader=columnHeader):
+		for info in headerCellTracker.iterPossibleHeaderCellInfosFor(
+			rowNumber, columnNumber, columnHeader=columnHeader):
 			textList = []
 			if columnHeader:
 				for headerRowNumber in range(info.rowNumber, info.rowNumber + info.rowSpan):
@@ -209,34 +228,3 @@ class UIAWordDocument(ww_wordDocumentBase.WordDocument, NVDAObjects.UIA.wordDocu
 			text = " ".join(textList)
 			if text:
 				return text
-
-	#  end  of code from WordDocument class of IAccessible.winword file
-	# to fix bug of NVDA script: "Comment" must be in Word language.
-	# we suppose that NVDA and Word are in same language.
-	def script_reportCurrentComment(self, gesture):
-		caretInfo = self.makeTextInfo(textInfos.POSITION_CARET)
-		caretInfo.expand(textInfos.UNIT_CHARACTER)
-		val = caretInfo._rangeObj.getAttributeValue(UIAHandler.UIA_AnnotationObjectsAttributeId)
-		if not val:
-			return
-		try:
-			UIAElementArray = val.QueryInterface(UIAHandler.IUIAutomationElementArray)
-		except COMError:
-			return
-		for index in range(UIAElementArray.length):
-			UIAElement = UIAElementArray.getElement(index)
-			UIAElement = UIAElement.buildUpdatedCache(UIAHandler.handler.baseCacheRequest)
-			obj = UIA(UIAElement=UIAElement)
-			if not obj.parent or obj.parent.name != NVDAString('Comment'):
-				continue
-			comment = obj.makeTextInfo(textInfos.POSITION_ALL).text
-			dateObj = obj.previous
-			date = dateObj.name
-			authorObj = dateObj.previous
-			author = authorObj.name
-			# Translators: The message reported for a comment in Microsoft Word
-			ui.message(_("{comment} by {author} on {date}").format(
-				comment=comment, date=date, author=author))
-			return
-	# Translators: a description for a script
-	script_reportCurrentComment.__doc__ = NVDAString("Reports the text of the comment where the System caret is located.")

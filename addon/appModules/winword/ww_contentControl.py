@@ -1,31 +1,29 @@
 # appModules\winword\ww_contentControl.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2021 paulber19
+# Copyright (C) 2021-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
 import addonHandler
 import ui
-
-from .ww_wdConst import wdStoryValueToText
 from .ww_collection import Collection, CollectionElement, ReportDialog
-from .ww_wdConst import  *
+from . import ww_wdConst
 
 addonHandler.initTranslation()
 
 
 _wdContentControlTypeLabels = {
-	wdContentControlRichText: _("rich-text content control"),
-	wdContentControlText: _("Text content control"),
-	wdContentControlPicture: _("picture content control"),
-	wdContentControlComboBox: _("combo box content control"),
-	wdContentControlDropdownList: _("drop-down list content control"),
-	wdContentControlBuildingBlockGallery: _("building block gallery content control"),
-	wdContentControlDate: _("date content control"),
-	wdContentControlGroup: _("group content control"),
-	wdContentControlCheckbox: _("checkbox content control"),
-	wdContentControlRepeatingSection: _("repeating section content control")
-	}
+	ww_wdConst.wdContentControlRichText: _("rich-text content control"),
+	ww_wdConst.wdContentControlText: _("Text content control"),
+	ww_wdConst.wdContentControlPicture: _("picture content control"),
+	ww_wdConst.wdContentControlComboBox: _("combo box content control"),
+	ww_wdConst.wdContentControlDropdownList: _("drop-down list content control"),
+	ww_wdConst.wdContentControlBuildingBlockGallery: _("building block gallery content control"),
+	ww_wdConst.wdContentControlDate: _("date content control"),
+	ww_wdConst.wdContentControlGroup: _("group content control"),
+	ww_wdConst.wdContentControlCheckbox: _("checkbox content control"),
+	ww_wdConst.wdContentControlRepeatingSection: _("repeating section content control")
+}
 
 
 class ContentControl(CollectionElement):
@@ -43,23 +41,22 @@ class ContentControl(CollectionElement):
 
 	def getTypeText(self):
 		return self.typeLabel
+
 	def getStatutText(self):
 		text = ""
-		if self.type == wdContentControlCheckbox:
+		if self.type == ww_wdConst.wdContentControlCheckbox:
 			text = _("checked") if self.obj.checked else ""
-		elif self.type in [wdContentControlRichText, wdContentControlText, wdContentControlComboBox]:
+		elif self.type in [
+			ww_wdConst.wdContentControlRichText,
+			ww_wdConst.wdContentControlText,
+			ww_wdConst.wdContentControlComboBox]:
 			text = self.obj.Range.Text
-		elif self.type == wdContentControlDropdownList:
+		elif self.type == ww_wdConst.wdContentControlDropdownList:
 			text = self.obj.Range.Text
-			
 		return text
-
-		T
-
 
 	def formatInfos(self):
 		return ""
-		storyTypeText = self.get_storyTypeText()
 		# Translators: information of content control element.
 		sInfo = _("""Page {page}, line {line}
 """)
@@ -68,6 +65,7 @@ class ContentControl(CollectionElement):
 
 	def speakInfo(self):
 		ui.message(self.Titre)
+
 
 class ContentControls(Collection):
 	_propertyName = (("ContentControls", ContentControl),)
@@ -93,7 +91,7 @@ class ContentControlsDialog(ReportDialog):
 			(_("Number"), 100),
 			(_("Location"), 150),
 			(_("Type"), 300)
-			)
+		)
 		lcWidth = 0
 		for column in self.lcColumns:
 			lcWidth = lcWidth + column[1]
@@ -102,22 +100,22 @@ class ContentControlsDialog(ReportDialog):
 			(100, _("&Go to"), self.goTo),
 			(101, _("&Delete"), self.delete),
 			(102, _("Delete &all"), self.deleteAll)
-			)
+		)
 		self.tc1 = {
-			"label":   _("Title"),
+			"label": _("Title"),
 			"size": (800, 200)
 		}
 
 		self.tc2 = {
-			"label":   _("Status or content"),
+			"label": _("Status or content"),
 			"size": (800, 200)
-			}
+		}
 
 	def get_lcColumnsDatas(self, element):
 		typeText = element.getTypeText()
 		location = (_("Page {page}, line {line}")).format(
 			page=element.page, line=element.line)
-		index = self.collection.index(element)+1
+		index = self.collection.index(element) + 1
 		datas = (index, location, typeText)
 		return datas
 
@@ -221,4 +219,4 @@ wdFieldTypes = {
 	93: "AddressBlock",  # wdFieldAddressBlock
 	94: "GreetingLine ",  # wdFieldGreetingLine
 	95: "Shape"  # wdFieldShape
-	}
+}

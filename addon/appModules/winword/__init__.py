@@ -1,6 +1,6 @@
 # appModules\winword\__init__.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2021 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -23,8 +23,8 @@ from .ww_scriptTimer import stopScriptTimer, delayScriptTask
 import sys
 try:
 	# for nvda >= 2021.2
-	from  controlTypes.role import Role
-	ROLE_BUTTON  = Role.BUTTON 
+	from controlTypes.role import Role
+	ROLE_BUTTON = Role.BUTTON
 	ROLE_PANE = Role.PANE
 	from controlTypes.outputReason import OutputReason
 	from controlTypes.role import _roleLabels as roleLabels
@@ -32,7 +32,7 @@ try:
 except ImportError:
 	import controlTypes
 	ROLE_PANE = controlTypes.ROLE_PANE
-	ROLE_BUTTON  = controlTypes.ROLE_BUTTON 
+	ROLE_BUTTON = controlTypes.ROLE_BUTTON
 	from controlTypes import roleLabels
 	try:
 		# for nvda version == 2021.1
@@ -51,16 +51,20 @@ try:
 	from appModuleDebug import printDebug, toggleDebugFlag
 except ImportError:
 	from appModuleHandler import AppModule as AppModule
-	def printDebug(msg): return
-	def toggleDebugFlag(): return
+
+	def printDebug(msg):
+		return
+
+	def toggleDebugFlag():
+		return
 del sys.path[-1]
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
-from ww_addonConfigManager import _addonConfigManager  # noqa:E402
+from ww_addonConfigManager import _addonConfigManager
 from ww_utils import (
 	maximizeWindow,
-	getSpeechMode, setSpeechMode, setSpeechMode_off)  # noqa:E402
-from ww_messageBox import myMessageBox  # noqa:E402
+	getSpeechMode, setSpeechMode, setSpeechMode_off)
+from ww_messageBox import myMessageBox
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -108,7 +112,10 @@ class AppModule(AppModule):
 			wx.CallAfter(
 				myMessageBox,
 				# Translators: message to user
-				_("""You have checked the "Use UI Automation to access Microsoft &Word document controls when available")" option. For the add-on to work properly, it is recommended not to check this option."""),
+				_(
+					"""You have checked """
+					"""the "Use UI Automation to access Microsoft Word document controls when available" option. """
+					"""For the add-on to work properly, it is recommended not to check this option."""),
 				# Translators: dialog title.
 				_("Warning"),
 				wx.OK | wx.ICON_ERROR)
@@ -138,7 +145,7 @@ class AppModule(AppModule):
 			try:
 				self.WinwordWindowObject = obj.WinwordWindowObject
 				self.WinwordVersion = obj.WinwordVersion
-			except:  # noqa:E722
+			except Exception:
 				pass
 		if not self.hasFocus:
 			nextHandler()
@@ -151,7 +158,7 @@ class AppModule(AppModule):
 			foreground = api.getForegroundObject()
 			if foreground.windowClassName == "#32770"\
 				and foreground.name == "Microsoft Word":
-				lastChild = foreground.getChild(foreground.childCount-1)
+				lastChild = foreground.getChild(foreground.childCount - 1)
 				if lastChild.windowClassName == "MSOUNISTAT":
 					speech.speakMessage(foreground.description)
 		nextHandler()
@@ -164,7 +171,8 @@ class AppModule(AppModule):
 		return False
 
 	def event_typedCharacter(self, obj, nextHandler, ch):
-		printDebug("event_typedCharacter: %s, ch= %s" % (roleLabels.get(obj.role), ch))  # noqa:E501
+		printDebug("event_typedCharacter: %s, ch= %s" % (roleLabels.get(
+			obj.role), ch))
 		nextHandler()
 		if not self.isSupportedVersion():
 			return
@@ -262,7 +270,7 @@ class AppModule(AppModule):
 			queueHandler.queueFunction(
 				queueHandler.eventQueue,
 				speech.speakMessage,
-				# Translators: message to indicate the focus is not in spellAndGrammar checker. # noqa:E501
+				# Translators: message to indicate the focus is not in spellAndGrammar checker.
 				_("You are Not in the spelling checker"))
 			return
 		if focus.role == ROLE_PANE:
@@ -315,35 +323,6 @@ class AppModule(AppModule):
 	def script_test(self, gesture):
 		print("test word")
 		ui.message("test word")
-		focus = api.getFocusObject()
-		doc = focus.WinwordDocumentObject
-		selection= focus.WinwordSelectionObject
-		wdFieldFormCheckBox = 71
-		#ffield = doc.FormFields.Add( selection.range,wdFieldFormCheckBox) 
-		#ffield.CheckBox.Value = True
-		print ("formfields: %s"%doc.Formfields.Count)
-		print ("contentControls: %s"%doc.ContentControls.Count)
-		from .ww_wdConst import wdContentControlDropdownList , wdContentControlComboBox 
-		from .ww_contentControl import ContentControl
-		for item in doc.ContentControls:
-			contentControl = ContentControl(self, item)
-			print ("contentContent: %s"%contentControl.__dict__)
-			if item.type in [wdContentControlComboBox , wdContentControlDropdownList ]:
-				print ("entries: %s"%[x.Text for x in item.DropDownListEntries])
-				print ("entries: %s"%[x.Value for x in item.DropDownListEntries])
-				item.DropDownListEntries[2].Select()
-				
-		import textInfos
-		info = focus.makeTextInfo(textInfos.POSITION_CARET)
-		info.expand(textInfos.UNIT_STORY)
-		text = info.getTextWithFields()
-		#print ("text: %s"%text)
-
-		
-
-
-
-
 
 	__gestures = {
 		"kb:control+windows+alt+f12": "test",

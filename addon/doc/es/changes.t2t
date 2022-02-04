@@ -16,6 +16,16 @@ Descarga:
 - [Versiones de desarrollo ADDON_DEV_URL]
 
 
++ v3.2 (04/02/2022) +
+- Compatibilidad con NVDA 2022.1.
+- reinicialización de la configuración en caso de errores en el archivo de configuración.
+
+
+Cambios:
+- durante la actualización automática del complemento, ya no se le solicita al usuario si desea conservar las opciones de configuración actual del complemento.
+- durante una instalación manual del complemento, se solicita una solicitud de confirmación cuando el usuario ha elegido no conservar las opciones de configuración actual del complemento.
+
+
 + v3.1 (19/12/2021) +
 Compatibilidad con NVDA 2021.3. Las versiones de NVDA anteriores a la 2020.4 ya no son soportadas.
 

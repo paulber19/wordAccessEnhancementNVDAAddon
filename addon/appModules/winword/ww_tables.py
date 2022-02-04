@@ -1,6 +1,6 @@
 # appModules\winword\ww_tables.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -20,8 +20,12 @@ sys.path.append(debugToolsPath)
 try:
 	from appModuleDebug import printDebug, toggleDebugFlag
 except ImportError:
-	def printDebug(msg): return
-	def toggleDebugFlag(): return
+
+	def printDebug(msg):
+		return
+
+	def toggleDebugFlag():
+		return
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -83,7 +87,8 @@ Number of columns: {columnsCount}
 
 	def moveToCell(self, position, curCell):
 		(rowIndex, columnIndex) = (curCell.rowIndex, curCell.columnIndex)
-		printDebug("moveToCell: position = %s, rowIndex: %s, columnIndex= %s" % (position, rowIndex, columnIndex))  # noqa:E501
+		printDebug("moveToCell: position = %s, rowIndex: %s, columnIndex= %s" % (
+			position, rowIndex, columnIndex))
 		if position in self._rowPositions:
 			cells = self._getCellsOfRow(rowIndex)
 			newCell = self._getCellInCollection(
@@ -120,14 +125,20 @@ Number of columns: {columnsCount}
 				newCell = None
 		else:
 			# error
-			log.warning("moveToCell error: %s, %s" % (type, whichOne))
+			log.warning("moveToCell error: %s, %s" % (type, position))
 			return None
 		if newCell is None:
 			return None
 		newCell.goTo()
-		if position in ["nextInRow", "nextInColumn", "lastInRow", "lastInColumn", "lastCellOfTable"] and self.isLastCellOfTable(newCell):  # noqa:E501
+		if (
+			position in (
+			["nextInRow", "nextInColumn", "lastInRow", "lastInColumn", "lastCellOfTable"])
+			and self.isLastCellOfTable(newCell)):
 			speech.speakMessage(_("Last cell"))
-		elif position in ["previousInRow", "previousInColumn", "firstInRow", "firstInColumn", "firstCellOfTable"] and self.isFirstCellOfTable(newCell):  # noqa:E501
+		elif (
+			position in (
+				["previousInRow", "previousInColumn", "firstInRow", "firstInColumn", "firstCellOfTable"])
+			and self.isFirstCellOfTable(newCell)):
 			speech.speakMessage(_("First cell"))
 		return newCell
 
@@ -135,9 +146,9 @@ Number of columns: {columnsCount}
 		printDebug("_getCellInCollection: position= %s" % position)
 		try:
 			if position == "previous":
-				cell = cells[index-1 if index > 0 else None]
+				cell = cells[index - 1 if index > 0 else None]
 			elif position == "next":
-				cell = cells[index+1 if index+1 < len(cells) else None]
+				cell = cells[index + 1 if index + 1 < len(cells) else None]
 			elif position == "first":
 				cell = cells[0]
 			elif position == "last":
@@ -147,17 +158,17 @@ Number of columns: {columnsCount}
 			else:
 				# error
 				cell = None
-		except:  # noqa:E722
+		except Exception:
 			cell = None
 		return cell
 
 	def _getCellsOfRow(self, rowIndex):
 		cells = []
-		for i in range(1, self.columnsCount+1):
+		for i in range(1, self.columnsCount + 1):
 			try:
 				cell = self.obj.cell(rowIndex, i)
 
-			except:  # noqa:E722
+			except Exception:
 				continue
 			cells.append(Cell(self, cell))
 
@@ -165,17 +176,18 @@ Number of columns: {columnsCount}
 
 	def _getCellsOfColumn(self, columnIndex):
 		cells = []
-		for i in range(1, self.rowsCount+1):
+		for i in range(1, self.rowsCount + 1):
 			try:
 				cell = self.obj.cell(i, columnIndex)
-			except:  # noqa:E722
+			except Exception:
 				continue
 			cells.append(Cell(self, cell))
 		return cells
 
 	def sayElement(
 		self, elementType, position, currentCell, reportAllCells=False):
-		printDebug("sayElement: %s, %s, reportAllCells = %s" % (elementType, position, reportAllCells))  # noqa:E501
+		printDebug("sayElement: %s, %s, reportAllCells = %s" % (
+			elementType, position, reportAllCells))
 		if elementType == "row":
 			self.sayRow(self._rowPositions[position], currentCell)
 		elif elementType == "column":
@@ -195,7 +207,8 @@ Number of columns: {columnsCount}
 			log.error("SayElement invalid parameters %s" % type)
 
 	def sayCell(self, position="current", currentCell=None, columnHeader=None):
-		printDebug("sayCell: position= %s, columnHeader = %s, row= %s, column=%s" % (position, columnHeader, currentCell.rowIndex, currentCell.columnIndex))  # noqa:E501
+		printDebug("sayCell: position= %s, columnHeader = %s, row= %s, column=%s" % (
+			position, columnHeader, currentCell.rowIndex, currentCell.columnIndex))
 		newCell = None
 		row = None
 		if position == "current":
@@ -211,7 +224,7 @@ Number of columns: {columnsCount}
 			pos = self._columnPositions[position]
 		else:
 			# error
-			log.error("error, sayCell invalid parameter %s" % whichOne)
+			log.error("error, sayCell invalid parameter %s" % position)
 			return
 		if newCell is None:
 			index = self._getCellIndexInCollection(currentCell, cells)
@@ -320,7 +333,7 @@ class TablesDialog(ReportDialog):
 			(_("Title"), 300),
 			(_("Number of rows"), 100),
 			(_("Number of columns"), 100)
-			)
+		)
 		lcWidth = 0
 		for column in self.lcColumns:
 			lcWidth = lcWidth + column[1]
@@ -337,7 +350,7 @@ class TablesDialog(ReportDialog):
 	def get_lcColumnsDatas(self, element):
 		location = (
 			_("Page {page}, line {line}")).format(page=element.page, line=element.line)
-		index = self.collection.index(element)+1
+		index = self.collection.index(element) + 1
 
 		datas = (
 			index,
@@ -360,7 +373,7 @@ class Cell(CollectionElement):
 	def sayText(self, wordDocument, reportColumnHeader=None):
 		printDebug("cell setText: columnHeader= %s" % reportColumnHeader)
 		headerText = ""
-		reportTableHeadersFlag = config.conf['documentFormatting']["reportTableHeaders"]  # noqa:E501
+		reportTableHeadersFlag = config.conf['documentFormatting']["reportTableHeaders"]
 		if reportTableHeadersFlag:
 			if reportColumnHeader is not None:
 				headerText = wordDocument.fetchAssociatedHeaderCellText(

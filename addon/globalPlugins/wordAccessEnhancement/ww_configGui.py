@@ -1,6 +1,6 @@
 # globalPlugins\wordAccessEnhancement\ww_config.py
 # A part of WordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -13,13 +13,12 @@ from gui.settingsDialogs import MultiCategorySettingsDialog, SettingsPanel
 import wx
 import characterProcessing
 import speech
-from io import StringIO
 _curAddon = addonHandler.getCodeAddon()
 path = os.path.join(_curAddon.path, "shared")
 sys.path.append(path)
-from ww_informationDialog import InformationDialog  # noqa:E402
-from ww_NVDAStrings import NVDAString  # noqa:E402
-from ww_addonConfigManager import _addonConfigManager  # noqa:E402
+from ww_informationDialog import InformationDialog
+from ww_NVDAStrings import NVDAString
+from ww_addonConfigManager import _addonConfigManager
 del sys.path[-1]
 
 
@@ -44,7 +43,6 @@ SCT_Many = "__many__"
 class WordOptionsPanel(SettingsPanel):
 	# Translators: This is the label for the Options panel.
 	title = _("Options")
-	
 
 	def makeSettings(self, settingsSizer):
 
@@ -76,20 +74,24 @@ class WordOptionsPanel(SettingsPanel):
 		choice = list(reversed(choice))
 		# translators: label for a list box in Options settings panel.
 		labelText = _("Maximum time of elements's search (in seconds:)")
-		self.elementsSearchMaxTimeListBox = sHelper.addLabeledControl(labelText, wx.Choice, choices=[str(x) for x in choice])
+		self.elementsSearchMaxTimeListBox = sHelper.addLabeledControl(
+			labelText, wx.Choice, choices=[str(x) for x in choice])
 		self.elementsSearchMaxTimeListBox.SetSelection(choice.index(_addonConfigManager.getElementsSearchMaxTime()))
 
 	def postInit(self):
 		self.skipEmptyParagraphBox .SetFocus()
 
 	def saveSettingChanges(self):
-		if self.skipEmptyParagraphBox.IsChecked() != _addonConfigManager.toggleSkipEmptyParagraphsOption(False):  # noqa:E501
+		if self.skipEmptyParagraphBox.IsChecked() != _addonConfigManager.toggleSkipEmptyParagraphsOption(False):
 			_addonConfigManager.toggleSkipEmptyParagraphsOption()
-		if self.playSoundOnSkippedParagraphBox.IsChecked() != _addonConfigManager.togglePlaySoundOnSkippedParagraphOption(False):  # noqa:E501
+		option = _addonConfigManager.togglePlaySoundOnSkippedParagraphOption(False)
+		if self.playSoundOnSkippedParagraphBox.IsChecked() != option:
 			_addonConfigManager.togglePlaySoundOnSkippedParagraphOption()
-		if self.loopInNavigationModeOptionBox.IsChecked()  != _addonConfigManager.toggleLoopInNavigationModeOption(False):
+		if self.loopInNavigationModeOptionBox.IsChecked() != (
+			_addonConfigManager.toggleLoopInNavigationModeOption(False)):
 			_addonConfigManager.toggleLoopInNavigationModeOption()
-		elementsSearchMaxTime= int(self.elementsSearchMaxTimeListBox.GetString(self.elementsSearchMaxTimeListBox.GetSelection()))
+		elementsSearchMaxTime = int(
+			self.elementsSearchMaxTimeListBox.GetString(self.elementsSearchMaxTimeListBox.GetSelection()))
 		_addonConfigManager.setElementsSearchMaxTime(elementsSearchMaxTime)
 
 	def onSave(self):
@@ -106,16 +108,15 @@ class AutomaticReadingPanel(SettingsPanel):
 		"insertedText",
 		"deletedText",
 		"revisedText",
-		]
+	]
 	objectsToReadLabels = {
-	"comment" : _("Comment"),
-	"footnote" : _("Footnote"),
-	"endnote" : _("Endnote"),
-	"insertedText": _("Inserted text"),
-	"deletedText": _("Deleted text"),
-	"revisedText": _("Revised text"),
+		"comment": _("Comment"),
+		"footnote": _("Footnote"),
+		"endnote": _("Endnote"),
+		"insertedText": _("Inserted text"),
+		"deletedText": _("Deleted text"),
+		"revisedText": _("Revised text"),
 	}
-
 
 	def makeSettings(self, settingsSizer):
 		sHelper = gui.guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
@@ -125,11 +126,12 @@ class AutomaticReadingPanel(SettingsPanel):
 			wx.CheckBox(self, wx.ID_ANY, label=labelText))
 		self.automaticReadingCheckBox.SetValue(
 			_addonConfigManager.toggleAutomaticReadingOption(False))
-		#Translators: This is the label for a list of checkboxes
+		# Translators: This is the label for a list of checkboxes
 		# controlling which  object are automatically reading.
 		labelText = _("Concerned elements:")
-		choice =  [self.objectsToReadLabels[x]for x in self.objectsToRead]
-		self.objectsToReadCheckListBox = sHelper.addLabeledControl(labelText, nvdaControls.CustomCheckListBox, choices=choice)
+		choice = [self.objectsToReadLabels[x]for x in self.objectsToRead]
+		self.objectsToReadCheckListBox = sHelper.addLabeledControl(
+			labelText, nvdaControls.CustomCheckListBox, choices=choice)
 		checkedItems = []
 		if _addonConfigManager.toggleAutoCommentReadingOption(False):
 			checkedItems.append(self.objectsToRead.index("comment"))
@@ -143,9 +145,9 @@ class AutomaticReadingPanel(SettingsPanel):
 			checkedItems.append(self.objectsToRead.index("deletedText"))
 		if _addonConfigManager.toggleAutoRevisedTextReadingOption(False):
 			checkedItems.append(self.objectsToRead.index("revisedText"))
-		self.objectsToReadCheckListBox.CheckedItems  = checkedItems
+		self.objectsToReadCheckListBox.CheckedItems = checkedItems
 		self.objectsToReadCheckListBox.Select(0)
-				# Translators: This is the label for a checkbox in the settings panel.
+		# Translators: This is the label for a checkbox in the settings panel.
 		labelText = _("Read &with:")
 		choice = [
 			# Translators: a choice labels for automatic reading.
@@ -154,13 +156,13 @@ class AutomaticReadingPanel(SettingsPanel):
 			_("Current voice and  beep at start and end"),
 			# Translators: a choice labels for automatic reading.
 			_("another voice")
-			]
+		]
 		self.autoReadingWithChoiceBox = sHelper.addLabeledControl(
 			labelText, wx.Choice, choices=choice)
 		self.autoReadingWithChoiceBox.SetSelection(
 			_addonConfigManager.getAutoReadingWithOption())
 		# Translators:  this is a label for a checkbox
-			#  in automatic reading settings panel
+		#  in automatic reading settings panel
 		labelText = _("&Report revision's type with author")
 		self.reportRevisionTypeWithAuthorCheckBox = sHelper.addItem(
 			wx.CheckBox(self, wx.ID_ANY, label=labelText))
@@ -183,15 +185,15 @@ class AutomaticReadingPanel(SettingsPanel):
 			("Automatic language switching (when supported)", boolToText),
 			("Automatic dialect switching (when supported)", boolToText),
 			("Punctuation/symbol level", punctuationLevelToText),
-			("Trust voice's language when processing characters and symbols", boolToText),  # noqa:E501
-			("Include Unicode Consortium data (including emoji) when processing characters and symbols", boolToText),  # noqa:E501
-			]
+			("Trust voice's language when processing characters and symbols", boolToText),
+			("Include Unicode Consortium data (including emoji) when processing characters and symbols", boolToText),
+		]
 		NVDASpeechManySettingsInfos = [
 			("Capital pitch change percentage", None),
 			("Say &cap before capitals", boolToText),
 			("&Beep for capitals", boolToText),
 			("Use &spelling functionality if supported", boolToText),
-			]
+		]
 		autoReadingSynth = _addonConfigManager.getAutoReadingSynthSettings()
 		if autoReadingSynth is None:
 			# Translators: message to user to report no automatic reading voice.
@@ -238,30 +240,34 @@ class AutomaticReadingPanel(SettingsPanel):
 		self.automaticReadingCheckBox .SetFocus()
 
 	def saveSettingChanges(self):
-		if self.automaticReadingCheckBox.IsChecked() != _addonConfigManager.toggleAutomaticReadingOption(False):  # noqa:E501
+		if self.automaticReadingCheckBox.IsChecked() != _addonConfigManager.toggleAutomaticReadingOption(False):
 			_addonConfigManager.toggleAutomaticReadingOption()
-		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("comment")) != _addonConfigManager.toggleAutoCommentReadingOption(False):  # noqa:E501
+		option = _addonConfigManager.toggleAutoCommentReadingOption(False)
+		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("comment")) != option:
 			_addonConfigManager.toggleAutoCommentReadingOption()
-		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("footnote")) != _addonConfigManager.toggleAutoFootnoteReadingOption(False):  # noqa:E501
+		option = _addonConfigManager.toggleAutoFootnoteReadingOption(False)
+		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("footnote")) != option:
 			_addonConfigManager.toggleAutoFootnoteReadingOption()
-		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("endnote")) != _addonConfigManager.toggleAutoEndnoteReadingOption(False):  # noqa:E501
+		option = _addonConfigManager.toggleAutoFootnoteReadingOption(False)
+		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("endnote")) != option:
 			_addonConfigManager.toggleAutoEndnoteReadingOption()
-		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("insertedText")) != _addonConfigManager.toggleAutoInsertedTextReadingOption(False):  # noqa:E501
+		option = _addonConfigManager.toggleAutoInsertedTextReadingOption(False)
+		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("insertedText")) != option:
 			_addonConfigManager.toggleAutoInsertedTextReadingOption()
-		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("deletedText")) != _addonConfigManager.toggleAutoDeletedTextReadingOption(False):  # noqa:E501
-			_addonConfigManager.toggleAutoDeletedTextReadingOption()		
-		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("revisedText")) != _addonConfigManager.toggleAutoRevisedTextReadingOption(False):  # noqa:E501
-			_addonConfigManager.toggleAutoRevisedTextReadingOption()		
+		option = _addonConfigManager.toggleAutoDeletedTextReadingOption(False)
+		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("deletedText")) != option:
+			_addonConfigManager.toggleAutoDeletedTextReadingOption()
+		option = _addonConfigManager.toggleAutoRevisedTextReadingOption(False)
+		if self.objectsToReadCheckListBox.IsChecked(self.objectsToRead.index("revisedText")) != option:
+			_addonConfigManager.toggleAutoRevisedTextReadingOption()
 		_addonConfigManager.setAutoReadingWithOption(
 			self.autoReadingWithChoiceBox .GetSelection())
-		if self.reportRevisionTypeWithAuthorCheckBox.IsChecked() != _addonConfigManager.toggleReportRevisionTypeWithAuthorOption(False):  # noqa:E501
+		option = _addonConfigManager.toggleReportRevisionTypeWithAuthorOption(False)
+		if self.reportRevisionTypeWithAuthorCheckBox.IsChecked() != option:
 			_addonConfigManager.toggleReportRevisionTypeWithAuthorOption()
-
 
 	def onSave(self):
 		self.saveSettingChanges()
-
-
 
 
 class WordUpdatePanel(SettingsPanel):
@@ -296,16 +302,16 @@ class WordUpdatePanel(SettingsPanel):
 	def onCheckForUpdate(self, evt):
 		from .updateHandler import addonUpdateCheck
 		self.saveSettingChanges()
-		releaseToDevVersion = self.updateReleaseVersionsToDevVersionsCheckBox.IsChecked()  # noqa:E501
+		releaseToDevVersion = self.updateReleaseVersionsToDevVersionsCheckBox.IsChecked()
 		wx.CallAfter(addonUpdateCheck, auto=False, releaseToDev=releaseToDevVersion)
 		self.Close()
 
 	def onSeeHistory(self, evt):
 		addon = addonHandler.getCodeAddon()
-		from languageHandler import curLang
-		theFile = os.path.join(addon.path, "doc", curLang, "changes.html")
+		from languageHandler import getLanguage
+		theFile = os.path.join(addon.path, "doc", getLanguage(), "changes.html")
 		if not os.path.exists(theFile):
-			lang = curLang.split("_")[0]
+			lang = getLanguage().split("_")[0]
 			theFile = os.path.join(addon.path, "doc", lang, "changes.html")
 			if not os.path.exists(theFile):
 				lang = "en"
@@ -313,9 +319,10 @@ class WordUpdatePanel(SettingsPanel):
 		os.startfile(theFile)
 
 	def saveSettingChanges(self):
-		if self.autoCheckForUpdatesCheckBox.IsChecked() != _addonConfigManager .toggleAutoUpdateCheck(False):  # noqa:E501
+		if self.autoCheckForUpdatesCheckBox.IsChecked() != _addonConfigManager .toggleAutoUpdateCheck(False):
 			_addonConfigManager .toggleAutoUpdateCheck(True)
-		if self.updateReleaseVersionsToDevVersionsCheckBox.IsChecked() != _addonConfigManager .toggleUpdateReleaseVersionsToDevVersions(False):  # noqa:E501
+		option = _addonConfigManager .toggleUpdateReleaseVersionsToDevVersions(False)
+		if self.updateReleaseVersionsToDevVersionsCheckBox.IsChecked() != option:
 			_addonConfigManager .toggleUpdateReleaseVersionsToDevVersions(True)
 
 	def postSave(self):
@@ -335,7 +342,7 @@ class AddonSettingsDialog(MultiCategorySettingsDialog):
 		WordOptionsPanel,
 		AutomaticReadingPanel,
 		WordUpdatePanel
-		]
+	]
 
 	def __init__(self, parent, initialCategory=None):
 		curAddon = addonHandler.getCodeAddon()

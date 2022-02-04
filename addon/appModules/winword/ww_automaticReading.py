@@ -1,6 +1,6 @@
 # appModules\winword\ww_automaticReading.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2020 paulber19
+# Copyright (C) 2020-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -10,26 +10,18 @@ from versionInfo import version_year, version_major
 import config
 import textInfos
 from textInfos import SpeechSequence
+import aria
+import colors
 from typing import List, Optional, Dict
 import synthDriverHandler
 import ui
 import speech.commands
-from speech import *  # noqa:F403
+from speech import (
+	getPropertiesSpeech, getTableInfoSpeech,
+)
 from speech.types import logBadSequenceTypes
 import sys
 import os
-
-_curAddon = addonHandler.getCodeAddon()
-sharedPath = os.path.join(_curAddon.path, "shared")
-sys.path.append(sharedPath)
-from ww_NVDAStrings import NVDAString  # noqa:E402
-from ww_addonConfigManager import _addonConfigManager, AutoReadingWith_CurrentVoice, AutoReadingWith_Beep, AutoReadingWith_Voice  # noqa:E402
-del sys.path[-1]
-
-addonHandler.initTranslation()
-
-SCT_Speech = "speech"
-SCT_Many = "__many__"
 import controlTypes
 try:
 	# for nvda version >= 2021.2
@@ -42,9 +34,22 @@ except ImportError:
 		REASON_FOCUS = OutputReason.FOCUS
 	except AttributeError:
 		# fornvda version <  2020.1
-		import controlTypes
 		REASON_FOCUS = controlTypes.REASON_FOCUS
 		OutputReason = str
+
+
+_curAddon = addonHandler.getCodeAddon()
+sharedPath = os.path.join(_curAddon.path, "shared")
+sys.path.append(sharedPath)
+from ww_NVDAStrings import NVDAString
+from ww_addonConfigManager import (
+	_addonConfigManager, AutoReadingWith_CurrentVoice, AutoReadingWith_Beep, AutoReadingWith_Voice)
+del sys.path[-1]
+
+addonHandler.initTranslation()
+
+SCT_Speech = "speech"
+SCT_Many = "__many__"
 
 
 def formatVoiceAutoSpeechSequence(seq):
@@ -94,10 +99,14 @@ def getNotePropertiesSpeech(reason, value, note):
 	seq = getPropertiesSpeech(reason=reason, value=value)
 	seq.extend(formatAutoSpeechSequence([note]))
 	return seq
+
+
 _curSynthName = None
 _currentSpeechSettings = None
+
+
 def formatVoiceAutoReadingStartSequence(start=True):
-	global _curSynthName , _currentSpeechSettings 
+	global _curSynthName, _currentSpeechSettings
 	autoReadingSynth = _addonConfigManager.getAutoReadingSynthSettings()
 	if not autoReadingSynth:
 		return []
@@ -118,8 +127,6 @@ def formatVoiceAutoReadingStartSequence(start=True):
 	return seq
 
 
-
-
 def startOrStopAutomaticReadingVoice(start=True):
 	seq = []
 	autoReadingWithOption = _addonConfigManager.getAutoReadingWithOption()
@@ -134,10 +141,11 @@ def startOrStopAutomaticReadingVoice(start=True):
 		seq = formatVoiceAutoReadingStartSequence(start)
 	return seq
 
+
 def formatRevisionAutoReadingSequence(rangeObj, revision, text):
 	seq = []
 	autoReadingWithOption = _addonConfigManager.getAutoReadingWithOption()
-	autoReading =  autoReadingWithOption != AutoReadingWith_CurrentVoice
+	autoReading = autoReadingWithOption != AutoReadingWith_CurrentVoice
 	if revision:
 		# speak text and change voice if autoReading
 		if not autoReading:
@@ -153,15 +161,12 @@ def formatRevisionAutoReadingSequence(rangeObj, revision, text):
 			seq.extend(startOrStopAutomaticReadingVoice(False))
 		else:
 			seq.append(text)
-	print ("formatRevisionAutoReadingSequence seq: %s"%seq)
 	return seq
-	
 
 
-
-def  formatDeletedRevisionAutoReadingSequence(rangeObj, revision, text):
+def formatDeletedRevisionAutoReadingSequence(rangeObj, revision, text):
 	seq = []
-	if not revision or rangeObj.Revisions.Count== 0:
+	if not revision or rangeObj.Revisions.Count == 0:
 		seq.append(text)
 		return seq
 	from .ww_revisions import Revision
@@ -192,7 +197,6 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 		def getHasCommentTextSequence(comment):
 			try:
 				# for nvda version >= 2022.1
-				from textInfos import CommentType
 				if comment is textInfos.CommentType.DRAFT:
 					# Translators: Reported when text contains a draft comment.
 					text = NVDAString("has draft comment")
@@ -202,14 +206,16 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				else:  # generic
 					# Translators: Reported when text contains a generic comment.
 					text = NVDAString("has comment")
-			except ImportError:
+			except Exception:
 				# Translators: Reported when text contains a comment.
 				text = NVDAString("has comment")
 			return [text]
 		# with UIA enabled, commentReference is a boolean (True)
-		if not(_addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoCommentReadingOption(False)) or\
-			type(commentReference) != str:
-			
+		if (
+			not(
+				_addonConfigManager.toggleAutomaticReadingOption(False)
+				and _addonConfigManager.toggleAutoCommentReadingOption(False))
+			or type(commentReference) != str):
 			return getHasCommentTextSequence(commentReference)
 		from .ww_comments import Comment
 		offset = int(commentReference)
@@ -227,17 +233,17 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 		seq = []
 		try:
 			# for nvda version >= 2022.1
-			from textInfos import CommentType
 			if commentReference is textInfos.CommentType.DRAFT:
 				# Translators: Reported when text contains a draft comment.
 				text = _("draft comment of %s:") % commentAuthor if commentAuthor != "" else _("comment:") % commentText
 			elif commentReference is textInfos.CommentType.RESOLVED:
 				# Translators: Reported when text contains a resolved comment.
-				text = _("resolved comment of %s:") % commentAuthor if commentAuthor != "" else _("comment:") % commentText
+				text = _("resolved comment of %s:") % (
+					commentAuthor if commentAuthor != "" else _("comment:") % commentText)
 			else:
 				# Translators: Reported when text contains a comment.
 				text = _("comment of %s:") % commentAuthor if commentAuthor != "" else _("comment:") % commentText
-		except ImportError:
+		except Exception:
 			# Translators: Reported when text contains a comment.
 			text = _("comment of %s:") % commentAuthor if commentAuthor != "" else _("comment:") % commentText
 		seq.append(text)
@@ -265,24 +271,24 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 		endnoteObj = doc.EndNotes[offset]
 		endnote = Endnote(self.obj, endnoteObj)
 		return endnote.text
-	
-	def getFormatFieldSpeech(  # noqa: C901
+
+	def getFormatFieldSpeech(
 		self,
-			attrs: textInfos.Field,
-			attrsCache: Optional[textInfos.Field] = None,
-			formatConfig: Optional[Dict[str, bool]] = None,
-			reason: Optional[OutputReason] = None,
-			unit: Optional[str] = None,
-			extraDetail: bool = False,
-			initialFormat: bool = False,
+		attrs: textInfos.Field,
+		attrsCache: Optional[textInfos.Field] = None,
+		formatConfig: Optional[Dict[str, bool]] = None,
+		reason: Optional[OutputReason] = None,
+		unit: Optional[str] = None,
+		extraDetail: bool = False,
+		initialFormat: bool = False,
 	) -> SpeechSequence:
 
 		NVDAVersion = [version_year, version_major]
-		if NVDAVersion  >= [2022, 1]:
+		if NVDAVersion >= [2022, 1]:
 			funct = self.getFormatFieldSpeech_2022_1
-		elif NVDAVersion  >= [2021, 3]:
+		elif NVDAVersion >= [2021, 3]:
 			funct = self.getFormatFieldSpeech_2021_3
-		elif NVDAVersion  >= [2021, 2]:
+		elif NVDAVersion >= [2021, 2]:
 			funct = self.getFormatFieldSpeech_2021_2
 		else:
 			funct = self.getFormatFieldSpeech_2021_1
@@ -294,91 +300,92 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			unit,
 			extraDetail,
 			initialFormat,
-	)
-	
-	def getFormatFieldSpeech_2022_1(  # noqa: C901
+		)
+
+	def getFormatFieldSpeech_2022_1(
 		self,
-			attrs: textInfos.Field,
-			attrsCache: Optional[textInfos.Field] = None,
-			formatConfig: Optional[Dict[str, bool]] = None,
-			reason: Optional[OutputReason] = None,
-			unit: Optional[str] = None,
-			extraDetail: bool = False,
-			initialFormat: bool = False,
+		attrs: textInfos.Field,
+		attrsCache: Optional[textInfos.Field] = None,
+		formatConfig: Optional[Dict[str, bool]] = None,
+		reason: Optional[OutputReason] = None,
+		unit: Optional[str] = None,
+		extraDetail: bool = False,
+		initialFormat: bool = False,
 	) -> SpeechSequence:
-		print ("2021.3")
+
 		if not formatConfig:
-			formatConfig=config.conf["documentFormatting"]
-		textList=[]
+			formatConfig = config.conf["documentFormatting"]
+		textList = []
 		if formatConfig["reportTables"]:
-			tableInfo=attrs.get("table-info")
-			oldTableInfo=attrsCache.get("table-info") if attrsCache is not None else None
+			tableInfo = attrs.get("table-info")
+			oldTableInfo = attrsCache.get("table-info") if attrsCache is not None else None
 			tableSequence = getTableInfoSpeech(
 				tableInfo, oldTableInfo, extraDetail=extraDetail
 			)
 			if tableSequence:
 				textList.extend(tableSequence)
 		if formatConfig["reportPage"]:
-			pageNumber=attrs.get("page-number")
-			oldPageNumber=attrsCache.get("page-number") if attrsCache is not None else None
-			if pageNumber and pageNumber!=oldPageNumber:
+			pageNumber = attrs.get("page-number")
+			oldPageNumber = attrsCache.get("page-number") if attrsCache is not None else None
+			if pageNumber and pageNumber != oldPageNumber:
 				# Translators: Indicates the page number in a document.
 				# %s will be replaced with the page number.
-				text = NVDAString("page %s")%pageNumber
+				text = NVDAString("page %s") % pageNumber
 				textList.append(text)
-			sectionNumber=attrs.get("section-number")
-			oldSectionNumber=attrsCache.get("section-number") if attrsCache is not None else None
-			if sectionNumber and sectionNumber!=oldSectionNumber:
+			sectionNumber = attrs.get("section-number")
+			oldSectionNumber = attrsCache.get("section-number") if attrsCache is not None else None
+			if sectionNumber and sectionNumber != oldSectionNumber:
 				# Translators: Indicates the section number in a document.
 				# %s will be replaced with the section number.
-				text = NVDAString("section %s")%sectionNumber
+				text = NVDAString("section %s") % sectionNumber
 				textList.append(text)
-	
-			textColumnCount=attrs.get("text-column-count")
-			oldTextColumnCount=attrsCache.get("text-column-count") if attrsCache is not None else None
-			textColumnNumber=attrs.get("text-column-number")
-			oldTextColumnNumber=attrsCache.get("text-column-number") if attrsCache is not None else None
-	
-			# Because we do not want to report the number of columns when a document is just opened and there is only 
+
+			textColumnCount = attrs.get("text-column-count")
+			oldTextColumnCount = attrsCache.get("text-column-count") if attrsCache is not None else None
+			textColumnNumber = attrs.get("text-column-number")
+			oldTextColumnNumber = attrsCache.get("text-column-number") if attrsCache is not None else None
+
+			# Because we do not want to report the number of columns when a document is just opened and there is only
 			# one column. This would be verbose, in the standard case.
 			# column number has changed, or the columnCount has changed
 			# but not if the columnCount is 1 or less and there is no old columnCount.
-			if (((textColumnNumber and textColumnNumber!=oldTextColumnNumber) or
-				(textColumnCount and textColumnCount!=oldTextColumnCount)) and not
-				(textColumnCount and int(textColumnCount) <=1 and oldTextColumnCount == None)) :
+			if (((
+				textColumnNumber and textColumnNumber != oldTextColumnNumber)
+				or (textColumnCount and textColumnCount != oldTextColumnCount)) and not
+				(textColumnCount and int(textColumnCount) <= 1 and oldTextColumnCount is None)):
 				if textColumnNumber and textColumnCount:
 					# Translators: Indicates the text column number in a document.
 					# {0} will be replaced with the text column number.
 					# {1} will be replaced with the number of text columns.
-					text = NVDAString("column {0} of {1}").format(textColumnNumber,textColumnCount)
+					text = NVDAString("column {0} of {1}").format(textColumnNumber, textColumnCount)
 					textList.append(text)
 				elif textColumnCount:
 					# Translators: Indicates the text column number in a document.
 					# %s will be replaced with the number of text columns.
-					text = NVDAString("%s columns")%(textColumnCount)
+					text = NVDAString("%s columns") % (textColumnCount)
 					textList.append(text)
-	
-		sectionBreakType=attrs.get("section-break")
+
+		sectionBreakType = attrs.get("section-break")
 		if sectionBreakType:
-			if sectionBreakType == "0" : # Continuous section break.
+			if sectionBreakType == "0":  # Continuous section break.
 				text = NVDAString("continuous section break")
-			elif sectionBreakType == "1" : # New column section break.
+			elif sectionBreakType == "1":  # New column section break.
 				text = NVDAString("new column section break")
-			elif sectionBreakType == "2" : # New page section break.
+			elif sectionBreakType == "2":  # New page section break.
 				text = NVDAString("new page section break")
-			elif sectionBreakType == "3" : # Even pages section break.
+			elif sectionBreakType == "3":  # Even pages section break.
 				text = NVDAString("even pages section break")
-			elif sectionBreakType == "4" : # Odd pages section break.
+			elif sectionBreakType == "4":  # Odd pages section break.
 				text = NVDAString("odd pages section break")
 			else:
-				text=""
+				text = ""
 			textList.append(text)
-		columnBreakType=attrs.get("column-break")
+		columnBreakType = attrs.get("column-break")
 		if columnBreakType:
 			textList.append(NVDAString("column break"))
-		if  formatConfig["reportHeadings"]:
-			headingLevel=attrs.get("heading-level")
-			oldHeadingLevel=attrsCache.get("heading-level") if attrsCache is not None else None
+		if formatConfig["reportHeadings"]:
+			headingLevel = attrs.get("heading-level")
+			oldHeadingLevel = attrsCache.get("heading-level") if attrsCache is not None else None
 			# headings should be spoken not only if they change, but also when beginning to speak lines or paragraphs
 			# Ensuring a similar experience to if a heading was a controlField
 			if(
@@ -393,109 +400,112 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				)
 			):
 				# Translators: Speaks the heading level (example output: heading level 2).
-				text = NVDAString("heading level %d")%headingLevel
+				text = NVDAString("heading level %d") % headingLevel
 				textList.append(text)
-		if  formatConfig["reportStyle"]:
-			style=attrs.get("style")
-			oldStyle=attrsCache.get("style") if attrsCache is not None else None
-			if style!=oldStyle:
+		if formatConfig["reportStyle"]:
+			style = attrs.get("style")
+			oldStyle = attrsCache.get("style") if attrsCache is not None else None
+			if style != oldStyle:
 				if style:
 					# Translators: Indicates the style of text.
 					# A style is a collection of formatting settings and depends on the application.
 					# %s will be replaced with the name of the style.
-					text = NVDAString("style %s")%style
+					text = NVDAString("style %s") % style
 				else:
 					# Translators: Indicates that text has reverted to the default style.
 					# A style is a collection of formatting settings and depends on the application.
 					text = NVDAString("default style")
 				textList.append(text)
-		if  formatConfig["reportBorderStyle"]:
-			borderStyle=attrs.get("border-style")
-			oldBorderStyle=attrsCache.get("border-style") if attrsCache is not None else None
-			if borderStyle!=oldBorderStyle:
+		if formatConfig["reportBorderStyle"]:
+			borderStyle = attrs.get("border-style")
+			oldBorderStyle = attrsCache.get("border-style") if attrsCache is not None else None
+			if borderStyle != oldBorderStyle:
 				if borderStyle:
-					text=borderStyle
+					text = borderStyle
 				else:
 					# Translators: Indicates that cell does not have border lines.
 					text = NVDAString("no border lines")
 				textList.append(text)
-		if  formatConfig["reportFontName"]:
-			fontFamily=attrs.get("font-family")
-			oldFontFamily=attrsCache.get("font-family") if attrsCache is not None else None
-			if fontFamily and fontFamily!=oldFontFamily:
+		if formatConfig["reportFontName"]:
+			fontFamily = attrs.get("font-family")
+			oldFontFamily = attrsCache.get("font-family") if attrsCache is not None else None
+			if fontFamily and fontFamily != oldFontFamily:
 				textList.append(fontFamily)
-			fontName=attrs.get("font-name")
-			oldFontName=attrsCache.get("font-name") if attrsCache is not None else None
-			if fontName and fontName!=oldFontName:
+			fontName = attrs.get("font-name")
+			oldFontName = attrsCache.get("font-name") if attrsCache is not None else None
+			if fontName and fontName != oldFontName:
 				textList.append(fontName)
-		if  formatConfig["reportFontSize"]:
-			fontSize=attrs.get("font-size")
-			oldFontSize=attrsCache.get("font-size") if attrsCache is not None else None
-			if fontSize and fontSize!=oldFontSize:
+		if formatConfig["reportFontSize"]:
+			fontSize = attrs.get("font-size")
+			oldFontSize = attrsCache.get("font-size") if attrsCache is not None else None
+			if fontSize and fontSize != oldFontSize:
 				textList.append(fontSize)
-		if  formatConfig["reportColor"]:
-			color=attrs.get("color")
-			oldColor=attrsCache.get("color") if attrsCache is not None else None
-			backgroundColor=attrs.get("background-color")
-			oldBackgroundColor=attrsCache.get("background-color") if attrsCache is not None else None
-			backgroundColor2=attrs.get("background-color2")
-			oldBackgroundColor2=attrsCache.get("background-color2") if attrsCache is not None else None
-			bgColorChanged=backgroundColor!=oldBackgroundColor or backgroundColor2!=oldBackgroundColor2
-			bgColorText=backgroundColor.name if isinstance(backgroundColor,colors.RGB) else backgroundColor
+		if formatConfig["reportColor"]:
+			color = attrs.get("color")
+			oldColor = attrsCache.get("color") if attrsCache is not None else None
+			backgroundColor = attrs.get("background-color")
+			oldBackgroundColor = attrsCache.get("background-color") if attrsCache is not None else None
+			backgroundColor2 = attrs.get("background-color2")
+			oldBackgroundColor2 = attrsCache.get("background-color2") if attrsCache is not None else None
+			bgColorChanged = backgroundColor != oldBackgroundColor or backgroundColor2 != oldBackgroundColor2
+			bgColorText = backgroundColor.name if isinstance(backgroundColor, colors.RGB) else backgroundColor
 			if backgroundColor2:
-				bg2Name=backgroundColor2.name if isinstance(backgroundColor2,colors.RGB) else backgroundColor2
+				bg2Name = backgroundColor2.name if isinstance(backgroundColor2, colors.RGB) else backgroundColor2
 				# Translators: Reported when there are two background colors.
 				# This occurs when, for example, a gradient pattern is applied to a spreadsheet cell.
 				# {color1} will be replaced with the first background color.
 				# {color2} will be replaced with the second background color.
-				bgColorText = NVDAString("{color1} to {color2}").format(color1=bgColorText,color2=bg2Name)
-			if color and backgroundColor and color!=oldColor and bgColorChanged:
+				bgColorText = NVDAString("{color1} to {color2}").format(color1=bgColorText, color2=bg2Name)
+			if color and backgroundColor and color != oldColor and bgColorChanged:
 				# Translators: Reported when both the text and background colors change.
 				# {color} will be replaced with the text color.
 				# {backgroundColor} will be replaced with the background color.
 				textList.append(NVDAString("{color} on {backgroundColor}").format(
-					color=color.name if isinstance(color,colors.RGB) else color,
+					color=color.name if isinstance(color, colors.RGB) else color,
 					backgroundColor=bgColorText))
-			elif color and color!=oldColor:
+			elif color and color != oldColor:
 				# Translators: Reported when the text color changes (but not the background color).
 				# {color} will be replaced with the text color.
-				textList.append(NVDAString("{color}").format(color=color.name if isinstance(color,colors.RGB) else color))
+				textList.append(
+					NVDAString("{color}").format(color=color.name if isinstance(color, colors.RGB) else color))
 			elif backgroundColor and bgColorChanged:
 				# Translators: Reported when the background color changes (but not the text color).
 				# {backgroundColor} will be replaced with the background color.
 				textList.append(NVDAString("{backgroundColor} background").format(backgroundColor=bgColorText))
-			backgroundPattern=attrs.get("background-pattern")
-			oldBackgroundPattern=attrsCache.get("background-pattern") if attrsCache is not None else None
-			if backgroundPattern and backgroundPattern!=oldBackgroundPattern:
+			backgroundPattern = attrs.get("background-pattern")
+			oldBackgroundPattern = attrsCache.get("background-pattern") if attrsCache is not None else None
+			if backgroundPattern and backgroundPattern != oldBackgroundPattern:
 				textList.append(NVDAString("background pattern {pattern}").format(pattern=backgroundPattern))
-		if  formatConfig["reportLineNumber"]:
-			lineNumber=attrs.get("line-number")
-			oldLineNumber=attrsCache.get("line-number") if attrsCache is not None else None
-			if lineNumber is not None and lineNumber!=oldLineNumber:
+		if formatConfig["reportLineNumber"]:
+			lineNumber = attrs.get("line-number")
+			oldLineNumber = attrsCache.get("line-number") if attrsCache is not None else None
+			if lineNumber is not None and lineNumber != oldLineNumber:
 				# Translators: Indicates the line number of the text.
 				# %s will be replaced with the line number.
-				text = NVDAString("line %s")%lineNumber
+				text = NVDAString("line %s") % lineNumber
 				textList.append(text)
-		if  formatConfig["reportRevisions"]:
+		if formatConfig["reportRevisions"]:
 			# Insertion
-			revision=attrs.get("revision-insertion")
-			oldRevision=attrsCache.get("revision-insertion") if attrsCache is not None else None
-			if (revision or oldRevision is not None) and revision!=oldRevision:
-				# Translators: Reported when text is marked as having been inserted
-				text=(NVDAString("inserted") if revision
+			revision = attrs.get("revision-insertion")
+			oldRevision = attrsCache.get("revision-insertion") if attrsCache is not None else None
+			if (revision or oldRevision is not None) and revision != oldRevision:
+				text = (
+					# Translators: Reported when text is marked as having been inserted
+					NVDAString("inserted") if revision else
 					# Translators: Reported when text is no longer marked as having been inserted.
-					else NVDAString("not inserted"))
+					NVDAString("not inserted"))
 				textList.append(text)
-			revision=attrs.get("revision-deletion")
-			oldRevision=attrsCache.get("revision-deletion") if attrsCache is not None else None
-			if (revision or oldRevision is not None) and revision!=oldRevision:
-				# Translators: Reported when text is marked as having been deleted
-				text=(NVDAString("deleted") if revision
+			revision = attrs.get("revision-deletion")
+			oldRevision = attrsCache.get("revision-deletion") if attrsCache is not None else None
+			if (revision or oldRevision is not None) and revision != oldRevision:
+				text = (
+					# Translators: Reported when text is marked as having been deleted
+					NVDAString("deleted") if revision else
 					# Translators: Reported when text is no longer marked as having been  deleted.
-					else NVDAString("not deleted"))
+					NVDAString("not deleted"))
 				textList.append(text)
-			revision=attrs.get("revision")
-			oldRevision=attrsCache.get("revision") if attrsCache is not None else None
+			revision = attrs.get("revision")
+			oldRevision = attrsCache.get("revision") if attrsCache is not None else None
 			if (revision or oldRevision is not None) and revision != oldRevision:
 				if revision:
 					# Translators: Reported when text is revised.
@@ -505,73 +515,80 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 					text = NVDAString("no revised %s") % oldRevision
 				textList.append(text)
 		if formatConfig["reportHighlight"]:
-			# marked text 
-			marked=attrs.get("marked")
-			oldMarked=attrsCache.get("marked") if attrsCache is not None else None
-			if (marked or oldMarked is not None) and marked!=oldMarked:
-				# Translators: Reported when text is marked
-				text=(NVDAString("marked") if marked
+			# marked text
+			marked = attrs.get("marked")
+			oldMarked = attrsCache.get("marked") if attrsCache is not None else None
+			if (marked or oldMarked is not None) and marked != oldMarked:
+				text = (
+					# Translators: Reported when text is marked
+					NVDAString("marked") if marked else
 					# Translators: Reported when text is no longer marked
-					else NVDAString("not marked"))
+					NVDAString("not marked"))
 				textList.append(text)
 		if formatConfig["reportEmphasis"]:
 			# strong text
-			strong=attrs.get("strong")
-			oldStrong=attrsCache.get("strong") if attrsCache is not None else None
-			if (strong or oldStrong is not None) and strong!=oldStrong:
-				# Translators: Reported when text is marked as strong (e.g. bold)
-				text=(NVDAString("strong") if strong
-					# Translators: Reported when text is no longer marked as strong (e.g. bold) 
-					else NVDAString("not strong"))
+			strong = attrs.get("strong")
+			oldStrong = attrsCache.get("strong") if attrsCache is not None else None
+			if (strong or oldStrong is not None) and strong != oldStrong:
+				text = (
+					# Translators: Reported when text is marked as strong (e.g. bold)
+					NVDAString("strong") if strong else
+					# Translators: Reported when text is no longer marked as strong (e.g. bold)
+					NVDAString("not strong"))
 				textList.append(text)
-			# emphasised text 
-			emphasised=attrs.get("emphasised")
-			oldEmphasised=attrsCache.get("emphasised") if attrsCache is not None else None
-			if (emphasised or oldEmphasised is not None) and emphasised!=oldEmphasised:
-				# Translators: Reported when text is marked as emphasised
-				text=(NVDAString("emphasised") if emphasised
-					# Translators: Reported when text is no longer marked as emphasised 
-					else NVDAString("not emphasised"))
+			# emphasised text
+			emphasised = attrs.get("emphasised")
+			oldEmphasised = attrsCache.get("emphasised") if attrsCache is not None else None
+			if (emphasised or oldEmphasised is not None) and emphasised != oldEmphasised:
+				text = (
+					# Translators: Reported when text is marked as emphasised
+					NVDAString("emphasised") if emphasised else
+					# Translators: Reported when text is no longer marked as emphasised
+					NVDAString("not emphasised"))
 				textList.append(text)
-		if  formatConfig["reportFontAttributes"]:
-			bold=attrs.get("bold")
-			oldBold=attrsCache.get("bold") if attrsCache is not None else None
-			if (bold or oldBold is not None) and bold!=oldBold:
-				# Translators: Reported when text is bolded.
-				text=(NVDAString("bold") if bold
+		if formatConfig["reportFontAttributes"]:
+			bold = attrs.get("bold")
+			oldBold = attrsCache.get("bold") if attrsCache is not None else None
+			if (bold or oldBold is not None) and bold != oldBold:
+				text = (
+					# Translators: Reported when text is bolded.
+					NVDAString("bold") if bold else
 					# Translators: Reported when text is not bolded.
-					else NVDAString("no bold"))
+					NVDAString("no bold"))
 				textList.append(text)
-			italic=attrs.get("italic")
-			oldItalic=attrsCache.get("italic") if attrsCache is not None else None
-			if (italic or oldItalic is not None) and italic!=oldItalic:
-				# Translators: Reported when text is italicized.
-				text=(NVDAString("italic") if italic
+			italic = attrs.get("italic")
+			oldItalic = attrsCache.get("italic") if attrsCache is not None else None
+			if (italic or oldItalic is not None) and italic != oldItalic:
+				text = (
+					# Translators: Reported when text is italicized.
+					NVDAString("italic") if italic else
 					# Translators: Reported when text is not italicized.
-					else NVDAString("no italic"))
+					NVDAString("no italic"))
 				textList.append(text)
-			strikethrough=attrs.get("strikethrough")
-			oldStrikethrough=attrsCache.get("strikethrough") if attrsCache is not None else None
-			if (strikethrough or oldStrikethrough is not None) and strikethrough!=oldStrikethrough:
+			strikethrough = attrs.get("strikethrough")
+			oldStrikethrough = attrsCache.get("strikethrough") if attrsCache is not None else None
+			if (strikethrough or oldStrikethrough is not None) and strikethrough != oldStrikethrough:
 				if strikethrough:
-					# Translators: Reported when text is formatted with double strikethrough.
-					# See http://en.wikipedia.org/wiki/Strikethrough
-					text=(NVDAString("double strikethrough") if strikethrough=="double"
-					# Translators: Reported when text is formatted with strikethrough.
-					# See http://en.wikipedia.org/wiki/Strikethrough
-					else NVDAString("strikethrough"))
+					text = (
+						# Translators: Reported when text is formatted with double strikethrough.
+						# See http://en.wikipedia.org/wiki/Strikethrough
+						NVDAString("double strikethrough") if strikethrough == "double" else
+						# Translators: Reported when text is formatted with strikethrough.
+						# See http://en.wikipedia.org/wiki/Strikethrough
+						NVDAString("strikethrough"))
 				else:
 					# Translators: Reported when text is formatted without strikethrough.
 					# See http://en.wikipedia.org/wiki/Strikethrough
-					text=NVDAString("no strikethrough")
+					text = NVDAString("no strikethrough")
 				textList.append(text)
-			underline=attrs.get("underline")
-			oldUnderline=attrsCache.get("underline") if attrsCache is not None else None
-			if (underline or oldUnderline is not None) and underline!=oldUnderline:
-				# Translators: Reported when text is underlined.
-				text=(NVDAString("underlined") if underline
+			underline = attrs.get("underline")
+			oldUnderline = attrsCache.get("underline") if attrsCache is not None else None
+			if (underline or oldUnderline is not None) and underline != oldUnderline:
+				text = (
+					# Translators: Reported when text is underlined.
+					NVDAString("underlined") if underline else
 					# Translators: Reported when text is not underlined.
-					else NVDAString("not underlined"))
+					NVDAString("not underlined"))
 				textList.append(text)
 			hidden = attrs.get("hidden")
 			oldHidden = attrsCache.get("hidden") if attrsCache is not None else None
@@ -584,129 +601,130 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				)
 				textList.append(text)
 		if formatConfig["reportSuperscriptsAndSubscripts"]:
-			textPosition=attrs.get("text-position")
-			oldTextPosition=attrsCache.get("text-position") if attrsCache is not None else None
-			if (textPosition or oldTextPosition is not None) and textPosition!=oldTextPosition:
-				textPosition=textPosition.lower() if textPosition else textPosition
-				if textPosition=="super":
+			textPosition = attrs.get("text-position")
+			oldTextPosition = attrsCache.get("text-position") if attrsCache is not None else None
+			if (textPosition or oldTextPosition is not None) and textPosition != oldTextPosition:
+				textPosition = textPosition.lower() if textPosition else textPosition
+				if textPosition == "super":
 					# Translators: Reported for superscript text.
-					text=NVDAString("superscript")
-				elif textPosition=="sub":
+					text = NVDAString("superscript")
+				elif textPosition == "sub":
 					# Translators: Reported for subscript text.
-					text=NVDAString("subscript")
+					text = NVDAString("subscript")
 				else:
 					# Translators: Reported for text which is at the baseline position;
 					# i.e. not superscript or subscript.
-					text=NVDAString("baseline")
+					text = NVDAString("baseline")
 				textList.append(text)
 		if formatConfig["reportAlignment"]:
-			textAlign=attrs.get("text-align")
-			oldTextAlign=attrsCache.get("text-align") if attrsCache is not None else None
-			if (textAlign or oldTextAlign is not None) and textAlign!=oldTextAlign:
-				textAlign=textAlign.lower() if textAlign else textAlign
-				if textAlign=="left":
+			textAlign = attrs.get("text-align")
+			oldTextAlign = attrsCache.get("text-align") if attrsCache is not None else None
+			if (textAlign or oldTextAlign is not None) and textAlign != oldTextAlign:
+				textAlign = textAlign.lower() if textAlign else textAlign
+				if textAlign == "left":
 					# Translators: Reported when text is left-aligned.
-					text=NVDAString("align left")
-				elif textAlign=="center":
+					text = NVDAString("align left")
+				elif textAlign == "center":
 					# Translators: Reported when text is centered.
-					text=NVDAString("align center")
-				elif textAlign=="right":
+					text = NVDAString("align center")
+				elif textAlign == "right":
 					# Translators: Reported when text is right-aligned.
-					text=NVDAString("align right")
-				elif textAlign=="justify":
+					text = NVDAString("align right")
+				elif textAlign == "justify":
 					# Translators: Reported when text is justified.
 					# See http://en.wikipedia.org/wiki/Typographic_alignment#Justified
-					text=NVDAString("align justify")
-				elif textAlign=="distribute":
-					# Translators: Reported when text is justified with character spacing (Japanese etc) 
+					text = NVDAString("align justify")
+				elif textAlign == "distribute":
+					# Translators: Reported when text is justified with character spacing (Japanese etc)
 					# See http://kohei.us/2010/01/21/distributed-text-justification/
-					text=NVDAString("align distributed")
+					text = NVDAString("align distributed")
 				else:
 					# Translators: Reported when text has reverted to default alignment.
-					text=NVDAString("align default")
+					text = NVDAString("align default")
 				textList.append(text)
-			verticalAlign=attrs.get("vertical-align")
-			oldverticalAlign=attrsCache.get("vertical-align") if attrsCache is not None else None
-			if (verticalAlign or oldverticalAlign is not None) and verticalAlign!=oldverticalAlign:
-				verticalAlign=verticalAlign.lower() if verticalAlign else verticalAlign
-				if verticalAlign=="top":
+			verticalAlign = attrs.get("vertical-align")
+			oldverticalAlign = attrsCache.get("vertical-align") if attrsCache is not None else None
+			if (verticalAlign or oldverticalAlign is not None) and verticalAlign != oldverticalAlign:
+				verticalAlign = verticalAlign.lower() if verticalAlign else verticalAlign
+				if verticalAlign == "top":
 					# Translators: Reported when text is vertically top-aligned.
-					text=NVDAString("vertical align top")
-				elif verticalAlign in("center","middle"):
+					text = NVDAString("vertical align top")
+				elif verticalAlign in ("center", "middle"):
 					# Translators: Reported when text is vertically middle aligned.
-					text=NVDAString("vertical align middle")
-				elif verticalAlign=="bottom":
+					text = NVDAString("vertical align middle")
+				elif verticalAlign == "bottom":
 					# Translators: Reported when text is vertically bottom-aligned.
-					text=NVDAString("vertical align bottom")
-				elif verticalAlign=="baseline":
-					# Translators: Reported when text is vertically aligned on the baseline. 
-					text=NVDAString("vertical align baseline")
-				elif verticalAlign=="justify":
+					text = NVDAString("vertical align bottom")
+				elif verticalAlign == "baseline":
+					# Translators: Reported when text is vertically aligned on the baseline.
+					text = NVDAString("vertical align baseline")
+				elif verticalAlign == "justify":
 					# Translators: Reported when text is vertically justified.
-					text=NVDAString("vertical align justified")
-				elif verticalAlign=="distributed":
-					# Translators: Reported when text is vertically justified but with character spacing (For some Asian content). 
-					text=NVDAString("vertical align distributed") 
+					text = NVDAString("vertical align justified")
+				elif verticalAlign == "distributed":
+					# Translators: Reported when text is vertically justified
+					# but with character spacing (For some Asian content).
+					text = NVDAString("vertical align distributed")
 				else:
 					# Translators: Reported when text has reverted to default vertical alignment.
-					text=NVDAString("vertical align default")
+					text = NVDAString("vertical align default")
 				textList.append(text)
 		if formatConfig["reportParagraphIndentation"]:
-			indentLabels={
-				'left-indent':(
+			indentLabels = {
+				'left-indent': (
 					# Translators: the label for paragraph format left indent
 					NVDAString("left indent"),
 					# Translators: the message when there is no paragraph format left indent
 					NVDAString("no left indent"),
 				),
-				'right-indent':(
+				'right-indent': (
 					# Translators: the label for paragraph format right indent
 					NVDAString("right indent"),
 					# Translators: the message when there is no paragraph format right indent
 					NVDAString("no right indent"),
 				),
-				'hanging-indent':(
+				'hanging-indent': (
 					# Translators: the label for paragraph format hanging indent
 					NVDAString("hanging indent"),
 					# Translators: the message when there is no paragraph format hanging indent
 					NVDAString("no hanging indent"),
 				),
-				'first-line-indent':(
-					# Translators: the label for paragraph format first line indent 
+				'first-line-indent': (
+					# Translators: the label for paragraph format first line indent
 					NVDAString("first line indent"),
 					# Translators: the message when there is no paragraph format first line indent
 					NVDAString("no first line indent"),
 				),
 			}
-			for attr,(label,noVal) in indentLabels.items():
-				newVal=attrs.get(attr)
-				oldVal=attrsCache.get(attr) if attrsCache else None
-				if (newVal or oldVal is not None) and newVal!=oldVal:
+			for attr, (label, noVal) in indentLabels.items():
+				newVal = attrs.get(attr)
+				oldVal = attrsCache.get(attr) if attrsCache else None
+				if (newVal or oldVal is not None) and newVal != oldVal:
 					if newVal:
-						textList.append(u"%s %s"%(label,newVal))
+						textList.append(u"%s %s" % (label, newVal))
 					else:
 						textList.append(noVal)
 		if formatConfig["reportLineSpacing"]:
-			lineSpacing=attrs.get("line-spacing")
-			oldLineSpacing=attrsCache.get("line-spacing") if attrsCache is not None else None
-			if (lineSpacing or oldLineSpacing is not None) and lineSpacing!=oldLineSpacing:
+			lineSpacing = attrs.get("line-spacing")
+			oldLineSpacing = attrsCache.get("line-spacing") if attrsCache is not None else None
+			if (lineSpacing or oldLineSpacing is not None) and lineSpacing != oldLineSpacing:
 				# Translators: a type of line spacing (E.g. single line spacing)
-				textList.append(NVDAString("line spacing %s")%lineSpacing)
-		if  formatConfig["reportLinks"]:
-			link=attrs.get("link")
-			oldLink=attrsCache.get("link") if attrsCache is not None else None
-			if (link or oldLink is not None) and link!=oldLink:
-				text=NVDAString("link") if link else NVDAString("out of %s")%NVDAString("link")
+				textList.append(NVDAString("line spacing %s") % lineSpacing)
+		if formatConfig["reportLinks"]:
+			link = attrs.get("link")
+			oldLink = attrsCache.get("link") if attrsCache is not None else None
+			if (link or oldLink is not None) and link != oldLink:
+				text = NVDAString("link") if link else NVDAString("out of %s") % NVDAString("link")
 				textList.append(text)
-		if  formatConfig["reportComments"]:
-			comment=attrs.get("comment")
-			oldComment=attrsCache.get("comment") if attrsCache is not None else None
-			if (comment or oldComment is not None) and comment!=oldComment:
+		if formatConfig["reportComments"]:
+			comment = attrs.get("comment")
+			oldComment = attrsCache.get("comment") if attrsCache is not None else None
+			if (comment or oldComment is not None) and comment != oldComment:
 				if comment:
 					textList.extend(self.getCommentFormatFieldSpeech(comment))
 				elif extraDetail:
 					# Translators: Reported when text no longer contains a comment.
-					text=NVDAString("out of comment")
+					text = NVDAString("out of comment")
 					textList.append(text)
 		if formatConfig["reportBookmarks"]:
 			bookmark = attrs.get("bookmark")
@@ -721,39 +739,43 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 					text = NVDAString("out of bookmark")
 					textList.append(text)
 		if formatConfig["reportSpellingErrors"]:
-			invalidSpelling=attrs.get("invalid-spelling")
-			oldInvalidSpelling=attrsCache.get("invalid-spelling") if attrsCache is not None else None
-			if (invalidSpelling or oldInvalidSpelling is not None) and invalidSpelling!=oldInvalidSpelling:
+			invalidSpelling = attrs.get("invalid-spelling")
+			oldInvalidSpelling = attrsCache.get("invalid-spelling") if attrsCache is not None else None
+			if (invalidSpelling or oldInvalidSpelling is not None) and invalidSpelling != oldInvalidSpelling:
 				if invalidSpelling:
 					# Translators: Reported when text contains a spelling error.
-					text=NVDAString("spelling error")
+					text = NVDAString("spelling error")
 				elif extraDetail:
 					# Translators: Reported when moving out of text containing a spelling error.
-					text=NVDAString("out of spelling error")
+					text = NVDAString("out of spelling error")
 				else:
-					text=""
+					text = ""
 				if text:
 					textList.append(text)
-			invalidGrammar=attrs.get("invalid-grammar")
-			oldInvalidGrammar=attrsCache.get("invalid-grammar") if attrsCache is not None else None
-			if (invalidGrammar or oldInvalidGrammar is not None) and invalidGrammar!=oldInvalidGrammar:
+			invalidGrammar = attrs.get("invalid-grammar")
+			oldInvalidGrammar = attrsCache.get("invalid-grammar") if attrsCache is not None else None
+			if (invalidGrammar or oldInvalidGrammar is not None) and invalidGrammar != oldInvalidGrammar:
 				if invalidGrammar:
 					# Translators: Reported when text contains a grammar error.
-					text=NVDAString("grammar error")
+					text = NVDAString("grammar error")
 				elif extraDetail:
 					# Translators: Reported when moving out of text containing a grammar error.
-					text=NVDAString("out of grammar error")
+					text = NVDAString("out of grammar error")
 				else:
-					text=""
+					text = ""
 				if text:
 					textList.append(text)
-		# The line-prefix formatField attribute contains the text for a bullet or number for a list item, when the bullet or number does not appear in the actual text content.
-		# Normally this attribute could be repeated across formatFields within a list item and therefore is not safe to speak when the unit is word or character.
-		# However, some implementations (such as MS Word with UIA) do limit its useage to the very first formatField of the list item.
+		# The line-prefix formatField attribute contains the text for a bullet
+					# or number for a list item, when the bullet or number does not appear in the actual text content.
+		# Normally this attribute could be repeated across formatFields within a list item
+		# and therefore is not safe to speak when the unit is word or character.
+		# However, some implementations (such as MS Word with UIA)
+		# do limit its useage to the very first formatField of the list item.
 		# Therefore, they also expose a line-prefix_speakAlways attribute to allow its usage for any unit.
-		linePrefix_speakAlways=attrs.get('line-prefix_speakAlways',False)
-		if linePrefix_speakAlways or unit in (textInfos.UNIT_LINE,textInfos.UNIT_SENTENCE,textInfos.UNIT_PARAGRAPH,textInfos.UNIT_READINGCHUNK):
-			linePrefix=attrs.get("line-prefix")
+		linePrefix_speakAlways = attrs.get('line-prefix_speakAlways', False)
+		if linePrefix_speakAlways or unit in (
+			textInfos.UNIT_LINE, textInfos.UNIT_SENTENCE, textInfos.UNIT_PARAGRAPH, textInfos.UNIT_READINGCHUNK):
+			linePrefix = attrs.get("line-prefix")
 			if linePrefix:
 				textList.append(linePrefix)
 		if attrsCache is not None:
@@ -761,91 +783,91 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			attrsCache.update(attrs)
 		logBadSequenceTypes(textList)
 		return textList
-	
 
-	def getFormatFieldSpeech_2021_3(  # noqa: C901
+	def getFormatFieldSpeech_2021_3(
 		self,
-			attrs: textInfos.Field,
-			attrsCache: Optional[textInfos.Field] = None,
-			formatConfig: Optional[Dict[str, bool]] = None,
-			reason: Optional[OutputReason] = None,
-			unit: Optional[str] = None,
-			extraDetail: bool = False,
-			initialFormat: bool = False,
+		attrs: textInfos.Field,
+		attrsCache: Optional[textInfos.Field] = None,
+		formatConfig: Optional[Dict[str, bool]] = None,
+		reason: Optional[OutputReason] = None,
+		unit: Optional[str] = None,
+		extraDetail: bool = False,
+		initialFormat: bool = False,
 	) -> SpeechSequence:
-		_ = NVDAString		
+
 		if not formatConfig:
-			formatConfig=config.conf["documentFormatting"]
-		textList=[]
+			formatConfig = config.conf["documentFormatting"]
+		textList = []
 		if formatConfig["reportTables"]:
-			tableInfo=attrs.get("table-info")
-			oldTableInfo=attrsCache.get("table-info") if attrsCache is not None else None
+			tableInfo = attrs.get("table-info")
+			oldTableInfo = attrsCache.get("table-info") if attrsCache is not None else None
 			tableSequence = getTableInfoSpeech(
 				tableInfo, oldTableInfo, extraDetail=extraDetail
 			)
 			if tableSequence:
 				textList.extend(tableSequence)
 		if formatConfig["reportPage"]:
-			pageNumber=attrs.get("page-number")
-			oldPageNumber=attrsCache.get("page-number") if attrsCache is not None else None
-			if pageNumber and pageNumber!=oldPageNumber:
+			pageNumber = attrs.get("page-number")
+			oldPageNumber = attrsCache.get("page-number") if attrsCache is not None else None
+			if pageNumber and pageNumber != oldPageNumber:
 				# Translators: Indicates the page number in a document.
 				# %s will be replaced with the page number.
-				text=NVDAString("page %s")%pageNumber
+				text = NVDAString("page %s") % pageNumber
 				textList.append(text)
-			sectionNumber=attrs.get("section-number")
-			oldSectionNumber=attrsCache.get("section-number") if attrsCache is not None else None
-			if sectionNumber and sectionNumber!=oldSectionNumber:
+			sectionNumber = attrs.get("section-number")
+			oldSectionNumber = attrsCache.get("section-number") if attrsCache is not None else None
+			if sectionNumber and sectionNumber != oldSectionNumber:
 				# Translators: Indicates the section number in a document.
 				# %s will be replaced with the section number.
-				text=NVDAString("section %s")%sectionNumber
+				text = NVDAString("section %s") % sectionNumber
 				textList.append(text)
-	
-			textColumnCount=attrs.get("text-column-count")
-			oldTextColumnCount=attrsCache.get("text-column-count") if attrsCache is not None else None
-			textColumnNumber=attrs.get("text-column-number")
-			oldTextColumnNumber=attrsCache.get("text-column-number") if attrsCache is not None else None
-	
-			# Because we do not want to report the number of columns when a document is just opened and there is only 
+
+			textColumnCount = attrs.get("text-column-count")
+			oldTextColumnCount = attrsCache.get("text-column-count") if attrsCache is not None else None
+			textColumnNumber = attrs.get("text-column-number")
+			oldTextColumnNumber = attrsCache.get("text-column-number") if attrsCache is not None else None
+
+			# Because we do not want to report the number of columns when a document is just opened and there is only
 			# one column. This would be verbose, in the standard case.
 			# column number has changed, or the columnCount has changed
 			# but not if the columnCount is 1 or less and there is no old columnCount.
-			if (((textColumnNumber and textColumnNumber!=oldTextColumnNumber) or
-				(textColumnCount and textColumnCount!=oldTextColumnCount)) and not
-				(textColumnCount and int(textColumnCount) <=1 and oldTextColumnCount == None)) :
+			if (((
+				textColumnNumber and textColumnNumber != oldTextColumnNumber)
+				or (textColumnCount and textColumnCount != oldTextColumnCount)) and not
+				(textColumnCount and int(textColumnCount) <= 1 and oldTextColumnCount is None)):
 				if textColumnNumber and textColumnCount:
 					# Translators: Indicates the text column number in a document.
 					# {0} will be replaced with the text column number.
 					# {1} will be replaced with the number of text columns.
-					text=NVDAString("column {0} of {1}").format(textColumnNumber,textColumnCount)
+					text = NVDAString("column {0} of {1}").format(textColumnNumber, textColumnCount)
 					textList.append(text)
 				elif textColumnCount:
 					# Translators: Indicates the text column number in a document.
 					# %s will be replaced with the number of text columns.
-					text=NVDAString("%s columns")%(textColumnCount)
+					text = NVDAString("%s columns") % (textColumnCount)
 					textList.append(text)
-	
-		sectionBreakType=attrs.get("section-break")
+
+		sectionBreakType = attrs.get("section-break")
 		if sectionBreakType:
-			if sectionBreakType == "0" : # Continuous section break.
-				text=NVDAString("continuous section break")
-			elif sectionBreakType == "1" : # New column section break.
-				text=NVDAString("new column section break")
-			elif sectionBreakType == "2" : # New page section break.
-				text=NVDAString("new page section break")
-			elif sectionBreakType == "3" : # Even pages section break.
-				text=NVDAString("even pages section break")
-			elif sectionBreakType == "4" : # Odd pages section break.
-				text=NVDAString("odd pages section break")
+			if sectionBreakType == "0":  # Continuous section break.
+				text = NVDAString("continuous section break")
+			elif sectionBreakType == "1":  # New column section break.
+				text = NVDAString("new column section break")
+			elif sectionBreakType == "2":  # New page section break.
+				text = NVDAString("new page section break")
+			elif sectionBreakType == "3":  # Even pages section break.
+				text = NVDAString("even pages section break")
+			elif sectionBreakType == "4":  # Odd pages section break.
+				text = NVDAString("odd pages section break")
 			else:
-				text=""
+				text = ""
 			textList.append(text)
-		columnBreakType=attrs.get("column-break")
+		columnBreakType = attrs.get("column-break")
 		if columnBreakType:
 			textList.append(NVDAString("column break"))
-		if  formatConfig["reportHeadings"]:
-			headingLevel=attrs.get("heading-level")
-			oldHeadingLevel=attrsCache.get("heading-level") if attrsCache is not None else None
+		if formatConfig["reportHeadings"]:
+			headingLevel = attrs.get("heading-level")
+			oldHeadingLevel = attrsCache.get("heading-level") if attrsCache is not None else None
 			# headings should be spoken not only if they change, but also when beginning to speak lines or paragraphs
 			# Ensuring a similar experience to if a heading was a controlField
 			if(
@@ -857,109 +879,112 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				)
 			):
 				# Translators: Speaks the heading level (example output: heading level 2).
-				text=NVDAString("heading level %d")%headingLevel
+				text = NVDAString("heading level %d") % headingLevel
 				textList.append(text)
-		if  formatConfig["reportStyle"]:
-			style=attrs.get("style")
-			oldStyle=attrsCache.get("style") if attrsCache is not None else None
-			if style!=oldStyle:
+		if formatConfig["reportStyle"]:
+			style = attrs.get("style")
+			oldStyle = attrsCache.get("style") if attrsCache is not None else None
+			if style != oldStyle:
 				if style:
 					# Translators: Indicates the style of text.
 					# A style is a collection of formatting settings and depends on the application.
 					# %s will be replaced with the name of the style.
-					text=NVDAString("style %s")%style
+					text = NVDAString("style %s") % style
 				else:
 					# Translators: Indicates that text has reverted to the default style.
 					# A style is a collection of formatting settings and depends on the application.
-					text=NVDAString("default style")
+					text = NVDAString("default style")
 				textList.append(text)
-		if  formatConfig["reportBorderStyle"]:
-			borderStyle=attrs.get("border-style")
-			oldBorderStyle=attrsCache.get("border-style") if attrsCache is not None else None
-			if borderStyle!=oldBorderStyle:
+		if formatConfig["reportBorderStyle"]:
+			borderStyle = attrs.get("border-style")
+			oldBorderStyle = attrsCache.get("border-style") if attrsCache is not None else None
+			if borderStyle != oldBorderStyle:
 				if borderStyle:
-					text=borderStyle
+					text = borderStyle
 				else:
 					# Translators: Indicates that cell does not have border lines.
-					text=NVDAString("no border lines")
+					text = NVDAString("no border lines")
 				textList.append(text)
-		if  formatConfig["reportFontName"]:
-			fontFamily=attrs.get("font-family")
-			oldFontFamily=attrsCache.get("font-family") if attrsCache is not None else None
-			if fontFamily and fontFamily!=oldFontFamily:
+		if formatConfig["reportFontName"]:
+			fontFamily = attrs.get("font-family")
+			oldFontFamily = attrsCache.get("font-family") if attrsCache is not None else None
+			if fontFamily and fontFamily != oldFontFamily:
 				textList.append(fontFamily)
-			fontName=attrs.get("font-name")
-			oldFontName=attrsCache.get("font-name") if attrsCache is not None else None
-			if fontName and fontName!=oldFontName:
+			fontName = attrs.get("font-name")
+			oldFontName = attrsCache.get("font-name") if attrsCache is not None else None
+			if fontName and fontName != oldFontName:
 				textList.append(fontName)
-		if  formatConfig["reportFontSize"]:
-			fontSize=attrs.get("font-size")
-			oldFontSize=attrsCache.get("font-size") if attrsCache is not None else None
-			if fontSize and fontSize!=oldFontSize:
+		if formatConfig["reportFontSize"]:
+			fontSize = attrs.get("font-size")
+			oldFontSize = attrsCache.get("font-size") if attrsCache is not None else None
+			if fontSize and fontSize != oldFontSize:
 				textList.append(fontSize)
-		if  formatConfig["reportColor"]:
-			color=attrs.get("color")
-			oldColor=attrsCache.get("color") if attrsCache is not None else None
-			backgroundColor=attrs.get("background-color")
-			oldBackgroundColor=attrsCache.get("background-color") if attrsCache is not None else None
-			backgroundColor2=attrs.get("background-color2")
-			oldBackgroundColor2=attrsCache.get("background-color2") if attrsCache is not None else None
-			bgColorChanged=backgroundColor!=oldBackgroundColor or backgroundColor2!=oldBackgroundColor2
-			bgColorText=backgroundColor.name if isinstance(backgroundColor,colors.RGB) else backgroundColor
+		if formatConfig["reportColor"]:
+			color = attrs.get("color")
+			oldColor = attrsCache.get("color") if attrsCache is not None else None
+			backgroundColor = attrs.get("background-color")
+			oldBackgroundColor = attrsCache.get("background-color") if attrsCache is not None else None
+			backgroundColor2 = attrs.get("background-color2")
+			oldBackgroundColor2 = attrsCache.get("background-color2") if attrsCache is not None else None
+			bgColorChanged = backgroundColor != oldBackgroundColor or backgroundColor2 != oldBackgroundColor2
+			bgColorText = backgroundColor.name if isinstance(backgroundColor, colors.RGB) else backgroundColor
 			if backgroundColor2:
-				bg2Name=backgroundColor2.name if isinstance(backgroundColor2,colors.RGB) else backgroundColor2
+				bg2Name = backgroundColor2.name if isinstance(backgroundColor2, colors.RGB) else backgroundColor2
 				# Translators: Reported when there are two background colors.
 				# This occurs when, for example, a gradient pattern is applied to a spreadsheet cell.
 				# {color1} will be replaced with the first background color.
 				# {color2} will be replaced with the second background color.
-				bgColorText=NVDAString("{color1} to {color2}").format(color1=bgColorText,color2=bg2Name)
-			if color and backgroundColor and color!=oldColor and bgColorChanged:
+				bgColorText = NVDAString("{color1} to {color2}").format(color1=bgColorText, color2=bg2Name)
+			if color and backgroundColor and color != oldColor and bgColorChanged:
 				# Translators: Reported when both the text and background colors change.
 				# {color} will be replaced with the text color.
 				# {backgroundColor} will be replaced with the background color.
 				textList.append(NVDAString("{color} on {backgroundColor}").format(
-					color=color.name if isinstance(color,colors.RGB) else color,
+					color=color.name if isinstance(color, colors.RGB) else color,
 					backgroundColor=bgColorText))
-			elif color and color!=oldColor:
+			elif color and color != oldColor:
 				# Translators: Reported when the text color changes (but not the background color).
 				# {color} will be replaced with the text color.
-				textList.append(NVDAString("{color}").format(color=color.name if isinstance(color,colors.RGB) else color))
+				textList.append(
+					NVDAString("{color}").format(color=color.name if isinstance(color, colors.RGB) else color))
 			elif backgroundColor and bgColorChanged:
 				# Translators: Reported when the background color changes (but not the text color).
 				# {backgroundColor} will be replaced with the background color.
 				textList.append(NVDAString("{backgroundColor} background").format(backgroundColor=bgColorText))
-			backgroundPattern=attrs.get("background-pattern")
-			oldBackgroundPattern=attrsCache.get("background-pattern") if attrsCache is not None else None
-			if backgroundPattern and backgroundPattern!=oldBackgroundPattern:
+			backgroundPattern = attrs.get("background-pattern")
+			oldBackgroundPattern = attrsCache.get("background-pattern") if attrsCache is not None else None
+			if backgroundPattern and backgroundPattern != oldBackgroundPattern:
 				textList.append(NVDAString("background pattern {pattern}").format(pattern=backgroundPattern))
-		if  formatConfig["reportLineNumber"]:
-			lineNumber=attrs.get("line-number")
-			oldLineNumber=attrsCache.get("line-number") if attrsCache is not None else None
-			if lineNumber is not None and lineNumber!=oldLineNumber:
+		if formatConfig["reportLineNumber"]:
+			lineNumber = attrs.get("line-number")
+			oldLineNumber = attrsCache.get("line-number") if attrsCache is not None else None
+			if lineNumber is not None and lineNumber != oldLineNumber:
 				# Translators: Indicates the line number of the text.
 				# %s will be replaced with the line number.
-				text=NVDAString("line %s")%lineNumber
+				text = NVDAString("line %s") % lineNumber
 				textList.append(text)
-		if  formatConfig["reportRevisions"]:
+		if formatConfig["reportRevisions"]:
 			# Insertion
-			revision=attrs.get("revision-insertion")
-			oldRevision=attrsCache.get("revision-insertion") if attrsCache is not None else None
-			if (revision or oldRevision is not None) and revision!=oldRevision:
-				# Translators: Reported when text is marked as having been inserted
-				text=(NVDAString("inserted") if revision
+			revision = attrs.get("revision-insertion")
+			oldRevision = attrsCache.get("revision-insertion") if attrsCache is not None else None
+			if (revision or oldRevision is not None) and revision != oldRevision:
+				text = (
+					# Translators: Reported when text is marked as having been inserted
+					NVDAString("inserted") if revision else
 					# Translators: Reported when text is no longer marked as having been inserted.
-					else NVDAString("not inserted"))
+					NVDAString("not inserted"))
 				textList.append(text)
-			revision=attrs.get("revision-deletion")
-			oldRevision=attrsCache.get("revision-deletion") if attrsCache is not None else None
-			if (revision or oldRevision is not None) and revision!=oldRevision:
-				# Translators: Reported when text is marked as having been deleted
-				text=(NVDAString("deleted") if revision
+			revision = attrs.get("revision-deletion")
+			oldRevision = attrsCache.get("revision-deletion") if attrsCache is not None else None
+			if (revision or oldRevision is not None) and revision != oldRevision:
+				text = (
+					# Translators: Reported when text is marked as having been deleted
+					NVDAString("deleted") if revision else
 					# Translators: Reported when text is no longer marked as having been  deleted.
-					else NVDAString("not deleted"))
+					NVDAString("not deleted"))
 				textList.append(text)
-			revision=attrs.get("revision")
-			oldRevision=attrsCache.get("revision") if attrsCache is not None else None
+			revision = attrs.get("revision")
+			oldRevision = attrsCache.get("revision") if attrsCache is not None else None
 			if (revision or oldRevision is not None) and revision != oldRevision:
 				if revision:
 					# Translators: Reported when text is revised.
@@ -969,73 +994,552 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 					text = NVDAString("no revised %s") % oldRevision
 				textList.append(text)
 		if formatConfig["reportHighlight"]:
-			# marked text 
-			marked=attrs.get("marked")
-			oldMarked=attrsCache.get("marked") if attrsCache is not None else None
-			if (marked or oldMarked is not None) and marked!=oldMarked:
-				# Translators: Reported when text is marked
-				text=(NVDAString("marked") if marked
+			# marked text
+			marked = attrs.get("marked")
+			oldMarked = attrsCache.get("marked") if attrsCache is not None else None
+			if (marked or oldMarked is not None) and marked != oldMarked:
+				text = (
+					# Translators: Reported when text is marked
+					NVDAString("marked") if marked else
 					# Translators: Reported when text is no longer marked
-					else NVDAString("not marked"))
+					NVDAString("not marked"))
 				textList.append(text)
 		if formatConfig["reportEmphasis"]:
 			# strong text
-			strong=attrs.get("strong")
-			oldStrong=attrsCache.get("strong") if attrsCache is not None else None
-			if (strong or oldStrong is not None) and strong!=oldStrong:
-				# Translators: Reported when text is marked as strong (e.g. bold)
-				text=(NVDAString("strong") if strong
-					# Translators: Reported when text is no longer marked as strong (e.g. bold) 
-					else NVDAString("not strong"))
+			strong = attrs.get("strong")
+			oldStrong = attrsCache.get("strong") if attrsCache is not None else None
+			if (strong or oldStrong is not None) and strong != oldStrong:
+				text = (
+					# Translators: Reported when text is marked as strong (e.g. bold)
+					NVDAString("strong") if strong else
+					# Translators: Reported when text is no longer marked as strong (e.g. bold)
+					NVDAString("not strong"))
 				textList.append(text)
-			# emphasised text 
-			emphasised=attrs.get("emphasised")
-			oldEmphasised=attrsCache.get("emphasised") if attrsCache is not None else None
-			if (emphasised or oldEmphasised is not None) and emphasised!=oldEmphasised:
-				# Translators: Reported when text is marked as emphasised
-				text=(NVDAString("emphasised") if emphasised
-					# Translators: Reported when text is no longer marked as emphasised 
-					else NVDAString("not emphasised"))
+			# emphasised text
+			emphasised = attrs.get("emphasised")
+			oldEmphasised = attrsCache.get("emphasised") if attrsCache is not None else None
+			if (emphasised or oldEmphasised is not None) and emphasised != oldEmphasised:
+				text = (
+					# Translators: Reported when text is marked as emphasised
+					NVDAString("emphasised") if emphasised else
+					# Translators: Reported when text is no longer marked as emphasised
+					NVDAString("not emphasised"))
 				textList.append(text)
-		if  formatConfig["reportFontAttributes"]:
-			bold=attrs.get("bold")
-			oldBold=attrsCache.get("bold") if attrsCache is not None else None
-			if (bold or oldBold is not None) and bold!=oldBold:
-				# Translators: Reported when text is bolded.
-				text=(NVDAString("bold") if bold
+		if formatConfig["reportFontAttributes"]:
+			bold = attrs.get("bold")
+			oldBold = attrsCache.get("bold") if attrsCache is not None else None
+			if (bold or oldBold is not None) and bold != oldBold:
+				text = (
+					# Translators: Reported when text is bolded.
+					NVDAString("bold") if bold else
 					# Translators: Reported when text is not bolded.
-					else NVDAString("no bold"))
+					NVDAString("no bold"))
 				textList.append(text)
-			italic=attrs.get("italic")
-			oldItalic=attrsCache.get("italic") if attrsCache is not None else None
-			if (italic or oldItalic is not None) and italic!=oldItalic:
-				# Translators: Reported when text is italicized.
-				text=(NVDAString("italic") if italic
+			italic = attrs.get("italic")
+			oldItalic = attrsCache.get("italic") if attrsCache is not None else None
+			if (italic or oldItalic is not None) and italic != oldItalic:
+				text = (
+					# Translators: Reported when text is italicized.
+					NVDAString("italic") if italic else
 					# Translators: Reported when text is not italicized.
-					else NVDAString("no italic"))
+					NVDAString("no italic"))
 				textList.append(text)
-			strikethrough=attrs.get("strikethrough")
-			oldStrikethrough=attrsCache.get("strikethrough") if attrsCache is not None else None
-			if (strikethrough or oldStrikethrough is not None) and strikethrough!=oldStrikethrough:
+			strikethrough = attrs.get("strikethrough")
+			oldStrikethrough = attrsCache.get("strikethrough") if attrsCache is not None else None
+			if (strikethrough or oldStrikethrough is not None) and strikethrough != oldStrikethrough:
 				if strikethrough:
-					# Translators: Reported when text is formatted with double strikethrough.
-					# See http://en.wikipedia.org/wiki/Strikethrough
-					text=(NVDAString("double strikethrough") if strikethrough=="double"
-					# Translators: Reported when text is formatted with strikethrough.
-					# See http://en.wikipedia.org/wiki/Strikethrough
-					else NVDAString("strikethrough"))
+					text = (
+						# Translators: Reported when text is formatted with double strikethrough.
+						# See http://en.wikipedia.org/wiki/Strikethrough
+						NVDAString("double strikethrough") if strikethrough == "double" else
+						# Translators: Reported when text is formatted with strikethrough.
+						# See http://en.wikipedia.org/wiki/Strikethrough
+						NVDAString("strikethrough"))
 				else:
 					# Translators: Reported when text is formatted without strikethrough.
 					# See http://en.wikipedia.org/wiki/Strikethrough
-					text=NVDAString("no strikethrough")
+					text = NVDAString("no strikethrough")
 				textList.append(text)
-			underline=attrs.get("underline")
-			oldUnderline=attrsCache.get("underline") if attrsCache is not None else None
-			if (underline or oldUnderline is not None) and underline!=oldUnderline:
-				# Translators: Reported when text is underlined.
-				text=(NVDAString("underlined") if underline
+			underline = attrs.get("underline")
+			oldUnderline = attrsCache.get("underline") if attrsCache is not None else None
+			if (underline or oldUnderline is not None) and underline != oldUnderline:
+				text = (
+					# Translators: Reported when text is underlined.
+					NVDAString("underlined") if underline else
 					# Translators: Reported when text is not underlined.
-					else NVDAString("not underlined"))
+					NVDAString("not underlined"))
+				textList.append(text)
+			hidden = attrs.get("hidden")
+			oldHidden = attrsCache.get("hidden") if attrsCache is not None else None
+			if (hidden or oldHidden is not None) and hidden != oldHidden:
+				text = (
+					# Translators: Reported when text is hidden.
+					NVDAString("hidden")if hidden else
+					# Translators: Reported when text is not hidden.
+					NVDAString("not hidden")
+				)
+				textList.append(text)
+		if formatConfig["reportSuperscriptsAndSubscripts"]:
+			textPosition = attrs.get("text-position")
+			oldTextPosition = attrsCache.get("text-position") if attrsCache is not None else None
+			if (textPosition or oldTextPosition is not None) and textPosition != oldTextPosition:
+				textPosition = textPosition.lower() if textPosition else textPosition
+				if textPosition == "super":
+					# Translators: Reported for superscript text.
+					text = NVDAString("superscript")
+				elif textPosition == "sub":
+					# Translators: Reported for subscript text.
+					text = NVDAString("subscript")
+				else:
+					# Translators: Reported for text which is at the baseline position;
+					# i.e. not superscript or subscript.
+					text = NVDAString("baseline")
+				textList.append(text)
+		if formatConfig["reportAlignment"]:
+			textAlign = attrs.get("text-align")
+			oldTextAlign = attrsCache.get("text-align") if attrsCache is not None else None
+			if (textAlign or oldTextAlign is not None) and textAlign != oldTextAlign:
+				textAlign = textAlign.lower() if textAlign else textAlign
+				if textAlign == "left":
+					# Translators: Reported when text is left-aligned.
+					text = NVDAString("align left")
+				elif textAlign == "center":
+					# Translators: Reported when text is centered.
+					text = NVDAString("align center")
+				elif textAlign == "right":
+					# Translators: Reported when text is right-aligned.
+					text = NVDAString("align right")
+				elif textAlign == "justify":
+					# Translators: Reported when text is justified.
+					# See http://en.wikipedia.org/wiki/Typographic_alignment#Justified
+					text = NVDAString("align justify")
+				elif textAlign == "distribute":
+					# Translators: Reported when text is justified with character spacing (Japanese etc)
+					# See http://kohei.us/2010/01/21/distributed-text-justification/
+					text = NVDAString("align distributed")
+				else:
+					# Translators: Reported when text has reverted to default alignment.
+					text = NVDAString("align default")
+				textList.append(text)
+			verticalAlign = attrs.get("vertical-align")
+			oldverticalAlign = attrsCache.get("vertical-align") if attrsCache is not None else None
+			if (verticalAlign or oldverticalAlign is not None) and verticalAlign != oldverticalAlign:
+				verticalAlign = verticalAlign.lower() if verticalAlign else verticalAlign
+				if verticalAlign == "top":
+					# Translators: Reported when text is vertically top-aligned.
+					text = NVDAString("vertical align top")
+				elif verticalAlign in ("center", "middle"):
+					# Translators: Reported when text is vertically middle aligned.
+					text = NVDAString("vertical align middle")
+				elif verticalAlign == "bottom":
+					# Translators: Reported when text is vertically bottom-aligned.
+					text = NVDAString("vertical align bottom")
+				elif verticalAlign == "baseline":
+					# Translators: Reported when text is vertically aligned on the baseline.
+					text = NVDAString("vertical align baseline")
+				elif verticalAlign == "justify":
+					# Translators: Reported when text is vertically justified.
+					text = NVDAString("vertical align justified")
+				elif verticalAlign == "distributed":
+					# Translators: Reported when text is vertically justified but
+					# with character spacing (For some Asian content).
+					text = NVDAString("vertical align distributed")
+				else:
+					# Translators: Reported when text has reverted to default vertical alignment.
+					text = NVDAString("vertical align default")
+				textList.append(text)
+		if formatConfig["reportParagraphIndentation"]:
+			indentLabels = {
+				'left-indent': (
+					# Translators: the label for paragraph format left indent
+					NVDAString("left indent"),
+					# Translators: the message when there is no paragraph format left indent
+					NVDAString("no left indent"),
+				),
+				'right-indent': (
+					# Translators: the label for paragraph format right indent
+					NVDAString("right indent"),
+					# Translators: the message when there is no paragraph format right indent
+					NVDAString("no right indent"),
+				),
+				'hanging-indent': (
+					# Translators: the label for paragraph format hanging indent
+					NVDAString("hanging indent"),
+					# Translators: the message when there is no paragraph format hanging indent
+					NVDAString("no hanging indent"),
+				),
+				'first-line-indent': (
+					# Translators: the label for paragraph format first line indent
+					NVDAString("first line indent"),
+					# Translators: the message when there is no paragraph format first line indent
+					NVDAString("no first line indent"),
+				),
+			}
+			for attr, (label, noVal) in indentLabels.items():
+				newVal = attrs.get(attr)
+				oldVal = attrsCache.get(attr) if attrsCache else None
+				if (newVal or oldVal is not None) and newVal != oldVal:
+					if newVal:
+						textList.append(u"%s %s" % (label, newVal))
+					else:
+						textList.append(noVal)
+		if formatConfig["reportLineSpacing"]:
+			lineSpacing = attrs.get("line-spacing")
+			oldLineSpacing = attrsCache.get("line-spacing") if attrsCache is not None else None
+			if (lineSpacing or oldLineSpacing is not None) and lineSpacing != oldLineSpacing:
+				# Translators: a type of line spacing (E.g. single line spacing)
+				textList.append(NVDAString("line spacing %s") % lineSpacing)
+		if formatConfig["reportLinks"]:
+			link = attrs.get("link")
+			oldLink = attrsCache.get("link") if attrsCache is not None else None
+			if (link or oldLink is not None) and link != oldLink:
+				text = NVDAString("link") if link else NVDAString("out of %s") % NVDAString("link")
+				textList.append(text)
+		if formatConfig["reportComments"]:
+			comment = attrs.get("comment")
+			oldComment = attrsCache.get("comment") if attrsCache is not None else None
+			if (comment or oldComment is not None) and comment != oldComment:
+				if comment:
+					textList.extend(self.getCommentFormatFieldSpeech(comment))
+				elif extraDetail:
+					# Translators: Reported when text no longer contains a comment.
+					text = NVDAString("out of comment")
+					textList.append(text)
+
+		if formatConfig["reportSpellingErrors"]:
+			invalidSpelling = attrs.get("invalid-spelling")
+			oldInvalidSpelling = attrsCache.get("invalid-spelling") if attrsCache is not None else None
+			if (invalidSpelling or oldInvalidSpelling is not None) and invalidSpelling != oldInvalidSpelling:
+				if invalidSpelling:
+					# Translators: Reported when text contains a spelling error.
+					text = NVDAString("spelling error")
+				elif extraDetail:
+					# Translators: Reported when moving out of text containing a spelling error.
+					text = NVDAString("out of spelling error")
+				else:
+					text = ""
+				if text:
+					textList.append(text)
+			invalidGrammar = attrs.get("invalid-grammar")
+			oldInvalidGrammar = attrsCache.get("invalid-grammar") if attrsCache is not None else None
+			if (invalidGrammar or oldInvalidGrammar is not None) and invalidGrammar != oldInvalidGrammar:
+				if invalidGrammar:
+					# Translators: Reported when text contains a grammar error.
+					text = NVDAString("grammar error")
+				elif extraDetail:
+					# Translators: Reported when moving out of text containing a grammar error.
+					text = NVDAString("out of grammar error")
+				else:
+					text = ""
+				if text:
+					textList.append(text)
+		# The line-prefix formatField attribute contains the text for a bullet or number for a list item,
+					# when the bullet or number does not appear in the actual text content.
+		# Normally this attribute could be repeated across formatFields within a list item
+					# and therefore is not safe to speak when the unit is word or character.
+		# However, some implementations (such as MS Word with UIA)
+					# do limit its useage to the very first formatField of the list item.
+		# Therefore, they also expose a line-prefix_speakAlways attribute to allow its usage for any unit.
+		linePrefix_speakAlways = attrs.get('line-prefix_speakAlways', False)
+		if linePrefix_speakAlways or unit in (
+			textInfos.UNIT_LINE, textInfos.UNIT_SENTENCE, textInfos.UNIT_PARAGRAPH, textInfos.UNIT_READINGCHUNK):
+			linePrefix = attrs.get("line-prefix")
+			if linePrefix:
+				textList.append(linePrefix)
+		if attrsCache is not None:
+			attrsCache.clear()
+			attrsCache.update(attrs)
+		logBadSequenceTypes(textList)
+		return textList
+
+	def getFormatFieldSpeech_2021_2(
+		self,
+		attrs: textInfos.Field,
+		attrsCache: Optional[textInfos.Field] = None,
+		formatConfig: Optional[Dict[str, bool]] = None,
+		reason: Optional[OutputReason] = None,
+		unit: Optional[str] = None,
+		extraDetail: bool = False,
+		initialFormat: bool = False,
+	) -> SpeechSequence:
+
+		if not formatConfig:
+			formatConfig = config.conf["documentFormatting"]
+		textList = []
+		if formatConfig["reportTables"]:
+			tableInfo = attrs.get("table-info")
+			oldTableInfo = attrsCache.get("table-info") if attrsCache is not None else None
+			tableSequence = getTableInfoSpeech(
+				tableInfo, oldTableInfo, extraDetail=extraDetail
+			)
+			if tableSequence:
+				textList.extend(tableSequence)
+		if formatConfig["reportPage"]:
+			pageNumber = attrs.get("page-number")
+			oldPageNumber = attrsCache.get("page-number") if attrsCache is not None else None
+			if pageNumber and pageNumber != oldPageNumber:
+				# Translators: Indicates the page number in a document.
+				# %s will be replaced with the page number.
+				text = NVDAString("page %s") % pageNumber
+				textList.append(text)
+			sectionNumber = attrs.get("section-number")
+			oldSectionNumber = attrsCache.get("section-number") if attrsCache is not None else None
+			if sectionNumber and sectionNumber != oldSectionNumber:
+				# Translators: Indicates the section number in a document.
+				# %s will be replaced with the section number.
+				text = NVDAString("section %s") % sectionNumber
+				textList.append(text)
+
+			textColumnCount = attrs.get("text-column-count")
+			oldTextColumnCount = attrsCache.get("text-column-count") if attrsCache is not None else None
+			textColumnNumber = attrs.get("text-column-number")
+			oldTextColumnNumber = attrsCache.get("text-column-number") if attrsCache is not None else None
+
+			# Because we do not want to report the number of columns when a document is just opened and there is only
+			# one column. This would be verbose, in the standard case.
+			# column number has changed, or the columnCount has changed
+			# but not if the columnCount is 1 or less and there is no old columnCount.
+			if (((
+				textColumnNumber and textColumnNumber != oldTextColumnNumber)
+				or (textColumnCount and textColumnCount != oldTextColumnCount)) and not
+				(textColumnCount and int(textColumnCount) <= 1 and oldTextColumnCount is None)):
+				if textColumnNumber and textColumnCount:
+					# Translators: Indicates the text column number in a document.
+					# {0} will be replaced with the text column number.
+					# {1} will be replaced with the number of text columns.
+					text = NVDAString("column {0} of {1}").format(textColumnNumber, textColumnCount)
+					textList.append(text)
+				elif textColumnCount:
+					# Translators: Indicates the text column number in a document.
+					# %s will be replaced with the number of text columns.
+					text = NVDAString("%s columns") % (textColumnCount)
+					textList.append(text)
+
+		sectionBreakType = attrs.get("section-break")
+		if sectionBreakType:
+			if sectionBreakType == "0":  # Continuous section break.
+				text = NVDAString("continuous section break")
+			elif sectionBreakType == "1":  # New column section break.
+				text = NVDAString("new column section break")
+			elif sectionBreakType == "2":  # New page section break.
+				text = NVDAString("new page section break")
+			elif sectionBreakType == "3":  # Even pages section break.
+				text = NVDAString("even pages section break")
+			elif sectionBreakType == "4":  # Odd pages section break.
+				text = NVDAString("odd pages section break")
+			else:
+				text = ""
+			textList.append(text)
+		columnBreakType = attrs.get("column-break")
+		if columnBreakType:
+			textList.append(NVDAString("column break"))
+		if formatConfig["reportHeadings"]:
+			headingLevel = attrs.get("heading-level")
+			oldHeadingLevel = attrsCache.get("heading-level") if attrsCache is not None else None
+			# headings should be spoken not only if they change, but also when beginning to speak lines or paragraphs
+			# Ensuring a similar experience to if a heading was a controlField
+			if(
+				headingLevel
+				and (
+					initialFormat
+					and (reason == OutputReason.FOCUS or unit in (textInfos.UNIT_LINE, textInfos.UNIT_PARAGRAPH))
+					or headingLevel != oldHeadingLevel
+				)
+			):
+				# Translators: Speaks the heading level (example output: heading level 2).
+				text = NVDAString("heading level %d") % headingLevel
+				textList.append(text)
+		if formatConfig["reportStyle"]:
+			style = attrs.get("style")
+			oldStyle = attrsCache.get("style") if attrsCache is not None else None
+			if style != oldStyle:
+				if style:
+					# Translators: Indicates the style of text.
+					# A style is a collection of formatting settings and depends on the application.
+					# %s will be replaced with the name of the style.
+					text = NVDAString("style %s") % style
+				else:
+					# Translators: Indicates that text has reverted to the default style.
+					# A style is a collection of formatting settings and depends on the application.
+					text = NVDAString("default style")
+				textList.append(text)
+		if formatConfig["reportBorderStyle"]:
+			borderStyle = attrs.get("border-style")
+			oldBorderStyle = attrsCache.get("border-style") if attrsCache is not None else None
+			if borderStyle != oldBorderStyle:
+				if borderStyle:
+					text = borderStyle
+				else:
+					# Translators: Indicates that cell does not have border lines.
+					text = NVDAString("no border lines")
+				textList.append(text)
+		if formatConfig["reportFontName"]:
+			fontFamily = attrs.get("font-family")
+			oldFontFamily = attrsCache.get("font-family") if attrsCache is not None else None
+			if fontFamily and fontFamily != oldFontFamily:
+				textList.append(fontFamily)
+			fontName = attrs.get("font-name")
+			oldFontName = attrsCache.get("font-name") if attrsCache is not None else None
+			if fontName and fontName != oldFontName:
+				textList.append(fontName)
+		if formatConfig["reportFontSize"]:
+			fontSize = attrs.get("font-size")
+			oldFontSize = attrsCache.get("font-size") if attrsCache is not None else None
+			if fontSize and fontSize != oldFontSize:
+				textList.append(fontSize)
+		if formatConfig["reportColor"]:
+			color = attrs.get("color")
+			oldColor = attrsCache.get("color") if attrsCache is not None else None
+			backgroundColor = attrs.get("background-color")
+			oldBackgroundColor = attrsCache.get("background-color") if attrsCache is not None else None
+			backgroundColor2 = attrs.get("background-color2")
+			oldBackgroundColor2 = attrsCache.get("background-color2") if attrsCache is not None else None
+			bgColorChanged = backgroundColor != oldBackgroundColor or backgroundColor2 != oldBackgroundColor2
+			bgColorText = backgroundColor.name if isinstance(backgroundColor, colors.RGB) else backgroundColor
+			if backgroundColor2:
+				bg2Name = backgroundColor2.name if isinstance(backgroundColor2, colors.RGB) else backgroundColor2
+				# Translators: Reported when there are two background colors.
+				# This occurs when, for example, a gradient pattern is applied to a spreadsheet cell.
+				# {color1} will be replaced with the first background color.
+				# {color2} will be replaced with the second background color.
+				bgColorText = NVDAString("{color1} to {color2}").format(color1=bgColorText, color2=bg2Name)
+			if color and backgroundColor and color != oldColor and bgColorChanged:
+				# Translators: Reported when both the text and background colors change.
+				# {color} will be replaced with the text color.
+				# {backgroundColor} will be replaced with the background color.
+				textList.append(NVDAString("{color} on {backgroundColor}").format(
+					color=color.name if isinstance(color, colors.RGB) else color,
+					backgroundColor=bgColorText))
+			elif color and color != oldColor:
+				# Translators: Reported when the text color changes (but not the background color).
+				# {color} will be replaced with the text color.
+				textList.append(
+					NVDAString("{color}").format(color=color.name if isinstance(color, colors.RGB) else color))
+			elif backgroundColor and bgColorChanged:
+				# Translators: Reported when the background color changes
+				# (but not the text color).
+				# {backgroundColor} will be replaced with the background color.
+				textList.append(NVDAString("{backgroundColor} background").format(backgroundColor=bgColorText))
+			backgroundPattern = attrs.get("background-pattern")
+			oldBackgroundPattern = attrsCache.get("background-pattern") if attrsCache is not None else None
+			if backgroundPattern and backgroundPattern != oldBackgroundPattern:
+				textList.append(NVDAString("background pattern {pattern}").format(pattern=backgroundPattern))
+		if formatConfig["reportLineNumber"]:
+			lineNumber = attrs.get("line-number")
+			oldLineNumber = attrsCache.get("line-number") if attrsCache is not None else None
+			if lineNumber is not None and lineNumber != oldLineNumber:
+				# Translators: Indicates the line number of the text.
+				# %s will be replaced with the line number.
+				text = NVDAString("line %s") % lineNumber
+				textList.append(text)
+		if formatConfig["reportRevisions"]:
+			# Insertion
+			revision = attrs.get("revision-insertion")
+			oldRevision = attrsCache.get("revision-insertion") if attrsCache is not None else None
+			if (revision or oldRevision is not None) and revision != oldRevision:
+
+				text = (
+					# Translators: Reported when text is marked as having been inserted
+					NVDAString("inserted") if revision else
+					# Translators: Reported when text is no longer marked as having been inserted.
+					NVDAString("not inserted"))
+				textList.append(text)
+			revision = attrs.get("revision-deletion")
+			oldRevision = attrsCache.get("revision-deletion") if attrsCache is not None else None
+			if (revision or oldRevision is not None) and revision != oldRevision:
+
+				text = (
+					# Translators: Reported when text is marked as having been deleted
+					NVDAString("deleted") if revision else
+					# Translators: Reported when text is no longer marked as having been  deleted.
+					NVDAString("not deleted"))
+				textList.append(text)
+			revision = attrs.get("revision")
+			oldRevision = attrsCache.get("revision") if attrsCache is not None else None
+			if (revision or oldRevision is not None) and revision != oldRevision:
+				if revision:
+					# Translators: Reported when text is revised.
+					text = NVDAString("revised %s") % revision
+				else:
+					# Translators: Reported when text is not revised.
+					text = NVDAString("no revised %s") % oldRevision
+				textList.append(text)
+		if formatConfig["reportHighlight"]:
+			# marked text
+			marked = attrs.get("marked")
+			oldMarked = attrsCache.get("marked") if attrsCache is not None else None
+			if (marked or oldMarked is not None) and marked != oldMarked:
+				text = (
+					# Translators: Reported when text is marked
+					NVDAString("marked") if marked else
+					# Translators: Reported when text is no longer marked
+					NVDAString("not marked"))
+				textList.append(text)
+		if formatConfig["reportEmphasis"]:
+			# strong text
+			strong = attrs.get("strong")
+			oldStrong = attrsCache.get("strong") if attrsCache is not None else None
+			if (strong or oldStrong is not None) and strong != oldStrong:
+				text = (
+					# Translators: Reported when text is marked as strong (e.g. bold)
+					NVDAString("strong") if strong else
+					# Translators: Reported when text is no longer marked as strong (e.g. bold)
+					NVDAString("not strong"))
+				textList.append(text)
+			# emphasised text
+			emphasised = attrs.get("emphasised")
+			oldEmphasised = attrsCache.get("emphasised") if attrsCache is not None else None
+			if (emphasised or oldEmphasised is not None) and emphasised != oldEmphasised:
+				text = (
+					# Translators: Reported when text is marked as emphasised
+					NVDAString("emphasised") if emphasised else
+					# Translators: Reported when text is no longer marked as emphasised
+					NVDAString("not emphasised"))
+				textList.append(text)
+		if formatConfig["reportFontAttributes"]:
+			bold = attrs.get("bold")
+			oldBold = attrsCache.get("bold") if attrsCache is not None else None
+			if (bold or oldBold is not None) and bold != oldBold:
+				text = (
+					# Translators: Reported when text is bolded.
+					NVDAString("bold") if bold else
+					# Translators: Reported when text is not bolded.
+					NVDAString("no bold"))
+				textList.append(text)
+			italic = attrs.get("italic")
+			oldItalic = attrsCache.get("italic") if attrsCache is not None else None
+			if (italic or oldItalic is not None) and italic != oldItalic:
+				text = (
+					# Translators: Reported when text is italicized.
+					NVDAString("italic") if italic else
+					# Translators: Reported when text is not italicized.
+					NVDAString("no italic"))
+				textList.append(text)
+			strikethrough = attrs.get("strikethrough")
+			oldStrikethrough = attrsCache.get("strikethrough") if attrsCache is not None else None
+			if (strikethrough or oldStrikethrough is not None) and strikethrough != oldStrikethrough:
+				if strikethrough:
+					# Translators: Reported when text is formatted with double strikethrough.
+					# See http://en.wikipedia.org/wiki/Strikethrough
+					text = (
+						NVDAString("double strikethrough") if strikethrough == "double" else
+						# Translators: Reported when text is formatted with strikethrough.
+						# See http://en.wikipedia.org/wiki/Strikethrough
+						NVDAString("strikethrough"))
+				else:
+					# Translators: Reported when text is formatted without strikethrough.
+					# See http://en.wikipedia.org/wiki/Strikethrough
+					text = NVDAString("no strikethrough")
+				textList.append(text)
+			underline = attrs.get("underline")
+			oldUnderline = attrsCache.get("underline") if attrsCache is not None else None
+			if (underline or oldUnderline is not None) and underline != oldUnderline:
+
+				text = (
+					# Translators: Reported when text is underlined.
+					NVDAString("underlined") if underline else
+					# Translators: Reported when text is not underlined.
+					NVDAString("not underlined"))
 				textList.append(text)
 			hidden = attrs.get("hidden")
 			oldHidden = attrsCache.get("hidden") if attrsCache is not None else None
@@ -1048,165 +1552,169 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				)
 				textList.append(text)
 		if formatConfig["reportSuperscriptsAndSubscripts"]:
-			textPosition=attrs.get("text-position")
-			oldTextPosition=attrsCache.get("text-position") if attrsCache is not None else None
-			if (textPosition or oldTextPosition is not None) and textPosition!=oldTextPosition:
-				textPosition=textPosition.lower() if textPosition else textPosition
-				if textPosition=="super":
+			textPosition = attrs.get("text-position")
+			oldTextPosition = attrsCache.get("text-position") if attrsCache is not None else None
+			if (textPosition or oldTextPosition is not None) and textPosition != oldTextPosition:
+				textPosition = textPosition.lower() if textPosition else textPosition
+				if textPosition == "super":
 					# Translators: Reported for superscript text.
-					text=NVDAString("superscript")
-				elif textPosition=="sub":
+					text = NVDAString("superscript")
+				elif textPosition == "sub":
 					# Translators: Reported for subscript text.
-					text=NVDAString("subscript")
+					text = NVDAString("subscript")
 				else:
 					# Translators: Reported for text which is at the baseline position;
 					# i.e. not superscript or subscript.
-					text=NVDAString("baseline")
+					text = NVDAString("baseline")
 				textList.append(text)
 		if formatConfig["reportAlignment"]:
-			textAlign=attrs.get("text-align")
-			oldTextAlign=attrsCache.get("text-align") if attrsCache is not None else None
-			if (textAlign or oldTextAlign is not None) and textAlign!=oldTextAlign:
-				textAlign=textAlign.lower() if textAlign else textAlign
-				if textAlign=="left":
+			textAlign = attrs.get("text-align")
+			oldTextAlign = attrsCache.get("text-align") if attrsCache is not None else None
+			if (textAlign or oldTextAlign is not None) and textAlign != oldTextAlign:
+				textAlign = textAlign.lower() if textAlign else textAlign
+				if textAlign == "left":
 					# Translators: Reported when text is left-aligned.
-					text=NVDAString("align left")
-				elif textAlign=="center":
+					text = NVDAString("align left")
+				elif textAlign == "center":
 					# Translators: Reported when text is centered.
-					text=NVDAString("align center")
-				elif textAlign=="right":
+					text = NVDAString("align center")
+				elif textAlign == "right":
 					# Translators: Reported when text is right-aligned.
-					text=NVDAString("align right")
-				elif textAlign=="justify":
+					text = NVDAString("align right")
+				elif textAlign == "justify":
 					# Translators: Reported when text is justified.
 					# See http://en.wikipedia.org/wiki/Typographic_alignment#Justified
-					text=NVDAString("align justify")
-				elif textAlign=="distribute":
-					# Translators: Reported when text is justified with character spacing (Japanese etc) 
+					text = NVDAString("align justify")
+				elif textAlign == "distribute":
+					# Translators: Reported when text is justified with character spacing (Japanese etc)
 					# See http://kohei.us/2010/01/21/distributed-text-justification/
-					text=NVDAString("align distributed")
+					text = NVDAString("align distributed")
 				else:
 					# Translators: Reported when text has reverted to default alignment.
-					text=NVDAString("align default")
+					text = NVDAString("align default")
 				textList.append(text)
-			verticalAlign=attrs.get("vertical-align")
-			oldverticalAlign=attrsCache.get("vertical-align") if attrsCache is not None else None
-			if (verticalAlign or oldverticalAlign is not None) and verticalAlign!=oldverticalAlign:
-				verticalAlign=verticalAlign.lower() if verticalAlign else verticalAlign
-				if verticalAlign=="top":
+			verticalAlign = attrs.get("vertical-align")
+			oldverticalAlign = attrsCache.get("vertical-align") if attrsCache is not None else None
+			if (verticalAlign or oldverticalAlign is not None) and verticalAlign != oldverticalAlign:
+				verticalAlign = verticalAlign.lower() if verticalAlign else verticalAlign
+				if verticalAlign == "top":
 					# Translators: Reported when text is vertically top-aligned.
-					text=NVDAString("vertical align top")
-				elif verticalAlign in("center","middle"):
+					text = NVDAString("vertical align top")
+				elif verticalAlign in ("center", "middle"):
 					# Translators: Reported when text is vertically middle aligned.
-					text=NVDAString("vertical align middle")
-				elif verticalAlign=="bottom":
+					text = NVDAString("vertical align middle")
+				elif verticalAlign == "bottom":
 					# Translators: Reported when text is vertically bottom-aligned.
-					text=NVDAString("vertical align bottom")
-				elif verticalAlign=="baseline":
-					# Translators: Reported when text is vertically aligned on the baseline. 
-					text=NVDAString("vertical align baseline")
-				elif verticalAlign=="justify":
+					text = NVDAString("vertical align bottom")
+				elif verticalAlign == "baseline":
+					# Translators: Reported when text is vertically aligned on the baseline.
+					text = NVDAString("vertical align baseline")
+				elif verticalAlign == "justify":
 					# Translators: Reported when text is vertically justified.
-					text=NVDAString("vertical align justified")
-				elif verticalAlign=="distributed":
-					# Translators: Reported when text is vertically justified but with character spacing (For some Asian content). 
-					text=NVDAString("vertical align distributed") 
+					text = NVDAString("vertical align justified")
+				elif verticalAlign == "distributed":
+					# Translators: Reported when text is vertically justified
+					# but with character spacing (For some Asian content).
+					text = NVDAString("vertical align distributed")
 				else:
 					# Translators: Reported when text has reverted to default vertical alignment.
-					text=NVDAString("vertical align default")
+					text = NVDAString("vertical align default")
 				textList.append(text)
 		if formatConfig["reportParagraphIndentation"]:
-			indentLabels={
-				'left-indent':(
+			indentLabels = {
+				'left - indent': (
 					# Translators: the label for paragraph format left indent
 					NVDAString("left indent"),
 					# Translators: the message when there is no paragraph format left indent
 					NVDAString("no left indent"),
 				),
-				'right-indent':(
+				'right - indent': (
 					# Translators: the label for paragraph format right indent
 					NVDAString("right indent"),
 					# Translators: the message when there is no paragraph format right indent
 					NVDAString("no right indent"),
 				),
-				'hanging-indent':(
+				'hanging - indent': (
 					# Translators: the label for paragraph format hanging indent
 					NVDAString("hanging indent"),
 					# Translators: the message when there is no paragraph format hanging indent
 					NVDAString("no hanging indent"),
 				),
-				'first-line-indent':(
-					# Translators: the label for paragraph format first line indent 
+				'first - line-indent': (
+					# Translators: the label for paragraph format first line indent
 					NVDAString("first line indent"),
 					# Translators: the message when there is no paragraph format first line indent
 					NVDAString("no first line indent"),
 				),
 			}
-			for attr,(label,noVal) in indentLabels.items():
-				newVal=attrs.get(attr)
-				oldVal=attrsCache.get(attr) if attrsCache else None
-				if (newVal or oldVal is not None) and newVal!=oldVal:
+			for attr, (label, noVal) in indentLabels.items():
+				newVal = attrs.get(attr)
+				oldVal = attrsCache.get(attr) if attrsCache else None
+				if (newVal or oldVal is not None) and newVal != oldVal:
 					if newVal:
-						textList.append(u"%s %s"%(label,newVal))
+						textList.append(u"%s %s" % (label, newVal))
 					else:
 						textList.append(noVal)
 		if formatConfig["reportLineSpacing"]:
-			lineSpacing=attrs.get("line-spacing")
-			oldLineSpacing=attrsCache.get("line-spacing") if attrsCache is not None else None
-			if (lineSpacing or oldLineSpacing is not None) and lineSpacing!=oldLineSpacing:
+			lineSpacing = attrs.get("line-spacing")
+			oldLineSpacing = attrsCache.get("line-spacing") if attrsCache is not None else None
+			if (lineSpacing or oldLineSpacing is not None) and lineSpacing != oldLineSpacing:
 				# Translators: a type of line spacing (E.g. single line spacing)
-				textList.append(NVDAString("line spacing %s")%lineSpacing)
-		if  formatConfig["reportLinks"]:
-			link=attrs.get("link")
-			oldLink=attrsCache.get("link") if attrsCache is not None else None
-			if (link or oldLink is not None) and link!=oldLink:
-				text=NVDAString("link") if link else NVDAString("out of %s")%NVDAString("link")
+				textList.append(NVDAString("line spacing %s") % lineSpacing)
+		if formatConfig["reportLinks"]:
+			link = attrs.get("link")
+			oldLink = attrsCache.get("link") if attrsCache is not None else None
+			if (link or oldLink is not None) and link != oldLink:
+				text = NVDAString("link") if link else NVDAString("out of %s") % NVDAString("link")
 				textList.append(text)
-		if  formatConfig["reportComments"]:
-			comment=attrs.get("comment")
-			oldComment=attrsCache.get("comment") if attrsCache is not None else None
-			if (comment or oldComment is not None) and comment!=oldComment:
+		if formatConfig["reportComments"]:
+			comment = attrs.get("comment")
+			oldComment = attrsCache.get("comment") if attrsCache is not None else None
+			if (comment or oldComment is not None) and comment != oldComment:
 				if comment:
 					textList.extend(self.getCommentFormatFieldSpeech(comment))
 				elif extraDetail:
 					# Translators: Reported when text no longer contains a comment.
-					text=NVDAString("out of comment")
+					text = NVDAString("out of comment")
 					textList.append(text)
-
 		if formatConfig["reportSpellingErrors"]:
-			invalidSpelling=attrs.get("invalid-spelling")
-			oldInvalidSpelling=attrsCache.get("invalid-spelling") if attrsCache is not None else None
-			if (invalidSpelling or oldInvalidSpelling is not None) and invalidSpelling!=oldInvalidSpelling:
+			invalidSpelling = attrs.get("invalid-spelling")
+			oldInvalidSpelling = attrsCache.get("invalid-spelling") if attrsCache is not None else None
+			if (invalidSpelling or oldInvalidSpelling is not None) and invalidSpelling != oldInvalidSpelling:
 				if invalidSpelling:
 					# Translators: Reported when text contains a spelling error.
-					text=NVDAString("spelling error")
+					text = NVDAString("spelling error")
 				elif extraDetail:
 					# Translators: Reported when moving out of text containing a spelling error.
-					text=NVDAString("out of spelling error")
+					text = NVDAString("out of spelling error")
 				else:
-					text=""
+					text = ""
 				if text:
 					textList.append(text)
-			invalidGrammar=attrs.get("invalid-grammar")
-			oldInvalidGrammar=attrsCache.get("invalid-grammar") if attrsCache is not None else None
-			if (invalidGrammar or oldInvalidGrammar is not None) and invalidGrammar!=oldInvalidGrammar:
+			invalidGrammar = attrs.get("invalid-grammar")
+			oldInvalidGrammar = attrsCache.get("invalid-grammar") if attrsCache is not None else None
+			if (invalidGrammar or oldInvalidGrammar is not None) and invalidGrammar != oldInvalidGrammar:
 				if invalidGrammar:
 					# Translators: Reported when text contains a grammar error.
-					text=NVDAString("grammar error")
+					text = NVDAString("grammar error")
 				elif extraDetail:
 					# Translators: Reported when moving out of text containing a grammar error.
-					text=NVDAString("out of grammar error")
+					text = NVDAString("out of grammar error")
 				else:
-					text=""
+					text = ""
 				if text:
 					textList.append(text)
-		# The line-prefix formatField attribute contains the text for a bullet or number for a list item, when the bullet or number does not appear in the actual text content.
-		# Normally this attribute could be repeated across formatFields within a list item and therefore is not safe to speak when the unit is word or character.
-		# However, some implementations (such as MS Word with UIA) do limit its useage to the very first formatField of the list item.
+		# The line-prefix formatField attribute contains the text for a bullet or number for a list item,
+		# when the bullet or number does not appear in the actual text content.
+		# Normally this attribute could be repeated across formatFields within a list item
+		# and therefore is not safe to speak when the unit is word or character.
+		# However, some implementations (such as MS Word with UIA)
+		# do limit its useage to the very first formatField of the list item.
 		# Therefore, they also expose a line-prefix_speakAlways attribute to allow its usage for any unit.
-		linePrefix_speakAlways=attrs.get('line-prefix_speakAlways',False)
-		if linePrefix_speakAlways or unit in (textInfos.UNIT_LINE,textInfos.UNIT_SENTENCE,textInfos.UNIT_PARAGRAPH,textInfos.UNIT_READINGCHUNK):
-			linePrefix=attrs.get("line-prefix")
+		linePrefix_speakAlways = attrs.get('line-prefix_speakAlways', False)
+		if linePrefix_speakAlways or unit in (
+			textInfos.UNIT_LINE, textInfos.UNIT_SENTENCE, textInfos.UNIT_PARAGRAPH, textInfos.UNIT_READINGCHUNK):
+			linePrefix = attrs.get("line-prefix")
 			if linePrefix:
 				textList.append(linePrefix)
 		if attrsCache is not None:
@@ -1214,471 +1722,16 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			attrsCache.update(attrs)
 		logBadSequenceTypes(textList)
 		return textList
-	
-
-
-	def getFormatFieldSpeech_2021_2(  # noqa: C901
-		self,
-			attrs: textInfos.Field,
-			attrsCache: Optional[textInfos.Field] = None,
-			formatConfig: Optional[Dict[str, bool]] = None,
-			reason: Optional[OutputReason] = None,
-			unit: Optional[str] = None,
-			extraDetail: bool = False,
-			initialFormat: bool = False,
-	) -> SpeechSequence:
-		_ = NVDAString
-		if not formatConfig:
-			formatConfig=config.conf["documentFormatting"]
-		textList=[]
-		if formatConfig["reportTables"]:
-			tableInfo=attrs.get("table-info")
-			oldTableInfo=attrsCache.get("table-info") if attrsCache is not None else None
-			tableSequence = getTableInfoSpeech(
-				tableInfo, oldTableInfo, extraDetail=extraDetail
-			)
-			if tableSequence:
-				textList.extend(tableSequence)
-		if formatConfig["reportPage"]:
-			pageNumber=attrs.get("page-number")
-			oldPageNumber=attrsCache.get("page-number") if attrsCache is not None else None
-			if pageNumber and pageNumber!=oldPageNumber:
-				# Translators: Indicates the page number in a document.
-				# %s will be replaced with the page number.
-				text=NVDAString("page %s")%pageNumber
-				textList.append(text)
-			sectionNumber=attrs.get("section-number")
-			oldSectionNumber=attrsCache.get("section-number") if attrsCache is not None else None
-			if sectionNumber and sectionNumber!=oldSectionNumber:
-				# Translators: Indicates the section number in a document.
-				# %s will be replaced with the section number.
-				text=NVDAString("section %s")%sectionNumber
-				textList.append(text)
-	
-			textColumnCount=attrs.get("text-column-count")
-			oldTextColumnCount=attrsCache.get("text-column-count") if attrsCache is not None else None
-			textColumnNumber=attrs.get("text-column-number")
-			oldTextColumnNumber=attrsCache.get("text-column-number") if attrsCache is not None else None
-	
-			# Because we do not want to report the number of columns when a document is just opened and there is only 
-			# one column. This would be verbose, in the standard case.
-			# column number has changed, or the columnCount has changed
-			# but not if the columnCount is 1 or less and there is no old columnCount.
-			if (((textColumnNumber and textColumnNumber!=oldTextColumnNumber) or
-				(textColumnCount and textColumnCount!=oldTextColumnCount)) and not
-				(textColumnCount and int(textColumnCount) <=1 and oldTextColumnCount == None)) :
-				if textColumnNumber and textColumnCount:
-					# Translators: Indicates the text column number in a document.
-					# {0} will be replaced with the text column number.
-					# {1} will be replaced with the number of text columns.
-					text=NVDAString("column {0} of {1}").format(textColumnNumber,textColumnCount)
-					textList.append(text)
-				elif textColumnCount:
-					# Translators: Indicates the text column number in a document.
-					# %s will be replaced with the number of text columns.
-					text=NVDAString("%s columns")%(textColumnCount)
-					textList.append(text)
-	
-		sectionBreakType=attrs.get("section-break")
-		if sectionBreakType:
-			if sectionBreakType == "0" : # Continuous section break.
-				text=NVDAString("continuous section break")
-			elif sectionBreakType == "1" : # New column section break.
-				text=NVDAString("new column section break")
-			elif sectionBreakType == "2" : # New page section break.
-				text=NVDAString("new page section break")
-			elif sectionBreakType == "3" : # Even pages section break.
-				text=NVDAString("even pages section break")
-			elif sectionBreakType == "4" : # Odd pages section break.
-				text=NVDAString("odd pages section break")
-			else:
-				text=""
-			textList.append(text)
-		columnBreakType=attrs.get("column-break")
-		if columnBreakType:
-			textList.append(NVDAString("column break"))
-		if  formatConfig["reportHeadings"]:
-			headingLevel=attrs.get("heading-level")
-			oldHeadingLevel=attrsCache.get("heading-level") if attrsCache is not None else None
-			# headings should be spoken not only if they change, but also when beginning to speak lines or paragraphs
-			# Ensuring a similar experience to if a heading was a controlField
-			if(
-				headingLevel
-				and (
-					initialFormat
-					and (reason == OutputReason.FOCUS or unit in (textInfos.UNIT_LINE, textInfos.UNIT_PARAGRAPH))
-					or headingLevel != oldHeadingLevel
-				)
-			):
-				# Translators: Speaks the heading level (example output: heading level 2).
-				text=NVDAString("heading level %d")%headingLevel
-				textList.append(text)
-		if  formatConfig["reportStyle"]:
-			style=attrs.get("style")
-			oldStyle=attrsCache.get("style") if attrsCache is not None else None
-			if style!=oldStyle:
-				if style:
-					# Translators: Indicates the style of text.
-					# A style is a collection of formatting settings and depends on the application.
-					# %s will be replaced with the name of the style.
-					text=NVDAString("style %s")%style
-				else:
-					# Translators: Indicates that text has reverted to the default style.
-					# A style is a collection of formatting settings and depends on the application.
-					text=NVDAString("default style")
-				textList.append(text)
-		if  formatConfig["reportBorderStyle"]:
-			borderStyle=attrs.get("border-style")
-			oldBorderStyle=attrsCache.get("border-style") if attrsCache is not None else None
-			if borderStyle!=oldBorderStyle:
-				if borderStyle:
-					text=borderStyle
-				else:
-					# Translators: Indicates that cell does not have border lines.
-					text=NVDAString("no border lines")
-				textList.append(text)
-		if  formatConfig["reportFontName"]:
-			fontFamily=attrs.get("font-family")
-			oldFontFamily=attrsCache.get("font-family") if attrsCache is not None else None
-			if fontFamily and fontFamily!=oldFontFamily:
-				textList.append(fontFamily)
-			fontName=attrs.get("font-name")
-			oldFontName=attrsCache.get("font-name") if attrsCache is not None else None
-			if fontName and fontName!=oldFontName:
-				textList.append(fontName)
-		if  formatConfig["reportFontSize"]:
-			fontSize=attrs.get("font-size")
-			oldFontSize=attrsCache.get("font-size") if attrsCache is not None else None
-			if fontSize and fontSize!=oldFontSize:
-				textList.append(fontSize)
-		if  formatConfig["reportColor"]:
-			color=attrs.get("color")
-			oldColor=attrsCache.get("color") if attrsCache is not None else None
-			backgroundColor=attrs.get("background-color")
-			oldBackgroundColor=attrsCache.get("background-color") if attrsCache is not None else None
-			backgroundColor2=attrs.get("background-color2")
-			oldBackgroundColor2=attrsCache.get("background-color2") if attrsCache is not None else None
-			bgColorChanged=backgroundColor!=oldBackgroundColor or backgroundColor2!=oldBackgroundColor2
-			bgColorText=backgroundColor.name if isinstance(backgroundColor,colors.RGB) else backgroundColor
-			if backgroundColor2:
-				bg2Name=backgroundColor2.name if isinstance(backgroundColor2,colors.RGB) else backgroundColor2
-				# Translators: Reported when there are two background colors.
-				# This occurs when, for example, a gradient pattern is applied to a spreadsheet cell.
-				# {color1} will be replaced with the first background color.
-				# {color2} will be replaced with the second background color.
-				bgColorText=NVDAString("{color1} to {color2}").format(color1=bgColorText,color2=bg2Name)
-			if color and backgroundColor and color!=oldColor and bgColorChanged:
-				# Translators: Reported when both the text and background colors change.
-				# {color} will be replaced with the text color.
-				# {backgroundColor} will be replaced with the background color.
-				textList.append(NVDAString("{color} on {backgroundColor}").format(
-					color=color.name if isinstance(color,colors.RGB) else color,
-					backgroundColor=bgColorText))
-			elif color and color!=oldColor:
-				# Translators: Reported when the text color changes (but not the background color).
-				# {color} will be replaced with the text color.
-				textList.append(NVDAString("{color}").format(color=color.name if isinstance(color,colors.RGB) else color))
-			elif backgroundColor and bgColorChanged:
-				# Translators: Reported when the background color changes (but not the text color).
-				# {backgroundColor} will be replaced with the background color.
-				textList.append(NVDAString("{backgroundColor} background").format(backgroundColor=bgColorText))
-			backgroundPattern=attrs.get("background-pattern")
-			oldBackgroundPattern=attrsCache.get("background-pattern") if attrsCache is not None else None
-			if backgroundPattern and backgroundPattern!=oldBackgroundPattern:
-				textList.append(NVDAString("background pattern {pattern}").format(pattern=backgroundPattern))
-		if  formatConfig["reportLineNumber"]:
-			lineNumber=attrs.get("line-number")
-			oldLineNumber=attrsCache.get("line-number") if attrsCache is not None else None
-			if lineNumber is not None and lineNumber!=oldLineNumber:
-				# Translators: Indicates the line number of the text.
-				# %s will be replaced with the line number.
-				text=NVDAString("line %s")%lineNumber
-				textList.append(text)
-		if  formatConfig["reportRevisions"]:
-			# Insertion
-			revision=attrs.get("revision-insertion")
-			oldRevision=attrsCache.get("revision-insertion") if attrsCache is not None else None
-			if (revision or oldRevision is not None) and revision!=oldRevision:
-				# Translators: Reported when text is marked as having been inserted
-				text=(NVDAString("inserted") if revision
-					# Translators: Reported when text is no longer marked as having been inserted.
-					else NVDAString("not inserted"))
-				textList.append(text)
-			revision=attrs.get("revision-deletion")
-			oldRevision=attrsCache.get("revision-deletion") if attrsCache is not None else None
-			if (revision or oldRevision is not None) and revision!=oldRevision:
-				# Translators: Reported when text is marked as having been deleted
-				text=(NVDAString("deleted") if revision
-					# Translators: Reported when text is no longer marked as having been  deleted.
-					else NVDAString("not deleted"))
-				textList.append(text)
-			revision=attrs.get("revision")
-			oldRevision=attrsCache.get("revision") if attrsCache is not None else None
-			if (revision or oldRevision is not None) and revision != oldRevision:
-				if revision:
-					# Translators: Reported when text is revised.
-					text = NVDAString("revised %s") % revision
-				else:
-					# Translators: Reported when text is not revised.
-					text = NVDAString("no revised %s") % oldRevision
-				textList.append(text)
-		if formatConfig["reportHighlight"]:
-			# marked text 
-			marked=attrs.get("marked")
-			oldMarked=attrsCache.get("marked") if attrsCache is not None else None
-			if (marked or oldMarked is not None) and marked!=oldMarked:
-				# Translators: Reported when text is marked
-				text=(NVDAString("marked") if marked
-					# Translators: Reported when text is no longer marked
-					else NVDAString("not marked"))
-				textList.append(text)
-		if formatConfig["reportEmphasis"]:
-			# strong text
-			strong=attrs.get("strong")
-			oldStrong=attrsCache.get("strong") if attrsCache is not None else None
-			if (strong or oldStrong is not None) and strong!=oldStrong:
-				# Translators: Reported when text is marked as strong (e.g. bold)
-				text=(NVDAString("strong") if strong
-					# Translators: Reported when text is no longer marked as strong (e.g. bold) 
-					else NVDAString("not strong"))
-				textList.append(text)
-			# emphasised text 
-			emphasised=attrs.get("emphasised")
-			oldEmphasised=attrsCache.get("emphasised") if attrsCache is not None else None
-			if (emphasised or oldEmphasised is not None) and emphasised!=oldEmphasised:
-				# Translators: Reported when text is marked as emphasised
-				text=(NVDAString("emphasised") if emphasised
-					# Translators: Reported when text is no longer marked as emphasised 
-					else NVDAString("not emphasised"))
-				textList.append(text)
-		if  formatConfig["reportFontAttributes"]:
-			bold=attrs.get("bold")
-			oldBold=attrsCache.get("bold") if attrsCache is not None else None
-			if (bold or oldBold is not None) and bold!=oldBold:
-				# Translators: Reported when text is bolded.
-				text=(NVDAString("bold") if bold
-					# Translators: Reported when text is not bolded.
-					else NVDAString("no bold"))
-				textList.append(text)
-			italic=attrs.get("italic")
-			oldItalic=attrsCache.get("italic") if attrsCache is not None else None
-			if (italic or oldItalic is not None) and italic!=oldItalic:
-				# Translators: Reported when text is italicized.
-				text=(NVDAString("italic") if italic
-					# Translators: Reported when text is not italicized.
-					else NVDAString("no italic"))
-				textList.append(text)
-			strikethrough=attrs.get("strikethrough")
-			oldStrikethrough=attrsCache.get("strikethrough") if attrsCache is not None else None
-			if (strikethrough or oldStrikethrough is not None) and strikethrough!=oldStrikethrough:
-				if strikethrough:
-					# Translators: Reported when text is formatted with double strikethrough.
-					# See http://en.wikipedia.org/wiki/Strikethrough
-					text=(NVDAString("double strikethrough") if strikethrough=="double"
-					# Translators: Reported when text is formatted with strikethrough.
-					# See http://en.wikipedia.org/wiki/Strikethrough
-					else NVDAString("strikethrough"))
-				else:
-					# Translators: Reported when text is formatted without strikethrough.
-					# See http://en.wikipedia.org/wiki/Strikethrough
-					text=NVDAString("no strikethrough")
-				textList.append(text)
-			underline=attrs.get("underline")
-			oldUnderline=attrsCache.get("underline") if attrsCache is not None else None
-			if (underline or oldUnderline is not None) and underline!=oldUnderline:
-				# Translators: Reported when text is underlined.
-				text=(NVDAString("underlined") if underline
-					# Translators: Reported when text is not underlined.
-					else NVDAString("not underlined"))
-				textList.append(text)
-			hidden = attrs.get("hidden")
-			oldHidden = attrsCache.get("hidden") if attrsCache is not None else None
-			if (hidden or oldHidden is not None) and hidden != oldHidden:
-				text = (
-					# Translators: Reported when text is hidden.
-					NVDAString("hidden")if hidden
-					# Translators: Reported when text is not hidden.
-					else NVDAString("not hidden")
-				)
-				textList.append(text)
-		if formatConfig["reportSuperscriptsAndSubscripts"]:
-			textPosition=attrs.get("text-position")
-			oldTextPosition=attrsCache.get("text-position") if attrsCache is not None else None
-			if (textPosition or oldTextPosition is not None) and textPosition!=oldTextPosition:
-				textPosition=textPosition.lower() if textPosition else textPosition
-				if textPosition=="super":
-					# Translators: Reported for superscript text.
-					text=NVDAString("superscript")
-				elif textPosition=="sub":
-					# Translators: Reported for subscript text.
-					text=NVDAString("subscript")
-				else:
-					# Translators: Reported for text which is at the baseline position;
-					# i.e. not superscript or subscript.
-					text=NVDAString("baseline")
-				textList.append(text)
-		if formatConfig["reportAlignment"]:
-			textAlign=attrs.get("text-align")
-			oldTextAlign=attrsCache.get("text-align") if attrsCache is not None else None
-			if (textAlign or oldTextAlign is not None) and textAlign!=oldTextAlign:
-				textAlign=textAlign.lower() if textAlign else textAlign
-				if textAlign=="left":
-					# Translators: Reported when text is left-aligned.
-					text=NVDAString("align left")
-				elif textAlign=="center":
-					# Translators: Reported when text is centered.
-					text=NVDAString("align center")
-				elif textAlign=="right":
-					# Translators: Reported when text is right-aligned.
-					text=NVDAString("align right")
-				elif textAlign=="justify":
-					# Translators: Reported when text is justified.
-					# See http://en.wikipedia.org/wiki/Typographic_alignment#Justified
-					text=NVDAString("align justify")
-				elif textAlign=="distribute":
-					# Translators: Reported when text is justified with character spacing (Japanese etc) 
-					# See http://kohei.us/2010/01/21/distributed-text-justification/
-					text=NVDAString("align distributed")
-				else:
-					# Translators: Reported when text has reverted to default alignment.
-					text=NVDAString("align default")
-				textList.append(text)
-			verticalAlign=attrs.get("vertical-align")
-			oldverticalAlign=attrsCache.get("vertical-align") if attrsCache is not None else None
-			if (verticalAlign or oldverticalAlign is not None) and verticalAlign!=oldverticalAlign:
-				verticalAlign=verticalAlign.lower() if verticalAlign else verticalAlign
-				if verticalAlign=="top":
-					# Translators: Reported when text is vertically top-aligned.
-					text=NVDAString("vertical align top")
-				elif verticalAlign in("center","middle"):
-					# Translators: Reported when text is vertically middle aligned.
-					text=NVDAString("vertical align middle")
-				elif verticalAlign=="bottom":
-					# Translators: Reported when text is vertically bottom-aligned.
-					text=NVDAString("vertical align bottom")
-				elif verticalAlign=="baseline":
-					# Translators: Reported when text is vertically aligned on the baseline. 
-					text=NVDAString("vertical align baseline")
-				elif verticalAlign=="justify":
-					# Translators: Reported when text is vertically justified.
-					text=NVDAString("vertical align justified")
-				elif verticalAlign=="distributed":
-					# Translators: Reported when text is vertically justified but with character spacing (For some Asian content). 
-					text=NVDAString("vertical align distributed") 
-				else:
-					# Translators: Reported when text has reverted to default vertical alignment.
-					text=NVDAString("vertical align default")
-				textList.append(text)
-		if formatConfig["reportParagraphIndentation"]:
-			indentLabels={
-				'left-indent':(
-					# Translators: the label for paragraph format left indent
-					NVDAString("left indent"),
-					# Translators: the message when there is no paragraph format left indent
-					NVDAString("no left indent"),
-				),
-				'right-indent':(
-					# Translators: the label for paragraph format right indent
-					NVDAString("right indent"),
-					# Translators: the message when there is no paragraph format right indent
-					NVDAString("no right indent"),
-				),
-				'hanging-indent':(
-					# Translators: the label for paragraph format hanging indent
-					NVDAString("hanging indent"),
-					# Translators: the message when there is no paragraph format hanging indent
-					NVDAString("no hanging indent"),
-				),
-				'first-line-indent':(
-					# Translators: the label for paragraph format first line indent 
-					NVDAString("first line indent"),
-					# Translators: the message when there is no paragraph format first line indent
-					NVDAString("no first line indent"),
-				),
-			}
-			for attr,(label,noVal) in indentLabels.items():
-				newVal=attrs.get(attr)
-				oldVal=attrsCache.get(attr) if attrsCache else None
-				if (newVal or oldVal is not None) and newVal!=oldVal:
-					if newVal:
-						textList.append(u"%s %s"%(label,newVal))
-					else:
-						textList.append(noVal)
-		if formatConfig["reportLineSpacing"]:
-			lineSpacing=attrs.get("line-spacing")
-			oldLineSpacing=attrsCache.get("line-spacing") if attrsCache is not None else None
-			if (lineSpacing or oldLineSpacing is not None) and lineSpacing!=oldLineSpacing:
-				# Translators: a type of line spacing (E.g. single line spacing)
-				textList.append(NVDAString("line spacing %s")%lineSpacing)
-		if  formatConfig["reportLinks"]:
-			link=attrs.get("link")
-			oldLink=attrsCache.get("link") if attrsCache is not None else None
-			if (link or oldLink is not None) and link!=oldLink:
-				text=NVDAString("link") if link else NVDAString("out of %s")%NVDAString("link")
-				textList.append(text)
-		if  formatConfig["reportComments"]:
-			comment=attrs.get("comment")
-			oldComment=attrsCache.get("comment") if attrsCache is not None else None
-			if (comment or oldComment is not None) and comment!=oldComment:
-				if comment:
-					textList.extend(self.getCommentFormatFieldSpeech(comment))
-				elif extraDetail:
-					# Translators: Reported when text no longer contains a comment.
-					text=NVDAString("out of comment")
-					textList.append(text)
-		if formatConfig["reportSpellingErrors"]:
-			invalidSpelling=attrs.get("invalid-spelling")
-			oldInvalidSpelling=attrsCache.get("invalid-spelling") if attrsCache is not None else None
-			if (invalidSpelling or oldInvalidSpelling is not None) and invalidSpelling!=oldInvalidSpelling:
-				if invalidSpelling:
-					# Translators: Reported when text contains a spelling error.
-					text=NVDAString("spelling error")
-				elif extraDetail:
-					# Translators: Reported when moving out of text containing a spelling error.
-					text=NVDAString("out of spelling error")
-				else:
-					text=""
-				if text:
-					textList.append(text)
-			invalidGrammar=attrs.get("invalid-grammar")
-			oldInvalidGrammar=attrsCache.get("invalid-grammar") if attrsCache is not None else None
-			if (invalidGrammar or oldInvalidGrammar is not None) and invalidGrammar!=oldInvalidGrammar:
-				if invalidGrammar:
-					# Translators: Reported when text contains a grammar error.
-					text=NVDAString("grammar error")
-				elif extraDetail:
-					# Translators: Reported when moving out of text containing a grammar error.
-					text=NVDAString("out of grammar error")
-				else:
-					text=""
-				if text:
-					textList.append(text)
-		# The line-prefix formatField attribute contains the text for a bullet or number for a list item, when the bullet or number does not appear in the actual text content.
-		# Normally this attribute could be repeated across formatFields within a list item and therefore is not safe to speak when the unit is word or character.
-		# However, some implementations (such as MS Word with UIA) do limit its useage to the very first formatField of the list item.
-		# Therefore, they also expose a line-prefix_speakAlways attribute to allow its usage for any unit.
-		linePrefix_speakAlways=attrs.get('line-prefix_speakAlways',False)
-		if linePrefix_speakAlways or unit in (textInfos.UNIT_LINE,textInfos.UNIT_SENTENCE,textInfos.UNIT_PARAGRAPH,textInfos.UNIT_READINGCHUNK):
-			linePrefix=attrs.get("line-prefix")
-			if linePrefix:
-				textList.append(linePrefix)
-		if attrsCache is not None:
-			attrsCache.clear()
-			attrsCache.update(attrs)
-		logBadSequenceTypes(textList)
-		return textList
-
-
 
 	def getFormatFieldSpeech_2021_1(
-			self,
-			attrs: textInfos.Field,
-			attrsCache: Optional[textInfos.Field] = None,
-			formatConfig: Optional[Dict[str, bool]] = None,
-			reason: Optional[OutputReason] = None,
-			unit: Optional[str] = None,
-			extraDetail: bool = False,
-			initialFormat: bool = False,
+		self,
+		attrs: textInfos.Field,
+		attrsCache: Optional[textInfos.Field] = None,
+		formatConfig: Optional[Dict[str, bool]] = None,
+		reason: Optional[OutputReason] = None,
+		unit: Optional[str] = None,
+		extraDetail: bool = False,
+		initialFormat: bool = False,
 	) -> SpeechSequence:
 		import speech
 		if not formatConfig:
@@ -1724,7 +1777,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				and not (
 					textColumnCount and int(textColumnCount) <= 1
 					and oldTextColumnCount is None)
-				):
+			):
 				if textColumnNumber and textColumnCount:
 					# Translators: Indicates the text column number in a document.
 					# {0} will be replaced with the text column number.
@@ -1760,7 +1813,10 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			oldHeadingLevel = attrsCache.get("heading-level") if attrsCache is not None else None
 			# headings should be spoken not only if they change, but also when beginning to speak lines or paragraphs
 			# Ensuring a similar experience to if a heading was a controlField
-			if headingLevel and (initialFormat and (reason == REASON_FOCUS or unit in (textInfos.UNIT_LINE, textInfos.UNIT_PARAGRAPH)) or headingLevel != oldHeadingLevel):
+			if headingLevel and (initialFormat and (
+				reason == REASON_FOCUS
+				or unit in (textInfos.UNIT_LINE, textInfos.UNIT_PARAGRAPH))
+				or headingLevel != oldHeadingLevel):
 				# Translators: Speaks the heading level (example output: heading level 2).
 				text = NVDAString("heading level %d") % headingLevel
 				textList.append(text)
@@ -1858,7 +1914,8 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				else:
 					# Translators: Reported when text is no longer marked as having been inserted.
 					text = NVDAString("not inserted")
-				if _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoInsertedTextReadingOption(False):
+				if _addonConfigManager.toggleAutomaticReadingOption(False) and (
+					_addonConfigManager.toggleAutoInsertedTextReadingOption(False)):
 					seq = formatRevisionAutoReadingSequence(self._rangeObj, revision, text)
 					textList.extend(seq)
 				else:
@@ -1873,7 +1930,8 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				else:
 					# Translators: Reported when text is no longer marked as having been deleted.
 					text = NVDAString("not deleted")
-				if _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoDeletedTextReadingOption(False):
+				if _addonConfigManager.toggleAutomaticReadingOption(False) and (
+					_addonConfigManager.toggleAutoDeletedTextReadingOption(False)):
 					seq = formatDeletedRevisionAutoReadingSequence(self._rangeObj, revision, text)
 					textList.extend(seq)
 				else:
@@ -1887,7 +1945,8 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				else:
 					# Translators: Reported when text is no longer marked as having been revised.
 					text = NVDAString("no revised %s") % oldRevision
-				if _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoRevisedTextReadingOption(False):
+				if _addonConfigManager.toggleAutomaticReadingOption(False) and (
+					_addonConfigManager.toggleAutoRevisedTextReadingOption(False)):
 					seq = formatRevisionAutoReadingSequence(self._rangeObj, revision, text)
 					textList.extend(seq)
 				else:
@@ -1983,7 +2042,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			# for NVDA version >= 2020.4
 			reportSuperscriptsAndSubscripts = formatConfig["reportSuperscriptsAndSubscripts"]
 		except KeyError:
-			reportSuperscriptsAndSubscripts  = False
+			reportSuperscriptsAndSubscripts = False
 		if reportSuperscriptsAndSubscripts:
 			textPosition = attrs.get("text-position")
 			oldTextPosition = attrsCache.get("text-position") if attrsCache is not None else None
@@ -2046,7 +2105,8 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 					# Translators: Reported when text is vertically justified.
 					text = NVDAString("vertical align justified")
 				elif verticalAlign == "distributed":
-					# Translators: Reported when text is vertically justified but with character spacing (For some Asian content).
+					# Translators: Reported when text is vertically justified
+					# but with character spacing (For some Asian content).
 					text = NVDAString("vertical align distributed")
 				else:
 					# Translators: Reported when text has reverted to default vertical alignment.
@@ -2137,12 +2197,16 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 					text = ""
 				if text:
 					textList.append(text)
-		# The line-prefix formatField attribute contains the text for a bullet or number for a list item, when the bullet or number does not appear in the actual text content.
-		# Normally this attribute could be repeated across formatFields within a list item and therefore is not safe to speak when the unit is word or character.
-		# However, some implementations (such as MS Word with UIA) do limit its useage to the very first formatField of the list item.
+		# The line-prefix formatField attribute contains the text for a bullet or number for a list item,
+					# when the bullet or number does not appear in the actual text content.
+		# Normally this attribute could be repeated across formatFields within a list item
+					# and therefore is not safe to speak when the unit is word or character.
+		# However, some implementations (such as MS Word with UIA)
+					# do limit its useage to the very first formatField of the list item.
 		# Therefore, they also expose a line-prefix_speakAlways attribute to allow its usage for any unit.
 		linePrefix_speakAlways = attrs.get('line-prefix_speakAlways', False)
-		if linePrefix_speakAlways or unit in (textInfos.UNIT_LINE, textInfos.UNIT_SENTENCE, textInfos.UNIT_PARAGRAPH, textInfos.UNIT_READINGCHUNK):
+		if linePrefix_speakAlways or unit in (
+			textInfos.UNIT_LINE, textInfos.UNIT_SENTENCE, textInfos.UNIT_PARAGRAPH, textInfos.UNIT_READINGCHUNK):
 			linePrefix = attrs.get("line-prefix")
 			if linePrefix:
 				textList.append(linePrefix)
@@ -2153,24 +2217,21 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 
 		return textList
 
-
-
-
 	def getControlFieldSpeech(
-			self,
-			attrs: textInfos.ControlField,
-			ancestorAttrs: List[textInfos.Field],
-			fieldType: str,
-			formatConfig: Optional[Dict[str, bool]] = None,
-			extraDetail: bool = False,
-			reason: Optional[OutputReason] = None
+		self,
+		attrs: textInfos.ControlField,
+		ancestorAttrs: List[textInfos.Field],
+		fieldType: str,
+		formatConfig: Optional[Dict[str, bool]] = None,
+		extraDetail: bool = False,
+		reason: Optional[OutputReason] = None
 	) -> SpeechSequence:
 		NVDAVersion = [version_year, version_major]
-		if NVDAVersion  >= [2021, 3]:
+		if NVDAVersion >= [2021, 3]:
 			funct = self.getControlFieldSpeech_2021_3
-		elif NVDAVersion  >= [2021, 2]:
+		elif NVDAVersion >= [2021, 2]:
 			funct = self.getControlFieldSpeech_2021_2
-		elif NVDAVersion  >= [2021, 1]:
+		elif NVDAVersion >= [2021, 1]:
 			funct = self.getControlFieldSpeech_2021_1
 		else:
 			# for nvda version <= 2020.4
@@ -2183,33 +2244,31 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			formatConfig,
 			extraDetail,
 			reason,
-			)
+		)
 
-
-
-	def getControlFieldSpeech_2021_3(  # noqa: C901
-			self,
-			attrs: textInfos.ControlField,
-			ancestorAttrs: List[textInfos.Field],
-			fieldType: str,
-			formatConfig: Optional[Dict[str, bool]] = None,
-			extraDetail: bool = False,
-			reason: Optional[OutputReason] = None
+	def getControlFieldSpeech_2021_3(
+		self,
+		attrs: textInfos.ControlField,
+		ancestorAttrs: List[textInfos.Field],
+		fieldType: str,
+		formatConfig: Optional[Dict[str, bool]] = None,
+		extraDetail: bool = False,
+		reason: Optional[OutputReason] = None
 	) -> SpeechSequence:
 		_ = NVDAString
 		from speech.speech import _shouldSpeakContentFirst
 		if attrs.get('isHidden'):
 			return []
 		if not formatConfig:
-			formatConfig=config.conf["documentFormatting"]
-	
+			formatConfig = config.conf["documentFormatting"]
+
 		presCat = attrs.getPresentationCategory(
 			ancestorAttrs,
 			formatConfig,
 			reason=reason,
 			extraDetail=extraDetail
 		)
-		childControlCount=int(attrs.get('_childcontrolcount',"0"))
+		childControlCount = int(attrs.get('_childcontrolcount', "0"))
 		role = attrs.get('role', controlTypes.Role.UNKNOWN)
 		if (
 			reason in [OutputReason.FOCUS, OutputReason.QUICKNAV]
@@ -2218,12 +2277,12 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			name = attrs.get('name', "")
 		else:
 			name = ""
-		states=attrs.get('states',set())
-		keyboardShortcut=attrs.get('keyboardShortcut', "")
+		states = attrs.get('states', set())
+		keyboardShortcut = attrs.get('keyboardShortcut', "")
 		isCurrent = attrs.get('current', controlTypes.IsCurrent.NO)
-		placeholderValue=attrs.get('placeholder', None)
-		value=attrs.get('value',"")
-	
+		placeholderValue = attrs.get('placeholder', None)
+		value = attrs.get('value', "")
+
 		description: Optional[str] = None
 		_descriptionFrom = attrs.get('_description-from', controlTypes.DescriptionFrom.UNKNOWN)
 		_descriptionIsContent: bool = attrs.get("descriptionIsContent", False)
@@ -2255,14 +2314,14 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			or _reportDescriptionAsAnnotation
 		):
 			description = attrs.get('description')
-	
-		level=attrs.get('level',None)
-	
+
+		level = attrs.get('level', None)
+
 		if presCat != attrs.PRESCAT_LAYOUT:
 			tableID = attrs.get("table-id")
 		else:
 			tableID = None
-	
+
 		roleText = attrs.get('roleText')
 		landmark = attrs.get("landmark")
 		if roleText:
@@ -2283,50 +2342,54 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 		placeholderSequence = getPropertiesSpeech(reason=reason, placeholder=placeholderValue)
 		nameSequence = getPropertiesSpeech(reason=reason, name=name)
 		valueSequence = getPropertiesSpeech(reason=reason, value=value)
-		if role == controlTypes.Role.FOOTNOTE and _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoFootnoteReadingOption(False):
+		if role == controlTypes.Role.FOOTNOTE and (
+			_addonConfigManager.toggleAutomaticReadingOption(False)
+			and _addonConfigManager.toggleAutoFootnoteReadingOption(False)):
 			footnote = self.getFootnote(value)
 			if footnote != "":
 				valueSequence = getNotePropertiesSpeech(reason, value, footnote)   # "%s (%s)" % (value, footnote))
-		if role == controlTypes.Role.ENDNOTE and _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoEndnoteReadingOption(False):
+		if role == controlTypes.Role.ENDNOTE and (
+			_addonConfigManager.toggleAutomaticReadingOption(False)
+			and _addonConfigManager.toggleAutoEndnoteReadingOption(False)):
 			endnote = self.getEndNote(value)
 			if endnote != "":
 				valueSequence = getNotePropertiesSpeech(reason, value, endnote)
-		
+
 		descriptionSequence = []
 		if description is not None:
 			descriptionSequence = getPropertiesSpeech(
 				reason=reason, description=description
 			)
 		levelSequence = getPropertiesSpeech(reason=reason, positionInfo_level=level)
-	
+
 		# Determine under what circumstances this node should be spoken.
 		# speakEntry: Speak when the user enters the control.
 		# speakWithinForLine: When moving by line, speak when the user is already within the control.
 		# speakExitForLine: When moving by line, speak when the user exits the control.
 		# speakExitForOther: When moving by word or character, speak when the user exits the control.
-		speakEntry=speakWithinForLine=speakExitForLine=speakExitForOther=False
+		speakEntry = speakWithinForLine = speakExitForLine = speakExitForOther = False
 		if presCat == attrs.PRESCAT_SINGLELINE:
-			speakEntry=True
-			speakWithinForLine=True
-			speakExitForOther=True
+			speakEntry = True
+			speakWithinForLine = True
+			speakExitForOther = True
 		elif presCat in (attrs.PRESCAT_MARKER, attrs.PRESCAT_CELL):
-			speakEntry=True
+			speakEntry = True
 		elif presCat == attrs.PRESCAT_CONTAINER:
-			speakEntry=True
+			speakEntry = True
 			speakExitForLine = bool(
 				attrs.get('roleText')
 				or role != controlTypes.Role.LANDMARK
 			)
-			speakExitForOther=True
-	
+			speakExitForOther = True
+
 		# Determine the order of speech.
 		# speakContentFirst: Speak the content before the control field info.
 		speakContentFirst = _shouldSpeakContentFirst(reason, role, presCat, attrs, tableID, states)
 		# speakStatesFirst: Speak the states before the role.
-		speakStatesFirst=role==controlTypes.Role.LINK
-	
-		containerContainsText="" #: used for item counts for lists
-	
+		speakStatesFirst = role == controlTypes.Role.LINK
+
+		containerContainsText = ""  # : used for item counts for lists
+
 		# Determine what text to speak.
 		# Special cases
 		if(
@@ -2340,20 +2403,20 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			# handled further down in the general cases section.
 			# This ensures that properties such as name, states and level etc still get reported appropriately.
 			# Translators: Number of items in a list (example output: list with 5 items).
-			containerContainsText=NVDAString("with %s items")%childControlCount
-		elif fieldType=="start_addedToControlFieldStack" and role==controlTypes.Role.TABLE and tableID:
+			containerContainsText = NVDAString("with %s items") % childControlCount
+		elif fieldType == "start_addedToControlFieldStack" and role == controlTypes.Role.TABLE and tableID:
 			# Table.
-			rowCount=(attrs.get("table-rowcount-presentational") or attrs.get("table-rowcount"))
-			columnCount=(attrs.get("table-columncount-presentational") or attrs.get("table-columncount"))
+			rowCount = (attrs.get("table-rowcount-presentational") or attrs.get("table-rowcount"))
+			columnCount = (attrs.get("table-columncount-presentational") or attrs.get("table-columncount"))
 			tableSeq = nameSequence[:]
 			tableSeq.extend(roleTextSequence)
 			tableSeq.extend(stateTextSequence)
 			tableSeq.extend(
 				getPropertiesSpeech(
-					_tableID=tableID, 
-					rowCount=rowCount, 
+					_tableID=tableID,
+					rowCount=rowCount,
 					columnCount=columnCount
-			))
+				))
 			tableSeq.extend(levelSequence)
 			logBadSequenceTypes(tableSeq)
 			return tableSeq
@@ -2395,7 +2458,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			tableCellSequence.extend(isCurrentSequence)
 			logBadSequenceTypes(tableCellSequence)
 			return tableCellSequence
-	
+
 		content = attrs.get("content")
 		# General cases.
 		if ((
@@ -2408,11 +2471,11 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				and fieldType in ("start_addedToControlFieldStack", "start_relative")
 			))
 		)
-		or (
-			speakWithinForLine
-			and not speakContentFirst
-			and not extraDetail
-			and fieldType == "start_inControlFieldStack"
+			or (
+				speakWithinForLine
+				and not speakContentFirst
+				and not extraDetail
+				and fieldType == "start_inControlFieldStack"
 		)):
 			out = []
 			if content and speakContentFirst:
@@ -2424,7 +2487,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 						f"valueSequence: {valueSequence!r} placeholderSequence: {placeholderSequence!r}"
 					)
 				valueSequence = placeholderSequence
-	
+
 			# Avoid speaking name twice. Which may happen if this controlfield is labelled by
 			# one of it's internal fields. We determine this by checking for 'labelledByContent'.
 			# An example of this situation is a checkbox element that has aria-labelledby pointing to a child
@@ -2437,7 +2500,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				log.debug("Skipping name sequence: control field is labelled by content")
 			else:
 				out.extend(nameSequence)
-	
+
 			out.extend(stateTextSequence if speakStatesFirst else roleTextSequence)
 			out.extend(roleTextSequence if speakStatesFirst else stateTextSequence)
 			out.append(containerContainsText)
@@ -2448,7 +2511,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			out.extend(keyboardShortcutSequence)
 			if content and not speakContentFirst:
 				out.append(content)
-	
+
 			logBadSequenceTypes(out)
 			return out
 		elif (
@@ -2460,7 +2523,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			and (
 				(not extraDetail and speakExitForLine)
 				or (extraDetail and speakExitForOther)
-		)):
+			)):
 			if all(isinstance(item, str) for item in roleTextSequence):
 				joinedRoleText = " ".join(roleTextSequence)
 				out = [
@@ -2469,12 +2532,12 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				]
 			else:
 				out = roleTextSequence
-	
+
 			logBadSequenceTypes(out)
 			return out
-	
+
 		# Special cases
-		elif not speakEntry and fieldType in ("start_addedToControlFieldStack","start_relative"):
+		elif not speakEntry and fieldType in ("start_addedToControlFieldStack", "start_relative"):
 			out = []
 			if isCurrent != controlTypes.IsCurrent.NO:
 				out.extend(isCurrentSequence)
@@ -2498,29 +2561,30 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			return out
 		else:
 			return []
-	def getControlFieldSpeech_2021_2(  # noqa: C901
+
+	def getControlFieldSpeech_2021_2(
 		self,
-			attrs: textInfos.ControlField,
-			ancestorAttrs: List[textInfos.Field],
-			fieldType: str,
-			formatConfig: Optional[Dict[str, bool]] = None,
-			extraDetail: bool = False,
-			reason: Optional[OutputReason] = None
+		attrs: textInfos.ControlField,
+		ancestorAttrs: List[textInfos.Field],
+		fieldType: str,
+		formatConfig: Optional[Dict[str, bool]] = None,
+		extraDetail: bool = False,
+		reason: Optional[OutputReason] = None
 	) -> SpeechSequence:
 		from speech.speech import _shouldSpeakContentFirst
 		_ = NVDAString
 		if attrs.get('isHidden'):
 			return []
 		if not formatConfig:
-			formatConfig=config.conf["documentFormatting"]
-	
+			formatConfig = config.conf["documentFormatting"]
+
 		presCat = attrs.getPresentationCategory(
 			ancestorAttrs,
 			formatConfig,
 			reason=reason,
 			extraDetail=extraDetail
 		)
-		childControlCount=int(attrs.get('_childcontrolcount',"0"))
+		childControlCount = int(attrs.get('_childcontrolcount', "0"))
 		role = attrs.get('role', controlTypes.ROLE_UNKNOWN)
 		if (
 			reason == OutputReason.FOCUS
@@ -2529,22 +2593,22 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			name = attrs.get('name', "")
 		else:
 			name = ""
-		states=attrs.get('states',set())
-		keyboardShortcut=attrs.get('keyboardShortcut', "")
+		states = attrs.get('states', set())
+		keyboardShortcut = attrs.get('keyboardShortcut', "")
 		isCurrent = attrs.get('current', controlTypes.IsCurrent.NO)
-		placeholderValue=attrs.get('placeholder', None)
-		value=attrs.get('value',"")
+		placeholderValue = attrs.get('placeholder', None)
+		value = attrs.get('value', "")
 		if reason == OutputReason.FOCUS or attrs.get('alwaysReportDescription', False):
-			description=attrs.get('description',"")
+			description = attrs.get('description', "")
 		else:
-			description=""
-		level=attrs.get('level',None)
-	
+			description = ""
+		level = attrs.get('level', None)
+
 		if presCat != attrs.PRESCAT_LAYOUT:
 			tableID = attrs.get("table-id")
 		else:
 			tableID = None
-	
+
 		roleText = attrs.get('roleText')
 		landmark = attrs.get("landmark")
 		if roleText:
@@ -2565,11 +2629,15 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 		placeholderSequence = getPropertiesSpeech(reason=reason, placeholder=placeholderValue)
 		nameSequence = getPropertiesSpeech(reason=reason, name=name)
 		valueSequence = getPropertiesSpeech(reason=reason, value=value)
-		if role == controlTypes.ROLE_FOOTNOTE and _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoFootnoteReadingOption(False):
+		if role == controlTypes.ROLE_FOOTNOTE and (
+			_addonConfigManager.toggleAutomaticReadingOption(False)
+			and _addonConfigManager.toggleAutoFootnoteReadingOption(False)):
 			footnote = self.getFootnote(value)
 			if footnote != "":
 				valueSequence = getNotePropertiesSpeech(reason, value, footnote)   # "%s (%s)" % (value, footnote))
-		if role == controlTypes.ROLE_ENDNOTE and _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoEndnoteReadingOption(False):
+		if role == controlTypes.ROLE_ENDNOTE and (
+			_addonConfigManager.toggleAutomaticReadingOption(False)
+			and _addonConfigManager.toggleAutoEndnoteReadingOption(False)):
 			endnote = self.getEndNote(value)
 			if endnote != "":
 				valueSequence = getNotePropertiesSpeech(reason, value, endnote)
@@ -2579,35 +2647,35 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				reason=reason, description=description
 			)
 		levelSequence = getPropertiesSpeech(reason=reason, positionInfo_level=level)
-	
+
 		# Determine under what circumstances this node should be spoken.
 		# speakEntry: Speak when the user enters the control.
 		# speakWithinForLine: When moving by line, speak when the user is already within the control.
 		# speakExitForLine: When moving by line, speak when the user exits the control.
 		# speakExitForOther: When moving by word or character, speak when the user exits the control.
-		speakEntry=speakWithinForLine=speakExitForLine=speakExitForOther=False
+		speakEntry = speakWithinForLine = speakExitForLine = speakExitForOther = False
 		if presCat == attrs.PRESCAT_SINGLELINE:
-			speakEntry=True
-			speakWithinForLine=True
-			speakExitForOther=True
+			speakEntry = True
+			speakWithinForLine = True
+			speakExitForOther = True
 		elif presCat in (attrs.PRESCAT_MARKER, attrs.PRESCAT_CELL):
-			speakEntry=True
+			speakEntry = True
 		elif presCat == attrs.PRESCAT_CONTAINER:
-			speakEntry=True
+			speakEntry = True
 			speakExitForLine = bool(
 				attrs.get('roleText')
 				or role != controlTypes.ROLE_LANDMARK
 			)
-			speakExitForOther=True
-	
+			speakExitForOther = True
+
 		# Determine the order of speech.
 		# speakContentFirst: Speak the content before the control field info.
 		speakContentFirst = _shouldSpeakContentFirst(reason, role, presCat, attrs, tableID, states)
 		# speakStatesFirst: Speak the states before the role.
-		speakStatesFirst=role==controlTypes.ROLE_LINK
-	
-		containerContainsText="" #: used for item counts for lists
-	
+		speakStatesFirst = role == controlTypes.ROLE_LINK
+
+		containerContainsText = ""  # : used for item counts for lists
+
 		# Determine what text to speak.
 		# Special cases
 		if(
@@ -2621,20 +2689,20 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			# handled further down in the general cases section.
 			# This ensures that properties such as name, states and level etc still get reported appropriately.
 			# Translators: Number of items in a list (example output: list with 5 items).
-			containerContainsText=NVDAString("with %s items")%childControlCount
-		elif fieldType=="start_addedToControlFieldStack" and role==controlTypes.ROLE_TABLE and tableID:
+			containerContainsText = NVDAString("with %s items") % childControlCount
+		elif fieldType == "start_addedToControlFieldStack" and role == controlTypes.ROLE_TABLE and tableID:
 			# Table.
-			rowCount=(attrs.get("table-rowcount-presentational") or attrs.get("table-rowcount"))
-			columnCount=(attrs.get("table-columncount-presentational") or attrs.get("table-columncount"))
+			rowCount = (attrs.get("table-rowcount-presentational") or attrs.get("table-rowcount"))
+			columnCount = (attrs.get("table-columncount-presentational") or attrs.get("table-columncount"))
 			tableSeq = nameSequence[:]
 			tableSeq.extend(roleTextSequence)
 			tableSeq.extend(stateTextSequence)
 			tableSeq.extend(
 				getPropertiesSpeech(
-					_tableID=tableID, 
-					rowCount=rowCount, 
+					_tableID=tableID,
+					rowCount=rowCount,
 					columnCount=columnCount
-			))
+				))
 			tableSeq.extend(levelSequence)
 			logBadSequenceTypes(tableSeq)
 			return tableSeq
@@ -2676,7 +2744,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			tableCellSequence.extend(isCurrentSequence)
 			logBadSequenceTypes(tableCellSequence)
 			return tableCellSequence
-	
+
 		content = attrs.get("content")
 		# General cases.
 		if ((
@@ -2689,11 +2757,11 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				and fieldType in ("start_addedToControlFieldStack", "start_relative")
 			))
 		)
-		or (
-			speakWithinForLine
-			and not speakContentFirst
-			and not extraDetail
-			and fieldType == "start_inControlFieldStack"
+			or (
+				speakWithinForLine
+				and not speakContentFirst
+				and not extraDetail
+				and fieldType == "start_inControlFieldStack"
 		)):
 			out = []
 			if content and speakContentFirst:
@@ -2705,7 +2773,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 						f"valueSequence: {valueSequence!r} placeholderSequence: {placeholderSequence!r}"
 					)
 				valueSequence = placeholderSequence
-	
+
 			# Avoid speaking name twice. Which may happen if this controlfield is labelled by
 			# one of it's internal fields. We determine this by checking for 'labelledByContent'.
 			# An example of this situation is a checkbox element that has aria-labelledby pointing to a child
@@ -2718,7 +2786,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				log.debug("Skipping name sequence: control field is labelled by content")
 			else:
 				out.extend(nameSequence)
-	
+
 			out.extend(stateTextSequence if speakStatesFirst else roleTextSequence)
 			out.extend(roleTextSequence if speakStatesFirst else stateTextSequence)
 			out.append(containerContainsText)
@@ -2729,7 +2797,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			out.extend(keyboardShortcutSequence)
 			if content and not speakContentFirst:
 				out.append(content)
-	
+
 			logBadSequenceTypes(out)
 			return out
 		elif (
@@ -2741,7 +2809,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			and (
 				(not extraDetail and speakExitForLine)
 				or (extraDetail and speakExitForOther)
-		)):
+			)):
 			if all(isinstance(item, str) for item in roleTextSequence):
 				joinedRoleText = " ".join(roleTextSequence)
 				out = [
@@ -2750,12 +2818,12 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				]
 			else:
 				out = roleTextSequence
-	
+
 			logBadSequenceTypes(out)
 			return out
-	
+
 		# Special cases
-		elif not speakEntry and fieldType in ("start_addedToControlFieldStack","start_relative"):
+		elif not speakEntry and fieldType in ("start_addedToControlFieldStack", "start_relative"):
 			out = []
 			if isCurrent != controlTypes.IsCurrent.NO:
 				out.extend(isCurrentSequence)
@@ -2777,10 +2845,6 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			return out
 		else:
 			return []
-	
-	
-	
-
 
 	def getControlFieldSpeech_2021_1(
 		self,
@@ -2801,7 +2865,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			formatConfig,
 			reason=reason,
 			extraDetail=extraDetail
-			)
+		)
 		childControlCount = int(attrs.get('_childcontrolcount', "0"))
 		role = attrs.get('role', controlTypes.ROLE_UNKNOWN)
 		if (
@@ -2847,11 +2911,15 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 		placeholderSequence = getPropertiesSpeech(reason=reason, placeholder=placeholderValue)
 		nameSequence = getPropertiesSpeech(reason=reason, name=name)
 		valueSequence = getPropertiesSpeech(reason=reason, value=value)
-		if role == controlTypes.ROLE_FOOTNOTE and _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoFootnoteReadingOption(False):
+		if role == controlTypes.ROLE_FOOTNOTE and (
+			_addonConfigManager.toggleAutomaticReadingOption(False)
+			and _addonConfigManager.toggleAutoFootnoteReadingOption(False)):
 			footnote = self.getFootnote(value)
 			if footnote != "":
 				valueSequence = getNotePropertiesSpeech(reason, value, footnote)   # "%s (%s)" % (value, footnote))
-		if role == controlTypes.ROLE_ENDNOTE and _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoEndnoteReadingOption(False):
+		if role == controlTypes.ROLE_ENDNOTE and (
+			_addonConfigManager.toggleAutomaticReadingOption(False)
+			and _addonConfigManager.toggleAutoEndnoteReadingOption(False)):
 			endnote = self.getEndNote(value)
 			if endnote != "":
 				valueSequence = getNotePropertiesSpeech(reason, value, endnote)
@@ -2980,15 +3048,15 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			)
 			or (
 				not speakContentFirst
-				and fieldType in ("start_addedToControlFieldStack", "start_relative")
-			))
+				and fieldType in ("start_addedToControlFieldStack", "start_relative"))
 			)
+		)
 			or (
 				speakWithinForLine
 				and not speakContentFirst
 				and not extraDetail
-				and fieldType == "start_inControlFieldStack"
-			)):
+				and fieldType == "start_inControlFieldStack")
+		):
 			out = []
 			if content and speakContentFirst:
 				out.append(content)
@@ -3073,13 +3141,13 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 			return []
 
 	def getControlFieldSpeech_2020_4(
-			self,
-			attrs: textInfos.ControlField,
-			ancestorAttrs: List[textInfos.Field],
-			fieldType: str,
-			formatConfig: Optional[Dict[str, bool]] = None,
-			extraDetail: bool = False,
-			reason: Optional[OutputReason] = None
+		self,
+		attrs: textInfos.ControlField,
+		ancestorAttrs: List[textInfos.Field],
+		fieldType: str,
+		formatConfig: Optional[Dict[str, bool]] = None,
+		extraDetail: bool = False,
+		reason: Optional[OutputReason] = None
 	) -> SpeechSequence:
 
 		if attrs.get('isHidden'):
@@ -3132,11 +3200,15 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 		placeholderSequence = getPropertiesSpeech(reason=reason, placeholder=placeholderValue)
 		nameSequence = getPropertiesSpeech(reason=reason, name=name)
 		valueSequence = getPropertiesSpeech(reason=reason, value=value)
-		if role == controlTypes.ROLE_FOOTNOTE and _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoFootnoteReadingOption(False):
+		if role == controlTypes.ROLE_FOOTNOTE and (
+			_addonConfigManager.toggleAutomaticReadingOption(False)
+			and _addonConfigManager.toggleAutoFootnoteReadingOption(False)):
 			footnote = self.getFootnote(value)
 			if footnote != "":
 				valueSequence = getNotePropertiesSpeech(reason, value, footnote)   # "%s (%s)" % (value, footnote))
-		if role == controlTypes.ROLE_ENDNOTE and _addonConfigManager.toggleAutomaticReadingOption(False) and _addonConfigManager.toggleAutoEndnoteReadingOption(False):
+		if role == controlTypes.ROLE_ENDNOTE and (
+			_addonConfigManager.toggleAutomaticReadingOption(False)
+			and _addonConfigManager.toggleAutoEndnoteReadingOption(False)):
 			endnote = self.getEndNote(value)
 			if endnote != "":
 				valueSequence = getNotePropertiesSpeech(reason, value, endnote)
@@ -3267,13 +3339,13 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 				not speakContentFirst
 				and fieldType in ("start_addedToControlFieldStack", "start_relative")
 			))
-			)
+		)
 			or (
 				speakWithinForLine
 				and not speakContentFirst
 				and not extraDetail
 				and fieldType == "start_inControlFieldStack"
-			)):
+		)):
 			out = []
 			content = attrs.get("content")
 			if content and speakContentFirst:
@@ -3373,7 +3445,7 @@ def getSynthDisplayInfos(synth, synthConf):
 		import autoSettingsUtils.driverSetting
 		numericSynthSetting = [autoSettingsUtils.driverSetting.NumericDriverSetting, ]
 		booleanSynthSetting = [autoSettingsUtils.driverSetting.BooleanDriverSetting, ]
-			
+
 	infos = []
 	for setting in synth.supportedSettings:
 		settingID = getattr(setting, id)
@@ -3391,7 +3463,7 @@ def getSynthDisplayInfos(synth, synthConf):
 					# for nvda =>2019.3
 					i = [x.id for x in tempList].index(cur)
 					v = tempList[i].displayName
-				except:  # noqa:E722
+				except Exception:
 					i = [x.ID for x in tempList].index(cur)
 					v = tempList[i].name
 				info = v
@@ -3399,7 +3471,7 @@ def getSynthDisplayInfos(synth, synthConf):
 	d = {}
 	for i in range(0, len(infos)):
 		item = infos[i]
-		d[str(i+1)] = [item[0], item[1]]
+		d[str(i + 1)] = [item[0], item[1]]
 	return d
 
 
@@ -3482,6 +3554,5 @@ def terminate():
 	# to restore suspended synth
 	speech.cancelSpeech()
 	if _NVDACancelSpeech is not None:
-		
 		speech.cancelSpeech = _NVDACancelSpeech
 		_NVDACancelSpeech = None

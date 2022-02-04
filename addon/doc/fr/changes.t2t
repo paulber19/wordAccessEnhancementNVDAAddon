@@ -15,6 +15,16 @@ Téléchargement :
 - [versions de développement ADDON_DEV_URL]
 
 
++ v3.2 (04/02/2022) +
+- Compatibilité avec NVDA 2022.1.
+- réinitialisation de la configuration en cas d'erreurs dans le fichier de configuration.
+
+
+Changements:
+- lors d'une mise à jour automatique de l'extension, il n'est plus demander à l'utilisateur s'il veut conserver les paramètres actuels de configuration de l'extension.
+- lors d'une installation manuelle de l'extension, une demande de confirmation est demandée quand l'utilisateur a choisi de ne pas garder les paramètres actuels de la configuration de l'extension.
+
+
 + v3.1 (19/12/2021) +
 Compatibilité avec NVDA 2021.3. Les versions de NVDA antérieures à 2020.4 ne sont plus supportées.
 

@@ -1,20 +1,20 @@
 # appModules\winword\ww_document.py
 # A part of WordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
 import addonHandler
 import speech
 import api
-from .ww_wdConst import *  # noqa:F403
+from .ww_wdConst import wdUndefined
 import sys
 import os
 _curAddon = addonHandler.getCodeAddon()
 path = os.path.join(_curAddon.path, "shared")
 sys.path.append(path)
-from ww_informationDialog import InformationDialog  # noqa:E402
-from ww_NVDAStrings import NVDAString  # noqa:E402
+from ww_informationDialog import InformationDialog
+from ww_NVDAStrings import NVDAString
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -39,7 +39,7 @@ def getPageNumberInfo(obj):
 		3: _("Page number inside"),
 		# Translators: text to indicate page number alignment to outside.
 		4: _("Page's number Outside"),
-		}
+	}
 	alignment = oPageNumbers(1).Alignment
 	if alignment in alignmentToMsg:
 		return alignmentToMsg[alignment]
@@ -52,32 +52,33 @@ class Application(object):
 		self.winwordApplicationObject = winwordApplicationObject
 
 	def _getLocalizedMeasurementTextForPointSize(self, offset):
-		from NVDAObjects.window.winword import wdInches, wdCentimeters, wdMillimeters, wdPoints, wdPicas  # noqa:E501
+		from NVDAObjects.window.winword import (
+			wdInches, wdCentimeters, wdMillimeters, wdPoints, wdPicas)
 		options = self.winwordApplicationObject.Options
 		useCharacterUnit = options.useCharacterUnit
 		if useCharacterUnit:
-			offset = offset/self.winwordApplicationObject.Selection.Font.Size
+			offset = offset / self.winwordApplicationObject.Selection.Font.Size
 			# Translators: a measurement in Microsoft Word
 			return NVDAString("{offset:.3g} characters").format(offset=offset)
 		else:
 			unit = options.MeasurementUnit
 			if unit == wdInches:
-				offset = offset/72.0
+				offset = offset / 72.0
 				# Translators: a measurement in Microsoft Word
 				return NVDAString("{offset:.3g} inches").format(offset=offset)
 			elif unit == wdCentimeters:
-				offset = offset/28.35
+				offset = offset / 28.35
 				# Translators: a measurement in Microsoft Word
 				return NVDAString("{offset:.3g} centimeters").format(offset=offset)
 			elif unit == wdMillimeters:
-				offset = offset/2.835
+				offset = offset / 2.835
 				# Translators: a measurement in Microsoft Word
 				return NVDAString("{offset:.3g} millimeters").format(offset=offset)
 			elif unit == wdPoints:
 				# Translators: a measurement in Microsoft Word
 				return NVDAString("{offset:.3g} points").format(offset=offset)
 			elif unit == wdPicas:
-				offset = offset/12.0
+				offset = offset / 12.0
 				# Translators: a measurement in Microsoft Word
 				# See http://support.microsoft.com/kb/76388 for details.
 				return NVDAString("{offset:.3g} picas").format(offset=offset)
@@ -116,17 +117,22 @@ class HeaderFooter(object):
 
 	def getPageNumberAlignment(self):
 		alignmentToMsg = {
+			# for wdAlignPageNumberLeft
 			# Translators: text to indicate page number alignment to the left.
-			0: _("Page's number on the Left"),  # wdAlignPageNumberLeft
+			0: _("Page's number on the Left"),
+			# for wdAlignPageNumberCenter
 			# Translators: text to indicate page number alignment to the center.
-			1: _("Page's number Centered"),  # wdAlignPageNumberCenter
+			1: _("Page's number Centered"),
+			# for wdAlignPageNumberRight
 			# Translators: text to indicate page numer alignment to the right.
-			2: _("Page's number on the Right"),  # wdAlignPageNumberRight
+			2: _("Page's number on the Right"),
+			# for wdAlignPageNumberInside
 			# Translators: text to indicate page number alignment to inside.
-			3: _("Page number inside"),  # wdAlignPageNumberInside
+			3: _("Page number inside"),
+			# for wdAlignPageNumberOutside
 			# Translators: text to indicate page number alignment to outside.
-			4: _("Page's number Outside"),  # wdAlignPageNumberOutside
-			}
+			4: _("Page's number Outside"),
+		}
 		pageNumbers = self.winwordHeaderFooterObject.PageNumbers
 		if pageNumbers.Count == 0:
 			return None
@@ -143,11 +149,11 @@ class PageSetup(object):
 		# differentFirstPageHeaderFooter: different header or footer is used on
 		# the first page.
 		# Can be True, False, or wdUndefined.
-		self.differentFirstPageHeaderFooter = winwordPageSetupObject.DifferentFirstPageHeaderFooter  # noqa:E501
+		self.differentFirstPageHeaderFooter = winwordPageSetupObject.DifferentFirstPageHeaderFooter
 		# oddAndEvenPagesHeaderFooter : True if the specified PageSetup object
 		# has different headers and footers for odd-numbered and even-numbered pages.
 		# Can be True, False, or wdUndefined.
-		self.oddAndEvenPagesHeaderFooter = winwordPageSetupObject.OddAndEvenPagesHeaderFooter  # noqa:E501
+		self.oddAndEvenPagesHeaderFooter = winwordPageSetupObject.OddAndEvenPagesHeaderFooter
 		# footerDistance : the distance (in points)
 		# between the footer and the bottom of the page.
 		self.footerDistance = winwordPageSetupObject.FooterDistance
@@ -178,12 +184,15 @@ class PageSetup(object):
 
 	def isMultipleTextColumn(self):
 		count = self.textColumns.Count
-		return (count > 1)\
-			and (count != wdUndefined) and self.activeDocument.isPrintView()
+		return (
+			count > 1
+			and count != wdUndefined
+			and self.activeDocument.isPrintView())
 
 	def getColumnTextStyleInfos(self, textColumns, indent=""):
 		pointsToDefaultUnits = self.activeDocument.application.pointsToDefaultUnits
 		i = 1
+		textList = []
 		while i <= textColumns.Count:
 			width = pointsToDefaultUnits(textColumns(i).Width)
 			# Translators: column information.
@@ -192,9 +201,9 @@ class PageSetup(object):
 				spaceAfter = pointsToDefaultUnits(textColumns(i).SpaceAfter)
 				# Translators: column information.
 				text = text + " " + _("with %s spacing after") % spaceAfter
-			except:  # noqa:E722
+				textList.append(indent + text)
+			except Exception:
 				pass
-			textList.append(indent + text)
 			i = i + 1
 		return textList
 
@@ -216,7 +225,7 @@ class PageSetup(object):
 		if textColumns.EvenlySpaced:
 			pointsToDefaultUnits = self.activeDocument.application.pointsToDefaultUnits
 			# Translators: text to indicate text column style
-			msg = _("Style: columns' wide = {wide} (evenly spaced), gap between columns = {spacing}")  # noqa:E501
+			msg = _("Style: columns' wide = {wide} (evenly spaced), gap between columns = {spacing}")
 			msg = msg.format(
 				wide=pointsToDefaultUnits(textColumns.Width),
 				spacing=pointsToDefaultUnits(textColumns.Spacing))
@@ -230,11 +239,13 @@ class PageSetup(object):
 		return textList
 
 	def getGutterInfos(self, indent=""):
+		from .ww_wdConst import (
+			wdGutterPosLeft, wdGutterPosRight, wdGutterPosTop)
 		gutterPosDescriptions = {
 			wdGutterPosLeft: _("on the left side"),
 			wdGutterPosRight: _("on the right side"),
 			wdGutterPosTop: _("on the top side"),
-			}
+		}
 
 		textList = []
 		pointsToDefaultUnits = self.activeDocument.application.pointsToDefaultUnits
@@ -294,35 +305,41 @@ class PageSetup(object):
 		return textList
 
 	def getOrientation(self):
+		from .ww_wdConst import wdOrientLandscape, wdOrientPortrait
 		wdOrientationDescriptions = {
 			wdOrientLandscape: _("Landscape"),
 			wdOrientPortrait: _("Portrait"),
 		}
 		try:
 			return wdOrientationDescriptions[self.orientation]
-		except:  # noqa:E722
+		except KeyError:
 			return ""
 
 	def getVerticalAlignment(self):
+		from .ww_wdConst import (
+			wdAlignVerticalTop, wdAlignVerticalCenter, wdAlignVerticalJustify, wdAlignVerticalBottom)
 		verticalAlignmentDescriptions = {
 			wdAlignVerticalTop: _("top"),
 			wdAlignVerticalCenter: _("centered"),
 			wdAlignVerticalJustify: _("justified"),
 			wdAlignVerticalBottom: _("bottom"),
-			}
+		}
 		try:
 			return verticalAlignmentDescriptions[self.verticalAlignment]
-		except:  # noqa:E722
+		except KeyError:
 			return ""
 
 	def getDispositionInfos(self, indent=""):
+		from .ww_wdConst import (
+			wdSectionContinuous, wdSectionEvenPage, wdSectionNewColumn,
+			wdSectionNewPage, wdSectionOddPage)
 		sectionStartDescriptions = {
 			wdSectionContinuous: _("Continuous"),
 			wdSectionEvenPage: _("Even pages "),
 			wdSectionNewColumn: _("New column"),
 			wdSectionNewPage: _("New page"),
 			wdSectionOddPage: _("Odd pages"),
-			}
+		}
 		pointsToDefaultUnits = self.activeDocument.application.pointsToDefaultUnits
 		textList = []
 		# Translators: title of disposition information .
@@ -348,7 +365,7 @@ class PageSetup(object):
 		text = text % pointsToDefaultUnits(self.footerDistance)
 		textList.append(curIndent + text)
 		# Translators: distance between header and top information.
-		text = _("Distance between header and top: %s") % pointsToDefaultUnits(self.headerDistance)  # noqa:E501
+		text = _("Distance between header and top: %s") % pointsToDefaultUnits(self.headerDistance)
 		textList.append(curIndent + text)
 		verticalAlignmentText = self.getVerticalAlignment()
 		if verticalAlignmentText != "":
@@ -359,53 +376,10 @@ class PageSetup(object):
 		return textList
 
 	def getPaperSize(self):
-		paperSizeDescriptions = {
-			wdPaper10x14: _(" 10 inches wide, 14 inches long"),
-			wdPaper11x17: _("Legal 11 inches wide, 17 inches long"),
-			wdPaperA3: _("A3 dimensions"),
-			wdPaperA4: _("A4 dimensions"),
-			wdPaperA4Small: _("Small A4 dimensions"),
-			wdPaperA5: _("A5 dimensions"),
-			wdPaperB4: _("B4 dimensions"),
-			wdPaperB5: _("B5 dimensions"),
-			wdPaperCSheet: _("C sheet dimensions"),
-			wdPaperCustom: _("Custom paper size"),
-			wdPaperDSheet: _("D sheet dimensions"),
-			wdPaperEnvelope10: _("Legal envelope, size 10"),
-			wdPaperEnvelope11: _("Envelope, size 11"),
-			wdPaperEnvelope12: _("Envelope, size 12"),
-			wdPaperEnvelope14: _("Envelope, size 14"),
-			wdPaperEnvelope9: _("Envelope, size 9"),
-			wdPaperEnvelopeB4: _("B4 envelope"),
-			wdPaperEnvelopeB5: _("B5 envelope"),
-			wdPaperEnvelopeB6: _("B6 envelope"),
-			wdPaperEnvelopeC3: _("C3 envelope"),
-			wdPaperEnvelopeC4: _("C4 envelope"),
-			wdPaperEnvelopeC5: _("C5 envelope"),
-			wdPaperEnvelopeC6: _("C6 envelope"),
-			wdPaperEnvelopeC65: _("C65 envelope"),
-			wdPaperEnvelopeDL: _("DL envelope"),
-			wdPaperEnvelopeItaly: _("Italian envelope"),
-			wdPaperEnvelopeMonarch: _("Monarch envelope"),
-			wdPaperEnvelopePersonal: _("Personal envelope"),
-			wdPaperESheet: _("E sheet dimensions"),
-			wdPaperExecutive: _("Executive dimensions"),
-			wdPaperFanfoldLegalGerman: _("German legal fanfold dimensions"),
-			wdPaperFanfoldStdGerman: _("German standard fanfold dimensions"),
-			wdPaperFanfoldUS: _("United States fanfold dimensions"),
-			wdPaperFolio: _("Folio dimensions"),
-			wdPaperLedger: _("Ledger dimensions"),
-			wdPaperLegal: _("Legal dimensions"),
-			wdPaperLetter: _("Letter dimensions"),
-			wdPaperLetterSmall: _("Small letter dimensions"),
-			wdPaperNote: _("Note dimensions"),
-			wdPaperQuarto: _("Quarto dimensions"),
-			wdPaperStatement: _("Statement dimensions"),
-			wdPaperTabloid: _("Tabloid dimensions"),
-			}
+		from .ww_wdConst import paperSizeDescriptions
 		try:
 			return paperSizeDescriptions[self.paperSize]
-		except:  # noqa:E722
+		except KeyError:
 			return ""
 
 	def getPaperInfos(self, indent=""):
@@ -446,11 +420,13 @@ class Section(object):
 		self.sectionsCollection = sectionsCollection
 		self.activeDocument = self.sectionsCollection.activeDocument
 		self.winwordSectionObject = winwordSectionObject
-		self.sectionNumber =str(self.winwordSectionObject.index)
+		self.sectionNumber = str(self.winwordSectionObject.index)
 		self.pageSetup = winwordSectionObject.PageSetup
 		self.protectedForForms = winwordSectionObject.ProtectedForForms
 
 	def getHeaderFootersInfos(self, pageSetup, indent=""):
+		from .ww_wdConst import (
+			wdHeaderFooterFirstPage, wdHeaderFooterEvenPages, wdHeaderFooterPrimary)
 		curIndent = indent
 		textList = []
 		headers = self.winwordSectionObject.Headers
@@ -465,7 +441,7 @@ class Section(object):
 					# Translators: first page header information
 					msg = _("First Page Header: %s") % text
 					if alignment:
-						msg = "%s, %s" %(msg, alignment)
+						msg = "%s, %s" % (msg, alignment)
 					textList.append(curIndent + msg)
 			if footers(wdHeaderFooterFirstPage).exists:
 				headerFooter = HeaderFooter(footers(wdHeaderFooterFirstPage))
@@ -477,8 +453,6 @@ class Section(object):
 					if alignment:
 						msg = "%s, %s" % (msg, alignment)
 					textList.append(curIndent + msg)
-		#if pageSetup.OddAndEvenPagesHeaderFooter\
-			#and isEvenNumber(self.winwordSectionObject.Range.Information(wdActiveEndAdjustedPageNumber)):  # noqa:E501
 		if pageSetup.OddAndEvenPagesHeaderFooter:
 			if headers(wdHeaderFooterEvenPages).exists:
 				headerFooter = HeaderFooter(headers(wdHeaderFooterEvenPages))
@@ -497,7 +471,7 @@ class Section(object):
 					alignment = headerFooter.getPageNumberAlignment()
 					# Translators: Even Page Footer informations
 					msg = _("Even Page Footer: %s") % text
-					if  alignment:
+					if alignment:
 						msg = "%s, %s" % (msg, alignment)
 					textList.append(curIndent + msg)
 		headerFooter = HeaderFooter(headers(wdHeaderFooterPrimary))
@@ -517,7 +491,7 @@ class Section(object):
 			msg = _("Page Footer: %s") % text
 			if alignment:
 				msg = "%s, %s" % (msg, alignment)
-			textList.append(curIndent + msg)		
+			textList.append(curIndent + msg)
 		return textList
 
 	def getSectionInfos(self, indent=""):
@@ -533,78 +507,7 @@ class Section(object):
 		# Translators: protection forforms information.
 		text = _("Text modification only in form fields: %s") % protectedText
 		textList.append(curIndent + text)
-		# Translators: section's margin informations.
-		# msg_margins = _("{indent}Section' margins:\n{indent}\tLeft: {left}\n{indent}\tRight: {right}\n{indent}\tTop: {top}\n{indent}\tBottom: {bottom}") # noqa:E501
-		# Translators: section's miror margin informations
-		# msg_mirrorMargins = _("{indent}Section's argins:\n{indent}\tMirror Margins:\n{indent}\tinside: {left}\n{indent}\tOutside: {right}\n{indent}\ttop: {top}\n{indent}\tbottom {bottom}")  # noqa:E501
 		pageSetup = self.winwordSectionObject.PageSetup
-
-		"""
-		headers = self.winwordSectionObject.Headers
-		footers = self.winwordSectionObject.Footers
-		if self.pageSetup.DifferentFirstPageHeaderFooter:
-			if headers(wdHeaderFooterFirstPage).exists:
-				headerFooter = HeaderFooter(headers(wdHeaderFooterFirstPage))
-				text = headerFooter.getRangeText()
-				if text != "":
-					alignment = headerFooter.getPageNumberAlignment()
-					# Translators: first page header information
-					msg = _("First Page Header: %s") % text
-					if alignment:
-						msg = "%s, %s" %(msg, alignment)
-					textList.append(curIndent + msg)
-			if footers(wdHeaderFooterFirstPage).exists:
-				headerFooter = HeaderFooter(footers(wdHeaderFooterFirstPage))
-				text = headerFooter.getRangeText()
-				if text != "":
-					alignment = headerFooter.getPageNumberAlignment()
-					# Translators: first page footer informations.
-					msg = _("First Page Footer: %s") % text
-					if alignment:
-						msg = "%s, %s" % (msg, alignment)
-					textList.append(curIndent + msg)
-		#if pageSetup.OddAndEvenPagesHeaderFooter\
-			#and isEvenNumber(self.winwordSectionObject.Range.Information(wdActiveEndAdjustedPageNumber)):  # noqa:E501
-		if pageSetup.OddAndEvenPagesHeaderFooter:
-			if headers(wdHeaderFooterEvenPages).exists:
-				headerFooter = HeaderFooter(headers(wdHeaderFooterEvenPages))
-				text = headerFooter.getRangeText()
-				if text != "":
-					alignment = headerFooter.getPageNumberAlignment()
-					# Translators: event page header information
-					msg = _("Even Page Header: %s") % text
-					if alignment:
-						msg = "%s, %s" % (msg, alignment)
-					textList.append(curIndent + msg)
-			if footers(wdHeaderFooterEvenPages).exists:
-				headerFooter = HeaderFooter(footers(wdHeaderFooterEvenPages))
-				text = headerFooter.getRangeText()
-				if text != "":
-					alignment = headerFooter.getPageNumberAlignment()
-					# Translators: Even Page Footer informations
-					msg = _("Even Page Footer: %s") % text
-					if  alignment:
-						msg = "%s, %s" % (msg, alignment)
-					textList.append(curIndent + msg)
-		headerFooter = HeaderFooter(headers(wdHeaderFooterPrimary))
-		text = headerFooter.getRangeText()
-		if text != "":
-			alignment = headerFooter.getPageNumberAlignment()
-			# Translators: page header informations
-			msg = _("Page header: %s") % text
-			if alignment:
-				msg = "%s, %s" % (msg, alignment)
-			textList.append(curIndent + msg)
-		headerFooter = HeaderFooter(footers(wdHeaderFooterPrimary))
-		text = headerFooter.getRangeText()
-		if text != "":
-			alignment = headerFooter.getPageNumberAlignment()
-			# Translators: page footer informations.
-			msg = _("Page Footer: %s") % text
-			if alignment:
-				msg = "%s, %s" % (msg, alignment)
-			textList.append(curIndent + msg)
-		"""
 		textList.extend(self.getHeaderFootersInfos(pageSetup, curIndent))
 		pageSetup = PageSetup(self.activeDocument, self.pageSetup)
 		textList.extend(pageSetup.getInfos(curIndent))
@@ -620,7 +523,7 @@ class Sections(object):
 	def __init__(self, activeDocument):
 		self.activeDocument = activeDocument
 		self.winwordSelectionObject = self.activeDocument.winwordSelectionObject
-		self.winwordSectionsObject = self.activeDocument.winwordDocumentObject.Sections  # noqa:E501
+		self.winwordSectionsObject = self.activeDocument.winwordDocumentObject.Sections
 		self.pageSetup = self.winwordSectionsObject.PageSetup
 
 	def getAllSectionsInfos(self):
@@ -642,13 +545,14 @@ class Selection (object):
 		self.winwordSelectionObject = activeDocument.winwordSelectionObject
 
 	def isMultipleTextColumn(self):
+		from .ww_wdConst import wdPrintView
 		textColumnCount = self.winwordSelectionObject.PageSetup.Textcolumns.Count
 		return (textColumnCount > 1)\
 			and (textColumnCount != 9999999)\
 			and (self.activeDocument.view.Type == wdPrintView)
 
 	def getRangeTextColumnNumber(self):
-
+		from .ww_wdConst import wdMainTextStory, wdHorizontalPositionRelativeToPage
 		if self.inTable()\
 			or not self.activeDocument.isPrintView\
 			or (self.winwordSelectionObject.storytype != wdMainTextStory):
@@ -656,7 +560,7 @@ class Selection (object):
 		textColumns = self.winwordSelectionObject.PageSetup.TextColumns
 		try:
 			textColumnsCount = textColumns.Count
-		except:  # noqa:E722
+		except Exception:
 			textColumnsCount = 0
 		if textColumnsCount <= 1:
 			return 0
@@ -669,7 +573,7 @@ class Selection (object):
 			return (int(position / width) + 1)
 		else:
 			width = 0
-			for col in range(1, textColumnsCount+1):
+			for col in range(1, textColumnsCount + 1):
 				textColumn = textColumns(col)
 				width = width + textColumn.Width + textColumn.SpaceAfter
 				if position < width:
@@ -677,16 +581,19 @@ class Selection (object):
 		return textColumnsCount
 
 	def inTable(self):
+		from .ww_wdConst import wdWithInTable
 		return self.winwordSelectionObject.Information(wdWithInTable)
 
 	def getCurrentTable(self):
 		r = self.winwordSelectionObject.Range
 		r.Collapse()
+		from .ww_wdConst import wdTable
 		r.Expand(wdTable)
 		return r.Tables(1)
 
 	def getPositionInfos(self):
 		selection = self.winwordSelectionObject
+		from .ww_wdConst import wdActiveEndPageNumber
 		page = selection.Information(wdActiveEndPageNumber)
 		textList = []
 		# Translators: title of position paragraph.
@@ -723,6 +630,7 @@ class Selection (object):
 				# Translators: just in section.
 				text = _("In section {%s") % selection.Sections(1).index
 				textList.append("\t" + text)
+			from .ww_wdConst import wdFirstCharacterLineNumber, wdFirstCharacterColumnNumber
 			line = selection.information(wdFirstCharacterLineNumber)
 			column = selection.information(wdFirstCharacterColumnNumber)
 			# Translators: indicate line and column position in the page.
@@ -746,6 +654,7 @@ class ActiveDocument(object):
 
 	def isPrintView(self):
 		view = self.winwordDocumentObject.ActiveWindow.View
+		from .ww_wdConst import wdPrintView
 		return view.Type == wdPrintView
 
 	def _getMainProperties(self):
@@ -753,24 +662,28 @@ class ActiveDocument(object):
 		self.name = doc.Name
 		self.readOnly = doc.ReadOnly
 		self.protectionType = doc.ProtectionType
+		from .ww_wdConst import wdWithInTable
 		self.inTable = self.winwordSelectionObject.information(wdWithInTable)
 
 	def isProtected(self):
 		return self.protectionType >= 0
 
 	def getDocumentProtection(self):
+		from .ww_wdConst import (
+			wdAllowOnlyRevisions, wdAllowOnlyComments, wdAllowOnlyFormFields, wdAllowOnlyReading)
 		protectionTypeToText = {
 			wdAllowOnlyRevisions: _("Allow only revisions"),
 			wdAllowOnlyComments: _("Allow only comments"),
 			wdAllowOnlyFormFields: _("Allow only form fields"),
 			wdAllowOnlyReading: _("Read-only"),
-			}
+		}
 		try:
 			return protectionTypeToText[self.protectionType]
-		except:  # noqa:E722
+		except KeyError:
 			return _("No protection")
 
 	def isProtectedForm(self):
+		from .ww_wdConst import wdAllowOnlyFormFields
 		return self.protectionType == wdAllowOnlyFormFields
 
 	def _getPositionInfos(self):
@@ -778,6 +691,9 @@ class ActiveDocument(object):
 		return selection.getPositionInfos()
 
 	def getStatistics(self):
+		from .ww_wdConst import (
+			wdStatisticPages, wdStatisticLines, wdStatisticWords,
+			wdStatisticCharacters, wdStatisticParagraphs)
 		textList = []
 		# Translators: title of statistics paragraph.
 		text = _("Statistics:")
@@ -868,7 +784,7 @@ class ActiveDocument(object):
 			("Title", _("Title")),
 			("Subject", _("Subject")),
 			("Company", _("Compagny"))
-			]
+		]
 		textList = []
 		# Translators: document informations
 		text = _("Document's properties:")
@@ -930,7 +846,7 @@ class ActiveDocument(object):
 		textList.append(text)
 		curIndent = "\t"
 		count = tables.Count
-		for i in range(1, count+1):
+		for i in range(1, count + 1):
 			# Translators: table information
 			text = curIndent + _("Table {index} of {count}:").format(
 				index=str(i), count=str(count))
@@ -955,96 +871,18 @@ class ActiveDocument(object):
 
 
 def getColorDescription(color, colorIndex=None):
-	colorNames = {
-		wdColorAqua: _("Aqua"),
-		wdColorBlack: _("Black"),
-		wdColorBlue: _("Blue"),
-		wdColorBlueGray: _("BlueGray"),
-		wdColorBrightGreen: _("BrightGreen"),
-		wdColorBrown: _("Brown"),
-		wdColorDarkBlue: _("DarkBlue"),
-		wdColorDarkGreen: _("DarkGreen"),
-		wdColorDarkRed: _("DarkRed"),
-		wdColorDarkTeal: _("DarkTeal"),
-		wdColorDarkYellow: _("DarkYellow"),
-		wdColorGold: _("Gold"),
-		wdColorGray05: _("Gray05"),
-		wdColorGray10: _("Gray10"),
-		wdColorGray125: _("Gray125"),
-		wdColorGray15: _("Gray15"),
-		wdColorGray20: _("Gray20"),
-		wdColorGray25: _("Gray25"),
-		wdColorGray30: _("Gray30"),
-		wdColorGray35: _("Gray35"),
-		wdColorGray375: _("Gray375"),
-		wdColorGray40: _("Gray40"),
-		wdColorGray45: _("Gray45"),
-		wdColorGray50: _("Gray50"),
-		wdColorGray55: _("Gray55"),
-		wdColorGray60: _("Gray60"),
-		wdColorGray625: _("Gray625"),
-		wdColorGray65: _("Gray65"),
-		wdColorGray70: _("Gray70"),
-		wdColorGray75: _("Gray75"),
-		wdColorGray80: _("Gray80"),
-		wdColorGray85: _("Gray85"),
-		wdColorGray875: _("Gray875"),
-		wdColorGray90: _("Gray90"),
-		wdColorGray95: _("Gray95"),
-		wdColorGreen: _("Green"),
-		wdColorIndigo: _("Indigo"),
-		wdColorLavender: _("Lavender"),
-		wdColorLightBlue: _("LightBlue"),
-		wdColorLightGreen: _("LightGreen"),
-		wdColorLightOrange: _("LightOrange"),
-		wdColorLightTurquoise: _("LightTurquoise"),
-		wdColorLightYellow: _("LightYellow"),
-		wdColorLime: _("Lime"),
-		wdColorOliveGreen: _("OliveGreen"),
-		wdColorOrange: _("Orange"),
-		wdColorPaleBlue: _("PaleBlue"),
-		wdColorPink: _("Pink"),
-		wdColorPlum: _("Plum"),
-		wdColorRed: _("Red"),
-		wdColorRose: _("Rose"),
-		wdColorSeaGreen: _("SeaGreen"),
-		wdColorSkyBlue: _("SkyBlue"),
-		wdColorTan: _("Tan"),
-		wdColorTeal: _("Teal"),
-		wdColorTurquoise: _("Turquoise"),
-		wdColorViolet: _("Violet"),
-		wdColorWhite: _("White"),
-		wdColorYellow: _("Yellow"),
-		}
-	wdColorIndex2wdColor = {
-		wdColorIndexBlack: wdColorBlack,
-		wdColorIndexBlue: wdColorBlue,
-		wdColorIndexBrightGreen: wdColorBrightGreen,
-		wdColorIndexDarkBlue: wdColorDarkBlue,
-		wdColorIndexDarkRed: wdColorDarkRed,
-		wdColorIndexDarkYellow: wdColorDarkYellow,
-		wdColorIndexGray25: wdColorGray25,
-		wdColorIndexGray50: wdColorGray50,
-		wdColorIndexGreen: wdColorGreen,
-		wdColorIndexPink: wdColorPink,
-		wdColorIndexRed: wdColorRed,
-		wdColorIndexTeal: wdColorTeal,
-		wdColorIndexTurquoise: wdColorTurquoise,
-		wdColorIndexViolet: wdColorViolet,
-		wdColorIndexWhite: wdColorWhite,
-		wdColorIndexYellow: wdColorYellow,
-		}
+	from .ww_wdConst import colorNames, wdColorIndex2wdColor
 	obj = api.getFocusObject()
 	colorName = obj.winwordColorToNVDAColor(color)
 	return colorName
 	try:
 		return colorNames[color]
-	except:  # noqa:E722
+	except KeyError:
 		pass
 	if colorIndex is not None:
 		try:
 			return colorNames[wdColorIndex2wdColor[colorIndex]]
-		except:  # noqa:E722
+		except Exception:
 			pass
 	return ""
 
@@ -1062,13 +900,13 @@ class Table(object):
 		self.allowAutoFit = winwordTableObject.AllowAutoFit
 		self.topPadding = winwordTableObject.TopPadding
 		self.bottomPadding = winwordTableObject.BottomPadding
-
 		self.rowsCount = winwordTableObject.Rows.Count
 		self.range = winwordTableObject.Range
 		self.title = ""
 		self.start = winwordTableObject.range.Start
 		doc = activeDocument.winwordDocumentObject
 		r = doc.range(self.start, self.start)
+		from .ww_wdConst import wdFirstCharacterLineNumber, wdActiveEndPageNumber
 		self.line = r.information(wdFirstCharacterLineNumber)
 		self.page = r.Information(wdActiveEndPageNumber)
 
@@ -1118,8 +956,8 @@ class Table(object):
 			Borders(
 				self.activeDocument,
 				self.winwordTableObject.borders
-				).getBordersDescription(indent)
-			)
+			).getBordersDescription(indent)
+		)
 		if self.tablesCount:
 			# Translators: number of tables contained in this table.
 			text = _("Contains %s tables") % self.tablesCount
@@ -1128,24 +966,14 @@ class Table(object):
 
 
 class Borders (object):
-	_borderNames = {
-		wdBorderBottom: _("Bottom"),
-		wdBorderDiagonalDown: _("Diagonal down"),
-		wdBorderDiagonalUp: _("Diagonal up"),
-		wdBorderHorizontal: _("Horizontal"),
-		wdBorderLeft: _("Left"),
-		wdBorderRight: _("Right"),
-		wdBorderTop: _("Top"),
-		wdBorderVertical: _("Vertical"),
-		}
-
 	def __init__(self, activeDocument, winwordBordersObject):
 		self.activeDocument = activeDocument
 		self.winwordBordersObject = winwordBordersObject
 		self.enable = winwordBordersObject.Enable
 
 	def getBorderName(self, borderIndex):
-		return self._borderNames[borderIndex]
+		from .ww_wdConst import borderNames
+		return borderNames[borderIndex]
 
 	def getBordersDescription(self, indent=""):
 		if not self.enable:
@@ -1158,6 +986,7 @@ class Borders (object):
 		# Translators: title of borders description
 		text = _("Borders:")
 		description.append(indent + text)
+		from .ww_wdConst import wdBorderLeft, wdBorderTop, wdBorderRight, wdBorderBottom
 		leftBorder = borderCollection(wdBorderLeft)
 		topBorder = borderCollection(wdBorderTop)
 		rightBorder = borderCollection(wdBorderRight)
@@ -1185,7 +1014,7 @@ class Borders (object):
 			# check if border has art style
 			try:
 				artStyle = topBorder.ArtStyle
-			except:  # noqa:E722
+			except Exception:
 				artStyle = False
 			if artStyle:
 				artStyleText = border.getArtStyle()
@@ -1206,7 +1035,8 @@ class Borders (object):
 		# the borders are not uniform:
 		foundVisibleBorder = False
 		curIndent = indent + "\t"
-		for index in self._borderNames:
+		from .ww_wdConst import borderNames
+		for index in borderNames:
 			if borderCollection(index).Visible:
 				foundVisibleBorder = True
 				border = borderCollection(index)
@@ -1217,11 +1047,11 @@ class Borders (object):
 				lineWidthText = b.getLineWidth()
 				try:
 					artStyle = border.ArtStyle
-				except:  # noqa:E722
+				except Exception:
 					artStyle = False
 				if artStyle:
 					artStyleText = b.getArtStyle()
-					msg = _("{name}= {color} {lineStyle} with width of {lineWidth} and art style {artStyle}")  # noqa:E501
+					msg = _("{name}= {color} {lineStyle} with width of {lineWidth} and art style {artStyle}")
 					text = msg.format(
 						name=name, color=color,
 						lineStyle=lineStyleText, lineWidth=lineWidthText, artStyle=artStyleText)
@@ -1242,233 +1072,30 @@ class Border(object):
 		self.winwordBorderObject = winwordBorderObject
 
 	def getLineStyle(self):
-		lineStyleDescriptions = {
-			wdLineStyleDashDot: _("Dash Dot"),
-			wdLineStyleDashDotDot: _("Dash Dot Dot"),
-			wdLineStyleDashDotStroked: _("Dash Dot Stroked"),
-			wdLineStyleDashLargeGap: _("Dash Large Gap"),
-			wdLineStyleDashSmallGap: _("Dash Small Gap"),
-			# wdLineStyleDot: _("Dotted"),
-			wdLineStyleDouble: _("Double"),
-			wdLineStyleDoubleWavy: _("Double Wavy"),
-			wdLineStyleEmboss3D: _("Emboss 3D"),
-			wdLineStyleEngrave3D: _("Engrave 3D"),
-			wdLineStyleInset: _("Inset"),
-			wdLineStyleNone: _("None"),
-			wdLineStyleOutset: _("Outset"),
-			wdLineStyleSingle: _("Single"),
-			wdLineStyleSingleWavy: _("Single Wavy"),
-			wdLineStyleThickThinLargeGap: _("Thick Thin Large Gap"),
-			wdLineStyleThickThinMedGap: _("Thick Thin Medium Gap"),
-			wdLineStyleThickThinSmallGap: _("Thick Thin Small Gap"),
-			wdLineStyleThinThickLargeGap: _("Thin Thick Large Gap"),
-			wdLineStyleThinThickMedGap: _("Thin Thick Medium Gap"),
-			wdLineStyleThinThickSmallGap: _("Thin Thick Small Gap"),
-			wdLineStyleThinThickThinLargeGap: _("Thin Thick Thin Large Gap"),
-			wdLineStyleThinThickThinMedGap: _("Thin Thick Thin Medium Gap"),
-			wdLineStyleThinThickThinSmallGap: _("Thin Thick Thin Small Gap"),
-			wdLineStyleTriple: _("Triple"),
-			}
+		from .ww_wdConst import lineStyleDescriptions
 		lineStyle = self.winwordBorderObject.LineStyle
 		try:
 			desc = lineStyleDescriptions[lineStyle]
-		except:  # noqa:E722
+		except KeyError:
 			desc = _("mixed")
 		return _("%s line") % desc
 
 	def getLineWidth(self):
-		lineWidthDescriptions = {
-			wdLineWidth025pt: _("0.25 points"),
-			wdLineWidth050pt: _("0.5 points"),
-			wdLineWidth075pt: _("0.75 points"),
-			wdLineWidth100pt: _("1 point"),
-			wdLineWidth150pt: _("1.5 points"),
-			wdLineWidth225pt: _("2.25 points"),
-			wdLineWidth300pt: _("3 points"),
-			wdLineWidth450pt: _("4.5 points"),
-			wdLineWidth600pt: _("6 points"),
-			-1: _("custom width"),
-			}
+		from .ww_wdConst import lineWidthDescriptions
 		lineWidth = self.winwordBorderObject.LineWidth
 		try:
 			desc = lineWidthDescriptions[lineWidth]
-		except:  # noqa:E722
+		except KeyError:
 			desc = ""
 		return desc
 
 	def getArtStyle(self):
-		artStyleDescriptions = {
-			wdArtApples: _("Apples"),
-			wdArtArchedScallops: _("ArchedScallops"),
-			wdArtBabyPacifier: _("BabyPacifier"),
-			wdArtBabyRattle: _("BabyRattle"),
-			wdArtBalloons3Colors: _("Balloons3Colors"),
-			wdArtBalloonsHotAir: _("BalloonsHotAir"),
-			wdArtBasicBlackDashes: _("BasicBlackDashes"),
-			wdArtBasicBlackDots: _("BasicBlackDots"),
-			wdArtBasicBlackSquares: _("BasicBlackSquares"),
-			wdArtBasicThinLines: _("BasicThinLines"),
-			wdArtBasicWhiteDashes: _("BasicWhiteDashes"),
-			wdArtBasicWhiteDots: _("BasicWhiteDots"),
-			wdArtBasicWhiteSquares: _("BasicWhiteSquares"),
-			wdArtBasicWideInline: _("BasicWideInline"),
-			wdArtBasicWideMidline: _("BasicWideMidline"),
-			wdArtBasicWideOutline: _("BasicWideOutline"),
-			wdArtBats: _("Bats"),
-			wdArtBirds: _("Birds"),
-			wdArtBirdsFlight: _("BirdsFlight"),
-			wdArtCabins: _("Cabins"),
-			wdArtCakeSlice: _("CakeSlice"),
-			wdArtCandyCorn: _("CandyCorn"),
-			wdArtCelticKnotwork: _("CelticKnotwork"),
-			wdArtCertificateBanner: _("CertificateBanner"),
-			wdArtChainLink: _("ChainLink"),
-			wdArtChampagneBottle: _("ChampagneBottle"),
-			wdArtCheckedBarBlack: _("CheckedBarBlack"),
-			wdArtCheckedBarColor: _("CheckedBarColor"),
-			wdArtCheckered: _("Checkered"),
-			wdArtChristmasTree: _("ChristmasTree"),
-			wdArtCirclesLines: _("CirclesLines"),
-			wdArtCirclesRectangles: _("CirclesRectangles"),
-			wdArtClassicalWave: _("ClassicalWave"),
-			wdArtClocks: _("Clocks"),
-			wdArtCompass: _("Compass"),
-			wdArtConfetti: _("Confetti"),
-			wdArtConfettiGrays: _("ConfettiGrays"),
-			wdArtConfettiOutline: _("ConfettiOutline"),
-			wdArtConfettiStreamers: _("ConfettiStreamers"),
-			wdArtConfettiWhite: _("ConfettiWhite"),
-			wdArtCornerTriangles: _("CornerTriangles"),
-			wdArtCouponCutoutDashes: _("CouponCutoutDashes"),
-			wdArtCouponCutoutDots: _("CouponCutoutDots"),
-			wdArtCrazyMaze: _("CrazyMaze"),
-			wdArtCreaturesButterfly: _("CreaturesButterfly"),
-			wdArtCreaturesFish: _("CreaturesFish"),
-			wdArtCreaturesInsects: _("CreaturesInsects"),
-			wdArtCreaturesLadyBug: _("CreaturesLadyBug"),
-			wdArtCrossStitch: _("CrossStitch"),
-			wdArtCup: _("Cup"),
-			wdArtDecoArch: _("DecoArch"),
-			wdArtDecoArchColor: _("DecoArchColor"),
-			wdArtDecoBlocks: _("DecoBlocks"),
-			wdArtDiamondsGray: _("DiamondsGray"),
-			wdArtDoubleD: _("DoubleD"),
-			wdArtDoubleDiamonds: _("DoubleDiamonds"),
-			wdArtEarth1: _("Earth1"),
-			wdArtEarth2: _("Earth2"),
-			wdArtEclipsingSquares1: _("EclipsingSquares1"),
-			wdArtEclipsingSquares2: _("EclipsingSquares2"),
-			wdArtEggsBlack: _("EggsBlack"),
-			wdArtFans: _("Fans"),
-			wdArtFilm: _("Film"),
-			wdArtFirecrackers: _("Firecrackers"),
-			wdArtFlowersBlockPrint: _("FlowersBlockPrint"),
-			wdArtFlowersDaisies: _("FlowersDaisies"),
-			wdArtFlowersModern1: _("FlowersModern1"),
-			wdArtFlowersModern2: _("FlowersModern2"),
-			wdArtFlowersPansy: _("FlowersPansy"),
-			wdArtFlowersRedRose: _("FlowersRedRose"),
-			wdArtFlowersRoses: _("FlowersRoses"),
-			wdArtFlowersTeacup: _("FlowersTeacup"),
-			wdArtFlowersTiny: _("FlowersTiny"),
-			wdArtGems: _("Gems"),
-			wdArtGingerbreadMan: _("GingerbreadMan"),
-			wdArtGradient: _("Gradient"),
-			wdArtHandmade1: _("Handmade1"),
-			wdArtHandmade2: _("Handmade2"),
-			wdArtHeartBalloon: _("HeartBalloon"),
-			wdArtHeartGray: _("HeartGray"),
-			wdArtHearts: _("Hearts"),
-			wdArtHeebieJeebies: _("HeebieJeebies"),
-			wdArtHolly: _("Holly"),
-			wdArtHouseFunky: _("HouseFunky"),
-			wdArtHypnotic: _("Hypnotic"),
-			wdArtIceCreamCones: _("IceCreamCones"),
-			wdArtLightBulb: _("LightBulb"),
-			wdArtLightning1: _("Lightning1"),
-			wdArtLightning2: _("Lightning2"),
-			wdArtMapleLeaf: _("MapleLeaf"),
-			wdArtMapleMuffins: _("MapleMuffins"),
-			wdArtMapPins: _("MapPins"),
-			wdArtMarquee: _("Marquee"),
-			wdArtMarqueeToothed: _("MarqueeToothed"),
-			wdArtMoons: _("Moons"),
-			wdArtMosaic: _("Mosaic"),
-			wdArtMusicNotes: _("MusicNotes"),
-			wdArtNorthwest: _("Northwest"),
-			wdArtOvals: _("Ovals"),
-			wdArtPackages: _("Packages"),
-			wdArtPalmsBlack: _("PalmsBlack"),
-			wdArtPalmsColor: _("PalmsColor"),
-			wdArtPaperClips: _("PaperClips"),
-			wdArtPapyrus: _("Papyrus"),
-			wdArtPartyFavor: _("PartyFavor"),
-			wdArtPartyGlass: _("PartyGlass"),
-			wdArtPencils: _("Pencils"),
-			wdArtPeople: _("People"),
-			wdArtPeopleHats: _("PeopleHats"),
-			wdArtPeopleWaving: _("PeopleWaving"),
-			wdArtPoinsettias: _("Poinsettias"),
-			wdArtPostageStamp: _("PostageStamp"),
-			wdArtPumpkin1: _("Pumpkin1"),
-			wdArtPushPinNote1: _("PushPinNote1"),
-			wdArtPushPinNote2: _("PushPinNote2"),
-			wdArtPyramids: _("Pyramids"),
-			wdArtPyramidsAbove: _("PyramidsAbove"),
-			wdArtQuadrants: _("Quadrants"),
-			wdArtRings: _("Rings"),
-			wdArtSafari: _("Safari"),
-			wdArtSawtooth: _("Sawtooth"),
-			wdArtSawtoothGray: _("SawtoothGray"),
-			wdArtScaredCat: _("ScaredCat"),
-			wdArtSeattle: _("Seattle"),
-			wdArtShadowedSquares: _("ShadowedSquares"),
-			wdArtSharksTeeth: _("SharksTeeth"),
-			wdArtShorebirdTracks: _("ShorebirdTracks"),
-			wdArtSkyrocket: _("Skyrocket"),
-			wdArtSnowflakeFancy: _("SnowflakeFancy"),
-			wdArtSnowflakes: _("Snowflakes"),
-			wdArtSombrero: _("Sombrero"),
-			wdArtSouthwest: _("Southwest"),
-			wdArtStars: _("Stars"),
-			wdArtStars3D: _("Stars3D"),
-			wdArtStarsBlack: _("StarsBlack"),
-			wdArtStarsShadowed: _("StarsShadowed"),
-			wdArtStarsTop: _("StarsTop"),
-			wdArtSun: _("Sun"),
-			wdArtSwirligig: _("Swirligig"),
-			wdArtTornPaper: _("TornPaper"),
-			wdArtTornPaperBlack: _("TornPaperBlack"),
-			wdArtTrees: _("Trees"),
-			wdArtTriangleParty: _("TriangleParty"),
-			wdArtTriangles: _("Triangles"),
-			wdArtTribal1: _("Tribal1"),
-			wdArtTribal2: _("Tribal2"),
-			wdArtTribal3: _("Tribal3"),
-			wdArtTribal4: _("Tribal4"),
-			wdArtTribal5: _("Tribal5"),
-			wdArtTribal6: _("Tribal6"),
-			wdArtTwistedLines1: _("TwistedLines1"),
-			wdArtTwistedLines2: _("TwistedLines2"),
-			wdArtVine: _("Vine"),
-			wdArtWaveline: _("Waveline"),
-			wdArtWeavingAngles: _("WeavingAngles"),
-			wdArtWeavingBraid: _("WeavingBraid"),
-			wdArtWeavingRibbon: _("WeavingRibbon"),
-			wdArtWeavingStrips: _("WeavingStrips"),
-			wdArtWhiteFlowers: _("WhiteFlowers"),
-			wdArtWoodwork: _("Woodwork"),
-			wdArtXIllusions: _("XIllusions"),
-			wdArtZanyTriangles: _("ZanyTriangles"),
-			wdArtZigZag: _("ZigZag"),
-			wdArtZigZagStitch: _("ZigZagStitch"),
-			}
-
+		from .ww_wdConst import artStyleDescriptions
 		artStyle = self.winwordBorderObject.ArtStyle
 		if artStyle == 0:
 			return ""
 		try:
 			desc = artStyleDescriptions[artStyle]
-		except:  # noqa:E722
+		except KeyError:
 			desc = ""
 		return desc

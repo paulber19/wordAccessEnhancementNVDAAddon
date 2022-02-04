@@ -1,11 +1,11 @@
 # appModules\winword\ww_frames.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
 import addonHandler
-from .ww_collection import Collection, CollectionElement, ReportDialog, convertPixelToUnit  # noqa:E501
+from .ww_collection import Collection, CollectionElement, ReportDialog, convertPixelToUnit
 
 addonHandler.initTranslation()
 
@@ -73,7 +73,7 @@ class FramesDialog(ReportDialog):
 			(_("Location"), 150),
 			(_("Width"), 1500),
 			(_("Height"), 150)
-			)
+		)
 		lcWidth = 0
 		for column in self.lcColumns:
 			lcWidth = lcWidth + column[1]
@@ -83,7 +83,7 @@ class FramesDialog(ReportDialog):
 		self.buttons = (
 			(100, _("&Go to"), self.goTo),
 			(101, _("&Delete"), self.delete),
-			)
+		)
 		self.tc1 = None
 		self.tc2 = None
 
@@ -92,6 +92,6 @@ class FramesDialog(ReportDialog):
 			page=element.page, line=element.line)
 		height = "%.2f" % convertPixelToUnit(element.height)
 		width = "%.2f" % convertPixelToUnit(element.width)
-		index = self.collection.index(element)+1
+		index = self.collection.index(element) + 1
 		datas = (index, location, width, height)
 		return datas

@@ -1,12 +1,12 @@
 # appModules\winword\ww_shapes.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
 import addonHandler
 from .ww_wdConst import wdActiveEndPageNumber, wdFirstCharacterLineNumber
-from .ww_collection import Collection, CollectionElement, ReportDialog, convertPixelToUnit  # noqa:E501
+from .ww_collection import Collection, CollectionElement, ReportDialog, convertPixelToUnit
 
 addonHandler.initTranslation()
 
@@ -30,7 +30,7 @@ class Shape(CollectionElement):
 			self.alternativeText = item.AlternativeText
 		try:
 			self.title = item.Title
-		except:  # noqa:E722
+		except Exception:
 			self.title = ""
 		self.setLineAndPageNumber()
 
@@ -63,7 +63,7 @@ class Shape(CollectionElement):
 			24: _("Smart art"),  # msoSmartArt
 			25: _("Slicer"),  # msoSlicer
 			26: _("Web video")  # msoWebVideo
-			}
+		}
 		return typeTexts[self.type]
 
 	def formatInfos(self):
@@ -112,7 +112,7 @@ class InLineShape(CollectionElement):
 			5: _("OLE control object"),  # wdInlineShapeOLEControlObject
 			6: _("Horizontal line"),  # wdInlineShapeHorizontalLine
 			7: _("Picture with horizontal line"),  # wdInlineShapePictureHorizontalLine
-			8: _("Linked picture with horizontal line"),  # wdInlineShapeLinkedPictureHorizontalLine # noqa:E501
+			8: _("Linked picture with horizontal line"),  # wdInlineShapeLinkedPictureHorizontalLine
 			9: _("Picture used as a bullet"),  # wdInlineShapePictureBullet
 			10: "Script anchor.Anchor for script",  # wdInlineShapeScriptAnchor
 			11: _("OWS anchor"),  # wdInlineShapeOWSAnchor
@@ -120,7 +120,7 @@ class InLineShape(CollectionElement):
 			13: _("Inline diagram"),  # wdInlineShapeDiagram
 			14: "Locked inline shape canvas",  # wdInlineShapeLockedCanvas
 			15: _("Smart art")  # wdInlineShapeSmartArt
-			}
+		}
 
 		return typeTexts[self.type]
 
@@ -138,7 +138,7 @@ Alternative ttext:
 		sInfo = sInfo.replace("\n", "\r\n")
 		return sInfo.format(
 			page=self.page, line=self.line,
-			typeText=self.getTypeText(),  title=self.title,
+			typeText=self.getTypeText(), title=self.title,
 			width=width, height=height,
 			alternativeText=self.alternativeText)
 
@@ -181,7 +181,7 @@ class ShapesDialog(ReportDialog):
 			("Type", 300),
 			(_("Height(in centimeter)"), 100),
 			(_("Width (in centimeter)"), 100)
-			)
+		)
 		lcWidth = 0
 		for column in self.lcColumns:
 			lcWidth = lcWidth + column[1]
@@ -191,11 +191,11 @@ class ShapesDialog(ReportDialog):
 		self.buttons = (
 			(100, _("&Go to"), self.goTo),
 			(101, _("&Delete"), self.delete)
-			)
+		)
 		self.tc1 = {
 			"label": _("Alternative text"),
 			"size": (800, 200)
-			}
+		}
 		self.tc2 = None
 
 	def get_lcColumnsDatas(self, element):
@@ -204,7 +204,7 @@ class ShapesDialog(ReportDialog):
 		height = "%.2f" % convertPixelToUnit(element.height)
 		width = "%.2f" % convertPixelToUnit(element.width)
 		typeText = element.getTypeText()
-		index = self.collection.index(element)+1
+		index = self.collection.index(element) + 1
 		datas = (index, location, element.name, typeText, width, height)
 		return datas
 

@@ -1,6 +1,6 @@
 # appModules\winword\ww_hyperlinks.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -15,37 +15,35 @@ class Hyperlink(CollectionElement):
 		self.type = item.Type
 		try:
 			self.address = item.Address
-		except:  # noqa:E722
+		except Exception:
 			self.address = ""
 		try:
 			self.subAddress = item.SubAddress
-		except:  # noqa:E722
+		except Exception:
 			self.subAddress = ""
 		try:
 			self.target = item.Target
-		except:  # noqa:E722
+		except Exception:
 			self.target = ""
 		try:
 			self.textToDisplay = item.TextToDisplay
-		except:  # noqa:E722
+		except Exception:
 			self.textToDisplay = ""
 		try:
 			self.emailSubject = item.EmailSubject
-		except:  # noqa:E722
+		except Exception:
 			self.emailSubject = ""
-
 		try:
 			self.name = item.Name
-		except:  # noqa:E722
+		except Exception:
 			self.name = ""
-
 		try:
 			self.screenTyp = item.Screentyp
-		except:  # noqa:E722
+		except Exception:
 			self.screenTyp = ""
 		try:
 			self.shape = item.Shape
-		except:  # noqa:E722
+		except Exception:
 			self.shape = None
 		self.start = item.Range.Start
 		self.setLineAndPageNumber()
@@ -55,7 +53,7 @@ class Hyperlink(CollectionElement):
 			0: _("Hyperlink to range"),  # msoHyperlinkRange
 			1: _("Hyperlink to shape"),  # msoHyperlinkShape
 			2: _("Hyperlink to inLine Shape")  # msoHyperlinkInlineShape
-			}
+		}
 		return msoHyperLinkTypes[self.type]
 
 	def formatInfos(self):
@@ -96,7 +94,7 @@ class HyperlinksDialog(ReportDialog):
 			(_("Location"), 150),
 			(_("Name"), 300),
 			(_("Type"), 150)
-			)
+		)
 		lcWidth = 0
 		for column in self.lcColumns:
 			lcWidth = lcWidth + column[1]
@@ -106,7 +104,7 @@ class HyperlinksDialog(ReportDialog):
 		self.buttons = (
 			(100, _("&Go to"), self.goTo),
 			(101, _("&Delete"), self.delete)
-			)
+		)
 
 		self.tc1 = {
 			"label": _("Text to display"),
@@ -117,7 +115,7 @@ class HyperlinksDialog(ReportDialog):
 	def get_lcColumnsDatas(self, element):
 		location = (_("Page {page}, line {line}")).format(
 			page=element.page, line=element.line)
-		index = self.collection.index(element)+1
+		index = self.collection.index(element) + 1
 		datas = (index, location, element.name, element.getTypeText())
 		return datas
 

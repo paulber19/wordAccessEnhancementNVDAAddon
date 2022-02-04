@@ -1,19 +1,18 @@
 # appModules\winword\ww_funct.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2021 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
 import addonHandler
 import api
 import ui
-import speech
 import os
 import sys
 _curAddon = addonHandler.getCodeAddon()
 path = os.path.join(_curAddon.path, "shared")
 sys.path.append(path)
-from ww_utils import setSpeechMode  # noqa:E402
+from ww_utils import setSpeechMode
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -40,10 +39,10 @@ wdPrimaryFooterStory = 9  # Primary footer story
 wdFirstPageHeaderStory = 10  # First page header story
 wdFirstPageFooterStory = 11  # First page footer story
 wdFootnoteSeparatorStory = 12  # Footnote separator story
-wdFootnoteContinuationSeparatorStory = 13  # Footnote continuation separator story # noqa:E501
+wdFootnoteContinuationSeparatorStory = 13  # Footnote continuation separator story
 wdFootnoteContinuationNoticeStory = 14  # Footnote continuation notice story
 wdEndnoteSeparatorStory = 15  # Endnote separator story
-wdEndnoteContinuationSeparatorStory = 16  # Endnote continuation separator story # noqa:E501
+wdEndnoteContinuationSeparatorStory = 16  # Endnote continuation separator story
 wdEndnoteContinuationNoticeStory = 17  # Endnote continuation notice story
 
 
@@ -62,17 +61,17 @@ def getPaneName(storyType):
 		wdTextFrameStory: _("Text frame story"),
 		wdEvenPagesHeaderStory: _("Even pages header story"),
 		wdPrimaryHeaderStory: _("Primary header story"),
-		wdEvenPagesFooterStory:  _("Even pages footer story"),
+		wdEvenPagesFooterStory: _("Even pages footer story"),
 		wdPrimaryFooterStory: _("Primary footer story"),
 		wdFirstPageHeaderStory: _("First page header story"),
 		wdFirstPageFooterStory: _("First page footer story"),
 		wdFootnoteSeparatorStory: _("Footnote separator story"),
-		wdFootnoteContinuationSeparatorStory: _("Footnote continuation separator story"),  # noqa:E501
+		wdFootnoteContinuationSeparatorStory: _("Footnote continuation separator story"),
 		wdFootnoteContinuationNoticeStory: _("Footnote continuation notice story"),
 		wdEndnoteSeparatorStory: _("Endnote separator story"),
-		wdEndnoteContinuationSeparatorStory: _("Endnote continuation separator story"),  # noqa:E501
+		wdEndnoteContinuationSeparatorStory: _("Endnote continuation separator story"),
 		wdEndnoteContinuationNoticeStory: _("Endnote continuation notice story")
-		}
+	}
 	return _storyTypeNames[storyType]
 
 
@@ -85,7 +84,7 @@ def sayActivePane():
 		oActivePane = oActiveWindow.ActivePane
 		try:
 			oFrameset = oActivePane.Frameset
-		except:  # noqa:E722
+		except Exception:
 			oFrameset = None
 		if oFrameset:
 			ui.message(_("Frame {name} document pane {index}") .format(

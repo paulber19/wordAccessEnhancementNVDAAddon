@@ -1,6 +1,6 @@
 # appModules\winword\ww_revisions.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2021 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 import addonHandler
@@ -15,7 +15,7 @@ from .ww_collection import Collection, CollectionElement, ReportDialog
 _curAddon = addonHandler.getCodeAddon()
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
-from ww_messageBox import myMessageBox  # noqa:E402
+from ww_messageBox import myMessageBox
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -58,7 +58,8 @@ revisionTypeText = {
 	17: _("Table cell deleted"),
 	# wdRevisionCellMerge
 	18: _("Table cells merged")
-	}
+}
+
 
 class Revision(CollectionElement):
 	def __init__(self, parent, item):
@@ -76,13 +77,14 @@ class Revision(CollectionElement):
 
 	def get_typeText(self):
 		return revisionTypeText[self.type]
+
 	def FormatRevisionTypeAndAuthorText(self):
 		from ww_addonConfigManager import _addonConfigManager
 		if not _addonConfigManager.toggleReportRevisionTypeWithAuthorOption(False):
 			author = ""
 		elif self.author != "":
 			# Translators: part of message to report author of revision
-			author= _("by %s") % self.author
+			author = _("by %s") % self.author
 		revisionTypeText = self.get_typeText()
 		text = "%s %s" % (revisionTypeText, author)
 		return text
@@ -156,7 +158,7 @@ class RevisionsDialog(ReportDialog):
 			(_("Type"), 150),
 			(_("Author"), 300),
 			(_("Date"), 150)
-			)
+		)
 		lcWidth = 0
 		for column in self.lcColumns:
 			lcWidth = lcWidth + column[1]
@@ -167,7 +169,7 @@ class RevisionsDialog(ReportDialog):
 			(100, _("&Go to"), self.goTo),
 			(101, _("&Accept"), self.accept),
 			(102, _("&Reject"), self.reject)
-			)
+		)
 
 		self.tc1 = {
 			"label": _("Revision's text"),
@@ -229,7 +231,7 @@ class RevisionsDialog(ReportDialog):
 		location = (_("Page {page}, line {line}")).format(
 			page=element.page, line=element.line)
 		typeText = element.get_typeText()
-		index = self.collection.index(element)+1
+		index = self.collection.index(element) + 1
 		datas = (index, location, typeText, element.author, element.date)
 		return datas
 

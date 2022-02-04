@@ -1,6 +1,6 @@
 # appModules\winword\ww_comments.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -82,7 +82,7 @@ class Comments(Collection):
 		"insertDialogTitle": _("Comment's insert"),
 		# Translators: title of modification dialog.
 		"modifyDialogTitle": _("Comment's Modification"),
-		}
+	}
 
 	def __init__(self, parent, focus, rangeType):
 		self.rangeType = rangeType
@@ -115,7 +115,7 @@ class CommentsDialog(ReportDialog):
 			(_("Location"), 150),
 			(_("Author"), 300),
 			(_("Date"), 150)
-			)
+		)
 		lcWidth = 0
 		for column in self.lcColumns:
 			lcWidth = lcWidth + column[1]
@@ -127,7 +127,7 @@ class CommentsDialog(ReportDialog):
 			(101, _("&Modify"), self.modifyTC1Text),
 			(102, _("&Delete"), self.delete),
 			(103, _("Delete &all"), self.deleteAll),
-			)
+		)
 
 		self.tc1 = {
 			"label": _("Comment's text"),
@@ -142,7 +142,7 @@ class CommentsDialog(ReportDialog):
 
 		location = (_("Page {page}, line {line}")).format(
 			page=element.page, line=element.line)
-		index = self.collection.index(element)+1
+		index = self.collection.index(element) + 1
 		datas = (index, location, element.author, element.date)
 		return datas
 

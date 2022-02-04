@@ -73,7 +73,7 @@ class Headings(Collection):
 		i = 0
 		rangeObj = theRange
 		while True:
-			i = i+1
+			i = i + 1
 			wx.Yield()
 			# stopped by user?
 			if self.parent and self.parent.canceled:
@@ -104,7 +104,7 @@ class HeadingsDialog(ReportDialog):
 			(_("Location"), 150),
 			(_("Level"), 100),
 			(_("Style"), 200)
-			)
+		)
 		lcWidth = 0
 		for column in self.lcColumns:
 			lcWidth = lcWidth + column[1]
@@ -118,7 +118,7 @@ class HeadingsDialog(ReportDialog):
 	def get_lcColumnsDatas(self, element):
 		location = (_("Page {page}, line {line}")).format(
 			page=element.page, line=element.line)
-		index = self.collection.index(element)+1
+		index = self.collection.index(element) + 1
 
 		datas = (index, element.text, location, element.level, element.style)
 

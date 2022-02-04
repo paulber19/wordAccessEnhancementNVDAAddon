@@ -1,6 +1,6 @@
 # appModules\winword\ww.choice.py
 # A part of WordAccessEnhancement add-on
-# Copyright (C) 2019-2021 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -32,13 +32,17 @@ sys.path.append(debugToolsPath)
 try:
 	from appModuleDebug import printDebug, toggleDebugFlag
 except ImportError:
-	def printDebug(msg): return
-	def toggleDebugFlag(): return
+
+	def printDebug(msg):
+		return
+
+	def toggleDebugFlag():
+		return
 del sys.path[-1]
 
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
-from ww_utils import putWindowOnForeground, makeAddonWindowTitle  # noqa:E402
+from ww_utils import putWindowOnForeground, makeAddonWindowTitle
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -61,31 +65,31 @@ _collectionClassDic = {
 	"section": Sections,
 	"spellingError": SpellingErrors,
 	"table": Tables
-	}
+}
 _wordObjectList = (
-			(SpellingErrors, "document"),
-			(GrammaticalErrors, "document"),
-			(Comments, "document"),
-			(Revisions, "document"),
-			(Bookmarks, "document"),
-			(Footnotes, "document"),
-			(Endnotes, "document"),
-			(Shapes, "document"),
-			(InLineShapes, "document"),
-			(Hyperlinks, "document"),
-			(Fields, "document"),
-			(FormFields, "document"),
-			(ContentControls, "document"),
-			(Tables, "document"),
-			(Headings, "document"),
-			(Frames, "document"),
-			(Sections, "document")
-			)
+	(SpellingErrors, "document"),
+	(GrammaticalErrors, "document"),
+	(Comments, "document"),
+	(Revisions, "document"),
+	(Bookmarks, "document"),
+	(Footnotes, "document"),
+	(Endnotes, "document"),
+	(Shapes, "document"),
+	(InLineShapes, "document"),
+	(Hyperlinks, "document"),
+	(Fields, "document"),
+	(FormFields, "document"),
+	(ContentControls, "document"),
+	(Tables, "document"),
+	(Headings, "document"),
+	(Frames, "document"),
+	(Sections, "document")
+)
 
 
 class PopulateAndReportCollection(wx.Dialog):
 	def __init__(
-			self, parent, collectionClass, rangeType, focus, copyToClipboard=False):
+		self, parent, collectionClass, rangeType, focus, copyToClipboard=False):
 		super(PopulateAndReportCollection, self).__init__(
 			parent=parent,
 			# Translators: title of dialog.

@@ -1,6 +1,6 @@
 # appModules\winword\wordDocumentBase.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2020-2021 paulber19
+# Copyright (C) 2020-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -10,7 +10,7 @@ from logHandler import log
 import scriptHandler
 from scriptHandler import script
 import gui
-import queueHandler
+import config
 import os
 import wx
 import ui
@@ -21,19 +21,21 @@ try:
 	from sayAllHandler import CURSOR_CARET
 except (AttributeError, ImportError):
 	from speech.sayAll import CURSOR
-	CURSOR_CARET =  CURSOR.CARET
+	CURSOR_CARET = CURSOR.CARET
 import speech
 import braille
 import NVDAObjects.window.winword
-from NVDAObjects.window.winword import wdParagraph, wdSentence,\
-	wdActiveEndPageNumber, wdFirstCharacterLineNumber
+from NVDAObjects.window.winword import (
+	wdParagraph, wdSentence,
+	wdActiveEndPageNumber, wdFirstCharacterLineNumber)
 import NVDAObjects.IAccessible.winword
-from .ww_wdConst import wdHorizontalPositionRelativeToPage,\
-	wdVerticalPositionRelativeToPage, wdFirstCharacterColumnNumber
+from .ww_wdConst import (
+	wdHorizontalPositionRelativeToPage,
+	wdVerticalPositionRelativeToPage, wdFirstCharacterColumnNumber)
 from . import ww_tables
 from . import ww_choice
 from .ww_revisions import Revisions
-from .ww_browseMode import *  # noqa:F403
+# from .ww_browseMode import *
 from . import ww_document
 from .ww_scriptTimer import stopScriptTimer
 import sys
@@ -47,7 +49,7 @@ try:
 	REASON_FOCUS = OutputReason.FOCUS
 except ImportError:
 	from controlTypes import (
-	ROLE_FOOTNOTE, ROLE_ENDNOTE,
+		ROLE_FOOTNOTE, ROLE_ENDNOTE,
 	)
 	try:
 		# for nvda version == 2021.1
@@ -56,10 +58,9 @@ except ImportError:
 		REASON_FOCUS = OutputReason.FOCUS
 	except AttributeError:
 		# fornvda version <  2020.1
+		import controlTypes
 		REASON_CARET = controlTypes.REASON_CARET
 		REASON_FOCUS = controlTypes.REASON_FOCUS
-
-
 
 _curAddon = addonHandler.getCodeAddon()
 debugToolsPath = os.path.join(_curAddon.path, "debugTools")
@@ -67,15 +68,19 @@ sys.path.append(debugToolsPath)
 try:
 	from appModuleDebug import printDebug, toggleDebugFlag
 except ImportError:
-	def printDebug(msg): return
-	def toggleDebugFlag(): return
+
+	def printDebug(msg):
+		return
+
+	def toggleDebugFlag():
+		return
 del sys.path[-1]
 
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
-from ww_informationDialog import InformationDialog  # noqa:E402
+from ww_informationDialog import InformationDialog
 from ww_utils import makeAddonWindowTitle, isOpened
-from ww_addonConfigManager import _addonConfigManager  # noqa:E402
+from ww_addonConfigManager import _addonConfigManager
 
 del sys.path[-1]
 
@@ -87,7 +92,7 @@ _scriptCategory = _addonSummary
 class ScriptsForTable(NVDAObjects.NVDAObject):
 	scriptCategory = _scriptCategory
 	_commonGestures = {
-	# report table element
+		# report table element
 		"reportCurrentHeadersEx": ("kb:windows+alt+h",),
 		"reportCurrentCell": ("kb:windows+alt+j",),
 		"report_currentRow": ("kb:windows+Alt+k",),
@@ -109,7 +114,7 @@ class ScriptsForTable(NVDAObjects.NVDAObject):
 		"moveToEndOfRowAndReportColumn": None,
 		"moveToStartOfColumnAndReportRow": None,
 		"moveToEndOfColumnAndReportRow": None,
-		}
+	}
 
 	_baseGestures = {
 		"moveToNextColumn": ("kb:windows+control+rightArrow",),
@@ -122,7 +127,7 @@ class ScriptsForTable(NVDAObjects.NVDAObject):
 		"moveToLastRow": ("kb:windows+control+pageDown",),
 		"moveToFirstCellOfTable": ("kb:windows+control+k",),
 		"moveToLastCellOfTable": ("kb:windows+control+l",),
-		}
+	}
 	_layerGestures = {
 		"layer_moveToNextColumn": ("kb:rightArrow",),
 		"layer_moveToPreviousColumn": ("kb:leftArrow",),
@@ -134,7 +139,7 @@ class ScriptsForTable(NVDAObjects.NVDAObject):
 		"layer_moveToLastRow": ("kb:pageDown",),
 		"layer_moveToFirstCellOfTable": ("kb:k",),
 		"layer_moveToLastCellOfTable": ("kb:l",),
-		}
+	}
 
 	def _moveInTable(self, row=True, forward=True):
 		res = super(ScriptsForTable, self)._moveInTable(row, forward)
@@ -270,9 +275,6 @@ class ScriptsForTable(NVDAObjects.NVDAObject):
 	# Translators: a description for a script.
 	_moveToLastCellOfTable.__doc__ = _("Table: move to last cell of table")
 
-
-	# scripts when layer mode is off
-	
 	def script_moveToNextRow(self, gesture):
 		self._moveToNextRow(gesture)
 
@@ -334,12 +336,11 @@ class ScriptsForTable(NVDAObjects.NVDAObject):
 	def script_layer_moveToLastCellOfTable(self, gesture):
 		self._moveToLastCellOfTable(gesture)
 
-
 	def _reportTableElement(
 		self, elementType="cell", position="current", reportAllCells=None):
 		printDebug("reportTableElement: elementType = %s,position= %s" % (
 			elementType, position)
-			)
+		)
 		stopScriptTimer()
 		if not self.inTable(True):
 			return
@@ -352,7 +353,7 @@ class ScriptsForTable(NVDAObjects.NVDAObject):
 			elementType,
 			position,
 			cell,
-			self.appModule.reportAllCellsFlag if reportAllCells is None else reportAllCells)  # noqa:E501
+			self.appModule.reportAllCellsFlag if reportAllCells is None else reportAllCells)
 
 	@script(
 		# Translators: Input help mode message for report current headers command.
@@ -457,7 +458,7 @@ class ScriptsForTable(NVDAObjects.NVDAObject):
 		# Translators: Input help mode message for report last cell of column command.
 		description=_("Table: report the last cell of the column")
 	)
-	def script_reportLastCellOfColumn(self, gesture):  # noqa:E501
+	def script_reportLastCellOfColumn(self, gesture):
 		wx.CallAfter(
 			self._reportTableElement, elementType="cell", position="lastInColumn")
 
@@ -476,7 +477,6 @@ class ScriptsForTable(NVDAObjects.NVDAObject):
 	def script_reportLastCellOfRow(self, gesture):
 		wx.CallAfter(
 			self._reportTableElement, elementType="cell", position="lastInRow")
-
 
 	@script(
 		# Translators: Input help mode message for move to and report next row command.
@@ -549,7 +549,6 @@ class ScriptsForTable(NVDAObjects.NVDAObject):
 		wx.CallAfter(self._moveToTableElement, position="lastInRow", reportRow=False)
 
 
-
 class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 	scriptCategory = _scriptCategory
 	_mainGestures = {
@@ -569,7 +568,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		# report element text
 		"reportCurrentEndNoteOrFootNote": ("kb:windows+alt+n", ),
 		"reportCurrentRevision": ("kb:windows+alt+m",),
-				}
+	}
 
 	def initOverlayClass(self):
 		printDebug("WordDocument InitOverlayClass")
@@ -686,9 +685,9 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		ui.message(msg)
 
 	def inTable(self, withMessage=False):
-		doc = self.WinwordDocumentObject
 		selection = self.WinwordSelectionObject
-		inTable = selection.Information(wdWithInTable) 
+		from .ww_wdConst import wdWithInTable
+		inTable = selection.Information(wdWithInTable)
 		if not inTable and withMessage:
 			# Translators: The message reported
 			# when a user attempts to use a table movement command.
@@ -709,7 +708,6 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		return None
 
 	def reportCurrentElement(self, elementClass):
-		print ("reportCurrentElement: %s"%elementClass)
 		col = elementClass(None, self, "focus")
 		col.reportElements()
 
@@ -717,7 +715,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		start = self.WinwordSelectionObject.Start
 		try:
 			r = self.WinwordDocumentObject.range(start, start)
-		except:  # noqa:E722
+		except Exception:
 			log.warning("WordDocumentEx getPageAndLineNumber: cannot get rangeat start")
 			return None
 		if self.inTable():
@@ -730,7 +728,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		start = self.WinwordSelectionObject.Start
 		try:
 			r = self.WinwordDocumentObject.range(start, start)
-		except:  # noqa:E722
+		except Exception:
 			log.warning("WordDocumentEx getPageAndLineNumber: cannot get rangeat start")
 			return None
 		if self.inTable():
@@ -793,10 +791,10 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		i = 100
 		playSound = False
 		while i:
-			i = i-1
+			i = i - 1
 			try:
 				info = self.makeTextInfo(textInfos.POSITION_CARET)
-			except:  # noqa:E722
+			except Exception:
 				return False
 			info.expand(unit)
 			text = info.text.strip()
@@ -900,7 +898,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 						text = _("empty")
 					ui.message(text)
 					return
-				except:  # noqa:E722
+				except Exception:
 					break
 			if role == ROLE_ENDNOTE:
 				val = field.field.get('value')
@@ -911,7 +909,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 						text = _("empty")
 					ui.message(text)
 					return
-				except:  # noqa:E722
+				except Exception:
 					printDebug("endnotes")
 					break
 				return
@@ -984,7 +982,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 			msg = _("Selection begins at line {line}, column {column} of page {page}")
 			location = msg.format(line=line, column=column, page=page)
 			text = "%s, %s." % (location, position)
-			r = doc.range(end-1, end)
+			r = doc.range(end - 1, end)
 			line = r.information(wdFirstCharacterLineNumber)
 			column = r.information(wdFirstCharacterColumnNumber)
 			page = r.Information(wdActiveEndPageNumber)
@@ -1017,14 +1015,14 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		activeDocument = ww_document.ActiveDocument(self)
 		wx.CallAfter(activeDocument.reportDocumentInformations)
 
-	
 	def script_tab(self, gesture):
 		stopScriptTimer()
 		"""
 		A script for the tab key which:
-		* if in a table, announces the newly selected cell or new cell where the caret is, 
+		* if in a table, announces the newly selected cell or new cell where the caret is,
 		and announce if caret is on first or last cell of table.
-		* If not in a table, announces the distance of the caret from the left edge of the document, and any remaining text on that line.
+		* If not in a table, announces the distance of the caret from the left edge of the document,
+		and any remaining text on that line.
 		"""
 
 		gesture.send()
@@ -1062,8 +1060,6 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 	def _get_ElementsListDialog(self):
 		from .ww_elementsListDialog import ElementsListDialog
 		return ElementsListDialog
-
-
 
 
 class InsertElementDialog(wx.Dialog):
@@ -1134,7 +1130,7 @@ class InsertElementDialog(wx.Dialog):
 			classElement.entryDialogStrings["insertDialogTitle"],
 			value="",
 			style=wx.TextEntryDialogStyle | wx.TE_MULTILINE
-			) as entryDialog:
+		) as entryDialog:
 			if entryDialog.ShowModal() != wx.ID_OK:
 				return
 			text = entryDialog.Value

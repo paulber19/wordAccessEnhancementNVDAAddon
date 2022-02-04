@@ -1,6 +1,6 @@
 # appModules\winword\ww_headerFooters.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 20121 paulber19
+# Copyright (C) 2021 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -15,7 +15,7 @@ addonHandler.initTranslation()
 
 class HeaderFooter(CollectionElement):
 	def __init__(self, parent, item):
-		super(Bookmark, self).__init__(parent, item)
+		super(HeaderFooter, self).__init__(parent, item)
 		self.exists = item.Exists
 		self.index = item.Index
 		self.isHeader = item.isHeader
@@ -53,8 +53,8 @@ class HeaderFooters(Collection):
 
 	def __init__(self, parent, focus, rangeType):
 		self.rangeType = rangeType
-		self.dialogClass = BookmarksDialog
-		# Translators: text to report no bookmark.
+		self.dialogClass = HeaderFootersDialog
+		# Translators: text to report no header or Footer.
 		self.noElement = _("No header or footer")
 		super(HeaderFooters, self).__init__(parent, focus)
 
@@ -70,7 +70,7 @@ class HeaderFootersDialog(ReportDialog):
 			(_("Location"), 150),
 			(_("Name"), 300),
 			(_("Story type"), 150)
-			)
+		)
 		lcWidth = 0
 		for column in self.lcColumns:
 			lcWidth = lcWidth + column[1]
@@ -81,7 +81,7 @@ class HeaderFootersDialog(ReportDialog):
 			(100, _("&Go to"), self.goTo),
 			(101, _("&Delete"), self.delete),
 			(102, _("Delete &all"), self.deleteAll)
-			)
+		)
 		self.tc1 = {
 			"label": _("Bookmark's text"),
 			"size": (800, 200)
@@ -91,7 +91,7 @@ class HeaderFootersDialog(ReportDialog):
 	def get_lcColumnsDatas(self, element):
 		location = (_("Page {page}, line {line}")).format(
 			page=element.page, line=element.line)
-		index = self.collection.index(element)+1
+		index = self.collection.index(element) + 1
 		datas = (index, location, element.name, element.get_storyTypeText())
 		return datas
 

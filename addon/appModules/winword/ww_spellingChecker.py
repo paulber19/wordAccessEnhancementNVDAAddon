@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 # appModules\word\appModules/winword/ww_spellingChecker.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2021 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -21,23 +21,22 @@ try:
 	ROLE_SPLITBUTTON = Role.SPLITBUTTON
 	ROLE_TOGGLEBUTTON = Role.TOGGLEBUTTON
 	from controlTypes.state import State
-	STATE_SELECTED  = State.SELECTED 
-	STATE_INVISIBLE  = State.INVISIBLE 
-	STATE_FOCUSED  = State.FOCUSED 
-	STATE_PRESSED  = State.PRESSED 
+	STATE_SELECTED = State.SELECTED
+	STATE_INVISIBLE = State.INVISIBLE
+	STATE_FOCUSED = State.FOCUSED
+	STATE_PRESSED = State.PRESSED
 except ImportError:
 	from controlTypes import (
-	ROLE_LIST, ROLE_PANE,
-	ROLE_STATICTEXT, ROLE_LINK,
-	ROLE_GROUPING, ROLE_SPLITBUTTON,
-	ROLE_TOGGLEBUTTON,
-	
+		ROLE_LIST, ROLE_PANE,
+		ROLE_STATICTEXT, ROLE_LINK,
+		ROLE_GROUPING, ROLE_SPLITBUTTON,
+		ROLE_TOGGLEBUTTON,
 	)
 	from controlTypes import (
-	STATE_SELECTED , STATE_INVISIBLE ,
-	STATE_FOCUSED , STATE_PRESSED 
+		STATE_SELECTED, STATE_INVISIBLE,
+		STATE_FOCUSED, STATE_PRESSED
 	)
-	
+
 import speech
 from .ww_scriptTimer import clearScriptTimer
 import os
@@ -46,7 +45,7 @@ _curAddon = addonHandler.getCodeAddon()
 path = os.path.join(_curAddon.path, "shared")
 sys.path.append(path)
 from ww_utils import (
-	getSpeechMode, setSpeechMode, setSpeechMode_off)  # noqa:E402
+	getSpeechMode, setSpeechMode, setSpeechMode_off)
 del sys.path[-1]
 addonHandler.initTranslation()
 
@@ -70,7 +69,7 @@ class BaseSpellingChecker(object):
 		id = ID_InSpellingChecker_No
 		i = 50
 		while i and o and o.windowClassName != "#32769":
-			i = i-1
+			i = i - 1
 			oParents.append(o)
 			if o.windowClassName == "MsoCommandBarDock" and o.name == "MsoDockRight":
 				pane = oParents[-8] if len(oParents) >= 8 else None
@@ -204,7 +203,7 @@ class SpellingChecker_2019(object):
 		def getSelectedSuggestion(pane):
 			oSuggestions = pane.getChild(1)
 			if oSuggestions.role == ROLE_GROUPING:
-				suggestionCount = oSuggestions .childCount-1
+				suggestionCount = oSuggestions .childCount - 1
 				if suggestionCount:
 					sg = None
 					firstSuggestion = None
@@ -239,7 +238,7 @@ class SpellingChecker_2019(object):
 		error = ""
 		type = ""
 		if errorObj.name != "":
-			tempList = errorObj.name.split(chr(160)+":")
+			tempList = errorObj.name.split(chr(160) + ":")
 			if spelling:
 				error = tempList[0].strip()
 				type = tempList[1].split(", ")[-1]

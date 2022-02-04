@@ -58,7 +58,7 @@ class InformationDialog(wx.Dialog):
 		self.tc.AppendText(self.information)
 		if self.insertionPointOnLastLine:
 			lineCount = self.tc.GetNumberOfLines()
-			length = self.tc.GetLineLength(lineCount-1)
+			length = self.tc.GetLineLength(lineCount - 1)
 			lastPosition = self.tc.GetLastPosition()
 			self.tc.SetInsertionPoint(lastPosition - length)
 		else:

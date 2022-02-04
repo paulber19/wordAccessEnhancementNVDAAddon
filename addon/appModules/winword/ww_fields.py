@@ -1,6 +1,6 @@
 # appModules\winword\ww_fields.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2020 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -20,7 +20,7 @@ class Field(CollectionElement):
 			if item.Result.Text:
 				self.resultText = item.Result.Text
 
-		except:  # noqa:E722
+		except Exception:
 			pass
 
 		self.start = item.code.Start
@@ -32,13 +32,13 @@ class Field(CollectionElement):
 		self.showCode = None
 		try:
 			self.showCode = item.ShowCode
-		except:  # noqa:E722
+		except Exception:
 			pass
 		self.name = ""
 		try:
 			if item.name:
 				self.name = item.Name
-		except:  # noqa:E722
+		except Exception:
 			pass
 		self.setLineAndPageNumber()
 
@@ -56,7 +56,7 @@ class Field(CollectionElement):
 	def _getTypeText(cls, type):
 		try:
 			text = wdFieldTypes[type]
-		except:  # noqa:E722
+		except Exception:
 			text = str(type)
 		return text
 
@@ -86,7 +86,7 @@ class FieldsDialog(ReportDialog):
 			(_("Number"), 100),
 			(_("Location"), 150),
 			(_("Type"), 300)
-			)
+		)
 		lcWidth = 0
 		for column in self.lcColumns:
 			lcWidth = lcWidth + column[1]
@@ -95,21 +95,21 @@ class FieldsDialog(ReportDialog):
 			(100, _("&Go to"), self.goTo),
 			(101, _("&Delete"), self.delete),
 			(102, _("Delete &all"), self.deleteAll)
-			)
+		)
 		self.tc1 = {
-			"label":   _("Result"),
+			"label": _("Result"),
 			"size": (800, 200)
 		}
 		self.tc2 = {
-			"label":   _("Code"),
+			"label": _("Code"),
 			"size": (800, 200)
-			}
+		}
 
 	def get_lcColumnsDatas(self, element):
 		typeText = element.getTypeText()
 		location = (_("Page {page}, line {line}")).format(
 			page=element.page, line=element.line)
-		index = self.collection.index(element)+1
+		index = self.collection.index(element) + 1
 		datas = (index, location, typeText)
 		return datas
 
@@ -213,4 +213,4 @@ wdFieldTypes = {
 	93: "AddressBlock",  # wdFieldAddressBlock
 	94: "GreetingLine ",  # wdFieldGreetingLine
 	95: "Shape"  # wdFieldShape
-	}
+}

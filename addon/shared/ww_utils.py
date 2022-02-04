@@ -1,6 +1,6 @@
 # shared\winword\ww_utils.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2021 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -8,15 +8,9 @@ import addonHandler
 # from logHandler import log
 import winUser
 import keyboardHandler
-import gui
 import time
-import api
 import speech
-import wx
-import config
-from gui import mainFrame, guiHelper
 import queueHandler
-from ww_NVDAStrings import NVDAString
 
 addonHandler.initTranslation()
 
@@ -25,9 +19,9 @@ def putWindowOnForeground(hwnd, sleepNb=10, sleepTime=0.1):
 	winUser.setForegroundWindow(hwnd)
 	try:
 		winUser.setForegroundWindow(hwnd)
-	except:  # noqa:E722
+	except Exception:
 		pass
-	for i in [sleepTime]*(sleepNb-1):
+	for i in [sleepTime] * (sleepNb - 1):
 		time.sleep(i)
 		if winUser.getForegroundWindow() == hwnd:
 			return True
@@ -70,10 +64,6 @@ def makeAddonWindowTitle(dialogTitle):
 	addonSummary = curAddon.manifest['summary']
 	return "%s - %s" % (addonSummary, dialogTitle)
 
-def makeAddonWindowTitle(dialogTitle):
-	curAddon = addonHandler.getCodeAddon()
-	addonSummary = curAddon.manifest['summary']
-	return "%s - %s" % (addonSummary, dialogTitle)
 
 def getSpeechMode():
 	try:
@@ -82,12 +72,14 @@ def getSpeechMode():
 	except AttributeError:
 		return speech.speechMode
 
+
 def setSpeechMode(mode):
 	try:
 		# for nvda version >= 2021.1
 		speech.setSpeechMode(mode)
 	except AttributeError:
 		speech.speechMode = mode
+
 
 def setSpeechMode_off():
 	try:

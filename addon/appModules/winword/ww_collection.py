@@ -1,6 +1,6 @@
 # appModules\winword\ww.collection.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2021 paulber19
+# Copyright (C) 2019-2022 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -25,7 +25,7 @@ except ImportError:
 	try:
 		# for nvda version == 2021.1
 		from controlTypes import OutputReason
-		REASON_CARET = OutputReason.CARET		
+		REASON_CARET = OutputReason.CARET
 	except AttributeError:
 		# fornvda version <  2020.1
 		REASON_CARET = controlTypes.REASON_CARET
@@ -37,15 +37,19 @@ sys.path.append(debugToolsPath)
 try:
 	from appModuleDebug import printDebug, toggleDebugFlag
 except ImportError:
-	def printDebug(msg): return
-	def toggleDebugFlag(): return
+
+	def printDebug(msg):
+		return
+
+	def toggleDebugFlag():
+		return
 del sys.path[-1]
 
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
 from ww_utils import (
 	getSpeechMode, setSpeechMode, setSpeechMode_off)
-from ww_messageBox import myMessageBox  # noqa:E402
+from ww_messageBox import myMessageBox
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -53,7 +57,7 @@ addonHandler.initTranslation()
 
 def convertPixelToUnit(nbPixel):
 	unit = float(_("28.35"))
-	return nbPixel/unit
+	return nbPixel / unit
 
 
 class CollectionElement(object):
@@ -70,7 +74,7 @@ class CollectionElement(object):
 		try:
 			self.line = rangeObj.Information(wdFirstCharacterLineNumber)
 			self.page = rangeObj.Information(wdActiveEndPageNumber)
-		except:  # noqa:E722
+		except Exception:
 			self.line = ""
 			self.page = ""
 
@@ -114,7 +118,7 @@ class Collection(object):
 			"page": _("%s in the page"),
 			"startToFocus": _("%s between start of document and cursor's position"),
 			"focusToEnd": _("%s between cursor's position and end of document")
-			}
+		}
 
 		(singular, plural) = self._name
 		titles = {
@@ -122,9 +126,9 @@ class Collection(object):
 			"selection": _("%s in the selection") % plural,
 			"document": _("%s in the document") % plural,
 			"page": _("%s in the page") % plural,
-			"startToFocus": _("%s between document's start and cursor's position") % plural,  # noqa:E501
+			"startToFocus": _("%s between document's start and cursor's position") % plural,
 			"focusToEnd": _("%s between cursor's position and document's end") % plural
-				}
+		}
 
 		self.noElementMessage = noElementMessages[self.rangeType] % self.noElement
 		self.title = titles[self.rangeType]
@@ -140,7 +144,7 @@ class Collection(object):
 		curTime = time.time()
 		if curTime - startTime >= self._delay:
 			if self.parent.isActive:
-				per = int(100*(float(cur)/float(max)))
+				per = int(100 * (float(cur) / float(max)))
 				speech.speakMessage(_("%s percent") % str(int(per)))
 			return curTime
 		return startTime
@@ -153,13 +157,13 @@ class Collection(object):
 			col = getattr(theRange, property)
 			try:
 				col = getattr(theRange, property)
-			except:  # noqa:E722
+			except Exception:
 				# no collection for the range
 				printDebug("No collection for the range")
 				continue
 			count = col.count
 			startTime = time.time()
-			for i in range(1, count+1):
+			for i in range(1, count + 1):
 				wx.GetApp().Yield()
 				startTime = self.sayPercentage(i, count, startTime)
 				# stopped by user?
@@ -193,7 +197,7 @@ class Collection(object):
 			try:
 				element = elementClass(self, obj)
 				elements.append(element)
-			except:  # noqa:E722
+			except Exception:
 				printDebug("getElementsInCollection: except on element = elementClass")
 				speech.speakMessage(_("Sorry, There are too many elements to be treated "))
 				time.sleep(2.0)
@@ -209,9 +213,9 @@ class Collection(object):
 
 		elif self.rangeType == "focus":
 			if hasattr(self, "reference"):
-				r = self.doc.range(self.reference, self.reference+1)
+				r = self.doc.range(self.reference, self.reference + 1)
 			else:
-				r = self.doc.range(self.selection.Start, self.selection.Start+1)
+				r = self.doc.range(self.selection.Start, self.selection.Start + 1)
 
 			pleaseWait = False
 
@@ -282,7 +286,7 @@ class Collection(object):
 
 		sText = sSummary
 		for item in self.collection:
-			index = self.collection.index(item)+1
+			index = self.collection.index(item) + 1
 			if sTitle != "":
 				sText = sText + "\r\n" + sTitle.format(name=self._name[0], index=index)
 
@@ -310,7 +314,7 @@ class Collection(object):
 			return
 		try:
 			info = obj.makeTextInfo(textInfos.POSITION_CARET)
-		except:  # noqa:E722
+		except Exception:
 			return
 		info.expand(elementUnit)
 		speech.speakTextInfo(
@@ -342,7 +346,7 @@ class ReportDialog(wx.Dialog):
 			("Column2", 150),
 			("Column3", 300),
 			("Column4", 150)
-			)
+		)
 
 		lcWidth = 0
 		for column in self.lcColumns:
@@ -354,7 +358,7 @@ class ReportDialog(wx.Dialog):
 			(100, "Button1", None),
 			(101, "Button2", None),
 			(102, "Button3", None)
-			)
+		)
 
 		self.tc1 = {
 			"label": "TC1label",
@@ -510,8 +514,8 @@ class ReportDialog(wx.Dialog):
 		for item in self.collection:
 			self.entriesList.Append(self.get_lcColumnsDatas(item))
 		index = activeIndex
-		if activeIndex > count-1:
-			index = count-1
+		if activeIndex > count - 1:
+			index = count - 1
 
 		self.entriesList.Select(index)
 		self.entriesList.SetItemState(
@@ -590,7 +594,7 @@ class ReportDialog(wx.Dialog):
 			self.collectionClass.entryDialogStrings["modifyDialogTitle"],
 			item.text,
 			style=wx.TextEntryDialogStyle | wx.TE_MULTILINE
-			) as entryDialog:
+		) as entryDialog:
 			if entryDialog.ShowModal() != wx.ID_OK:
 				return
 			newText = entryDialog.Value
