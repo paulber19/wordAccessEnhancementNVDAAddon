@@ -39,6 +39,7 @@ try:
 	# for nvda version >= 2021.2
 	from controlTypes.outputReason import OutputReason
 	REASON_QUICKNAV = OutputReason.QUICKNAV
+	REASON_FOCUS = OutputReason.FOCUS
 except ImportError:
 	try:
 		# for nvda version == 2021.1
@@ -270,14 +271,12 @@ class BrowseModeDocumentTreeInterceptorEx(
 
 
 NVDAVersion = [version_year, version_major]
-if NVDAVersion < [2019, 3]:
-	# automatic reading not available
-	BrowseModeWordDocumentTextInfoEx = BrowseModeWordDocumentTextInfo
-else:
-	from .ww_automaticReading import AutomaticReadingWordTextInfo
 
-	class BrowseModeWordDocumentTextInfoEx(AutomaticReadingWordTextInfo, BrowseModeWordDocumentTextInfo):
-		pass
+from .ww_automaticReading import AutomaticReadingWordTextInfo
+
+
+class BrowseModeWordDocumentTextInfoEx(AutomaticReadingWordTextInfo, BrowseModeWordDocumentTextInfo):
+	pass
 
 
 class WordDocumentTreeInterceptorEx(BrowseModeDocumentTreeInterceptorEx, WordDocumentTreeInterceptor):
@@ -392,7 +391,7 @@ class WordDocumentBookmarkQuickNavItem(WordDocumentCollectionQuickNavItem):
 		return msg.format(name=name, text=text)
 
 	def report(self, readUnit=None):
-		ui.message(_("Bookmark %s" % self.collectionItem.index))
+		ui.message(_("Bookmark %s") % self.collectionItem.name)
 
 
 class BookmarkWinWordCollectionQuicknavIterator(WinWordCollectionQuicknavIterator):
@@ -414,19 +413,16 @@ class WordDocumentEndnoteQuickNavItem(WordDocumentCollectionQuickNavItem):
 	def report(self, readUnit=None):
 		textList = []
 		textList.append(self.label)
-		try:
-			# only for nvda version >= 2019.3
-			from .ww_endnotes import Endnote
-			index = int(self.collectionItem.Index)
-			doc = self.collectionItem.Application.ActiveDocument
-			endnoteObj = doc.EndNotes[index]
-			endnote = Endnote(self.collectionItem, endnoteObj)
-			from .ww_automaticReading import formatAutoSpeechSequence
-			if _addonConfigManager.toggleAutomaticReadingOption(False) and (
-				_addonConfigManager.toggleAutoEndnoteReadingOption(False)):
-				textList.extend(formatAutoSpeechSequence([endnote.text]))
-		except Exception:
-			pass
+		from .ww_endnotes import Endnote
+		index = int(self.collectionItem.Index)
+		doc = self.collectionItem.Application.ActiveDocument
+		endnoteObj = doc.EndNotes[index]
+		endnote = Endnote(self.collectionItem, endnoteObj)
+		from .ww_automaticReading import formatAutoSpeechSequence
+		if _addonConfigManager.toggleAutomaticReadingOption(False) and (
+			_addonConfigManager.toggleAutoEndnoteReadingOption(False)):
+			textList.extend(formatAutoSpeechSequence([endnote.text]))
+
 		speech.speak(textList)
 
 
@@ -483,19 +479,15 @@ class WordDocumentFootnoteQuickNavItem(WordDocumentCollectionQuickNavItem):
 	def report(self, readUnit=None):
 		textList = []
 		textList.append(self.label)
-		try:
-			# only for nvda version >= 2019.3
-			from .ww_footnotes import Footnote
-			index = int(self.collectionItem.Index)
-			doc = self.collectionItem.Application.ActiveDocument
-			footnoteObj = doc.FootNotes[index]
-			footnote = Footnote(self.collectionItem, footnoteObj)
-			from .ww_automaticReading import formatAutoSpeechSequence
-			if _addonConfigManager.toggleAutomaticReadingOption(False) and (
-				_addonConfigManager.toggleAutoFootnoteReadingOption(False)):
-				textList.extend(formatAutoSpeechSequence([footnote.text]))
-		except Exception:
-			pass
+		from .ww_footnotes import Footnote
+		index = int(self.collectionItem.Index)
+		doc = self.collectionItem.Application.ActiveDocument
+		footnoteObj = doc.FootNotes[index]
+		footnote = Footnote(self.collectionItem, footnoteObj)
+		from .ww_automaticReading import formatAutoSpeechSequence
+		if _addonConfigManager.toggleAutomaticReadingOption(False) and (
+			_addonConfigManager.toggleAutoFootnoteReadingOption(False)):
+			textList.extend(formatAutoSpeechSequence([footnote.text]))
 		speech.speak(textList)
 
 	def moveTo(self):

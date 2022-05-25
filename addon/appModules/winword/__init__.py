@@ -97,10 +97,14 @@ class AppModule(AppModule):
 			from . import ww_IAccessibleWordDocument
 			clsList.insert(0, ww_IAccessibleWordDocument.IAccessibleWordDocument)
 			clsList.remove(NVDAObjects.IAccessible.winword.WordDocument)
+			from nvdaBuiltin.appModules.winword import WinwordWordDocument
+			clsList.insert(0, WinwordWordDocument)
 		elif NVDAObjects.UIA.wordDocument.WordDocument in clsList:
 			from . import ww_UIAWordDocument
 			clsList.insert(0, ww_UIAWordDocument.UIAWordDocument)
 			clsList.remove(NVDAObjects.UIA.wordDocument.WordDocument)
+			from nvdaBuiltin.appModules.winword import WinwordWordDocument
+			clsList.insert(0, WinwordWordDocument)
 
 	def event_appModule_gainFocus(self):
 		printDebug("Word: event_appModuleGainFocus")
@@ -108,21 +112,6 @@ class AppModule(AppModule):
 
 		from . import ww_automaticReading
 		ww_automaticReading.initialize()
-		if self.checkUseUIAForWord and config.conf["UIA"]["useInMSWordWhenAvailable"]:
-			wx.CallAfter(
-				myMessageBox,
-				# Translators: message to user
-				_(
-					"""You have checked """
-					"""the "Use UI Automation to access Microsoft Word document controls when available" option. """
-					"""For the add-on to work properly, it is recommended not to check this option."""),
-				# Translators: dialog title.
-				_("Warning"),
-				wx.OK | wx.ICON_ERROR)
-			self.checkUseUIAForWord = False
-			return
-		if not config.conf["UIA"]["useInMSWordWhenAvailable"]:
-			self.checkUseUIAForWord = True
 
 	def event_appModule_loseFocus(self):
 		printDebug("Word: event_appModuleLoseFocus")
@@ -320,9 +309,90 @@ class AppModule(AppModule):
 		from .import ww_automaticReading
 		ww_automaticReading.saveCurrentSpeechSettings()
 
+	def isThereHiddenText(self, selection):
+		wdSelectionNormal = 2
+		if selection.Type == wdSelectionNormal:
+			# print ("font.hidden: %s"%Selection.Font.Hidden)
+			wdUndefined = 9999999
+			if selection.Font.Hidden == wdUndefined or selection.Font.Hidden:
+				print("text hidden")
+				return True
+		return False
+
+	def isHidden(self, selection):
+		rngTemp = selection.Range
+		rngTemp.TextRetrievalMode.IncludeHiddenText = False
+		if rngTemp.text == "":
+			
+			print("selection is hidden")
+
+
+	def findHiddenText(self):
+		focus = api.getFocusObject()
+		winwordDocumentObject = focus.WinwordDocumentObject
+		winwordWindowObject = self.WinwordWindowObject
+		selection = winwordWindowObject.Selection
+		sView = winwordDocumentObject .ActiveWindow.View.ShowHiddenText
+		winwordDocumentObject .ActiveWindow.View.ShowHiddenText = True
+		print ("selection.font.hidden: %s"%selection.font.hidden)
+		selection.Find.ClearFormatting
+		selection.Find.Replacement.ClearFormatting
+		if True:
+			f = selection.Find
+			f.Text = ""
+			f.Font.Hidden = True
+			f.Replacement.Text = ""
+			f.Forward = True
+			wdFindContinue = 1
+			wdFindStop = 0
+			f.Wrap = wdFindStop
+			f.Format = True
+			f.MatchCase = False
+			f.MatchWholeWord = False
+			f.MatchWildcards = False
+			f.MatchSoundsLike = False
+			f.MatchAllWordForms = False
+		import textInfos
+		oldBookmark=focus.makeTextInfo(textInfos.POSITION_CARET).bookmark
+		found = f.Execute()
+		print ("found: %s"%found)
+		if focus._hasCaretMoved(oldBookmark)[0]:
+			info=focus.makeTextInfo(textInfos.POSITION_SELECTION)
+			print ("info: %s"%info.text)
+
+
+
+		if found:
+			print ("text: %s"%selection.range.text)
+			ui.message(selection.range.text)
+			selection.Collapse(1)
+		
+
+		winwordDocumentObject .ActiveWindow.View.ShowHiddenText = sView
+		
+
 	def script_test(self, gesture):
 		print("test word")
 		ui.message("test word")
+		self.findHiddenText()
+		return
+		focus = api.getFocusObject()
+		winwordDocumentObject = focus.WinwordDocumentObject
+		from .ww_wdConst import wdMainTextStory
+		r = winwordDocumentObject .StoryRanges(wdMainTextStory)
+		print("r: %s" % r.Font.Hidden)
+		return
+		winwordWindowObject = self.WinwordWindowObject
+		selection = winwordWindowObject.Selection
+		self.isThereHiddenText(selection)
+		return
+		# ActiveDocument.ActiveWindow.View.ShowHiddenText = True
+		# winwordWindowObject.View.ShowHiddenText = False
+		winwordWindowObject.View.ShowHiddenText = True
+		return
+		wdSelectionNormal = 2
+		if selection.Type == wdSelectionNormal:
+			selection.Font.Hidden = True
 
 	__gestures = {
 		"kb:control+windows+alt+f12": "test",

@@ -74,7 +74,7 @@ Para una actualización de una versión estable, el botón "Qué hay de nuevo" o
 ++ Compatibilidad ++
 Este complemento fue probado con las versiones de Microsoft Word 2019, 2016 y 2013.
 
-Advertencia: para el correcto funcionamiento del complemento, la casilla de verificación de NVDA "Utilizar UI Automation para acceder a controles de documento de Microsoft Word cuando esté disponible" no debe ser marcado. Se encuentra en la categoría Opciones "Avanzadas" de NVDA.
+Advertencia: para el correcto funcionamiento del complemento, la casilla de verificación de NVDA "Utilizar UI Automation para acceder a controles de documento de Microsoft Word cuando esté disponible" no debe ser marcado. Se encuentra en la categoría Opciones "Avanzadas" de NVDA (versiones de NVDA inferiores a 2022.1).
 
 + Inspección del documento +[hdr_inspect]
 ++ Búsqueda de elementos ++[hdr1]

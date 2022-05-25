@@ -18,8 +18,25 @@ Download:
 
 Sorry, but this document is an automatic translation from french language.
 
++ v3.3 (May/24/2022) +
+Features:
+- addition in the document information, of:
+ - the indication "contains hidden text" in the statistics,
+ - the indication of the state of the "show hidden text" option of Word.
 
-+ v3.2 (02/04/2022) +
+
+Bug fixes:
+- no translation of certain types of elements in the dialog opened with "nvda+f7".
+- error when moving from bookmark to bookmark.
+- error getting document information when page borders are not uniform.
+- the options of the "Document formatting" category are no longer modified when a search for comments is made using the "Search for elements" dialog (windows+alt+f5).
+
+
+Changes:
+- removal of the message which asked, for a good functioning of the extension, to uncheck the option "Use UI Automation to access the Controls of Microsoft Word documents when available".
+
+
++ v3.2 (February/04/2022) +
 - Compatibility with NVDA 2022.1.
 - reset the configuration in the event of errors in the configuration file.
 
@@ -28,10 +45,10 @@ Changes:
 - during an automatic update of the extension, it no longer asks the user if he wants to keep the current configuration parameters of the extension.
 
 
-+ v3.1 (12/19/2021) +
++ v3.1 (December/19/2021) +
 Compatibility with NVDA 2021.3. Versions of NVDA prior to 2020.4 are no longer supported.
 
-+ v3.0 (06/23/2021) +
++ v3.0 (June/23/2021) +
 Compatibility with NVDA 2021.1. Versions of NVDA prior to 2019.3 are no longer supported.
 
 

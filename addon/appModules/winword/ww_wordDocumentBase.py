@@ -51,16 +51,6 @@ except ImportError:
 	from controlTypes import (
 		ROLE_FOOTNOTE, ROLE_ENDNOTE,
 	)
-	try:
-		# for nvda version == 2021.1
-		from controlTypes import OutputReason
-		REASON_CARET = OutputReason.CARET
-		REASON_FOCUS = OutputReason.FOCUS
-	except AttributeError:
-		# fornvda version <  2020.1
-		import controlTypes
-		REASON_CARET = controlTypes.REASON_CARET
-		REASON_FOCUS = controlTypes.REASON_FOCUS
 
 _curAddon = addonHandler.getCodeAddon()
 debugToolsPath = os.path.join(_curAddon.path, "debugTools")
@@ -572,6 +562,10 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 
 	def initOverlayClass(self):
 		printDebug("WordDocument InitOverlayClass")
+		# install word shortcut depending of word language
+		from .ww_keyboard import getToggleChangeTrackingShortCut
+		toggleChangeTrackingGesture = "kb:%s" % getToggleChangeTrackingShortCut()
+		self.bindGesture(toggleChangeTrackingGesture , "toggleChangeTracking")
 		self.postOverlayClassInitGestureMap = self._gestureMap.copy()
 		if self.appModule.layerMode is None:
 			self.appModule.layerMode = False
@@ -1060,6 +1054,26 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 	def _get_ElementsListDialog(self):
 		from .ww_elementsListDialog import ElementsListDialog
 		return ElementsListDialog
+
+	# script comes from nvda appModules.winword.py module
+# we need do it because for french word,  "control+shift+e" shortcut is remapped to "control+shift+r" in nvda locale gesture.ini
+# so this don't word  when we use nvdaBultin.appModule.winword.AppModule class
+	def script_toggleChangeTracking(self, gesture):
+		if not self.WinwordDocumentObject:
+			# We cannot fetch the Word object model, so we therefore cannot report the status change.
+			# The object model may be unavailable because it's within Windows Defender Application Guard.
+			# In this case, just let the gesture through and don't report anything.
+			return gesture.send()
+		val = self._WaitForValueChangeForAction(
+			lambda: gesture.send(),
+			lambda: self.WinwordDocumentObject.TrackRevisions
+		)
+		if val:
+			# Translators: a message when toggling change tracking in Microsoft word
+			ui.message(_("Change tracking on"))
+		else:
+			# Translators: a message when toggling change tracking in Microsoft word
+			ui.message(_("Change tracking off"))
 
 
 class InsertElementDialog(wx.Dialog):

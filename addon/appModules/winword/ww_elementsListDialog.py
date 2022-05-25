@@ -43,16 +43,16 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 		("graphic", NVDAString("graphic").capitalize()),
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
-		("bookmark", NVDAString("bookmark").capitalize()),
+		("bookmark", _("Bookmark")),
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
-		("comment", NVDAString("comment").capitalize()),
+		("comment", _("Comment")),
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
-		("endnote", NVDAString("endnote").capitalize()),
+		("endnote", _("Endnote")),
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
-		("field", NVDAString("field").capitalize()),
+		("field", _("Field")),
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
 		("formfield", _("FormField")),

@@ -16,6 +16,24 @@ Descarga:
 - [Versiones de desarrollo ADDON_DEV_URL]
 
 
++ v3.3 (24/05/2022) +
+Nuevas características:
+- se añadió sobre la información del documento, de:
+ - la indicación  "Contiene texto oculto" en las estadísticas,
+ - la indicación del estado  de la opción "Mostrar texto oculto" de Word.
+
+
+Correcciones de fallos:
+- no traducción de ciertos tipos de elementos en el diálogo abierto con "nvda+f7".
+- error durante un desplazamiento de marcador en marcador.
+- error para obtener información sobre el documento cuando los bordes de la página no son uniformes.
+- las opciones de la categoría "Formatear documentos" ya no se modifican cuando se realiza una búsqueda de comentarios utilizando el diálogo "Búsqueda de elementos" (windows+alt+f5).
+
+
+Cambios:
+- eliminación del mensaje pidiendo, para un buen funcionamiento adecuado  del complemento, de desmarcar la opción "Utilizar UI Automation para acceder a controles de documento de Microsoft Word cuando esté disponible".
+
+
 + v3.2 (04/02/2022) +
 - Compatibilidad con NVDA 2022.1.
 - reinicialización de la configuración en caso de errores en el archivo de configuración.

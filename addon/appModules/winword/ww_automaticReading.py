@@ -2038,11 +2038,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 					else NVDAString("not hidden")
 				)
 				textList.append(text)
-		try:
-			# for NVDA version >= 2020.4
-			reportSuperscriptsAndSubscripts = formatConfig["reportSuperscriptsAndSubscripts"]
-		except KeyError:
-			reportSuperscriptsAndSubscripts = False
+		reportSuperscriptsAndSubscripts = formatConfig["reportSuperscriptsAndSubscripts"]
 		if reportSuperscriptsAndSubscripts:
 			textPosition = attrs.get("text-position")
 			oldTextPosition = attrsCache.get("text-position") if attrsCache is not None else None
@@ -2234,7 +2230,7 @@ class AutomaticReadingWordTextInfo(textInfos.TextInfo):
 		elif NVDAVersion >= [2021, 1]:
 			funct = self.getControlFieldSpeech_2021_1
 		else:
-			# for nvda version <= 2020.4
+			# for nvda version == 2020.4
 			funct = self.getControlFieldSpeech_2020_4
 
 		return funct(
@@ -3513,7 +3509,7 @@ def _setSynth(synthName, speechSettings, temporary=False):
 	# if we don't change with another synthetizer, nothing appends.
 	# for NVDA version  2020.3or 2020.4,  we switch to embedded synthetizer.
 	NVDAVersion = [version_year, version_major]
-	if NVDAVersion in [[2020, 3], [2020, 4], [2021, 3]]:
+	if NVDAVersion in [[2020, 4], [2021, 3]]:
 		synthDriverHandler.setSynth("espeak")
 	else:
 		synthDriverHandler.setSynth(None)

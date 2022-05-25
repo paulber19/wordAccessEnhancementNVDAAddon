@@ -7,12 +7,14 @@
 import addonHandler
 import speech
 import api
+import time
 from .ww_wdConst import wdUndefined
 import sys
 import os
 _curAddon = addonHandler.getCodeAddon()
 path = os.path.join(_curAddon.path, "shared")
 sys.path.append(path)
+from ww_addonConfigManager import _addonConfigManager
 from ww_informationDialog import InformationDialog
 from ww_NVDAStrings import NVDAString
 del sys.path[-1]
@@ -665,6 +667,31 @@ class ActiveDocument(object):
 		from .ww_wdConst import wdWithInTable
 		self.inTable = self.winwordSelectionObject.information(wdWithInTable)
 
+	def containsHiddenText(self):
+		from .ww_wdConst import wdMainTextStory
+		r = self.winwordDocumentObject.StoryRanges(wdMainTextStory)
+		r.TextRetrievalMode.IncludeHiddenText = True
+		r.Find.ClearFormatting
+		r.Find.Replacement.ClearFormatting
+		f = r.Find
+		f.Text = ""
+		f.Font.Hidden = True
+		f.Replacement.Text = ""
+		f.Forward = True
+		wdFindContinue = 1
+		wdFindStop = 0
+		f.Wrap = wdFindStop
+		f.Format = True
+		f.MatchCase = False
+		f.MatchWholeWord = False
+		f.MatchWildcards = False
+		f.MatchSoundsLike = False
+		f.MatchAllWordForms = False
+		found = f.Execute()
+		if found:
+			return True
+		return False
+
 	def isProtected(self):
 		return self.protectionType >= 0
 
@@ -689,6 +716,28 @@ class ActiveDocument(object):
 	def _getPositionInfos(self):
 		selection = Selection(self)
 		return selection.getPositionInfos()
+	def getSpellingErrorsCount(self):
+		doc = self.winwordDocumentObject
+		limited = False
+		"""
+		r = doc.Content
+		paragraphs = r.Paragraphs
+		errors = 0
+		self.startTime = int(time.time())
+		for p in paragraphs:
+			n = p.range.SpellingErrors.Count
+			errors += n
+			elapsedTime = int(time.time()) - self.startTime
+			if elapsedTime > _addonConfigManager.getElementsSearchMaxTime():
+				limited = True
+				break
+		"""
+		errors = doc.SpellingErrors.Count
+		if not errors:
+			return ""
+		msg = "%s" if not limited else _("%s or more")
+		return msg % errors
+
 
 	def getStatistics(self):
 		from .ww_wdConst import (
@@ -766,14 +815,22 @@ class ActiveDocument(object):
 			# Translators: text to indicate number of bookmarks.
 			text = _("Bookmarks: %s") % doc.Bookmarks.Count
 			textList.append("\t" + text)
-		if doc.SpellingErrors.Count:
+		spellingErrors = doc.SpellingErrors.Count
+		spellingErrorsMsg = self.getSpellingErrorsCount()
+		if spellingErrorsMsg != "":
 			# Translators: text to indicate number of spelling errors.
-			text = _("Spelling errors: %s") % doc.SpellingErrors.Count
+			text = _("Spelling errors: %s") % spellingErrorsMsg
 			textList.append("\t" + text)
-		if False and doc.GrammaticalErrors.Count:
+		"""
+		grammaticalErrors = doc.GrammaticalErrors.Count
+		if grammaticalErrors:
 			# Translators: text to indicate number of grammatical errors.
-			text = _("Grammatical errors: %s") % doc.GrammaticalErrors.Count
+			text = _("Grammatical errors: %s") % grammaticalErrors
 			textList.append("\t" + text)
+		"""
+		text = _("Contains hidden text: %s") % (
+			_("Yes") if self.containsHiddenText() else _("No"))
+		textList.append("\t" + text)
 		return textList
 
 	def getDocumentProperties(self):
@@ -822,6 +879,9 @@ class ActiveDocument(object):
 		# Translators: text to indicate rack revision is activated.
 		text = _("Track revision: %s") % (
 			_("Yes") if self.winwordDocumentObject.TrackRevisions else _("No"))
+		textList.append("\t" + text)
+		text = _("Display hidden text: %s") % (
+			_("Yes") if self.winwordDocumentObject.ActiveWindow.View.ShowHiddenText else _("No"))
 		textList.append("\t" + text)
 		return textList
 
@@ -1037,9 +1097,13 @@ class Borders (object):
 		curIndent = indent + "\t"
 		from .ww_wdConst import borderNames
 		for index in borderNames:
-			if borderCollection(index).Visible:
-				foundVisibleBorder = True
+			try:
 				border = borderCollection(index)
+			except Exception:
+				continue
+			if border.Visible:
+				foundVisibleBorder = True
+
 				b = Border(border)
 				name = self.getBorderName(index)
 				color = self.activeDocument.getColorName(border.Color)

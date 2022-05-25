@@ -77,7 +77,7 @@ Dans le cas d'une mise à jour vers une version stable, Le bouton "Quoi de neuf"
 ++ Compatibilité ++
 Cette extension a était testé avec les versions 2019, 2016 et 2013 de Microsoft Word.
 
-Attention : pour un bon fonctionnement de l'extension, la case à cocher de NVDA "Utiliser UI Automation pour accéder aux Contrôles des documents Microsoft Word quand disponible " ne doit pas être cochée. Elle se trouve dans la catégorie "Avancé" des paramètres de NVDA.
+Attention : pour un bon fonctionnement de l'extension, la case à cocher de NVDA "Utiliser UI Automation pour accéder aux Contrôles des documents Microsoft Word quand disponible " ne doit pas être cochée. Elle se trouve dans la catégorie "Avancé" des paramètres de NVDA (versions de NVDA inférieures à 2022.1).
 
 + Inspection du document +[hdr_inspect]
 ++ Recherche d'éléments ++[hdr1]

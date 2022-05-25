@@ -16,7 +16,7 @@ addonHandler.initTranslation()
 def getReferenceAtFocus(focus):
 	info = focus.makeTextInfo(textInfos.POSITION_CARET)
 	info.expand(textInfos.UNIT_CHARACTER)
-	formatConfig = config.conf["documentFormatting"]
+	formatConfig = config.conf["documentFormatting"].copy()
 	for item in formatConfig:
 		formatConfig[item] = False
 	formatConfig["reportComments"] = True

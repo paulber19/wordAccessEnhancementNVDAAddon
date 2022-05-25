@@ -15,6 +15,24 @@ Téléchargement :
 - [versions de développement ADDON_DEV_URL]
 
 
++ v3.3 (24/05/2022) +
+Fonctionnalités:
+- ajout dans les informations sur le document,  de:
+ - l'indication "contient du text masqué" dans les statistiques,
+ - l'indication de l'état  de l'option "afficher le texte masqué" de Word.
+
+
+Corrections de bogue:
+- non traduction de certains types  d'éléments dans le dialogue ouvert avec "nvda+f7".
+- erreur  lors d'un déplacement de signet en signet.
+- erreur pour obtenir les informations sur le document lorsque les bordures de page ne sont pas uniformes.
+- les options  de la catégorie "Mise en forme des documents" ne sont plus modifié lorsqu'une recherche des comentaires est faite à l'aide du dialogue "Recherche d'éléments " (windows+alt+f5).
+
+
+Changements:
+- suppression du message qui demandait, pour un bon fonctionnement de l'extension, de décocher l'option "Utiliser UI Automation pour accéder aux Contrôles des documents Microsoft Word  quand disponible".
+
+
 + v3.2 (04/02/2022) +
 - Compatibilité avec NVDA 2022.1.
 - réinitialisation de la configuration en cas d'erreurs dans le fichier de configuration.

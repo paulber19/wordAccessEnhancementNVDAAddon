@@ -42,7 +42,7 @@ del sys.path[-1]
 
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
-from ww_utils import putWindowOnForeground, makeAddonWindowTitle
+from ww_utils import putWindowOnForeground, makeAddonWindowTitle, isOpened
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -390,8 +390,7 @@ class ChoiceDialog(wx.Dialog):
 
 	@staticmethod
 	def run(focus):
-		if ChoiceDialog._instance is not None:
-			putWindowOnForeground(ChoiceDialog._instance.GetHandle())
+		if isOpened(ChoiceDialog):
 			return
 		d = ChoiceDialog(mainFrame, focus)
 		d.CentreOnScreen()

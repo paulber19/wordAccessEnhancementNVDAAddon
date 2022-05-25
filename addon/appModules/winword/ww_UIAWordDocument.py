@@ -12,7 +12,7 @@ import uuid
 from comtypes import COMError
 from tableUtils import HeaderCellTracker
 from .ww_UIABrowseMode import UIAWordBrowseModeDocument
-from versionInfo import version_year, version_major
+from .ww_automaticReading import AutomaticReadingWordTextInfo
 import sys
 _curAddon = addonHandler.getCodeAddon()
 debugToolsPath = os.path.join(_curAddon.path, "debugTools")
@@ -32,26 +32,12 @@ sys.path.append(sharedPath)
 del sys.path[-1]
 
 addonHandler.initTranslation()
-"""
-_NVDAVersion = [version_year, version_major]
-if _NVDAVersion < [2019, 3]:
-	# automatic reading not available
-	WordDocumentTextInfoEx = WordDocumentTextInfo
-else:
-	from .ww_automaticReading import AutomaticReadingWordTextInfo
-"""
 
-_NVDAVersion = [version_year, version_major]
-if _NVDAVersion < [2019, 3]:
-	# automatic reading not available
-	UIAWordDocumentTextInfo = NVDAObjects.UIA.wordDocument.WordDocumentTextInfo
-else:
-	from .ww_automaticReading import AutomaticReadingWordTextInfo
 
-	class UIAWordDocumentTextInfo (
-		AutomaticReadingWordTextInfo,
-		NVDAObjects.UIA.wordDocument.WordDocumentTextInfo):
-		pass
+class UIAWordDocumentTextInfo (
+	AutomaticReadingWordTextInfo,
+	NVDAObjects.UIA.wordDocument.WordDocumentTextInfo):
+	pass
 
 
 class UIAWordDocument(ww_wordDocumentBase.WordDocument, NVDAObjects.UIA.wordDocument.WordDocument):

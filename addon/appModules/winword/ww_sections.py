@@ -60,7 +60,7 @@ Protected for forms: {protected}
 {pageSetup}
 		""").format(
 			pageStart=self.pageStart, lineStart=self.lineStart,
-			ageEnd=self.pageEnd, lineEnd=self.lineEnd,
+			pageEnd=self.pageEnd, lineEnd=self.lineEnd,
 			footer=footer, header=header,
 			protected=protected, pageSetup=pageSetup)
 		sInfo = sInfo.replace("\n", "\r\n")

@@ -5,13 +5,14 @@
 # See the file COPYING for more details.
 
 import addonHandler
-from versionInfo import version_year, version_major
 # from logHandler import log
 import os
 import NVDAObjects.window.winword
 import NVDAObjects.IAccessible.winword
 from . import ww_wordDocumentBase
+from NVDAObjects.IAccessible.winword import WordDocument
 from . import ww_browseMode
+from .ww_automaticReading import AutomaticReadingWordTextInfo
 import sys
 _curAddon = addonHandler.getCodeAddon()
 debugToolsPath = os.path.join(_curAddon.path, "debugTools")
@@ -30,22 +31,10 @@ del sys.path[-1]
 addonHandler.initTranslation()
 
 
-_NVDAVersion = [version_year, version_major]
-if _NVDAVersion < [2019, 3]:
-	# automatic reading not available
-	WindowWinwordWordDocumentTextInfo = NVDAObjects.window.winword.WordDocumentTextInfo
-else:
-	from .ww_automaticReading import AutomaticReadingWordTextInfo
-
-	class WindowWinwordWordDocumentTextInfo(
-		AutomaticReadingWordTextInfo,
-		NVDAObjects.window.winword.WordDocumentTextInfo):
-		pass
-try:
-	# new module winword.py in nvda 2020.4
-	from appModules.winword import WordDocument
-except ImportError:
-	from NVDAObjects.IAccessible.winword import WordDocument
+class WindowWinwordWordDocumentTextInfo(
+	AutomaticReadingWordTextInfo,
+	NVDAObjects.window.winword.WordDocumentTextInfo):
+	pass
 
 
 class IAccessibleWordDocument(ww_wordDocumentBase.WordDocument, WordDocument):

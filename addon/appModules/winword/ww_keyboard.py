@@ -12,6 +12,7 @@ from configobj.validate import Validator
 from io import StringIO
 
 SCT_BrowseModeQuickNavKeys = "BrowseModeQuickNavKeys"
+SCT_WordShortCuts = "WordShortCuts"
 # default key assignement (based on qwerty keyboard)
 # can be modified with the "browseModeQuickNavKeys" section
 # in keyboard.ini file
@@ -25,7 +26,9 @@ _browseModeQuickNavConfigSpec = """
 	"endnote" = string(default=".")
 	"footnote" = string(default="/")
 	"section" = string(default="[")
-	""".format(browseModeQuickNavKeys=SCT_BrowseModeQuickNavKeys)
+[{wordShortCuts}]
+	"toggleChangeTracking" = string(default="control+shift+e")
+	""".format(browseModeQuickNavKeys=SCT_BrowseModeQuickNavKeys, wordShortCuts=SCT_WordShortCuts)
 
 
 def getKeyboardKeysIniFilePath():
@@ -47,13 +50,18 @@ def getKeyboardKeysIniFilePath():
 	return ""
 
 
-def _getBrowseModeQuickNavKeys():
+def _getBrowseModeQuickNavKeysSection():
 	return _getKeyboardIniConfig()[SCT_BrowseModeQuickNavKeys]
 
 
 def getBrowseModeQuickNavKey(script):
-	return _getBrowseModeQuickNavKeys().get(script)
+	return _getBrowseModeQuickNavKeysSection().get(script)
 
+def _getWordShortCutsSection():
+	return _getKeyboardIniConfig()[SCT_WordShortCuts]
+
+def getToggleChangeTrackingShortCut():
+	return _getWordShortCutsSection().get("toggleChangeTracking")
 
 def _getKeyboardIniConfig():
 	global _conf
