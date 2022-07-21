@@ -51,7 +51,7 @@ This add-on has been tested with Microsoft Word 2019, 2016 and 2013 (perhaps wor
 """),
 
 	# version
-	"addon_version": "3.3",
+	"addon_version": "3.3.1",
 	# Author(s)
 	"addon_author": "paulber19",
 	# URL for the add-on documentation support
@@ -62,7 +62,7 @@ This add-on has been tested with Microsoft Word 2019, 2016 and 2013 (perhaps wor
 	"addon_minimumNVDAVersion": "2020.4",
 	# Last NVDA version supported/tested
 	# (e.g. "2018.4", ideally more recent than minimum version)
-	"addon_lastTestedNVDAVersion": "2022.1",
+	"addon_lastTestedNVDAVersion": "2022.2",
 	# Add-on update channel (default is stable or None)
 	"addon_updateChannel": None,
 }

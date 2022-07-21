@@ -101,7 +101,7 @@ class Revision(CollectionElement):
 Author: {author}
 Date: {date}
 Type: {type}
-Revision's ttext:
+Revision's text:
 {text}
 """)
 

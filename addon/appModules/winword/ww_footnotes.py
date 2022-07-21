@@ -28,7 +28,7 @@ class Footnote(CollectionElement):
 
 	def formatInfos(self):
 		sInfo = _("""Page {page}, line {line}
-Note's Ttext:
+Note's text:
 {text}
 """)
 

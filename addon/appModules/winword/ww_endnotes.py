@@ -28,7 +28,7 @@ class Endnote(CollectionElement):
 
 	def formatInfos(self):
 		sInfo = _("""Page {page}, line {line}
-Note's ttext:
+Note's text:
 {text}
 """)
 

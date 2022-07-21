@@ -26,7 +26,7 @@ class GrammaticalError(CollectionElement):
 
 	def formatInfos(self):
 		sInfo = _("""Page {page}, line {line}
-Ttext involved:
+Text involved:
 {text}
 """)
 		sInfo = sInfo.replace("\n", "\r\n")

@@ -33,7 +33,7 @@ class HeaderFooter(CollectionElement):
 		# Translators: information of bookmark element.
 		sInfo = _("""Page {page}, line {line}
 Story type text: {storyTypeText}
-Associated Ttext:
+Associated text:
 {text}
 """)
 		sInfo = sInfo.replace("\n", "\r\n")

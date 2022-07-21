@@ -16,6 +16,7 @@ import wx
 import ui
 import queueHandler
 import speech
+import ui
 import NVDAObjects.window.winword
 import NVDAObjects.UIA.wordDocument
 import NVDAObjects.IAccessible.winword
@@ -185,11 +186,11 @@ class AppModule(AppModule):
 		if _addonConfigManager.toggleSkipEmptyParagraphsOption():
 			# Translators: message to user
 			# to report skipping of empty paragraph when moving by paragraph.
-			speech.speakMessage(_("Skip empty paragraphs"))
+			ui.message(_("Skip empty paragraphs"))
 		else:
 			# Translators: message to user
 			# to report no skipping empty paragraph when moving by paragraph.
-			speech.speakMessage(_("Don't skip empty paragraphs"))
+			ui.message(_("Don't skip empty paragraphs"))
 
 	@script(
 		gesture="kb:f7"
@@ -208,7 +209,7 @@ class AppModule(AppModule):
 				# focus on the pane not not on an object of the pane
 				queueHandler.queueFunction(
 					queueHandler.eventQueue,
-					speech.speakMessage,
+					ui.message,
 					# Translators: message to ask user to hit tab key.
 					_("Hit tab to move focus in the spelling checker pane"))
 			else:
@@ -250,7 +251,7 @@ class AppModule(AppModule):
 		stopScriptTimer()
 		if not self.isSupportedVersion():
 			# Translators: message to the user when word version is not supported.
-			speech.speakMessage(_("Not available for this Word version"))
+			ui.message(_("Not available for this Word version"))
 			return
 		focus = api.getFocusObject()
 		from .ww_spellingChecker import SpellingChecker
@@ -258,7 +259,7 @@ class AppModule(AppModule):
 		if not sc.isInSpellingChecker():
 			queueHandler.queueFunction(
 				queueHandler.eventQueue,
-				speech.speakMessage,
+				ui.message,
 				# Translators: message to indicate the focus is not in spellAndGrammar checker.
 				_("You are Not in the spelling checker"))
 			return
@@ -266,7 +267,7 @@ class AppModule(AppModule):
 			# focus on the pane not not on an object of the pane
 			queueHandler.queueFunction(
 				queueHandler.eventQueue,
-				speech.speakMessage,
+				ui.message,
 				# Translators: message to ask user to hit tab key.
 				_("Hit tab to move focus in the spelling checker pane"))
 			return

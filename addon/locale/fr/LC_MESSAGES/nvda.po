@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wordAccessEnhancement\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
-"POT-Creation-Date: 2022-05-24 15:47+0200\n"
-"PO-Revision-Date: 2022-05-24 15:48+0200\n"
+"POT-Creation-Date: 2022-07-21 07:41+0200\n"
+"PO-Revision-Date: 2022-07-21 07:43+0200\n"
 "Last-Translator: Rémy Ruiz <remyruiz@gmail.com>\n"
 "Language-Team: paulber19 <paulber19@laposte.net>\n"
 "Language: fr_FR\n"
@@ -112,7 +112,6 @@ msgstr ""
 "automatique"
 
 #: appModules/winword/ww_bookmarks.py:44
-#: appModules/winword/ww_headerFooters.py:34
 #, python-brace-format
 msgid ""
 "Page {page}, line {line}\n"
@@ -1498,11 +1497,11 @@ msgstr "Graphique"
 msgid "Error"
 msgstr "Erreur"
 
-#: appModules/winword/ww_endnotes.py:30
+#: appModules/winword/ww_endnotes.py:30 appModules/winword/ww_footnotes.py:30
 #, python-brace-format
 msgid ""
 "Page {page}, line {line}\n"
-"Note's ttext:\n"
+"Note's text:\n"
 "{text}\n"
 msgstr ""
 "Page {page}, ligne {line}\n"
@@ -1552,17 +1551,6 @@ msgstr "Résultat"
 #: appModules/winword/ww_fields.py:104
 msgid "Code"
 msgstr "Code"
-
-#: appModules/winword/ww_footnotes.py:30
-#, python-brace-format
-msgid ""
-"Page {page}, line {line}\n"
-"Note's Ttext:\n"
-"{text}\n"
-msgstr ""
-"Page {page}, ligne {line}\n"
-"Texte de la note:\n"
-"{text}\n"
 
 #: appModules/winword/ww_footnotes.py:42
 msgid "Footnotes"
@@ -1713,7 +1701,7 @@ msgstr "Cadre {name} document pane {index}"
 #, python-brace-format
 msgid ""
 "Page {page}, line {line}\n"
-"Ttext involved:\n"
+"Text involved:\n"
 "{text}\n"
 msgstr ""
 "Page {page}, ligne {line}\n"
@@ -1743,6 +1731,19 @@ msgstr "Erreurs:"
 #: appModules/winword/ww_spellingErrors.py:85
 msgid "Involved sentence"
 msgstr "Phrase concernée"
+
+#: appModules/winword/ww_headerFooters.py:34
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Story type text: {storyTypeText}\n"
+"Associated text:\n"
+"{text}\n"
+msgstr ""
+"Page {page}, ligne {line}\n"
+"type: {storyTypeText}\n"
+"Texte associé:\n"
+"{text}\n"
 
 #: appModules/winword/ww_headerFooters.py:51
 msgid "Header/Footer"
@@ -1927,7 +1928,7 @@ msgid ""
 "Author: {author}\n"
 "Date: {date}\n"
 "Type: {type}\n"
-"Revision's ttext:\n"
+"Revision's text:\n"
 "{text}\n"
 msgstr ""
 "Page {page}, ligne {line}\n"
@@ -2272,7 +2273,7 @@ msgid ""
 "type: {typeText}\n"
 "Width: {width}\n"
 "Height: {height}\n"
-"Alternative ttext:\n"
+"Alternative text:\n"
 "{alternativeText}\n"
 msgstr ""
 "Page {page}, ligne {line}\n"
@@ -4362,6 +4363,15 @@ msgstr ""
 #, python-format
 msgid "%s dialog is allready open"
 msgstr "Le dialogue %s est déjà affiché"
+
+#~ msgid ""
+#~ "Page {page}, line {line}\n"
+#~ "Note's Ttext:\n"
+#~ "{text}\n"
+#~ msgstr ""
+#~ "Page {page}, ligne {line}\n"
+#~ "Texte de la note:\n"
+#~ "{text}\n"
 
 #~ msgid ""
 #~ "You have checked the \"Use UI Automation to access Microsoft Word "

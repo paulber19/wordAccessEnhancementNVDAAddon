@@ -131,7 +131,7 @@ class InLineShape(CollectionElement):
 type: {typeText}
 Width: {width}
 Height: {height}
-Alternative ttext:
+Alternative text:
 {alternativeText}
 """)
 

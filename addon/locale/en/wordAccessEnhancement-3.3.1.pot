@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: wordAccessEnhancement 3.3\n"
+"Project-Id-Version: wordAccessEnhancement 3.3.1\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
-"POT-Creation-Date: 2022-05-24 15:57+0200\n"
+"POT-Creation-Date: 2022-07-21 08:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,7 +129,6 @@ msgstr ""
 
 #. Translators: information of bookmark element.
 #: appModules\winword\ww_bookmarks.py:44
-#: appModules\winword\ww_headerFooters.py:34
 msgid ""
 "Page {page}, line {line}\n"
 "Story type text: {storyTypeText}\n"
@@ -1771,10 +1770,10 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: appModules\winword\ww_endnotes.py:30
+#: appModules\winword\ww_endnotes.py:30 appModules\winword\ww_footnotes.py:30
 msgid ""
 "Page {page}, line {line}\n"
-"Note's ttext:\n"
+"Note's text:\n"
 "{text}\n"
 msgstr ""
 
@@ -1823,13 +1822,6 @@ msgstr ""
 
 #: appModules\winword\ww_fields.py:104
 msgid "Code"
-msgstr ""
-
-#: appModules\winword\ww_footnotes.py:30
-msgid ""
-"Page {page}, line {line}\n"
-"Note's Ttext:\n"
-"{text}\n"
 msgstr ""
 
 #: appModules\winword\ww_footnotes.py:42
@@ -1978,7 +1970,7 @@ msgstr ""
 #: appModules\winword\ww_grammaticalErrors.py:28
 msgid ""
 "Page {page}, line {line}\n"
-"Ttext involved:\n"
+"Text involved:\n"
 "{text}\n"
 msgstr ""
 
@@ -2002,6 +1994,15 @@ msgstr ""
 #: appModules\winword\ww_grammaticalErrors.py:82
 #: appModules\winword\ww_spellingErrors.py:85
 msgid "Involved sentence"
+msgstr ""
+
+#. Translators: information of bookmark element.
+#: appModules\winword\ww_headerFooters.py:34
+msgid ""
+"Page {page}, line {line}\n"
+"Story type text: {storyTypeText}\n"
+"Associated text:\n"
+"{text}\n"
 msgstr ""
 
 #. Translators: name of collection element type
@@ -2200,7 +2201,7 @@ msgid ""
 "Author: {author}\n"
 "Date: {date}\n"
 "Type: {type}\n"
-"Revision's ttext:\n"
+"Revision's text:\n"
 "{text}\n"
 msgstr ""
 
@@ -2585,7 +2586,7 @@ msgid ""
 "type: {typeText}\n"
 "Width: {width}\n"
 "Height: {height}\n"
-"Alternative ttext:\n"
+"Alternative text:\n"
 "{alternativeText}\n"
 msgstr ""
 
@@ -4376,50 +4377,50 @@ msgid "&Insert"
 msgstr ""
 
 #. Translators: Input help mode message for toggle Skip Empty Paragraphs Option command.
-#: appModules\winword\__init__.py:180
+#: appModules\winword\__init__.py:181
 msgid "Toggle on or off the option to skip empty paragraphs"
 msgstr ""
 
 #. Translators: message to user
 #. to report skipping of empty paragraph when moving by paragraph.
-#: appModules\winword\__init__.py:188
+#: appModules\winword\__init__.py:189
 msgid "Skip empty paragraphs"
 msgstr ""
 
 #. Translators: message to user
 #. to report no skipping empty paragraph when moving by paragraph.
-#: appModules\winword\__init__.py:192
+#: appModules\winword\__init__.py:193
 msgid "Don't skip empty paragraphs"
 msgstr ""
 
 #. Translators: message to ask user to hit tab key.
-#: appModules\winword\__init__.py:213 appModules\winword\__init__.py:271
+#: appModules\winword\__init__.py:214 appModules\winword\__init__.py:272
 msgid "Hit tab to move focus in the spelling checker pane"
 msgstr ""
 
-#: appModules\winword\__init__.py:245
+#: appModules\winword\__init__.py:246
 msgid ""
 "Report error and suggestion displayed by the spelling checker. Twice:spell "
 "them. Third: say help text"
 msgstr ""
 
 #. Translators: message to the user when word version is not supported.
-#: appModules\winword\__init__.py:253
+#: appModules\winword\__init__.py:254
 msgid "Not available for this Word version"
 msgstr ""
 
 #. Translators: message to indicate the focus is not in spellAndGrammar checker.
-#: appModules\winword\__init__.py:263
+#: appModules\winword\__init__.py:264
 msgid "You are Not in the spelling checker"
 msgstr ""
 
 #. Translators: Input help mode message for report Current Sentence command.
-#: appModules\winword\__init__.py:295
+#: appModules\winword\__init__.py:296
 msgid "Report current sentence "
 msgstr ""
 
 #. Translators: Input help mode message for set automatic reading voice command.
-#: appModules\winword\__init__.py:304
+#: appModules\winword\__init__.py:305
 msgid "Record automatic reading voice's settings"
 msgstr ""
 

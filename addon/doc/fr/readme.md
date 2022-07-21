@@ -7,7 +7,7 @@
 	* [version de développement][2]
 * Compatibilité :
 	* Version minimum de NVDA requise : 2020.4
-	* Dernière version de NVDA testée : 2022.1
+	* Dernière version de NVDA testée : 2022.2
 
 
 Cette extension complète les scripts intégrés dans la version de base de NVDA et apporte :
@@ -32,5 +32,5 @@ Cette extension a été testée avec MS Word 2019, 2016 et 2013 (marche peut-êt
 
 
 
-[1]: https://github.com/paulber007/AllMyNVDAAddons/raw/master/wordAccessEnhancement/wordAccessEnhancement-3.3.nvda-addon
+[1]: https://github.com/paulber007/AllMyNVDAAddons/raw/master/wordAccessEnhancement/wordAccessEnhancement-3.3.1.nvda-addon
 [2]: https://github.com/paulber007/AllMyNVDAAddons/tree/master/wordAccessEnhancement/dev
