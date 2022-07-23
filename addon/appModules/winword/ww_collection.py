@@ -199,7 +199,7 @@ class Collection(object):
 				elements.append(element)
 			except Exception:
 				printDebug("getElementsInCollection: except on element = elementClass")
-				speech.speakMessage(_("Sorry, There are too many elements to be treated "))
+				ui.message(_("Sorry, There are too many elements to be treated "))
 				time.sleep(2.0)
 				return None
 		return elements
@@ -235,7 +235,7 @@ class Collection(object):
 			end = self.doc.Content.End
 			r = self.doc.range(start, end)
 		if pleaseWait:
-			speech.speakMessage(_("Please wait."))
+			ui.message(_("Please wait."))
 			time.sleep(1.0)
 
 		collection = self.getCollectionInRange(r)
@@ -269,7 +269,7 @@ class Collection(object):
 			api.copyToClip(sText)
 			# Translators: message to user when info copied to clipboard.
 			msg = _("{name}'s list has been copied to clipboard")
-			wx.CallLater(30, speech.speakMessage, msg.format(name=self._name[1]))
+			wx.CallLater(30, ui.message, msg.format(name=self._name[1]))
 		else:
 			wx.CallAfter(self.dialogClass.run, self, makeChoiceDialog)
 
@@ -297,10 +297,10 @@ class Collection(object):
 		printDebug("Collection reportElement")
 		col = self.collection
 		if len(col) == 0:
-			speech.speakMessage(self.noElementMessage)
+			ui.message(self.noElementMessage)
 			return
 		if len(col) > 1:
-			speech.speakMessage(_("{count} {element}") .format(
+			ui.message(_("{count} {element}") .format(
 				count=len(col), element=self._name[0]))
 		for element in col:
 			element.reportText()
@@ -483,7 +483,7 @@ class ReportDialog(wx.Dialog):
 				text = self.TC1.GetValue()
 			else:
 				return
-			wx.CallLater(30, speech.speakMessage, text)
+			wx.CallLater(30, ui.message, text)
 			return
 		elif id == self.entriesListID and (
 			(key == wx.WXK_DELETE)

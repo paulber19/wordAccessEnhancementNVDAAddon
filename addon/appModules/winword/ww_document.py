@@ -5,7 +5,7 @@
 
 
 import addonHandler
-import speech
+import ui
 import api
 import time
 from .ww_wdConst import wdUndefined
@@ -918,7 +918,7 @@ class ActiveDocument(object):
 
 	def reportDocumentInformations(self):
 		# Translators: message to user for waiting.
-		speech.speakMessage(_("Please wait"))
+		ui.message(_("Please wait"))
 		from .ww_tones import RepeatBeep
 		rb = RepeatBeep()
 		rb.start()
