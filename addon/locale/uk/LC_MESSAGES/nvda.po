@@ -1,0 +1,4947 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wordAccessEnhancement 3.3\n"
+"Report-Msgid-Bugs-To: 'nvda-translations@freelists.org'\n"
+"POT-Creation-Date: 2022-07-24 12:55+0300\n"
+"PO-Revision-Date: 2022-07-24 13:05+0300\n"
+"Last-Translator: Ukrainian NVDA Community <vp88.mobile@gmail.com>\n"
+"Language-Team: \n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#. Add-on summary, usually the user visible name of the addon.
+#. Translators: Summary for this add-on to be shown
+#. on installation and add-on information.
+#: addon\buildVars.py:23
+msgid "Microsoft Word text editor:   accessibility enhancement"
+msgstr "Поліпшення доступності Microsoft Word"
+
+#: addon\buildVars.py:28
+msgid ""
+"This add-on adds extra functionality when working with Microsoft Word:\n"
+"* a script (\"windows+alt+f5\") to display a dialog box to choose between "
+"most of objects 's type to be listed (like comments, revisions, bookmarks, "
+"fields, endnotes, footnotes, spelling errors, grammar errors,...),\n"
+"* a script (\"Alt+delete\") to announce line, column  and page of  cursor "
+"position, or start  and end of selection, or current table's cell,\n"
+"* a script (\"windows+alt+f2\") to insert a comment,\n"
+"* a script (\"windows+alt+m\") to report revision at cursor's  position,\n"
+"* a script (\"windows+alt+n\") to report endNote  or footNote at cursor's "
+"position,\n"
+"* modify the NVDA scripts \"control+downArrow\" and \"Control+Uparrow"
+"\" (which moves the carret paragraph by paragraph) to skip the empty "
+"paragraph (optionnal),\n"
+"* some scripts to move in table and read table 's elements (row, column, "
+"cell),\n"
+"* adds specific Word browse mode command keys,\n"
+"* possibility to move sentence by sentence (\"alt+ downArrow\" and \"alt"
+"+upArrow\"),\n"
+"* a script to report document 's informations(windows+alt+f1\"),\n"
+"* accessibility enhancement for spelling checker (Word 2013 and 2016):\n"
+"\t* a script (NVDA+shift+f7\") to report spelling or grammatical error\n"
+"\t\tand suggested correction by the spelling checker,\n"
+"\t* a script (NVDA+control+f7\") to report current sentence under focus.\n"
+"* automatic reading of some elements as comments ,  footnotes, or endnotes.\n"
+"\n"
+"\n"
+"This add-on has been tested with Microsoft Word 2019, 2016 and 2013 (perhaps "
+"works also with Word 365).\n"
+msgstr ""
+"Цей додаток додає додаткові функції під час роботи з Microsoft Word:\n"
+"* сценарій \"windows+alt+f5\" показує діалог для вибору між більшістю типів "
+"об’єктів для переліку (наприклад, коментарі, виправлення, закладки, поля, "
+"кінцеві виноски, виноски, орфографічні помилки, граматичні помилки,...),\n"
+"* сценарій \"Alt+delete\" оголошує рядок, стовпець і сторінку в позиції "
+"курсора, початок і кінець виділення чи поточну комірку таблиці,\n"
+"* сценарій \"windows+alt+f2\" вставляє коментар,\n"
+"* сценарій \"windows+alt+m\" повідомляє про виправлення  в позиції курсора,\n"
+"* сценарій \"windows+alt+n\" озвучує виноску або кінцеву виноску в позиції "
+"курсора,\n"
+"* змінено сценарії NVDA \"control+стрілка вниз\" і \"Control+стрілка вгору"
+"\" (які пересувають каретку абзац за абзацом), щоб пропускати порожній абзац "
+"(опціонально),\n"
+"* наявні деякі сценарії для переміщення в таблиці та читання елементів "
+"таблиці (рядок, стовпець, комірка),\n"
+"* додає спеціальні командні клавіші режиму огляду у Word,\n"
+"* можливість пересування речення за реченням (\"alt+стрілка вниз\" і \"alt"
+"+стрілка вгору\"),\n"
+"* сценарій для повідомлення інформації про документ (\"windows+alt+f1\"),\n"
+"* поліпшення доступності для перевірки орфографії (Word 2013 і 2016):\n"
+"\t* сценарій \"NVDA+shift+f7\" повідомляє про орфографічну чи граматичну "
+"помилку\n"
+"\tі запропоноване виправлення засобом перевірки орфографії,\n"
+"\t* скрипт \"NVDA+control+f7\" повідомляє про поточне речення під фокусом.\n"
+"* Автоматичне читання деяких елементів, як-от коментарів, виносок або "
+"кінцевих приміток.\n"
+"\n"
+"\n"
+"Цей додаток було протестовано з Microsoft Word 2019, 2016 і 2013 (можливо, "
+"також працює з Word 365).\n"
+
+#. Translators: the label of a message box dialog
+#. to ask the user if he wants keep current configuration settings.
+#: addon\installTasks.py:51
+msgid "Do you want to keep current add-on configuration settings ?"
+msgstr "Ви хочете зберегти параметри конфігурації поточного додатка?"
+
+#. Translators: the title of a message box dialog.
+#: addon\installTasks.py:53 addon\installTasks.py:58
+#, python-format
+msgid "%s - installation"
+msgstr "%s - встановлення"
+
+#. Translators: the label of a message box dialog.
+#: addon\installTasks.py:56
+msgid ""
+"Are you sure you don't want to keep the current add-on configuration "
+"settings?"
+msgstr ""
+"Ви впевнені, що не хочете зберігати поточні параметри конфігурації додатка?"
+
+#. Translators: Input help mode message for toggle Skip Empty Paragraphs Option command.
+#: addon\appModules\winword\__init__.py:181
+msgid "Toggle on or off the option to skip empty paragraphs"
+msgstr "Увімкніть або вимкніть параметр пропуску порожніх абзаців"
+
+#. Translators: message to user
+#. to report skipping of empty paragraph when moving by paragraph.
+#: addon\appModules\winword\__init__.py:189
+msgid "Skip empty paragraphs"
+msgstr "Пропускати порожні абзаци"
+
+#. Translators: message to user
+#. to report no skipping empty paragraph when moving by paragraph.
+#: addon\appModules\winword\__init__.py:193
+msgid "Don't skip empty paragraphs"
+msgstr "Не пропускати порожні абзаци"
+
+#. Translators: message to ask user to hit tab key.
+#: addon\appModules\winword\__init__.py:214
+#: addon\appModules\winword\__init__.py:272
+msgid "Hit tab to move focus in the spelling checker pane"
+msgstr ""
+"Натисніть клавішу табуляції, щоб перемістити фокус на панель перевірки "
+"орфографії"
+
+#: addon\appModules\winword\__init__.py:246
+msgid ""
+"Report error and suggestion displayed by the spelling checker. Twice:spell "
+"them. Third: say help text"
+msgstr ""
+"Повідомити помилку та пропозицію, яку відображає перевірка орфографії. "
+"Двічі: прочитати політерно. Тричі: сказати довідковий текст"
+
+#. Translators: message to the user when word version is not supported.
+#: addon\appModules\winword\__init__.py:254
+msgid "Not available for this Word version"
+msgstr "Недоступно для цієї версії Word"
+
+#. Translators: message to indicate the focus is not in spellAndGrammar checker.
+#: addon\appModules\winword\__init__.py:264
+msgid "You are Not in the spelling checker"
+msgstr "Ви не в засобі перевірки орфографії"
+
+#. Translators: Input help mode message for report Current Sentence command.
+#: addon\appModules\winword\__init__.py:296
+msgid "Report current sentence "
+msgstr "Повідомити поточне речення "
+
+#. Translators: Input help mode message for set automatic reading voice command.
+#: addon\appModules\winword\__init__.py:305
+msgid "Record automatic reading voice's settings"
+msgstr "Запис налаштувань голосу автоматичного читання"
+
+#. Translators: Reported when text contains a draft comment.
+#: addon\appModules\winword\ww_automaticReading.py:238
+#, python-format
+msgid "draft comment of %s:"
+msgstr "чернетка коментаря %s:"
+
+#: addon\appModules\winword\ww_automaticReading.py:238
+#: addon\appModules\winword\ww_automaticReading.py:242
+#: addon\appModules\winword\ww_automaticReading.py:245
+#: addon\appModules\winword\ww_automaticReading.py:248
+msgid "comment:"
+msgstr "коментар:"
+
+#. Translators: Reported when text contains a resolved comment.
+#: addon\appModules\winword\ww_automaticReading.py:241
+#, python-format
+msgid "resolved comment of %s:"
+msgstr "вирішений коментар %s:"
+
+#. Translators: Reported when text contains a comment.
+#: addon\appModules\winword\ww_automaticReading.py:245
+#: addon\appModules\winword\ww_automaticReading.py:248
+#, python-format
+msgid "comment of %s:"
+msgstr "коментар %s:"
+
+#. Translators: odd And Even Pages Header Footer information.
+#: addon\appModules\winword\ww_automaticReading.py:3452
+#: addon\appModules\winword\ww_document.py:223
+#: addon\appModules\winword\ww_document.py:301
+#: addon\appModules\winword\ww_document.py:354
+#: addon\appModules\winword\ww_document.py:360
+#: addon\appModules\winword\ww_document.py:508
+#: addon\appModules\winword\ww_document.py:874
+#: addon\appModules\winword\ww_document.py:1001
+#: addon\appModules\winword\ww_sections.py:44
+#: addon\appModules\winword\ww_sections.py:192
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:180
+msgid "yes"
+msgstr "так"
+
+#: addon\appModules\winword\ww_automaticReading.py:3452
+#: addon\appModules\winword\ww_document.py:223
+#: addon\appModules\winword\ww_document.py:301
+#: addon\appModules\winword\ww_document.py:355
+#: addon\appModules\winword\ww_document.py:361
+#: addon\appModules\winword\ww_document.py:508
+#: addon\appModules\winword\ww_document.py:875
+#: addon\appModules\winword\ww_document.py:1001
+#: addon\appModules\winword\ww_sections.py:44
+#: addon\appModules\winword\ww_sections.py:192
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:180
+msgid "no"
+msgstr "ні"
+
+#. Translators: message to user to report automatic reading voice record.
+#: addon\appModules\winword\ww_automaticReading.py:3492
+msgid "Current voice settings have beenset for automatic reading"
+msgstr "Поточні налаштування голосу встановлено для автоматичного читання"
+
+#. Translators: information of bookmark element.
+#: addon\appModules\winword\ww_bookmarks.py:44
+msgid ""
+"Page {page}, line {line}\n"
+"Story type text: {storyTypeText}\n"
+"Associated Ttext:\n"
+"{text}\n"
+msgstr ""
+"Сторінка {page}, рядок {line}\n"
+"Тип тексту історії: {storyTypeText}\n"
+"Пов’язаний текст:\n"
+"{text}\n"
+
+#. Translators: name of collection element type
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#: addon\appModules\winword\ww_bookmarks.py:61
+#: addon\appModules\winword\ww_browseMode.py:389
+#: addon\appModules\winword\ww_elementsListDialog.py:46
+msgid "Bookmark"
+msgstr "Закладка"
+
+#: addon\appModules\winword\ww_bookmarks.py:61
+#: addon\appModules\winword\ww_bookmarks.py:77
+#: addon\appModules\winword\ww_headerFooters.py:67
+msgid "Bookmarks"
+msgstr "Закладки"
+
+#. Translators: text to report no bookmark.
+#: addon\appModules\winword\ww_bookmarks.py:68
+msgid "No bookmark"
+msgstr "Немає закладки"
+
+#: addon\appModules\winword\ww_bookmarks.py:79
+#: addon\appModules\winword\ww_comments.py:114
+#: addon\appModules\winword\ww_contentControl.py:91
+#: addon\appModules\winword\ww_endnotes.py:83
+#: addon\appModules\winword\ww_fields.py:86
+#: addon\appModules\winword\ww_footnotes.py:80
+#: addon\appModules\winword\ww_formfields.py:78
+#: addon\appModules\winword\ww_grammaticalErrors.py:69
+#: addon\appModules\winword\ww_headerFooters.py:69
+#: addon\appModules\winword\ww_hyperlinks.py:93
+#: addon\appModules\winword\ww_revisions.py:156
+#: addon\appModules\winword\ww_shapes.py:178
+#: addon\appModules\winword\ww_spellingErrors.py:69
+msgid "Number"
+msgstr "Номер"
+
+#: addon\appModules\winword\ww_bookmarks.py:80
+#: addon\appModules\winword\ww_comments.py:115
+#: addon\appModules\winword\ww_contentControl.py:92
+#: addon\appModules\winword\ww_endnotes.py:84
+#: addon\appModules\winword\ww_fields.py:87
+#: addon\appModules\winword\ww_footnotes.py:81
+#: addon\appModules\winword\ww_formfields.py:79
+#: addon\appModules\winword\ww_frames.py:73
+#: addon\appModules\winword\ww_grammaticalErrors.py:70
+#: addon\appModules\winword\ww_headerFooters.py:70
+#: addon\appModules\winword\ww_headings.py:104
+#: addon\appModules\winword\ww_hyperlinks.py:94
+#: addon\appModules\winword\ww_revisions.py:157
+#: addon\appModules\winword\ww_shapes.py:179
+#: addon\appModules\winword\ww_spellingErrors.py:70
+#: addon\appModules\winword\ww_tables.py:332
+msgid "Location"
+msgstr "Розташування"
+
+#: addon\appModules\winword\ww_bookmarks.py:81
+#: addon\appModules\winword\ww_headerFooters.py:71
+#: addon\appModules\winword\ww_hyperlinks.py:95
+#: addon\appModules\winword\ww_shapes.py:180
+msgid "Name"
+msgstr "Ім'я"
+
+#: addon\appModules\winword\ww_bookmarks.py:82
+#: addon\appModules\winword\ww_headerFooters.py:72
+msgid "Story type"
+msgstr "Тип історії"
+
+#: addon\appModules\winword\ww_bookmarks.py:91
+#: addon\appModules\winword\ww_comments.py:126
+#: addon\appModules\winword\ww_contentControl.py:100
+#: addon\appModules\winword\ww_endnotes.py:92
+#: addon\appModules\winword\ww_fields.py:95
+#: addon\appModules\winword\ww_footnotes.py:89
+#: addon\appModules\winword\ww_formfields.py:87
+#: addon\appModules\winword\ww_frames.py:84
+#: addon\appModules\winword\ww_grammaticalErrors.py:79
+#: addon\appModules\winword\ww_headerFooters.py:81
+#: addon\appModules\winword\ww_headings.py:113
+#: addon\appModules\winword\ww_hyperlinks.py:105
+#: addon\appModules\winword\ww_revisions.py:169
+#: addon\appModules\winword\ww_sections.py:276
+#: addon\appModules\winword\ww_shapes.py:192
+#: addon\appModules\winword\ww_spellingErrors.py:77
+#: addon\appModules\winword\ww_tables.py:344
+msgid "&Go to"
+msgstr "&Перейти до"
+
+#: addon\appModules\winword\ww_bookmarks.py:92
+#: addon\appModules\winword\ww_comments.py:128
+#: addon\appModules\winword\ww_contentControl.py:101
+#: addon\appModules\winword\ww_endnotes.py:94
+#: addon\appModules\winword\ww_fields.py:96
+#: addon\appModules\winword\ww_footnotes.py:91
+#: addon\appModules\winword\ww_formfields.py:88
+#: addon\appModules\winword\ww_frames.py:85
+#: addon\appModules\winword\ww_headerFooters.py:82
+#: addon\appModules\winword\ww_hyperlinks.py:106
+#: addon\appModules\winword\ww_shapes.py:193
+#: addon\appModules\winword\ww_tables.py:345
+msgid "&Delete"
+msgstr "&Видалити"
+
+#: addon\appModules\winword\ww_bookmarks.py:93
+#: addon\appModules\winword\ww_comments.py:129
+#: addon\appModules\winword\ww_contentControl.py:102
+#: addon\appModules\winword\ww_endnotes.py:95
+#: addon\appModules\winword\ww_fields.py:97
+#: addon\appModules\winword\ww_footnotes.py:92
+#: addon\appModules\winword\ww_formfields.py:89
+#: addon\appModules\winword\ww_headerFooters.py:83
+msgid "Delete &all"
+msgstr "Видалити &все"
+
+#: addon\appModules\winword\ww_bookmarks.py:96
+#: addon\appModules\winword\ww_headerFooters.py:86
+msgid "Bookmark's text"
+msgstr "Текст закладки"
+
+#: addon\appModules\winword\ww_bookmarks.py:102
+#: addon\appModules\winword\ww_comments.py:143
+#: addon\appModules\winword\ww_contentControl.py:116
+#: addon\appModules\winword\ww_endnotes.py:105
+#: addon\appModules\winword\ww_fields.py:110
+#: addon\appModules\winword\ww_footnotes.py:102
+#: addon\appModules\winword\ww_formfields.py:103
+#: addon\appModules\winword\ww_frames.py:91
+#: addon\appModules\winword\ww_grammaticalErrors.py:89
+#: addon\appModules\winword\ww_headerFooters.py:92
+#: addon\appModules\winword\ww_headings.py:119
+#: addon\appModules\winword\ww_hyperlinks.py:116
+#: addon\appModules\winword\ww_revisions.py:231
+#: addon\appModules\winword\ww_sections.py:282
+#: addon\appModules\winword\ww_sections.py:284
+#: addon\appModules\winword\ww_shapes.py:202
+#: addon\appModules\winword\ww_spellingErrors.py:89
+#: addon\appModules\winword\ww_tables.py:352
+msgid "Page {page}, line {line}"
+msgstr "Сторінка {page}, рядок {line}"
+
+#: addon\appModules\winword\ww_browseMode.py:67
+msgid "Extended browse mode for Microsoft Word"
+msgstr "Розширений режим огляду для Microsoft Word"
+
+#. Translators: Input help message for a quick navigation command in browse mode.
+#: addon\appModules\winword\ww_browseMode.py:127
+msgid "moves to the next grammatical error"
+msgstr "переходить до наступної граматичної помилки"
+
+#. Translators: Message presented when the browse mode element is not found.
+#: addon\appModules\winword\ww_browseMode.py:129
+msgid "no next grammatical error"
+msgstr "немає наступної граматичної помилки"
+
+#. Translators: Input help message for a quick navigation command in browse mode.
+#: addon\appModules\winword\ww_browseMode.py:131
+msgid "moves to the previous grammatical error"
+msgstr "переходить до попередньої граматичної помилки"
+
+#. Translators: Message presented when the browse mode element is not found.
+#: addon\appModules\winword\ww_browseMode.py:133
+msgid "no previous grammatical error"
+msgstr "немає попередньої граматичної помилки"
+
+#. Translators: Input help message for a quick navigation command in browse mode.
+#: addon\appModules\winword\ww_browseMode.py:139
+msgid "moves to the next revision"
+msgstr "переходить до наступного виправлення"
+
+#. Translators: Message presented when the browse mode element is not found.
+#: addon\appModules\winword\ww_browseMode.py:141
+msgid "no next revision"
+msgstr "немає наступного виправлення"
+
+#. Translators: Input help message for a quick navigation command in browse mode.
+#: addon\appModules\winword\ww_browseMode.py:143
+msgid "moves to the previous revision"
+msgstr "переходить до попереднього виправлення"
+
+#. Translators: Message presented when the browse mode element is not found.
+#: addon\appModules\winword\ww_browseMode.py:145
+msgid "no previous revision"
+msgstr "немає попереднього виправлення"
+
+#. Translators: Input help message for a quick navigation command in browse mode.
+#: addon\appModules\winword\ww_browseMode.py:151
+msgid "moves to the next comment"
+msgstr "переходить до наступного коментаря"
+
+#. Translators: Message presented when the browse mode element is not found.
+#: addon\appModules\winword\ww_browseMode.py:153
+msgid "no next comment"
+msgstr "немає наступного коментаря"
+
+#. Translators: Input help message for a quick navigation command in browse mode.
+#: addon\appModules\winword\ww_browseMode.py:155
+msgid "moves to the previous comment"
+msgstr "переходить до попереднього коментаря"
+
+#. Translators: Message presented when the browse mode element is not found.
+#: addon\appModules\winword\ww_browseMode.py:157
+msgid "no previous comment"
+msgstr "немає попереднього коментаря"
+
+#. Translators: Input help message for a quick navigation command in browse mode.
+#: addon\appModules\winword\ww_browseMode.py:163
+msgid "moves to the next field"
+msgstr "переходить до наступного поля"
+
+#. Translators: Message presented when the browse mode element is not found.
+#: addon\appModules\winword\ww_browseMode.py:165
+msgid "no next field"
+msgstr "немає наступного поля"
+
+#. Translators: Input help message for a quick navigation command in browse mode.
+#: addon\appModules\winword\ww_browseMode.py:167
+msgid "moves to the previous field"
+msgstr "переходить до попереднього поля"
+
+#. Translators: Message presented when the browse mode element is not found.
+#: addon\appModules\winword\ww_browseMode.py:169
+msgid "no previous field"
+msgstr "немає попереднього поля"
+
+#. Translators: Input help message for a quick navigation command in browse mode.
+#: addon\appModules\winword\ww_browseMode.py:176
+msgid "moves to the next bookmark"
+msgstr "переходить до наступної закладки"
+
+#. Translators: Message presented when the browse mode element is not found.
+#: addon\appModules\winword\ww_browseMode.py:178
+msgid "no next bookmark"
+msgstr "немає наступної закладки"
+
+#. Translators: Input help message for a quick navigation command in browse mode.
+#: addon\appModules\winword\ww_browseMode.py:180
+msgid "moves to the previous bookmark"
+msgstr "переходить до попередньої закладки"
+
+#. Translators: Message presented when the browse mode element is not found.
+#: addon\appModules\winword\ww_browseMode.py:182
+msgid "no previous bookmark"
+msgstr "немає попередньої закладки"
+
+#. Translators: Input help message for a quick navigation command in browse mode.
+#: addon\appModules\winword\ww_browseMode.py:188
+msgid "moves to the next endnote"
+msgstr "переходить до наступної кінцевої виноски"
+
+#. Translators: Message presented when the browse mode element is not found.
+#: addon\appModules\winword\ww_browseMode.py:190
+msgid "no next endnote"
+msgstr "немає наступної кінцевої виноски"
+
+#. Translators: Input help message for a quick navigation command in browse mode.
+#: addon\appModules\winword\ww_browseMode.py:192
+msgid "moves to the previous endnote"
+msgstr "переходить до попередньої кінцевої виноски"
+
+#. Translators: Message presented when the browse mode element is not found.
+#: addon\appModules\winword\ww_browseMode.py:194
+msgid "no previous endnote"
+msgstr "немає попередньої кінцевої виноски"
+
+#. Translators: Input help message for a quick navigation command in browse mode.
+#: addon\appModules\winword\ww_browseMode.py:200
+msgid "moves to the next footnote"
+msgstr "переходить до наступної виноски"
+
+#. Translators: Message presented when the browse mode element is not found.
+#: addon\appModules\winword\ww_browseMode.py:202
+msgid "no next footnote"
+msgstr "немає наступної виноски"
+
+#. Translators: Input help message for a quick navigation command in browse mode.
+#: addon\appModules\winword\ww_browseMode.py:204
+msgid "moves to the previous footnote"
+msgstr "переходить до попередньої виноски"
+
+#. Translators: Message presented when the browse mode element is not found.
+#: addon\appModules\winword\ww_browseMode.py:206
+msgid "no previous footnote"
+msgstr "немає попередньої виноски"
+
+#. Translators: Input help message for a quick navigation command in browse mode.
+#: addon\appModules\winword\ww_browseMode.py:212
+msgid "moves to the next section"
+msgstr "переходить до наступного розділу"
+
+#. Translators: Message presented when the browse mode element is not found.
+#: addon\appModules\winword\ww_browseMode.py:214
+msgid "no next section"
+msgstr "немає наступного розділу"
+
+#. Translators: Input help message for a quick navigation command in browse mode.
+#: addon\appModules\winword\ww_browseMode.py:216
+msgid "moves to the previous section"
+msgstr "переходить до попереднього розділу"
+
+#. Translators: Message presented when the browse mode element is not found.
+#: addon\appModules\winword\ww_browseMode.py:218
+msgid "no previous section"
+msgstr "немає попереднього розділу"
+
+#. Translators: message to the user which indicates the return
+#. to the bottom of the page.
+#: addon\appModules\winword\ww_browseMode.py:252
+msgid "Return to bottom of page"
+msgstr "Повернутися до кінця сторінки"
+
+#. Translators: message to user which indicates the return
+#. to the top of the page.
+#: addon\appModules\winword\ww_browseMode.py:257
+msgid "Return to top of page"
+msgstr "Повернутися до початку сторінки"
+
+#: addon\appModules\winword\ww_browseMode.py:390
+msgid "{name} text: {text}"
+msgstr "{name} текст: {text}"
+
+#: addon\appModules\winword\ww_browseMode.py:394
+#, python-format
+msgid "Bookmark %s"
+msgstr "Закладка %s"
+
+#: addon\appModules\winword\ww_browseMode.py:407
+msgid "Endnote{index}"
+msgstr "Кінцева виноска{індекс}"
+
+#. Translators: field index and type.
+#: addon\appModules\winword\ww_browseMode.py:441
+msgid "Field {index}, type: {type}"
+msgstr "Поле {index}, тип: {type}"
+
+#. Translators: label for a footnote.
+#: addon\appModules\winword\ww_browseMode.py:473
+msgid "Footnote {index}"
+msgstr "Виноска {index}"
+
+#: addon\appModules\winword\ww_browseMode.py:515
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: addon\appModules\winword\ww_browseMode.py:552
+msgid "Section {index}"
+msgstr "Розділ {index}"
+
+#: addon\appModules\winword\ww_browseMode.py:556
+#, python-format
+msgid "Section %s"
+msgstr "Розділ %s"
+
+#. Translators: title of dialog.
+#: addon\appModules\winword\ww_choice.py:96
+msgid "Informations 's collection"
+msgstr "Інформаційна колекція"
+
+#. Translators: message to user for waiting result
+#. Translators: message to user for waiting.
+#: addon\appModules\winword\ww_choice.py:102
+#: addon\appModules\winword\ww_document.py:921
+msgid "Please wait"
+msgstr "Будь ласка, зачекайте"
+
+#. Translators: label of interrupt to clipboard button.
+#: addon\appModules\winword\ww_choice.py:131
+msgid "&interrupt"
+msgstr "&перервати"
+
+#: addon\appModules\winword\ww_choice.py:133
+msgid "&Cancel"
+msgstr "&Скасувати"
+
+#: addon\appModules\winword\ww_choice.py:160
+msgid "Interrupted"
+msgstr "Перервано"
+
+#. Translators: title of Choice dialog
+#: addon\appModules\winword\ww_choice.py:175
+msgid "Elements's search"
+msgstr "Пошук елементів"
+
+#. Translators: label of the element's type listbox.
+#: addon\appModules\winword\ww_choice.py:202
+msgid "Element's type:"
+msgstr "Тип елемента:"
+
+#: addon\appModules\winword\ww_choice.py:215
+msgid "Part of document:"
+msgstr "Частина документа:"
+
+#: addon\appModules\winword\ww_choice.py:219
+msgid "Cursor's positionFocus"
+msgstr "Фокус положення курсора"
+
+#: addon\appModules\winword\ww_choice.py:220
+msgid "Document"
+msgstr "Документ"
+
+#. wdFieldDate
+#. wdFieldTime
+#: addon\appModules\winword\ww_choice.py:221
+#: addon\appModules\winword\ww_contentControl.py:161
+#: addon\appModules\winword\ww_fields.py:155
+#: addon\appModules\winword\ww_formfields.py:148
+msgid "Page"
+msgstr "Сторінка"
+
+#: addon\appModules\winword\ww_choice.py:222
+msgid "Selection"
+msgstr "Виділення"
+
+#: addon\appModules\winword\ww_choice.py:223
+msgid "Focus to end"
+msgstr "Фокус у кінець"
+
+#: addon\appModules\winword\ww_choice.py:224
+msgid "Start to focus"
+msgstr "Початок до фокуса"
+
+#. Translators: label of a button
+#: addon\appModules\winword\ww_choice.py:274
+msgid "Search an&d display"
+msgstr "Знайти й &показати"
+
+#: addon\appModules\winword\ww_choice.py:282
+msgid "Search and C&opy to clipboard"
+msgstr "Знайти і &скопіювати в буфер обміну"
+
+#: addon\appModules\winword\ww_choice.py:289
+#: addon\appModules\winword\ww_collection.py:432
+msgid "&Close"
+msgstr "&Закрити"
+
+#: addon\appModules\winword\ww_collection.py:59
+msgid "28.35"
+msgstr "28.35"
+
+#: addon\appModules\winword\ww_collection.py:115
+#: addon\appModules\winword\ww_collection.py:125
+#, python-format
+msgid "%s at cursor's position"
+msgstr "%s у позиції курсора"
+
+#: addon\appModules\winword\ww_collection.py:116
+#: addon\appModules\winword\ww_collection.py:126
+#, python-format
+msgid "%s in the selection"
+msgstr "%s у виділеному"
+
+#: addon\appModules\winword\ww_collection.py:117
+#: addon\appModules\winword\ww_collection.py:127
+#, python-format
+msgid "%s in the document"
+msgstr "%s у документі"
+
+#: addon\appModules\winword\ww_collection.py:118
+#: addon\appModules\winword\ww_collection.py:128
+#, python-format
+msgid "%s in the page"
+msgstr "%s на сторінці"
+
+#: addon\appModules\winword\ww_collection.py:119
+#, python-format
+msgid "%s between start of document and cursor's position"
+msgstr "%s між початком документа й позицією курсора"
+
+#: addon\appModules\winword\ww_collection.py:120
+#, python-format
+msgid "%s between cursor's position and end of document"
+msgstr "%s між позицією курсора й кінцем документа"
+
+#: addon\appModules\winword\ww_collection.py:129
+#, python-format
+msgid "%s between document's start and cursor's position"
+msgstr "%s між початком документа й позицією курсора"
+
+#: addon\appModules\winword\ww_collection.py:130
+#, python-format
+msgid "%s between cursor's position and document's end"
+msgstr "%s між позицією курсора й кінцем документа"
+
+#: addon\appModules\winword\ww_collection.py:148
+#, python-format
+msgid "%s percent"
+msgstr "%s відсотків"
+
+#: addon\appModules\winword\ww_collection.py:202
+msgid "Sorry, There are too many elements to be treated "
+msgstr "Вибачте, забагато елементів для обробки "
+
+#: addon\appModules\winword\ww_collection.py:238
+msgid "Please wait."
+msgstr "Будь ласка, зачекайте."
+
+#. Translators: message to user when info copied to clipboard.
+#: addon\appModules\winword\ww_collection.py:271
+msgid "{name}'s list has been copied to clipboard"
+msgstr "Список імен {name} скопійовано в буфер обміну"
+
+#: addon\appModules\winword\ww_collection.py:303
+msgid "{count} {element}"
+msgstr "{count} {element}"
+
+#. Translators: text of a message box dialog.
+#: addon\appModules\winword\ww_collection.py:493
+msgid "Are you sure you wish to delete this items?"
+msgstr "Ви впевнені, що бажаєте видалити ці елементи?"
+
+#. Translators: title of a message box dialog.
+#: addon\appModules\winword\ww_collection.py:495
+msgid "Deletion of items"
+msgstr "Видалення елементів"
+
+#. Translators: text of a message box dialog.
+#: addon\appModules\winword\ww_collection.py:580
+msgid "Are you sure you wish to delete all items?"
+msgstr "Ви впевнені, що бажаєте видалити всі елементи?"
+
+#. Translators: title of a message box dialog.
+#: addon\appModules\winword\ww_collection.py:582
+msgid "Deletion of all items"
+msgstr "Видалення всіх елементів"
+
+#: addon\appModules\winword\ww_comments.py:58
+msgid ""
+"Page {page}, line {line}\n"
+"Author: {author}\n"
+"Date: {date}\n"
+"Comment's text:\n"
+"{text}\n"
+"Commented text:\n"
+"{commentedText}\n"
+msgstr ""
+"Сторінка {page}, рядок {line}\n"
+"Автор: {author}\n"
+"Дата: {date}\n"
+"Текст коментаря:\n"
+"{текст}\n"
+"Прокоментований текст:\n"
+"{commentedText}\n"
+
+#. wdFieldKeyWord
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#. ("bookmark", _("Bookmark")),
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#. wdFieldKeyWord
+#. msoChart
+#: addon\appModules\winword\ww_comments.py:76
+#: addon\appModules\winword\ww_contentControl.py:147
+#: addon\appModules\winword\ww_elementsListDialog.py:49
+#: addon\appModules\winword\ww_elementsListDialog.py:459
+#: addon\appModules\winword\ww_fields.py:141
+#: addon\appModules\winword\ww_formfields.py:134
+#: addon\appModules\winword\ww_shapes.py:43
+#: addon\appModules\winword\ww_wordDocumentBase.py:1104
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:113
+msgid "Comment"
+msgstr "Коментар"
+
+#: addon\appModules\winword\ww_comments.py:76
+msgid "Comments"
+msgstr "Коментарі"
+
+#. Translators: text of entry text box:
+#: addon\appModules\winword\ww_comments.py:80
+msgid "Enter the comment's text"
+msgstr "Введіть текст коментаря"
+
+#. Translators: title of insert dialog.
+#: addon\appModules\winword\ww_comments.py:82
+msgid "Comment's insert"
+msgstr "Вставка коментаря"
+
+#. Translators: title of modification dialog.
+#: addon\appModules\winword\ww_comments.py:84
+msgid "Comment's Modification"
+msgstr "Модифікація коментаря"
+
+#: addon\appModules\winword\ww_comments.py:90
+msgid "No comment"
+msgstr "Без коментарів"
+
+#: addon\appModules\winword\ww_comments.py:112
+msgid "Comments:"
+msgstr "Коментарі:"
+
+#. wdFieldSubject
+#: addon\appModules\winword\ww_comments.py:116
+#: addon\appModules\winword\ww_contentControl.py:145
+#: addon\appModules\winword\ww_document.py:838
+#: addon\appModules\winword\ww_fields.py:139
+#: addon\appModules\winword\ww_formfields.py:132
+#: addon\appModules\winword\ww_revisions.py:159
+msgid "Author"
+msgstr "Автор"
+
+#. wdFieldCreateDate
+#. wdFieldSaveDate
+#. wdFieldPrintDate
+#. wdFieldRevisionNum
+#. wdFieldEditTime
+#. wdFieldNumPages
+#. wdFieldNumWords
+#. wdFieldNumChars
+#. wdFieldFileName
+#. wdFieldTemplate
+#: addon\appModules\winword\ww_comments.py:117
+#: addon\appModules\winword\ww_contentControl.py:159
+#: addon\appModules\winword\ww_fields.py:153
+#: addon\appModules\winword\ww_formfields.py:146
+#: addon\appModules\winword\ww_revisions.py:160
+msgid "Date"
+msgstr "Дата"
+
+#: addon\appModules\winword\ww_comments.py:127
+#: addon\appModules\winword\ww_endnotes.py:93
+#: addon\appModules\winword\ww_footnotes.py:90
+msgid "&Modify"
+msgstr "&Змінити"
+
+#: addon\appModules\winword\ww_comments.py:133
+msgid "Comment's text"
+msgstr "Текст коментаря"
+
+#: addon\appModules\winword\ww_comments.py:137
+msgid "Commented text"
+msgstr "Прокоментований текст"
+
+#: addon\appModules\winword\ww_contentControl.py:16
+msgid "rich-text content control"
+msgstr "керування вмістом форматованого тексту"
+
+#: addon\appModules\winword\ww_contentControl.py:17
+msgid "Text content control"
+msgstr "Керування текстовим вмістом"
+
+#: addon\appModules\winword\ww_contentControl.py:18
+msgid "picture content control"
+msgstr "керування вмістом малюнка"
+
+#: addon\appModules\winword\ww_contentControl.py:19
+msgid "combo box content control"
+msgstr "керування вмістом комбінованого списку"
+
+#: addon\appModules\winword\ww_contentControl.py:20
+msgid "drop-down list content control"
+msgstr "керування вмістом розкривного списку"
+
+#: addon\appModules\winword\ww_contentControl.py:21
+msgid "building block gallery content control"
+msgstr "керування вмістом галереї будівельних блоків"
+
+#: addon\appModules\winword\ww_contentControl.py:22
+msgid "date content control"
+msgstr "керування вмістом дати"
+
+#: addon\appModules\winword\ww_contentControl.py:23
+msgid "group content control"
+msgstr "керування вмістом групи"
+
+#: addon\appModules\winword\ww_contentControl.py:24
+msgid "checkbox content control"
+msgstr "керування вмістом прапорця"
+
+#: addon\appModules\winword\ww_contentControl.py:25
+msgid "repeating section content control"
+msgstr "керування вмістом повторюваного розділу"
+
+#: addon\appModules\winword\ww_contentControl.py:48
+msgid "checked"
+msgstr "перевірено"
+
+#. Translators: information of content control element.
+#: addon\appModules\winword\ww_contentControl.py:61
+#: addon\appModules\winword\ww_fields.py:49
+#: addon\appModules\winword\ww_formfields.py:41
+msgid "Page {page}, line {line}\n"
+msgstr "Сторінка {page}, рядок {line}\n"
+
+#. Translators: name of collection element type
+#: addon\appModules\winword\ww_contentControl.py:73
+msgid "Content control"
+msgstr "Керування вмістом"
+
+#: addon\appModules\winword\ww_contentControl.py:73
+#: addon\appModules\winword\ww_contentControl.py:89
+msgid "Content controls"
+msgstr "Елементи керування вмістом"
+
+#. Translators: text to report no content control.
+#: addon\appModules\winword\ww_contentControl.py:80
+msgid "No content control"
+msgstr "Немає керування вмістом"
+
+#: addon\appModules\winword\ww_contentControl.py:93
+#: addon\appModules\winword\ww_fields.py:88
+#: addon\appModules\winword\ww_formfields.py:80
+#: addon\appModules\winword\ww_hyperlinks.py:96
+#: addon\appModules\winword\ww_revisions.py:158
+msgid "Type"
+msgstr "Тип"
+
+#. wdFieldTOC
+#. wdFieldInfo
+#: addon\appModules\winword\ww_contentControl.py:105
+#: addon\appModules\winword\ww_contentControl.py:143
+#: addon\appModules\winword\ww_document.py:841
+#: addon\appModules\winword\ww_fields.py:137
+#: addon\appModules\winword\ww_formfields.py:130
+#: addon\appModules\winword\ww_tables.py:333
+msgid "Title"
+msgstr "Назва"
+
+#: addon\appModules\winword\ww_contentControl.py:110
+msgid "Status or content"
+msgstr "Статус або вміст"
+
+#. Translators: message to say text is empty.
+#: addon\appModules\winword\ww_contentControl.py:130
+#: addon\appModules\winword\ww_fields.py:124
+#: addon\appModules\winword\ww_formfields.py:117
+#: addon\appModules\winword\ww_wordDocumentBase.py:358
+msgid "Empty"
+msgstr "Порожньо"
+
+#. wdFieldEmpty
+#: addon\appModules\winword\ww_contentControl.py:131
+#: addon\appModules\winword\ww_fields.py:125
+#: addon\appModules\winword\ww_formfields.py:118
+msgid "Ref"
+msgstr "Посилання"
+
+#. wdFieldRef
+#. wdFieldIndexEntry
+#: addon\appModules\winword\ww_contentControl.py:133
+#: addon\appModules\winword\ww_fields.py:127
+#: addon\appModules\winword\ww_formfields.py:120
+msgid "FootnoteRef"
+msgstr "Виноска Ref"
+
+#. wdFieldFootnoteRef
+#. wdFieldSet
+#. wdFieldIf
+#. wdFieldIndex
+#. wdFieldTOCEntry
+#: addon\appModules\winword\ww_contentControl.py:138
+#: addon\appModules\winword\ww_fields.py:132
+#: addon\appModules\winword\ww_formfields.py:125
+msgid "StyleRef"
+msgstr "StyleRef"
+
+#. wdFieldStyleRef
+#. wdFieldRefDoc
+#. wdFieldSequence
+#: addon\appModules\winword\ww_contentControl.py:141
+#: addon\appModules\winword\ww_fields.py:135
+#: addon\appModules\winword\ww_formfields.py:128
+msgid "TOC"
+msgstr "Кому"
+
+#. wdFieldTitle
+#: addon\appModules\winword\ww_contentControl.py:144
+#: addon\appModules\winword\ww_document.py:842
+#: addon\appModules\winword\ww_fields.py:138
+#: addon\appModules\winword\ww_formfields.py:131
+msgid "Subject"
+msgstr "Тема"
+
+#. wdFieldAuthor
+#: addon\appModules\winword\ww_contentControl.py:146
+#: addon\appModules\winword\ww_fields.py:140
+#: addon\appModules\winword\ww_formfields.py:133
+msgid "Keyword"
+msgstr "Ключове слово"
+
+#. wdFieldComments
+#. wdFieldLastSavedBy
+#: addon\appModules\winword\ww_contentControl.py:149
+#: addon\appModules\winword\ww_fields.py:143
+#: addon\appModules\winword\ww_formfields.py:136
+msgid "CreateDate"
+msgstr "Дата створення"
+
+#. wdFieldPage
+#: addon\appModules\winword\ww_contentControl.py:162
+#: addon\appModules\winword\ww_fields.py:156
+#: addon\appModules\winword\ww_formfields.py:149
+msgid "Expression"
+msgstr "Вираз"
+
+#. wdFieldExpression
+#: addon\appModules\winword\ww_contentControl.py:163
+#: addon\appModules\winword\ww_fields.py:157
+#: addon\appModules\winword\ww_formfields.py:150
+msgid "Quote"
+msgstr "Цитата"
+
+#. wdFieldQuote
+#: addon\appModules\winword\ww_contentControl.py:164
+#: addon\appModules\winword\ww_fields.py:158
+#: addon\appModules\winword\ww_formfields.py:151
+msgid "Include"
+msgstr "Включати"
+
+#. wdFieldInclude
+#. wdFieldPageRef
+#. wdFieldAsk
+#. wdFieldFillIn
+#. wdFieldData
+#. wdFieldNext
+#. wdFieldNextIf
+#. wdFieldSkipIf
+#. wdFieldMergeRec
+#. wdFieldDDE
+#. wdFieldDDEAuto
+#. wdFieldGlossary
+#. wdFieldPrint
+#. wdFieldFormula
+#. wdFieldGoToButton
+#. wdFieldMacroButton
+#. wdFieldAutoNumOutline
+#. wdFieldAutoNumLegal
+#. wdFieldAutoNum
+#. wdFieldImport
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#. wdFieldInclude
+#. wdFieldPageRef
+#. wdFieldAsk
+#. wdFieldFillIn
+#. wdFieldData
+#. wdFieldNext
+#. wdFieldNextIf
+#. wdFieldSkipIf
+#. wdFieldMergeRec
+#. wdFieldDDE
+#. wdFieldDDEAuto
+#. wdFieldGlossary
+#. wdFieldPrint
+#. wdFieldFormula
+#. wdFieldGoToButton
+#. wdFieldMacroButton
+#. wdFieldAutoNumOutline
+#. wdFieldAutoNumLegal
+#. wdFieldAutoNum
+#. wdFieldImport
+#: addon\appModules\winword\ww_contentControl.py:184
+#: addon\appModules\winword\ww_elementsListDialog.py:450
+#: addon\appModules\winword\ww_fields.py:178
+#: addon\appModules\winword\ww_formfields.py:171
+msgid "Link"
+msgstr "Посилання"
+
+#. wdFieldLink
+#: addon\appModules\winword\ww_contentControl.py:185
+#: addon\appModules\winword\ww_fields.py:179
+#: addon\appModules\winword\ww_formfields.py:172
+msgid "Symbol"
+msgstr "Символ"
+
+#. Translators: text to indicate page number alignment to the left.
+#. for wdAlignPageNumberLeft
+#. Translators: text to indicate page number alignment to the left.
+#: addon\appModules\winword\ww_document.py:35
+#: addon\appModules\winword\ww_document.py:124
+msgid "Page's number on the Left"
+msgstr "Номер сторінки зліва"
+
+#. Translators: text to indicate page number alignment to the center.
+#. for wdAlignPageNumberCenter
+#. Translators: text to indicate page number alignment to the center.
+#: addon\appModules\winword\ww_document.py:37
+#: addon\appModules\winword\ww_document.py:127
+msgid "Page's number Centered"
+msgstr "Номер сторінки по центру"
+
+#. Translators: text to indicate page numer alignment to the right.
+#. for wdAlignPageNumberRight
+#. Translators: text to indicate page numer alignment to the right.
+#: addon\appModules\winword\ww_document.py:39
+#: addon\appModules\winword\ww_document.py:130
+msgid "Page's number on the Right"
+msgstr "Номер сторінки справа"
+
+#. Translators: text to indicate page number alignment to inside.
+#. for wdAlignPageNumberInside
+#. Translators: text to indicate page number alignment to inside.
+#: addon\appModules\winword\ww_document.py:41
+#: addon\appModules\winword\ww_document.py:133
+msgid "Page number inside"
+msgstr "Номер сторінки всередині"
+
+#. Translators: text to indicate page number alignment to outside.
+#. for wdAlignPageNumberOutside
+#. Translators: text to indicate page number alignment to outside.
+#: addon\appModules\winword\ww_document.py:43
+#: addon\appModules\winword\ww_document.py:136
+msgid "Page's number Outside"
+msgstr "Номер сторінки Зовні"
+
+#. Translators: text to report a header or footer linked to previous.
+#: addon\appModules\winword\ww_document.py:114
+msgid "linked to previous"
+msgstr "пов'язано з попереднім"
+
+#. Translators: column information.
+#: addon\appModules\winword\ww_document.py:201
+msgid "Column {index}: {wide} wide"
+msgstr "Стовпець {index}: ширина {wide}"
+
+#. Translators: column information.
+#: addon\appModules\winword\ww_document.py:205
+#, python-format
+msgid "with %s spacing after"
+msgstr "з %s інтервалом після"
+
+#. Translators: title of section's text column paragraph.
+#: addon\appModules\winword\ww_document.py:215
+msgid "Text columns:"
+msgstr "Текстові колонки:"
+
+#. Translators: text to indicate text column index.
+#: addon\appModules\winword\ww_document.py:221
+#, python-format
+msgid "Number of Text columns: %s"
+msgstr "Кількість текстових стовпців: %s"
+
+#. Translators: text to indicate lines between text columns.
+#: addon\appModules\winword\ww_document.py:225
+#, python-format
+msgid "Line between columns: %s"
+msgstr "Рядок між стовпцями: %s"
+
+#. Translators: text to indicate text column style
+#: addon\appModules\winword\ww_document.py:230
+msgid ""
+"Style: columns' wide = {wide} (evenly spaced), gap between columns = "
+"{spacing}"
+msgstr ""
+"Стиль: ширина стовпців = {wide} (рівномірно), проміжок між стовпцями = "
+"{spacing}"
+
+#. Translators: text to indicate text column style.
+#: addon\appModules\winword\ww_document.py:237
+msgid "Style: various column wide"
+msgstr "Стиль: змінна ширина колонки"
+
+#: addon\appModules\winword\ww_document.py:247
+msgid "on the left side"
+msgstr "з лівого боку"
+
+#: addon\appModules\winword\ww_document.py:248
+msgid "on the right side"
+msgstr "з правого боку"
+
+#: addon\appModules\winword\ww_document.py:249
+msgid "on the top side"
+msgstr "на верхній стороні"
+
+#. Translators: gutter information.
+#: addon\appModules\winword\ww_document.py:257
+msgid "Gutter: {pos}, {size} large"
+msgstr "Корінець: {pos}, {size} величина"
+
+#. Translators: miror margins informations.
+#: addon\appModules\winword\ww_document.py:272
+msgid "Miror margins:"
+msgstr "Дзеркальні поля:"
+
+#. Translators: margins information.
+#: addon\appModules\winword\ww_document.py:275
+msgid "Margins:"
+msgstr "Поля:"
+
+#. Translators: miror inside margin information:
+#: addon\appModules\winword\ww_document.py:280
+#, python-format
+msgid "Inside: %s"
+msgstr "Всередині: %s"
+
+#. Translators: miror outside margin information.
+#: addon\appModules\winword\ww_document.py:282
+#, python-format
+msgid "Outside: %s"
+msgstr "Зовні: %s"
+
+#. Translators: left margin information.
+#: addon\appModules\winword\ww_document.py:285
+#, python-format
+msgid "Left: %s"
+msgstr "Ліворуч: %s"
+
+#. translators: right margin information.
+#: addon\appModules\winword\ww_document.py:287
+#, python-format
+msgid "Right: %s"
+msgstr "Праворуч: %s"
+
+#. Translators: top margin information.
+#: addon\appModules\winword\ww_document.py:291
+#, python-format
+msgid "Top: %s"
+msgstr "Вгорі: %s"
+
+#. Translators: bottom margin information.
+#: addon\appModules\winword\ww_document.py:294
+#, python-format
+msgid "Bottom: %s"
+msgstr "Внизу: %s"
+
+#: addon\appModules\winword\ww_document.py:299
+#, python-format
+msgid "Orientation: %s"
+msgstr "Орієнтація: %s"
+
+#. Translators: self.twoPagesOnOne information.
+#: addon\appModules\winword\ww_document.py:303
+#, python-format
+msgid "Print two pages per sheet: %s"
+msgstr "Друкувати по дві сторінки на аркуші: %s"
+
+#: addon\appModules\winword\ww_document.py:312
+msgid "Landscape"
+msgstr "Альбомна"
+
+#: addon\appModules\winword\ww_document.py:313
+#: addon\appModules\winword\ww_sections.py:75
+msgid "Portrait"
+msgstr "Книжкова"
+
+#: addon\appModules\winword\ww_document.py:324
+#: addon\appModules\winword\ww_sections.py:86
+msgid "top"
+msgstr "згори"
+
+#: addon\appModules\winword\ww_document.py:325
+msgid "centered"
+msgstr "по центру"
+
+#: addon\appModules\winword\ww_document.py:326
+msgid "justified"
+msgstr "вирівняно"
+
+#. wdAlignVerticalJustify
+#: addon\appModules\winword\ww_document.py:327
+#: addon\appModules\winword\ww_sections.py:89
+msgid "bottom"
+msgstr "знизу"
+
+#: addon\appModules\winword\ww_document.py:339
+msgid "Continuous"
+msgstr "Безперервний"
+
+#: addon\appModules\winword\ww_document.py:340
+msgid "Even pages "
+msgstr "Парні сторінки "
+
+#: addon\appModules\winword\ww_document.py:341
+msgid "Новий стовпець"
+msgstr "Нова колонка"
+
+#: addon\appModules\winword\ww_document.py:342
+msgid "New page"
+msgstr "Нова сторінка"
+
+#: addon\appModules\winword\ww_document.py:343
+msgid "Odd pages"
+msgstr "Непарні сторінки"
+
+#. Translators: title of disposition information .
+#: addon\appModules\winword\ww_document.py:348
+msgid "Disposition:"
+msgstr "Диспозиція:"
+
+#. Translators: section startinformation.
+#: addon\appModules\winword\ww_document.py:352
+#, python-format
+msgid "Sectionstart: %s"
+msgstr "Початок розділу: %s"
+
+#. Translators: different First Page information.
+#: addon\appModules\winword\ww_document.py:357
+#, python-format
+msgid "Different first page: %s"
+msgstr "Інша перша сторінка: %s"
+
+#. Translators: different odd and even page informations.
+#: addon\appModules\winword\ww_document.py:363
+#, python-format
+msgid "Different Odd and even pages: %s"
+msgstr "Різні парні та непарні сторінки: %s"
+
+#. Translators: distance between footer and bottom information.
+#: addon\appModules\winword\ww_document.py:366
+#, python-format
+msgid "Distance between footer and bottom: %s"
+msgstr "Відстань між нижнім колонтитулом і низом: %s"
+
+#. Translators: distance between header and top information.
+#: addon\appModules\winword\ww_document.py:370
+#, python-format
+msgid "Distance between header and top: %s"
+msgstr "Відстань між верхнім колонтитулом і верхом: %s"
+
+#. Translators: vertical alignment information.
+#: addon\appModules\winword\ww_document.py:375
+#, python-format
+msgid "Vertical alignment: %s"
+msgstr "Вертикальне вирівнювання: %s"
+
+#. Translators: paper information title.
+#: addon\appModules\winword\ww_document.py:391
+msgid "Paper:"
+msgstr "Папір:"
+
+#. Translators: paper size information.
+#: addon\appModules\winword\ww_document.py:395
+#, python-format
+msgid "Paper size: %s"
+msgstr "Розмір паперу: %s"
+
+#. Translators: # height and width page information.
+#: addon\appModules\winword\ww_document.py:398
+msgid "Page's size: {height}height, {width} width"
+msgstr "Розмір сторінки: {height}висота, {width} ширина"
+
+#. Translators: first page header information
+#: addon\appModules\winword\ww_document.py:444
+#, python-format
+msgid "First Page Header: %s"
+msgstr "Верхній колонтитул першої сторінки: %s"
+
+#. Translators: first page footer informations.
+#: addon\appModules\winword\ww_document.py:454
+#, python-format
+msgid "First Page Footer: %s"
+msgstr "Нижній колонтитул першої сторінки: %s"
+
+#. Translators: event page header information
+#: addon\appModules\winword\ww_document.py:465
+#, python-format
+msgid "Even Page Header: %s"
+msgstr "Верхній колонтитул парної сторінки: %s"
+
+#. Translators: Even Page Footer informations
+#: addon\appModules\winword\ww_document.py:475
+#, python-format
+msgid "Even Page Footer: %s"
+msgstr "Нижній колонтитул парної сторінки: %s"
+
+#. Translators: page header informations
+#: addon\appModules\winword\ww_document.py:484
+#, python-format
+msgid "Page header: %s"
+msgstr "Верхній колонтитул сторінки: %s"
+
+#. Translators: page footer informations.
+#: addon\appModules\winword\ww_document.py:493
+#, python-format
+msgid "Page Footer: %s"
+msgstr "Нижній колонтитул сторінки: %s"
+
+#. Translators: title of section paragraph.
+#: addon\appModules\winword\ww_document.py:502
+msgid "Section {index} of {count}:"
+msgstr "Розділ {index} з {count}:"
+
+#. Translators: protection forforms information.
+#: addon\appModules\winword\ww_document.py:510
+#, python-format
+msgid "Text modification only in form fields: %s"
+msgstr "Зміна тексту лише в полях форми: %s"
+
+#. Translators: title of section paragraph.
+#: addon\appModules\winword\ww_document.py:535
+msgid "Document's sections:"
+msgstr "Розділи документа:"
+
+#. Translators: title of position paragraph.
+#: addon\appModules\winword\ww_document.py:602
+msgid "Position in the document:"
+msgstr "Позиція в документі:"
+
+#. Translators: position informations.
+#: addon\appModules\winword\ww_document.py:606
+msgid "In section {section}, page {page}"
+msgstr "У розділі {section} сторінка {page}"
+
+#. Translators: table uniform information
+#: addon\appModules\winword\ww_document.py:614
+#: addon\appModules\winword\ww_document.py:982
+msgid "uniform"
+msgstr "рівномірний"
+
+#: addon\appModules\winword\ww_document.py:614
+#: addon\appModules\winword\ww_document.py:982
+msgid "non-uniform"
+msgstr "нерівномірний"
+
+#. Translators: In table informations.
+#: addon\appModules\winword\ww_document.py:616
+msgid "In a {uniform} table"
+msgstr "В {uniform} таблиці"
+
+#. Translators: cell positions in table.
+#: addon\appModules\winword\ww_document.py:621
+msgid " Cell row {row} , column {col} of table {tableIndex}"
+msgstr " Рядок клітинки {row}, стовпець {col} таблиці {tableIndex}"
+
+#. Translators: in section and column position.
+#: addon\appModules\winword\ww_document.py:628
+msgid "In section {section}, text column {textColumn}"
+msgstr "У розділі {section} текстовий стовпець {textColumn}"
+
+#. Translators: just in section.
+#: addon\appModules\winword\ww_document.py:633
+#, python-format
+msgid "In section {%s"
+msgstr "У розділі {%s"
+
+#. Translators: indicate line and column position in the page.
+#: addon\appModules\winword\ww_document.py:639
+msgid "On line {line} of the page {page}, column {col}"
+msgstr "У рядку {line} сторінки {page}, стовпець {col}"
+
+#: addon\appModules\winword\ww_document.py:702
+msgid "Allow only revisions"
+msgstr "Дозволити лише виправлення"
+
+#: addon\appModules\winword\ww_document.py:703
+msgid "Allow only comments"
+msgstr "Дозволити лише коментарі"
+
+#: addon\appModules\winword\ww_document.py:704
+msgid "Allow only form fields"
+msgstr "Дозволити лише поля форми"
+
+#: addon\appModules\winword\ww_document.py:705
+msgid "Read-only"
+msgstr "Лише для читання"
+
+#: addon\appModules\winword\ww_document.py:710
+msgid "No protection"
+msgstr "Без захисту"
+
+#: addon\appModules\winword\ww_document.py:738
+#, python-format
+msgid "%s or more"
+msgstr "%s або більше"
+
+#. Translators: title of statistics paragraph.
+#: addon\appModules\winword\ww_document.py:748
+msgid "Statistics:"
+msgstr "Статистика:"
+
+#. Translators: text to indicate number of pages
+#: addon\appModules\winword\ww_document.py:752
+#, python-format
+msgid "Pages: %s"
+msgstr "Сторінки: %s"
+
+#. Translators: text to indicate number of lines.
+#: addon\appModules\winword\ww_document.py:755
+#, python-format
+msgid "Lines: %s"
+msgstr "Рядки: %s"
+
+#. Translators: text to indicate number of words
+#: addon\appModules\winword\ww_document.py:758
+#, python-format
+msgid "Words: %s"
+msgstr "Слова: %s"
+
+#. Translators: text to indicate number of characters
+#: addon\appModules\winword\ww_document.py:761
+#, python-format
+msgid "Characters: %s"
+msgstr "Символи: %s"
+
+#. Translators: text to indicate number of paragraphs
+#: addon\appModules\winword\ww_document.py:764
+#, python-format
+msgid "Paragraphs: %s"
+msgstr "Абзаци: %s"
+
+#. Translators: text to indicate number of sections.
+#: addon\appModules\winword\ww_document.py:768
+#, python-format
+msgid "Sections: %s"
+msgstr "Розділи: %s"
+
+#. Translators: text to indicate number of comments.
+#: addon\appModules\winword\ww_document.py:772
+#, python-format
+msgid "Comments: %s"
+msgstr "Коментарі: %s"
+
+#. Translators:text to indicate number of tables.
+#: addon\appModules\winword\ww_document.py:776
+#, python-format
+msgid "Tables: %s"
+msgstr "Таблиці: %s"
+
+#. Translators: text to indicate number of shape objects.
+#: addon\appModules\winword\ww_document.py:780
+#, python-format
+msgid "Shape objects: %s"
+msgstr "Об'єкти форми: %s"
+
+#. Translators: text to indicate number of inLine shape objects.
+#: addon\appModules\winword\ww_document.py:784
+#, python-format
+msgid "InLineShape objects: %s"
+msgstr "Об’єкти InLineShape: %s"
+
+#. Translators: text to indicate number of endnotes .
+#: addon\appModules\winword\ww_document.py:788
+#, python-format
+msgid "Endnotes: %s"
+msgstr "Кінцеві виноски: %s"
+
+#. Translators: text to indicate number of footnotes.
+#: addon\appModules\winword\ww_document.py:792
+#, python-format
+msgid "Footnotes: %s"
+msgstr "Виноски: %s"
+
+#. Translators: text to indicate number of fields.
+#: addon\appModules\winword\ww_document.py:796
+#, python-format
+msgid "Fields: %s"
+msgstr "Поля: %s"
+
+#. Translators: text to indicate number of formfields.
+#: addon\appModules\winword\ww_document.py:800
+#, python-format
+msgid "Formfields: %s"
+msgstr "Поля форм: %s"
+
+#. Translators: text to indicate number of frames.
+#: addon\appModules\winword\ww_document.py:804
+#, python-format
+msgid "Frames: %s"
+msgstr "Фрейми: %s"
+
+#. Translators: text to indicate number of hyperlinks.
+#: addon\appModules\winword\ww_document.py:808
+#, python-format
+msgid "Hyperlinks: %s"
+msgstr "Гіперпосилання: %s"
+
+#. Translators: text to indicate number of lists.
+#: addon\appModules\winword\ww_document.py:812
+#, python-format
+msgid "Lists: %s"
+msgstr "Списки: %s"
+
+#. Translators: text to indicate number of bookmarks.
+#: addon\appModules\winword\ww_document.py:816
+#, python-format
+msgid "Bookmarks: %s"
+msgstr "Закладки: %s"
+
+#. Translators: text to indicate number of spelling errors.
+#: addon\appModules\winword\ww_document.py:822
+#, python-format
+msgid "Spelling errors: %s"
+msgstr "Орфографічні помилки: %s"
+
+#: addon\appModules\winword\ww_document.py:831
+#, python-format
+msgid "Contains hidden text: %s"
+msgstr "Містить прихований текст: %s"
+
+#: addon\appModules\winword\ww_document.py:832
+#: addon\appModules\winword\ww_document.py:868
+#: addon\appModules\winword\ww_document.py:872
+#: addon\appModules\winword\ww_document.py:881
+#: addon\appModules\winword\ww_document.py:884
+msgid "Yes"
+msgstr "Так"
+
+#: addon\appModules\winword\ww_document.py:832
+#: addon\appModules\winword\ww_document.py:868
+#: addon\appModules\winword\ww_document.py:872
+#: addon\appModules\winword\ww_document.py:881
+#: addon\appModules\winword\ww_document.py:884
+msgid "No"
+msgstr "Ні"
+
+#: addon\appModules\winword\ww_document.py:839
+msgid "Creation date"
+msgstr "Дата створення"
+
+#: addon\appModules\winword\ww_document.py:840
+msgid "Revision number"
+msgstr "Номер виправлення"
+
+#: addon\appModules\winword\ww_document.py:843
+msgid "Compagny"
+msgstr "Компанія"
+
+#. Translators: document informations
+#: addon\appModules\winword\ww_document.py:847
+msgid "Document's properties:"
+msgstr "Властивості документа:"
+
+#: addon\appModules\winword\ww_document.py:849
+#, python-format
+msgid "File name: %s"
+msgstr "Ім'я файлу: %s"
+
+#: addon\appModules\winword\ww_document.py:857
+#, python-format
+msgid "Protection: %s"
+msgstr "Захист: %s"
+
+#. Translators: title of options paragraph.
+#: addon\appModules\winword\ww_document.py:864
+msgid "Specific options:"
+msgstr "Особливі параметри:"
+
+#. Translators: text to indicate check spelling as you type.
+#: addon\appModules\winword\ww_document.py:867
+#, python-format
+msgid "Check spelling as you type: %s"
+msgstr "Перевірка правопису під час друку: %s"
+
+#. Translators: text to indicate check grammar as you type.
+#: addon\appModules\winword\ww_document.py:871
+#, python-format
+msgid "Check grammar as you type: %s"
+msgstr "Перевірка граматики під час друку: %s"
+
+#. Translators: check grammar with speeling option information.
+#: addon\appModules\winword\ww_document.py:877
+#, python-format
+msgid "Check grammar with spelling: %s"
+msgstr "Перевірка граматики з орфографією: %s"
+
+#. Translators: text to indicate rack revision is activated.
+#: addon\appModules\winword\ww_document.py:880
+#, python-format
+msgid "Track revision: %s"
+msgstr "Відстеження виправлення: %s"
+
+#: addon\appModules\winword\ww_document.py:883
+#, python-format
+msgid "Display hidden text: %s"
+msgstr "Показати прихований текст: %s"
+
+#. Translators: title of tables informations
+#: addon\appModules\winword\ww_document.py:905
+msgid "Document's tables:"
+msgstr "Таблиці документа:"
+
+#. Translators: table information
+#: addon\appModules\winword\ww_document.py:911
+msgid "Table {index} of {count}:"
+msgstr "Таблиця {index} з {count}:"
+
+#. Translation: title of information dialog.
+#: addon\appModules\winword\ww_document.py:930
+msgid "Document's informations"
+msgstr "Інформація про документ"
+
+#: addon\appModules\winword\ww_document.py:983
+msgid " nested"
+msgstr " вкладено"
+
+#. Translators:  table informations.
+#: addon\appModules\winword\ww_document.py:985
+msgid "table {nested} {uniform} of {rows} rows, {columns} columns"
+msgstr "таблиця {nested} {uniform} з {rows} рядків, {columns} стовпців"
+
+#: addon\appModules\winword\ww_document.py:990
+msgid "Localized at {page} page , {line} line"
+msgstr "Локалізовано на сторінці {page}, рядок {line}"
+
+#. Translators: title of table.
+#: addon\appModules\winword\ww_document.py:995
+#, python-format
+msgid "Title: %s"
+msgstr "Назва: %s"
+
+#. Translators: table's description.
+#: addon\appModules\winword\ww_document.py:999
+#, python-format
+msgid "Description: %s"
+msgstr "Опис: %s"
+
+#. Translators: allow auto fit information.
+#: addon\appModules\winword\ww_document.py:1003
+#, python-format
+msgid "Automatic resize to fit content: %s"
+msgstr "Автоматичне змінення розміру відповідно до вмісту: %s"
+
+#. Translators: top paddding information.
+#: addon\appModules\winword\ww_document.py:1006
+#, python-format
+msgid "Top padding: %s"
+msgstr "Верхній відступ: %s"
+
+#. Translators: bottom padding information.
+#: addon\appModules\winword\ww_document.py:1009
+#, python-format
+msgid "Bottom padding: %s"
+msgstr "Нижній відступ: %s"
+
+#. Translators: spacing between cells.
+#: addon\appModules\winword\ww_document.py:1012
+#, python-format
+msgid "Spacing between cells: %s"
+msgstr "Відстань між комірками: %s"
+
+#. Translators: number of tables contained in this table.
+#: addon\appModules\winword\ww_document.py:1023
+#, python-format
+msgid "Contains %s tables"
+msgstr "Містить %s таблиць"
+
+#: addon\appModules\winword\ww_document.py:1040
+msgid "Without border"
+msgstr "Без межі"
+
+#. Translators: title of borders description
+#: addon\appModules\winword\ww_document.py:1047
+msgid "Borders:"
+msgstr "Межі:"
+
+#: addon\appModules\winword\ww_document.py:1083
+msgid ""
+"surrounding {color} {lineStyle} with width of {lineWidth} and art style "
+"{artStyle}"
+msgstr ""
+"навколо {color} {lineStyle} шириною {lineWidth} і художнім стилем {artStyle}"
+
+#: addon\appModules\winword\ww_document.py:1090
+msgid "surrounding {color} {lineStyle} with width of {lineWidth}"
+msgstr "навколо {color} {lineStyle} шириною {lineWidth}"
+
+#: addon\appModules\winword\ww_document.py:1118
+msgid ""
+"{name}= {color} {lineStyle} with width of {lineWidth} and art style "
+"{artStyle}"
+msgstr ""
+"{name}= {color} {lineStyle} із шириною {lineWidth} і художнім стилем "
+"{artStyle}"
+
+#: addon\appModules\winword\ww_document.py:1123
+msgid "{name}= {color} {lineStyle} with width of {lineWidth}"
+msgstr "{name}= {color} {lineStyle} із шириною {lineWidth}"
+
+#. Translators: no border is visible
+#: addon\appModules\winword\ww_document.py:1131
+msgid "Without borders"
+msgstr "Без меж"
+
+#: addon\appModules\winword\ww_document.py:1144
+msgid "mixed"
+msgstr "змішаний"
+
+#: addon\appModules\winword\ww_document.py:1145
+#, python-format
+msgid "%s line"
+msgstr "рядок %s"
+
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#: addon\appModules\winword\ww_elementsListDialog.py:52
+#: addon\appModules\winword\ww_endnotes.py:45
+#: addon\appModules\winword\ww_wordDocumentBase.py:1104
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:115
+msgid "Endnote"
+msgstr "Кінцева виноска"
+
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#: addon\appModules\winword\ww_elementsListDialog.py:55
+#: addon\appModules\winword\ww_fields.py:69
+msgid "Field"
+msgstr "Поле"
+
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#: addon\appModules\winword\ww_elementsListDialog.py:58
+msgid "FormField"
+msgstr "Поле форми"
+
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#: addon\appModules\winword\ww_elementsListDialog.py:61
+#: addon\appModules\winword\ww_footnotes.py:42
+#: addon\appModules\winword\ww_wordDocumentBase.py:1104
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:114
+msgid "Footnote"
+msgstr "Виноска"
+
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#. ("endnote", _("Endnote")),
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#. ("field", _("Field")),
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#. ("formfield", _("FormField")),
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#. ("footnote", _("Footnote")),
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#: addon\appModules\winword\ww_elementsListDialog.py:64
+#: addon\appModules\winword\ww_elementsListDialog.py:474
+#: addon\appModules\winword\ww_revisions.py:121
+msgid "Revision"
+msgstr "Виправлення"
+
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#: addon\appModules\winword\ww_elementsListDialog.py:67
+#: addon\appModules\winword\ww_sections.py:143
+#: addon\appModules\winword\ww_sections.py:265
+msgid "Section"
+msgstr "Розділ"
+
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#: addon\appModules\winword\ww_elementsListDialog.py:70
+#: addon\appModules\winword\ww_spellingErrors.py:43
+msgid "Spelling error"
+msgstr "Орфографічна помилка"
+
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#: addon\appModules\winword\ww_elementsListDialog.py:73
+#: addon\appModules\winword\ww_grammaticalErrors.py:43
+msgid "Grammatical error"
+msgstr "Граматична помилка"
+
+#: addon\appModules\winword\ww_elementsListDialog.py:91
+msgid "&Type:"
+msgstr "&Тип:"
+
+#. Translators: The label of a button to activate an element
+#. in the browse mode Elements List dialog.
+#: addon\appModules\winword\ww_elementsListDialog.py:133
+msgid "&Activate"
+msgstr "&Активувати"
+
+#. Translators: message to indicate the number of elements is limited.
+#: addon\appModules\winword\ww_elementsListDialog.py:252
+#, python-format
+msgid "more than %s elements"
+msgstr "більше ніж %s елементів"
+
+#: addon\appModules\winword\ww_elementsListDialog.py:252
+#: addon\appModules\winword\ww_elementsListDialog.py:255
+msgid "One element"
+msgstr "Один елемент"
+
+#. Translators: message to the user to report number of elements
+#: addon\appModules\winword\ww_elementsListDialog.py:255
+#, python-format
+msgid "%s elements"
+msgstr "%s елементів"
+
+#. Translators: message to the user when there is no element
+#: addon\appModules\winword\ww_elementsListDialog.py:258
+msgid "no element"
+msgstr "немає елемента"
+
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#: addon\appModules\winword\ww_elementsListDialog.py:447
+#: addon\appModules\winword\ww_headings.py:62
+#: addon\appModules\winword\ww_headings.py:102
+msgid "Heading"
+msgstr "Заголовок"
+
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#: addon\appModules\winword\ww_elementsListDialog.py:453
+msgid "Graphic"
+msgstr "Графічний"
+
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#. ("section", _("Section")),
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#. ("spellingError", _("Spelling error")),
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#. ("grammaticalError", _("Grammatical error")),
+#. Translators: The label of a list item to select the type of element
+#. in the browse mode Elements List dialog.
+#: addon\appModules\winword\ww_elementsListDialog.py:486
+msgid "Error"
+msgstr "Помилка"
+
+#: addon\appModules\winword\ww_endnotes.py:30
+#: addon\appModules\winword\ww_footnotes.py:30
+msgid ""
+"Page {page}, line {line}\n"
+"Note's text:\n"
+"{text}\n"
+msgstr ""
+"Сторінка {page}, рядок {line}\n"
+"Текст примітки:\n"
+"{text}\n"
+
+#: addon\appModules\winword\ww_endnotes.py:45
+msgid "Endnotes"
+msgstr "Кінцеві виноски"
+
+#. Translators: text of entry text box:
+#: addon\appModules\winword\ww_endnotes.py:49
+msgid "Enter the endnote's text"
+msgstr "Введіть текст кінцевої виноски"
+
+#. Translators: title of insert dialog.
+#: addon\appModules\winword\ww_endnotes.py:51
+msgid "Endnote's insert"
+msgstr "Вставка кінцевої виноски"
+
+#. Translators: title of modify dialog.
+#: addon\appModules\winword\ww_endnotes.py:53
+msgid "Endnote's modification"
+msgstr "Модифікація кінцевої виноски"
+
+#: addon\appModules\winword\ww_endnotes.py:59
+msgid "No endnote"
+msgstr "Немає кінцевої виноски"
+
+#: addon\appModules\winword\ww_endnotes.py:81
+#: addon\appModules\winword\ww_footnotes.py:78
+msgid "Notes:"
+msgstr "Примітки:"
+
+#: addon\appModules\winword\ww_endnotes.py:99
+#: addon\appModules\winword\ww_footnotes.py:95
+msgid "Note's text"
+msgstr "Текст примітки"
+
+#: addon\appModules\winword\ww_fields.py:69
+#: addon\appModules\winword\ww_fields.py:84
+msgid "Fields"
+msgstr "Поля"
+
+#: addon\appModules\winword\ww_fields.py:75
+msgid "No field"
+msgstr "Немає поля"
+
+#: addon\appModules\winword\ww_fields.py:100
+#: addon\appModules\winword\ww_formfields.py:92
+msgid "Result"
+msgstr "Результат"
+
+#: addon\appModules\winword\ww_fields.py:104
+msgid "Code"
+msgstr "Код"
+
+#: addon\appModules\winword\ww_footnotes.py:42
+msgid "Footnotes"
+msgstr "Виноски"
+
+#. Translators: text of entry text box:
+#: addon\appModules\winword\ww_footnotes.py:46
+msgid "Enter the footnote's text"
+msgstr "Введіть текст виноски"
+
+#. Translators: title of insert dialog.
+#: addon\appModules\winword\ww_footnotes.py:48
+msgid "Footnote's insert"
+msgstr "Вставка виноски"
+
+#. Translators: title of modify dialog.
+#: addon\appModules\winword\ww_footnotes.py:50
+msgid "Footnote's modification"
+msgstr "Модифікація виноски"
+
+#: addon\appModules\winword\ww_footnotes.py:56
+msgid "No footnote"
+msgstr "Немає виноски"
+
+#: addon\appModules\winword\ww_formfields.py:61
+msgid "Formfield"
+msgstr "Поле форми"
+
+#: addon\appModules\winword\ww_formfields.py:61
+msgid "Formfields"
+msgstr "Поля форми"
+
+#: addon\appModules\winword\ww_formfields.py:67
+msgid "No formfield"
+msgstr "Немає поля форми"
+
+#: addon\appModules\winword\ww_formfields.py:76
+msgid "FormFields"
+msgstr "Поля форми"
+
+#: addon\appModules\winword\ww_formfields.py:97
+msgid "Status"
+msgstr "Статус"
+
+#: addon\appModules\winword\ww_frames.py:42
+msgid ""
+"Page {page}, line {line}\n"
+"Height: {height}\n"
+"Width:\n"
+"{width}\n"
+msgstr ""
+"Сторінка {page}, рядок {line}\n"
+"Висота: {height}\n"
+"Ширина:\n"
+"{width}\n"
+
+#: addon\appModules\winword\ww_frames.py:55
+#: addon\appModules\winword\ww_frames.py:72
+msgid "Frame"
+msgstr "Фрейм"
+
+#: addon\appModules\winword\ww_frames.py:55
+#: addon\appModules\winword\ww_frames.py:70
+msgid "Frames"
+msgstr "Фрейми"
+
+#: addon\appModules\winword\ww_frames.py:61
+msgid "No frame"
+msgstr "Немає фрейма"
+
+#: addon\appModules\winword\ww_frames.py:74
+msgid "Width"
+msgstr "Ширина"
+
+#: addon\appModules\winword\ww_frames.py:75
+msgid "Height"
+msgstr "Висота"
+
+#: addon\appModules\winword\ww_funct old.py:57
+msgid "Main text story"
+msgstr "Історія основного тексту"
+
+#: addon\appModules\winword\ww_funct old.py:58
+msgid "Footnotes story"
+msgstr "Історія виносок"
+
+#: addon\appModules\winword\ww_funct old.py:59
+msgid "Endnotes story"
+msgstr "Історія кінцевих виносок"
+
+#: addon\appModules\winword\ww_funct old.py:60
+msgid "Comments story"
+msgstr "Історія коментарів"
+
+#: addon\appModules\winword\ww_funct old.py:61
+msgid "Text frame story"
+msgstr "Історія текстових фреймів"
+
+#: addon\appModules\winword\ww_funct old.py:62
+msgid "Even pages header story"
+msgstr "Історія верхнього колонтитула парних сторінок"
+
+#: addon\appModules\winword\ww_funct old.py:63
+msgid "Primary header story"
+msgstr "Історія первинного верхнього колонтитула"
+
+#: addon\appModules\winword\ww_funct old.py:64
+msgid "Even pages footer story"
+msgstr "Історія нижнього колонтитула парних сторінок"
+
+#: addon\appModules\winword\ww_funct old.py:65
+msgid "Primary footer story"
+msgstr "Історія первинного нижнього колонтитула"
+
+#: addon\appModules\winword\ww_funct old.py:66
+msgid "First page header story"
+msgstr "Історія заголовка першої сторінки"
+
+#: addon\appModules\winword\ww_funct old.py:67
+msgid "First page footer story"
+msgstr "Історія нижнього колонтитула першої сторінки"
+
+#: addon\appModules\winword\ww_funct old.py:68
+msgid "Footnote separator story"
+msgstr "Історія роздільника виносок"
+
+#: addon\appModules\winword\ww_funct old.py:69
+msgid "Footnote continuation separator story"
+msgstr "Історія роздільника продовження виноски"
+
+#: addon\appModules\winword\ww_funct old.py:70
+msgid "Footnote continuation notice story"
+msgstr "Історія примітки продовження виноски"
+
+#: addon\appModules\winword\ww_funct old.py:71
+msgid "Endnote separator story"
+msgstr "Історія роздільника кінцевих виносок"
+
+#: addon\appModules\winword\ww_funct old.py:72
+msgid "Endnote continuation separator story"
+msgstr "Історія роздільника продовження кінцевої виноски"
+
+#: addon\appModules\winword\ww_funct old.py:73
+msgid "Endnote continuation notice story"
+msgstr "Історія примітки продовження кінцевої примітки"
+
+#: addon\appModules\winword\ww_funct old.py:90
+msgid "Frame {name} document pane {index}"
+msgstr "Панель документа {index} фрейма {name}"
+
+#: addon\appModules\winword\ww_grammaticalErrors.py:28
+msgid ""
+"Page {page}, line {line}\n"
+"Text involved:\n"
+"{text}\n"
+msgstr ""
+"Сторінка {page}, рядок {line}\n"
+"Залучений текст:\n"
+"{текст}\n"
+
+#: addon\appModules\winword\ww_grammaticalErrors.py:43
+msgid "Grammatical errors"
+msgstr "Граматичні помилки"
+
+#: addon\appModules\winword\ww_grammaticalErrors.py:49
+msgid "No gramatical error"
+msgstr "Немає граматичної помилки"
+
+#: addon\appModules\winword\ww_grammaticalErrors.py:53
+msgid "Not available, Check grammar as you type is not activated"
+msgstr "Недоступно, перевірку граматики під час введення не активовано"
+
+#: addon\appModules\winword\ww_grammaticalErrors.py:67
+#: addon\appModules\winword\ww_spellingErrors.py:67
+msgid "Errors:"
+msgstr "Помилки:"
+
+#: addon\appModules\winword\ww_grammaticalErrors.py:82
+#: addon\appModules\winword\ww_spellingErrors.py:85
+msgid "Involved sentence"
+msgstr "Залучене речення"
+
+#. Translators: information of bookmark element.
+#: addon\appModules\winword\ww_headerFooters.py:34
+msgid ""
+"Page {page}, line {line}\n"
+"Story type text: {storyTypeText}\n"
+"Associated text:\n"
+"{text}\n"
+msgstr ""
+"Сторінка {page}, рядок {line}\n"
+"Тип тексту історії: {storyTypeText}\n"
+"Пов’язаний текст:\n"
+"{text}\n"
+
+#. Translators: name of collection element type
+#: addon\appModules\winword\ww_headerFooters.py:51
+msgid "Header/Footer"
+msgstr "Верхній/нижній колонтитул"
+
+#: addon\appModules\winword\ww_headerFooters.py:51
+msgid "Headers/Footers"
+msgstr "Верхні/нижні колонтитули"
+
+#. Translators: text to report no header or Footer.
+#: addon\appModules\winword\ww_headerFooters.py:58
+msgid "No header or footer"
+msgstr "Немає верхнього або нижнього колонтитула"
+
+#: addon\appModules\winword\ww_headings.py:44
+#, python-format
+msgid "heading level %s"
+msgstr "заголовка рівня %s"
+
+#: addon\appModules\winword\ww_headings.py:48
+msgid ""
+"\tPage {page}, line {line}\n"
+"\tText: {text}\n"
+"\tLevel: {level}\n"
+"\tStyle: {style}\n"
+"\t"
+msgstr ""
+"\tСторінка {page}, рядок {line}\n"
+"\tТекст: {text}\n"
+"\tРівень: {level}\n"
+"\tСтиль: {style}\n"
+"\t"
+
+#: addon\appModules\winword\ww_headings.py:62
+#: addon\appModules\winword\ww_headings.py:100
+msgid "Headings"
+msgstr "Заголовки"
+
+#: addon\appModules\winword\ww_headings.py:68
+msgid "No heading"
+msgstr "Немає заголовка"
+
+#: addon\appModules\winword\ww_headings.py:103
+msgid "Text"
+msgstr "Текст"
+
+#: addon\appModules\winword\ww_headings.py:105
+msgid "Level"
+msgstr "Рівень"
+
+#: addon\appModules\winword\ww_headings.py:106
+msgid "Style"
+msgstr "Стиль"
+
+#: addon\appModules\winword\ww_hyperlinks.py:53
+msgid "Hyperlink to range"
+msgstr "Гіперпосилання на діапазон"
+
+#. msoHyperlinkRange
+#: addon\appModules\winword\ww_hyperlinks.py:54
+msgid "Hyperlink to shape"
+msgstr "Гіперпосилання на форму"
+
+#. msoHyperlinkShape
+#: addon\appModules\winword\ww_hyperlinks.py:55
+msgid "Hyperlink to inLine Shape"
+msgstr "Гіперпосилання на розгорнуту форму"
+
+#: addon\appModules\winword\ww_hyperlinks.py:61
+msgid ""
+"Page {page}, line {line}\n"
+"Name: {name}\n"
+"type: {type}\n"
+"Address: {address}\n"
+"Sub-address: {subAddress}\n"
+msgstr ""
+"Сторінка {page}, рядок {рядок}\n"
+"Ім'я: {name}\n"
+"тип: {type}\n"
+"Адреса: {address}\n"
+"Додаткова адреса: {subAddress}\n"
+
+#: addon\appModules\winword\ww_hyperlinks.py:76
+msgid "Hyperlink"
+msgstr "Гіперпосилання"
+
+#: addon\appModules\winword\ww_hyperlinks.py:76
+#: addon\appModules\winword\ww_hyperlinks.py:91
+msgid "Hyperlinks"
+msgstr "Гіперпосилання"
+
+#: addon\appModules\winword\ww_hyperlinks.py:82
+msgid "No hyperlink"
+msgstr "Немає гіперпосилання"
+
+#: addon\appModules\winword\ww_hyperlinks.py:110
+msgid "Text to display"
+msgstr "Текст для показу"
+
+#. wdNoRevision
+#: addon\appModules\winword\ww_revisions.py:24
+#: addon\appModules\winword\ww_revisions.py:127
+msgid "No revision"
+msgstr "Немає виправлень"
+
+#. wdRevisionInsert
+#: addon\appModules\winword\ww_revisions.py:26
+msgid "Insertion"
+msgstr "Вставка"
+
+#. wdRevisionDelete
+#: addon\appModules\winword\ww_revisions.py:28
+msgid "Deletion"
+msgstr "Видалення"
+
+#. wdRevisionProperty
+#: addon\appModules\winword\ww_revisions.py:30
+msgid "Property changed"
+msgstr "Властивість змінено"
+
+#. wdRevisionParagraphNumber
+#: addon\appModules\winword\ww_revisions.py:32
+msgid "Paragraph number changed"
+msgstr "Номер абзацу змінено"
+
+#. wdRevisionDisplayField
+#: addon\appModules\winword\ww_revisions.py:34
+msgid "Field display changed"
+msgstr "Відображення полів змінено"
+
+#. wdRevisionReconcile
+#: addon\appModules\winword\ww_revisions.py:36
+msgid "Revision marked as reconciled conflict"
+msgstr "Виправлення позначено як узгоджений конфлікт"
+
+#. wdRevisionConflict
+#: addon\appModules\winword\ww_revisions.py:38
+msgid "Revision marked as a conflict"
+msgstr "Виправлення позначено як конфліктне"
+
+#. wdRevisionStyle
+#: addon\appModules\winword\ww_revisions.py:40
+msgid "Style changed"
+msgstr "Стиль змінено"
+
+#. wdRevisionReplace
+#: addon\appModules\winword\ww_revisions.py:42
+msgid "Replaced"
+msgstr "Замінено"
+
+#. wdRevisionParagraphProperty
+#: addon\appModules\winword\ww_revisions.py:44
+msgid "Paragraph property changed"
+msgstr "Властивість абзацу змінено"
+
+#. wdRevisionTableProperty
+#: addon\appModules\winword\ww_revisions.py:46
+msgid "Table property changed"
+msgstr "Властивість таблиці змінено"
+
+#. wdRevisionSectionProperty
+#: addon\appModules\winword\ww_revisions.py:48
+msgid "Section property changed"
+msgstr "Властивість розділу змінено"
+
+#. wdRevisionStyleDefinition
+#: addon\appModules\winword\ww_revisions.py:50
+msgid "Style definition changed"
+msgstr "Визначення стилю змінено"
+
+#. wdRevisionMovedFrom
+#: addon\appModules\winword\ww_revisions.py:52
+msgid "Content moved from"
+msgstr "Вміст переміщено з"
+
+#. wdRevisionMovedTo
+#: addon\appModules\winword\ww_revisions.py:54
+msgid "Content moved to"
+msgstr "Вміст переміщено до"
+
+#. wdRevisionCellInsertion
+#: addon\appModules\winword\ww_revisions.py:56
+msgid "Table cell inserted"
+msgstr "Комірку таблиці вставлено"
+
+#. wdRevisionCellDeletion
+#: addon\appModules\winword\ww_revisions.py:58
+msgid "Table cell deleted"
+msgstr "Комірку таблиці видалено"
+
+#. wdRevisionCellMerge
+#: addon\appModules\winword\ww_revisions.py:60
+msgid "Table cells merged"
+msgstr "Комірки таблиці об’єднано"
+
+#. Translators: part of message to report author of revision
+#: addon\appModules\winword\ww_revisions.py:87
+#, python-format
+msgid "by %s"
+msgstr "від %s"
+
+#: addon\appModules\winword\ww_revisions.py:100
+msgid ""
+"Page {page}, line {line}\n"
+"Author: {author}\n"
+"Date: {date}\n"
+"Type: {type}\n"
+"Revision's text:\n"
+"{text}\n"
+msgstr ""
+"Сторінка {page}, рядок {line}\n"
+"Автор: {author}\n"
+"Дата: {date}\n"
+"Тип: {type}\n"
+"текст виправлення:\n"
+"{text}\n"
+
+#: addon\appModules\winword\ww_revisions.py:115
+msgid "{type} by {author} {text}"
+msgstr "{type} від {author} {text}"
+
+#: addon\appModules\winword\ww_revisions.py:121
+msgid "Revisions"
+msgstr "Виправлення"
+
+#: addon\appModules\winword\ww_revisions.py:142
+msgid "revision track is not activated"
+msgstr "відстеження виправлень не активовано"
+
+#: addon\appModules\winword\ww_revisions.py:154
+msgid "Revisions:"
+msgstr "Виправлення:"
+
+#: addon\appModules\winword\ww_revisions.py:170
+msgid "&Accept"
+msgstr "&Прийняти"
+
+#: addon\appModules\winword\ww_revisions.py:171
+msgid "&Reject"
+msgstr "&Відхилити"
+
+#: addon\appModules\winword\ww_revisions.py:175
+msgid "Revision's text"
+msgstr "Текст виправлення"
+
+#. Translators: text of message
+#: addon\appModules\winword\ww_revisions.py:189
+msgid "Are you sure you wish to reject this items?"
+msgstr "Ви впевнені, що бажаєте відхилити ці елементи?"
+
+#. Translators: title of message box dialog.
+#: addon\appModules\winword\ww_revisions.py:191
+msgid "Reject of items"
+msgstr "Відхилити елементи"
+
+#: addon\appModules\winword\ww_sections.py:55
+msgid ""
+"Start: Page {pageStart}, line {lineStart}\n"
+"End: Page {pageEnd}, line {lineEnd}\n"
+"With header: {header}\n"
+"With footer: {footer}\n"
+"Protected for forms: {protected}\n"
+"{pageSetup}\n"
+"\t\t"
+msgstr ""
+"Початок: сторінка {pageStart}, рядок {lineStart}n\n"
+"Кінець: сторінка {pageEnd}, рядок {lineEnd}\n"
+"Із заголовком: {header}\n"
+"З нижнім колонтитулом: {footer}\n"
+"Захищені форми: {protected}\n"
+"{pageSetup}\n"
+"\t\t "
+
+#: addon\appModules\winword\ww_sections.py:70
+msgid "page {page} line {line}"
+msgstr "сторінка {page} рядок {line}"
+
+#. wdOrientPortrait,
+#: addon\appModules\winword\ww_sections.py:76
+msgid "land scape"
+msgstr "альбомна"
+
+#: addon\appModules\winword\ww_sections.py:79
+msgid "continue"
+msgstr "продовжувати"
+
+#. wdSectionContinuous
+#: addon\appModules\winword\ww_sections.py:80
+msgid "new column"
+msgstr "нова колонка"
+
+#. wdSectionNewColumn
+#: addon\appModules\winword\ww_sections.py:81
+msgid "new page"
+msgstr "нова сторінка"
+
+#. wdSectionNewPage
+#: addon\appModules\winword\ww_sections.py:82
+msgid "even page"
+msgstr "парна сторінка"
+
+#. wdSectionEvenPage
+#: addon\appModules\winword\ww_sections.py:83
+msgid "odd page"
+msgstr "непарна сторінка"
+
+#. wdAlignVerticalTop
+#: addon\appModules\winword\ww_sections.py:87
+msgid "center"
+msgstr "центрувати"
+
+#. wdAlignVerticalCenter
+#: addon\appModules\winword\ww_sections.py:88
+msgid "justify"
+msgstr "вирівняти"
+
+#. wdPaper10x14
+#. wdPaper11x17
+#. : wdPaperLetter
+#. wdPaperLetterSmall
+#. wdPaperLegal
+#. wdPaperExecutive
+#. wdPaperA3
+#. wdPaperA4
+#. wdPaperA4Small
+#. wdPaperA5
+#. wdPaperB4
+#. wdPaperB5
+#. wdPaperCSheet
+#. wdPaperDSheet
+#. wdPaperESheet
+#. wdPaperFanfoldLegalGerman
+#. wdPaperFanfoldStdGerman
+#. wdPaperFanfoldUS
+#. wdPaperFolio
+#. wdPaperLedger
+#. wdPaperNote
+#. wdPaperQuarto
+#. wdPaperStatement
+#. wdPaperTabloid
+#. wdPaperEnvelope9
+#. wdPaperEnvelope10
+#. wdPaperEnvelope11
+#. wdPaperEnvelope12
+#. wdPaperEnvelope14
+#. wdPaperEnvelopeB4
+#. wdPaperEnvelopeB5
+#. wdPaperEnvelopeB6
+#. wdPaperEnvelopeC3
+#. wdPaperEnvelopeC4
+#. wdPaperEnvelopeC5
+#. wdPaperEnvelopeC6
+#. wdPaperEnvelopeC65
+#. wdPaperEnvelopeDL
+#. wdPaperEnvelopeItaly
+#. wdPaperEnvelopeMonarch
+#: addon\appModules\winword\ww_sections.py:132
+msgid "custom"
+msgstr "спеціальний"
+
+#: addon\appModules\winword\ww_sections.py:136
+msgid "Right alignment, right to left reading"
+msgstr "Праве вирівнювання, читання справа наліво"
+
+#. wdSectionDirectionRtl
+#: addon\appModules\winword\ww_sections.py:137
+msgid "Left alignment, left to right reading"
+msgstr "Вирівнювання за лівим краєм, читання зліва направо"
+
+#: addon\appModules\winword\ww_sections.py:143
+#: addon\appModules\winword\ww_sections.py:263
+msgid "Sections"
+msgstr "Розділи"
+
+#: addon\appModules\winword\ww_sections.py:150
+msgid "No section"
+msgstr "Немає розділу"
+
+#: addon\appModules\winword\ww_sections.py:202
+msgid ""
+"Disposition:\n"
+"\tSection's start: {start}\n"
+"\tHeader / footer's even or odd pages different: {oddAndEven}\n"
+"\tHeader/footer's first page different: {firstPage}\n"
+"\tHeader distance from top: {headerDistance}\n"
+"\tFooter distance from bottom: {footerDistance}\n"
+"\tVertical alignment: {verticalAlignment}\n"
+"\t\t"
+msgstr ""
+"Диспозиція:\n"
+"\tПочаток розділу: {start}\n"
+"\tПарні та непарні сторінки верхнього та нижнього колонтитулів різні: "
+"{oddAndEven}\n"
+"\tПерша сторінка верхнього/нижнього колонтитула відрізняється: {firstPage}\n"
+"\tВідстань заголовка від верху: {headerDistance}\n"
+"\tВідстань нижнього колонтитула від низу: {footerDistance}\n"
+"\tВертикальне вирівнювання: {verticalAlignment}\n"
+"\t\\t "
+
+#: addon\appModules\winword\ww_sections.py:219
+msgid ""
+"Margins:\n"
+"\tLeft,right: {left}, {right}\n"
+"\tTop, bottom: {top}, {bottom}\n"
+"\tOrientation: {orientation}\n"
+"\t\t"
+msgstr ""
+"Поля:\n"
+"\tЛіворуч,праворуч: {left}, {right}\n"
+"\tЗгори, знизу: {top}, {bottom}\n"
+"\tОрієнтація: {orientation}\n"
+"\t\t"
+
+#: addon\appModules\winword\ww_sections.py:230
+msgid ""
+"Paper:\n"
+"\tFormat: {paperSize}\n"
+"\tHeight's heet: {height}\n"
+"\tWidth's sheet: {width}\n"
+"\tTwo pages per sheet: {twoPages}\n"
+"\t\t"
+msgstr ""
+"Папір:\n"
+"\tФормат: {paperSize}\n"
+"\tВисота аркуша: {height}\n"
+"\tШирина аркуша: {width}\n"
+"\tДві сторінки на аркуш: {twoPages}\n"
+"\t\t"
+
+#: addon\appModules\winword\ww_sections.py:241
+msgid ""
+"Page:\n"
+"\tChars number per line: {chars}\n"
+"\tLines number per page: {lines}\n"
+"\t{sectionDirection}\n"
+msgstr ""
+"Сторінка:\n"
+"\tКількість символів  на рядок: {chars}\n"
+"\tКількість рядків на сторінку: {lines}\n"
+"\t{sectionDirection}\n"
+
+#: addon\appModules\winword\ww_sections.py:266
+msgid "Start"
+msgstr "Початок"
+
+#: addon\appModules\winword\ww_sections.py:267
+msgid "End"
+msgstr "Кінець"
+
+#: addon\appModules\winword\ww_shapes.py:39
+msgid "Mixed shape type"
+msgstr "Змішаний тип форми"
+
+#. msoShapeTypeMixed
+#: addon\appModules\winword\ww_shapes.py:40
+msgid "AutoShape"
+msgstr "Автофігура"
+
+#. msoAutoShape
+#: addon\appModules\winword\ww_shapes.py:41
+msgid " Callout"
+msgstr " Виноска"
+
+#. msoCallout
+#: addon\appModules\winword\ww_shapes.py:42
+msgid "Chart"
+msgstr "Діаграма"
+
+#. msoComment
+#: addon\appModules\winword\ww_shapes.py:44
+msgid "Freeform"
+msgstr "Довільна форма"
+
+#. msoFreeform
+#: addon\appModules\winword\ww_shapes.py:45
+msgid "Group"
+msgstr "Група"
+
+#. msoGroup
+#: addon\appModules\winword\ww_shapes.py:46
+#: addon\appModules\winword\ww_shapes.py:108
+msgid "Embedded OLE object"
+msgstr "Вбудований OLE об'єкт"
+
+#. msoEmbeddedOLEObject
+#: addon\appModules\winword\ww_shapes.py:47
+msgid "Form control"
+msgstr "Керування формою"
+
+#. msoFormControl
+#: addon\appModules\winword\ww_shapes.py:48
+msgid "Line"
+msgstr "Лінія"
+
+#. msoLine
+#. wdInlineShapeEmbeddedOLEObject
+#: addon\appModules\winword\ww_shapes.py:49
+#: addon\appModules\winword\ww_shapes.py:109
+msgid "Linked OLE object"
+msgstr "Пов'язаний OLE об'єкт"
+
+#. msoLinkedOLEObject
+#. wdInlineShapePicture
+#: addon\appModules\winword\ww_shapes.py:50
+#: addon\appModules\winword\ww_shapes.py:111
+msgid "Linked picture"
+msgstr "Пов'язане зображення"
+
+#. msoLinkedPicture
+#. wdInlineShapeLinkedPicture
+#: addon\appModules\winword\ww_shapes.py:51
+#: addon\appModules\winword\ww_shapes.py:112
+msgid "OLE control object"
+msgstr "Об'єкт керування OLE"
+
+#. msoOLEControlObject
+#. wdInlineShapeLinkedOLEObject
+#: addon\appModules\winword\ww_shapes.py:52
+#: addon\appModules\winword\ww_shapes.py:110
+msgid "Picture"
+msgstr "Малюнок"
+
+#. msoPicture
+#: addon\appModules\winword\ww_shapes.py:53
+msgid "Placeholder"
+msgstr "Заповнювач"
+
+#. msoPlaceholder
+#: addon\appModules\winword\ww_shapes.py:54
+msgid "Text effect"
+msgstr "Текстовий ефект"
+
+#. msoTextEffect
+#: addon\appModules\winword\ww_shapes.py:55
+msgid "Media. "
+msgstr "Медіа. "
+
+#. msoMedia
+#: addon\appModules\winword\ww_shapes.py:56
+msgid "Text box"
+msgstr "Текстове вікно"
+
+#. msoTextBox
+#. msoScriptAnchor
+#: addon\appModules\winword\ww_shapes.py:58
+#: addon\appModules\winword\ww_tables.py:314
+#: addon\appModules\winword\ww_tables.py:331
+msgid "Table"
+msgstr "Таблиця"
+
+#. msoTable
+#: addon\appModules\winword\ww_shapes.py:59
+msgid "Canvas"
+msgstr "Полотно"
+
+#. msoCanvas
+#: addon\appModules\winword\ww_shapes.py:60
+msgid "Diagram"
+msgstr "Діаграма"
+
+#. msoDiagram
+#: addon\appModules\winword\ww_shapes.py:61
+msgid "Ink"
+msgstr "Чорнила"
+
+#. msoInk
+#: addon\appModules\winword\ww_shapes.py:62
+msgid "Ink comment"
+msgstr "Чорнильний коментар"
+
+#. msoInkComment
+#. wdInlineShapeDiagram
+#. wdInlineShapeLockedCanvas
+#: addon\appModules\winword\ww_shapes.py:63
+#: addon\appModules\winword\ww_shapes.py:122
+msgid "Smart art"
+msgstr "Smart art"
+
+#. msoSmartArt
+#: addon\appModules\winword\ww_shapes.py:64
+msgid "Slicer"
+msgstr "Слайсер"
+
+#. msoSlicer
+#: addon\appModules\winword\ww_shapes.py:65
+msgid "Web video"
+msgstr "Веб-відео"
+
+#: addon\appModules\winword\ww_shapes.py:72
+msgid ""
+"Page {page}, line {line}\n"
+"Name: {name}\n"
+"type: {typeText}\n"
+"Width: {width}\n"
+"Height: {height}\n"
+"Alternative text:\n"
+"{alternativeText}\n"
+msgstr ""
+"Сторінка {page}, рядок {line}\n"
+"Ім'я: {name}\n"
+"тип: {typeText}\n"
+"Ширина: {width}\n"
+"Висота: {height}\\n\n"
+"Альтернативний текст:\n"
+"{alternativeText}\n"
+
+#. wdInlineShapeOLEControlObject
+#: addon\appModules\winword\ww_shapes.py:113
+msgid "Horizontal line"
+msgstr "Горизонтальна лінія"
+
+#. wdInlineShapeHorizontalLine
+#: addon\appModules\winword\ww_shapes.py:114
+msgid "Picture with horizontal line"
+msgstr "Малюнок з горизонтальною лінією"
+
+#. wdInlineShapePictureHorizontalLine
+#: addon\appModules\winword\ww_shapes.py:115
+msgid "Linked picture with horizontal line"
+msgstr "Пов'язане зображення з горизонтальною лінією"
+
+#. wdInlineShapeLinkedPictureHorizontalLine
+#: addon\appModules\winword\ww_shapes.py:116
+msgid "Picture used as a bullet"
+msgstr "Малюнок використаний як куля"
+
+#. wdInlineShapePictureBullet
+#. wdInlineShapeScriptAnchor
+#: addon\appModules\winword\ww_shapes.py:118
+msgid "OWS anchor"
+msgstr "OWS Якір"
+
+#. wdInlineShapeOWSAnchor
+#. wdInlineShapeChart
+#: addon\appModules\winword\ww_shapes.py:120
+msgid "Inline diagram"
+msgstr "Вбудована діаграма"
+
+#: addon\appModules\winword\ww_shapes.py:130
+msgid ""
+"Page {page}, line {line}\n"
+"type: {typeText}\n"
+"Width: {width}\n"
+"Height: {height}\n"
+"Alternative text:\n"
+"{alternativeText}\n"
+msgstr ""
+"Сторінка {page}, рядок {line}\n"
+"тип: {typeText}\n"
+"Ширина: {width}\n"
+"Висота: {height}\n"
+"Альтернативний текст:\n"
+"{alternativeText}\n"
+
+#: addon\appModules\winword\ww_shapes.py:148
+msgid "Drawing layer object"
+msgstr "Об'єкт шару малювання"
+
+#: addon\appModules\winword\ww_shapes.py:148
+msgid "Drawing layer objects"
+msgstr "Об'єкти шару малювання"
+
+#: addon\appModules\winword\ww_shapes.py:154
+#: addon\appModules\winword\ww_shapes.py:166
+msgid "No object"
+msgstr "Немає об'єкта"
+
+#: addon\appModules\winword\ww_shapes.py:160
+msgid "Text layer object"
+msgstr "Об'єкт текстового шару"
+
+#: addon\appModules\winword\ww_shapes.py:160
+msgid "Text layer objects"
+msgstr "Об’єкти текстового шару"
+
+#: addon\appModules\winword\ww_shapes.py:176
+msgid "Objects:"
+msgstr "Об'єкти:"
+
+#: addon\appModules\winword\ww_shapes.py:182
+msgid "Height(in centimeter)"
+msgstr "Висота (в сантиметрах)"
+
+#: addon\appModules\winword\ww_shapes.py:183
+msgid "Width (in centimeter)"
+msgstr "Ширина (в сантиметрах)"
+
+#: addon\appModules\winword\ww_shapes.py:196
+msgid "Alternative text"
+msgstr "Альтернативний текст"
+
+#. Translators: message to indicate the spell or grammar error.
+#: addon\appModules\winword\ww_spellingChecker.py:144
+#: addon\appModules\winword\ww_spellingChecker.py:276
+#, python-format
+msgid "Error: %s"
+msgstr "Помилка: %s"
+
+#. Translators: message to indicate the suggested correction.
+#: addon\appModules\winword\ww_spellingChecker.py:155
+#: addon\appModules\winword\ww_spellingChecker.py:296
+#, python-format
+msgid "Suggestion: %s"
+msgstr "Пропозиція: %s"
+
+#. Translators: message to user that there is no help.
+#: addon\appModules\winword\ww_spellingChecker.py:174
+#: addon\appModules\winword\ww_spellingChecker.py:367
+msgid "No explanation help"
+msgstr "Немає пояснювальної довідки"
+
+#. Translators: message to user to report no suggestion.
+#: addon\appModules\winword\ww_spellingChecker.py:288
+msgid "No suggestion"
+msgstr "Жодної пропозиції"
+
+#. Translators: message to user to report most of one suggestions.
+#: addon\appModules\winword\ww_spellingChecker.py:307
+#, python-format
+msgid "%s suggestions"
+msgstr "%s пропозицій"
+
+#. Translators: message to user to report one suggestion.
+#: addon\appModules\winword\ww_spellingChecker.py:313
+msgid "One suggestions"
+msgstr "Одна пропозиція"
+
+#: addon\appModules\winword\ww_spellingErrors.py:33
+msgid ""
+"Page {page}, line {line}\n"
+"Word: {word}\n"
+msgstr ""
+"Сторінка {page}, рядок {line}\n"
+"Слово: {word}\n"
+
+#: addon\appModules\winword\ww_spellingErrors.py:43
+msgid "Spelling errors"
+msgstr "Орфографічні помилки"
+
+#: addon\appModules\winword\ww_spellingErrors.py:49
+msgid "No spelling error"
+msgstr "Немає орфографічної помилки"
+
+#: addon\appModules\winword\ww_spellingErrors.py:53
+msgid "Not available, Check spelling as you type is not activated"
+msgstr "Недоступно, перевірку орфографії під час введення не активовано"
+
+#: addon\appModules\winword\ww_spellingErrors.py:81
+msgid "Mispelled word"
+msgstr "Слово з помилкою"
+
+#: addon\appModules\winword\ww_tables.py:58
+msgid ""
+"Page {page}, line {line}\n"
+"Title: {title}\n"
+"Number of rows: {rowsCount}\n"
+"Number of columns: {columnsCount}\n"
+msgstr ""
+"Сторінка {page}, рядок {line}\n"
+"Назва: {title}\n"
+"Кількість рядків: {rowsCount}\n"
+"Кількість стовпців: {columnsCount}\n"
+
+#: addon\appModules\winword\ww_tables.py:99
+#: addon\appModules\winword\ww_tables.py:236
+#: addon\appModules\winword\ww_tables.py:266
+msgid "Row's limit"
+msgstr "Обмеження рядка"
+
+#: addon\appModules\winword\ww_tables.py:108
+#: addon\appModules\winword\ww_tables.py:238
+#: addon\appModules\winword\ww_tables.py:253
+msgid "Column's limit"
+msgstr "Обмеження колонки"
+
+#: addon\appModules\winword\ww_tables.py:116
+msgid "Table's start"
+msgstr "Початок таблиці"
+
+#: addon\appModules\winword\ww_tables.py:124
+msgid "Table's end"
+msgstr "Кінець таблиці"
+
+#: addon\appModules\winword\ww_tables.py:137
+#: addon\appModules\winword\ww_wordDocumentBase.py:1037
+msgid "Last cell"
+msgstr "Остання комірка"
+
+#: addon\appModules\winword\ww_tables.py:142
+#: addon\appModules\winword\ww_wordDocumentBase.py:1039
+msgid "First cell"
+msgstr "Перша комірка"
+
+#: addon\appModules\winword\ww_tables.py:241
+#: addon\appModules\winword\ww_tables.py:268
+#, python-format
+msgid "column %s"
+msgstr "стовпець %s"
+
+#: addon\appModules\winword\ww_tables.py:243
+#: addon\appModules\winword\ww_tables.py:256
+#, python-format
+msgid "row %s"
+msgstr "рядок %s"
+
+#: addon\appModules\winword\ww_tables.py:314
+#: addon\appModules\winword\ww_tables.py:329
+msgid "Tables"
+msgstr "Таблиці"
+
+#: addon\appModules\winword\ww_tables.py:320
+msgid "No table"
+msgstr "Немає таблиці"
+
+#: addon\appModules\winword\ww_tables.py:334
+msgid "Number of rows"
+msgstr "Кількість рядів"
+
+#: addon\appModules\winword\ww_tables.py:335
+msgid "Number of columns"
+msgstr "Кількість стовпців"
+
+#. Translators: message to the user to say empty .
+#: addon\appModules\winword\ww_tables.py:400
+#: addon\appModules\winword\ww_wordDocumentBase.py:892
+#: addon\appModules\winword\ww_wordDocumentBase.py:903
+msgid "empty"
+msgstr "порожньо"
+
+#: addon\appModules\winword\ww_wdConst.py:589
+msgid " 10 inches wide, 14 inches long"
+msgstr " 10 дюймів завширшки, 14 дюймів завдовжки"
+
+#: addon\appModules\winword\ww_wdConst.py:590
+msgid "Legal 11 inches wide, 17 inches long"
+msgstr "Юридична  ширина 11 дюймів, довжина 17 дюймів"
+
+#: addon\appModules\winword\ww_wdConst.py:591
+msgid "A3 dimensions"
+msgstr "Розмір A3"
+
+#: addon\appModules\winword\ww_wdConst.py:592
+msgid "A4 dimensions"
+msgstr "Розмір A4"
+
+#: addon\appModules\winword\ww_wdConst.py:593
+msgid "Small A4 dimensions"
+msgstr "Невеликий розмір A4"
+
+#: addon\appModules\winword\ww_wdConst.py:594
+msgid "A5 dimensions"
+msgstr "Розмір A5"
+
+#: addon\appModules\winword\ww_wdConst.py:595
+msgid "B4 dimensions"
+msgstr "Розмір B4"
+
+#: addon\appModules\winword\ww_wdConst.py:596
+msgid "B5 dimensions"
+msgstr "Розмір B5"
+
+#: addon\appModules\winword\ww_wdConst.py:597
+msgid "C sheet dimensions"
+msgstr "Розмір листа C"
+
+#: addon\appModules\winword\ww_wdConst.py:598
+msgid "Custom paper size"
+msgstr "Спеціальний розмір паперу"
+
+#: addon\appModules\winword\ww_wdConst.py:599
+msgid "D sheet dimensions"
+msgstr "Розмір листа D"
+
+#: addon\appModules\winword\ww_wdConst.py:600
+msgid "Legal envelope, size 10"
+msgstr "Юридичний конверт розміру 10"
+
+#: addon\appModules\winword\ww_wdConst.py:601
+msgid "Envelope, size 11"
+msgstr "Конверт розміру 11"
+
+#: addon\appModules\winword\ww_wdConst.py:602
+msgid "Envelope, size 12"
+msgstr "Конверт розміру 12"
+
+#: addon\appModules\winword\ww_wdConst.py:603
+msgid "Envelope, size 14"
+msgstr "Конверт розміру 14"
+
+#: addon\appModules\winword\ww_wdConst.py:604
+msgid "Envelope, size 9"
+msgstr "Конверт розміру 9"
+
+#: addon\appModules\winword\ww_wdConst.py:605
+msgid "B4 envelope"
+msgstr "Конверт B4"
+
+#: addon\appModules\winword\ww_wdConst.py:606
+msgid "B5 envelope"
+msgstr "конверт B5"
+
+#: addon\appModules\winword\ww_wdConst.py:607
+msgid "B6 envelope"
+msgstr "Конверт B6"
+
+#: addon\appModules\winword\ww_wdConst.py:608
+msgid "C3 envelope"
+msgstr "Конверт C3"
+
+#: addon\appModules\winword\ww_wdConst.py:609
+msgid "C4 envelope"
+msgstr "Конверт C4"
+
+#: addon\appModules\winword\ww_wdConst.py:610
+msgid "C5 envelope"
+msgstr "Конверт C5"
+
+#: addon\appModules\winword\ww_wdConst.py:611
+msgid "C6 envelope"
+msgstr "Конверт C6"
+
+#: addon\appModules\winword\ww_wdConst.py:612
+msgid "C65 envelope"
+msgstr "Конверт C65"
+
+#: addon\appModules\winword\ww_wdConst.py:613
+msgid "DL envelope"
+msgstr "Конверт DL"
+
+#: addon\appModules\winword\ww_wdConst.py:614
+msgid "Italian envelope"
+msgstr "Італійський конверт"
+
+#: addon\appModules\winword\ww_wdConst.py:615
+msgid "Monarch envelope"
+msgstr "Конверт монарх"
+
+#: addon\appModules\winword\ww_wdConst.py:616
+msgid "Personal envelope"
+msgstr "Особистий конверт"
+
+#: addon\appModules\winword\ww_wdConst.py:617
+msgid "E sheet dimensions"
+msgstr "Розміри листа E"
+
+#: addon\appModules\winword\ww_wdConst.py:618
+msgid "Executive dimensions"
+msgstr "Виконавчі розміри"
+
+#: addon\appModules\winword\ww_wdConst.py:619
+msgid "German legal fanfold dimensions"
+msgstr "Німецькі юридичні розміри фальцювання"
+
+#: addon\appModules\winword\ww_wdConst.py:620
+msgid "German standard fanfold dimensions"
+msgstr "Німецькі стандартні розміри фальцювання"
+
+#: addon\appModules\winword\ww_wdConst.py:621
+msgid "United States fanfold dimensions"
+msgstr "Розміри фальцювання США"
+
+#: addon\appModules\winword\ww_wdConst.py:622
+msgid "Folio dimensions"
+msgstr "Розміри фоліо"
+
+#: addon\appModules\winword\ww_wdConst.py:623
+msgid "Ledger dimensions"
+msgstr "Розміри книги"
+
+#: addon\appModules\winword\ww_wdConst.py:624
+msgid "Legal dimensions"
+msgstr "Юридичні розміри"
+
+#: addon\appModules\winword\ww_wdConst.py:625
+msgid "Letter dimensions"
+msgstr "Розміри літер"
+
+#: addon\appModules\winword\ww_wdConst.py:626
+msgid "Small letter dimensions"
+msgstr "Маленькі розміри літер"
+
+#: addon\appModules\winword\ww_wdConst.py:627
+msgid "Note dimensions"
+msgstr "Розмір примітки"
+
+#: addon\appModules\winword\ww_wdConst.py:628
+msgid "Quarto dimensions"
+msgstr "Квартові розміри"
+
+#: addon\appModules\winword\ww_wdConst.py:629
+msgid "Statement dimensions"
+msgstr "Розміри заяви"
+
+#: addon\appModules\winword\ww_wdConst.py:630
+msgid "Tabloid dimensions"
+msgstr "Таблоїдні розміри"
+
+#: addon\appModules\winword\ww_wdConst.py:634
+msgid "Aqua"
+msgstr "Аква"
+
+#: addon\appModules\winword\ww_wdConst.py:635
+msgid "Black"
+msgstr "Чорний"
+
+#: addon\appModules\winword\ww_wdConst.py:636
+msgid "Blue"
+msgstr "Синій"
+
+#: addon\appModules\winword\ww_wdConst.py:637
+msgid "BlueGray"
+msgstr "Синьо-сірий"
+
+#: addon\appModules\winword\ww_wdConst.py:638
+msgid "BrightGreen"
+msgstr "Яскраво-зелений"
+
+#: addon\appModules\winword\ww_wdConst.py:639
+msgid "Brown"
+msgstr "Коричневий"
+
+#: addon\appModules\winword\ww_wdConst.py:640
+msgid "DarkBlue"
+msgstr "Темно-синій"
+
+#: addon\appModules\winword\ww_wdConst.py:641
+msgid "DarkGreen"
+msgstr "Темно-зелений"
+
+#: addon\appModules\winword\ww_wdConst.py:642
+msgid "DarkRed"
+msgstr "Темно-червоний"
+
+#: addon\appModules\winword\ww_wdConst.py:643
+msgid "DarkTeal"
+msgstr "Темно-бірюзовий"
+
+#: addon\appModules\winword\ww_wdConst.py:644
+msgid "DarkYellow"
+msgstr "Темно-жовтий"
+
+#: addon\appModules\winword\ww_wdConst.py:645
+msgid "Gold"
+msgstr "Золотий"
+
+#: addon\appModules\winword\ww_wdConst.py:646
+msgid "Gray05"
+msgstr "Сірий05"
+
+#: addon\appModules\winword\ww_wdConst.py:647
+msgid "Gray10"
+msgstr "Сірий10"
+
+#: addon\appModules\winword\ww_wdConst.py:648
+msgid "Gray125"
+msgstr "Сірий125"
+
+#: addon\appModules\winword\ww_wdConst.py:649
+msgid "Gray15"
+msgstr "Сірий15"
+
+#: addon\appModules\winword\ww_wdConst.py:650
+msgid "Gray20"
+msgstr "Сірий20"
+
+#: addon\appModules\winword\ww_wdConst.py:651
+msgid "Gray25"
+msgstr "Сірий25"
+
+#: addon\appModules\winword\ww_wdConst.py:652
+msgid "Gray30"
+msgstr "Сірий30"
+
+#: addon\appModules\winword\ww_wdConst.py:653
+msgid "Gray35"
+msgstr "Сірий35"
+
+#: addon\appModules\winword\ww_wdConst.py:654
+msgid "Gray375"
+msgstr "Сірий375"
+
+#: addon\appModules\winword\ww_wdConst.py:655
+msgid "Gray40"
+msgstr "Сірий40"
+
+#: addon\appModules\winword\ww_wdConst.py:656
+msgid "Gray45"
+msgstr "Сірий45"
+
+#: addon\appModules\winword\ww_wdConst.py:657
+msgid "Gray50"
+msgstr "Сірий50"
+
+#: addon\appModules\winword\ww_wdConst.py:658
+msgid "Gray55"
+msgstr "Сірий55"
+
+#: addon\appModules\winword\ww_wdConst.py:659
+msgid "Gray60"
+msgstr "Сірий60"
+
+#: addon\appModules\winword\ww_wdConst.py:660
+msgid "Gray625"
+msgstr "Сірий625"
+
+#: addon\appModules\winword\ww_wdConst.py:661
+msgid "Gray65"
+msgstr "Сірий65"
+
+#: addon\appModules\winword\ww_wdConst.py:662
+msgid "Gray70"
+msgstr "Сірий70"
+
+#: addon\appModules\winword\ww_wdConst.py:663
+msgid "Gray75"
+msgstr "Сірий75"
+
+#: addon\appModules\winword\ww_wdConst.py:664
+msgid "Gray80"
+msgstr "Сірий80"
+
+#: addon\appModules\winword\ww_wdConst.py:665
+msgid "Gray85"
+msgstr "Сірий85"
+
+#: addon\appModules\winword\ww_wdConst.py:666
+msgid "Gray875"
+msgstr "Сірий875"
+
+#: addon\appModules\winword\ww_wdConst.py:667
+msgid "Gray90"
+msgstr "Сірий90"
+
+#: addon\appModules\winword\ww_wdConst.py:668
+msgid "Gray95"
+msgstr "Сірий95"
+
+#: addon\appModules\winword\ww_wdConst.py:669
+msgid "Green"
+msgstr "Зелений"
+
+#: addon\appModules\winword\ww_wdConst.py:670
+msgid "Indigo"
+msgstr "Індиго"
+
+#: addon\appModules\winword\ww_wdConst.py:671
+msgid "Lavender"
+msgstr "Лавандовий"
+
+#: addon\appModules\winword\ww_wdConst.py:672
+msgid "LightBlue"
+msgstr "Блакитний"
+
+#: addon\appModules\winword\ww_wdConst.py:673
+msgid "LightGreen"
+msgstr "Світло-зелений"
+
+#: addon\appModules\winword\ww_wdConst.py:674
+msgid "LightOrange"
+msgstr "Світло-помаранчевий"
+
+#: addon\appModules\winword\ww_wdConst.py:675
+msgid "LightTurquoise"
+msgstr "Світло-бірюзовий"
+
+#: addon\appModules\winword\ww_wdConst.py:676
+msgid "LightYellow"
+msgstr "Світло-жовтий"
+
+#: addon\appModules\winword\ww_wdConst.py:677
+msgid "Lime"
+msgstr "Вапняний"
+
+#: addon\appModules\winword\ww_wdConst.py:678
+msgid "OliveGreen"
+msgstr "Оливково-зелений"
+
+#: addon\appModules\winword\ww_wdConst.py:679
+msgid "Orange"
+msgstr "Помаранчевий"
+
+#: addon\appModules\winword\ww_wdConst.py:680
+msgid "PaleBlue"
+msgstr "Блідо-блакитний"
+
+#: addon\appModules\winword\ww_wdConst.py:681
+msgid "Pink"
+msgstr "Рожевий"
+
+#: addon\appModules\winword\ww_wdConst.py:682
+msgid "Plum"
+msgstr "Сливовий"
+
+#: addon\appModules\winword\ww_wdConst.py:683
+msgid "Red"
+msgstr "Червоний"
+
+#: addon\appModules\winword\ww_wdConst.py:684
+msgid "Rose"
+msgstr "Рожевий"
+
+#: addon\appModules\winword\ww_wdConst.py:685
+msgid "SeaGreen"
+msgstr "Морська зелень"
+
+#: addon\appModules\winword\ww_wdConst.py:686
+msgid "SkyBlue"
+msgstr "Блакитне небо"
+
+#: addon\appModules\winword\ww_wdConst.py:687
+msgid "Tan"
+msgstr "Жовтувато-коричневий"
+
+#: addon\appModules\winword\ww_wdConst.py:688
+msgid "Teal"
+msgstr "Бірюзовий"
+
+#: addon\appModules\winword\ww_wdConst.py:689
+msgid "Turquoise"
+msgstr "Бірюзовий"
+
+#: addon\appModules\winword\ww_wdConst.py:690
+msgid "Violet"
+msgstr "Фіолетовий"
+
+#: addon\appModules\winword\ww_wdConst.py:691
+msgid "White"
+msgstr "Білий"
+
+#: addon\appModules\winword\ww_wdConst.py:692
+msgid "Yellow"
+msgstr "Жовтий"
+
+#: addon\appModules\winword\ww_wdConst.py:713
+msgid "Bottom"
+msgstr "Знизу"
+
+#: addon\appModules\winword\ww_wdConst.py:714
+msgid "Diagonal down"
+msgstr "Діагональ вниз"
+
+#: addon\appModules\winword\ww_wdConst.py:715
+msgid "Diagonal up"
+msgstr "Діагональ вгору"
+
+#: addon\appModules\winword\ww_wdConst.py:716
+msgid "Horizontal"
+msgstr "Горизонтально"
+
+#: addon\appModules\winword\ww_wdConst.py:717
+msgid "Left"
+msgstr "Ліворуч"
+
+#: addon\appModules\winword\ww_wdConst.py:718
+msgid "Right"
+msgstr "Праворуч"
+
+#: addon\appModules\winword\ww_wdConst.py:719
+msgid "Top"
+msgstr "Згори"
+
+#: addon\appModules\winword\ww_wdConst.py:720
+msgid "Vertical"
+msgstr "Вертикально"
+
+#: addon\appModules\winword\ww_wdConst.py:724
+msgid "Dash Dot"
+msgstr "Тире крапка"
+
+#: addon\appModules\winword\ww_wdConst.py:725
+msgid "Dash Dot Dot"
+msgstr "Тире крапка крапка"
+
+#: addon\appModules\winword\ww_wdConst.py:726
+msgid "Dash Dot Stroked"
+msgstr "Штрих крапка обведення"
+
+#: addon\appModules\winword\ww_wdConst.py:727
+msgid "Dash Large Gap"
+msgstr "Тире великий розрив"
+
+#: addon\appModules\winword\ww_wdConst.py:728
+msgid "Dash Small Gap"
+msgstr "Тире Малий розрив"
+
+#. wdLineStyleDot: _("Dotted"),
+#: addon\appModules\winword\ww_wdConst.py:730
+msgid "Double"
+msgstr "Подвійна"
+
+#: addon\appModules\winword\ww_wdConst.py:731
+msgid "Double Wavy"
+msgstr "Подвійна хвиляста"
+
+#: addon\appModules\winword\ww_wdConst.py:732
+msgid "Emboss 3D"
+msgstr "Тиснення 3D"
+
+#: addon\appModules\winword\ww_wdConst.py:733
+msgid "Engrave 3D"
+msgstr "Гравірування 3D"
+
+#: addon\appModules\winword\ww_wdConst.py:734
+msgid "Inset"
+msgstr "Врізка"
+
+#: addon\appModules\winword\ww_wdConst.py:735
+msgid "None"
+msgstr "Жодного"
+
+#: addon\appModules\winword\ww_wdConst.py:736
+msgid "Outset"
+msgstr "Outset"
+
+#: addon\appModules\winword\ww_wdConst.py:737
+msgid "Single"
+msgstr "Одинарна"
+
+#: addon\appModules\winword\ww_wdConst.py:738
+msgid "Single Wavy"
+msgstr "Одинарна хвиляста"
+
+#: addon\appModules\winword\ww_wdConst.py:739
+msgid "Thick Thin Large Gap"
+msgstr "Товста Тонка Великий розрив"
+
+#: addon\appModules\winword\ww_wdConst.py:740
+msgid "Thick Thin Medium Gap"
+msgstr "Товста Тонка Середній Розрив"
+
+#: addon\appModules\winword\ww_wdConst.py:741
+msgid "Thick Thin Small Gap"
+msgstr "Товста Тонка Невеликий розрив"
+
+#: addon\appModules\winword\ww_wdConst.py:742
+msgid "Thin Thick Large Gap"
+msgstr "Тонка Товста Великий розрив"
+
+#: addon\appModules\winword\ww_wdConst.py:743
+msgid "Thin Thick Medium Gap"
+msgstr "Тонка Товста Середній розрив"
+
+#: addon\appModules\winword\ww_wdConst.py:744
+msgid "Thin Thick Small Gap"
+msgstr "Тонка Товста Невеликий розрив"
+
+#: addon\appModules\winword\ww_wdConst.py:745
+msgid "Thin Thick Thin Large Gap"
+msgstr "Тонка Товста Тонка Великий розрив"
+
+#: addon\appModules\winword\ww_wdConst.py:746
+msgid "Thin Thick Thin Medium Gap"
+msgstr "Тонка Товста Тонка Середній розрив"
+
+#: addon\appModules\winword\ww_wdConst.py:747
+msgid "Thin Thick Thin Small Gap"
+msgstr "Тонка Товста Тонка Невеликий розрив"
+
+#: addon\appModules\winword\ww_wdConst.py:748
+msgid "Triple"
+msgstr "Потрійна"
+
+#: addon\appModules\winword\ww_wdConst.py:751
+msgid "0.25 points"
+msgstr "0.25 пункта"
+
+#: addon\appModules\winword\ww_wdConst.py:752
+msgid "0.5 points"
+msgstr "0.5 пункта"
+
+#: addon\appModules\winword\ww_wdConst.py:753
+msgid "0.75 points"
+msgstr "0.75 пункта"
+
+#: addon\appModules\winword\ww_wdConst.py:754
+msgid "1 point"
+msgstr "1 пункт"
+
+#: addon\appModules\winword\ww_wdConst.py:755
+msgid "1.5 points"
+msgstr "1.5 пункта"
+
+#: addon\appModules\winword\ww_wdConst.py:756
+msgid "2.25 points"
+msgstr "2.25 пункта"
+
+#: addon\appModules\winword\ww_wdConst.py:757
+msgid "3 points"
+msgstr "3 пункти"
+
+#: addon\appModules\winword\ww_wdConst.py:758
+msgid "4.5 points"
+msgstr "4.5 пункта"
+
+#: addon\appModules\winword\ww_wdConst.py:759
+msgid "6 points"
+msgstr "6 пунктів"
+
+#: addon\appModules\winword\ww_wdConst.py:760
+msgid "custom width"
+msgstr "спеціальна ширина"
+
+#: addon\appModules\winword\ww_wdConst.py:763
+msgid "Apples"
+msgstr "Яблука"
+
+#: addon\appModules\winword\ww_wdConst.py:764
+msgid "ArchedScallops"
+msgstr "Дугоподібні гребінці"
+
+#: addon\appModules\winword\ww_wdConst.py:765
+msgid "BabyPacifier"
+msgstr "Дитяча соска"
+
+#: addon\appModules\winword\ww_wdConst.py:766
+msgid "BabyRattle"
+msgstr "Дитяче брязкальце"
+
+#: addon\appModules\winword\ww_wdConst.py:767
+msgid "Balloons3Colors"
+msgstr "Повітряні кулі 3 кольори"
+
+#: addon\appModules\winword\ww_wdConst.py:768
+msgid "BalloonsHotAir"
+msgstr "Повітряні кульки"
+
+#: addon\appModules\winword\ww_wdConst.py:769
+msgid "BasicBlackDashes"
+msgstr "Основні чорні риски"
+
+#: addon\appModules\winword\ww_wdConst.py:770
+msgid "BasicBlackDots"
+msgstr "Основні чорні крапки"
+
+#: addon\appModules\winword\ww_wdConst.py:771
+msgid "BasicBlackSquares"
+msgstr "Основні чорні квадрати"
+
+#: addon\appModules\winword\ww_wdConst.py:772
+msgid "BasicThinLines"
+msgstr "Основні тонкі лінії"
+
+#: addon\appModules\winword\ww_wdConst.py:773
+msgid "BasicWhiteDashes"
+msgstr "Основні білі риски"
+
+#: addon\appModules\winword\ww_wdConst.py:774
+msgid "BasicWhiteDots"
+msgstr "Основні білі крапки"
+
+#: addon\appModules\winword\ww_wdConst.py:775
+msgid "BasicWhiteSquares"
+msgstr "Основні білі квадрати"
+
+#: addon\appModules\winword\ww_wdConst.py:776
+msgid "BasicWideInline"
+msgstr "Базова ширина внутрішніх ліній"
+
+#: addon\appModules\winword\ww_wdConst.py:777
+msgid "BasicWideMidline"
+msgstr "Базова ширина середніх ліній"
+
+#: addon\appModules\winword\ww_wdConst.py:778
+msgid "BasicWideOutline"
+msgstr "Базова ширина зовнішніх ліній"
+
+#: addon\appModules\winword\ww_wdConst.py:779
+msgid "Bats"
+msgstr "Кажани"
+
+#: addon\appModules\winword\ww_wdConst.py:780
+msgid "Birds"
+msgstr "Птахи"
+
+#: addon\appModules\winword\ww_wdConst.py:781
+msgid "BirdsFlight"
+msgstr "Пташиний політ"
+
+#: addon\appModules\winword\ww_wdConst.py:782
+msgid "Cabins"
+msgstr "Кабіни"
+
+#: addon\appModules\winword\ww_wdConst.py:783
+msgid "CakeSlice"
+msgstr "Шматочок торта"
+
+#: addon\appModules\winword\ww_wdConst.py:784
+msgid "CandyCorn"
+msgstr "Солодка кукурудза"
+
+#: addon\appModules\winword\ww_wdConst.py:785
+msgid "CelticKnotwork"
+msgstr "Кельтські вузли"
+
+#: addon\appModules\winword\ww_wdConst.py:786
+msgid "CertificateBanner"
+msgstr "Банер сертифіката"
+
+#: addon\appModules\winword\ww_wdConst.py:787
+msgid "ChainLink"
+msgstr "Ланцюгові посилання"
+
+#: addon\appModules\winword\ww_wdConst.py:788
+msgid "ChampagneBottle"
+msgstr "Пляшка шампанського"
+
+#: addon\appModules\winword\ww_wdConst.py:789
+msgid "CheckedBarBlack"
+msgstr "CheckedBarBlack"
+
+#: addon\appModules\winword\ww_wdConst.py:790
+msgid "CheckedBarColor"
+msgstr "CheckedBarColor"
+
+#: addon\appModules\winword\ww_wdConst.py:791
+msgid "Checkered"
+msgstr "Картатий"
+
+#: addon\appModules\winword\ww_wdConst.py:792
+msgid "ChristmasTree"
+msgstr "Різдвяна ялинка"
+
+#: addon\appModules\winword\ww_wdConst.py:793
+msgid "CirclesLines"
+msgstr "Кола лінії"
+
+#: addon\appModules\winword\ww_wdConst.py:794
+msgid "CirclesRectangles"
+msgstr "Кола прямокутники"
+
+#: addon\appModules\winword\ww_wdConst.py:795
+msgid "ClassicalWave"
+msgstr "Класична хвиля"
+
+#: addon\appModules\winword\ww_wdConst.py:796
+msgid "Clocks"
+msgstr "Годинники"
+
+#: addon\appModules\winword\ww_wdConst.py:797
+msgid "Compass"
+msgstr "Компас"
+
+#: addon\appModules\winword\ww_wdConst.py:798
+msgid "Confetti"
+msgstr "Конфеті"
+
+#: addon\appModules\winword\ww_wdConst.py:799
+msgid "ConfettiGrays"
+msgstr "Конфеті Сірі"
+
+#: addon\appModules\winword\ww_wdConst.py:800
+msgid "ConfettiOutline"
+msgstr "Конфеті зовні"
+
+#: addon\appModules\winword\ww_wdConst.py:801
+msgid "ConfettiStreamers"
+msgstr "Конфеті стримери"
+
+#: addon\appModules\winword\ww_wdConst.py:802
+msgid "ConfettiWhite"
+msgstr "Конфеті білий"
+
+#: addon\appModules\winword\ww_wdConst.py:803
+msgid "CornerTriangles"
+msgstr "Кутові трикутники"
+
+#: addon\appModules\winword\ww_wdConst.py:804
+msgid "CouponCutoutDashes"
+msgstr "Вирізи на купоні"
+
+#: addon\appModules\winword\ww_wdConst.py:805
+msgid "CouponCutoutDots"
+msgstr "Купон вирізані крапки"
+
+#: addon\appModules\winword\ww_wdConst.py:806
+msgid "CrazyMaze"
+msgstr "Безумний лабіринт"
+
+#: addon\appModules\winword\ww_wdConst.py:807
+msgid "CreaturesButterfly"
+msgstr "Істоти метелики"
+
+#: addon\appModules\winword\ww_wdConst.py:808
+msgid "CreaturesFish"
+msgstr "Істоти рибки"
+
+#: addon\appModules\winword\ww_wdConst.py:809
+msgid "CreaturesInsects"
+msgstr "Істоти комахи"
+
+#: addon\appModules\winword\ww_wdConst.py:810
+msgid "CreaturesLadyBug"
+msgstr "Істоти Леді Баг"
+
+#: addon\appModules\winword\ww_wdConst.py:811
+msgid "CrossStitch"
+msgstr "Вишивка хрестом"
+
+#: addon\appModules\winword\ww_wdConst.py:812
+msgid "Cup"
+msgstr "Чашка"
+
+#: addon\appModules\winword\ww_wdConst.py:813
+msgid "DecoArch"
+msgstr "Декоративна арка"
+
+#: addon\appModules\winword\ww_wdConst.py:814
+msgid "DecoArchColor"
+msgstr "Колір декоративної арки"
+
+#: addon\appModules\winword\ww_wdConst.py:815
+msgid "DecoBlocks"
+msgstr "Декоративні блоки"
+
+#: addon\appModules\winword\ww_wdConst.py:816
+msgid "DiamondsGray"
+msgstr "Діамантово-сірий"
+
+#: addon\appModules\winword\ww_wdConst.py:817
+msgid "DoubleD"
+msgstr "Подвійна D"
+
+#: addon\appModules\winword\ww_wdConst.py:818
+msgid "DoubleDiamonds"
+msgstr "Подвійний діамант"
+
+#: addon\appModules\winword\ww_wdConst.py:819
+msgid "Earth1"
+msgstr "Земля1"
+
+#: addon\appModules\winword\ww_wdConst.py:820
+msgid "Earth2"
+msgstr "Земля2"
+
+#: addon\appModules\winword\ww_wdConst.py:821
+msgid "EclipsingSquares1"
+msgstr "ЗатемненняКвадрати1"
+
+#: addon\appModules\winword\ww_wdConst.py:822
+msgid "EclipsingSquares2"
+msgstr "ЗатемненняКвадрати2"
+
+#: addon\appModules\winword\ww_wdConst.py:823
+msgid "EggsBlack"
+msgstr "Яйця Чорний"
+
+#: addon\appModules\winword\ww_wdConst.py:824
+msgid "Fans"
+msgstr "Вболівальники"
+
+#: addon\appModules\winword\ww_wdConst.py:825
+msgid "Film"
+msgstr "Плівка"
+
+#: addon\appModules\winword\ww_wdConst.py:826
+msgid "Firecrackers"
+msgstr "Петарди"
+
+#: addon\appModules\winword\ww_wdConst.py:827
+msgid "FlowersBlockPrint"
+msgstr "Принт квітів"
+
+#: addon\appModules\winword\ww_wdConst.py:828
+msgid "FlowersDaisies"
+msgstr "Квіти Ромашки"
+
+#: addon\appModules\winword\ww_wdConst.py:829
+msgid "FlowersModern1"
+msgstr "Квіти Сучасні1"
+
+#: addon\appModules\winword\ww_wdConst.py:830
+msgid "FlowersModern2"
+msgstr "Квіти Сучасні2"
+
+#: addon\appModules\winword\ww_wdConst.py:831
+msgid "FlowersPansy"
+msgstr "Квіти Братки"
+
+#: addon\appModules\winword\ww_wdConst.py:832
+msgid "FlowersRedRose"
+msgstr "КвітиЧервонаТроянда"
+
+#: addon\appModules\winword\ww_wdConst.py:833
+msgid "FlowersRoses"
+msgstr "КвітиТроянди"
+
+#: addon\appModules\winword\ww_wdConst.py:834
+msgid "FlowersTeacup"
+msgstr "Чашка квітів"
+
+#: addon\appModules\winword\ww_wdConst.py:835
+msgid "FlowersTiny"
+msgstr "Квіти маленькі"
+
+#: addon\appModules\winword\ww_wdConst.py:836
+msgid "Gems"
+msgstr "Дорогоцінні камені"
+
+#: addon\appModules\winword\ww_wdConst.py:837
+msgid "GingerbreadMan"
+msgstr "Колобок"
+
+#: addon\appModules\winword\ww_wdConst.py:838
+msgid "Gradient"
+msgstr "Градієнт"
+
+#: addon\appModules\winword\ww_wdConst.py:839
+msgid "Handmade1"
+msgstr "Ручна робота1"
+
+#: addon\appModules\winword\ww_wdConst.py:840
+msgid "Handmade2"
+msgstr "Ручна робота2"
+
+#: addon\appModules\winword\ww_wdConst.py:841
+msgid "HeartBalloon"
+msgstr "Серце Повітряна куля"
+
+#: addon\appModules\winword\ww_wdConst.py:842
+msgid "HeartGray"
+msgstr "Серце Сірий"
+
+#: addon\appModules\winword\ww_wdConst.py:843
+msgid "Hearts"
+msgstr "Серця"
+
+#: addon\appModules\winword\ww_wdConst.py:844
+msgid "HeebieJeebies"
+msgstr "ХібіДжібіс"
+
+#: addon\appModules\winword\ww_wdConst.py:845
+msgid "Holly"
+msgstr "Гостролист"
+
+#: addon\appModules\winword\ww_wdConst.py:846
+msgid "HouseFunky"
+msgstr "Funky-хаус"
+
+#: addon\appModules\winword\ww_wdConst.py:847
+msgid "Hypnotic"
+msgstr "Снодійний"
+
+#: addon\appModules\winword\ww_wdConst.py:848
+msgid "IceCreamCones"
+msgstr "Морозиво Конуси"
+
+#: addon\appModules\winword\ww_wdConst.py:849
+msgid "LightBulb"
+msgstr "Лампочка"
+
+#: addon\appModules\winword\ww_wdConst.py:850
+msgid "Lightning1"
+msgstr "Блискавка1"
+
+#: addon\appModules\winword\ww_wdConst.py:851
+msgid "Lightning2"
+msgstr "Блискавка2"
+
+#: addon\appModules\winword\ww_wdConst.py:852
+msgid "MapleLeaf"
+msgstr "Кленовий листок"
+
+#: addon\appModules\winword\ww_wdConst.py:853
+msgid "MapleMuffins"
+msgstr "Кленові кекси"
+
+#: addon\appModules\winword\ww_wdConst.py:854
+msgid "MapPins"
+msgstr "Піни на карті"
+
+#: addon\appModules\winword\ww_wdConst.py:855
+msgid "Marquee"
+msgstr "Шатер"
+
+#: addon\appModules\winword\ww_wdConst.py:856
+msgid "MarqueeToothed"
+msgstr "ШатерЗубчастий"
+
+#: addon\appModules\winword\ww_wdConst.py:857
+msgid "Moons"
+msgstr "Місяці"
+
+#: addon\appModules\winword\ww_wdConst.py:858
+msgid "Mosaic"
+msgstr "Мозаїка"
+
+#: addon\appModules\winword\ww_wdConst.py:859
+msgid "MusicNotes"
+msgstr "Музичні ноти"
+
+#: addon\appModules\winword\ww_wdConst.py:860
+msgid "Northwest"
+msgstr "Північний захід"
+
+#: addon\appModules\winword\ww_wdConst.py:861
+msgid "Ovals"
+msgstr "Овали"
+
+#: addon\appModules\winword\ww_wdConst.py:862
+msgid "Packages"
+msgstr "Пакети"
+
+#: addon\appModules\winword\ww_wdConst.py:863
+msgid "PalmsBlack"
+msgstr "Долоні Чорні"
+
+#: addon\appModules\winword\ww_wdConst.py:864
+msgid "PalmsColor"
+msgstr "Долоні кольорові"
+
+#: addon\appModules\winword\ww_wdConst.py:865
+msgid "PaperClips"
+msgstr "Скріпки"
+
+#: addon\appModules\winword\ww_wdConst.py:866
+msgid "Papyrus"
+msgstr "Папірус"
+
+#: addon\appModules\winword\ww_wdConst.py:867
+msgid "PartyFavor"
+msgstr "Група Favor"
+
+#: addon\appModules\winword\ww_wdConst.py:868
+msgid "PartyGlass"
+msgstr "Група Скло"
+
+#: addon\appModules\winword\ww_wdConst.py:869
+msgid "Pencils"
+msgstr "Олівці"
+
+#: addon\appModules\winword\ww_wdConst.py:870
+msgid "People"
+msgstr "Люди"
+
+#: addon\appModules\winword\ww_wdConst.py:871
+msgid "PeopleHats"
+msgstr "Капелюхи людей"
+
+#: addon\appModules\winword\ww_wdConst.py:872
+msgid "PeopleWaving"
+msgstr "Людське хвилювання"
+
+#: addon\appModules\winword\ww_wdConst.py:873
+msgid "Poinsettias"
+msgstr "Пуансеттії"
+
+#: addon\appModules\winword\ww_wdConst.py:874
+msgid "PostageStamp"
+msgstr "Поштова марка"
+
+#: addon\appModules\winword\ww_wdConst.py:875
+msgid "Pumpkin1"
+msgstr "Pumpkin1"
+
+#: addon\appModules\winword\ww_wdConst.py:876
+msgid "PushPinNote1"
+msgstr "PushPinNote1"
+
+#: addon\appModules\winword\ww_wdConst.py:877
+msgid "PushPinNote2"
+msgstr "PushPinNote2"
+
+#: addon\appModules\winword\ww_wdConst.py:878
+msgid "Pyramids"
+msgstr "Pyramids"
+
+#: addon\appModules\winword\ww_wdConst.py:879
+msgid "PyramidsAbove"
+msgstr "PyramidsAbove"
+
+#: addon\appModules\winword\ww_wdConst.py:880
+msgid "Quadrants"
+msgstr "Quadrants"
+
+#: addon\appModules\winword\ww_wdConst.py:881
+msgid "Rings"
+msgstr "Кільця"
+
+#: addon\appModules\winword\ww_wdConst.py:882
+msgid "Safari"
+msgstr "Сафарі"
+
+#: addon\appModules\winword\ww_wdConst.py:883
+msgid "Sawtooth"
+msgstr "Зуб пилки"
+
+#: addon\appModules\winword\ww_wdConst.py:884
+msgid "SawtoothGray"
+msgstr "Зуб пилки Сірий"
+
+#: addon\appModules\winword\ww_wdConst.py:885
+msgid "ScaredCat"
+msgstr "Переляканий Кіт"
+
+#: addon\appModules\winword\ww_wdConst.py:886
+msgid "Seattle"
+msgstr "Сіетл"
+
+#: addon\appModules\winword\ww_wdConst.py:887
+msgid "ShadowedSquares"
+msgstr "Затінені квадрати"
+
+#: addon\appModules\winword\ww_wdConst.py:888
+msgid "SharksTeeth"
+msgstr "Зуби акули"
+
+#: addon\appModules\winword\ww_wdConst.py:889
+msgid "ShorebirdTracks"
+msgstr "Сліди берегових птахів"
+
+#: addon\appModules\winword\ww_wdConst.py:890
+msgid "Skyrocket"
+msgstr "Небесна ракета"
+
+#: addon\appModules\winword\ww_wdConst.py:891
+msgid "SnowflakeFancy"
+msgstr "Чудернацька Сніжинка"
+
+#: addon\appModules\winword\ww_wdConst.py:892
+msgid "Snowflakes"
+msgstr "Сніжинки"
+
+#: addon\appModules\winword\ww_wdConst.py:893
+msgid "Sombrero"
+msgstr "Sombrero"
+
+#: addon\appModules\winword\ww_wdConst.py:894
+msgid "Southwest"
+msgstr "Південний захід"
+
+#: addon\appModules\winword\ww_wdConst.py:895
+msgid "Stars"
+msgstr "Зірки"
+
+#: addon\appModules\winword\ww_wdConst.py:896
+msgid "Stars3D"
+msgstr "3D зірки"
+
+#: addon\appModules\winword\ww_wdConst.py:897
+msgid "StarsBlack"
+msgstr "Чорні зірки"
+
+#: addon\appModules\winword\ww_wdConst.py:898
+msgid "StarsShadowed"
+msgstr "Затінені зірки"
+
+#: addon\appModules\winword\ww_wdConst.py:899
+msgid "StarsTop"
+msgstr "Топ-зірки"
+
+#: addon\appModules\winword\ww_wdConst.py:900
+msgid "Sun"
+msgstr "Сонце"
+
+#: addon\appModules\winword\ww_wdConst.py:901
+msgid "Swirligig"
+msgstr "Swirligig"
+
+#: addon\appModules\winword\ww_wdConst.py:902
+msgid "TornPaper"
+msgstr "Рваний папір"
+
+#: addon\appModules\winword\ww_wdConst.py:903
+msgid "TornPaperBlack"
+msgstr "Рваний чорний папір"
+
+#: addon\appModules\winword\ww_wdConst.py:904
+msgid "Trees"
+msgstr "Дерева"
+
+#: addon\appModules\winword\ww_wdConst.py:905
+msgid "TriangleParty"
+msgstr "Трикутні частини"
+
+#: addon\appModules\winword\ww_wdConst.py:906
+msgid "Triangles"
+msgstr "Трикутники"
+
+#: addon\appModules\winword\ww_wdConst.py:907
+msgid "Tribal1"
+msgstr "Племінний 1"
+
+#: addon\appModules\winword\ww_wdConst.py:908
+msgid "Tribal2"
+msgstr "Племінний 2"
+
+#: addon\appModules\winword\ww_wdConst.py:909
+msgid "Tribal3"
+msgstr "Племінний 3"
+
+#: addon\appModules\winword\ww_wdConst.py:910
+msgid "Tribal4"
+msgstr "Племінний 4"
+
+#: addon\appModules\winword\ww_wdConst.py:911
+msgid "Tribal5"
+msgstr "Племінний 5"
+
+#: addon\appModules\winword\ww_wdConst.py:912
+msgid "Tribal6"
+msgstr "Племінний 6"
+
+#: addon\appModules\winword\ww_wdConst.py:913
+msgid "TwistedLines1"
+msgstr "Кручені лінії 1"
+
+#: addon\appModules\winword\ww_wdConst.py:914
+msgid "TwistedLines2"
+msgstr "Кручені лінії 2"
+
+#: addon\appModules\winword\ww_wdConst.py:915
+msgid "Vine"
+msgstr "Виноградна лоза"
+
+#: addon\appModules\winword\ww_wdConst.py:916
+msgid "Waveline"
+msgstr "Хвиляста лінія"
+
+#: addon\appModules\winword\ww_wdConst.py:917
+msgid "WeavingAngles"
+msgstr "Хвилясті кути"
+
+#: addon\appModules\winword\ww_wdConst.py:918
+msgid "WeavingBraid"
+msgstr "Заплетена коса"
+
+#: addon\appModules\winword\ww_wdConst.py:919
+msgid "WeavingRibbon"
+msgstr "Заплетена стрічка"
+
+#: addon\appModules\winword\ww_wdConst.py:920
+msgid "WeavingStrips"
+msgstr "Заплетені смуги"
+
+#: addon\appModules\winword\ww_wdConst.py:921
+msgid "WhiteFlowers"
+msgstr "Білі Квіти"
+
+#: addon\appModules\winword\ww_wdConst.py:922
+msgid "Woodwork"
+msgstr "Вироби з дерева"
+
+#: addon\appModules\winword\ww_wdConst.py:923
+msgid "XIllusions"
+msgstr "X Ілюзії"
+
+#: addon\appModules\winword\ww_wdConst.py:924
+msgid "ZanyTriangles"
+msgstr "Зайві трикутники"
+
+#: addon\appModules\winword\ww_wdConst.py:925
+msgid "ZigZag"
+msgstr "Зигзаг"
+
+#: addon\appModules\winword\ww_wdConst.py:926
+msgid "ZigZagStitch"
+msgstr "Зигзагоподібний стібок"
+
+#. Translators: a message to report row number.
+#: addon\appModules\winword\ww_wordDocumentBase.py:164
+#, python-format
+msgid " row %s"
+msgstr " рядок %s"
+
+#. Translators: a message to report column number.
+#: addon\appModules\winword\ww_wordDocumentBase.py:166
+#, python-format
+msgid " column %s"
+msgstr " стовпець %s"
+
+#. Translators: message to report row and column number.
+#: addon\appModules\winword\ww_wordDocumentBase.py:168
+msgid " row {rowIndex}, column {columnIndex}"
+msgstr " рядок {rowIndex}, стовпець {columnIndex}"
+
+#. Translators: a message to say moving to start of row.
+#: addon\appModules\winword\ww_wordDocumentBase.py:174
+msgid "Start of row {0}"
+msgstr "Початок рядка {0}"
+
+#. Translators: message to say moving to end of row.
+#: addon\appModules\winword\ww_wordDocumentBase.py:179
+msgid "End of row {0}"
+msgstr "Кінець рядка {0}"
+
+#. Translators: message to say moving to start of column.
+#: addon\appModules\winword\ww_wordDocumentBase.py:184
+msgid "Start of column {0}"
+msgstr "Початок стовпця {0}"
+
+#. Translators: message to say moving to end of column
+#: addon\appModules\winword\ww_wordDocumentBase.py:189
+msgid "End of column {0}"
+msgstr "Кінець стовпця {0}"
+
+#. Translators: a description for a script.
+#: addon\appModules\winword\ww_wordDocumentBase.py:221
+msgid "Table: move to next row"
+msgstr "Таблиця: перехід до наступного рядка"
+
+#. Translators: a description for a script.
+#: addon\appModules\winword\ww_wordDocumentBase.py:226
+msgid "Table: move to previous row"
+msgstr "Таблиця: перейти до попереднього рядка"
+
+#. Translators: a description for a script.
+#: addon\appModules\winword\ww_wordDocumentBase.py:231
+msgid "Table: move to next column"
+msgstr "Таблиця: перехід до наступного стовпця"
+
+#. Translators: a description for a script.
+#: addon\appModules\winword\ww_wordDocumentBase.py:236
+msgid "Table: move to previous column "
+msgstr "Таблиця: перейти до попереднього стовпця "
+
+#. Translators: a description for a script.
+#: addon\appModules\winword\ww_wordDocumentBase.py:241
+msgid "Table: move to the first cell of row"
+msgstr "Таблиця: перехід до першої комірки рядка"
+
+#. Translators: a description for a script.
+#: addon\appModules\winword\ww_wordDocumentBase.py:246
+msgid "Table: move to the last cell of row"
+msgstr "Таблиця: перехід до останньої комірки рядка"
+
+#. Translators: a description for a script.
+#: addon\appModules\winword\ww_wordDocumentBase.py:251
+msgid "Table: move to the first cell of column"
+msgstr "Таблиця: перейти до першої комірки стовпця"
+
+#. Translators: a description for a script.
+#: addon\appModules\winword\ww_wordDocumentBase.py:256
+msgid "Table: move to the last cell of column "
+msgstr "Таблиця: перехід до останньої комірки стовпця "
+
+#. Translators: a description for a script.
+#: addon\appModules\winword\ww_wordDocumentBase.py:261
+msgid "Table: move to first cell of table"
+msgstr "Таблиця: перехід до першої комірки таблиці"
+
+#. Translators: a description for a script.
+#: addon\appModules\winword\ww_wordDocumentBase.py:266
+msgid "Table: move to last cell of table"
+msgstr "Таблиця: перехід до останньої комірки таблиці"
+
+#. Translators: Input help mode message for report current headers command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:350
+msgid "Table: report current headers"
+msgstr "Таблиця: поточні заголовки звіту"
+
+#. Translators: message to say no row header.
+#: addon\appModules\winword\ww_wordDocumentBase.py:362
+msgid "No row header"
+msgstr "Немає заголовка рядка"
+
+#. Translators: message to report row header.
+#: addon\appModules\winword\ww_wordDocumentBase.py:365
+#: addon\appModules\winword\ww_wordDocumentBase.py:368
+#, python-format
+msgid "Row header: %s"
+msgstr "Заголовок рядка: %s"
+
+#. Translators: message to report no column header.
+#: addon\appModules\winword\ww_wordDocumentBase.py:372
+msgid "No column header"
+msgstr "Немає заголовка стовпця"
+
+#. Translators: message to report column header.
+#: addon\appModules\winword\ww_wordDocumentBase.py:375
+#: addon\appModules\winword\ww_wordDocumentBase.py:378
+#, python-format
+msgid "Column header: %s"
+msgstr "Заголовок стовпця: %s"
+
+#. Translators: Input help mode message for report current cell command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:383
+msgid "Table: report current cell"
+msgstr "Таблиця: оголосити поточну комірку"
+
+#. Translators: Input help mode message for report current row command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:394
+msgid "Table: report all cells of current row"
+msgstr "Таблиця: повідомляти всі комірки поточного рядка"
+
+#. Translators: Input help mode message for report current column command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:401
+msgid "Table: report all cells of current column"
+msgstr "Таблиця: повідомляти всі комірки поточного стовпця"
+
+#. Translators: Input help mode message for report next cell in column command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:409
+msgid "Table: Report the nextt cell in the column"
+msgstr "Таблиця: оголошення наступної комірки стовпця"
+
+#. Translators: Input help mode message for report previous cell in column command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:417
+msgid "Table: report the previous cell in the column"
+msgstr "Таблиця: оголошення попередньої комірки стовпця"
+
+#. Translators: Input help mode message for report next cell in row command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:425
+msgid "Table: report the next cell in the row"
+msgstr "Таблиця: оголошення наступної комірки рядка"
+
+#. Translators: Input help mode message for report previous cell in row command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:433
+msgid "Table: report the previous cell in the row"
+msgstr "Таблиця: оголошення попередньої комірки рядка"
+
+#. Translators: Input help mode message for report first cell of column command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:441
+msgid "Table: report the first cell of the column"
+msgstr "Таблиця: оголошення першої комірки стовпця"
+
+#. Translators: Input help mode message for report last cell of column command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:449
+msgid "Table: report the last cell of the column"
+msgstr "Таблиця: оголошення останньої комірки стовпця"
+
+#. Translators: Input help mode message for report first cell of row command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:457
+msgid "Table: report the first cell of the row"
+msgstr "Таблиця: оголошення першої комірки рядка"
+
+#. Translators: Input help mode message for report last cell of row command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:465
+msgid "Table: report the last cell of the row"
+msgstr "Таблиця: оголошення останньої комірки рядка"
+
+#. Translators: Input help mode message for move to and report next row command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:473
+msgid "Table: move to next row and report all cells of row"
+msgstr "Таблиця: перехід до наступного рядка й оголошення всіх Комірок рядка"
+
+#. Translators: Input help mode message for move to and report Previous row command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:481
+msgid "Table: move to previous row and report all cells of row"
+msgstr "Таблиця: перехід до попереднього рядка й оголошення всіх комірок рядка"
+
+#. Translators: Input help mode message for move to and report next column command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:489
+msgid "Table: move to next column and report all cells of column"
+msgstr "Таблиця: перехід до наступного стовпця й оголошення всіх комірок стовпця"
+
+#. Translators: Input help mode message for move to and report previous column command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:496
+msgid "Table: move to prior column and report all cells of column"
+msgstr ""
+"Таблиця: перехід до попереднього стовпця й оголошення всіх комірок стовпця"
+
+#: addon\appModules\winword\ww_wordDocumentBase.py:505
+msgid "Table: move to first cell of column and report all cells of row"
+msgstr ""
+"Таблиця: перехід до першої комірки стовпця й оголошення всіх комірок рядка"
+
+#: addon\appModules\winword\ww_wordDocumentBase.py:515
+msgid "Table: move to last cell of column and report all cells of row"
+msgstr ""
+"Таблиця: перехід до останньої комірки стовпця й оголошення всіх комірок рядка"
+
+#: addon\appModules\winword\ww_wordDocumentBase.py:525
+msgid "Table: move to first cell of the row and report all cells of column"
+msgstr ""
+"Таблиця: перехід до першої комірки рядка й оголошення всіх комірок стовпця"
+
+#: addon\appModules\winword\ww_wordDocumentBase.py:535
+msgid "Table: move to last cell of the row and report all cells of column"
+msgstr ""
+"Таблиця: перехід до останньої комірки рядка й оголошення всіх комірок стовпця"
+
+#: addon\appModules\winword\ww_wordDocumentBase.py:579
+#: addon\appModules\winword\ww_wordDocumentBase.py:629
+msgid "Table layer mode on"
+msgstr "Режим багаторівневих команд для таблиці увімкнено"
+
+#: addon\appModules\winword\ww_wordDocumentBase.py:596
+msgid " (Table layer mode)"
+msgstr " (Режим багаторівневих команд для таблиці)"
+
+#: addon\appModules\winword\ww_wordDocumentBase.py:631
+msgid "Table layer mode off"
+msgstr "Режим багаторівневих команд  для таблиці вимкнено"
+
+#. Translators: Input help mode message for toggle layer mode command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:635
+msgid "Toggle table layer mode"
+msgstr "Перемкнути режим багаторівневих команд для таблиці"
+
+#: addon\appModules\winword\ww_wordDocumentBase.py:651
+msgid "activate or desactivate the report of all cells of row or column"
+msgstr ""
+"активувати або деактивувати повідомлення всіх комірок рядка або стовпця"
+
+#. Translators: message to user to indicate
+#. report all cells mode is activated.
+#: addon\appModules\winword\ww_wordDocumentBase.py:660
+msgid "Report all Cells"
+msgstr "Повідомити всі комірки"
+
+#. Translators: message to user to indicate
+#. report all cells mode is desactivated.
+#: addon\appModules\winword\ww_wordDocumentBase.py:664
+msgid "Do not report all cells"
+msgstr "Не повідомляти всі комірки"
+
+#. Translators: Input help mode message for toggle automatic reading command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:669
+msgid "activate or desactivate automatic reading"
+msgstr "активувати або деактивувати автоматичне читання"
+
+#. Translators: message to user to indicate automatic reading enabled.
+#: addon\appModules\winword\ww_wordDocumentBase.py:675
+msgid "Automatic reading enabled"
+msgstr "Автоматичне читання увімкнено"
+
+#. Translators: message to user to indicate automatic reading disabled.
+#: addon\appModules\winword\ww_wordDocumentBase.py:678
+msgid "Automatic reading disabled"
+msgstr "Автоматичне читання вимкнено"
+
+#. Translators: The message reported
+#. when a user attempts to use a table movement command.
+#. when the cursor is not withnin a table.
+#: addon\appModules\winword\ww_wordDocumentBase.py:689
+msgid "Not in table"
+msgstr "Не в таблиці"
+
+#: addon\appModules\winword\ww_wordDocumentBase.py:762
+msgid "No other paragraph"
+msgstr "Немає іншого абзацу"
+
+#: addon\appModules\winword\ww_wordDocumentBase.py:766
+#: addon\appModules\winword\ww_wordDocumentBase.py:774
+msgid "No other sentence"
+msgstr "Жодного іншого речення"
+
+#. Translators: Input help mode message for next sentence command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:812
+msgid "Move to the next sentence"
+msgstr "Перейти до наступного речення"
+
+#. Translators: Input help mode message for previous sentence command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:821
+msgid "Move to the previous sentence"
+msgstr "Перейти до попереднього речення"
+
+#: addon\appModules\winword\ww_wordDocumentBase.py:831
+msgid ""
+"Move to the next paragraph (skip empty paragraphs if \"Skip Empty Paragraph"
+"\" option is set to on) "
+msgstr ""
+"Перейти до наступного абзацу (пропускати порожні абзаци, якщо параметр "
+"«Пропустити порожній абзац» увімкнено) "
+
+#: addon\appModules\winword\ww_wordDocumentBase.py:843
+msgid ""
+"Move to the previous paragraph (skip empty paragraphs if \"Skip Empty "
+"Paragraph\" option is set to on) "
+msgstr ""
+"Перейти до попереднього абзацу (пропускати порожні абзаци, якщо параметр "
+"«Пропустити порожній абзац» увімкнено) "
+
+#. Translators: Input help mode message for insert comment command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:854
+msgid ""
+"Insert an element (comment, footnote, endnote) where the System caret is "
+"located."
+msgstr ""
+"Вставте елемент (коментар, виноску, кінцеву виноску) у місце, де розташовано "
+"системну каретку."
+
+#: addon\appModules\winword\ww_wordDocumentBase.py:868
+msgid ""
+"Reports the text of the endnote or footnote where the System caret is "
+"located."
+msgstr ""
+"Повідомляє текст виноски або кінцевої виноски у місці розташування системної "
+"каретки."
+
+#. Translators: a message when there is no endnoe or footnote
+#. to report in Microsoft Word.
+#: addon\appModules\winword\ww_wordDocumentBase.py:912
+msgid "no endnote or footnote"
+msgstr "немає виноски або кінцевої виноски"
+
+#: addon\appModules\winword\ww_wordDocumentBase.py:917
+msgid "Reports the text of the revision where the System caret is located."
+msgstr "Повідомляє текст виправлення у місці розташування системної каретки."
+
+#: addon\appModules\winword\ww_wordDocumentBase.py:927
+msgid "Display a dialog to get word object informations in a range"
+msgstr "Показати діалог для отримання інформації про об’єкт слова в діапазоні"
+
+#: addon\appModules\winword\ww_wordDocumentBase.py:938
+msgid ""
+"Report the page number and line number relative to the page. Twice: display "
+"this information"
+msgstr ""
+"Повідомити номер сторінки та номер рядка відносно сторінки. Двічі: показати "
+"цю інформацію"
+
+#. Translators: message in report location script.
+#: addon\appModules\winword\ww_wordDocumentBase.py:953
+msgid "at {0} from left edge and {1} from top edge of the page"
+msgstr "на {0} від лівого краю та {1} від верхнього краю сторінки"
+
+#. Translators: message in report location script.
+#: addon\appModules\winword\ww_wordDocumentBase.py:960
+msgid "You are at the row {row}, column {column} of table"
+msgstr "Ви перебуваєте у рядку {row}, стовпці {column} таблиці"
+
+#. Translators: message to user to report location in page.
+#: addon\appModules\winword\ww_wordDocumentBase.py:968
+msgid "you are at Line {line}, column {column} of page {page}"
+msgstr "ви знаходитесь у рядку {line}, стовпці {column} сторінки {page}"
+
+#. Translators: message to user
+#: addon\appModules\winword\ww_wordDocumentBase.py:976
+msgid "Selection begins at line {line}, column {column} of page {page}"
+msgstr "Вибір починається з рядка {line}, стовпця {column} сторінки {page}"
+
+#. Translators: text to report position.
+#: addon\appModules\winword\ww_wordDocumentBase.py:988
+msgid "at {0} from left edge and {1} from top edge of the page."
+msgstr "на {0} від лівого краю та {1} від верхнього краю сторінки."
+
+#. Translators: text to report location.
+#: addon\appModules\winword\ww_wordDocumentBase.py:991
+msgid "It ends at line {line}, column {column} of page {page}"
+msgstr "Воно закінчується в рядку {line}, стовпці {column} сторінки {page}"
+
+#. Translators: this is the title of informationdialog box
+#. to show location informations.
+#: addon\appModules\winword\ww_wordDocumentBase.py:998
+msgid "Location information"
+msgstr "Інформація про розташування"
+
+#. Translators: Input help mode message for report document informations command.
+#: addon\appModules\winword\ww_wordDocumentBase.py:1005
+msgid "Display document's informations"
+msgstr "Показати інформацію про документ"
+
+#. Translators: a message when toggling change tracking in Microsoft word
+#: addon\appModules\winword\ww_wordDocumentBase.py:1073
+msgid "Change tracking on"
+msgstr "Відстеження змін увімкнено"
+
+#. Translators: a message when toggling change tracking in Microsoft word
+#: addon\appModules\winword\ww_wordDocumentBase.py:1076
+msgid "Change tracking off"
+msgstr "Відстеження змін вимкнено"
+
+#. Translators: This is the title of the InsertElementDialog dialog.
+#: addon\appModules\winword\ww_wordDocumentBase.py:1093
+msgid "Insert element"
+msgstr "Вставити елемент"
+
+#. Translators: This is a label appearing on Insert Element dialog.
+#: addon\appModules\winword\ww_wordDocumentBase.py:1103
+msgid "Element's &type:"
+msgstr "&Тип елемента:"
+
+#. Translators: This is a label of a button appearing
+#. on Insert Element Dialog.
+#: addon\appModules\winword\ww_wordDocumentBase.py:1114
+msgid "&Insert"
+msgstr "&Вставити"
+
+#. Translators: This is the label for the Options panel.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:45
+msgid "Options"
+msgstr "Параметри"
+
+#. Translators: This is the label for a group of editing options
+#. in the settings panel.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:52
+msgid "Paragraph"
+msgstr "Абзац"
+
+#. Translators: This is the label for a checkbox in the settings panel.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:58
+msgid "&Skip empty paragraphs"
+msgstr "&Пропускати порожні абзаци"
+
+#. Translators: This is the label for a checkbox in the settings panel.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:64
+msgid "&Play sound when paragraph is skipped"
+msgstr "&Відтворювати звук, коли абзац пропускається"
+
+#. Translators: This is the label for a checkbox in the options settings panel.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:70
+msgid "Na&vigate in loop"
+msgstr "Переміщуватись &у циклі"
+
+#. translators: label for a list box in Options settings panel.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:76
+msgid "Maximum time of elements's search (in seconds:)"
+msgstr "Максимальний час пошуку елементів (у секундах:)"
+
+#. Translators: This is the label for the Automatic reading panel.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:103
+msgid "Automatic reading"
+msgstr "Автоматичне читання"
+
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:116
+msgid "Inserted text"
+msgstr "Вставлений текст"
+
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:117
+msgid "Deleted text"
+msgstr "Видалений текст"
+
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:118
+msgid "Revised text"
+msgstr "Виправлений текст"
+
+#. Translators: This is the label for a checkbox in the automatic reading settings panel.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:124
+msgid "&Activate automatic reading"
+msgstr "&Активувати автоматичне читання"
+
+#. Translators: This is the label for a list of checkboxes
+#. controlling which  object are automatically reading.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:131
+msgid "Concerned elements:"
+msgstr "Застосувати до елементів:"
+
+#. Translators: This is the label for a checkbox in the settings panel.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:151
+msgid "Read &with:"
+msgstr "Прочитати &за допомогою:"
+
+#. Translators: a choice labels for automatic reading.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:154
+msgid "Current voice"
+msgstr "Поточний голос"
+
+#. Translators: a choice labels for automatic reading.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:156
+msgid "Current voice and  beep at start and end"
+msgstr "Поточний голос і звуковий сигнал на початку та в кінці"
+
+#. Translators: a choice labels for automatic reading.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:158
+msgid "another voice"
+msgstr "інший голос"
+
+#. Translators:  this is a label for a checkbox
+#. in automatic reading settings panel
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:166
+msgid "&Report revision's type with author"
+msgstr "&Повідомити тип виправлення й автора"
+
+#. translators: label for a button in automatic reading settings panel.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:172
+msgid "&Display voice's recorded setting"
+msgstr "&Показати записані налаштування голосу"
+
+#. Translators: message to user to report no automatic reading voice.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:200
+msgid "No voice recorded for automatic reading"
+msgstr "Немає голосу, записаного для автоматичного читання"
+
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:204
+#, python-format
+msgid "Synthetizer: %s"
+msgstr "Синтезатор: %s"
+
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:207
+#, python-format
+msgid "Output device: %s"
+msgstr "Пристрій виведення: %s"
+
+#. Translators: this is the title of informationdialog box
+#. to show voice profile informations.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:235
+msgid "Voice settings for automatic reading"
+msgstr "Голосові налаштування для автоматичного читання"
+
+#. Translators: This is the label for the Update panel.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:275
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:112
+msgid "Update"
+msgstr "Оновити"
+
+#. Translators: This is the label for a checkbox in the update settings panel.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:280
+msgid "Automatically check for &updates "
+msgstr "Автоматично перевіряти &оновлення "
+
+#. Translators: This is the label for a checkbox in the update settings panel.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:286
+msgid "Update also release versions to &developpement versions"
+msgstr "Оновити також кінцеві версії до &версій у розробці"
+
+#. translators: label for a button in update settings panel.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:292
+msgid "&Check for update"
+msgstr "&Перевірити оновлення"
+
+#. translators: this is a label for a button in update settings panel.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:297
+msgid "View &history"
+msgstr "Переглянути &історію"
+
+#. Translators: title of add-on parameters dialog.
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:336
+#: addon\globalPlugins\wordAccessEnhancement\ww_configGui.py:350
+msgid "Settings"
+msgstr "Налаштування"
+
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:63
+msgid ""
+"The update is not compatible with this version of NVDA. Minimum NVDA "
+"version: {minYear}.{minMajor}, last tested: {testedYear}.{testedMajor}."
+msgstr ""
+"Оновлення несумісне з цією версією NVDA. Мінімальна версія NVDA: {minYear}."
+"{minMajor}, останнє тестування: {testedYear}.{testedMajor}."
+
+#. Translators: The progress message
+#. indicating the name of the add-on being downloaded.
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:115
+msgid "Downloading {name}"
+msgstr "Завантаження {name}"
+
+#. Translators: A message indicating that an error occurred
+#. while downloading an update to NVDA.
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:130
+msgid "Error downloading update for {name}."
+msgstr "Помилка завантаження оновлення для {name}."
+
+#. Translators: message to user
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:189
+msgid "Cannot update {name} - missing file or invalid file format"
+msgstr "Не вдається оновити {name} - файл відсутній або формат файлу недійсний"
+
+#. Translators: The title of the dialog
+#. presented while an Addon is being updated.
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:225
+msgid "Updating"
+msgstr "Оновлення"
+
+#. Translators: The message displayed while an addon is being updated.
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:227
+msgid "Please wait while the add-on is being updated."
+msgstr "Будь ласка, зачекайте, поки додаток оновлюється."
+
+#. Translators: The message displayed when an error occurs
+#. when installing an add-on package.
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:246
+msgid "Failed to update {name} add-on"
+msgstr "Не вдалося оновити додаток {name}"
+
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:306
+msgid "{summary} - update"
+msgstr "{summary} - оновлення"
+
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:316
+msgid "The service is temporarily under maintenance. Please, try again later."
+msgstr "Послуга тимчасово недоступна. Будь-ласка спробуйте пізніше."
+
+#. Translators: message to user to report a new version.
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:369
+#, python-format
+msgid "New version%s is available. Do you want to download it now?"
+msgstr "Доступна нова версія%s. Ви хочете завантажити її зараз?"
+
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:386
+#, python-format
+msgid "You are up-to-date. %s is the latest version."
+msgstr "Ви використовуєте найновішу версію додатка. %s — остання версія."
+
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:393
+msgid "Oops! There was a problem checking for updates. Please retry later"
+msgstr ""
+"Ой! Під час перевірки оновлень виникла проблема. Повторіть спробу пізніше"
+
+#. Translators: This is a label of a button appearing
+#. on UpdateCheckResult dialog.
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:548
+msgid "&Yes"
+msgstr "&Так"
+
+#. Translators: This is a label of a button appearing
+#. on UpdateCheckResult dialog.
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:553
+msgid "&No"
+msgstr "&Ні"
+
+#. Translators: The label of a button to remind the user later
+#. about performing some action.
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:558
+msgid "&Later"
+msgstr "&Пізніше"
+
+#: addon\globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:562
+msgid "Wha&t's new"
+msgstr "Що &нового"
+
+#: addon\shared\ww_addonConfigManager.py:281
+msgid ""
+"The configuration file of the add-on contains errors. The configuration has "
+"been reset to factory defaults"
+msgstr ""
+"Файл конфігурації додатка містить помилки. Конфігурацію скинуто до "
+"стандартних налаштувань"
+
+#. Translators: title of message box
+#: addon\shared\ww_addonConfigManager.py:284
+msgid "Warning"
+msgstr "УВАГА"
+
+#. Translators: this is the default title of Information dialog.
+#: addon\shared\ww_informationDialog.py:40
+msgid "Informations"
+msgstr "Інформація"
+
+#: addon\shared\ww_informationDialog.py:73
+msgid "Co&py to Clipboard"
+msgstr "Копіювати в &буфер обміну"
+
+#. Translators: message to the user when the information has been copied
+#. to clipboard.
+#: addon\shared\ww_informationDialog.py:98
+msgid "Copied"
+msgstr "Скопійовано"
+
+#. Translators: message to the user when the information
+#. cannot be copied to clipboard.
+#: addon\shared\ww_informationDialog.py:105
+msgid "Error, the information cannot be copied to the clipboard"
+msgstr "Помилка, інформацію неможливо скопіювати в буфер обміну"
+
+#. Translators: the label of a message box dialog.
+#: addon\shared\ww_utils.py:57
+#, python-format
+msgid "%s dialog is allready open"
+msgstr "Діалог %s вже відкрито"
+
+#~ msgid ""
+#~ "Page {page}, line {line}\n"
+#~ "Note's Ttext:\n"
+#~ "{text}\n"
+#~ msgstr ""
+#~ "Сторінка {page}, рядок {line}\n"
+#~ "Текст примітки:\n"
+#~ "{text}\n"

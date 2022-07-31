@@ -421,7 +421,7 @@ A script allows this information to be announced.
 
 
 
-The "key_report_CURRENT_SENTENCE" input gesture allows you to hear the sentence affected by the error again.
+The "key_report_current_sentence" input gesture allows you to hear the sentence affected by the error again.
 
 These scripts are shown in the "ADDON_SUMMARY" category of the "Input Gestures" NVDA dialog.
 
