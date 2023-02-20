@@ -10,10 +10,8 @@ import scriptHandler
 from scriptHandler import script
 import core
 import api
-import config
 import os
 import wx
-import ui
 import queueHandler
 import speech
 import ui
@@ -65,7 +63,7 @@ from ww_addonConfigManager import _addonConfigManager
 from ww_utils import (
 	maximizeWindow,
 	getSpeechMode, setSpeechMode, setSpeechMode_off)
-from ww_messageBox import myMessageBox
+
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -323,10 +321,7 @@ class AppModule(AppModule):
 	def isHidden(self, selection):
 		rngTemp = selection.Range
 		rngTemp.TextRetrievalMode.IncludeHiddenText = False
-		if rngTemp.text == "":
-			
-			print("selection is hidden")
-
+		# print ("rngTemp: %s" % rngTemp)
 
 	def findHiddenText(self):
 		focus = api.getFocusObject()
@@ -335,7 +330,6 @@ class AppModule(AppModule):
 		selection = winwordWindowObject.Selection
 		sView = winwordDocumentObject .ActiveWindow.View.ShowHiddenText
 		winwordDocumentObject .ActiveWindow.View.ShowHiddenText = True
-		print ("selection.font.hidden: %s"%selection.font.hidden)
 		selection.Find.ClearFormatting
 		selection.Find.Replacement.ClearFormatting
 		if True:
@@ -344,7 +338,7 @@ class AppModule(AppModule):
 			f.Font.Hidden = True
 			f.Replacement.Text = ""
 			f.Forward = True
-			wdFindContinue = 1
+			# wdFindContinue = 1
 			wdFindStop = 0
 			f.Wrap = wdFindStop
 			f.Format = True
@@ -354,46 +348,19 @@ class AppModule(AppModule):
 			f.MatchSoundsLike = False
 			f.MatchAllWordForms = False
 		import textInfos
-		oldBookmark=focus.makeTextInfo(textInfos.POSITION_CARET).bookmark
+		oldBookmark = focus.makeTextInfo(textInfos.POSITION_CARET).bookmark
 		found = f.Execute()
-		print ("found: %s"%found)
 		if focus._hasCaretMoved(oldBookmark)[0]:
-			info=focus.makeTextInfo(textInfos.POSITION_SELECTION)
-			print ("info: %s"%info.text)
-
-
-
+			info = focus.makeTextInfo(textInfos.POSITION_SELECTION)
 		if found:
-			print ("text: %s"%selection.range.text)
 			ui.message(selection.range.text)
 			selection.Collapse(1)
-		
 
 		winwordDocumentObject .ActiveWindow.View.ShowHiddenText = sView
-		
 
 	def script_test(self, gesture):
 		print("test word")
 		ui.message("test word")
-		self.findHiddenText()
-		return
-		focus = api.getFocusObject()
-		winwordDocumentObject = focus.WinwordDocumentObject
-		from .ww_wdConst import wdMainTextStory
-		r = winwordDocumentObject .StoryRanges(wdMainTextStory)
-		print("r: %s" % r.Font.Hidden)
-		return
-		winwordWindowObject = self.WinwordWindowObject
-		selection = winwordWindowObject.Selection
-		self.isThereHiddenText(selection)
-		return
-		# ActiveDocument.ActiveWindow.View.ShowHiddenText = True
-		# winwordWindowObject.View.ShowHiddenText = False
-		winwordWindowObject.View.ShowHiddenText = True
-		return
-		wdSelectionNormal = 2
-		if selection.Type == wdSelectionNormal:
-			selection.Font.Hidden = True
 
 	__gestures = {
 		"kb:control+windows+alt+f12": "test",

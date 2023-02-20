@@ -565,7 +565,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		# install word shortcut depending of word language
 		from .ww_keyboard import getToggleChangeTrackingShortCut
 		toggleChangeTrackingGesture = "kb:%s" % getToggleChangeTrackingShortCut()
-		self.bindGesture(toggleChangeTrackingGesture , "toggleChangeTracking")
+		self.bindGesture(toggleChangeTrackingGesture, "toggleChangeTracking")
 		self.postOverlayClassInitGestureMap = self._gestureMap.copy()
 		if self.appModule.layerMode is None:
 			self.appModule.layerMode = False
@@ -1056,7 +1056,8 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		return ElementsListDialog
 
 	# script comes from nvda appModules.winword.py module
-# we need do it because for french word,  "control+shift+e" shortcut is remapped to "control+shift+r" in nvda locale gesture.ini
+# we need do it because for french word,
+#   "control+shift+e" shortcut is remapped to "control+shift+r" in nvda locale gesture.ini
 # so this don't word  when we use nvdaBultin.appModule.winword.AppModule class
 	def script_toggleChangeTracking(self, gesture):
 		if not self.WinwordDocumentObject:

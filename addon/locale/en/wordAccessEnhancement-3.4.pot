@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: wordAccessEnhancement 3.3.3\n"
+"Project-Id-Version: wordAccessEnhancement 3.4\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
-"POT-Creation-Date: 2022-07-31 18:08+0200\n"
+"POT-Creation-Date: 2023-02-20 19:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,54 +76,54 @@ msgid ""
 msgstr ""
 
 #. Translators: Reported when text contains a draft comment.
-#: appModules\winword\ww_automaticReading.py:238
+#: appModules\winword\ww_automaticReading.py:239
 #, python-format
 msgid "draft comment of %s:"
 msgstr ""
 
-#: appModules\winword\ww_automaticReading.py:238
-#: appModules\winword\ww_automaticReading.py:242
-#: appModules\winword\ww_automaticReading.py:245
-#: appModules\winword\ww_automaticReading.py:248
+#: appModules\winword\ww_automaticReading.py:239
+#: appModules\winword\ww_automaticReading.py:243
+#: appModules\winword\ww_automaticReading.py:246
+#: appModules\winword\ww_automaticReading.py:249
 msgid "comment:"
 msgstr ""
 
 #. Translators: Reported when text contains a resolved comment.
-#: appModules\winword\ww_automaticReading.py:241
+#: appModules\winword\ww_automaticReading.py:242
 #, python-format
 msgid "resolved comment of %s:"
 msgstr ""
 
 #. Translators: Reported when text contains a comment.
-#: appModules\winword\ww_automaticReading.py:245
-#: appModules\winword\ww_automaticReading.py:248
+#: appModules\winword\ww_automaticReading.py:246
+#: appModules\winword\ww_automaticReading.py:249
 #, python-format
 msgid "comment of %s:"
 msgstr ""
 
 #. Translators: odd And Even Pages Header Footer information.
-#: appModules\winword\ww_automaticReading.py:3452
-#: appModules\winword\ww_document.py:223 appModules\winword\ww_document.py:301
-#: appModules\winword\ww_document.py:354 appModules\winword\ww_document.py:360
-#: appModules\winword\ww_document.py:508 appModules\winword\ww_document.py:874
-#: appModules\winword\ww_document.py:1001 appModules\winword\ww_sections.py:44
+#: appModules\winword\ww_automaticReading.py:4273
+#: appModules\winword\ww_document.py:221 appModules\winword\ww_document.py:299
+#: appModules\winword\ww_document.py:352 appModules\winword\ww_document.py:358
+#: appModules\winword\ww_document.py:506 appModules\winword\ww_document.py:859
+#: appModules\winword\ww_document.py:986 appModules\winword\ww_sections.py:44
 #: appModules\winword\ww_sections.py:192
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:180
 msgid "yes"
 msgstr ""
 
-#: appModules\winword\ww_automaticReading.py:3452
-#: appModules\winword\ww_document.py:223 appModules\winword\ww_document.py:301
-#: appModules\winword\ww_document.py:355 appModules\winword\ww_document.py:361
-#: appModules\winword\ww_document.py:508 appModules\winword\ww_document.py:875
-#: appModules\winword\ww_document.py:1001 appModules\winword\ww_sections.py:44
+#: appModules\winword\ww_automaticReading.py:4273
+#: appModules\winword\ww_document.py:221 appModules\winword\ww_document.py:299
+#: appModules\winword\ww_document.py:353 appModules\winword\ww_document.py:359
+#: appModules\winword\ww_document.py:506 appModules\winword\ww_document.py:860
+#: appModules\winword\ww_document.py:986 appModules\winword\ww_sections.py:44
 #: appModules\winword\ww_sections.py:192
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:180
 msgid "no"
 msgstr ""
 
 #. Translators: message to user to report automatic reading voice record.
-#: appModules\winword\ww_automaticReading.py:3492
+#: appModules\winword\ww_automaticReading.py:4313
 msgid "Current voice settings have beenset for automatic reading"
 msgstr ""
 
@@ -473,7 +473,7 @@ msgstr ""
 
 #. Translators: message to user for waiting result
 #. Translators: message to user for waiting.
-#: appModules\winword\ww_choice.py:102 appModules\winword\ww_document.py:921
+#: appModules\winword\ww_choice.py:102 appModules\winword\ww_document.py:906
 msgid "Please wait"
 msgstr ""
 
@@ -662,7 +662,7 @@ msgstr ""
 #: appModules\winword\ww_elementsListDialog.py:459
 #: appModules\winword\ww_fields.py:141 appModules\winword\ww_formfields.py:134
 #: appModules\winword\ww_shapes.py:43
-#: appModules\winword\ww_wordDocumentBase.py:1104
+#: appModules\winword\ww_wordDocumentBase.py:1105
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:113
 msgid "Comment"
 msgstr ""
@@ -697,7 +697,7 @@ msgstr ""
 #. wdFieldSubject
 #: appModules\winword\ww_comments.py:116
 #: appModules\winword\ww_contentControl.py:145
-#: appModules\winword\ww_document.py:838 appModules\winword\ww_fields.py:139
+#: appModules\winword\ww_document.py:823 appModules\winword\ww_fields.py:139
 #: appModules\winword\ww_formfields.py:132
 #: appModules\winword\ww_revisions.py:159
 msgid "Author"
@@ -809,7 +809,7 @@ msgstr ""
 #. wdFieldInfo
 #: appModules\winword\ww_contentControl.py:105
 #: appModules\winword\ww_contentControl.py:143
-#: appModules\winword\ww_document.py:841 appModules\winword\ww_fields.py:137
+#: appModules\winword\ww_document.py:826 appModules\winword\ww_fields.py:137
 #: appModules\winword\ww_formfields.py:130 appModules\winword\ww_tables.py:333
 msgid "Title"
 msgstr ""
@@ -858,7 +858,7 @@ msgstr ""
 
 #. wdFieldTitle
 #: appModules\winword\ww_contentControl.py:144
-#: appModules\winword\ww_document.py:842 appModules\winword\ww_fields.py:138
+#: appModules\winword\ww_document.py:827 appModules\winword\ww_fields.py:138
 #: appModules\winword\ww_formfields.py:131
 msgid "Subject"
 msgstr ""
@@ -951,687 +951,687 @@ msgstr ""
 #. Translators: text to indicate page number alignment to the left.
 #. for wdAlignPageNumberLeft
 #. Translators: text to indicate page number alignment to the left.
-#: appModules\winword\ww_document.py:35 appModules\winword\ww_document.py:124
+#: appModules\winword\ww_document.py:33 appModules\winword\ww_document.py:122
 msgid "Page's number on the Left"
 msgstr ""
 
 #. Translators: text to indicate page number alignment to the center.
 #. for wdAlignPageNumberCenter
 #. Translators: text to indicate page number alignment to the center.
-#: appModules\winword\ww_document.py:37 appModules\winword\ww_document.py:127
+#: appModules\winword\ww_document.py:35 appModules\winword\ww_document.py:125
 msgid "Page's number Centered"
 msgstr ""
 
 #. Translators: text to indicate page numer alignment to the right.
 #. for wdAlignPageNumberRight
 #. Translators: text to indicate page numer alignment to the right.
-#: appModules\winword\ww_document.py:39 appModules\winword\ww_document.py:130
+#: appModules\winword\ww_document.py:37 appModules\winword\ww_document.py:128
 msgid "Page's number on the Right"
 msgstr ""
 
 #. Translators: text to indicate page number alignment to inside.
 #. for wdAlignPageNumberInside
 #. Translators: text to indicate page number alignment to inside.
-#: appModules\winword\ww_document.py:41 appModules\winword\ww_document.py:133
+#: appModules\winword\ww_document.py:39 appModules\winword\ww_document.py:131
 msgid "Page number inside"
 msgstr ""
 
 #. Translators: text to indicate page number alignment to outside.
 #. for wdAlignPageNumberOutside
 #. Translators: text to indicate page number alignment to outside.
-#: appModules\winword\ww_document.py:43 appModules\winword\ww_document.py:136
+#: appModules\winword\ww_document.py:41 appModules\winword\ww_document.py:134
 msgid "Page's number Outside"
 msgstr ""
 
 #. Translators: text to report a header or footer linked to previous.
-#: appModules\winword\ww_document.py:114
+#: appModules\winword\ww_document.py:112
 msgid "linked to previous"
 msgstr ""
 
 #. Translators: column information.
-#: appModules\winword\ww_document.py:201
+#: appModules\winword\ww_document.py:199
 msgid "Column {index}: {wide} wide"
 msgstr ""
 
 #. Translators: column information.
-#: appModules\winword\ww_document.py:205
+#: appModules\winword\ww_document.py:203
 #, python-format
 msgid "with %s spacing after"
 msgstr ""
 
 #. Translators: title of section's text column paragraph.
-#: appModules\winword\ww_document.py:215
+#: appModules\winword\ww_document.py:213
 msgid "Text columns:"
 msgstr ""
 
 #. Translators: text to indicate text column index.
-#: appModules\winword\ww_document.py:221
+#: appModules\winword\ww_document.py:219
 #, python-format
 msgid "Number of Text columns: %s"
 msgstr ""
 
 #. Translators: text to indicate lines between text columns.
-#: appModules\winword\ww_document.py:225
+#: appModules\winword\ww_document.py:223
 #, python-format
 msgid "Line between columns: %s"
 msgstr ""
 
 #. Translators: text to indicate text column style
-#: appModules\winword\ww_document.py:230
+#: appModules\winword\ww_document.py:228
 msgid ""
 "Style: columns' wide = {wide} (evenly spaced), gap between columns = "
 "{spacing}"
 msgstr ""
 
 #. Translators: text to indicate text column style.
-#: appModules\winword\ww_document.py:237
+#: appModules\winword\ww_document.py:235
 msgid "Style: various column wide"
 msgstr ""
 
-#: appModules\winword\ww_document.py:247
+#: appModules\winword\ww_document.py:245
 msgid "on the left side"
 msgstr ""
 
-#: appModules\winword\ww_document.py:248
+#: appModules\winword\ww_document.py:246
 msgid "on the right side"
 msgstr ""
 
-#: appModules\winword\ww_document.py:249
+#: appModules\winword\ww_document.py:247
 msgid "on the top side"
 msgstr ""
 
 #. Translators: gutter information.
-#: appModules\winword\ww_document.py:257
+#: appModules\winword\ww_document.py:255
 msgid "Gutter: {pos}, {size} large"
 msgstr ""
 
 #. Translators: miror margins informations.
-#: appModules\winword\ww_document.py:272
+#: appModules\winword\ww_document.py:270
 msgid "Miror margins:"
 msgstr ""
 
 #. Translators: margins information.
-#: appModules\winword\ww_document.py:275
+#: appModules\winword\ww_document.py:273
 msgid "Margins:"
 msgstr ""
 
 #. Translators: miror inside margin information:
-#: appModules\winword\ww_document.py:280
+#: appModules\winword\ww_document.py:278
 #, python-format
 msgid "Inside: %s"
 msgstr ""
 
 #. Translators: miror outside margin information.
-#: appModules\winword\ww_document.py:282
+#: appModules\winword\ww_document.py:280
 #, python-format
 msgid "Outside: %s"
 msgstr ""
 
 #. Translators: left margin information.
-#: appModules\winword\ww_document.py:285
+#: appModules\winword\ww_document.py:283
 #, python-format
 msgid "Left: %s"
 msgstr ""
 
 #. translators: right margin information.
-#: appModules\winword\ww_document.py:287
+#: appModules\winword\ww_document.py:285
 #, python-format
 msgid "Right: %s"
 msgstr ""
 
 #. Translators: top margin information.
-#: appModules\winword\ww_document.py:291
+#: appModules\winword\ww_document.py:289
 #, python-format
 msgid "Top: %s"
 msgstr ""
 
 #. Translators: bottom margin information.
-#: appModules\winword\ww_document.py:294
+#: appModules\winword\ww_document.py:292
 #, python-format
 msgid "Bottom: %s"
 msgstr ""
 
-#: appModules\winword\ww_document.py:299
+#: appModules\winword\ww_document.py:297
 #, python-format
 msgid "Orientation: %s"
 msgstr ""
 
 #. Translators: self.twoPagesOnOne information.
-#: appModules\winword\ww_document.py:303
+#: appModules\winword\ww_document.py:301
 #, python-format
 msgid "Print two pages per sheet: %s"
 msgstr ""
 
-#: appModules\winword\ww_document.py:312
+#: appModules\winword\ww_document.py:310
 msgid "Landscape"
 msgstr ""
 
-#: appModules\winword\ww_document.py:313 appModules\winword\ww_sections.py:75
+#: appModules\winword\ww_document.py:311 appModules\winword\ww_sections.py:75
 msgid "Portrait"
 msgstr ""
 
-#: appModules\winword\ww_document.py:324 appModules\winword\ww_sections.py:86
+#: appModules\winword\ww_document.py:322 appModules\winword\ww_sections.py:86
 msgid "top"
 msgstr ""
 
-#: appModules\winword\ww_document.py:325
+#: appModules\winword\ww_document.py:323
 msgid "centered"
 msgstr ""
 
-#: appModules\winword\ww_document.py:326
+#: appModules\winword\ww_document.py:324
 msgid "justified"
 msgstr ""
 
 #. wdAlignVerticalJustify
-#: appModules\winword\ww_document.py:327 appModules\winword\ww_sections.py:89
+#: appModules\winword\ww_document.py:325 appModules\winword\ww_sections.py:89
 msgid "bottom"
 msgstr ""
 
-#: appModules\winword\ww_document.py:339
+#: appModules\winword\ww_document.py:337
 msgid "Continuous"
 msgstr ""
 
-#: appModules\winword\ww_document.py:340
+#: appModules\winword\ww_document.py:338
 msgid "Even pages "
 msgstr ""
 
-#: appModules\winword\ww_document.py:341
+#: appModules\winword\ww_document.py:339
 msgid "New column"
 msgstr ""
 
-#: appModules\winword\ww_document.py:342
+#: appModules\winword\ww_document.py:340
 msgid "New page"
 msgstr ""
 
-#: appModules\winword\ww_document.py:343
+#: appModules\winword\ww_document.py:341
 msgid "Odd pages"
 msgstr ""
 
 #. Translators: title of disposition information .
-#: appModules\winword\ww_document.py:348
+#: appModules\winword\ww_document.py:346
 msgid "Disposition:"
 msgstr ""
 
 #. Translators: section startinformation.
-#: appModules\winword\ww_document.py:352
+#: appModules\winword\ww_document.py:350
 #, python-format
 msgid "Sectionstart: %s"
 msgstr ""
 
 #. Translators: different First Page information.
-#: appModules\winword\ww_document.py:357
+#: appModules\winword\ww_document.py:355
 #, python-format
 msgid "Different first page: %s"
 msgstr ""
 
 #. Translators: different odd and even page informations.
-#: appModules\winword\ww_document.py:363
+#: appModules\winword\ww_document.py:361
 #, python-format
 msgid "Different Odd and even pages: %s"
 msgstr ""
 
 #. Translators: distance between footer and bottom information.
-#: appModules\winword\ww_document.py:366
+#: appModules\winword\ww_document.py:364
 #, python-format
 msgid "Distance between footer and bottom: %s"
 msgstr ""
 
 #. Translators: distance between header and top information.
-#: appModules\winword\ww_document.py:370
+#: appModules\winword\ww_document.py:368
 #, python-format
 msgid "Distance between header and top: %s"
 msgstr ""
 
 #. Translators: vertical alignment information.
-#: appModules\winword\ww_document.py:375
+#: appModules\winword\ww_document.py:373
 #, python-format
 msgid "Vertical alignment: %s"
 msgstr ""
 
 #. Translators: paper information title.
-#: appModules\winword\ww_document.py:391
+#: appModules\winword\ww_document.py:389
 msgid "Paper:"
 msgstr ""
 
 #. Translators: paper size information.
-#: appModules\winword\ww_document.py:395
+#: appModules\winword\ww_document.py:393
 #, python-format
 msgid "Paper size: %s"
 msgstr ""
 
 #. Translators: # height and width page information.
-#: appModules\winword\ww_document.py:398
+#: appModules\winword\ww_document.py:396
 msgid "Page's size: {height}height, {width} width"
 msgstr ""
 
 #. Translators: first page header information
-#: appModules\winword\ww_document.py:444
+#: appModules\winword\ww_document.py:442
 #, python-format
 msgid "First Page Header: %s"
 msgstr ""
 
 #. Translators: first page footer informations.
-#: appModules\winword\ww_document.py:454
+#: appModules\winword\ww_document.py:452
 #, python-format
 msgid "First Page Footer: %s"
 msgstr ""
 
 #. Translators: event page header information
-#: appModules\winword\ww_document.py:465
+#: appModules\winword\ww_document.py:463
 #, python-format
 msgid "Even Page Header: %s"
 msgstr ""
 
 #. Translators: Even Page Footer informations
-#: appModules\winword\ww_document.py:475
+#: appModules\winword\ww_document.py:473
 #, python-format
 msgid "Even Page Footer: %s"
 msgstr ""
 
 #. Translators: page header informations
-#: appModules\winword\ww_document.py:484
+#: appModules\winword\ww_document.py:482
 #, python-format
 msgid "Page header: %s"
 msgstr ""
 
 #. Translators: page footer informations.
-#: appModules\winword\ww_document.py:493
+#: appModules\winword\ww_document.py:491
 #, python-format
 msgid "Page Footer: %s"
 msgstr ""
 
 #. Translators: title of section paragraph.
-#: appModules\winword\ww_document.py:502
+#: appModules\winword\ww_document.py:500
 msgid "Section {index} of {count}:"
 msgstr ""
 
 #. Translators: protection forforms information.
-#: appModules\winword\ww_document.py:510
+#: appModules\winword\ww_document.py:508
 #, python-format
 msgid "Text modification only in form fields: %s"
 msgstr ""
 
 #. Translators: title of section paragraph.
-#: appModules\winword\ww_document.py:535
+#: appModules\winword\ww_document.py:533
 msgid "Document's sections:"
 msgstr ""
 
 #. Translators: title of position paragraph.
-#: appModules\winword\ww_document.py:602
+#: appModules\winword\ww_document.py:600
 msgid "Position in the document:"
 msgstr ""
 
 #. Translators: position informations.
-#: appModules\winword\ww_document.py:606
+#: appModules\winword\ww_document.py:604
 msgid "In section {section}, page {page}"
 msgstr ""
 
 #. Translators: table uniform information
-#: appModules\winword\ww_document.py:614 appModules\winword\ww_document.py:982
+#: appModules\winword\ww_document.py:612 appModules\winword\ww_document.py:967
 msgid "uniform"
 msgstr ""
 
-#: appModules\winword\ww_document.py:614 appModules\winword\ww_document.py:982
+#: appModules\winword\ww_document.py:612 appModules\winword\ww_document.py:967
 msgid "non-uniform"
 msgstr ""
 
 #. Translators: In table informations.
-#: appModules\winword\ww_document.py:616
+#: appModules\winword\ww_document.py:614
 msgid "In a {uniform} table"
 msgstr ""
 
 #. Translators: cell positions in table.
-#: appModules\winword\ww_document.py:621
+#: appModules\winword\ww_document.py:619
 msgid " Cell row {row} , column {col} of table {tableIndex}"
 msgstr ""
 
 #. Translators: in section and column position.
-#: appModules\winword\ww_document.py:628
+#: appModules\winword\ww_document.py:626
 msgid "In section {section}, text column {textColumn}"
 msgstr ""
 
 #. Translators: just in section.
-#: appModules\winword\ww_document.py:633
+#: appModules\winword\ww_document.py:631
 #, python-format
 msgid "In section {%s"
 msgstr ""
 
 #. Translators: indicate line and column position in the page.
-#: appModules\winword\ww_document.py:639
+#: appModules\winword\ww_document.py:637
 msgid "On line {line} of the page {page}, column {col}"
 msgstr ""
 
-#: appModules\winword\ww_document.py:702
+#: appModules\winword\ww_document.py:700
 msgid "Allow only revisions"
 msgstr ""
 
-#: appModules\winword\ww_document.py:703
+#: appModules\winword\ww_document.py:701
 msgid "Allow only comments"
 msgstr ""
 
-#: appModules\winword\ww_document.py:704
+#: appModules\winword\ww_document.py:702
 msgid "Allow only form fields"
 msgstr ""
 
-#: appModules\winword\ww_document.py:705
+#: appModules\winword\ww_document.py:703
 msgid "Read-only"
 msgstr ""
 
-#: appModules\winword\ww_document.py:710
+#: appModules\winword\ww_document.py:708
 msgid "No protection"
 msgstr ""
 
-#: appModules\winword\ww_document.py:738
+#: appModules\winword\ww_document.py:724
 #, python-format
 msgid "%s or more"
 msgstr ""
 
 #. Translators: title of statistics paragraph.
-#: appModules\winword\ww_document.py:748
+#: appModules\winword\ww_document.py:733
 msgid "Statistics:"
 msgstr ""
 
 #. Translators: text to indicate number of pages
-#: appModules\winword\ww_document.py:752
+#: appModules\winword\ww_document.py:737
 #, python-format
 msgid "Pages: %s"
 msgstr ""
 
 #. Translators: text to indicate number of lines.
-#: appModules\winword\ww_document.py:755
+#: appModules\winword\ww_document.py:740
 #, python-format
 msgid "Lines: %s"
 msgstr ""
 
 #. Translators: text to indicate number of words
-#: appModules\winword\ww_document.py:758
+#: appModules\winword\ww_document.py:743
 #, python-format
 msgid "Words: %s"
 msgstr ""
 
 #. Translators: text to indicate number of characters
-#: appModules\winword\ww_document.py:761
+#: appModules\winword\ww_document.py:746
 #, python-format
 msgid "Characters: %s"
 msgstr ""
 
 #. Translators: text to indicate number of paragraphs
-#: appModules\winword\ww_document.py:764
+#: appModules\winword\ww_document.py:749
 #, python-format
 msgid "Paragraphs: %s"
 msgstr ""
 
 #. Translators: text to indicate number of sections.
-#: appModules\winword\ww_document.py:768
+#: appModules\winword\ww_document.py:753
 #, python-format
 msgid "Sections: %s"
 msgstr ""
 
 #. Translators: text to indicate number of comments.
-#: appModules\winword\ww_document.py:772
+#: appModules\winword\ww_document.py:757
 #, python-format
 msgid "Comments: %s"
 msgstr ""
 
 #. Translators:text to indicate number of tables.
-#: appModules\winword\ww_document.py:776
+#: appModules\winword\ww_document.py:761
 #, python-format
 msgid "Tables: %s"
 msgstr ""
 
 #. Translators: text to indicate number of shape objects.
-#: appModules\winword\ww_document.py:780
+#: appModules\winword\ww_document.py:765
 #, python-format
 msgid "Shape objects: %s"
 msgstr ""
 
 #. Translators: text to indicate number of inLine shape objects.
-#: appModules\winword\ww_document.py:784
+#: appModules\winword\ww_document.py:769
 #, python-format
 msgid "InLineShape objects: %s"
 msgstr ""
 
 #. Translators: text to indicate number of endnotes .
-#: appModules\winword\ww_document.py:788
+#: appModules\winword\ww_document.py:773
 #, python-format
 msgid "Endnotes: %s"
 msgstr ""
 
 #. Translators: text to indicate number of footnotes.
-#: appModules\winword\ww_document.py:792
+#: appModules\winword\ww_document.py:777
 #, python-format
 msgid "Footnotes: %s"
 msgstr ""
 
 #. Translators: text to indicate number of fields.
-#: appModules\winword\ww_document.py:796
+#: appModules\winword\ww_document.py:781
 #, python-format
 msgid "Fields: %s"
 msgstr ""
 
 #. Translators: text to indicate number of formfields.
-#: appModules\winword\ww_document.py:800
+#: appModules\winword\ww_document.py:785
 #, python-format
 msgid "Formfields: %s"
 msgstr ""
 
 #. Translators: text to indicate number of frames.
-#: appModules\winword\ww_document.py:804
+#: appModules\winword\ww_document.py:789
 #, python-format
 msgid "Frames: %s"
 msgstr ""
 
 #. Translators: text to indicate number of hyperlinks.
-#: appModules\winword\ww_document.py:808
+#: appModules\winword\ww_document.py:793
 #, python-format
 msgid "Hyperlinks: %s"
 msgstr ""
 
 #. Translators: text to indicate number of lists.
-#: appModules\winword\ww_document.py:812
+#: appModules\winword\ww_document.py:797
 #, python-format
 msgid "Lists: %s"
 msgstr ""
 
 #. Translators: text to indicate number of bookmarks.
-#: appModules\winword\ww_document.py:816
+#: appModules\winword\ww_document.py:801
 #, python-format
 msgid "Bookmarks: %s"
 msgstr ""
 
 #. Translators: text to indicate number of spelling errors.
-#: appModules\winword\ww_document.py:822
+#: appModules\winword\ww_document.py:807
 #, python-format
 msgid "Spelling errors: %s"
 msgstr ""
 
-#: appModules\winword\ww_document.py:831
+#: appModules\winword\ww_document.py:816
 #, python-format
 msgid "Contains hidden text: %s"
 msgstr ""
 
-#: appModules\winword\ww_document.py:832 appModules\winword\ww_document.py:868
-#: appModules\winword\ww_document.py:872 appModules\winword\ww_document.py:881
-#: appModules\winword\ww_document.py:884
+#: appModules\winword\ww_document.py:817 appModules\winword\ww_document.py:853
+#: appModules\winword\ww_document.py:857 appModules\winword\ww_document.py:866
+#: appModules\winword\ww_document.py:869
 msgid "Yes"
 msgstr ""
 
-#: appModules\winword\ww_document.py:832 appModules\winword\ww_document.py:868
-#: appModules\winword\ww_document.py:872 appModules\winword\ww_document.py:881
-#: appModules\winword\ww_document.py:884
+#: appModules\winword\ww_document.py:817 appModules\winword\ww_document.py:853
+#: appModules\winword\ww_document.py:857 appModules\winword\ww_document.py:866
+#: appModules\winword\ww_document.py:869
 msgid "No"
 msgstr ""
 
-#: appModules\winword\ww_document.py:839
+#: appModules\winword\ww_document.py:824
 msgid "Creation date"
 msgstr ""
 
-#: appModules\winword\ww_document.py:840
+#: appModules\winword\ww_document.py:825
 msgid "Revision number"
 msgstr ""
 
-#: appModules\winword\ww_document.py:843
+#: appModules\winword\ww_document.py:828
 msgid "Compagny"
 msgstr ""
 
 #. Translators: document informations
-#: appModules\winword\ww_document.py:847
+#: appModules\winword\ww_document.py:832
 msgid "Document's properties:"
 msgstr ""
 
-#: appModules\winword\ww_document.py:849
+#: appModules\winword\ww_document.py:834
 #, python-format
 msgid "File name: %s"
 msgstr ""
 
-#: appModules\winword\ww_document.py:857
+#: appModules\winword\ww_document.py:842
 #, python-format
 msgid "Protection: %s"
 msgstr ""
 
 #. Translators: title of options paragraph.
-#: appModules\winword\ww_document.py:864
+#: appModules\winword\ww_document.py:849
 msgid "Specific options:"
 msgstr ""
 
 #. Translators: text to indicate check spelling as you type.
-#: appModules\winword\ww_document.py:867
+#: appModules\winword\ww_document.py:852
 #, python-format
 msgid "Check spelling as you type: %s"
 msgstr ""
 
 #. Translators: text to indicate check grammar as you type.
-#: appModules\winword\ww_document.py:871
+#: appModules\winword\ww_document.py:856
 #, python-format
 msgid "Check grammar as you type: %s"
 msgstr ""
 
 #. Translators: check grammar with speeling option information.
-#: appModules\winword\ww_document.py:877
+#: appModules\winword\ww_document.py:862
 #, python-format
 msgid "Check grammar with spelling: %s"
 msgstr ""
 
 #. Translators: text to indicate rack revision is activated.
-#: appModules\winword\ww_document.py:880
+#: appModules\winword\ww_document.py:865
 #, python-format
 msgid "Track revision: %s"
 msgstr ""
 
-#: appModules\winword\ww_document.py:883
+#: appModules\winword\ww_document.py:868
 #, python-format
 msgid "Display hidden text: %s"
 msgstr ""
 
 #. Translators: title of tables informations
-#: appModules\winword\ww_document.py:905
+#: appModules\winword\ww_document.py:890
 msgid "Document's tables:"
 msgstr ""
 
 #. Translators: table information
-#: appModules\winword\ww_document.py:911
+#: appModules\winword\ww_document.py:896
 msgid "Table {index} of {count}:"
 msgstr ""
 
 #. Translation: title of information dialog.
-#: appModules\winword\ww_document.py:930
+#: appModules\winword\ww_document.py:915
 msgid "Document's informations"
 msgstr ""
 
-#: appModules\winword\ww_document.py:983
+#: appModules\winword\ww_document.py:968
 msgid " nested"
 msgstr ""
 
 #. Translators:  table informations.
-#: appModules\winword\ww_document.py:985
+#: appModules\winword\ww_document.py:970
 msgid "table {nested} {uniform} of {rows} rows, {columns} columns"
 msgstr ""
 
-#: appModules\winword\ww_document.py:990
+#: appModules\winword\ww_document.py:975
 msgid "Localized at {page} page , {line} line"
 msgstr ""
 
 #. Translators: title of table.
-#: appModules\winword\ww_document.py:995
+#: appModules\winword\ww_document.py:980
 #, python-format
 msgid "Title: %s"
 msgstr ""
 
 #. Translators: table's description.
-#: appModules\winword\ww_document.py:999
+#: appModules\winword\ww_document.py:984
 #, python-format
 msgid "Description: %s"
 msgstr ""
 
 #. Translators: allow auto fit information.
-#: appModules\winword\ww_document.py:1003
+#: appModules\winword\ww_document.py:988
 #, python-format
 msgid "Automatic resize to fit content: %s"
 msgstr ""
 
 #. Translators: top paddding information.
-#: appModules\winword\ww_document.py:1006
+#: appModules\winword\ww_document.py:991
 #, python-format
 msgid "Top padding: %s"
 msgstr ""
 
 #. Translators: bottom padding information.
-#: appModules\winword\ww_document.py:1009
+#: appModules\winword\ww_document.py:994
 #, python-format
 msgid "Bottom padding: %s"
 msgstr ""
 
 #. Translators: spacing between cells.
-#: appModules\winword\ww_document.py:1012
+#: appModules\winword\ww_document.py:997
 #, python-format
 msgid "Spacing between cells: %s"
 msgstr ""
 
 #. Translators: number of tables contained in this table.
-#: appModules\winword\ww_document.py:1023
+#: appModules\winword\ww_document.py:1008
 #, python-format
 msgid "Contains %s tables"
 msgstr ""
 
-#: appModules\winword\ww_document.py:1040
+#: appModules\winword\ww_document.py:1025
 msgid "Without border"
 msgstr ""
 
 #. Translators: title of borders description
-#: appModules\winword\ww_document.py:1047
+#: appModules\winword\ww_document.py:1032
 msgid "Borders:"
 msgstr ""
 
-#: appModules\winword\ww_document.py:1083
+#: appModules\winword\ww_document.py:1068
 msgid ""
 "surrounding {color} {lineStyle} with width of {lineWidth} and art style "
 "{artStyle}"
 msgstr ""
 
-#: appModules\winword\ww_document.py:1090
+#: appModules\winword\ww_document.py:1075
 msgid "surrounding {color} {lineStyle} with width of {lineWidth}"
 msgstr ""
 
-#: appModules\winword\ww_document.py:1118
+#: appModules\winword\ww_document.py:1103
 msgid ""
 "{name}= {color} {lineStyle} with width of {lineWidth} and art style "
 "{artStyle}"
 msgstr ""
 
-#: appModules\winword\ww_document.py:1123
+#: appModules\winword\ww_document.py:1108
 msgid "{name}= {color} {lineStyle} with width of {lineWidth}"
 msgstr ""
 
 #. Translators: no border is visible
-#: appModules\winword\ww_document.py:1131
+#: appModules\winword\ww_document.py:1116
 msgid "Without borders"
 msgstr ""
 
-#: appModules\winword\ww_document.py:1144
+#: appModules\winword\ww_document.py:1129
 msgid "mixed"
 msgstr ""
 
-#: appModules\winword\ww_document.py:1145
+#: appModules\winword\ww_document.py:1130
 #, python-format
 msgid "%s line"
 msgstr ""
@@ -1640,7 +1640,7 @@ msgstr ""
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_elementsListDialog.py:52
 #: appModules\winword\ww_endnotes.py:45
-#: appModules\winword\ww_wordDocumentBase.py:1104
+#: appModules\winword\ww_wordDocumentBase.py:1105
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:115
 msgid "Endnote"
 msgstr ""
@@ -1662,7 +1662,7 @@ msgstr ""
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_elementsListDialog.py:61
 #: appModules\winword\ww_footnotes.py:42
-#: appModules\winword\ww_wordDocumentBase.py:1104
+#: appModules\winword\ww_wordDocumentBase.py:1105
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:114
 msgid "Footnote"
 msgstr ""
@@ -4351,76 +4351,76 @@ msgid "Display document's informations"
 msgstr ""
 
 #. Translators: a message when toggling change tracking in Microsoft word
-#: appModules\winword\ww_wordDocumentBase.py:1073
+#: appModules\winword\ww_wordDocumentBase.py:1074
 msgid "Change tracking on"
 msgstr ""
 
 #. Translators: a message when toggling change tracking in Microsoft word
-#: appModules\winword\ww_wordDocumentBase.py:1076
+#: appModules\winword\ww_wordDocumentBase.py:1077
 msgid "Change tracking off"
 msgstr ""
 
 #. Translators: This is the title of the InsertElementDialog dialog.
-#: appModules\winword\ww_wordDocumentBase.py:1093
+#: appModules\winword\ww_wordDocumentBase.py:1094
 msgid "Insert element"
 msgstr ""
 
 #. Translators: This is a label appearing on Insert Element dialog.
-#: appModules\winword\ww_wordDocumentBase.py:1103
+#: appModules\winword\ww_wordDocumentBase.py:1104
 msgid "Element's &type:"
 msgstr ""
 
 #. Translators: This is a label of a button appearing
 #. on Insert Element Dialog.
-#: appModules\winword\ww_wordDocumentBase.py:1114
+#: appModules\winword\ww_wordDocumentBase.py:1115
 msgid "&Insert"
 msgstr ""
 
 #. Translators: Input help mode message for toggle Skip Empty Paragraphs Option command.
-#: appModules\winword\__init__.py:181
+#: appModules\winword\__init__.py:179
 msgid "Toggle on or off the option to skip empty paragraphs"
 msgstr ""
 
 #. Translators: message to user
 #. to report skipping of empty paragraph when moving by paragraph.
-#: appModules\winword\__init__.py:189
+#: appModules\winword\__init__.py:187
 msgid "Skip empty paragraphs"
 msgstr ""
 
 #. Translators: message to user
 #. to report no skipping empty paragraph when moving by paragraph.
-#: appModules\winword\__init__.py:193
+#: appModules\winword\__init__.py:191
 msgid "Don't skip empty paragraphs"
 msgstr ""
 
 #. Translators: message to ask user to hit tab key.
-#: appModules\winword\__init__.py:214 appModules\winword\__init__.py:272
+#: appModules\winword\__init__.py:212 appModules\winword\__init__.py:270
 msgid "Hit tab to move focus in the spelling checker pane"
 msgstr ""
 
-#: appModules\winword\__init__.py:246
+#: appModules\winword\__init__.py:244
 msgid ""
 "Report error and suggestion displayed by the spelling checker. Twice:spell "
 "them. Third: say help text"
 msgstr ""
 
 #. Translators: message to the user when word version is not supported.
-#: appModules\winword\__init__.py:254
+#: appModules\winword\__init__.py:252
 msgid "Not available for this Word version"
 msgstr ""
 
 #. Translators: message to indicate the focus is not in spellAndGrammar checker.
-#: appModules\winword\__init__.py:264
+#: appModules\winword\__init__.py:262
 msgid "You are Not in the spelling checker"
 msgstr ""
 
 #. Translators: Input help mode message for report Current Sentence command.
-#: appModules\winword\__init__.py:296
+#: appModules\winword\__init__.py:294
 msgid "Report current sentence "
 msgstr ""
 
 #. Translators: Input help mode message for set automatic reading voice command.
-#: appModules\winword\__init__.py:305
+#: appModules\winword\__init__.py:303
 msgid "Record automatic reading voice's settings"
 msgstr ""
 

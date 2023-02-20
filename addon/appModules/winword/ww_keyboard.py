@@ -57,11 +57,14 @@ def _getBrowseModeQuickNavKeysSection():
 def getBrowseModeQuickNavKey(script):
 	return _getBrowseModeQuickNavKeysSection().get(script)
 
+
 def _getWordShortCutsSection():
 	return _getKeyboardIniConfig()[SCT_WordShortCuts]
 
+
 def getToggleChangeTrackingShortCut():
 	return _getWordShortCutsSection().get("toggleChangeTracking")
+
 
 def _getKeyboardIniConfig():
 	global _conf
