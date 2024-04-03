@@ -1,6 +1,6 @@
 # appModules\winword\ww_browsemode.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2022 paulber19
+# Copyright (C) 2019-2024 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -9,12 +9,8 @@ import ui
 import browseMode
 import textInfos
 import config
-try:
-	# for nvda version < 2021.1
-	from sayAllHandler import CURSOR_CARET
-except (AttributeError, ImportError):
-	from speech.sayAll import CURSOR
-	CURSOR_CARET = CURSOR.CARET
+
+from speech.sayAll import CURSOR
 import speech
 import speech.commands
 from NVDAObjects.window.winword import (
@@ -26,8 +22,7 @@ from NVDAObjects.window.winword import (
 	wdRevisionInsert,
 	wdRevisionDelete
 )
-# from NVDAObjects.window.winword import *
-from versionInfo import version_year, version_major
+
 from .ww_fields import Field
 from .ww_keyboard import getBrowseModeQuickNavKey
 from scriptHandler import willSayAllResume
@@ -35,22 +30,7 @@ import api
 import winsound
 import sys
 import os
-try:
-	# for nvda version >= 2021.2
-	from controlTypes.outputReason import OutputReason
-	REASON_QUICKNAV = OutputReason.QUICKNAV
-	REASON_FOCUS = OutputReason.FOCUS
-except ImportError:
-	try:
-		# for nvda version == 2021.1
-		from controlTypes import OutputReason
-		REASON_QUICKNAV = OutputReason.QUICKNAV
-		REASON_FOCUS = OutputReason.FOCUS
-	except ImportError:
-		# for nvda version < 2021.1
-		REASON_QUICKNAV = browseMode.REASON_QUICKNAV
-		import controlTypes
-		REASON_FOCUS = controlTypes.Reason.FOCUS
+from controlTypes.outputReason import OutputReason
 
 _curAddon = addonHandler.getCodeAddon()
 path = os.path.join(_curAddon.path, "shared")
@@ -102,7 +82,7 @@ class BrowseModeTreeInterceptorEx(browseMode.BrowseModeTreeInterceptor):
 			gesture, itemType, "next", nextError, readUnit)
 		script.__doc__ = nextDoc
 		script.__name__ = funcName
-		script.resumeSayAllMode = CURSOR_CARET
+		script.resumeSayAllMode = CURSOR.CARET
 		setattr(cls, funcName, script)
 		if key is not None:
 			map["kb:%s" % key] = scriptName
@@ -112,7 +92,7 @@ class BrowseModeTreeInterceptorEx(browseMode.BrowseModeTreeInterceptor):
 			gesture, itemType, "previous", prevError, readUnit)
 		script.__doc__ = prevDoc
 		script.__name__ = funcName
-		script.resumeSayAllMode = CURSOR_CARET
+		script.resumeSayAllMode = CURSOR.CARET
 		setattr(cls, funcName, script)
 		if key is not None:
 			map["kb:shift+%s" % key] = scriptName
@@ -268,9 +248,6 @@ class BrowseModeDocumentTreeInterceptorEx(
 		if not gesture or not willSayAllResume(gesture):
 			item.report(readUnit=readUnit)
 		item.moveTo()
-
-
-NVDAVersion = [version_year, version_major]
 
 from .ww_automaticReading import AutomaticReadingWordTextInfo
 
@@ -493,7 +470,7 @@ class WordDocumentFootnoteQuickNavItem(WordDocumentCollectionQuickNavItem):
 	def moveTo(self):
 		info = self.textInfo.copy()
 		info.collapse()
-		self.document._set_selection(info, reason=REASON_QUICKNAV)
+		self.document._set_selection(info, reason=OutputReason.QUICKNAV)
 
 
 class FootnoteWinWordCollectionQuicknavIterator(WinWordCollectionQuicknavIterator):
@@ -578,7 +555,7 @@ class WordDocumentRevisionQuickNavItemEx(WordDocumentRevisionQuickNavItem):
 				info.setEndPoint(fieldInfo, "endToEnd")
 		if revisionType == wdRevisionDelete:
 			info.expand(textInfos.UNIT_CHARACTER)
-			speech.speakTextInfo(info, useCache=False, reason=REASON_FOCUS)
+			speech.speakTextInfo(info, useCache=False, reason=OutputReason.FOCUS)
 			return
 		autoReadingWith = _addonConfigManager.getAutoReadingWithOption()
 		autoReadingWithBeep = _addonConfigManager.toggleAutomaticReadingOption(
@@ -597,9 +574,9 @@ class WordDocumentRevisionQuickNavItemEx(WordDocumentRevisionQuickNavItem):
 			seq.append(rev.FormatRevisionTypeAndAuthorText())
 			seq.append(speech.commands.EndUtteranceCommand())
 			speech.speak(seq)
-			speech.speakTextInfo(info, useCache=False, reason=REASON_FOCUS, formatConfig=formatConfig)
+			speech.speakTextInfo(info, useCache=False, reason=OutputReason.FOCUS, formatConfig=formatConfig)
 			return
-		speech.speakTextInfo(info, useCache=False, reason=REASON_FOCUS)
+		speech.speakTextInfo(info, useCache=False, reason=OutputReason.FOCUS)
 
 
 class RevisionWinWordCollectionQuicknavIterator(WinWordCollectionQuicknavIterator):

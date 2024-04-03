@@ -1,6 +1,6 @@
 # appModules\winword\__init__.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2022 paulber19
+# Copyright (C) 2019-2024 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -20,27 +20,9 @@ import NVDAObjects.UIA.wordDocument
 import NVDAObjects.IAccessible.winword
 from .ww_scriptTimer import stopScriptTimer, delayScriptTask
 import sys
-try:
-	# for nvda >= 2021.2
-	from controlTypes.role import Role
-	ROLE_BUTTON = Role.BUTTON
-	ROLE_PANE = Role.PANE
-	from controlTypes.outputReason import OutputReason
-	from controlTypes.role import _roleLabels as roleLabels
-	REASON_FOCUS = OutputReason.FOCUS
-except ImportError:
-	import controlTypes
-	ROLE_PANE = controlTypes.ROLE_PANE
-	ROLE_BUTTON = controlTypes.ROLE_BUTTON
-	from controlTypes import roleLabels
-	try:
-		# for nvda version == 2021.1
-		from controlTypes import OutputReason
-		REASON_FOCUS = OutputReason.FOCUS
-	except AttributeError:
-		# fornvda version <  2020.1
-		REASON_FOCUS = controlTypes.REASON_FOCUS
-
+from controlTypes.role import Role
+from controlTypes.outputReason import OutputReason
+from controlTypes.role import _roleLabels as roleLabels
 
 _curAddon = addonHandler.getCodeAddon()
 debugToolsPath = os.path.join(_curAddon.path, "debugTools")
@@ -62,8 +44,9 @@ sys.path.append(sharedPath)
 from ww_addonConfigManager import _addonConfigManager
 from ww_utils import (
 	maximizeWindow,
-	getSpeechMode, setSpeechMode, setSpeechMode_off)
-
+	getSpeechMode, setSpeechMode, setSpeechMode_off,
+	messageWithSpeakOnDemand, executeWithSpeakOnDemand,
+)
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -142,7 +125,7 @@ class AppModule(AppModule):
 			# to suppress double announce of document window title
 			return
 		# for spelling and grammar check ending window
-		if obj.role == ROLE_BUTTON and obj.name.lower() == "ok":
+		if obj.role == Role.BUTTON and obj.name.lower() == "ok":
 			foreground = api.getForegroundObject()
 			if foreground.windowClassName == "#32770"\
 				and foreground.name == "Microsoft Word":
@@ -171,7 +154,7 @@ class AppModule(AppModule):
 			# after a presse button or character shortcut hit.
 			if ch > "a" and ch < "z"\
 				or ord(ch) in [wx.WXK_SPACE, wx.WXK_RETURN]\
-				and obj.role == ROLE_BUTTON:
+				and obj.role == Role.BUTTON:
 				wx.CallLater(100, sc.sayErrorAndSuggestion, False, True)
 
 	@script(
@@ -203,7 +186,7 @@ class AppModule(AppModule):
 			sc = SpellingChecker(focus, self.WinwordVersion)
 			if not sc.isInSpellingChecker():
 				return
-			if focus.role == ROLE_PANE:
+			if focus.role == Role.PANE:
 				# focus on the pane not not on an object of the pane
 				queueHandler.queueFunction(
 					queueHandler.eventQueue,
@@ -214,7 +197,7 @@ class AppModule(AppModule):
 				sc.sayErrorAndSuggestion(title=True, spell=False, focusOnSuggestion=True)
 				queueHandler.queueFunction(
 					queueHandler.eventQueue,
-					speech.speakObject, focus, REASON_FOCUS)
+					speech.speakObject, focus, OutputReason.FOCUS)
 		stopScriptTimer()
 		if not self.isSupportedVersion():
 			gesture.send()
@@ -236,7 +219,7 @@ class AppModule(AppModule):
 		time.sleep(0.1)
 		api.processPendingEvents()
 		speech.cancelSpeech()
-		speech.speakObject(api.getFocusObject(), REASON_FOCUS)
+		speech.speakObject(api.getFocusObject(), OutputReason.FOCUS)
 
 	@script(
 		# Translators: Input help mode message for spellingChecker Helper command.
@@ -249,7 +232,7 @@ class AppModule(AppModule):
 		stopScriptTimer()
 		if not self.isSupportedVersion():
 			# Translators: message to the user when word version is not supported.
-			ui.message(_("Not available for this Word version"))
+			messageWithSpeakOnDemand(_("Not available for this Word version"))
 			return
 		focus = api.getFocusObject()
 		from .ww_spellingChecker import SpellingChecker
@@ -257,15 +240,15 @@ class AppModule(AppModule):
 		if not sc.isInSpellingChecker():
 			queueHandler.queueFunction(
 				queueHandler.eventQueue,
-				ui.message,
+				messageWithSpeakOnDemand,
 				# Translators: message to indicate the focus is not in spellAndGrammar checker.
 				_("You are Not in the spelling checker"))
 			return
-		if focus.role == ROLE_PANE:
+		if focus.role == Role.PANE:
 			# focus on the pane not not on an object of the pane
 			queueHandler.queueFunction(
 				queueHandler.eventQueue,
-				ui.message,
+				messageWithSpeakOnDemand,
 				# Translators: message to ask user to hit tab key.
 				_("Hit tab to move focus in the spelling checker pane"))
 			return
@@ -287,7 +270,10 @@ class AppModule(AppModule):
 	def sayCurrentSentence(self):
 		selection = self.WinwordWindowObject.Application.Selection
 		queueHandler.queueFunction(
-			queueHandler.eventQueue, ui.message, selection.Sentences(1).Text)
+			queueHandler.eventQueue,
+			messageWithSpeakOnDemand,
+			selection.Sentences(1).Text
+		)
 
 	@script(
 		# Translators: Input help mode message for report Current Sentence command.
@@ -363,5 +349,5 @@ class AppModule(AppModule):
 		ui.message("test word")
 
 	__gestures = {
-		"kb:control+windows+alt+f12": "test",
+		# "kb:control+windows+alt+f12": "test",
 	}

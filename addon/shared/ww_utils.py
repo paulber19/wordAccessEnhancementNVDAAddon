@@ -1,6 +1,6 @@
 # shared\winword\ww_utils.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2022 paulber19
+# Copyright (C) 2019-2024 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -11,6 +11,14 @@ import keyboardHandler
 import time
 import speech
 import queueHandler
+import ui
+try:
+	# NVDA >= 2024.1
+	speech.speech.SpeechMode.onDemand
+	speakOnDemand = {"speakOnDemand": True}
+except AttributeError:
+	# NVDA <= 2023.3
+	speakOnDemand = {}
 
 addonHandler.initTranslation()
 
@@ -87,3 +95,17 @@ def setSpeechMode_off():
 		speech.setSpeechMode(speech.SpeechMode.off)
 	except AttributeError:
 		speech.speechMode = speech.speechMode_off
+
+
+def executeWithSpeakOnDemand(func, *args, **kwargs):
+	from speech.speech import _speechState, SpeechMode
+	if not speakOnDemand or _speechState.speechMode != SpeechMode.onDemand:
+		return func(*args, **kwargs)
+	_speechState.speechMode = SpeechMode.talk
+	ret = func(*args, **kwargs)
+	_speechState.speechMode = SpeechMode.onDemand
+	return ret
+
+
+def messageWithSpeakOnDemand(msg):
+	executeWithSpeakOnDemand(ui.message, msg)

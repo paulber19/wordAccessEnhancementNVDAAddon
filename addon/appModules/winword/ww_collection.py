@@ -1,6 +1,6 @@
 # appModules\winword\ww.collection.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2022 paulber19
+# Copyright (C) 2019-2024 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -17,19 +17,7 @@ import controlTypes
 from .ww_wdConst import wdActiveEndPageNumber, wdFirstCharacterLineNumber
 import sys
 import os
-try:
-	# for nvda version >= 2021.2
-	from controlTypes.outputReason import OutputReason
-	REASON_CARET = OutputReason.CARET
-except ImportError:
-	try:
-		# for nvda version == 2021.1
-		from controlTypes import OutputReason
-		REASON_CARET = OutputReason.CARET
-	except AttributeError:
-		# fornvda version <  2020.1
-		REASON_CARET = controlTypes.REASON_CARET
-
+from controlTypes.outputReason import OutputReason
 
 _curAddon = addonHandler.getCodeAddon()
 debugToolsPath = os.path.join(_curAddon.path, "debugTools")
@@ -319,7 +307,7 @@ class Collection(object):
 		info.expand(elementUnit)
 		speech.speakTextInfo(
 			info,
-			reason=REASON_CARET,
+			reason=OutputReason.CARET,
 			unit=elementUnit,
 			onlyInitialFields=False)
 

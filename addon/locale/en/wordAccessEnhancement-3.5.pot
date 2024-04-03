@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: wordAccessEnhancement 3.4\n"
-"Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
-"POT-Creation-Date: 2023-02-20 19:16+0100\n"
+"Project-Id-Version: wordAccessEnhancement 3.5\n"
+"Report-Msgid-Bugs-To: paulber19\n"
+"POT-Creation-Date: 2024-04-03 08:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on to be shown
@@ -76,33 +77,54 @@ msgid ""
 msgstr ""
 
 #. Translators: Reported when text contains a draft comment.
-#: appModules\winword\ww_automaticReading.py:239
+#: appModules\winword\ww_automaticReading.py:219
 #, python-format
 msgid "draft comment of %s:"
 msgstr ""
 
-#: appModules\winword\ww_automaticReading.py:239
-#: appModules\winword\ww_automaticReading.py:243
-#: appModules\winword\ww_automaticReading.py:246
-#: appModules\winword\ww_automaticReading.py:249
+#: appModules\winword\ww_automaticReading.py:219
+#: appModules\winword\ww_automaticReading.py:223
+#: appModules\winword\ww_automaticReading.py:226
 msgid "comment:"
 msgstr ""
 
 #. Translators: Reported when text contains a resolved comment.
-#: appModules\winword\ww_automaticReading.py:242
+#: appModules\winword\ww_automaticReading.py:222
 #, python-format
 msgid "resolved comment of %s:"
 msgstr ""
 
 #. Translators: Reported when text contains a comment.
-#: appModules\winword\ww_automaticReading.py:246
-#: appModules\winword\ww_automaticReading.py:249
+#: appModules\winword\ww_automaticReading.py:226
 #, python-format
 msgid "comment of %s:"
 msgstr ""
 
+#. Translators: Indicates the text column number in a document.
+#. %s will be replaced with the number of text columns.
+#: appModules\winword\ww_automaticReading.py:329
+#, python-format
+msgid "%s column"
+msgid_plural "%s columns"
+msgstr[0] ""
+msgstr[1] ""
+
+#. List.
+#. #7652: containerContainsText variable is set here, but the actual generation of all other output is
+#. handled further down in the general cases section.
+#. This ensures that properties such as name, states and level etc still get reported appropriately.
+#. Translators: Number of items in a list (example output: list with 5 items).
+#: appModules\winword\ww_automaticReading.py:2345
+#: appModules\winword\ww_automaticReading.py:2684
+#: appModules\winword\ww_automaticReading.py:3025
+#, python-format
+msgid "with %s item"
+msgid_plural "with %s items"
+msgstr[0] ""
+msgstr[1] ""
+
 #. Translators: odd And Even Pages Header Footer information.
-#: appModules\winword\ww_automaticReading.py:4273
+#: appModules\winword\ww_automaticReading.py:3570
 #: appModules\winword\ww_document.py:221 appModules\winword\ww_document.py:299
 #: appModules\winword\ww_document.py:352 appModules\winword\ww_document.py:358
 #: appModules\winword\ww_document.py:506 appModules\winword\ww_document.py:859
@@ -112,7 +134,7 @@ msgstr ""
 msgid "yes"
 msgstr ""
 
-#: appModules\winword\ww_automaticReading.py:4273
+#: appModules\winword\ww_automaticReading.py:3570
 #: appModules\winword\ww_document.py:221 appModules\winword\ww_document.py:299
 #: appModules\winword\ww_document.py:353 appModules\winword\ww_document.py:359
 #: appModules\winword\ww_document.py:506 appModules\winword\ww_document.py:860
@@ -123,7 +145,7 @@ msgid "no"
 msgstr ""
 
 #. Translators: message to user to report automatic reading voice record.
-#: appModules\winword\ww_automaticReading.py:4313
+#: appModules\winword\ww_automaticReading.py:3610
 msgid "Current voice settings have beenset for automatic reading"
 msgstr ""
 
@@ -140,7 +162,7 @@ msgstr ""
 #. Translators: The label of a list item to select the type of element
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_bookmarks.py:61
-#: appModules\winword\ww_browseMode.py:389
+#: appModules\winword\ww_browseMode.py:366
 #: appModules\winword\ww_elementsListDialog.py:46
 msgid "Bookmark"
 msgstr ""
@@ -253,215 +275,215 @@ msgstr ""
 msgid "Page {page}, line {line}"
 msgstr ""
 
-#: appModules\winword\ww_browseMode.py:67
+#: appModules\winword\ww_browseMode.py:47
 msgid "Extended browse mode for Microsoft Word"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:127
+#: appModules\winword\ww_browseMode.py:107
 msgid "moves to the next grammatical error"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:129
+#: appModules\winword\ww_browseMode.py:109
 msgid "no next grammatical error"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:131
+#: appModules\winword\ww_browseMode.py:111
 msgid "moves to the previous grammatical error"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:133
+#: appModules\winword\ww_browseMode.py:113
 msgid "no previous grammatical error"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:139
+#: appModules\winword\ww_browseMode.py:119
 msgid "moves to the next revision"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:141
+#: appModules\winword\ww_browseMode.py:121
 msgid "no next revision"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:143
+#: appModules\winword\ww_browseMode.py:123
 msgid "moves to the previous revision"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:145
+#: appModules\winword\ww_browseMode.py:125
 msgid "no previous revision"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:151
+#: appModules\winword\ww_browseMode.py:131
 msgid "moves to the next comment"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:153
+#: appModules\winword\ww_browseMode.py:133
 msgid "no next comment"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:155
+#: appModules\winword\ww_browseMode.py:135
 msgid "moves to the previous comment"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:157
+#: appModules\winword\ww_browseMode.py:137
 msgid "no previous comment"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:163
+#: appModules\winword\ww_browseMode.py:143
 msgid "moves to the next field"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:165
+#: appModules\winword\ww_browseMode.py:145
 msgid "no next field"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:167
+#: appModules\winword\ww_browseMode.py:147
 msgid "moves to the previous field"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:169
+#: appModules\winword\ww_browseMode.py:149
 msgid "no previous field"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:176
+#: appModules\winword\ww_browseMode.py:156
 msgid "moves to the next bookmark"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:178
+#: appModules\winword\ww_browseMode.py:158
 msgid "no next bookmark"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:180
+#: appModules\winword\ww_browseMode.py:160
 msgid "moves to the previous bookmark"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:182
+#: appModules\winword\ww_browseMode.py:162
 msgid "no previous bookmark"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:188
+#: appModules\winword\ww_browseMode.py:168
 msgid "moves to the next endnote"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:190
+#: appModules\winword\ww_browseMode.py:170
 msgid "no next endnote"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:192
+#: appModules\winword\ww_browseMode.py:172
 msgid "moves to the previous endnote"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:194
+#: appModules\winword\ww_browseMode.py:174
 msgid "no previous endnote"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:200
+#: appModules\winword\ww_browseMode.py:180
 msgid "moves to the next footnote"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:202
+#: appModules\winword\ww_browseMode.py:182
 msgid "no next footnote"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:204
+#: appModules\winword\ww_browseMode.py:184
 msgid "moves to the previous footnote"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:206
+#: appModules\winword\ww_browseMode.py:186
 msgid "no previous footnote"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:212
+#: appModules\winword\ww_browseMode.py:192
 msgid "moves to the next section"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:214
+#: appModules\winword\ww_browseMode.py:194
 msgid "no next section"
 msgstr ""
 
 #. Translators: Input help message for a quick navigation command in browse mode.
-#: appModules\winword\ww_browseMode.py:216
+#: appModules\winword\ww_browseMode.py:196
 msgid "moves to the previous section"
 msgstr ""
 
 #. Translators: Message presented when the browse mode element is not found.
-#: appModules\winword\ww_browseMode.py:218
+#: appModules\winword\ww_browseMode.py:198
 msgid "no previous section"
 msgstr ""
 
 #. Translators: message to the user which indicates the return
 #. to the bottom of the page.
-#: appModules\winword\ww_browseMode.py:252
+#: appModules\winword\ww_browseMode.py:232
 msgid "Return to bottom of page"
 msgstr ""
 
 #. Translators: message to user which indicates the return
 #. to the top of the page.
-#: appModules\winword\ww_browseMode.py:257
+#: appModules\winword\ww_browseMode.py:237
 msgid "Return to top of page"
 msgstr ""
 
-#: appModules\winword\ww_browseMode.py:390
+#: appModules\winword\ww_browseMode.py:367
 msgid "{name} text: {text}"
 msgstr ""
 
-#: appModules\winword\ww_browseMode.py:394
+#: appModules\winword\ww_browseMode.py:371
 #, python-format
 msgid "Bookmark %s"
 msgstr ""
 
-#: appModules\winword\ww_browseMode.py:407
+#: appModules\winword\ww_browseMode.py:384
 msgid "Endnote{index}"
 msgstr ""
 
 #. Translators: field index and type.
-#: appModules\winword\ww_browseMode.py:441
+#: appModules\winword\ww_browseMode.py:418
 msgid "Field {index}, type: {type}"
 msgstr ""
 
 #. Translators: label for a footnote.
-#: appModules\winword\ww_browseMode.py:473
+#: appModules\winword\ww_browseMode.py:450
 msgid "Footnote {index}"
 msgstr ""
 
-#: appModules\winword\ww_browseMode.py:515
+#: appModules\winword\ww_browseMode.py:492
 #, python-format
 msgid "%s"
 msgstr ""
 
-#: appModules\winword\ww_browseMode.py:552
+#: appModules\winword\ww_browseMode.py:529
 msgid "Section {index}"
 msgstr ""
 
-#: appModules\winword\ww_browseMode.py:556
+#: appModules\winword\ww_browseMode.py:533
 #, python-format
 msgid "Section %s"
 msgstr ""
@@ -541,97 +563,97 @@ msgstr ""
 msgid "Search and C&opy to clipboard"
 msgstr ""
 
-#: appModules\winword\ww_choice.py:289 appModules\winword\ww_collection.py:432
+#: appModules\winword\ww_choice.py:289 appModules\winword\ww_collection.py:420
 msgid "&Close"
 msgstr ""
 
-#: appModules\winword\ww_collection.py:59
+#: appModules\winword\ww_collection.py:47
 msgid "28.35"
 msgstr ""
 
-#: appModules\winword\ww_collection.py:115
-#: appModules\winword\ww_collection.py:125
+#: appModules\winword\ww_collection.py:103
+#: appModules\winword\ww_collection.py:113
 #, python-format
 msgid "%s at cursor's position"
 msgstr ""
 
-#: appModules\winword\ww_collection.py:116
-#: appModules\winword\ww_collection.py:126
+#: appModules\winword\ww_collection.py:104
+#: appModules\winword\ww_collection.py:114
 #, python-format
 msgid "%s in the selection"
 msgstr ""
 
-#: appModules\winword\ww_collection.py:117
-#: appModules\winword\ww_collection.py:127
+#: appModules\winword\ww_collection.py:105
+#: appModules\winword\ww_collection.py:115
 #, python-format
 msgid "%s in the document"
 msgstr ""
 
-#: appModules\winword\ww_collection.py:118
-#: appModules\winword\ww_collection.py:128
+#: appModules\winword\ww_collection.py:106
+#: appModules\winword\ww_collection.py:116
 #, python-format
 msgid "%s in the page"
 msgstr ""
 
-#: appModules\winword\ww_collection.py:119
+#: appModules\winword\ww_collection.py:107
 #, python-format
 msgid "%s between start of document and cursor's position"
 msgstr ""
 
-#: appModules\winword\ww_collection.py:120
+#: appModules\winword\ww_collection.py:108
 #, python-format
 msgid "%s between cursor's position and end of document"
 msgstr ""
 
-#: appModules\winword\ww_collection.py:129
+#: appModules\winword\ww_collection.py:117
 #, python-format
 msgid "%s between document's start and cursor's position"
 msgstr ""
 
-#: appModules\winword\ww_collection.py:130
+#: appModules\winword\ww_collection.py:118
 #, python-format
 msgid "%s between cursor's position and document's end"
 msgstr ""
 
-#: appModules\winword\ww_collection.py:148
+#: appModules\winword\ww_collection.py:136
 #, python-format
 msgid "%s percent"
 msgstr ""
 
-#: appModules\winword\ww_collection.py:202
+#: appModules\winword\ww_collection.py:190
 msgid "Sorry, There are too many elements to be treated "
 msgstr ""
 
-#: appModules\winword\ww_collection.py:238
+#: appModules\winword\ww_collection.py:226
 msgid "Please wait."
 msgstr ""
 
 #. Translators: message to user when info copied to clipboard.
-#: appModules\winword\ww_collection.py:271
+#: appModules\winword\ww_collection.py:259
 msgid "{name}'s list has been copied to clipboard"
 msgstr ""
 
-#: appModules\winword\ww_collection.py:303
+#: appModules\winword\ww_collection.py:291
 msgid "{count} {element}"
 msgstr ""
 
 #. Translators: text of a message box dialog.
-#: appModules\winword\ww_collection.py:493
+#: appModules\winword\ww_collection.py:481
 msgid "Are you sure you wish to delete this items?"
 msgstr ""
 
 #. Translators: title of a message box dialog.
-#: appModules\winword\ww_collection.py:495
+#: appModules\winword\ww_collection.py:483
 msgid "Deletion of items"
 msgstr ""
 
 #. Translators: text of a message box dialog.
-#: appModules\winword\ww_collection.py:580
+#: appModules\winword\ww_collection.py:568
 msgid "Are you sure you wish to delete all items?"
 msgstr ""
 
 #. Translators: title of a message box dialog.
-#: appModules\winword\ww_collection.py:582
+#: appModules\winword\ww_collection.py:570
 msgid "Deletion of all items"
 msgstr ""
 
@@ -662,7 +684,7 @@ msgstr ""
 #: appModules\winword\ww_elementsListDialog.py:459
 #: appModules\winword\ww_fields.py:141 appModules\winword\ww_formfields.py:134
 #: appModules\winword\ww_shapes.py:43
-#: appModules\winword\ww_wordDocumentBase.py:1105
+#: appModules\winword\ww_wordDocumentBase.py:1100
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:113
 msgid "Comment"
 msgstr ""
@@ -821,7 +843,7 @@ msgstr ""
 #. Translators: message to say text is empty.
 #: appModules\winword\ww_contentControl.py:130
 #: appModules\winword\ww_fields.py:124 appModules\winword\ww_formfields.py:117
-#: appModules\winword\ww_wordDocumentBase.py:358
+#: appModules\winword\ww_wordDocumentBase.py:348
 msgid "Empty"
 msgstr ""
 
@@ -1640,7 +1662,7 @@ msgstr ""
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_elementsListDialog.py:52
 #: appModules\winword\ww_endnotes.py:45
-#: appModules\winword\ww_wordDocumentBase.py:1105
+#: appModules\winword\ww_wordDocumentBase.py:1100
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:115
 msgid "Endnote"
 msgstr ""
@@ -1662,7 +1684,7 @@ msgstr ""
 #. in the browse mode Elements List dialog.
 #: appModules\winword\ww_elementsListDialog.py:61
 #: appModules\winword\ww_footnotes.py:42
-#: appModules\winword\ww_wordDocumentBase.py:1105
+#: appModules\winword\ww_wordDocumentBase.py:1100
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:114
 msgid "Footnote"
 msgstr ""
@@ -2627,38 +2649,38 @@ msgid "Alternative text"
 msgstr ""
 
 #. Translators: message to indicate the spell or grammar error.
-#: appModules\winword\ww_spellingChecker.py:144
-#: appModules\winword\ww_spellingChecker.py:276
+#: appModules\winword\ww_spellingChecker.py:122
+#: appModules\winword\ww_spellingChecker.py:254
 #, python-format
 msgid "Error: %s"
 msgstr ""
 
 #. Translators: message to indicate the suggested correction.
-#: appModules\winword\ww_spellingChecker.py:155
-#: appModules\winword\ww_spellingChecker.py:296
+#: appModules\winword\ww_spellingChecker.py:133
+#: appModules\winword\ww_spellingChecker.py:274
 #, python-format
 msgid "Suggestion: %s"
 msgstr ""
 
 #. Translators: message to user that there is no help.
-#: appModules\winword\ww_spellingChecker.py:174
-#: appModules\winword\ww_spellingChecker.py:367
+#: appModules\winword\ww_spellingChecker.py:152
+#: appModules\winword\ww_spellingChecker.py:345
 msgid "No explanation help"
 msgstr ""
 
 #. Translators: message to user to report no suggestion.
-#: appModules\winword\ww_spellingChecker.py:288
+#: appModules\winword\ww_spellingChecker.py:266
 msgid "No suggestion"
 msgstr ""
 
 #. Translators: message to user to report most of one suggestions.
-#: appModules\winword\ww_spellingChecker.py:307
+#: appModules\winword\ww_spellingChecker.py:285
 #, python-format
 msgid "%s suggestions"
 msgstr ""
 
 #. Translators: message to user to report one suggestion.
-#: appModules\winword\ww_spellingChecker.py:313
+#: appModules\winword\ww_spellingChecker.py:291
 msgid "One suggestions"
 msgstr ""
 
@@ -2711,12 +2733,12 @@ msgid "Table's end"
 msgstr ""
 
 #: appModules\winword\ww_tables.py:137
-#: appModules\winword\ww_wordDocumentBase.py:1037
+#: appModules\winword\ww_wordDocumentBase.py:1032
 msgid "Last cell"
 msgstr ""
 
 #: appModules\winword\ww_tables.py:142
-#: appModules\winword\ww_wordDocumentBase.py:1039
+#: appModules\winword\ww_wordDocumentBase.py:1034
 msgid "First cell"
 msgstr ""
 
@@ -2748,8 +2770,8 @@ msgstr ""
 
 #. Translators: message to the user to say empty .
 #: appModules\winword\ww_tables.py:400
-#: appModules\winword\ww_wordDocumentBase.py:892
-#: appModules\winword\ww_wordDocumentBase.py:903
+#: appModules\winword\ww_wordDocumentBase.py:884
+#: appModules\winword\ww_wordDocumentBase.py:895
 msgid "empty"
 msgstr ""
 
@@ -3983,307 +4005,307 @@ msgid "ZigZagStitch"
 msgstr ""
 
 #. Translators: a message to report row number.
-#: appModules\winword\ww_wordDocumentBase.py:164
+#: appModules\winword\ww_wordDocumentBase.py:151
 #, python-format
 msgid " row %s"
 msgstr ""
 
 #. Translators: a message to report column number.
-#: appModules\winword\ww_wordDocumentBase.py:166
+#: appModules\winword\ww_wordDocumentBase.py:153
 #, python-format
 msgid " column %s"
 msgstr ""
 
 #. Translators: message to report row and column number.
-#: appModules\winword\ww_wordDocumentBase.py:168
+#: appModules\winword\ww_wordDocumentBase.py:155
 msgid " row {rowIndex}, column {columnIndex}"
 msgstr ""
 
 #. Translators: a message to say moving to start of row.
-#: appModules\winword\ww_wordDocumentBase.py:174
+#: appModules\winword\ww_wordDocumentBase.py:161
 msgid "Start of row {0}"
 msgstr ""
 
 #. Translators: message to say moving to end of row.
-#: appModules\winword\ww_wordDocumentBase.py:179
+#: appModules\winword\ww_wordDocumentBase.py:166
 msgid "End of row {0}"
 msgstr ""
 
 #. Translators: message to say moving to start of column.
-#: appModules\winword\ww_wordDocumentBase.py:184
+#: appModules\winword\ww_wordDocumentBase.py:171
 msgid "Start of column {0}"
 msgstr ""
 
 #. Translators: message to say moving to end of column
-#: appModules\winword\ww_wordDocumentBase.py:189
+#: appModules\winword\ww_wordDocumentBase.py:176
 msgid "End of column {0}"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\ww_wordDocumentBase.py:221
+#: appModules\winword\ww_wordDocumentBase.py:208
 msgid "Table: move to next row"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\ww_wordDocumentBase.py:226
+#: appModules\winword\ww_wordDocumentBase.py:213
 msgid "Table: move to previous row"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\ww_wordDocumentBase.py:231
+#: appModules\winword\ww_wordDocumentBase.py:218
 msgid "Table: move to next column"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\ww_wordDocumentBase.py:236
+#: appModules\winword\ww_wordDocumentBase.py:223
 msgid "Table: move to previous column "
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\ww_wordDocumentBase.py:241
+#: appModules\winword\ww_wordDocumentBase.py:228
 msgid "Table: move to the first cell of row"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\ww_wordDocumentBase.py:246
+#: appModules\winword\ww_wordDocumentBase.py:233
 msgid "Table: move to the last cell of row"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\ww_wordDocumentBase.py:251
+#: appModules\winword\ww_wordDocumentBase.py:238
 msgid "Table: move to the first cell of column"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\ww_wordDocumentBase.py:256
+#: appModules\winword\ww_wordDocumentBase.py:243
 msgid "Table: move to the last cell of column "
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\ww_wordDocumentBase.py:261
+#: appModules\winword\ww_wordDocumentBase.py:248
 msgid "Table: move to first cell of table"
 msgstr ""
 
 #. Translators: a description for a script.
-#: appModules\winword\ww_wordDocumentBase.py:266
+#: appModules\winword\ww_wordDocumentBase.py:253
 msgid "Table: move to last cell of table"
 msgstr ""
 
 #. Translators: Input help mode message for report current headers command.
-#: appModules\winword\ww_wordDocumentBase.py:350
+#: appModules\winword\ww_wordDocumentBase.py:339
 msgid "Table: report current headers"
 msgstr ""
 
 #. Translators: message to say no row header.
-#: appModules\winword\ww_wordDocumentBase.py:362
+#: appModules\winword\ww_wordDocumentBase.py:352
 msgid "No row header"
 msgstr ""
 
 #. Translators: message to report row header.
-#: appModules\winword\ww_wordDocumentBase.py:365
-#: appModules\winword\ww_wordDocumentBase.py:368
+#: appModules\winword\ww_wordDocumentBase.py:355
+#: appModules\winword\ww_wordDocumentBase.py:358
 #, python-format
 msgid "Row header: %s"
 msgstr ""
 
 #. Translators: message to report no column header.
-#: appModules\winword\ww_wordDocumentBase.py:372
+#: appModules\winword\ww_wordDocumentBase.py:362
 msgid "No column header"
 msgstr ""
 
 #. Translators: message to report column header.
-#: appModules\winword\ww_wordDocumentBase.py:375
-#: appModules\winword\ww_wordDocumentBase.py:378
+#: appModules\winword\ww_wordDocumentBase.py:365
+#: appModules\winword\ww_wordDocumentBase.py:368
 #, python-format
 msgid "Column header: %s"
 msgstr ""
 
 #. Translators: Input help mode message for report current cell command.
-#: appModules\winword\ww_wordDocumentBase.py:383
+#: appModules\winword\ww_wordDocumentBase.py:373
 msgid "Table: report current cell"
 msgstr ""
 
 #. Translators: Input help mode message for report current row command.
-#: appModules\winword\ww_wordDocumentBase.py:394
+#: appModules\winword\ww_wordDocumentBase.py:385
 msgid "Table: report all cells of current row"
 msgstr ""
 
 #. Translators: Input help mode message for report current column command.
-#: appModules\winword\ww_wordDocumentBase.py:401
+#: appModules\winword\ww_wordDocumentBase.py:392
 msgid "Table: report all cells of current column"
 msgstr ""
 
 #. Translators: Input help mode message for report next cell in column command.
-#: appModules\winword\ww_wordDocumentBase.py:409
+#: appModules\winword\ww_wordDocumentBase.py:400
 msgid "Table: Report the nextt cell in the column"
 msgstr ""
 
 #. Translators: Input help mode message for report previous cell in column command.
-#: appModules\winword\ww_wordDocumentBase.py:417
+#: appModules\winword\ww_wordDocumentBase.py:408
 msgid "Table: report the previous cell in the column"
 msgstr ""
 
 #. Translators: Input help mode message for report next cell in row command.
-#: appModules\winword\ww_wordDocumentBase.py:425
+#: appModules\winword\ww_wordDocumentBase.py:416
 msgid "Table: report the next cell in the row"
 msgstr ""
 
 #. Translators: Input help mode message for report previous cell in row command.
-#: appModules\winword\ww_wordDocumentBase.py:433
+#: appModules\winword\ww_wordDocumentBase.py:424
 msgid "Table: report the previous cell in the row"
 msgstr ""
 
 #. Translators: Input help mode message for report first cell of column command.
-#: appModules\winword\ww_wordDocumentBase.py:441
+#: appModules\winword\ww_wordDocumentBase.py:432
 msgid "Table: report the first cell of the column"
 msgstr ""
 
 #. Translators: Input help mode message for report last cell of column command.
-#: appModules\winword\ww_wordDocumentBase.py:449
+#: appModules\winword\ww_wordDocumentBase.py:440
 msgid "Table: report the last cell of the column"
 msgstr ""
 
 #. Translators: Input help mode message for report first cell of row command.
-#: appModules\winword\ww_wordDocumentBase.py:457
+#: appModules\winword\ww_wordDocumentBase.py:448
 msgid "Table: report the first cell of the row"
 msgstr ""
 
 #. Translators: Input help mode message for report last cell of row command.
-#: appModules\winword\ww_wordDocumentBase.py:465
+#: appModules\winword\ww_wordDocumentBase.py:456
 msgid "Table: report the last cell of the row"
 msgstr ""
 
 #. Translators: Input help mode message for move to and report next row command.
-#: appModules\winword\ww_wordDocumentBase.py:473
+#: appModules\winword\ww_wordDocumentBase.py:464
 msgid "Table: move to next row and report all cells of row"
 msgstr ""
 
 #. Translators: Input help mode message for move to and report Previous row command.
-#: appModules\winword\ww_wordDocumentBase.py:481
+#: appModules\winword\ww_wordDocumentBase.py:472
 msgid "Table: move to previous row and report all cells of row"
 msgstr ""
 
 #. Translators: Input help mode message for move to and report next column command.
-#: appModules\winword\ww_wordDocumentBase.py:489
+#: appModules\winword\ww_wordDocumentBase.py:480
 msgid "Table: move to next column and report all cells of column"
 msgstr ""
 
 #. Translators: Input help mode message for move to and report previous column command.
-#: appModules\winword\ww_wordDocumentBase.py:496
+#: appModules\winword\ww_wordDocumentBase.py:487
 msgid "Table: move to prior column and report all cells of column"
 msgstr ""
 
-#: appModules\winword\ww_wordDocumentBase.py:505
+#: appModules\winword\ww_wordDocumentBase.py:496
 msgid "Table: move to first cell of column and report all cells of row"
 msgstr ""
 
-#: appModules\winword\ww_wordDocumentBase.py:515
+#: appModules\winword\ww_wordDocumentBase.py:506
 msgid "Table: move to last cell of column and report all cells of row"
 msgstr ""
 
-#: appModules\winword\ww_wordDocumentBase.py:525
+#: appModules\winword\ww_wordDocumentBase.py:516
 msgid "Table: move to first cell of the row and report all cells of column"
 msgstr ""
 
-#: appModules\winword\ww_wordDocumentBase.py:535
+#: appModules\winword\ww_wordDocumentBase.py:526
 msgid "Table: move to last cell of the row and report all cells of column"
 msgstr ""
 
-#: appModules\winword\ww_wordDocumentBase.py:579
-#: appModules\winword\ww_wordDocumentBase.py:629
+#: appModules\winword\ww_wordDocumentBase.py:570
+#: appModules\winword\ww_wordDocumentBase.py:620
 msgid "Table layer mode on"
 msgstr ""
 
-#: appModules\winword\ww_wordDocumentBase.py:596
+#: appModules\winword\ww_wordDocumentBase.py:587
 msgid " (Table layer mode)"
 msgstr ""
 
-#: appModules\winword\ww_wordDocumentBase.py:631
+#: appModules\winword\ww_wordDocumentBase.py:622
 msgid "Table layer mode off"
 msgstr ""
 
 #. Translators: Input help mode message for toggle layer mode command.
-#: appModules\winword\ww_wordDocumentBase.py:635
+#: appModules\winword\ww_wordDocumentBase.py:626
 msgid "Toggle table layer mode"
 msgstr ""
 
-#: appModules\winword\ww_wordDocumentBase.py:651
+#: appModules\winword\ww_wordDocumentBase.py:642
 msgid "activate or desactivate the report of all cells of row or column"
 msgstr ""
 
 #. Translators: message to user to indicate
 #. report all cells mode is activated.
-#: appModules\winword\ww_wordDocumentBase.py:660
+#: appModules\winword\ww_wordDocumentBase.py:651
 msgid "Report all Cells"
 msgstr ""
 
 #. Translators: message to user to indicate
 #. report all cells mode is desactivated.
-#: appModules\winword\ww_wordDocumentBase.py:664
+#: appModules\winword\ww_wordDocumentBase.py:655
 msgid "Do not report all cells"
 msgstr ""
 
 #. Translators: Input help mode message for toggle automatic reading command.
-#: appModules\winword\ww_wordDocumentBase.py:669
+#: appModules\winword\ww_wordDocumentBase.py:660
 msgid "activate or desactivate automatic reading"
 msgstr ""
 
 #. Translators: message to user to indicate automatic reading enabled.
-#: appModules\winword\ww_wordDocumentBase.py:675
+#: appModules\winword\ww_wordDocumentBase.py:666
 msgid "Automatic reading enabled"
 msgstr ""
 
 #. Translators: message to user to indicate automatic reading disabled.
-#: appModules\winword\ww_wordDocumentBase.py:678
+#: appModules\winword\ww_wordDocumentBase.py:669
 msgid "Automatic reading disabled"
 msgstr ""
 
 #. Translators: The message reported
 #. when a user attempts to use a table movement command.
 #. when the cursor is not withnin a table.
-#: appModules\winword\ww_wordDocumentBase.py:689
+#: appModules\winword\ww_wordDocumentBase.py:680
 msgid "Not in table"
 msgstr ""
 
-#: appModules\winword\ww_wordDocumentBase.py:762
+#: appModules\winword\ww_wordDocumentBase.py:753
 msgid "No other paragraph"
 msgstr ""
 
-#: appModules\winword\ww_wordDocumentBase.py:766
-#: appModules\winword\ww_wordDocumentBase.py:774
+#: appModules\winword\ww_wordDocumentBase.py:757
+#: appModules\winword\ww_wordDocumentBase.py:765
 msgid "No other sentence"
 msgstr ""
 
 #. Translators: Input help mode message for next sentence command.
-#: appModules\winword\ww_wordDocumentBase.py:812
+#: appModules\winword\ww_wordDocumentBase.py:803
 msgid "Move to the next sentence"
 msgstr ""
 
 #. Translators: Input help mode message for previous sentence command.
-#: appModules\winword\ww_wordDocumentBase.py:821
+#: appModules\winword\ww_wordDocumentBase.py:812
 msgid "Move to the previous sentence"
 msgstr ""
 
-#: appModules\winword\ww_wordDocumentBase.py:831
+#: appModules\winword\ww_wordDocumentBase.py:822
 msgid ""
 "Move to the next paragraph (skip empty paragraphs if \"Skip Empty Paragraph"
 "\" option is set to on) "
 msgstr ""
 
-#: appModules\winword\ww_wordDocumentBase.py:843
+#: appModules\winword\ww_wordDocumentBase.py:834
 msgid ""
 "Move to the previous paragraph (skip empty paragraphs if \"Skip Empty "
 "Paragraph\" option is set to on) "
 msgstr ""
 
 #. Translators: Input help mode message for insert comment command.
-#: appModules\winword\ww_wordDocumentBase.py:854
+#: appModules\winword\ww_wordDocumentBase.py:845
 msgid ""
 "Insert an element (comment, footnote, endnote) where the System caret is "
 "located."
 msgstr ""
 
-#: appModules\winword\ww_wordDocumentBase.py:868
+#: appModules\winword\ww_wordDocumentBase.py:859
 msgid ""
 "Reports the text of the endnote or footnote where the System caret is "
 "located."
@@ -4291,136 +4313,136 @@ msgstr ""
 
 #. Translators: a message when there is no endnoe or footnote
 #. to report in Microsoft Word.
-#: appModules\winword\ww_wordDocumentBase.py:912
+#: appModules\winword\ww_wordDocumentBase.py:904
 msgid "no endnote or footnote"
 msgstr ""
 
-#: appModules\winword\ww_wordDocumentBase.py:917
+#: appModules\winword\ww_wordDocumentBase.py:909
 msgid "Reports the text of the revision where the System caret is located."
 msgstr ""
 
-#: appModules\winword\ww_wordDocumentBase.py:927
+#: appModules\winword\ww_wordDocumentBase.py:921
 msgid "Display a dialog to get word object informations in a range"
 msgstr ""
 
-#: appModules\winword\ww_wordDocumentBase.py:938
+#: appModules\winword\ww_wordDocumentBase.py:932
 msgid ""
 "Report the page number and line number relative to the page. Twice: display "
 "this information"
 msgstr ""
 
 #. Translators: message in report location script.
-#: appModules\winword\ww_wordDocumentBase.py:953
+#: appModules\winword\ww_wordDocumentBase.py:948
 msgid "at {0} from left edge and {1} from top edge of the page"
 msgstr ""
 
 #. Translators: message in report location script.
-#: appModules\winword\ww_wordDocumentBase.py:960
+#: appModules\winword\ww_wordDocumentBase.py:955
 msgid "You are at the row {row}, column {column} of table"
 msgstr ""
 
 #. Translators: message to user to report location in page.
-#: appModules\winword\ww_wordDocumentBase.py:968
+#: appModules\winword\ww_wordDocumentBase.py:963
 msgid "you are at Line {line}, column {column} of page {page}"
 msgstr ""
 
 #. Translators: message to user
-#: appModules\winword\ww_wordDocumentBase.py:976
+#: appModules\winword\ww_wordDocumentBase.py:971
 msgid "Selection begins at line {line}, column {column} of page {page}"
 msgstr ""
 
 #. Translators: text to report position.
-#: appModules\winword\ww_wordDocumentBase.py:988
+#: appModules\winword\ww_wordDocumentBase.py:983
 msgid "at {0} from left edge and {1} from top edge of the page."
 msgstr ""
 
 #. Translators: text to report location.
-#: appModules\winword\ww_wordDocumentBase.py:991
+#: appModules\winword\ww_wordDocumentBase.py:986
 msgid "It ends at line {line}, column {column} of page {page}"
 msgstr ""
 
 #. Translators: this is the title of informationdialog box
 #. to show location informations.
-#: appModules\winword\ww_wordDocumentBase.py:998
+#: appModules\winword\ww_wordDocumentBase.py:993
 msgid "Location information"
 msgstr ""
 
 #. Translators: Input help mode message for report document informations command.
-#: appModules\winword\ww_wordDocumentBase.py:1005
+#: appModules\winword\ww_wordDocumentBase.py:1000
 msgid "Display document's informations"
 msgstr ""
 
 #. Translators: a message when toggling change tracking in Microsoft word
-#: appModules\winword\ww_wordDocumentBase.py:1074
+#: appModules\winword\ww_wordDocumentBase.py:1069
 msgid "Change tracking on"
 msgstr ""
 
 #. Translators: a message when toggling change tracking in Microsoft word
-#: appModules\winword\ww_wordDocumentBase.py:1077
+#: appModules\winword\ww_wordDocumentBase.py:1072
 msgid "Change tracking off"
 msgstr ""
 
 #. Translators: This is the title of the InsertElementDialog dialog.
-#: appModules\winword\ww_wordDocumentBase.py:1094
+#: appModules\winword\ww_wordDocumentBase.py:1089
 msgid "Insert element"
 msgstr ""
 
 #. Translators: This is a label appearing on Insert Element dialog.
-#: appModules\winword\ww_wordDocumentBase.py:1104
+#: appModules\winword\ww_wordDocumentBase.py:1099
 msgid "Element's &type:"
 msgstr ""
 
 #. Translators: This is a label of a button appearing
 #. on Insert Element Dialog.
-#: appModules\winword\ww_wordDocumentBase.py:1115
+#: appModules\winword\ww_wordDocumentBase.py:1110
 msgid "&Insert"
 msgstr ""
 
 #. Translators: Input help mode message for toggle Skip Empty Paragraphs Option command.
-#: appModules\winword\__init__.py:179
+#: appModules\winword\__init__.py:162
 msgid "Toggle on or off the option to skip empty paragraphs"
 msgstr ""
 
 #. Translators: message to user
 #. to report skipping of empty paragraph when moving by paragraph.
-#: appModules\winword\__init__.py:187
+#: appModules\winword\__init__.py:170
 msgid "Skip empty paragraphs"
 msgstr ""
 
 #. Translators: message to user
 #. to report no skipping empty paragraph when moving by paragraph.
-#: appModules\winword\__init__.py:191
+#: appModules\winword\__init__.py:174
 msgid "Don't skip empty paragraphs"
 msgstr ""
 
 #. Translators: message to ask user to hit tab key.
-#: appModules\winword\__init__.py:212 appModules\winword\__init__.py:270
+#: appModules\winword\__init__.py:195 appModules\winword\__init__.py:253
 msgid "Hit tab to move focus in the spelling checker pane"
 msgstr ""
 
-#: appModules\winword\__init__.py:244
+#: appModules\winword\__init__.py:227
 msgid ""
 "Report error and suggestion displayed by the spelling checker. Twice:spell "
 "them. Third: say help text"
 msgstr ""
 
 #. Translators: message to the user when word version is not supported.
-#: appModules\winword\__init__.py:252
+#: appModules\winword\__init__.py:235
 msgid "Not available for this Word version"
 msgstr ""
 
 #. Translators: message to indicate the focus is not in spellAndGrammar checker.
-#: appModules\winword\__init__.py:262
+#: appModules\winword\__init__.py:245
 msgid "You are Not in the spelling checker"
 msgstr ""
 
 #. Translators: Input help mode message for report Current Sentence command.
-#: appModules\winword\__init__.py:294
+#: appModules\winword\__init__.py:280
 msgid "Report current sentence "
 msgstr ""
 
 #. Translators: Input help mode message for set automatic reading voice command.
-#: appModules\winword\__init__.py:303
+#: appModules\winword\__init__.py:289
 msgid "Record automatic reading voice's settings"
 msgstr ""
 
@@ -4685,7 +4707,7 @@ msgid "Error, the information cannot be copied to the clipboard"
 msgstr ""
 
 #. Translators: the label of a message box dialog.
-#: shared\ww_utils.py:57
+#: shared\ww_utils.py:65
 #, python-format
 msgid "%s dialog is allready open"
 msgstr ""

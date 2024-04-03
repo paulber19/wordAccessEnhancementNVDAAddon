@@ -1,17 +1,13 @@
 # appModules\winword\ww_browsemode.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2022 paulber19
+# Copyright (C) 2019-2024 paulber19
 # This file is covered by the GNU General Public License.
 
 
 import addonHandler
 import NVDAObjects
 from . import ww_browseMode
-try:
-	# for nvda version >= 2022.1
-	from UIAHandler.browseMode import UIATextAttributeQuicknavIterator
-except ImportError:
-	from UIABrowseMode import UIATextAttributeQuicknavIterator
+from UIAHandler.browseMode import UIATextAttributeQuicknavIterator
 from NVDAObjects.UIA.wordDocument import CommentUIATextInfoQuickNavItem, RevisionUIATextInfoQuickNavItem
 from .import ww_elementsListDialog
 

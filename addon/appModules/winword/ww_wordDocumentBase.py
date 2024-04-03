@@ -1,8 +1,7 @@
 # appModules\winword\wordDocumentBase.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2020-2022 paulber19
+# Copyright (C) 2020-2024 paulber19
 # This file is covered by the GNU General Public License.
-
 
 import addonHandler
 import globalVars
@@ -16,41 +15,27 @@ import wx
 import ui
 import tones
 import textInfos
-try:
-	# for nvda version < 2021.1
-	from sayAllHandler import CURSOR_CARET
-except (AttributeError, ImportError):
-	from speech.sayAll import CURSOR
-	CURSOR_CARET = CURSOR.CARET
+from speech.sayAll import CURSOR
 import speech
 import braille
 import NVDAObjects.window.winword
 from NVDAObjects.window.winword import (
 	wdParagraph, wdSentence,
-	wdActiveEndPageNumber, wdFirstCharacterLineNumber)
+	wdActiveEndPageNumber, wdFirstCharacterLineNumber
+)
 import NVDAObjects.IAccessible.winword
 from .ww_wdConst import (
 	wdHorizontalPositionRelativeToPage,
-	wdVerticalPositionRelativeToPage, wdFirstCharacterColumnNumber)
+	wdVerticalPositionRelativeToPage, wdFirstCharacterColumnNumber
+)
 from . import ww_tables
 from . import ww_choice
 from .ww_revisions import Revisions
-# from .ww_browseMode import *
 from . import ww_document
 from .ww_scriptTimer import stopScriptTimer
 import sys
-try:
-	# for nvda version >= 2021.2
-	from controlTypes.role import Role
-	ROLE_FOOTNOTE = Role.FOOTNOTE
-	ROLE_ENDNOTE = Role.ENDNOTE
-	from controlTypes.outputReason import OutputReason
-	REASON_CARET = OutputReason.CARET
-	REASON_FOCUS = OutputReason.FOCUS
-except ImportError:
-	from controlTypes import (
-		ROLE_FOOTNOTE, ROLE_ENDNOTE,
-	)
+from controlTypes.role import Role
+from controlTypes.outputReason import OutputReason
 
 _curAddon = addonHandler.getCodeAddon()
 debugToolsPath = os.path.join(_curAddon.path, "debugTools")
@@ -69,9 +54,11 @@ del sys.path[-1]
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
 from ww_informationDialog import InformationDialog
-from ww_utils import makeAddonWindowTitle, isOpened
+from ww_utils import (
+	makeAddonWindowTitle, isOpened,
+	speakOnDemand , messageWithSpeakOnDemand, executeWithSpeakOnDemand,
+)
 from ww_addonConfigManager import _addonConfigManager
-
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -339,15 +326,18 @@ class ScriptsForTable(NVDAObjects.NVDAObject):
 		r = self.doc.range(start, start)
 		cell = ww_tables.Cell(self, r.Cells[0])
 		table = ww_tables.Table(self, r.Tables[0])
-		table.sayElement(
+		executeWithSpeakOnDemand(
+			table.sayElement,
 			elementType,
 			position,
 			cell,
-			self.appModule.reportAllCellsFlag if reportAllCells is None else reportAllCells)
+			self.appModule.reportAllCellsFlag if reportAllCells is None else reportAllCells
+		)
 
 	@script(
 		# Translators: Input help mode message for report current headers command.
 		description=_("Table: report current headers"),
+		**speakOnDemand
 	)
 	def script_reportCurrentHeadersEx(self, gesture):
 		stopScriptTimer()
@@ -384,6 +374,7 @@ class ScriptsForTable(NVDAObjects.NVDAObject):
 	)
 	def script_reportCurrentCell(self, gesture):
 		wx.CallAfter(
+			executeWithSpeakOnDemand,
 			self._reportTableElement,
 			elementType="cell",
 			position="current",
@@ -814,7 +805,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 	def script_nextSentence(self, gesture):
 		if self._moveToNextOrPriorElement(1, "sentence"):
 			self._caretScriptPostMovedHelper(textInfos.UNIT_SENTENCE, gesture, None)
-	script_nextSentence.resumeSayAllMode = CURSOR_CARET
+	script_nextSentence.resumeSayAllMode = CURSOR.CARET
 
 	@script(
 		# Translators: Input help mode message for previous sentence command.
@@ -823,7 +814,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 	def script_previousSentence(self, gesture):
 		if self._moveToNextOrPriorElement(-1, "sentence"):
 			self._caretScriptPostMovedHelper(textInfos.UNIT_SENTENCE, gesture, None)
-	script_previousSentence.resumeSayAllMode = CURSOR_CARET
+	script_previousSentence.resumeSayAllMode = CURSOR.CARET
 
 	@script(
 		# Translators: Input help mode message for next Paragraph command.
@@ -835,7 +826,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 	def script_nextParagraph(self, gesture):
 		if self._moveToNextOrPriorElement(1, "paragraph"):
 			self._caretScriptPostMovedHelper(textInfos.UNIT_PARAGRAPH, gesture, None)
-	script_nextParagraph.resumeSayAllMode = CURSOR_CARET
+	script_nextParagraph.resumeSayAllMode = CURSOR.CARET
 
 	@script(
 		# Translators: Input help mode message for previous Paragraph command.
@@ -847,7 +838,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 	def script_previousParagraph(self, gesture):
 		if self._moveToNextOrPriorElement(-1, "paragraph"):
 			self._caretScriptPostMovedHelper(textInfos.UNIT_PARAGRAPH, gesture, None)
-	script_previousParagraph.resumeSayAllMode = CURSOR_CARET
+	script_previousParagraph.resumeSayAllMode = CURSOR.CARET
 
 	@script(
 		# Translators: Input help mode message for insert comment command.
@@ -867,6 +858,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		description=_(
 			"Reports the text of the "
 			"endnote or footnote where the System caret is located."),
+		**speakOnDemand
 	)
 	def script_reportCurrentEndNoteOrFootNote(self, gesture):
 		stopScriptTimer()
@@ -882,7 +874,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 			start = self.WinwordDocumentObject.content.start
 			end = self.WinwordDocumentObject.content.end
 			range = self.WinwordDocumentObject.range(start, end)
-			if role == ROLE_FOOTNOTE:
+			if role == Role.FOOTNOTE:
 				val = field.field.get('value')
 				try:
 					col = range.footNotes
@@ -894,7 +886,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 					return
 				except Exception:
 					break
-			if role == ROLE_ENDNOTE:
+			if role == Role.ENDNOTE:
 				val = field.field.get('value')
 				try:
 					text = range.EndNotes[int(val)].range.text
@@ -919,7 +911,9 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 	)
 	def script_reportCurrentRevision(self, gesture):
 		stopScriptTimer()
-		wx.CallAfter(self.reportCurrentElement, Revisions)
+		wx.CallAfter(
+			executeWithSpeakOnDemand,
+			self.reportCurrentElement, Revisions)
 
 	@script(
 		# Translators: Input help mode message for make choice command.
@@ -938,6 +932,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 			"Report the page number and line number relative to the page."
 			" Twice: display this information"
 		),
+		**speakOnDemand
 	)
 	def script_report_location(self, gesture):
 		stopScriptTimer()
@@ -1037,7 +1032,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 				ui.message(_("Last cell"))
 			elif table.isFirstCellOfTable(cell):
 				ui.message(_("First cell"))
-			speech.speakTextInfo(info, reason=REASON_FOCUS)
+			speech.speakTextInfo(info, reason=OutputReason.FOCUS)
 			braille.handler.handleCaretMove(self)
 		if selectionObj and isCollapsed:
 			offset = selectionObj.information(wdHorizontalPositionRelativeToPage)
@@ -1048,7 +1043,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 				speech.speakTextInfo(
 					info,
 					unit=textInfos.UNIT_LINE,
-					reason=REASON_CARET
+					reason=OutputReason.CARET
 				)
 
 	def _get_ElementsListDialog(self):

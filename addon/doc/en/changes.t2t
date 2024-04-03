@@ -5,10 +5,8 @@ Author: ADDON_AUTHOR_NAME
 %!includeconf: ../addon_global.t2tconf
 %!includeconf: addon_informations.t2tconf
 
+URL: [ADDON_REPOSITORY ADDON_REPOSITORY]
 
-URL: ADDON_AUTHOR_URL
-
-[GitHub repository: ADDON_REPOSITORY ADDON_REPOSITORY]
 
 Download:
 - [Current stable version: ADDON_CUR_VERSION ADDON_DOWNLOAD_SERVER1]
@@ -17,6 +15,18 @@ Download:
 
 
 Sorry, but this document is an automatic translation from french language.
+
+
+
++ v3.5 (March/28/2024) +
+
+What's new:
+- Compatibility with NVDA 2024.1 and dropping support for NVDA versions prior to 2023.1.
+- taking into account the "Speech on demand" mode introduced in nvda 2024.1: all scripts announcing information will vocalize this information. In this mode, all other scripts will remain silent.
+
+
+Development :
+- removal of code specific to versions prior to NVDA 2023.1.
 
 
 + v3.4 (February/15/2023) +

@@ -5,16 +5,25 @@ Autor: ADDON_AUTHOR_NAME
 %!includeconf: ../addon_global.t2tconf
 %!includeconf: addon_informations.t2tconf
 
+URL: [ADDON_REPOSITORY ADDON_REPOSITORY]
 
-URL: ADDON_AUTHOR_URL
-
-[Repositorio en GitHub: ADDON_REPOSITORY ADDON_REPOSITORY]
 
 Descarga:
 - [Versión actual: ADDON_CUR_VERSION ADDON_DOWNLOAD_SERVER1]
 - [Versión anterior: ADDON_PREV_VERSION ADDON_DOWNLOAD_PREVIOUS]
 - [Versiones de desarrollo ADDON_DEV_URL]
 
+
+
++ v3.5 (28/03/2024) +
+
+Nuevas características:
+- Compatibilidad con NVDA 2024.1 y las versiones de NVDA anteriores a la 2023.1 ya no son soportadas.
+- se toma en cuenta un nuevo modo de "voz a petición" introducido en nvda 2024.1:   todos los scripts que anuncien información verbalizarán esta información. En este modo, todos los demás scripts permanecerán en silencio.
+
+
+Desarrolladores:
+- se eliminó el código específico de las versiones anteriores a NVDA 2023.1.
 
 
 + v3.4 (15/02/2023) +
