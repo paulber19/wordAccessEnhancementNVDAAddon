@@ -12,7 +12,34 @@ Téléchargement :
 - [Version stable actuelle : ADDON_CUR_VERSION ADDON_DOWNLOAD_SERVER1]
 - [Version stable précédente : ADDON_PREV_VERSION ADDON_DOWNLOAD_PREVIOUS]
 - [versions de développement ADDON_DEV_URL]
++ v3.6 (11/10/2024) +
+compatibilité avec NVDA 2024.2, 2024.3 et 2024.4.
+Nouveautés:
+- amélioration concernant les commentaires:
+ - ajout d'un script "windows + alt +o" pour annoncer ou afficher les réponses au commentaire sous le curseur.
+ - ajout d'un script "windows + alt +y" pour répondre au commentaire sous le curseur.
+ - possibilité d'indiquer le nom de l'auteur lors de l'insertion d'un commentaire.
+ - dans le dialogue d'insertion d'élément, ajout de l'élément "Réponse au commentaire" pour répondre au commentaire sous le curseur.
+ - dans le dialogue recensant les commentaires :
+  - ajout d'un bouton pour lire les réponses au commentaire .
+  - ajout d'un bouton pour répondre au commentaire.
+  - ajout d'un bouton pour modifier le nom de l'auteur.
+ les déplacements de phrase en phrase fonctionnent maintenant correctement quand l'UIA est utilisée.
+- les scripts de déplacement de paragraphe en paragraphe avec la possibilité de sauter les paragraphes vides sont mis en conformité  avec ceux de NVDA.
+- Le script de lecture du texte de l'élément sous le curseur    (note de bas de page  ou note de fin) permet maintenant, au second appui du geste de commande, de modifier  ce text.
+- la lecture automatique des notes de bas de page ou de fin est maintenant opérationnelle quand l'option "Utiliser UI Automation pour accéder aux Contrôles des documents Microsoft Word  " est soit sur "Lorsque c'est adapté" ou "Toujours".
+- ajout d'un script (sans geste de commande) pour définir l'option "Utiliser UI Automation pour accéder aux Contrôles des documents Microsoft Word  " sans avoir besoin d'accéder à la catégorie "Avancé" des paramètres de NVDA.
 
+
+Corrections de bogues:
+- correction dans la documentation  des touches de déplacement horizontal et vertical en mode "couche de commande pour tableau" activée.
+- la suppression d'une note de fin ou de bas de page ne provoque plus d'erreur quand la lecture automatique des notes est activée.
+- le texte associé au commentaire  est maintenant correctement affiché lorsqu'il n'y a qu'un seul commentaire recensé.
+
+
+Changements:
+- les scripts concernant les déplacements de phrase en phrase  ou de paragraphe en paragraphe ne n'apparaissent plus dans la catégorie des gestes de commandes de l'extension car ils sont déclanchés par des commandes Word non modifiables.
+- la touche "Échapp" ne permet plus de désactiver le mode "couche de commande pour tableau".
 
 
 + v3.5 (28/03/2024) +

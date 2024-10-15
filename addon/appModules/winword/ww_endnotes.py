@@ -45,10 +45,10 @@ class Endnotes(Collection):
 	_name = (_("Endnote"), _("Endnotes"))
 	_wdGoToItem = wdGoToEndnote
 	entryDialogStrings = {
-		# Translators: text of entry text box:
-		"entryBoxLabel": _("Enter the endnote's text"),
 		# Translators: title of insert dialog.
 		"insertDialogTitle": _("Endnote's insert"),
+		# Translators: label of dialog entry text box.
+		"entryBoxLabel": _("Enter the endnote's text"),
 		# Translators: title of modify dialog.
 		"modifyDialogTitle": _("Endnote's modification"),
 	}
@@ -61,7 +61,11 @@ class Endnotes(Collection):
 		self.__class__._elementUnit = textInfos.UNIT_CHARACTER
 
 	@classmethod
-	def insert(ols, wordApp, text):
+	def canInsert(cls, focus):
+		return (True, None)
+
+	@classmethod
+	def insert(ols, wordApp, text, focus):
 		doc = wordApp.ActiveDocument
 		selection = wordApp.Selection
 		selection.Collapse(wdCollapseEnd)
@@ -69,6 +73,20 @@ class Endnotes(Collection):
 		endnoteObj = doc.Endnotes.Add(r)
 		endnoteObj.range.text = text
 		r.Select()
+
+	@classmethod
+	def getEndnoteTextAtFocus(cls, obj):
+		doc = obj.WinwordApplicationObject.ActiveDocument
+		selection = obj.WinwordSelectionObject
+		r = doc.range(selection.Start, selection.Start + 1)
+		endnotes = r.Endnotes
+		if endnotes.Count:
+			text = endnotes[1].range.text
+			if text == "":
+				# Translators: message to the user to say empty .
+				text = _("empty")
+			return text
+		return None
 
 
 class EndnotesDialog(ReportDialog):

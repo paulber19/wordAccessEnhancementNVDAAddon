@@ -83,7 +83,7 @@ class Revision(CollectionElement):
 		if not _addonConfigManager.toggleReportRevisionTypeWithAuthorOption(False):
 			author = ""
 		elif self.author != "":
-			# Translators: part of message to report author of revision
+			# Translators: part of message to report author of revision.
 			author = _("by %s") % self.author
 		revisionTypeText = self.get_typeText()
 		text = "%s %s" % (revisionTypeText, author)
@@ -113,7 +113,7 @@ Revision's text:
 
 	def reportText(self):
 		ui.message(_("{type} by {author} {text}") .format(
-			type=self.get_typeText(), author=self.author, text=self.text)		)
+			type=self.get_typeText(), author=self.author, text=self.text))
 
 
 class Revisions(Collection):
@@ -185,7 +185,7 @@ class RevisionsDialog(ReportDialog):
 
 		elif (key == wx.WXK_DELETE) or (key == wx.WXK_NUMPAD_DELETE):
 			if myMessageBox(
-				# Translators: text of message
+				# Translators: text of message.
 				_("Are you sure you wish to reject this items?"),
 				# Translators: title of message box dialog.
 				_("Reject of items"),

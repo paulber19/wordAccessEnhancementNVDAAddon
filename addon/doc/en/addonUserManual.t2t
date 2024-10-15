@@ -74,9 +74,9 @@ In the case of an update to a stable version, the "What's new" button offers the
 
 
 ++ Compatibility ++
-This add-on has been tested with the 2019, 2016 and 2013 versions of Microsoft Word.
+This add-on has been tested with Word of Microsoft Office professional 2019, 2016 and 2013.
 
-Warning: for the add-on to work properly, the NVDA checkbox "Use UI Automation to access Microsoft Word document controls when available" should not be checked. It can be found in the "Advanced" category of NVDA settings.
+Warning: for optimal operation of the extension, it is preferable that the option "Use UI Automation to access Microsoft Word document controls" is set to "Only if necessary". This option is found in the "Advanced" category of NVDA settings. By default, NVDA sets it to “When suitable”.
 
 + Document inspection +[hdr_inspect]
 ++ Element search ++[hdr1]
@@ -99,8 +99,7 @@ The add-on makes it possible to search and list the elements constituting the do
 - title.
 
 
-
-To do this, it installs a script which is launched using the "key_choice" command gesture.
+To do this, it installs a script which is launched using the "key_choice" input gesture.
 
 In response to this command, the "Find Items" dialog box appears, showing:
 - a list to choose the type of element to list,
@@ -162,8 +161,14 @@ The information common to all the elements is:
 - the page number and line number where the element is located in the document.
 
 
+For comments, the following buttons are present:
+- “reply to comment”,
+- “Read or view comments replies”,
+- “Change author name”.
+
+
 ++ Display information on the document ++[HDR13]
-The "key_document_infos" command gesture is used to display certain information about the document in a dialog box:
+The "key_document_infos" input gesture is used to display certain information about the document in a dialog box:
 - the current position in the document such as: page number, line number, section number,
 - the document properties such as: the name of the file, the name of the author, the date of creation,
 - statistics such as: the number of pages, the number of lines, the number of words,
@@ -174,7 +179,7 @@ The "key_document_infos" command gesture is used to display certain information 
 
 Depending on the number of spelling or grammar errors, the display time of the dialog box can be relatively long.
 
-The displayed information can be copied to the clipboard using the "Copy to clipboard" button in the dialog box.This script is presented in the "ADDON_SUMMARY" category of the NVDA "Command gestures" dialog.
+The displayed information can be copied to the clipboard using the "Copy to clipboard" button in the dialog box.This script is presented in the "ADDON_SUMMARY" category of the NVDA "input gestures" dialog.
 
 
 ++ Announcement of the position of the system cursor ++[hdr2]
@@ -196,6 +201,7 @@ A double press of the input gesture displays this information on the screen.
 + Element's insert +[hdr_insert]
 The add-on installs a script to facilitate element insertion at the cursor position. The supported item types are:
 - comment,
+- response to the comment under the cursor,
 - Footnote,
 - end note.
 
@@ -218,11 +224,16 @@ The "Cancel" button or the validation without text causes the return to the prev
 
 For a comment, if a selection is present, the commented text is the text of this selection. Otherwise it is the word in focus.
 
+For a comment or reply, the item is inserted with the author's name configured in Word. But after insertion, a proposal is made to change this name.
+
+The extension also installs a script to respond to the comment under the cursor with "key_reply" as a command gesture.
+
 + Element's reading +[hdr_reading]
 ++ Manual reading ++
 The add-on installs scripts to read certain items at the cursor position. Those are:
-- reading the footnote or endnote: "key_report_footnote_endnote".
+- reading the footnote or endnote: "key_report_footnote_endnote". A quick double input gesture allows you to modify the text of the note.
 - reading of the text modification: "key_report_revision".
+- reading replies to comment: "key_report_replies". A quick double command gesture displays them.
 
 
 If there are no elements, a voice message announces it.
@@ -253,8 +264,7 @@ Under this profile, it is then possible to define voice and speech settings usin
 
 Once this is done, the NVDA configuration should be saved.
 
-In Word and in order to save the voice settings for automatic reading , this profile must be activated manually. Hitting the "key_RecordVoiceSettings" input gesture will perform the recording.
-
+Under Word and in order to save the voice settings for automatic reading , this profile must be activated manually. Hitting the "key_RecordVoiceSettings" input gesture will perform the recording.
 
 Once the recording is done, the profile can then be deactivated manually to find the voice parameters of the active configuration profile before manual activation of the profile.
 
@@ -263,8 +273,6 @@ The "Activate automatic reading" option can be changed using the "Activate or de
 This input gesture can be changed using the "Input gestures" NVDA dialog.
 
 This script is located in the "ADDON_SUMMARY" category of this dialog.
-
-
 
 + Complements for table +[hdr_table]
 ++ Announcement of table elements ++
@@ -285,13 +293,13 @@ Those are:
 
 Depending on the "column headers" option in the "Document formatting" category of NVDA settings, the cell content is announced alone or with the row and column titles.
 
-These scripts are shown in the "ADDON_SUMMARY" category of the NVDA "Command Gestures" dialog.
+These scripts are shown in the "ADDON_SUMMARY" category of the NVDA "input Gestures" dialog.
 ++ Announcement of all cells ++
-It is possible to have all the cells of the row or columns announced when using the previous command gestures.
+It is possible to have all the cells of the row or columns announced when using the previous inputs gestures.
 
 The script "activate or desactivate the report of all cells of row or column" is launched using the  "key_sayAll" input gesture.
 
-This script is presented in the "ADDON_SUMMARY" category of the NVDA "Command Gestures" dialog.
+This script is presented in the "ADDON_SUMMARY" category of the NVDA "input Gestures" dialog.
 
 Thus, if the announcement of all cells is activated, by typing:
 - "key_report_previousInRow" or "key_report_nextInRow": the cells of the previous or next column are announced.
@@ -300,7 +308,7 @@ Thus, if the announcement of all cells is activated, by typing:
 - "key_report_firstInColumn" or "key_report_lastInColumn": all the cells of the first or last row are announced.
 
 
-To deactivate the announcement of all cells, simply type the "key_sayAll" command gesture again.
+To deactivate the announcement of all cells, simply type the "key_sayAll" input gesture again.
 
 ++ Moving in the table ++
 The add-on installs the following scripts to move around table:
@@ -320,6 +328,7 @@ After  moving:
 - the cell is selected to be possibly copied with the shortcut "control + c".
 - is announced either the current cell, or all the cells making up the row or column if the announcement of all cells is activated.
 
+
 The announcement of the content of each cell is preceded by the report of the corresponding title if the "Column headers" option ("Document formatting" category is checked).
 
 The add-on also installs, but without input gesture, the following scripts to move in a table and announce the cells of the row or the column:
@@ -337,13 +346,12 @@ Using "Input gestures" NVDA dialog, it is possible to define their own input ges
 
 These scripts are shown in the "ADDON_SUMMARY" category of the "Input Gestures" NVDA dialog.
 
-
 ++ Command layer for table ++
 The add-on allows to modify the gestures of commands of the previous scripts which requires the combination of several keys in order to use only the direction keys for the movements.
 
-To do this, simply type the "key_layerMode" command gesture to activate the command layer for array.
+To do this, simply type the "key_layerMode" input gesture to activate the command layer for array.
 
-So after activating the command layer for table, the command gestures of the movement scripts are replaced by:
+So after activating the command layer for table, the input gestures of the movement scripts are replaced by:
 
 - go to the previous cell in the line: "key_layer_moveTo_previousInRow".
 - go to the following cell in the line: "key_layer_moveTo_nextInRow".
@@ -413,11 +421,10 @@ As neither the error nor the suggestion is announced by NVDA when the focus arri
 
 A script allows this information to be announced.
 
- The "key_spelling_checker_help" input gesture is assigned to it:
+The "key_spelling_checker_help" input gesture is assigned to it:
 - with a simple press of this gesture, the error and the suggestion are announced.
 - with a double press of this gesture, this information is spelled out.
 - with a triple press of this gesture, the help of the corrector is announced.
-
 
 
 The "key_report_current_sentence" input gesture allows you to hear the sentence affected by the error again.
@@ -425,31 +432,44 @@ The "key_report_current_sentence" input gesture allows you to hear the sentence 
 These scripts are shown in the "ADDON_SUMMARY" category of the "Input Gestures" NVDA dialog.
 
 This add-on also allows the automatic announcement of the new error and its suggestion presented by the spell checker following the use of one of the buttons like "Ignore", "Modify" or Word shortcuts like "i", "m ".
+
 + Resumption of scripts from NVDA +[hdr_nvda]
 ++ Skip empty paragraphs ++[hdr3]
-In a Word document, NVDA provides the ability to move from paragraph to paragraph using the "key_next_paragraph" or "key_previous_paragraph" commands.
+In a Word document, it is possible to move the cursor from paragraph to paragraph using the Word commands "control + up arrow" or "control + down arrow".
 
-But the focus is given to the preceding or following paragraph regardless of its content.
+As these are Word commands, these shortcuts are not editable and do not appear in NVDA input gestures.
 
-This add-on offers the possibility of blowing up empty paragraphs and giving focus to the first non-empty paragraph found.
+After the command, NVDA announces the reached paragraph.
 
-The "Skip empty paragraphs" option in the "Options" category enables or disables this operation.
+But The cursor is given to the previous or next paragraph, if there is one, regardless of its content. And so NVDA will say "empty" if the paragraph is empty. This can be annoying if there are several in a row.
 
-By default, this option is checked. Empty paragraphs are ignored.
+The add-on offers the possibility to skip empty paragraphs and give focus to the first non-empty paragraph found.
+
+The "Skip empty paragraphs" option in the "Options" category activates or deactivates this operation. By default, this option is checked.
 
 It is also possible, at any time, to activate or deactivate this operation using the "key_toggle_skip_empty_paragraph" input gesture.
 
+To indicate that paragraphs have been skipped, a sound can be emitted. To do this, simply check the “Play a sound if empty paragraphs are skipped” option. This option is checked by default.
+
+The add-on will announce if there are no more paragraphs.
+
 ++ Moving from sentence to sentence ++[HDR12]
-NVDA provides the ability to move the system cursor from sentence to sentence with the following input gestures:
-- "key_next_sentence": move to the next sentence,
-- "key_previous_sentence": move to the previous sentence.
+Word provides the ability to move the system cursor from sentence to sentence with the following shortcuts:
+- “Alt + down arrow”: movement to the next sentence,
+- “Alt + up arrow”: movement to the previous sentence.
 
 
-But they are only operational in edit mode and not in browse mode.
+As these are Word commands, these shortcuts are not editable and do not appear in NVDA input gestures.
 
-To remove this limitation, the add-on replaces them with new scripts using the same command gestures.
+After the move, NVDA announces the phrase reached, but only in "edit" mode and name in "navigation" mode.
 
-These new scripts are shown in the "ADDON_SUMMARY" category of the "Input Gestures" NVDA dialog.
+The add-on removes this limitation.
+
++ Miscellaneous +
+++ Using UI Automation to access controls in Microsoft Word documents ++
+Using UI Automation to access controls in Microsoft Word documents can be set using an option found in the "Advanced" category of NVDA settings. But this requires a lot of key presses.
+
+To simplify this, the extension provides a script, without a input gesture, to directly display a dialog showing the different possible choices for this option and allow you to select one.
 
 + History +
 The version history of this add-on is in the file ["changes.html" changes.html]

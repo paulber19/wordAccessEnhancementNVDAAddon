@@ -73,9 +73,9 @@ Dans le cas d'une mise à jour automatique et si une nouvelle version est détec
 Dans le cas d'une mise à jour vers une version stable, Le bouton "Quoi de neuf" offre la possibilité d'ouvrir, dans le navigateur, l'historique de l'extension et ainsi pouvoir connaitre les nouveautés de la version proposée.
 
 ++ Compatibilité ++
-Cette extension a était testé avec les versions 2019, 2016 et 2013 de Microsoft Word.
+Cette extension a était testé avec les versions 2019, 2016 et 2013 de Word du pack Microsoft Office professionnel.
 
-Attention : pour un bon fonctionnement de l'extension, la case à cocher de NVDA "Utiliser UI Automation pour accéder aux Contrôles des documents Microsoft Word quand disponible " ne doit pas être cochée. Elle se trouve dans la catégorie "Avancé" des paramètres de NVDA (versions de NVDA inférieures à 2022.1).
+Attention : pour un fonctionnement optimum de l'extension, il est préférable que l'option  "Utiliser UI Automation pour accéder aux Contrôles des documents Microsoft Word" soit sur  "Seulement si nécessaire". Cette option se trouve dans la catégorie "Avancé" des paramètres de NVDA . Par défaut, NVDA la configure à "Lorsque c'est adapté".
 
 + Inspection du document +[hdr_inspect]
 ++ Recherche d'éléments ++[hdr1]
@@ -96,7 +96,6 @@ L'extension permet de rechercher et lister les éléments constituant le documen
 - signet,
 - tableau,
 - titre.
-
 
 
 Pour cela, elle installe un script qui se lance à l'aide du geste de commande "key_choice".
@@ -133,7 +132,6 @@ Le choix fait, la touche "Entrée" dans la liste ou l'appui sur le bouton "Reche
 
 La collecte peut durer plusieurs secondes.
 
-
 Il est possible en utilisant le bouton "Rechercher et copier dans le presse-papier" de lancer la collecte et de copier la liste des éléments collectés avec leurs informations dans le presse-papier, éventuellement plus détaillées qu'à l'affichage.
 
 La boite qui présente la liste des éléments collectés dépend du type d'objet sélectionné et a la forme générale suivante :
@@ -159,6 +157,12 @@ L'appui sur la touche "espace" annonce le texte du premier champ ou, si la touch
 Les informations communes à tous les éléments sont :
 - le numéro de l'élément dans la liste,
 - le numéro de page et numéro de ligne où se trouve l'élément dans le document.
+
+
+Pour les commentaires, les boutons suivants sont présents:
+- "répondre au commentaire",
+- "Lir ou afficher les réponses au commentaire",
+- "Modifier le nom de l'auteur".
 
 
 ++ Affichage des informations sur le document ++[HDR13]
@@ -197,6 +201,7 @@ Un double appui du geste de commande affiche cette information à l'écran.
 + Insertion d'élément +[hdr_insert]
 L'extension installe un script pour faciliter l'insertion d'élément à la position du curseur. Les types déléments pris en charge sont :
 - commentaire,
+- réponse au commentaire sous le curseur,
 - note de bas de page,
 - note de fin.
 
@@ -219,15 +224,19 @@ Le Bouton "Annuler" ou la validation sans texte provoque le retour au dialogue p
 
 Pour un commentaire, si une sélection est présente, le texte commenté est le texte de cette sélection. Sinon c'est le mot sous le focus.
 
+Pour un commentaire ou une réponse, l'élément est inséré  avec le nom de l'auteur configuré dans Word. Mais après l'insertion, une proposition est faite pour modifier ce nom.
+
+L'extension installe aussi un script pour répondre au commentaire sous le curseur avec "key_reply" comme geste de commande.
+
 + Lecture d'élément +[hdr_reading]
 ++ Lecture manuelle ++
 L'extension installe des scripts pour lire certains éléments à la position du curseur. Ce sont :
-- lecture de la note de bas de page ou de fin : "key_report_footnote_endnote".
+- lecture de la note de bas de page ou de fin : "key_report_footnote_endnote". Un double rapide geste de commande permet de modifier le texte de la note.
 - lecture de la modification de texte : "key_report_revision".
+- lecture des réponses au commentaire : "key_report_replies". Un  double rapide geste de commande, les affichent.
 
 
 Dans le cas où il n'y a pas d'éléments, un message vocal l'annonce.
-
 
 Pour les modifications de texte, le type, l'auteur, le texte de la modification sont annoncés. Il peut y avoir plusieurs modifications à la position du curseur.
 
@@ -254,8 +263,7 @@ Sous ce profil, il est alors possible de définir la voix et les paramètres voc
 
 Une fois ceci fait, la configuration de NVDA doit être enregistrée.
 
-Sur Word et afin d'enregistrer les paramètres vocaux pour la lecture automatique, ce profil doit être activé manuellement. La frappe du geste "key_RecordVoiceSettings" procèdera à l'enregistrement.
-
+Sous Word et afin d'enregistrer les paramètres vocaux pour la lecture automatique, ce profil doit être activé manuellement. La frappe du geste "key_RecordVoiceSettings" procèdera à l'enregistrement.
 
 L'enregistrement fait, le profil peut alors être désactivé manuellement pour retrouver les paramètres vocaux du profil de configuration actif avant l'activation manuelle du profil.
 
@@ -264,8 +272,6 @@ L'option "Lecture automatique" peut être modifié à l'aide du script "Activer 
 Ce geste de commande est modifiable à l'aide du dialogue "Gestes de commande" de NVDA.
 
 Ce script se trouve dans la catégorie "ADDON_SUMMARY" de ce dialogue.
-
-
 
 + Compléments pour tableau +[hdr_table]
 ++ Annonce des éléments du tableau ++
@@ -339,7 +345,6 @@ En utilisant le dialogue "Gestes de commandes" de NVDA, il est possible de leur 
 
 Ces scripts sont présentés dans la catégorie "ADDON_SUMMARY" du dialogue "Gestes de commandes" de NVDA.
 
-
 ++ Couche de commande pour tableau ++
 L'extension permet de modifier les gestes de commandes des précédents scripts qui nécessite la combinaison de plusieurs touches afin d'utiliser uniquement les touches de direction pour les déplacements.
 
@@ -361,7 +366,7 @@ Ainsi après avoir activer la couche de commande pour tableau, les gestes de com
 
 Ces scripts sont alors présentés dans la catégorie "ADDON_SUMMARY (couche de commandes pour tableau)" du dialogue "gestes de commandes" de NVDA.
 
-Pour désactiver la couche de commande pour tableau, il suffit de retaper "key_layerMode", ou tout simplement de taper "key_escape".
+Pour désactiver la couche de commande pour tableau, il suffit de retaper "key_layerMode".
 
 ++ Annonce du titre de la ligne et de la colonne ++
 Le geste de commande "key_report_headers" permet de connaître le titre de la ligne et de la colonne pour la cellule courante.
@@ -422,35 +427,49 @@ Un script permet de faire annoncer ces informations.
 - avec un triple appui de ce geste, l'aide du correcteur est annoncé.
 
 
-
 Le geste de commande "key_report_CURRENT_SENTENCE" permet de réentendre la phrase concernée par l'erreur.
 
 Ces scripts sont présentés dans la catégorie "ADDON_SUMMARY" du dialogue "gestes de commandes" de NVDA.
 
 Cette extension permet aussi l'annonce automatique de la nouvelle erreur et de sa suggestion présentée par le correcteur orthographique suite à l'utilisation d'un des boutons comme "Ignorer", "Modifier" ou des raccourcis Word comme "i", "m".
+
 + Reprise de scripts de NVDA +[hdr_nvda]
 ++ Saut des paragraphes vides ++[hdr3]
-Dans un document Word, NVDA fournit la possibilité de se déplacer de paragraphe en paragraphe à l'aide des commandes "key_next_paragraph" ou "key_previous_paragraph".
-Mais Le focus est donné au paragraphe précédent ou suivant quel que soit son contenu.
-Cette extension offre la possibilité de faire sauter les paragraphes vides et de donner le focus au premier paragraphe non vide trouvé.
+Dans un document Word, il est possible    de déplacer le curseur de paragraphe en paragraphe à l'aide des commandes Word "contrôle + flèche haut" ou "contrôle + flèche bas".
 
-L'option "Sauter les paragraphes vides" de la catégorie "Options" active ou désactive ce fonctionnement.
+Comme ce sont des commandes Word,ces raccourcis ne sont pas modifiables et n'apparaissent pas dans les gestes de commandes de NVDA.
 
-Par défaut, cette option est cochée. Les paragraphes vides sont ignorés.
+Après la commande, NVDA annonce le paragraphe atteint.
+
+Mais Le curseur est donné au paragraphe précédent ou suivant, s'il y en a un, quel que soit son contenu. Et donc NVDA dira "vide" si le paragraphe est vide. Cela peut être génant, s'il y en a plusieurs à la suite.
+
+L'extension offre la possibilité de faire sauter ces paragraphes vides et de donner le focus au premier paragraphe non vide trouvé.
+
+L'option "Sauter les paragraphes vides" de la catégorie "Options" active ou désactive ce fonctionnement. Par défaut, cette option est cochée.
 
 Il est aussi possible, à tout moment, d'activer ou désactiver ce fonctionnement à l'aide du geste de commande "key_toggle_skip_empty_paragraph".
 
+Pour signaler que des paragraphes ont étés sautés, un son peut être émis. Pour cela, il suffit de cocher l'option "Jouer un son si des paragraphes vides sont sautés ". Cette option est cochée par défaut.
+
+L'extension annoncera s'il n'y a plus aucun autre paragraphe.
+
 ++ Déplacement de phrase en phrase ++[HDR12]
-NVDA offre la possibilité de déplacer le curseur système de phrase en phrases avec les gestes de commandes suivants :
-- "key_next_sentence" : déplacement à la prochaine phrase,
-- "key_previous_sentence" : déplacement à la précédente phrase.
+Word offre la possibilité de déplacer le curseur système de phrase en phrases avec les raccourcis suivants :
+- "Alt + flèche bas" : déplacement à la prochaine phrase,
+- "Alt + flèche haut" : déplacement à la précédente phrase.
 
 
-Mais il ne sont opérationnels qu'en mode édition et non pas en mode navigation.
+Comme ce sont des commandes Word,ces raccourcis ne sont pas modifiables et n'apparaissent pas dans les gestes de commandes de NVDA.
 
-Pour supprimer cette limitation, l'extension les remplacent par de nouveaux scripts utilisant les mêmes gestes de commande.
+Après le déplacement, NVDA annonce la phrase atteinte, mais seulement en mode "édition" et nom en mode "navigation".
 
-Ces nouveaux scripts sont présentés dans la catégorie "ADDON_SUMMARY" du dialogue "gestes de commandes" de NVDA.
+L'extension supprime cette limitation.
+
++ Divers +
+++ Utilisation de  l'UI Automation pour accéder aux contrôles des documents Microsoft Word ++
+L'utilisation de l'UI Automation   pour accéder aux contrôles des documents Microsoft Word peut être défini à l'aide d'une option qui se trouve dans la catégorie "Avancé" des paramètres de NVDA. Mais cela nécessite beaucoup d'appuis touches.
+
+Pour simplifier cela, l'extension apporte un script, sans geste de commande,  pour faire afficher directement un dialogue  montrant les diférents choix possible pour  cette option et permettre d'en sélectionner un.
 
 + Historique +
 L'historique des versions de cette extension est dans le fichier ["changes.html" changes.html]

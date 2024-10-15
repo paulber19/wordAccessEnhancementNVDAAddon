@@ -47,7 +47,7 @@ Associated text:
 
 class HeaderFooters(Collection):
 	_propertyName = (("HeaderFooters", HeaderFooter),)
-	# Translators: name of collection element type
+	# Translators: name of collection element type.
 	_name = (_("Header/Footer"), _("Headers/Footers"))
 	_wdGoToItem = None
 

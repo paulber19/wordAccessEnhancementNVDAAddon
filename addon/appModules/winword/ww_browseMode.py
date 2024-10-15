@@ -23,6 +23,7 @@ from NVDAObjects.window.winword import (
 	wdRevisionDelete
 )
 
+from .automaticReading import AutomaticReadingWordTextInfo
 from .ww_fields import Field
 from .ww_keyboard import getBrowseModeQuickNavKey
 from scriptHandler import willSayAllResume
@@ -48,6 +49,11 @@ class BrowseModeTreeInterceptorEx(browseMode.BrowseModeTreeInterceptor):
 
 	def __init__(self, rootNVDAObject):
 		super(BrowseModeTreeInterceptorEx, self).__init__(rootNVDAObject)
+		try:
+			del self._gestureMap["kb:control+uparrow"]
+			del self._gestureMap["kb:control+downarrow"]
+		except Exception:
+			pass
 		# to be able to move sentences by sentence in navigation mode.
 		# collapseOrExpandControl script is not usefull in word.
 		try:
@@ -249,8 +255,6 @@ class BrowseModeDocumentTreeInterceptorEx(
 			item.report(readUnit=readUnit)
 		item.moveTo()
 
-from .ww_automaticReading import AutomaticReadingWordTextInfo
-
 
 class BrowseModeWordDocumentTextInfoEx(AutomaticReadingWordTextInfo, BrowseModeWordDocumentTextInfo):
 	pass
@@ -395,7 +399,7 @@ class WordDocumentEndnoteQuickNavItem(WordDocumentCollectionQuickNavItem):
 		doc = self.collectionItem.Application.ActiveDocument
 		endnoteObj = doc.EndNotes[index]
 		endnote = Endnote(self.collectionItem, endnoteObj)
-		from .ww_automaticReading import formatAutoSpeechSequence
+		from .automaticReading import formatAutoSpeechSequence
 		if _addonConfigManager.toggleAutomaticReadingOption(False) and (
 			_addonConfigManager.toggleAutoEndnoteReadingOption(False)):
 			textList.extend(formatAutoSpeechSequence([endnote.text]))
@@ -461,7 +465,7 @@ class WordDocumentFootnoteQuickNavItem(WordDocumentCollectionQuickNavItem):
 		doc = self.collectionItem.Application.ActiveDocument
 		footnoteObj = doc.FootNotes[index]
 		footnote = Footnote(self.collectionItem, footnoteObj)
-		from .ww_automaticReading import formatAutoSpeechSequence
+		from .automaticReading import formatAutoSpeechSequence
 		if _addonConfigManager.toggleAutomaticReadingOption(False) and (
 			_addonConfigManager.toggleAutoFootnoteReadingOption(False)):
 			textList.extend(formatAutoSpeechSequence([footnote.text]))

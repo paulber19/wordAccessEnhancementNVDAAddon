@@ -18,6 +18,37 @@ Sorry, but this document is an automatic translation from french language.
 
 
 
+
++ v3.6 (October/11/2024) +
+compatibility with NVDA 2024.2, 2024.3 and 2024.4.
+What's new:
+- improvement regarding comments:
+ - added a "windows + alt +o" script to announce or display comments replies under the cursor.
+ - added a "windows + alt +y" script to reply to the comment under the cursor.
+ - possibility of indicating the name of the author when inserting a comment.
+ - in the element insertion dialog, added the "Reply to comment" element to reply to the comment under the cursor.
+ - in the dialogue listing the comments:
+  - added a button to read the replies to the comment.
+  - added a button to reply to the comment.
+  - added a button to modify the author's name.
+- moving from sentence to sentence now works correctly when UIA is used.
+- the scripts for moving from paragraph to paragraph with the possibility of skipping empty paragraphs are brought into compliance with those of NVDA.
+- The script for reading the text of the element under the cursor (footnote or endnote) now allows, on the second press of the command gesture, to modify this text.
+- automatic reading of footnotes or endnotes is now operational when the "Use UI Automation to access Microsoft Word Document Controls" option is either "When appropriate" or "Always".
+- added a script (without input gesture) to set the option "Use UI Automation to access Microsoft Word Document Controls" without needing to access the "Advanced" category of NVDA settings.
+
+
+Bug fixes:
+- correction in the documentation of the horizontal and vertical movement keys in "table command layer" mode activated.
+- deleting an endnote or footnote no longer causes an error when automatic reading of notes is activated.
+- the text associated with the comment is now correctly displayed when there is only one comment listed.
+
+
+Changes:
+- scripts concerning movements from sentence to sentence or from paragraph to paragraph no longer appear in the add-on 's input gestures category because they are triggered by non-modifiable Word commands.
+- the "Escape" key no longer allows you to deactivate the "table command layer" mode.
+
+
 + v3.5 (March/28/2024) +
 
 What's new:

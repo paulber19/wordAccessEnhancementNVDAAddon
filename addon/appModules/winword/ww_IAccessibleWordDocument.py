@@ -12,7 +12,7 @@ import NVDAObjects.IAccessible.winword
 from . import ww_wordDocumentBase
 from NVDAObjects.IAccessible.winword import WordDocument
 from . import ww_browseMode
-from .ww_automaticReading import AutomaticReadingWordTextInfo
+from .automaticReading import AutomaticReadingWordTextInfo
 import sys
 _curAddon = addonHandler.getCodeAddon()
 debugToolsPath = os.path.join(_curAddon.path, "debugTools")

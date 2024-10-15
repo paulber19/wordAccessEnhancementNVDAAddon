@@ -251,10 +251,10 @@ class ElementsListDialog(DpiScalingHelperMixinWithoutInit, wx.Dialog):
 				# Translators: message to indicate the number of elements is limited.
 				msg = _("more than %s elements") % str(count) if count > 1 else _("One element")
 			else:
-				# Translators: message to the user to report number of elements
+				# Translators: message to the user to report number of elements.
 				msg = _("%s elements") % str(count) if count > 1 else _("One element")
 		else:
-			# Translators: message to the user when there is no element
+			# Translators: message to the user when there is no element.
 			msg = _("no element")
 		wx.CallLater(100, queueHandler.queueFunction, queueHandler.eventQueue, speech.speakMessage, msg)
 
@@ -459,7 +459,7 @@ class UIAElementsListDialog(ElementsListDialog):
 		("comment", _("Comment")),
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
-		# ("endnote", _("Endnote")),
+		("endnote", _("Endnote")),
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
 		# ("field", _("Field")),
@@ -468,7 +468,7 @@ class UIAElementsListDialog(ElementsListDialog):
 		# ("formfield", _("FormField")),
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
-		# ("footnote", _("Footnote")),
+		("footnote", _("Footnote")),
 		# Translators: The label of a list item to select the type of element
 		# in the browse mode Elements List dialog.
 		("revision", _("Revision")),

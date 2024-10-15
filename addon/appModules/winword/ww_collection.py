@@ -6,6 +6,7 @@
 
 import addonHandler
 import api
+import gui
 import wx
 import ui
 import core
@@ -13,7 +14,6 @@ from eventHandler import queueEvent
 import time
 import textInfos
 import speech
-import controlTypes
 from .ww_wdConst import wdActiveEndPageNumber, wdFirstCharacterLineNumber
 import sys
 import os
@@ -142,7 +142,6 @@ class Collection(object):
 		collection = []
 		for item in self._propertyName:
 			(property, elementClass) = item
-			col = getattr(theRange, property)
 			try:
 				col = getattr(theRange, property)
 			except Exception:
@@ -181,7 +180,7 @@ class Collection(object):
 			if self.parent and self.parent.canceled:
 				return []
 			(obj, elementClass) = item
-			element = elementClass(self, obj)
+			# element = elementClass(self, obj)
 			try:
 				element = elementClass(self, obj)
 				elements.append(element)
@@ -204,9 +203,7 @@ class Collection(object):
 				r = self.doc.range(self.reference, self.reference + 1)
 			else:
 				r = self.doc.range(self.selection.Start, self.selection.Start + 1)
-
 			pleaseWait = False
-
 		elif self.rangeType == "document":
 			start = self.doc.Content.Start
 			end = self.doc.Content.End
@@ -510,14 +507,14 @@ class ReportDialog(wx.Dialog):
 			index, wx.LIST_STATE_FOCUSED, wx.LIST_STATE_FOCUSED)
 		item = self.collection[index]
 		if self.tc1:
-			self.refreshTextControl(self.TC1, item)
+			self.refreshTextControl(self.TC1, self.get_tc1Datas, item)
 
 		if self.tc2:
-			self.refreshTextControl(self.TC2, item)
+			self.refreshTextControl(self.TC2, self.get_tc2Datas, item)
 
-	def refreshTextControl(self, tc, item):
+	def refreshTextControl(self, tc, get_tcDatas, item):
 		tc.Clear()
-		tc.AppendText(self.get_tc1Datas(item))
+		tc.AppendText(get_tcDatas(item))
 		tc.SetInsertionPoint(0)
 
 	def onListItemSelected(self, evt):
@@ -573,31 +570,29 @@ class ReportDialog(wx.Dialog):
 		self.collectionObject.deleteAll()
 		self.Close()
 
-	def _modifyTCText(self, tc):
+	def _modifyTCText(self, tc, get_tcDatas):
 		index = self.entriesList.GetFocusedItem()
 		item = self.collection[index]
-		with wx.TextEntryDialog(
-			self,
-			self.collectionClass.entryDialogStrings["entryBoxLabel"],
+		from .ww_textUtils import askForText
+		newText = askForText(
 			self.collectionClass.entryDialogStrings["modifyDialogTitle"],
+			self.collectionClass.entryDialogStrings["entryBoxLabel"],
 			item.text,
-			style=wx.TextEntryDialogStyle | wx.TE_MULTILINE
-		) as entryDialog:
-			if entryDialog.ShowModal() != wx.ID_OK:
-				return
-			newText = entryDialog.Value
-			if newText == item.text:
-				# no change
-				return
-			item.modifyText(newText)
-			self.refreshTextControl(tc, item)
-			self.entriesList.SetFocus()
+		)
+		if not newText or newText == item.text:
+			# no change
+			return
+		item.modifyText(newText)
+		self.refreshTextControl(tc, get_tcDatas, item)
+		self.entriesList.SetFocus()
 
 	def modifyTC1Text(self):
-		self._modifyTCText(self.TC1)
+		self._modifyTCText(self.TC1, self.get_tc1Datas)
 
 	@classmethod
 	def run(cls, collectionObject, makeChoiceDialog):
+		gui.mainFrame.prePopup()
 		d = cls(makeChoiceDialog, collectionObject)
 		d.CenterOnScreen()
 		d.ShowModal()
+		gui.mainFrame.postPopup()

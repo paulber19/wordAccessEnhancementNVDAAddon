@@ -69,7 +69,7 @@ class ContentControl(CollectionElement):
 
 class ContentControls(Collection):
 	_propertyName = (("ContentControls", ContentControl),)
-	# Translators: name of collection element type
+	# Translators: name of collection element type.
 	_name = (_("Content control"), _("Content controls"))
 	_wdGoToItem = None
 

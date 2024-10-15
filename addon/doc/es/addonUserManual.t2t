@@ -70,9 +70,9 @@ En el caso de una actualización automática, y si se detecta una nueva versión
 Para una actualización de una versión estable, el botón "Qué hay de nuevo" ofrece la posibilidad, de abrir en el navegador, el historial del complemento y asi poder conocer las novedades de la versión propuesta.
 
 ++ Compatibilidad ++
-Este complemento fue probado con las versiones de Microsoft Word 2019, 2016 y 2013.
+Este complemento fue probado con las versiones de Microsoft Word 2019, 2016 y 2013 de Word del paquete de Microsoft Office Professional.
 
-Advertencia: para el correcto funcionamiento del complemento, la casilla de verificación de NVDA "Utilizar UI Automation para acceder a controles de documento de Microsoft Word cuando esté disponible" no debe ser marcado. Se encuentra en la categoría Opciones "Avanzadas" de NVDA (versiones de NVDA inferiores a 2022.1).
+Advertencia: para el óptimo funcionamiento del complemento, es preferible que la opción "Utilizar UI Automation para acceder a controles de documento de Microsoft Word" este en: "Sólo cuando sea necesario". Esta opción se encuentra en la categoría Opciones "Avanzadas" de NVDA. Por defecto, NVDA lo configura para: "Cuando sea conveniente".
 
 + Inspección del documento +[hdr_inspect]
 ++ Búsqueda de elementos ++[hdr1]
@@ -158,6 +158,12 @@ La información común a todos los elementos es:
 - el número de página y el número de línea donde está el elemento en el documento.
 
 
+Para los comentarios, están presentes los siguientes botones:
+- "Responder al comentario",
+- "Leer o mostrar respuestas a comentarios",
+- "Modificar el nombre del autor".
+
+
 ++ Visualización de la información del documento ++[HDR13]
 El gesto de entrada "key_document_infos" muestra cierta información sobre el documento en un cuadro de diálogo:
 - la posición actual en el documento, como: número de página, número de línea, número de sección,
@@ -194,6 +200,7 @@ Una doble pulsación del gesto de entrada muestra esta información en la pantal
 + Inserción de elemento +[hdr_insert]
 El complemento instala un script para facilitar la inserción del elemento a la posición del cursor. Los tipos de  elementos soportados son:
 - comentario,
+- responder al comentario bajo el cursor,
 - nota al pie de página,
 - nota final.
 
@@ -216,11 +223,16 @@ El botón "Cancelar" o la validación sin texto provocará el regreso al diálog
 
 Para un comentario, si hay una selección presente, el texto comentado es el texto de esta selección. De lo contrario, es la palabra enfocada.
 
+Para un comentario o respuesta, el elemento se inserta con el nombre del autor configurado en Word. Pero después de la inserción, se hace una propuesta para modificar este nombre.
+
+El complemento también instala un script para responder al comentario bajo el cursor con "key_reply" como gesto de entrada.
+
 + Lectura del elemento +[hdr_reading]
 ++ Lectura manual ++
 El complemento instala scripts para leer algunos elementos en la posición del cursor. Estos son:
-- lectura de nota al pie de página o nota final: "key_report_footnote_endnote".
+- lectura de nota al pie de página o nota final: "key_report_footnote_endnote". Una doble pulsación rápida del gesto de entrada permite modificar el texto de la nota.
 - lectura de la modificación del texto: "key_report_revision".
+- lectura de respuestas al comentario: "key_report_replies". Una doble pulsación rápida del gesto de entrada los muestra.
 
 
 En el caso donde no hay elementos, un mensaje de voz lo anuncia.
@@ -359,7 +371,7 @@ Por lo tanto, después de activar la capa de órdenes para una tabla, los gestos
 
 Estos scripts se presentan en la categoría "ADDON_SUMMARY (capa de órdenes para tabla)" del cuadro de diálogo "Gestos de entrada" de NVDA.
 
-Para deshabilitar la capa de órdenes para una tabla, simplemente vuelva a pulsar "key_layerMode" o simplemente pulsar "key_escape".
+Para deshabilitar la capa de órdenes para una tabla, simplemente vuelva a pulsar "key_layerMode".
 
 ++ Anunciar el título de la fila y la columna ++
 El gesto de entrada "key_report_headers" permite conocer el título de la línea y la columna de la celda actual.
@@ -430,27 +442,39 @@ Estos scripts se presentan en la categoría "ADDON_SUMMARY" del cuadro de diálo
 Este complemento también permite el anuncio automático del nuevo error y su sugerencia presentada por el corrector ortográfico después del uso de uno de los botones como "Ignorar", "Modificar" o accesos directos de Word como "i", "m ".
 + Recuperación de los scripts de NVDA +[hdr_nvda]
 ++ Omitir los párrafos vacíos ++[hdr3]
-En un documento de Word, NVDA proporciona la capacidad de moverse de un párrafo a otro utilizando las órdenes "key_next_paragraph" o "key_previous_paragraph".
-Pero el foco se da en el párrafo anterior o siguiente, independientemente de su contenido.
+En un documento de Word, es posible mover el cursor de un párrafo a otro utilizando las órdenes de Word "control + flecha arriba" o "control + flecha abajo".
+Como se trata de órdenes  de Word, estos atajos no son editables y no aparecen en los gestos de entrada de NVDA.
+después de ejecutar la órden, NVDA anuncia el párrafo alcanzado.
+
+Pero el cursor se da en el párrafo anterior o siguiente, si lo hay,  independientemente de su contenido. Y entonces NVDA dirá "vacío" si el párrafo está vacío. Esto puede resultar molesto si hay varios seguidos.
+
 Este complemento ofrece la posibilidad de omitir los párrafos vacíos y enfocar el primer párrafo no vacío encontrado.
 
-La opción "Saltar los párrafos vacíos"" en la categoría "Opciones" habilita o deshabilita esta ejecución.
-
-Esta opción está marcada por defecto. Los párrafos vacíos son omitidos.
+La opción "Saltar los párrafos vacíos"" en la categoría "Opciones" habilita o deshabilita esta ejecución. Esta opción está marcada de forma predeterminada.
 
 En cualquier momento, también es posible habilitar o deshabilitar esta ejecución mediante el gesto de entrada "key_toggle_skip_empty_paragraph".
 
+Para indicar que se han saltado párrafos se puede emitir un sonido. Para hacer esto, simplemente marque la opción "Reproducir un sonido si se saltan párrafos vacíos". Esta opción está marcada de forma predeterminada.
+
+El complemento anunciará si no hay más párrafos.
+
 ++ Moverse de frase en frase ++[HDR12]
-NVDA ofrece la posibilidad de mover el cursor del sistema de frase en frase mediante  los siguientes gestos de entrada:
-- "key_next_sentence": pasar a la siguiente frase",
-- "key_previous_sentence": pasar a la frase anterior.
+Word ofrece la posibilidad de mover el cursor del sistema de frase en frase mediante los siguientes atajos:
+- "Alt + flecha abajo": pasar a la siguiente frase,
+- "Alt + flecha arriba": pasar a la frase anterior.
 
-Pero es operativo solo en modo de edición y no en modo Exploración.
 
-Para eliminar esta limitación, el complemento los reemplaza con nuevos scripts usando los mismos gestos de entrada.
+Como se trata de órdenes de Word, estos atajos no son editables y no aparecen en los gestos de entrada de NVDA.
 
-Estos nuevos scripts se presentan en la categoría "ADDON_SUMMARY" del cuadro de diálogo "Gestos de entrada" de NVDA.
+Después de moverse, NVDA anuncia la frase alcanzada, pero solo en modo "Edición" y no en modo "Exploración".
 
+El complemento elimina esta limitación.
+
++ Misceláneas +
+++ Utilizar UI Automation para acceder a controles de documento de Microsoft Word ++
+Utilizando UI Automation para acceder a controles de documento de Microsoft Word se puede configurar usando una opción que se encuentra en la categoría "Avanzadas" en las Opciones de NVDA. Pero requiere muchas pulsaciones de teclas.
+
+Para simplificar esto, el complemento proporciona un script, sin gesto de entrada, para mostrar directamente un cuadro de diálogo que muestra las diferentes opciones posibles para esta opción y te permite seleccionar una.
 
 + Historial +
 El historial de las versiones del complemento está en el archivo ["changes.html" changes.html]

@@ -5,10 +5,6 @@
 %!PostProc (html): key_report_current_sentence NVDA+control+f7
 %!PostProc (html): key_line_page alt + numpad delete
 %!PostProc (html): key_laptop_line_page alt + delete
-%!PostProc (html): key_next_paragraph Control + downArrow
-%!PostProc (html): key_previous_sentence Alt + upArrow
-%!PostProc (html): key_next_sentence Alt + downArrow
-%!PostProc (html): key_previous_paragraph Control + upArrow
 %!PostProc (html): key_layerMode NVDA+e
 %!PostProc (html): key_sayAll windows+alt+space
 %!PostProc (html): key_escape escape
@@ -16,6 +12,8 @@
 %!PostProc (html): key_insert_element windows+alt+f2
 %!PostProc (html): key_report_footnote_endnote windows+alt+n
 %!PostProc (html): key_report_revision windows+alt+m
+%!PostProc (html): key_report_replies windows+alt+o
+%!PostProc (html): key_reply windows+alt+y
 % report in table
 %!PostProc (html): key_report_headers windows+alt+h
 %!PostProc (html): key_report_cell Windows+Alt+j
@@ -41,10 +39,10 @@
 %!PostProc (html): key_moveTo_firstCellOfTable windows+control+k
 %!PostProc (html): key_moveTo_lastCellOfTable windows+control+l
 % moving key definitions  when table layer mode is on
-%!PostProc (html): key_layer_moveTo_nextInRow downArrow
-%!PostProc (html): key_layer_moveTo_previousInRow upArrow
-%!PostProc (html): key_layer_moveTo_nextInColumn rightArrow
-%!PostProc (html): key_layer_moveTo_previousInColumn leftArrow
+%!PostProc (html): key_layer_moveTo_nextInRow rightArrow
+%!PostProc (html): key_layer_moveTo_previousInRow leftArrow
+%!PostProc (html): key_layer_moveTo_nextInColumn upArrow
+%!PostProc (html): key_layer_moveTo_previousInColumn downArrow
 %!PostProc (html): key_layer_moveTo_firstInRow home
 %!PostProc (html): key_layer_moveTo_lastInRow end
 %!PostProc (html): key_layer_moveTo_firstInColumn pageUp

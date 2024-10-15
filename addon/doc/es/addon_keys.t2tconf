@@ -5,17 +5,14 @@
 %!PostProc (html): key_report_CURRENT_SENTENCE NVDA+control+f7
 %!PostProc (html): key_line_page alt + suprimir teclado numérico
 %!PostProc (html): key_laptop_line_page alt + suprimir
-%!PostProc (html): key_next_paragraph Control + Flecha Abajo
-%!PostProc (html): key_previous_sentence Alt + Flecha Arriba
-%!PostProc (html): key_next_sentence Alt + Flecha Abajo
-%!PostProc (html): key_previous_paragraph Control + Flecha Arriba
 %!PostProc (html): key_layerMode NVDA+e
 %!PostProc (html): key_sayAll windows+alt+espacio
-%!PostProc (html): key_escape Escape
 %!PostProc (html): key_choice windows+alt+F5
 %!PostProc (html): key_insert_element windows+alt+f2
 %!PostProc (html): key_report_footnote_endnote windows+alt+n
 %!PostProc (html): key_report_revision windows+alt+m
+%!PostProc (html): key_report_replies windows+alt+o
+%!PostProc (html): key_reply windows+alt+y
 % report in table
 %!PostProc (html): key_report_headers windows+alt+h
 %!PostProc (html): key_report_cell Windows+Alt+j
@@ -41,10 +38,10 @@
 %!PostProc (html): key_moveTo_firstCellOfTable windows+control+k
 %!PostProc (html): key_moveTo_lastCellOfTable windows+control+l
 % moving key definitions  when table layer mode is on
-%!PostProc (html): key_layer_moveTo_nextInRow Flecha Abajo
-%!PostProc (html): key_layer_moveTo_previousInRow Flecha Arriba
-%!PostProc (html): key_layer_moveTo_nextInColumn Flecha Derecha
-%!PostProc (html): key_layer_moveTo_previousInColumn Flecha Izquierda
+%!PostProc (html): key_layer_moveTo_nextInRow Flecha derecha
+%!PostProc (html): key_layer_moveTo_previousInRow Flecha izquierda
+%!PostProc (html): key_layer_moveTo_nextInColumn Flecha abajo
+%!PostProc (html): key_layer_moveTo_previousInColumn Flecha arriba
 %!PostProc (html): key_layer_moveTo_firstInRow Inicio
 %!PostProc (html): key_layer_moveTo_lastInRow Fin
 %!PostProc (html): key_layer_moveTo_firstInColumn Retroceso de página

@@ -8,12 +8,14 @@ import addonHandler
 import time
 import scriptHandler
 from scriptHandler import script
+import config
 import core
 import api
 import os
 import wx
 import queueHandler
 import speech
+import gui
 import ui
 import NVDAObjects.window.winword
 import NVDAObjects.UIA.wordDocument
@@ -42,10 +44,11 @@ del sys.path[-1]
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
 from ww_addonConfigManager import _addonConfigManager
+from ww_NVDAStrings import NVDAString, NVDAString_pgettext
 from ww_utils import (
-	maximizeWindow,
+	maximizeWindow, makeAddonWindowTitle, isOpened,
 	getSpeechMode, setSpeechMode, setSpeechMode_off,
-	messageWithSpeakOnDemand, executeWithSpeakOnDemand,
+	messageWithSpeakOnDemand,
 )
 del sys.path[-1]
 
@@ -92,14 +95,14 @@ class AppModule(AppModule):
 		printDebug("Word: event_appModuleGainFocus")
 		self.hasFocus = True
 
-		from . import ww_automaticReading
-		ww_automaticReading.initialize()
+		from . import automaticReading
+		automaticReading.initialize()
 
 	def event_appModule_loseFocus(self):
 		printDebug("Word: event_appModuleLoseFocus")
 		self.hasFocus = False
-		from . import ww_automaticReading
-		ww_automaticReading.terminate()
+		from . import automaticReading
+		automaticReading.terminate()
 
 	def event_foreground(self, obj, nextHandler):
 		printDebug("word: event_foreground")
@@ -277,7 +280,7 @@ class AppModule(AppModule):
 
 	@script(
 		# Translators: Input help mode message for report Current Sentence command.
-		description=_("Report current sentence "),
+		description=_("Report current sentence"),
 		gesture="kb:nvda+control+f7"
 	)
 	def script_reportCurrentSentence(self, gesture):
@@ -291,8 +294,8 @@ class AppModule(AppModule):
 	)
 	def script_setAutomaticReadingVoice(self, gesture):
 		stopScriptTimer()
-		from .import ww_automaticReading
-		ww_automaticReading.saveCurrentSpeechSettings()
+		from .import automaticReading
+		automaticReading.saveCurrentSpeechSettings()
 
 	def isThereHiddenText(self, selection):
 		wdSelectionNormal = 2
@@ -300,14 +303,12 @@ class AppModule(AppModule):
 			# print ("font.hidden: %s"%Selection.Font.Hidden)
 			wdUndefined = 9999999
 			if selection.Font.Hidden == wdUndefined or selection.Font.Hidden:
-				print("text hidden")
 				return True
 		return False
 
 	def isHidden(self, selection):
 		rngTemp = selection.Range
 		rngTemp.TextRetrievalMode.IncludeHiddenText = False
-		# print ("rngTemp: %s" % rngTemp)
 
 	def findHiddenText(self):
 		focus = api.getFocusObject()
@@ -333,16 +334,21 @@ class AppModule(AppModule):
 			f.MatchWildcards = False
 			f.MatchSoundsLike = False
 			f.MatchAllWordForms = False
-		import textInfos
-		oldBookmark = focus.makeTextInfo(textInfos.POSITION_CARET).bookmark
 		found = f.Execute()
-		if focus._hasCaretMoved(oldBookmark)[0]:
-			info = focus.makeTextInfo(textInfos.POSITION_SELECTION)
 		if found:
 			ui.message(selection.range.text)
 			selection.Collapse(1)
-
 		winwordDocumentObject .ActiveWindow.View.ShowHiddenText = sView
+
+	@script(
+		# Translators: Input help mode message for display Microsoft UIA dialog command.
+		description=_(
+			"Display Microsoft UIA dialog to define the Use of UI Automation "
+			"to access Microsoft Word document controls"
+		),
+	)
+	def script_displayMicrosoftUIADialog(self, gesture):
+		wx.CallAfter(MicrosoftUIADialog.run)
 
 	def script_test(self, gesture):
 		print("test word")
@@ -351,3 +357,76 @@ class AppModule(AppModule):
 	__gestures = {
 		# "kb:control+windows+alt+f12": "test",
 	}
+
+
+class MicrosoftUIADialog(wx.Dialog):
+	shouldSuspendConfigProfileTriggers = True
+	_instance = None
+	title = None
+
+	def __new__(cls, *args, **kwargs):
+		if MicrosoftUIADialog._instance is not None:
+			return MicrosoftUIADialog._instance
+		return wx.Dialog.__new__(cls)
+
+	def __init__(self, parent):
+		if MicrosoftUIADialog._instance is not None:
+			return
+		MicrosoftUIADialog._instance = self
+		dialogTitle = NVDAString("Microsoft UI Automation")
+		title = MicrosoftUIADialog.title = makeAddonWindowTitle(dialogTitle)
+		super().__init__(parent, -1, title)
+		self.doGui()
+
+	def doGui(self):
+		mainSizer = wx.BoxSizer(wx.VERTICAL)
+		sHelper = gui.guiHelper.BoxSizerHelper(self, orientation=wx.VERTICAL)
+		labelText = NVDAString_pgettext(
+			"advanced.uiaWithMSWord",
+			# Translators: Label for the Use UIA with MS Word combobox, in the MicrosoftUIADialog.
+			"Use UI Automation to access Microsoft &Word document controls",
+		)
+		wordChoices = (
+			NVDAString_pgettext("advanced.uiaWithMSWord", "Default (Where suitable)"),
+			NVDAString_pgettext("advanced.uiaWithMSWord", "Only when necessary"),
+			NVDAString_pgettext("advanced.uiaWithMSWord", "Where suitable"),
+			NVDAString_pgettext("advanced.uiaWithMSWord", "Always"),
+		)
+		self.UIAInMSWordListBox = sHelper.addLabeledControl(labelText, wx.ListBox, choices=wordChoices)
+		self.UIAInMSWordListBox.SetSelection(config.conf["UIA"]["allowInMSWord"])
+		bHelper = sHelper.addDialogDismissButtons(
+			gui.guiHelper.ButtonHelper(wx.HORIZONTAL))
+		OKButton = bHelper.addButton(self, id=wx.ID_OK)
+
+		closeButton = bHelper.addButton(self, id=wx.ID_CLOSE)
+		mainSizer.Add(
+			sHelper.sizer,
+			border=gui.guiHelper.BORDER_FOR_DIALOGS,
+			flag=wx.ALL)
+		mainSizer.Fit(self)
+		self.SetSizer(mainSizer)
+		# events
+		OKButton.Bind(wx.EVT_BUTTON, self.onOKButton)
+		closeButton.Bind(wx.EVT_BUTTON, lambda evt: self.Destroy())
+		self.SetEscapeId(wx.ID_CLOSE)
+		OKButton.SetDefault()
+		self.UIAInMSWordListBox.SetFocus()
+
+	def Destroy(self):
+		MicrosoftUIADialog._instance = None
+		super().Destroy()
+
+	def onOKButton(self, evt):
+		config.conf["UIA"]["allowInMSWord"] = self.UIAInMSWordListBox.GetSelection()
+		self.Close()
+		evt.Skip()
+
+	@classmethod
+	def run(cls):
+		if isOpened(cls):
+			return
+		gui.mainFrame.prePopup()
+		d = cls(gui.mainFrame)
+		d.CentreOnScreen()
+		d.Show()
+		gui.mainFrame.postPopup()

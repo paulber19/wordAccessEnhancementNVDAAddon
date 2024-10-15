@@ -98,7 +98,7 @@ class PopulateAndReportCollection(wx.Dialog):
 		self.collectionClass = collectionClass
 		self.rangeType = rangeType
 		self.copyToClipboard = copyToClipboard
-		# Translators: message to user for waiting result
+		# Translators: message to user for waiting result.
 		self.waitMessage = _("Please wait")
 		self.doGui()
 		self.canceled = False
@@ -171,7 +171,7 @@ class ChoiceDialog(wx.Dialog):
 
 	def __init__(self, parent=None, focus=None):
 		ChoiceDialog._instance = self
-		# Translators: title of Choice dialog
+		# Translators: title of Choice dialog.
 		dialogTitle = _("Elements's search")
 		title = ChoiceDialog.title = makeAddonWindowTitle(dialogTitle)
 		super(ChoiceDialog, self).__init__(
@@ -270,7 +270,7 @@ class ChoiceDialog(wx.Dialog):
 
 		# buttons
 		buttonsSizer = wx.BoxSizer(wx.VERTICAL)
-		# Translators: label of a button
+		# Translators: label of a button.
 		searchButton = wx.Button(self, wx.ID_ANY, label=_("Search an&d display"))
 		searchButton.Bind(wx.EVT_BUTTON, self.onSearchButton)
 		searchButton.Bind(wx.EVT_KEY_DOWN, self.onButtonKeyDown)

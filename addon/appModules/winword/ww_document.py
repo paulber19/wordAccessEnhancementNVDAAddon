@@ -58,28 +58,28 @@ class Application(object):
 		useCharacterUnit = options.useCharacterUnit
 		if useCharacterUnit:
 			offset = offset / self.winwordApplicationObject.Selection.Font.Size
-			# Translators: a measurement in Microsoft Word
+			# Translators: a measurement in Microsoft Word.
 			return NVDAString("{offset:.3g} characters").format(offset=offset)
 		else:
 			unit = options.MeasurementUnit
 			if unit == wdInches:
 				offset = offset / 72.0
-				# Translators: a measurement in Microsoft Word
+				# Translators: a measurement in Microsoft Word.
 				return NVDAString("{offset:.3g} inches").format(offset=offset)
 			elif unit == wdCentimeters:
 				offset = offset / 28.35
-				# Translators: a measurement in Microsoft Word
+				# Translators: a measurement in Microsoft Word.
 				return NVDAString("{offset:.3g} centimeters").format(offset=offset)
 			elif unit == wdMillimeters:
 				offset = offset / 2.835
-				# Translators: a measurement in Microsoft Word
+				# Translators: a measurement in Microsoft Word.
 				return NVDAString("{offset:.3g} millimeters").format(offset=offset)
 			elif unit == wdPoints:
-				# Translators: a measurement in Microsoft Word
+				# Translators: a measurement in Microsoft Word.
 				return NVDAString("{offset:.3g} points").format(offset=offset)
 			elif unit == wdPicas:
 				offset = offset / 12.0
-				# Translators: a measurement in Microsoft Word
+				# Translators: a measurement in Microsoft Word.
 				# See http://support.microsoft.com/kb/76388 for details.
 				return NVDAString("{offset:.3g} picas").format(offset=offset)
 
@@ -224,7 +224,7 @@ class PageSetup(object):
 		textList.append(curIndent + msg)
 		if textColumns.EvenlySpaced:
 			pointsToDefaultUnits = self.activeDocument.application.pointsToDefaultUnits
-			# Translators: text to indicate text column style
+			# Translators: text to indicate text column style.
 			msg = _("Style: columns' wide = {wide} (evenly spaced), gap between columns = {spacing}")
 			msg = msg.format(
 				wide=pointsToDefaultUnits(textColumns.Width),
@@ -438,7 +438,7 @@ class Section(object):
 				text = headerFooter.getRangeText(firstSection)
 				if text != "":
 					alignment = headerFooter.getPageNumberAlignment()
-					# Translators: first page header information
+					# Translators: first page header information.
 					msg = _("First Page Header: %s") % text
 					if alignment:
 						msg = "%s, %s" % (msg, alignment)
@@ -459,7 +459,7 @@ class Section(object):
 				text = headerFooter.getRangeText(firstSection)
 				if text != "":
 					alignment = headerFooter.getPageNumberAlignment()
-					# Translators: event page header information
+					# Translators: event page header information.
 					msg = _("Even Page Header: %s") % text
 					if alignment:
 						msg = "%s, %s" % (msg, alignment)
@@ -469,7 +469,7 @@ class Section(object):
 				text = headerFooter.getRangeText(firstSection)
 				if text != "":
 					alignment = headerFooter.getPageNumberAlignment()
-					# Translators: Even Page Footer informations
+					# Translators: Even Page Footer informations.
 					msg = _("Even Page Footer: %s") % text
 					if alignment:
 						msg = "%s, %s" % (msg, alignment)
@@ -478,7 +478,7 @@ class Section(object):
 		text = headerFooter.getRangeText(firstSection)
 		if text != "":
 			alignment = headerFooter.getPageNumberAlignment()
-			# Translators: page header informations
+			# Translators: page header informations.
 			msg = _("Page header: %s") % text
 			if alignment:
 				msg = "%s, %s" % (msg, alignment)
@@ -608,7 +608,7 @@ class Selection (object):
 				0, selection.Tables(1).Range.End).Tables.Count
 			table = self.getCurrentTable()
 			uniform = table.Uniform
-			# Translators: table uniform information
+			# Translators: table uniform information.
 			text = _("uniform") if uniform else _("non-uniform")
 			# Translators: In table informations.
 			text = _("In a {uniform} table") .format(uniform=text)
@@ -733,19 +733,19 @@ class ActiveDocument(object):
 		text = _("Statistics:")
 		textList.append(text)
 		doc = self.winwordDocumentObject
-		# Translators: text to indicate number of pages
+		# Translators: text to indicate number of pages.
 		text = _("Pages: %s") % doc.ComputeStatistics(wdStatisticPages)
 		textList.append("\t" + text)
 		# Translators: text to indicate number of lines.
 		text = _("Lines: %s") % doc.ComputeStatistics(wdStatisticLines)
 		textList.append("\t" + text)
-		# Translators: text to indicate number of words
+		# Translators: text to indicate number of words.
 		text = _("Words: %s") % doc.ComputeStatistics(wdStatisticWords)
 		textList.append("\t" + text)
-		# Translators: text to indicate number of characters
+		# Translators: text to indicate number of characters.
 		text = _("Characters: %s") % doc.ComputeStatistics(wdStatisticCharacters)
 		textList.append("\t" + text)
-		# Translators: text to indicate number of paragraphs
+		# Translators: text to indicate number of paragraphs.
 		text = _("Paragraphs: %s") % doc.ComputeStatistics(wdStatisticParagraphs)
 		textList.append("\t" + text)
 		if doc.Sections.Count:
@@ -828,7 +828,7 @@ class ActiveDocument(object):
 			("Company", _("Compagny"))
 		]
 		textList = []
-		# Translators: document informations
+		# Translators: document informations.
 		text = _("Document's properties:")
 		textList.append(text)
 		text = _("File name: %s") % self.name
@@ -886,13 +886,13 @@ class ActiveDocument(object):
 		textList = []
 		if tables.Count == 0:
 			return textList
-		# Translators: title of tables informations
+		# Translators: title of tables informations.
 		text = _("Document's tables:")
 		textList.append(text)
 		curIndent = "\t"
 		count = tables.Count
 		for i in range(1, count + 1):
-			# Translators: table information
+			# Translators: table information.
 			text = curIndent + _("Table {index} of {count}:").format(
 				index=str(i), count=str(count))
 			textList.append(text)
@@ -1028,7 +1028,7 @@ class Borders (object):
 		if count == 0:
 			return ""
 		description = []
-		# Translators: title of borders description
+		# Translators: title of borders description.
 		text = _("Borders:")
 		description.append(indent + text)
 		from .ww_wdConst import wdBorderLeft, wdBorderTop, wdBorderRight, wdBorderBottom
@@ -1112,7 +1112,7 @@ class Borders (object):
 				description.append(curIndent + text)
 		if foundVisibleBorder:
 			return "\n".join(description)
-		# Translators: no border is visible
+		# Translators: no border is visible.
 		return _("Without borders")
 
 

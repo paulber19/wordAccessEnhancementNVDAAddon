@@ -57,7 +57,7 @@ Associated Ttext:
 
 class Bookmarks(Collection):
 	_propertyName = (("Bookmarks", Bookmark),)
-	# Translators: name of collection element type
+	# Translators: name of collection element type.
 	_name = (_("Bookmark"), _("Bookmarks"))
 	_wdGoToItem = None  # wdGoToBookmark don't work
 

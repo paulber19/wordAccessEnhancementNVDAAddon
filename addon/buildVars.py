@@ -51,7 +51,7 @@ This add-on has been tested with Microsoft Word 2019, 2016 and 2013 (perhaps wor
 """),
 
 	# version
-	"addon_version": "3.5",
+	"addon_version": "3.6",
 	# Author(s)
 	"addon_author": "paulber19",
 	# URL for the add-on documentation support
@@ -62,7 +62,7 @@ This add-on has been tested with Microsoft Word 2019, 2016 and 2013 (perhaps wor
 	"addon_minimumNVDAVersion": "2023.1",
 	# Last NVDA version supported/tested
 	# (e.g. "2018.4", ideally more recent than minimum version)
-	"addon_lastTestedNVDAVersion": "2024.1",
+	"addon_lastTestedNVDAVersion": "2024.4",
 	# Add-on update channel (default is stable or None)
 	"addon_updateChannel": None,
 }
@@ -74,6 +74,7 @@ mainPath = os.path.join("addon", "appModules", "winword")
 pythonSources = [
 	os.path.join("addon", "*.py"),
 	os.path.join("addon", "appModules", "winword", "*.py"),
+	os.path.join("addon", "appModules", "winword","automaticReading",  "*.py"),
 	os.path.join("addon", "globalPlugins", "wordAccessEnhancement", "*.py"),
 	os.path.join(
 		"addon", "globalPlugins", "wordAccessEnhancement", "updateHandler", "*.py"),

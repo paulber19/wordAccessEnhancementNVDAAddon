@@ -9,10 +9,13 @@ from logHandler import log
 import scriptHandler
 from scriptHandler import script
 import gui
+import api
 import config
+import eventHandler
 import os
 import wx
 import ui
+from speech import sayAll
 import tones
 import textInfos
 from speech.sayAll import CURSOR
@@ -20,7 +23,6 @@ import speech
 import braille
 import NVDAObjects.window.winword
 from NVDAObjects.window.winword import (
-	wdParagraph, wdSentence,
 	wdActiveEndPageNumber, wdFirstCharacterLineNumber
 )
 import NVDAObjects.IAccessible.winword
@@ -32,9 +34,8 @@ from . import ww_tables
 from . import ww_choice
 from .ww_revisions import Revisions
 from . import ww_document
-from .ww_scriptTimer import stopScriptTimer
+from .ww_scriptTimer import stopScriptTimer, delayScriptTask
 import sys
-from controlTypes.role import Role
 from controlTypes.outputReason import OutputReason
 
 _curAddon = addonHandler.getCodeAddon()
@@ -56,7 +57,7 @@ sys.path.append(sharedPath)
 from ww_informationDialog import InformationDialog
 from ww_utils import (
 	makeAddonWindowTitle, isOpened,
-	speakOnDemand , messageWithSpeakOnDemand, executeWithSpeakOnDemand,
+	speakOnDemand, executeWithSpeakOnDemand,
 )
 from ww_addonConfigManager import _addonConfigManager
 del sys.path[-1]
@@ -534,7 +535,6 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 	scriptCategory = _scriptCategory
 	_mainGestures = {
 		"toggleLayerMode": ("kb:nvda+e",),
-		"EscapeKey": ("kb:escape",),
 		"toggleReportAllCellsFlag": ("kb:windows+alt+space",),
 		"reportDocumentInformations": ("kb:windows+alt+f1",),
 		"insertElement": ("kb:windows+alt+f2",),
@@ -546,9 +546,13 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		# move sentence by sentence
 		"nextSentence": ("kb:alt+downArrow",),
 		"previousSentence": ("kb:alt+upArrow", ),
+		"caret_nextParagraph": ("kb:control+downArrow", ),
+		"caret_previousParagraph": ("kb:control+upArrow", ),
 		# report element text
 		"reportCurrentEndNoteOrFootNote": ("kb:windows+alt+n", ),
 		"reportCurrentRevision": ("kb:windows+alt+m",),
+		"reportRepliesToFocusedComment": ("kb:windows+alt+o",),
+		"replyToFocusedComment": ("kb:windows+alt+y",),
 	}
 
 	def initOverlayClass(self):
@@ -607,13 +611,6 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 			docFunc = getattr(self, doc)
 			scriptFunc.__func__.__doc__ = docFunc.__doc__
 			scriptFunc.__func__.category = scriptCategory
-
-	def script_EscapeKey(self, gesture):
-		stopScriptTimer()
-		if self.appModule.layerMode:
-			self._exitLayerMode()
-			return
-		gesture.send()
 
 	def _reportLayerModeState(self, state):
 		if state:
@@ -680,21 +677,37 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 			ui.message(_("Not in table"))
 		return inTable
 
-	def getReferenceAtFocus(self, fieldType):
-		info = self.makeTextInfo(textInfos.POSITION_CARET)
-		info.expand(textInfos.UNIT_CHARACTER)
-		fields = info.getTextWithFields(formatConfig={'reportComments': True})
-		for field in reversed(fields):
-			if isinstance(field, textInfos.FieldCommand)\
-				and isinstance(field.field, textInfos.FormatField):
-				reference = field.field.get(fieldType)
-				if reference:
-					return reference
-		return None
-
 	def reportCurrentElement(self, elementClass):
 		col = elementClass(None, self, "focus")
 		col.reportElements()
+
+	@script(
+		# Translators: Input help mode message for report comment replies.
+		description=_("Report replies to comment under cursor. Twice: display its"),
+	)
+	def script_reportRepliesToFocusedComment(self, gesture):
+		stopScriptTimer()
+
+		def callback(show=False):
+			from .ww_comments import Comments
+			comments = Comments(None, self, "focus")
+			comments.reportRepliesToFocusedComment(show)
+
+		repeats = scriptHandler.getLastScriptRepeatCount()
+		if repeats == 0:
+			delayScriptTask(callback)
+		else:
+			callback(show=True)
+
+	@script(
+		# Translators: Input help mode message for reply to comment under cursor.
+		description=_("Reply to comment under cursor"),
+	)
+	def script_replyToFocusedComment(self, gesture):
+		stopScriptTimer()
+		from .ww_comments import Comments
+		comments = Comments(None, self, "focus")
+		wx.CallAfter(comments.replyToFocusedComment)
 
 	def _getPageAndLineNumber(self):
 		start = self.WinwordSelectionObject.Start
@@ -730,115 +743,85 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		if option:
 			tones.beep(400, 12)
 
-	def _moveToNextOrPriorElement(self, direction, type="paragraph"):
+	def script_nextSentence(self, gesture):
+		self.script_caret_nextSentence(gesture)
+	script_nextSentence.resumeSayAllMode = CURSOR.CARET
 
-		def move(wdUnit, direction, curPosition):
+	def script_previousSentence(self, gesture):
+		self.script_caret_previousSentence(gesture)
+	script_previousSentence.resumeSayAllMode = CURSOR.CARET
+
+	# NVDA method modified to skip, if asked by user, the empty paragraphs
+	def _caretMovementScriptHelperEx(self, gesture, unit):
+		def move(info, gesture):
+			bookmark = info.bookmark
+			gesture.send()
+			caretMoved, newInfo = self._hasCaretMoved(bookmark)
+			if not caretMoved and self.shouldFireCaretMovementFailedEvents:
+				eventHandler.executeEvent("caretMovementFailed", self, gesture=gesture)
+				return None
+			return newInfo
+		try:
 			info = self.makeTextInfo(textInfos.POSITION_CARET)
-			if not info:
-				return
-			# #4375: can't use self.move here as it may check document.
-				# chracters.count which can take for ever on large documents.
-			info._rangeObj.move(wdUnit, direction)
-			info.updateCaret()
-			position = self._getPosition()
-			return position
-		stopScriptTimer()
+		except Exception:
+			gesture.send()
+			return None
 		position = self._getPosition()
 		if not position:
 			# no document or not in text
 			return False
-		if type == "paragraph":
-			unit = textInfos.UNIT_PARAGRAPH
-			wdUnit = wdParagraph
-			msgNoOther = _("No other paragraph")
-		else:
-			unit = textInfos.UNIT_SENTENCE
-			wdUnit = wdSentence
-			msgNoOther = _("No other sentence")
-			doc = self.WinwordDocumentObject
-			selection = self.WinwordSelectionObject
-			start = selection.Start
-			end = doc.storyRanges[1].End
-			r = doc.range(start, end)
-			sentences = r.Sentences
-			if direction == 1 and sentences.Count == 1:
-				ui.message(_("No other sentence"))
-				return False
+		# Translators: message to user when there is no other paragraph.
+		msgNoOther = _("No other paragraph")
 		oldPosition = position
-		position = move(wdUnit, direction, position)
-		if position == oldPosition:
+		newInfo = move(info, gesture)
+		position = self._getPosition()
+		if position is None or position == oldPosition:
 			ui.message(msgNoOther)
-			return False
-		option = _addonConfigManager.toggleSkipEmptyParagraphsOption(False)
-		if type != "paragraph" or not option:
-			return True
-		# we skip a maximum of empty paragraph
-		i = 100
-		playSound = False
-		while i:
-			i = i - 1
-			try:
-				info = self.makeTextInfo(textInfos.POSITION_CARET)
-			except Exception:
-				return False
-			info.expand(unit)
-			text = info.text.strip()
-			info.collapse()
-			if len(text) != 0:
-				if playSound:
-					self.playSoundOnSkippedParagraph()
-				return True
-# move to next paragraph
-			oldPosition = position
-			position = move(wdUnit, direction, position)
-			if not position or position == oldPosition:
-				ui.message(msgNoOther)
-				if playSound:
-					self.playSoundOnSkippedParagraph()
-				return False
-			playSound = True
+			return
+		if newInfo is None:
+			return
+		if _addonConfigManager.toggleSkipEmptyParagraphsOption(False):
+			# we skip a maximum of empty paragraph
+			i = 100
+			playSound = False
+			while i:
+				i = i - 1
+				info = newInfo
+				info.expand(unit)
+				text = info.text.strip()
+				info.collapse()
+				if len(text) != 0:
+					if playSound:
+						self.playSoundOnSkippedParagraph()
+					break
+				# move to next paragraph
+				oldPosition = position
+				newInfo = move(info, gesture)
+				position = self._getPosition()
+				if not position or position == oldPosition:
+					ui.message(msgNoOther)
+					if playSound:
+						self.playSoundOnSkippedParagraph()
+					return
+				if newInfo is None:
+					return
+				playSound = True
 
-	@script(
-		# Translators: Input help mode message for next sentence command.
-		description=_("Move to the next sentence"),
-	)
-	def script_nextSentence(self, gesture):
-		if self._moveToNextOrPriorElement(1, "sentence"):
-			self._caretScriptPostMovedHelper(textInfos.UNIT_SENTENCE, gesture, None)
-	script_nextSentence.resumeSayAllMode = CURSOR.CARET
+		self._caretScriptPostMovedHelper(unit, gesture, newInfo)
 
-	@script(
-		# Translators: Input help mode message for previous sentence command.
-		description=_("Move to the previous sentence"),
-	)
-	def script_previousSentence(self, gesture):
-		if self._moveToNextOrPriorElement(-1, "sentence"):
-			self._caretScriptPostMovedHelper(textInfos.UNIT_SENTENCE, gesture, None)
-	script_previousSentence.resumeSayAllMode = CURSOR.CARET
+	def script_caret_moveByParagraph(self, gesture):
+		self._caretMovementScriptHelperEx(gesture, textInfos.UNIT_PARAGRAPH)
+	script_caret_moveByParagraph.resumeSayAllMode = sayAll.CURSOR.CARET
 
-	@script(
-		# Translators: Input help mode message for next Paragraph command.
-		description=_(
-			"Move to the next paragraph "
-			"""(skip empty paragraphs if "Skip Empty Paragraph" option is set to on) """
-		),
-	)
-	def script_nextParagraph(self, gesture):
-		if self._moveToNextOrPriorElement(1, "paragraph"):
-			self._caretScriptPostMovedHelper(textInfos.UNIT_PARAGRAPH, gesture, None)
-	script_nextParagraph.resumeSayAllMode = CURSOR.CARET
+	def script_caret_previousParagraph(self, gesture):
+		stopScriptTimer()
+		super().script_caret_previousParagraph(gesture)
+	script_caret_previousParagraph.resumeSayAllMode = sayAll.CURSOR.CARET
 
-	@script(
-		# Translators: Input help mode message for previous Paragraph command.
-		description=_(
-			"Move to the previous paragraph "
-			"""(skip empty paragraphs if "Skip Empty Paragraph" option is set to on) """
-		),
-	)
-	def script_previousParagraph(self, gesture):
-		if self._moveToNextOrPriorElement(-1, "paragraph"):
-			self._caretScriptPostMovedHelper(textInfos.UNIT_PARAGRAPH, gesture, None)
-	script_previousParagraph.resumeSayAllMode = CURSOR.CARET
+	def script_caret_nextParagraph(self, gesture):
+		stopScriptTimer()
+		super().script_caret_nextParagraph(gesture)
+	script_caret_nextParagraph.resumeSayAllMode = sayAll.CURSOR.CARET
 
 	@script(
 		# Translators: Input help mode message for insert comment command.
@@ -849,59 +832,62 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		stopScriptTimer()
 		winwordApplication = self._get_WinwordApplicationObject()
 		if winwordApplication:
-			wx.CallAfter(InsertElementDialog.run, winwordApplication)
+			wx.CallAfter(InsertElementDialog.run, winwordApplication, api.getFocusObject())
 		else:
 			log.warning(" No winword application")
+
+	def modifyNoteAtFocus(self, note):
+		item = note[1]
+		with wx.TextEntryDialog(
+			gui.mainFrame,
+			note[0].entryDialogStrings["entryBoxLabel"],
+			note[0].entryDialogStrings["modifyDialogTitle"],
+			item.text,
+			style=wx.TextEntryDialogStyle | wx.TE_MULTILINE
+		) as entryDialog:
+			gui.mainFrame.prePopup()
+			entryDialog.CenterOnScreen()
+			res = entryDialog.ShowModal()
+			gui.mainFrame.postPopup()
+			if res != wx.ID_OK:
+				return
+			newText = entryDialog.Value
+			if newText == item.text:
+				# no change
+				return
+			item.modifyText(newText)
 
 	@script(
 		# Translators: Input help mode message for report current endNote or footNote command.
 		description=_(
 			"Reports the text of the "
-			"endnote or footnote where the System caret is located."),
+			"endnote or footnote where the System caret is located. Twice: modify  this text"),
 		**speakOnDemand
 	)
 	def script_reportCurrentEndNoteOrFootNote(self, gesture):
 		stopScriptTimer()
-		info = self.makeTextInfo(textInfos.POSITION_CARET)
-		info.expand(textInfos.UNIT_CHARACTER)
-		fields = info.getTextWithFields(formatConfig={'reportComments': True})
-		for field in reversed(fields):
-			if not(
-				isinstance(field, textInfos.FieldCommand)
-				and isinstance(field.field, textInfos.ControlField)):
-				continue
-			role = field.field.get('role')
-			start = self.WinwordDocumentObject.content.start
-			end = self.WinwordDocumentObject.content.end
-			range = self.WinwordDocumentObject.range(start, end)
-			if role == Role.FOOTNOTE:
-				val = field.field.get('value')
-				try:
-					col = range.footNotes
-					text = col[int(val)].range.text
-					if text is None or len(text) == 0:
-						# Translators: message to the user to say empty .
-						text = _("empty")
-					ui.message(text)
-					return
-				except Exception:
-					break
-			if role == Role.ENDNOTE:
-				val = field.field.get('value')
-				try:
-					text = range.EndNotes[int(val)].range.text
-					if text is None or len(text) == 0:
-						# Translators: message to the user to say empty .
-						text = _("empty")
-					ui.message(text)
-					return
-				except Exception:
-					printDebug("endnotes")
-					break
-				return
-		# Translators: a message when there is no endnoe or footnote
-				# to report in Microsoft Word.
-		ui.message(_("no endnote or footnote"))
+		note = None
+		from .ww_footnotes import Footnotes
+		from .ww_endnotes import Endnotes
+		col = Footnotes(None, self, "focus")
+		if len(col.collection):
+			note = (Footnotes, col.collection[0])
+		else:
+			col = Endnotes(None, self, "focus")
+			if len(col.collection):
+				note = (Endnotes, col.collection[0])
+		if note is None:
+			# Translators: a message when there is no endnoe or footnote
+			# to report in Microsoft Word.
+			ui.message(_("no endnote or footnote"))
+			return
+		count = scriptHandler.getLastScriptRepeatCount()
+		if count:
+			# modify note at focus
+			wx.CallAfter(self.modifyNoteAtFocus, note)
+			return
+		# report note at focus
+		ui.message(note[1].text)
 
 	@script(
 		# Translators: Input help mode message for report current revision command.
@@ -967,7 +953,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 			line = r.information(wdFirstCharacterLineNumber)
 			column = r.information(wdFirstCharacterColumnNumber)
 			page = r.Information(wdActiveEndPageNumber)
-			# Translators: message to user
+			# Translators: message to userto describe selection.
 			msg = _("Selection begins at line {line}, column {column} of page {page}")
 			location = msg.format(line=line, column=column, page=page)
 			text = "%s, %s." % (location, position)
@@ -1053,7 +1039,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 	# script comes from nvda appModules.winword.py module
 # we need do it because for french word,
 #   "control+shift+e" shortcut is remapped to "control+shift+r" in nvda locale gesture.ini
-# so this don't word  when we use nvdaBultin.appModule.winword.AppModule class
+# so this don't work  when we use nvdaBultin.appModule.winword.AppModule class
 	def script_toggleChangeTracking(self, gesture):
 		if not self.WinwordDocumentObject:
 			# We cannot fetch the Word object model, so we therefore cannot report the status change.
@@ -1065,10 +1051,10 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 			lambda: self.WinwordDocumentObject.TrackRevisions
 		)
 		if val:
-			# Translators: a message when toggling change tracking in Microsoft word
+			# Translators: a message when toggling change tracking in Microsoft word.
 			ui.message(_("Change tracking on"))
 		else:
-			# Translators: a message when toggling change tracking in Microsoft word
+			# Translators: a message when toggling change tracking in Microsoft word.
 			ui.message(_("Change tracking off"))
 
 
@@ -1081,7 +1067,7 @@ class InsertElementDialog(wx.Dialog):
 			return InsertElementDialog._instance
 		return wx.Dialog.__new__(cls)
 
-	def __init__(self, parent, wordApp):
+	def __init__(self, parent, wordApp, focus):
 		if InsertElementDialog._instance is not None:
 			return
 		InsertElementDialog._instance = self
@@ -1090,6 +1076,7 @@ class InsertElementDialog(wx.Dialog):
 		title = InsertElementDialog.title = makeAddonWindowTitle(dialogTitle)
 		super(InsertElementDialog, self).__init__(parent, -1, title)
 		self.wordApp = wordApp
+		self.focus = focus
 		self.doGui()
 
 	def doGui(self):
@@ -1097,7 +1084,16 @@ class InsertElementDialog(wx.Dialog):
 		sHelper = gui.guiHelper.BoxSizerHelper(self, orientation=wx.VERTICAL)
 		# Translators: This is a label appearing on Insert Element dialog.
 		labelText = _("Element's &type:")
-		elementTypeList = [_("Comment"), _("Footnote"), _("Endnote")]
+		elementTypeList = [
+			# Translators: comment element type.
+			_("Comment"),
+			# Translators: comment reply element type.
+			_("Comment reply"),
+			# Translators: footnote element type.
+			_("Footnote"),
+			# Translators: endnote element type.
+			_("Endnote")
+		]
 		self.elementTypeListBox = sHelper.addLabeledControl(
 			labelText, wx.ListBox, choices=elementTypeList)
 		self.elementTypeListBox.SetSelection(0)
@@ -1128,35 +1124,33 @@ class InsertElementDialog(wx.Dialog):
 		super(InsertElementDialog, self).Destroy()
 
 	def onInsertButton(self, evt):
-		from .ww_comments import Comments
+		from .ww_textUtils import askForText
+		from .ww_comments import Comments, CommentReplies
 		from .ww_footnotes import Footnotes
 		from .ww_endnotes import Endnotes
-		classElements = (Comments, Footnotes, Endnotes)
+		classElements = (Comments, CommentReplies, Footnotes, Endnotes)
 		index = self.elementTypeListBox.GetSelection()
-		classElement = classElements[index]
-		with wx.TextEntryDialog(
-			self,
-			classElement.entryDialogStrings["entryBoxLabel"],
-			classElement.entryDialogStrings["insertDialogTitle"],
-			value="",
-			style=wx.TextEntryDialogStyle | wx.TE_MULTILINE
-		) as entryDialog:
-			if entryDialog.ShowModal() != wx.ID_OK:
-				return
-			text = entryDialog.Value
-			if len(text) == 0:
-				return
-
-			wx.CallLater(400, classElements[index].insert, self.wordApp, text)
-			self.Close()
+		elementClass = classElements[index]
+		(can, msg) = elementClass.canInsert(self.focus)
+		if not can:
+			wx.CallLater(40, ui.message, msg)
+			return
+		text = askForText(
+			elementClass.entryDialogStrings["insertDialogTitle"],
+			elementClass.entryDialogStrings["entryBoxLabel"]
+		)
+		if not text:
+			return
+		wx.CallLater(400, classElements[index].insert, self.wordApp, text, self.focus)
+		self.Close()
 		evt.Skip()
 
 	@classmethod
-	def run(cls, wordApp):
+	def run(cls, wordApp, focus):
 		if isOpened(cls):
 			return
 		gui.mainFrame.prePopup()
-		d = cls(gui.mainFrame, wordApp)
+		d = cls(gui.mainFrame, wordApp, focus)
 		d.CentreOnScreen()
 		d.ShowModal()
 		gui.mainFrame.postPopup()

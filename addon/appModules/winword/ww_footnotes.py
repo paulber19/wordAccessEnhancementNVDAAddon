@@ -42,10 +42,10 @@ class Footnotes(Collection):
 	_name = (_("Footnote"), _("Footnotes"))
 	_wdGoToItem = wdGoToFootnote
 	entryDialogStrings = {
-		# Translators: text of entry text box:
-		"entryBoxLabel": _("Enter the footnote's text"),
 		# Translators: title of insert dialog.
 		"insertDialogTitle": _("Footnote's insert"),
+		# Translators: label of dialog entry text box.
+		"entryBoxLabel": _("Enter the footnote's text"),
 		# Translators: title of modify dialog.
 		"modifyDialogTitle": _("Footnote's modification"),
 	}
@@ -58,7 +58,11 @@ class Footnotes(Collection):
 		self.__class__._elementUnit = textInfos.UNIT_CHARACTER
 
 	@classmethod
-	def insert(cls, wordApp, text):
+	def canInsert(cls, focus):
+		return (True, None)
+
+	@classmethod
+	def insert(cls, wordApp, text, focus):
 		doc = wordApp.ActiveDocument
 		selection = wordApp.Selection
 		selection.Collapse(wdCollapseEnd)
@@ -66,6 +70,20 @@ class Footnotes(Collection):
 		footnoteObj = doc.Footnotes.Add(r)
 		footnoteObj.range.text = text
 		r.Select()
+
+	@classmethod
+	def getFootnoteTextAtFocus(cls, obj):
+		doc = obj.WinwordApplicationObject.ActiveDocument
+		selection = obj.WinwordSelectionObject
+		r = doc.range(selection.Start, selection.Start + 1)
+		footnotes = r.Footnotes
+		if footnotes.Count:
+			text = footnotes[1].range.text
+			if text == "":
+				# Translators: message to the user to say empty .
+				text = _("empty")
+			return text
+		return None
 
 
 class FootnotesDialog(ReportDialog):

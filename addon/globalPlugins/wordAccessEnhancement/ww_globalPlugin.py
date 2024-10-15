@@ -5,6 +5,7 @@
 
 
 import addonHandler
+from logHandler import log
 import globalPluginHandler
 import gui
 import wx
@@ -44,8 +45,10 @@ class WordGlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def onMenu(self, evt):
 		from .ww_configGui import AddonSettingsDialog
-		gui.mainFrame._popupSettingsDialog(AddonSettingsDialog)
+		gui.mainFrame.popupSettingsDialog(AddonSettingsDialog)
 
 	def terminate(self):
 		self.deleteSettingsMenu()
+		curAddon = addonHandler.getCodeAddon()
+		log.debug("Terminating %sadd-on" % curAddon.manifest['name'])
 		super(WordGlobalPlugin, self).terminate()

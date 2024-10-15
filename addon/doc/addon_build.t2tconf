@@ -12,8 +12,8 @@
 %!PostProc: ADDON_NAME wordAccessEnhancement
 %!PostProc: ADDON_REPOSITORY_NAME wordAccessEnhancementNVDAAddon
 % current stable version
-%!PostProc (html):ADDON_CUR_VERSION 3.5
+%!PostProc (html):ADDON_CUR_VERSION 3.6
 %!PostProc (html):MINIMUM_NVDA_VERSION  2023.1
-%!PostProc (html):LAST_TESTED_NVDA_VERSION  2024.1
+%!PostProc (html):LAST_TESTED_NVDA_VERSION  2024.4
 %previous stable version
-%!PostProc (html):ADDON_PREV_VERSION 3.4
+%!PostProc (html):ADDON_PREV_VERSION 3.5
