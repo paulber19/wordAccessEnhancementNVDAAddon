@@ -37,7 +37,10 @@ This add-on brings:
 - [manual or automatic reading of elements such as comments, footnotes, endnotes or text revisions #hdr_reading],
 - [additions for #hdr_table tables],
 - [new commands specific to Microsoft Word for #hdr_navigation mode],
-- [improved accessibility of the #hdr_spellchecker spell checker],
+- [help with document verification #hdr_verif]:
+ - [an improvement in the accessibility of the spell checker #hdr_spellchecker],
+ - error search scripts without activation of "navigation" mode,
+ - script to list suggestions for correcting the misspelled word under the cursor.
 - [script recovery from NVDA #hdr_nvda] for:
  - skip empty paragraphs when moving from paragraph to paragraph,
  - allow movement from sentence to sentence in navigation mode.
@@ -408,8 +411,8 @@ The types of elements associated with these new commands are added to the list o
 For some types like "misspelled word", "grammar error", searching for items can be quite long.
 
 The search time is therefore limited to 20 seconds by default. This maximum time can be changed using the "Maximum item search time" drop-down list in the "Options" category of the add-on settings.
-
-+ Improved accessibility of spell checker +[hdr_spellchecker]
++ Verification of the document +[hdr_verif]
+++ Improved accessibility of spell checker ++[hdr_spellchecker]
 When the focus is positioned in the document, the "f7" key (Word shortcut) either starts the spell checker,either to return to it if it is already started and the "Escape" key allows you to return to the document when the focus is in the spell checker.
 
 The add-on gives the possibility to also use the "f7" key to perform the same action as the "Escape" key.
@@ -432,6 +435,25 @@ The "key_report_current_sentence" input gesture allows you to hear the sentence 
 These scripts are shown in the "ADDON_SUMMARY" category of the "Input Gestures" NVDA dialog.
 
 This add-on also allows the automatic announcement of the new error and its suggestion presented by the spell checker following the use of one of the buttons like "Ignore", "Modify" or Word shortcuts like "i", "m ".
+
+++ Checking for errors ++
+To check for spelling mistakes or grammatical errors without enabling "Browse" mode, the following scripts are installed by the extension:
+- go to the next or previous spelling error: "key_goTo_spellingError".
+- go to the next or previous grammar error: "key_goTo_grammaticalError".
+
+
+++ Suggestions for spelling errors ++
+When the cursor is in a misspelled word, it is possible to get correction suggestions for that word using the "key_goTo_spelling" command gesture hit three times.
+
+This launches the "Show suggestions for spelling error" script without a command gesture assigned.  But it is possible to make one if necessary.
+
+This script displays the "Suggestions" dialog which presents the list of suggestions proposed by the Word spell checker.
+
+Each suggestion is spelled out when selected. This spelling can be heard again using two presses of key 5 on the numeric keypad.
+
+To correct the word in error, simply select the desired suggestion and type "Enter".
+
+The "Close" button or the "Esc" key allows you to close the dialog without modifying the document.
 
 + Resumption of scripts from NVDA +[hdr_nvda]
 ++ Skip empty paragraphs ++[hdr3]
@@ -470,6 +492,22 @@ The add-on removes this limitation.
 Using UI Automation to access controls in Microsoft Word documents can be set using an option found in the "Advanced" category of NVDA settings. But this requires a lot of key presses.
 
 To simplify this, the extension provides a script, without a input gesture, to directly display a dialog showing the different possible choices for this option and allow you to select one.
+
+++ Vocalization of the result of the action of certain Word shortcuts ++
+Depending on its versions, NVDA announces the result of the action of certain Word shortcuts.
+
+The extension has, firstly, to provide these announcements for all versions of NVDA that it supports.
+
+Second, to bring other announcements:
+- shortcut "control+shift+p": put the view in page mode.
+- shortcut “control+shift+o”: put the view in outline mode.
+
+
+++ View type indication ++
+The extension brings the indication of the view type in the document description for all versions of NVDA prior to version 2025.1.
+
+For this description to be announced, it is imperative that the “Announce the description of the object” option in the “Presentation of objects” category of NVDA, is checked.
+
 
 + History +
 The version history of this add-on is in the file ["changes.html" changes.html]

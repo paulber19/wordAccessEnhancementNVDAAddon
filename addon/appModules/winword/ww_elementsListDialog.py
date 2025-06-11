@@ -1,6 +1,6 @@
 # appModules\winword\ww_elementsListDialog.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2021- 2022 paulber19
+# Copyright (C) 2021- 2025 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -19,13 +19,15 @@ import sys
 import os
 import api
 _curAddon = addonHandler.getCodeAddon()
-path = os.path.join(_curAddon.path, "shared")
-sys.path.append(path)
+sharedPath = os.path.join(_curAddon.path, "shared")
+sys.path.append(sharedPath)
 from ww_NVDAStrings import NVDAString
 from ww_addonConfigManager import _addonConfigManager
 from ww_utils import (
 	getSpeechMode, setSpeechMode, setSpeechMode_off)
 del sys.path[-1]
+del sys.modules["ww_NVDAStrings"]
+del sys.modules["ww_utils"]
 
 addonHandler.initTranslation()
 

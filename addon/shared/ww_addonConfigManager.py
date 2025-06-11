@@ -1,6 +1,6 @@
 # shared\winword\ww_configManager.py
 # a part of wordAccessEnhancement add-on
-# Copyright 2019-2022, paulber19
+# Copyright 2019-2025, paulber19
 # released under GPL.
 
 
@@ -15,8 +15,10 @@ from configobj import ConfigObj
 from configobj.validate import Validator, ValidateError
 from io import StringIO
 import _pickle as cPickle
+from versionInfo import version_year, version_major
 
 
+NVDAVersion = [version_year, version_major]
 addonHandler.initTranslation()
 
 # config section
@@ -61,6 +63,16 @@ _curAddon = addonHandler.getCodeAddon()
 _addonName = _curAddon.manifest["name"]
 
 
+def renameFile(file, dest):
+	try:
+		if os.path.exists(dest):
+			os.remove(dest)
+		os.rename(file, dest)
+		log.debug("current configuration file: %s renamed to : %s" % (file, dest))
+	except Exception:
+		log.error("current configuration file: %s  cannot be renamed to: %s" % (file, dest))
+
+
 class BaseAddonConfiguration(ConfigObj):
 	_version = ""
 	""" Add-on configuration file. It contains metadata about add-on . """
@@ -86,7 +98,7 @@ class BaseAddonConfiguration(ConfigObj):
 		self._errors = []
 		val = Validator()
 		result = self.validate(val, copy=True, preserve_errors=True)
-		if type(result) == dict:
+		if type(result) is dict:
 			self._errors = self.getValidateErrorsText(result)
 		else:
 			self._errors = None
@@ -256,6 +268,10 @@ class AddonConfiguration21(BaseAddonConfiguration):
 		log.warning("%s: Merge with previous configuration version: %s" % (_addonName, previousVersion))
 
 
+PREVIOUSCONFIGURATIONFILE_SUFFIX = ".prev"
+DELETECONFIGURATIONFILE_SUFFIX = ".delete"
+
+
 class AddonConfigurationManager():
 	_currentConfigVersion = "2.1"
 	_versionToConfiguration = {
@@ -273,21 +289,30 @@ class AddonConfigurationManager():
 		config.post_configSave.register(self.handlePostConfigSave)
 
 	def warnConfigurationReset(self):
+		from messages import alert
 		wx.CallLater(
 			100,
-			gui.messageBox,
+			alert,
 			# Translators: A message warning configuration reset.
 			_(
 				"The configuration file of the add-on contains errors. "
 				"The configuration has been reset to factory defaults"),
 			# Translators: title of message box
 			"{addon} - {title}" .format(addon=_curAddon.manifest["summary"], title=_("Warning")),
-			wx.OK | wx.ICON_WARNING
 		)
 
 	def loadSettings(self):
-		addonConfigFile = os.path.join(
-			globalVars.appArgs.configPath, self.configFileName)
+		self.restorePreviousAutoReadingSynth()
+		self.getAutoReadingSynthSettings()
+		userConfig = globalVars.appArgs.configPath
+		self.addonConfigFile = addonConfigFile = os.path.join(userConfig, self.configFileName)
+		self.oldConfigFile = addonConfigFile + PREVIOUSCONFIGURATIONFILE_SUFFIX
+		# after add-on installation and and the user does not want to keep the configuration
+		# the configuration has been renamed with .delete extension
+		# if this file exists, it must be deleted
+		self.deleteConfigFile = self.addonConfigFile + DELETECONFIGURATIONFILE_SUFFIX
+		if os.path.exists(self.deleteConfigFile):
+			os.remove(self.deleteConfigFile)
 		doMerge = True
 		if os.path.exists(addonConfigFile):
 			# there is allready a config file
@@ -333,11 +358,10 @@ class AddonConfigurationManager():
 				self._versionToConfiguration[self._currentConfigVersion](None)
 			self.addonConfig.filename = addonConfigFile
 		# merge step
-		oldConfigFile = os.path.join(_curAddon.path, self.configFileName)
-		if os.path.exists(oldConfigFile):
+		if os.path.exists(self.oldConfigFile):
 			if doMerge:
-				self.mergeSettings(oldConfigFile)
-			os.remove(oldConfigFile)
+				self.mergeSettings(self.oldConfigFile)
+			os.remove(self.oldConfigFile)
 		if not os.path.exists(addonConfigFile):
 			self.saveSettings(True)
 
@@ -360,39 +384,76 @@ class AddonConfigurationManager():
 			pass
 
 	def restorePreviousAutoReadingSynth(self):
-		curPath = addonHandler.getCodeAddon().path
-		previousFile = os.path.join(curPath, self.autoReadingSynthFileName)
-		path = globalVars.appArgs.configPath
-		if os.path.exists(previousFile):
-			# move it to user config folder
-			import shutil
-			try:
-				path = globalVars.appArgs.configPath
-				shutil.copy(previousFile, path)
-				os.remove(previousFile)
-				log.warning("%s file copied in %s and deleted" % (path, previousFile))
-			except Exception:
-				log.warning("Error: %s file cannot be move to %s " % (previousFile, path))
+		userConfig = globalVars.appArgs.configPath
+		autoReadingSynthFile = os.path.join(userConfig, self.autoReadingSynthFileName)
+		prevAutoReadingSynthFile = autoReadingSynthFile + PREVIOUSCONFIGURATIONFILE_SUFFIX
+		if os.path.exists(prevAutoReadingSynthFile):
+			# rename it
+			renameFile(prevAutoReadingSynthFile, autoReadingSynthFile)
+		# after add-on installation and and the user does not want to keep the configuration
+		# the autoReadingSynth File has been renamed with .delete extension
+		# if this file exists, it must be deleted
+		deleteAutoReadingSynthFile = autoReadingSynthFile + DELETECONFIGURATIONFILE_SUFFIX
+		if os.path.exists(deleteAutoReadingSynthFile):
+			os.remove(deleteAutoReadingSynthFile)
 
 	def handlePostConfigSave(self):
 		self.saveSettings(True)
 
-	def saveSettings(self, force=False):
-		# We never want to save config if runing securely
-		if globalVars.appArgs.secure:
-			return
-		# We save the configuration, in case the user would not have checked
-			# the "Save configuration on exit" checkbox
-			# in General settings or force is is True
+	def canConfigurationBeSaved(self, force):
+		# Never save config or state if running securely or if running from the launcher.
+		try:
+			# for NVDA version >= 2023.2
+			from NVDAState import shouldWriteToDisk
+			writeToDisk = shouldWriteToDisk()
+		except ImportError:
+			# for NVDA version < 2023.2
+			writeToDisk = not (globalVars.appArgs.secure or globalVars.appArgs.launcher)
+		if not writeToDisk:
+			log.debug("Not writing add-on configuration, either --secure or --launcher args present")
+			return False
+		# after add-on installation and and the user does not want to keep the configuration
+		# the configuration has been renamed with .delete extension
+		# if this file exists, configuration should not be saved
+		if os.path.exists(self.deleteConfigFile):
+			return False
+		# after an add-on removing, configuration is deleted
+			# so  don't save configuration if there is no nvda restart
+		if _curAddon.isPendingRemove:
+			return False
+		# We don't save the configuration, in case the user
+			# would not have checked the "Save configuration on exit
+			# " checkbox in General settings and force is False
 		if not force and not config.conf['general']['saveConfigurationOnExit']:
-			return
+			return False
+		return True
+
+	def _saveAutoReadingSynthSettings(self):
+		userConfig = config.getUserDefaultConfigPath()
+		autoReadingSynthFile = os.path.join(userConfig, self.autoReadingSynthFileName)
+		with open(autoReadingSynthFile, 'wb') as f:
+			cPickle.dump(self._autoReadingSynth, f, 0)
+		# if an installation took place, the configuration file was renamed.
+		# so you have to do the same thing after saving
+		dest = autoReadingSynthFile + ".prev"
+		if os.path.exists(dest):
+			renameFile(autoReadingSynthFile, dest)
+
+	def saveSettings(self, force=False):
 		if self.addonConfig is None:
 			return
-
+		if not self.canConfigurationBeSaved(force):
+			return
+		self._saveAutoReadingSynthSettings()
 		try:
 			val = Validator()
 			self.addonConfig.validate(val, copy=True)
 			self.addonConfig.write()
+			log.warning("%s: configuration saved" % _addonName)
+			# if an installation took place, the configuration file was renamed.
+			# so you have to do the same thing after saving
+			if os.path.exists(self.oldConfigFile):
+				renameFile(self.addonConfigFile, self.oldConfigFile)
 		except Exception:
 			log.warning("%s: Could not save configuration - probably read only file system" % _addonName)
 
@@ -473,7 +534,32 @@ class AddonConfigurationManager():
 
 	def toggleAutoRevisedTextReadingOption(self, toggle=True):
 		return self._toggleAutoReportOption(ID_RevisedTextReport, toggle)
+	def checkAutomaticReadingSynthSettingsCompatibility(self):
+		from messages import alert
+		# until nvda 2024.4, audio output device is stored by it name
+		# since nvda 2025.1, it is stored by it id and for automatic voice  reading, itname is recorded in voice information
+		if NVDAVersion != [2025, 1]or self._autoReadingSynth is None:
+			return
+		c = self._autoReadingSynth["SynthDisplayInfos"].copy()
+		if c["1"][0] == _("Audio output device"):
+			return
+		self._autoReadingSynth = None
+		self._saveAutoReadingSynthSettings()
+		wx.CallLater(
+			100,
+			alert,
+			# Translators: A message warning automatic reading synth settings clearedconfiguration reset.
+			_(
+				"To ensure compatibility with this NVDA's version, the voice settings saved for automatic reading had to be cleared.\n"
+				"You need to register them again.\n"
+				"Sorry for the inconvenience."),
+			# Translators: title of message box
+			"{addon} - {title}" .format(addon=_curAddon.manifest["summary"], title=_("Warning")),
 
+		)
+
+
+	
 	def getAutoReadingSynthSettings(self):
 		if self._autoReadingSynth is None:
 			path = os.path.join(
@@ -483,15 +569,21 @@ class AddonConfigurationManager():
 				return None
 			with open(path, 'rb') as f:
 				self._autoReadingSynth = cPickle.load(f)
+				log.debug("loading autoReadingSynth settings")
+		if self._autoReadingSynth  is None:
+			return
+		# nvda 2024.4: include CLDR check box is replaced by symbolDictionnaries list
+		# so we exclude from setting to keep and restore
+		SCT_Speech = "speech"
+		if "includeCLDR" in self._autoReadingSynth[SCT_Speech]:
+			del self._autoReadingSynth[SCT_Speech]["includeCLDR"]
+		if "symbolDictionaries" in self._autoReadingSynth[SCT_Speech]:
+			del self._autoReadingSynth[SCT_Speech]["symbolDictionaries"]
+		self.checkAutomaticReadingSynthSettingsCompatibility()
 		return self._autoReadingSynth
 
 	def saveAutoReadingSynthSettings(self, synthSettings):
 		self._autoReadingSynth = synthSettings.copy()
-		path = os.path.join(
-			config.getUserDefaultConfigPath(),
-			"wordAccessEnhancement_autoReadingSynth.pickle")
-		with open(path, 'wb') as f:
-			cPickle.dump(self._autoReadingSynth, f, 0)
 
 
 # singleton for addon config manager

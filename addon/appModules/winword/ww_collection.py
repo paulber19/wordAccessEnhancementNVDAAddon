@@ -1,6 +1,6 @@
 # appModules\winword\ww.collection.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2024 paulber19
+# Copyright (C) 2019-2025 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -37,8 +37,10 @@ sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
 from ww_utils import (
 	getSpeechMode, setSpeechMode, setSpeechMode_off)
-from ww_messageBox import myMessageBox
+from messages import confirm_YesNo, alert, ReturnCode
 del sys.path[-1]
+del sys.modules["ww_utils"]
+del sys.modules["messages"]
 
 addonHandler.initTranslation()
 
@@ -247,7 +249,7 @@ class Collection(object):
 			queueEvent("gainFocus", obj)
 			return
 		if len(self.collection) == 0:
-			myMessageBox(self.noElementMessage, self.title, wx.OK)
+			alert(self.noElementMessage, self.title)
 			return
 		if copyToClip:
 			sText = self.formatInfosForClipboard()
@@ -473,12 +475,12 @@ class ReportDialog(wx.Dialog):
 		elif id == self.entriesListID and (
 			(key == wx.WXK_DELETE)
 			or (key == wx.WXK_NUMPAD_DELETE)):
-			if myMessageBox(
+			if confirm_YesNo(
 				# Translators: text of a message box dialog.
 				_("Are you sure you wish to delete this items?"),
 				# Translators: title of a message box dialog.
 				_("Deletion of items"),
-				wx.YES_NO | wx.ICON_WARNING) != wx.YES:
+			) != ReturnCode.YES:
 				return
 			self.delete()
 			return
@@ -560,12 +562,12 @@ class ReportDialog(wx.Dialog):
 		queueEvent("gainFocus", obj)
 
 	def deleteAll(self):
-		if myMessageBox(
+		if confirm_YesNo(
 			# Translators: text of a message box dialog.
 			_("Are you sure you wish to delete all items?"),
 			# Translators: title of a message box dialog.
 			_("Deletion of all items"),
-			wx.YES_NO | wx.ICON_WARNING) != wx.YES:
+		) != ReturnCode.YES:
 			return
 		self.collectionObject.deleteAll()
 		self.Close()

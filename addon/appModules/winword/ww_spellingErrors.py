@@ -17,17 +17,22 @@ addonHandler.initTranslation()
 class SpellingError(CollectionElement):
 	def __init__(self, parent, item):
 		super(SpellingError, self).__init__(parent, item)
-
 		self.start = item.Start
 		self.end = item.End
 		self.text = ""
 		if item.Text:
 			self.text = item.Text
-
 		r = self.doc.range(self.start, self.end)
 		self.setLineAndPageNumber(r)
 		r.expand(wdSentence)
 		self.sentence = r.Text
+
+	def modify(self, text):
+		r = self.doc.range(self.start, self.end)
+		self.obj.Text = text
+		self.text = text
+		r.Select()
+		r.Collapse()
 
 	def formatInfos(self):
 		sInfo = _("""Page {page}, line {line}

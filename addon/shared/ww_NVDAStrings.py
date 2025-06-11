@@ -12,6 +12,7 @@
 def NVDAString(s):
 	return _(s)
 
+
 def NVDAString_pgettext(c, s):
 	return pgettext(c, s)
 

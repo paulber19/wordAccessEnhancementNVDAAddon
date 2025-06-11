@@ -34,7 +34,10 @@ Cette extension apporte :
 - [la lecture manuelle ou automatique d'élément comme les commentaires, note de bas de page, note de fin ou modifications de texte #hdr_reading],
 - [des compléments pour les tableaux #hdr_table],
 - [des nouvelles commandes spécifiques à Microsoft Word pour le mode navigation #hdr_navigation],
-- [une amélioration de l'accessibilité du correcteur orthographique #hdr_spellchecker],
+- [aide à la vérification du document #hdr_verif]:
+ - [une amélioration de l'accessibilité du correcteur orthographique #hdr_spellchecker],
+ - scripts de recherche des erreurs  sans activation du mode "navigation",
+ - script pour lister des suggestions pour la correction du mot mal orthographié sous le curseur.
 - [la reprise de scripts de NVDA #hdr_nvda] pour :
  - sauter les paragraphes vides lors de déplacement de paragraphe en paragraphe,
  - permettre le déplacement de phrase en phrase en mode navigation.
@@ -255,7 +258,7 @@ Dans cette catégorie, se trouvent :
 - le bouton "Afficher les paramètres vocaux enregistrés" : qui ouvre la boite de dialogue présentant tous les paramètres vocaux qui seront utilisés en lecture automatique.
 
 
-Pour faire lire les éléments avec une autre voix, il faut auparavant enregistrer les paramètres vocaux de cette voix à l'aide du geste de commande "key_RecordVoiceSettings". Ce geste correspond au script "Enregistrer les paramètres vocaux pour la lecture automatique" et est modifiable à l'aide du dialogue "Gestes de commande" de NVDA.
+Pour faire lire les éléments avec une autre voix, il faut auparavant enregistrer les paramètres vocaux de cette voix à l'aide du geste de commande "key_RecordVoiceSettings". Ce geste correspond au script Enregistrez les paramètres pour la voix de lecture automatique. Deux appuis : basculez entre la voix de lecture automatique et la voix actuelle pour Word" et est modifiable à l'aide du dialogue "Gestes de commande" de NVDA.
 
 Afin de retrouver facilement cette voix et de modifier éventuellement certains de ses paramètres, il est conseillé de créer un profil de configuration qui sera activé manuellement.
 
@@ -266,6 +269,8 @@ Une fois ceci fait, la configuration de NVDA doit être enregistrée.
 Sous Word et afin d'enregistrer les paramètres vocaux pour la lecture automatique, ce profil doit être activé manuellement. La frappe du geste "key_RecordVoiceSettings" procèdera à l'enregistrement.
 
 L'enregistrement fait, le profil peut alors être désactivé manuellement pour retrouver les paramètres vocaux du profil de configuration actif avant l'activation manuelle du profil.
+
+Une autre solution pour modifier les paramètres de la voix pour la lecture automatique est d'utiliser le même geste de commande "key_RecordVoiceSettings qui permet  par deux appuis d'activer rapidement la voix de lecture automatique déjà enregistrée et revenir sur la voix actuelle pour Word.
 
 L'option "Lecture automatique" peut être modifié à l'aide du script "Activer / désactiver la lecture automatique" associé au geste de commande "key_AutomaticReading".
 
@@ -407,8 +412,8 @@ Les types d'éléments associés à ces nouvelles commandes sont ajoutés dans l
 Pour certains types comme "mot mal orthographié", "erreur de grammaire", la recherche des éléments peut être assez longue.
 
 Le temps de la recherche est donc limitée à 20 secondes par défaut. Ce temps maximum peut être modifié à l'aide de la liste déroulante "Temps maximum de la recherche des éléments" de la catégorie "Options" des paramètres de l'extension.
-
-+ Amélioration de l'accessibilité du correcteur orthographique +[hdr_spellchecker]
++ Vérification du document +[hdr_verif]
+++ Amélioration de l'accessibilité du correcteur orthographique ++[hdr_spellchecker]
 Quand le focus est positionné dans le document, la touche "f7" (raccourci Word) permet soit de lancer le correcteur orthographique, soit d'y retourner s'il est déjà lancé et la touche "Échapp" permet de revenir dans le document quand le focus est dans le correcteur orthographique.
 
 L'extension donne la possibilité d'utiliser aussi la touche "f7" pour exécuter la même action que la touche "Échapp".
@@ -432,6 +437,26 @@ Le geste de commande "key_report_CURRENT_SENTENCE" permet de réentendre la phra
 Ces scripts sont présentés dans la catégorie "ADDON_SUMMARY" du dialogue "gestes de commandes" de NVDA.
 
 Cette extension permet aussi l'annonce automatique de la nouvelle erreur et de sa suggestion présentée par le correcteur orthographique suite à l'utilisation d'un des boutons comme "Ignorer", "Modifier" ou des raccourcis Word comme "i", "m".
+
+
+++ Recherche des erreurs ++
+Pour rechercher les fautes d'orthographe ou les erreurs grammaticales sans activer le mode "Navigation", les scripts suivants sont installés par l'extension :
+- aller à la faute d'orthographe suivante  ou précédente : "key_goTo_spellingError".
+- aller à l'erreur de grammaire suivante  ou précédente : "key_goTo_grammaticalError".
+
+
+++ Suggestions pour fautes d'orthographe ++
+Quand le curseur est dans un mot mal orthographié, il est possible d'obtenir les suggestions de correction pour ce mot à l'aide du geste de commande "key_goTo_spelling" frappé trois fois.
+
+Cela lance le script "Afficher les suggestions pour la faute d'orthographe"  sans geste de commande attribué.  Mais il est possible de lui en attribuer un si nécessaire.
+
+Ce script affiche  le dialogue "Suggestions" qui présente la liste des suggestions proposées par le correcteur orthographique de Word.
+
+Chaque suggestion est épelée quand elle est sélectionnée. Cette épéllation peut être réentendue à l'aide de deux appuis sur la touche 5 du pavé numérique.
+
+Pour corriger le mot en faute, il suffit alors de sélectionner la suggestion voulue et de taper "Entrée".
+
+Le bouton "Fermer" ou la touche "Échapp" permet de refermer le dialogue sans modification du document.
 
 + Reprise de scripts de NVDA +[hdr_nvda]
 ++ Saut des paragraphes vides ++[hdr3]
@@ -470,6 +495,23 @@ L'extension supprime cette limitation.
 L'utilisation de l'UI Automation   pour accéder aux contrôles des documents Microsoft Word peut être défini à l'aide d'une option qui se trouve dans la catégorie "Avancé" des paramètres de NVDA. Mais cela nécessite beaucoup d'appuis touches.
 
 Pour simplifier cela, l'extension apporte un script, sans geste de commande,  pour faire afficher directement un dialogue  montrant les diférents choix possible pour  cette option et permettre d'en sélectionner un.
+
+Attention : pour un fonctionnement optimum de l'extension, il est préférable que l'option  "Utiliser UI Automation pour accéder aux Contrôles des documents Microsoft Word" soit sur  "Seulement si nécessaire". Cette option se trouve dans la catégorie "Avancé" des paramètres de NVDA . Par défaut, NVDA la configure à "Lorsque c'est adapté".
+
+++ Vocalisation du résultat de certains raccourcis Word ++
+Suivant ses versions, NVDA annonce le résultat de certains raccourcis de Word.
+
+L'extension a, en premier lieu, de fournir ces annonces pour toutes les versions de NVDA qu'elle supporte.
+
+En second lieu, d'apporter d'autre annonce :
+- raccourci "control+majuscule+p" : mettre la vue en mode page.
+- raccourci "control+majuscule+o" : mettre la vue en mode plan.
+
+
+++ Indication du type de vue ++
+L'extension amène  l'indication du type de vue dans la description du document pour toutes les versions de NVDA antérieure à la version 2025.1.
+
+Pour que cette description soit  annoncée, il est impératif que l'option "Annoncer la description de l'objet " de la catégorie "Présentation des objets" de NVDA soit cochée.
 
 + Historique +
 L'historique des versions de cette extension est dans le fichier ["changes.html" changes.html]

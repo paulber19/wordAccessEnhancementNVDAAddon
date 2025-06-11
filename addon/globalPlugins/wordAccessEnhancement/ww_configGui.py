@@ -1,6 +1,6 @@
 # globalPlugins\wordAccessEnhancement\ww_config.py
 # A part of WordAccessEnhancement add-on
-# Copyright (C) 2019-2022 paulber19
+# Copyright (C) 2019-2025 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -13,6 +13,8 @@ from gui.settingsDialogs import MultiCategorySettingsDialog, SettingsPanel
 import wx
 import characterProcessing
 import speech
+from versionInfo import version_year, version_major
+NVDAVersion = [version_year, version_major]
 _curAddon = addonHandler.getCodeAddon()
 path = os.path.join(_curAddon.path, "shared")
 sys.path.append(path)
@@ -20,7 +22,8 @@ from ww_informationDialog import InformationDialog
 from ww_NVDAStrings import NVDAString
 from ww_addonConfigManager import _addonConfigManager
 del sys.path[-1]
-
+del sys.modules["ww_informationDialog"]
+del sys.modules["ww_NVDAStrings"]
 
 addonHandler.initTranslation()
 
@@ -174,49 +177,95 @@ class AutomaticReadingPanel(SettingsPanel):
 		sHelper.addItem(voiceInformationsButton)
 		voiceInformationsButton.Bind(wx.EVT_BUTTON, self.onVoiceInformationButton)
 
-	def onVoiceInformationButton(self, evt):
+	def getSynthInformations(self, autoReadingSynth ):
+		def get_NVDASpeechSettings():
+			if NVDAVersion < [2024, 3]:
+				return [
+					"autoLanguageSwitching",
+					"autoDialectSwitching",
+					"symbolLevel",
+					"trustVoiceLanguage",
+					"delayedCharacterDescriptions"]
+			else:
+				return [
+					"autoLanguageSwitching",
+					"autoDialectSwitching",
+					"symbolLevel",
+					"trustVoiceLanguage",
+					"unicodeNormalization",
+					"reportNormalizedForCharacterNavigation",
+					"delayedCharacterDescriptions"]
 
-		def boolToText(val):
-			return _("yes") if val else _("no")
+		def getNVDASpeechSettingsInfos():
+			if NVDAVersion < [2024, 3]:
+				return [
+					("Automatic language switching (when supported)", boolToText),
+					("Automatic dialect switching (when supported)", boolToText),
+					("Punctuation/symbol level", punctuationLevelToText),
+					("Trust voice's language when processing characters and symbols", boolToText),
+					("Delayed descriptions for characters on cursor movement", boolToText),
+				]
+			else:
+				return [
+					("Automatic language switching (when supported)", boolToText),
+					("Automatic dialect switching (when supported)", boolToText),
+					(_("Punctuation/symbol level"), punctuationLevelToText),
+					("Trust voice's language when processing characters and symbols", boolToText),
+					("Unicode normali&zation", featureFlagToText),
+					("Report '&Normalized' when navigating by character", boolToText),
+					("&Delayed descriptions for characters on cursor movement", boolToText),
+				]
+
+
+		def boolToText(value):
+			if type(value) is str and value == "True":
+				return _("yes")
+			if type(value) is str and value == "False":
+				return _("no")
+			if type(value) is bool:
+				text = _("yes") if value else _("no")
+				return text
+			log.error("boolToText: value is out of type range:  bool, str")
+			return ""
 
 		def punctuationLevelToText(level):
 			return characterProcessing.SPEECH_SYMBOL_LEVEL_LABELS[int(level)]
-		NVDASpeechSettingsInfos = [
-			("Automatic language switching (when supported)", boolToText),
-			("Automatic dialect switching (when supported)", boolToText),
-			("Punctuation/symbol level", punctuationLevelToText),
-			("Trust voice's language when processing characters and symbols", boolToText),
-			("Include Unicode Consortium data (including emoji) when processing characters and symbols", boolToText),
-		]
+
+		def featureFlagToText(value):
+			return value.calculated().displayString
+
 		NVDASpeechManySettingsInfos = [
 			("Capital pitch change percentage", None),
 			("Say &cap before capitals", boolToText),
 			("&Beep for capitals", boolToText),
 			("Use &spelling functionality if supported", boolToText),
 		]
-		autoReadingSynth = _addonConfigManager.getAutoReadingSynthSettings()
-		if autoReadingSynth is None:
-			# Translators: message to user to report no automatic reading voice.
-			speech.speakMessage(_("No voice recorded for automatic reading"))
-			return
+
 		autoReadingSynthName = autoReadingSynth.get("synthName")
 		textList = []
-		textList.append(_("Synthetizer: %s") % autoReadingSynthName)
+		# Translators: text to report synthesizer name.
+		textList.append("%s = %s" %(_("Synthetizer"), autoReadingSynthName))
 		synthSpeechSettings = autoReadingSynth[SCT_Speech]
 		synthDisplayInfos = autoReadingSynth["SynthDisplayInfos"]
-		textList.append(_("Output device: %s") % synthSpeechSettings["outputDevice"])
+		if NVDAVersion < [2025, 1]:
+			# Translators:  label to report synthesizer output device .
+			textList.append("%s = %s" % (_("Audio output device"), synthSpeechSettings["outputDevice"]))
+		print("synthDisplayInfos: %s" %synthDisplayInfos)
 		for i in synthDisplayInfos:
-			item = synthDisplayInfos[i]
-			textList.append("%s: %s" % (item[0], item[1]))
+			print("i: %s" %i)
+			label, val = synthDisplayInfos[i]
+			textList.append("%s = %s" % (label,val))
 
-		for setting in NVDASpeechSettings:
-			val = synthSpeechSettings[setting]
-			index = NVDASpeechSettings.index(setting)
-			(name, f) = NVDASpeechSettingsInfos[index]
+		for setting in get_NVDASpeechSettings():
+			val = synthSpeechSettings.get(setting, None)
+			if val is None:
+				continue
+			index = get_NVDASpeechSettings().index(setting)
+			(name, f) = getNVDASpeechSettingsInfos()[index]
 			if f is not None:
 				val = f(val)
 			name = NVDAString(name).replace("&", "")
-			textList.append("%s: %s" % (name, val))
+			textList.append("%s = %s" % (name, val))
 		for setting in NVDASpeechManySettings:
 			val = synthSpeechSettings[SCT_Many][setting]
 			if setting in synthSpeechSettings:
@@ -228,8 +277,17 @@ class AutomaticReadingPanel(SettingsPanel):
 			if f is not None:
 				val = f(val)
 			name = NVDAString(name).replace("&", "")
-			textList.append("%s: %s" % (name, val))
+			textList.append("%s = %s" % (name, val))
+		return textList
+		
 
+	def onVoiceInformationButton(self, evt):
+		autoReadingSynth = _addonConfigManager.getAutoReadingSynthSettings()
+		if autoReadingSynth is None:
+			# Translators: message to user to report no automatic reading voice.
+			speech.speakMessage(_("No voice recorded for automatic reading"))
+			return
+		textList = self.getSynthInformations(autoReadingSynth )
 		# Translators: this is the title of informationdialog box
 # to show voice profile informations.
 		dialogTitle = _("Voice settings for automatic reading")
@@ -321,6 +379,8 @@ class WordUpdatePanel(SettingsPanel):
 	def saveSettingChanges(self):
 		if self.autoCheckForUpdatesCheckBox.IsChecked() != _addonConfigManager .toggleAutoUpdateCheck(False):
 			_addonConfigManager .toggleAutoUpdateCheck(True)
+			from . updateHandler.update_check import setCheckForUpdate
+			setCheckForUpdate(_addonConfigManager.toggleAutoUpdateCheck(False))
 		option = _addonConfigManager .toggleUpdateReleaseVersionsToDevVersions(False)
 		if self.updateReleaseVersionsToDevVersionsCheckBox.IsChecked() != option:
 			_addonConfigManager .toggleUpdateReleaseVersionsToDevVersions(True)

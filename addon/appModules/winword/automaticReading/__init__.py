@@ -1,13 +1,14 @@
 # appModules\winword\automaticReading\__init__.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2024 paulber19, Abdel
+# Copyright (C) 2024-2025 paulber19, Abdel
 # This file is covered by the GNU General Public License.
 
 import addonHandler
 from logHandler import log
 from versionInfo import version_year, version_major
 import config
-import UIAHandler
+import gui
+import wx
 import textInfos
 from textInfos import SpeechSequence
 from typing import List, Optional, Dict
@@ -28,11 +29,16 @@ from ww_NVDAStrings import NVDAString
 from ww_addonConfigManager import (
 	_addonConfigManager, AutoReadingWith_CurrentVoice, AutoReadingWith_Beep, AutoReadingWith_Voice
 )
+from messages import confirm_YesNo, ReturnCode
 del sys.path[-1]
+del sys.modules["ww_NVDAStrings"]
+del sys.modules["ww_addonConfigManager"]
+del sys.modules["messages"]
 
 addonHandler.initTranslation()
 
 SCT_Speech = "speech"
+SCT_Audio = "audio"
 SCT_Many = "__many__"
 
 NVDAVersion = [version_year, version_major]
@@ -321,46 +327,38 @@ class SetSynthCommand(speech.commands.CallbackCommand):
 		return "SetSynthCommand (%s)" % self.synthName
 
 
-def getSynthDisplayInfos(synth, synthConf):
+def getSynthDisplayInfos(synth, synthConf, outputDeviceName):
 	conf = synthConf
 	id = "id"
-	try:
-		# for nvda version <2021.1
-		import driverHandler
-		numericSynthSetting = [driverHandler.NumericDriverSetting, ]
-		booleanSynthSetting = [driverHandler.BooleanDriverSetting, ]
-	except AttributeError:
-		# for nvda version >= 2021.1
-		import autoSettingsUtils.driverSetting
-		numericSynthSetting = [autoSettingsUtils.driverSetting.NumericDriverSetting, ]
-		booleanSynthSetting = [autoSettingsUtils.driverSetting.BooleanDriverSetting, ]
-
-	infos = []
+	import autoSettingsUtils.driverSetting
+	numericSynthSetting = [autoSettingsUtils.driverSetting.NumericDriverSetting, ]
+	booleanSynthSetting = [autoSettingsUtils.driverSetting.BooleanDriverSetting, ]
+	textList = []
 	for setting in synth.supportedSettings:
 		settingID = getattr(setting, id)
 		if type(setting) in numericSynthSetting:
 			info = str(conf[settingID])
-			infos.append((setting.displayName, info))
+			textList.append((setting.displayName, info))
 		elif type(setting) in booleanSynthSetting:
 			info = _("yes") if conf[settingID] else _("no")
-			infos.append((setting.displayName, info))
+			textList.append((setting.displayName, info))
 		else:
 			if hasattr(synth, "available%ss" % settingID.capitalize()):
 				tempList = list(getattr(synth, "available%ss" % settingID.capitalize()).values())
 				cur = conf[settingID]
-				try:
-					# for nvda =>2019.3
-					i = [x.id for x in tempList].index(cur)
-					v = tempList[i].displayName
-				except Exception:
-					i = [x.ID for x in tempList].index(cur)
-					v = tempList[i].name
+				i = [x.id for x in tempList].index(cur)
+				v = tempList[i].displayName
 				info = v
-				infos.append((setting.displayName, info))
+				textList.append((setting.displayName, info))
 	d = {}
-	for i in range(0, len(infos)):
-		item = infos[i]
-		d[str(i + 1)] = [item[0], item[1]]
+	i=1
+	if NVDAVersion >= [2025, 1]:
+		# Translators:  label to report synthesizer output device .
+		d[str(1)] = [_("Audio output device"), outputDeviceName]
+		i+= 1
+	for label, val in textList:
+		d[str(i )] = (label, val)
+		i += 1
 	return d
 
 
@@ -372,23 +370,72 @@ def getCurrentSpeechSettings():
 		val = config.conf[SCT_Speech][key]
 		if type(val) is config.AggregatedSection and key not in [SCT_Many, currentSynth.name]:
 			del d[SCT_Speech][key]
-	d["SynthDisplayInfos"] = getSynthDisplayInfos(currentSynth, d[SCT_Speech][currentSynth.name])
+	outputDeviceName = ""
+	# for nvda >= 2025.1, outputDevice is stored in "audio" section instead of "speech" section
+	# and it is stored by its id instead its name
+	if "outputDevice" in config.conf[SCT_Audio]:
+		outputDevice = config.conf[SCT_Audio]["outputDevice"]
+		d[SCT_Speech]["outputDevice"] = outputDevice
+		from utils import mmdevice
+		deviceIds, deviceNames = zip(*mmdevice._getOutputDevices(includeDefault=True))
+		try:
+			outputDeviceName = deviceNames[deviceIds.index(outputDevice)]
+		except ValueError:
+			pass
+	
+	d["SynthDisplayInfos"] = getSynthDisplayInfos(currentSynth, d[SCT_Speech][currentSynth.name], outputDeviceName)
+	# nvda 2024.4: include CLDR check box is replaced by symbolDictionnaries list
+	# so we exclude from setting to keep and restore
+	if "includeCLDR" in d[SCT_Speech]:
+		del d[SCT_Speech]["includeCLDR"]
+	if "symbolDictionaries" in d[SCT_Speech]:
+		del d[SCT_Speech]["symbolDictionaries"]
 	return d
 
 
 def saveCurrentSpeechSettings():
+	autoReadingSynth = _addonConfigManager.getAutoReadingSynthSettings()
+	curSynthName = synthDriverHandler.getSynth().name
+	currentSpeechSettings = getCurrentSpeechSettings()
+	if autoReadingSynth:
+		if confirm_YesNo(
+			_(
+				"There are already voice settings saved for automatic reading.\n"
+				"Do you want to replace them with the current voice settings for Word?"
+			),
+			# Translators: title of message box
+			"{addon} - {title}" .format(addon=_curAddon.manifest["summary"], title=_("Warning")),
+		) != ReturnCode.YES:
+			return
 	autoReadingSynth = {}
-	autoReadingSynth["synthName"] = synthDriverHandler.getSynth().name
-	autoReadingSynth.update(getCurrentSpeechSettings())
+	autoReadingSynth["synthName"] = curSynthName 
+	autoReadingSynth.update(currentSpeechSettings)
 	_addonConfigManager.saveAutoReadingSynthSettings(autoReadingSynth)
 	# Translators: message to user to report automatic reading voice record.
-	ui.message(_("Current voice settings have beenset for automatic reading"))
+	wx.CallLater(50, ui.message, _("Current voice settings have beenset for automatic reading"))
 
 
 # to memorize the suspended synth settings when automacic reading synth is running
 _suspendedSynth = (None, None)
-
-
+settingsBeforeSwitch = None
+def switchToAutomaticReadingSynth():
+	global settingsBeforeSwitch 
+	autoReadingSynth = _addonConfigManager.getAutoReadingSynthSettings()
+	if not autoReadingSynth:
+		return
+	curSynthName = synthDriverHandler.getSynth().name
+	currentSpeechSettings = getCurrentSpeechSettings()
+	(autoReadingSynthName, autoReadingSynthSpeechSettings) = (autoReadingSynth["synthName"], autoReadingSynth)
+	if settingsBeforeSwitch  is None:
+		settingsBeforeSwitch  = (curSynthName, currentSpeechSettings )
+		_setSynth(autoReadingSynthName, autoReadingSynthSpeechSettings, temporary=False)
+		msg = _("Automatic reading voice")
+	else:
+		(curSynthName, currentSpeechSettings ) = settingsBeforeSwitch  
+		settingsBeforeSwitch   = None
+		_setSynth(curSynthName, currentSpeechSettings , temporary=False) 
+		msg = _("Current voice for Word")
+	ui.message(msg)
 def _setSynth(synthName, speechSettings, temporary=False):
 	global _suspendedSynth
 	if temporary:
@@ -400,15 +447,16 @@ def _setSynth(synthName, speechSettings, temporary=False):
 		_suspendedSynth = (None, None)
 	# when changing sapi5 to sapi5, or oneCore to oneCore,
 	# if we don't change with another synthetizer, nothing appends.
-	# for NVDA version  2020.3or 2020.4,  we switch to embedded synthetizer.
-	if NVDAVersion in [[2020, 4], [2021, 3]]:
-		synthDriverHandler.setSynth("espeak")
-	else:
-		synthDriverHandler.setSynth(None)
+	synthDriverHandler.setSynth(None)
+	synthSpeechConfig = config.conf[SCT_Speech] .dict()
 	if speechSettings is not None:
-		synthSpeechConfig = config.conf[SCT_Speech] .dict()
 		synthSpeechConfig.update(speechSettings[SCT_Speech])
-		config.conf[SCT_Speech] = synthSpeechConfig.copy()
+	newOutputDevice = synthSpeechConfig["outputDevice"]
+	if "outputDevice" in config.conf[SCT_Audio]:
+		#curOutputDevice = config.conf[SCT_Audio]["outputDevice"] 
+		config.conf[SCT_Audio]["outputDevice"] = newOutputDevice
+		del synthSpeechConfig["outputDevice"]
+	config.conf[SCT_Speech] = synthSpeechConfig.copy()
 	synthDriverHandler.setSynth(synthName)
 	config.conf[SCT_Speech] = synthSpeechConfig.copy()
 
@@ -432,7 +480,7 @@ def myCancelSpeech():
 
 
 def initialize():
-	if NVDAVersion >=[2024, 1]:
+	if NVDAVersion >= [2024, 1]:
 		from speech.extensions import speechCanceled
 		speechCanceled.register(onSpeechCanceled)
 		return
@@ -445,7 +493,7 @@ def initialize():
 
 
 def terminate():
-	if NVDAVersion >=[2024, 1]:
+	if NVDAVersion >= [2024, 1]:
 		from speech.extensions import speechCanceled
 		speechCanceled.unregister(onSpeechCanceled)
 		return

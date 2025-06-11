@@ -1,6 +1,6 @@
 # appModules\winword\automaticReading\__init__.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2024 paulber19, Abdel
+# Copyright (C) 2025 paulber19, Abdel
 # This file is covered by the GNU General Public License.
 
 import addonHandler
@@ -25,6 +25,7 @@ sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
 from ww_NVDAStrings import NVDAString, NVDAString_ngettext
 del sys.path[-1]
+del sys.modules["ww_NVDAStrings"]
 
 addonHandler.initTranslation()
 

@@ -1,6 +1,6 @@
 # appModules\winword\ww_document.py
 # A part of WordAccessEnhancement add-on
-# Copyright (C) 2019-2022 paulber19
+# Copyright (C) 2019-2025 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -11,11 +11,13 @@ from .ww_wdConst import wdUndefined
 import sys
 import os
 _curAddon = addonHandler.getCodeAddon()
-path = os.path.join(_curAddon.path, "shared")
-sys.path.append(path)
+sharedPath = os.path.join(_curAddon.path, "shared")
+sys.path.append(sharedPath)
 from ww_informationDialog import InformationDialog
 from ww_NVDAStrings import NVDAString
 del sys.path[-1]
+del sys.modules["ww_informationDialog"]
+del sys.modules["ww_NVDAStrings"]
 
 addonHandler.initTranslation()
 

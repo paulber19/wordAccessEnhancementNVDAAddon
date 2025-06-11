@@ -1,6 +1,6 @@
 # appModules\winword\ww_browsemode.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2024 paulber19
+# Copyright (C) 2019-2025 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -39,6 +39,7 @@ sys.path.append(path)
 from ww_NVDAStrings import NVDAString
 from ww_addonConfigManager import _addonConfigManager, AutoReadingWith_Beep
 del sys.path[-1]
+del sys.modules["ww_NVDAStrings"]
 
 addonHandler.initTranslation()
 

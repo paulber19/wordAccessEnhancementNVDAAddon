@@ -1,10 +1,10 @@
 % base key definition
-%!PostProc (html): key_toggle_skip_empty_paragraph windows + alt + f4
+%!PostProc (html): key_toggle_skip_empty_paragraph windows+alt+f4
 %!PostProc (html): key_document_infos windows +Alt+f1
 %!PostProc (html): key_spelling_checker_help NVDA+shift+f7
 %!PostProc (html): key_report_current_sentence NVDA+control+f7
-%!PostProc (html): key_line_page alt + numpad delete
-%!PostProc (html): key_laptop_line_page alt + delete
+%!PostProc (html): key_line_page alt+numpad delete
+%!PostProc (html): key_laptop_line_page alt+delete
 %!PostProc (html): key_layerMode NVDA+e
 %!PostProc (html): key_sayAll windows+alt+space
 %!PostProc (html): key_escape escape
@@ -14,6 +14,9 @@
 %!PostProc (html): key_report_revision windows+alt+m
 %!PostProc (html): key_report_replies windows+alt+o
 %!PostProc (html): key_reply windows+alt+y
+%!PostProc (html): key_goTo_spellingError windows+alt+f9
+%!PostProc (html): key_goTo_grammaticalError windows+control+F9
+
 % report in table
 %!PostProc (html): key_report_headers windows+alt+h
 %!PostProc (html): key_report_cell Windows+Alt+j
@@ -24,7 +27,7 @@
 %!PostProc (html): key_report_previousInColumn windows+Alt+upArrow
 %!PostProc (html): key_report_nextInColumn windows+Alt+downArrow
 %!PostProc (html): key_report_firstInRow Windows+Alt+home
-%!PostProc (html): key_report_firstInColumn windows + Alt + pageUp
+%!PostProc (html): key_report_firstInColumn windows+Alt+pageUp
 %!PostProc (html): key_report_lastInRow windows+Alt+end
 %!PostProc (html): key_report_lastInColumn windows+alt+pageDown
 % moving key definitions  when table layer mode is off

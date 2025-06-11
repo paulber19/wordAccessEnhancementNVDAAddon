@@ -1,6 +1,6 @@
 # appModules\winword\ww.choice.py
 # A part of WordAccessEnhancement add-on
-# Copyright (C) 2019-2022 paulber19
+# Copyright (C) 2019-2025 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -44,6 +44,7 @@ sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
 from ww_utils import putWindowOnForeground, makeAddonWindowTitle, isOpened
 del sys.path[-1]
+del sys.modules["ww_utils"]
 
 addonHandler.initTranslation()
 

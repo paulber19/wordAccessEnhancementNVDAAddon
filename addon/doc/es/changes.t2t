@@ -14,6 +14,44 @@ Descarga:
 - [Versiones de desarrollo ADDON_DEV_URL]
 
 
++ v3.7 (06/06/2025) +
+Compatibilidad con NVDA 2025.1.
+
+Las versiones de NVDA anteriores a 2024.1 ya no son soportadas.
+
+
+Nuevas características:
+- se ha añadido con respecto a la revisión de texto:
+ - scripts para moverse de error de ortografía en error de ortografía sin pasar en modo exploración.
+ - scripts para moverse de error gramatical en error gramatical sin pasar en modo exploración.
+ - script para mostrar sugerencias para errores de ortografía bajo el cursor.
+- verbalización del resultado de la acción de los atajos "control+mayúscula+o" y "control+mayúscula+p" (respectivamente para pasar en Esquema y para pasar en Diseño de impresión) de Word.
+- añadido, para todas las versiones de NVDA soportadas por el complemento, de la verbalización del resultado de la acción de los atajos de Word soportada por la última versión de NVDA.
+- añadido en la descripción del documento el tipo de vista.
+- se añadió un script para cambiar entre la voz para la lectura automática y la voz para Word.
+
+
+Cambios:
+- para resolver el conflicto de órdenes "windows+control+flecha derecha e izquierda" Con los de Windows (cambiar de escritorio virtual), las órdenes para moverse en una tabla ya no están bloqueadas fuera de la tabla. El mensaje "No en una tabla" ya no se anuncia y las órdenes se envían a Windows.
+- La opción con respecto del uso de diccionarios de símbolos ya no es parte de las opciones guardadas para la voz para la lectura automática.
+- para garantizar la compatibilidad con NVDA 2025.1, las opciones de voz para la lectura automática se eliminan durante el primer inicio del complemento de esta versión. Es necesario guardarlas nuevamente.
+
+
+Correcciones de fallos:
+- la búsqueda de actualización ya no se realiza cuando la opción "Buscar automáticamente actualizaciones" esta sin marcar justo después de iniciar NVDA.
+
+
+Desarrolladores:
+- al instalar el complemento, la configuración actual ya no se guarda en la carpeta del complemento pero ahora se guarda en la carpeta de configuración del usuario. Esto permite si una instalación sale mal de conservar de todos modos la configuración actual.
+
+
+Puesta en conformidad con la API de NVDA:
+- Uso del método "ExecAndPump" del módulo "systemUtils".
+- se toma en cuenta el desplazamiento del parámetro "outpuDevice" de la sección "speech" a la sección "audio" de la configuración de NVDA.
+- se toma en cuenta la memorización del dispositivo de salida de audio por su identificador en lugar de su nombre.
+- se toma en cuenta la obsolescencia de gui.messageBox y gui.message.messageBox, reemplazado por MessageDialog:
+ - MessageDialog ahora se usa para todas las versiones de NVDA superiores a 2025.1.
+
 
 + v3.6 (11/10/2024) +
 compatibilidad con NVDA 2024.2, 2024.3 y 2024.4.

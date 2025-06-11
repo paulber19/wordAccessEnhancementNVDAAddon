@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 # appModules\word\appModules/winword/ww_spellingChecker.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2024 paulber19
+# Copyright (C) 2019-2025 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -20,11 +20,13 @@ from .ww_scriptTimer import clearScriptTimer
 import os
 import sys
 _curAddon = addonHandler.getCodeAddon()
-path = os.path.join(_curAddon.path, "shared")
-sys.path.append(path)
+sharedPath = os.path.join(_curAddon.path, "shared")
+sys.path.append(sharedPath)
 from ww_utils import (
 	getSpeechMode, setSpeechMode, setSpeechMode_off)
 del sys.path[-1]
+del sys.modules["ww_utils"]
+
 addonHandler.initTranslation()
 
 ID_InSpellingChecker_No = 0

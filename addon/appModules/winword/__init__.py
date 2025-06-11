@@ -25,6 +25,7 @@ import sys
 from controlTypes.role import Role
 from controlTypes.outputReason import OutputReason
 from controlTypes.role import _roleLabels as roleLabels
+from .NVDAAppModuleWinword import WinwordWordDocument as NVDAAppModuleWinwordDocument
 
 _curAddon = addonHandler.getCodeAddon()
 debugToolsPath = os.path.join(_curAddon.path, "debugTools")
@@ -51,6 +52,8 @@ from ww_utils import (
 	messageWithSpeakOnDemand,
 )
 del sys.path[-1]
+del sys.modules["ww_NVDAStrings"]
+del sys.modules["ww_utils"]
 
 addonHandler.initTranslation()
 _addonSummary = _curAddon.manifest['summary']
@@ -82,14 +85,14 @@ class AppModule(AppModule):
 			from . import ww_IAccessibleWordDocument
 			clsList.insert(0, ww_IAccessibleWordDocument.IAccessibleWordDocument)
 			clsList.remove(NVDAObjects.IAccessible.winword.WordDocument)
-			from nvdaBuiltin.appModules.winword import WinwordWordDocument
-			clsList.insert(0, WinwordWordDocument)
+			# from nvdaBuiltin.appModules.winword import WinwordWordDocument
+			clsList.insert(0, NVDAAppModuleWinwordDocument)
 		elif NVDAObjects.UIA.wordDocument.WordDocument in clsList:
 			from . import ww_UIAWordDocument
 			clsList.insert(0, ww_UIAWordDocument.UIAWordDocument)
 			clsList.remove(NVDAObjects.UIA.wordDocument.WordDocument)
-			from nvdaBuiltin.appModules.winword import WinwordWordDocument
-			clsList.insert(0, WinwordWordDocument)
+			# from nvdaBuiltin.appModules.winword import WinwordWordDocument
+			clsList.insert(0, NVDAAppModuleWinwordDocument)
 
 	def event_appModule_gainFocus(self):
 		printDebug("Word: event_appModuleGainFocus")
@@ -289,13 +292,21 @@ class AppModule(AppModule):
 
 	@script(
 		# Translators: Input help mode message for set automatic reading voice command.
-		description=_("Record automatic reading voice's settings"),
+		description=_(
+			"Record settings for automatic reading voice. "
+			"Twice: Switch between the automatic reading  voice and the current voice for Word"
+		),
 		gesture="kb:windows+alt+f12"
 	)
 	def script_setAutomaticReadingVoice(self, gesture):
 		stopScriptTimer()
+		count = scriptHandler.getLastScriptRepeatCount()
 		from .import automaticReading
-		automaticReading.saveCurrentSpeechSettings()
+		if count == 0:
+			delayScriptTask(
+				automaticReading.saveCurrentSpeechSettings)
+		else:
+			automaticReading.switchToAutomaticReadingSynth()
 
 	def isThereHiddenText(self, selection):
 		wdSelectionNormal = 2

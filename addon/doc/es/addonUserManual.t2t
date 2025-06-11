@@ -34,7 +34,10 @@ Este complemento proporciona:
 - [la lectura manual o automática de algunos elementos como comentarios, notas al pie de página,  notas finales o modificación de texto #hdr_reading],
 - [funciones adicionales para las tablas #hdr_table],
 - [nuevas órdenes de teclado específicos de Microsoft Word para el modo Exploración #hdr_navigation],
-- [accesibilidad mejorada del corrector ortográfico #hdr_spellchecker],
+- [ayuda a la revisión de documento #hdr_verif]:
+ - [accesibilidad mejorada del corrector ortográfico #hdr_spellchecker],
+ - scripts de búsqueda de errores sin activación del modo "Exploración",
+ - script para listar las sugerencias para la corrección de errores de ortografía bajo el cursor.
 - [la recuperación de los scripts de NVDA #hdr_nvda] para:
  - omitir los párrafos vacíos al saltar de un párrafo a otro,
  - permitir el desplazamiento de una frase a otra en modo Exploración.
@@ -255,7 +258,7 @@ En este grupo se encuentran:
 - el botón "Mostrar las opciones de voz guardadas": que abre el diálogo con todas las opciones de voz para ser utilizado en la lectura automática.
 
 
-Para leer los elementos con otra voz, se debe en primer lugar guardar las opciones de voz de esta voz mediante el gesto de entrada "key_RecordVoiceSettings". Este gesto corresponde al script "Guardar las opciones de voz para la lectura automática" y es modificable mediante el cuadro de diálogo "Gestos de entrada" de NVDA.
+Para leer los elementos con otra voz, se debe en primer lugar guardar las opciones de voz de esta voz mediante el gesto de entrada "key_RecordVoiceSettings". Este gesto corresponde al script "Guardar las opciones de voz para la lectura automática. Pulsando dos veces: Cambiar entre la voz para la lectura automática y la voz actual para Word" y es modificable mediante el cuadro de diálogo "Gestos de entrada" de NVDA.
 
 Para encontrar rápidamente esta voz y posiblemente cambiar algunas de sus opciones, es recomendable crear un perfil de configuración que se activa manualmente.
 
@@ -267,6 +270,8 @@ En Word y para guardar las opciones de voz para la lectura automática, este per
 
 
 Una vez guardado, el perfil puede ser desactivado manualmente para encontrar las opciones de voz del perfil de configuración activo antes de la activación manual del perfil.
+
+Otra solución para modificar las opciones de voz para la lectura automática es usar el mismo gesto de entrada "key_RecordVoiceSettings" que permite pulsándolo dos veces de activar rápidamente la voz de lectura automática ya guardada y volver a la voz actual para Word.
 
 La opción "Lectura automática" puede ser modificado mediante el script "Habilitar o deshabilitar la lectura automática" asociado con el gesto de entrada "key_AutomaticReading".
 
@@ -413,8 +418,8 @@ Los tipos de elementos asociados con estas nuevas órdenes se añaden en la list
 Para algunos tipos como "palabras mal escritas", "errores gramaticales",...),", la búsqueda de elementos puede ser bastante larga.
 
 Por lo tanto, el tiempo de búsqueda se limita a 20 segundos de forma predeterminada. Este tiempo máximo se puede cambiar utilizando la lista desplegable "Tiempo máximo de búsqueda de elementos " en la categoría "Opciones" en el diálogo de configuración del complemento.
-
-+ Accesibilidad mejorada del corrector ortográfico +[hdr_spellchecker]
++ Revisión de documento +[hdr_verif]
+++ Accesibilidad mejorada del corrector ortográfico ++[hdr_spellchecker]
 Cuando el foco se coloca en el documento, la tecla "f7" (acceso directo de Word) permite iniciar el corrector ortográfico o volver a él si ya está iniciado y la tecla "Esc" le permite volver al documento cuando el foco está en el corrector ortográfico.
 
 El complemento ofrece la posibilidad de utilizar también la tecla "f7" para ejecutar la misma acción que la tecla "Esc".
@@ -440,6 +445,26 @@ El gesto de entrada "key_report_CURRENT_SENTENCE" le permite escuchar nuevamente
 Estos scripts se presentan en la categoría "ADDON_SUMMARY" del cuadro de diálogo "Gestos de entrada" de NVDA.
 
 Este complemento también permite el anuncio automático del nuevo error y su sugerencia presentada por el corrector ortográfico después del uso de uno de los botones como "Ignorar", "Modificar" o accesos directos de Word como "i", "m ".
+
+++ Búsqueda de errores ++
+Para buscar errores de ortografía o errores gramaticales sin activar el modo  "Exploración", el complemento instala los siguientes scripts:
+- Ir al siguiente error de ortografía o anterior: "key_goTo_spellingError".
+- Ir al siguiente error gramatical o anterior: "key_goTo_grammaticalError".
+
+
+++ Sugerencias para errores de ortografía ++
+Cuando el cursor está en una palabra mal escrita, es posible obtener las sugerencias de corrección para esta palabra mediante el gesto de entrada "key_goTo_spelling" pulsándolo tres veces.
+
+Este lanza el script "Mostrar sugerencias para errores de ortografía" sin gesto de entrada asignado. Pero es posible de asignarle uno si es necesario.
+
+Este script muestra el diálogo de "Sugerencias" que presenta la lista de sugerencias propuestas por el corrector ortográfico de Word.
+
+Cada sugerencia se deletrea cuando se selecciona. Esta verbalización del deletreo se puede reescuchar presionando dos veces rápidamente en la tecla 5 del teclado numérico.
+
+Para corregir la palabra mal escrita, basta con seleccionar la sugerencia deseada y pulsar "Intro".
+
+El botón "Cerrar" o la tecla "Escape" te permite cerrar el diálogo sin modificar el documento.
+
 + Recuperación de los scripts de NVDA +[hdr_nvda]
 ++ Omitir los párrafos vacíos ++[hdr3]
 En un documento de Word, es posible mover el cursor de un párrafo a otro utilizando las órdenes de Word "control + flecha arriba" o "control + flecha abajo".
@@ -475,6 +500,24 @@ El complemento elimina esta limitación.
 Utilizando UI Automation para acceder a controles de documento de Microsoft Word se puede configurar usando una opción que se encuentra en la categoría "Avanzadas" en las Opciones de NVDA. Pero requiere muchas pulsaciones de teclas.
 
 Para simplificar esto, el complemento proporciona un script, sin gesto de entrada, para mostrar directamente un cuadro de diálogo que muestra las diferentes opciones posibles para esta opción y te permite seleccionar una.
+
+Ten en cuenta que para un funcionamiento óptimo del complemento, es preferible que la opción "Utilizar UI automation para acceder a controles de documento de Microsoft Word" debe estar en "Sólo cuando sea necesario". Esta opción está en la categoría "Avanzadas" en las Opciones de NVDA. Por defecto, NVDA lo configura en "Por defecto (cuando sea adecuado)".
+
+++ Verbalización del resultado de ciertos atajos de Word ++
+Según sus versiones, NVDA anuncia el resultado de ciertos atajos de Word.
+
+El complemento tiene, en primer lugar, de proporcionar sus anuncios para todas las versiones de NVDA que el admite.
+
+En segundo lugar, para aportar otros anuncios:
+- atajo "control+mayúscula+p": poner la vista en Diseño de impresión.
+- atajo "control+mayúscula+o": poner la vista en Esquema.
+
+
+++ Indicación de tipo de vista ++
+El complemento trae la indicación de tipo de vista en la descripción del documento para todas las versiones de NVDA antes de la versión 2025.1.
+
+
+Para que sea anunciada esta descripción, es imperativo que la opción "Anunciar Descripciones de Objetos" en la categoría "Presentación de objetos" de NVDA esté marcada.
 
 + Historial +
 El historial de las versiones del complemento está en el archivo ["changes.html" changes.html]

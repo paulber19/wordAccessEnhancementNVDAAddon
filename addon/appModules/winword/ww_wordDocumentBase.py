@@ -1,6 +1,6 @@
 # appModules\winword\wordDocumentBase.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2020-2024 paulber19
+# Copyright (C) 2020-2025 paulber19
 # This file is covered by the GNU General Public License.
 
 import addonHandler
@@ -60,7 +60,11 @@ from ww_utils import (
 	speakOnDemand, executeWithSpeakOnDemand,
 )
 from ww_addonConfigManager import _addonConfigManager
+from ww_NVDAStrings import NVDAString
 del sys.path[-1]
+del sys.modules["ww_informationDialog"]
+del sys.modules["ww_utils"]
+del sys.modules["ww_NVDAStrings"]
 
 addonHandler.initTranslation()
 _addonSummary = _curAddon.manifest['summary']
@@ -136,8 +140,6 @@ class ScriptsForTable(NVDAObjects.NVDAObject):
 		printDebug("_moveToTableElement: position= %s, reportRow= %s" % (
 			position, reportRow))
 		stopScriptTimer()
-		if not self.inTable(True):
-			return
 		self.doc = self.WinwordDocumentObject
 		start = self.WinwordSelectionObject.Start
 		r = self.doc.range(start, start)
@@ -203,52 +205,82 @@ class ScriptsForTable(NVDAObjects.NVDAObject):
 		cell.select()
 
 	def _moveToNextRow(self, gesture):
+		if not self.inTable(False):
+			gesture.send()
+			return
 		wx.CallAfter(self._moveToTableElement, position="nextInColumn")
 
 	# Translators: a description for a script.
 	_moveToNextRow.__doc__ = _("Table: move to next row")
 
 	def _moveToPreviousRow(self, gesture):
+		if not self.inTable(False):
+			gesture.send()
+			return
 		wx.CallAfter(self._moveToTableElement, position="previousInColumn")
 	# Translators: a description for a script.
 	_moveToPreviousRow.__doc__ = _("Table: move to previous row")
 
 	def _moveToNextColumn(self, gesture):
+		if not self.inTable(False):
+			gesture.send()
+			return
 		wx.CallAfter(self._moveToTableElement, position="nextInRow")
 	# Translators: a description for a script.
 	_moveToNextColumn.__doc__ = _("Table: move to next column")
 
 	def _moveToPreviousColumn(self, gesture):
+		if not self.inTable(False):
+			gesture.send()
+			return
 		wx.CallAfter(self._moveToTableElement, position="previousInRow")
 	# Translators: a description for a script.
 	_moveToPreviousColumn.__doc__ = _("Table: move to previous column ")
 
 	def _moveToFirstColumn(self, gesture):
+		if not self.inTable(False):
+			gesture.send()
+			return
 		wx.CallAfter(self._moveToTableElement, position="firstInRow")
 	# Translators: a description for a script.
 	_moveToFirstColumn.__doc__ = _("Table: move to the first cell of row")
 
 	def _moveToLastColumn(self, gesture):
+		if not self.inTable(False):
+			gesture.send()
+			return
 		wx.CallAfter(self._moveToTableElement, position="lastInRow")
 	# Translators: a description for a script.
 	_moveToLastColumn.__doc__ = _("Table: move to the last cell of row")
 
 	def _moveToFirstRow(self, gesture):
+		if not self.inTable(False):
+			gesture.send()
+			return
 		wx.CallAfter(self._moveToTableElement, position="firstInColumn")
 	# Translators: a description for a script.
 	_moveToFirstRow.__doc__ = _("Table: move to the first cell of column")
 
 	def _moveToLastRow(self, gesture):
+		if not self.inTable(False):
+			gesture.send()
+			return
 		wx.CallAfter(self._moveToTableElement, position="lastInColumn")
 	# Translators: a description for a script.
 	_moveToLastRow.__doc__ = _("Table: move to the last cell of column ")
 
 	def _moveToFirstCellOfTable(self, gesture):
+		if not self.inTable(False):
+			gesture.send()
+			return
 		wx.CallAfter(self._moveToTableElement, position="firstCellOfTable")
 	# Translators: a description for a script.
 	_moveToFirstCellOfTable.__doc__ = _("Table: move to first cell of table")
 
 	def _moveToLastCellOfTable(self, gesture):
+		if not self.inTable(False):
+			gesture.send()
+			return
 		wx.CallAfter(self._moveToTableElement, position="lastCellOfTable")
 	# Translators: a description for a script.
 	_moveToLastCellOfTable.__doc__ = _("Table: move to last cell of table")
@@ -541,6 +573,9 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		"toggleAutomaticReading": ("kb:windows+alt+f3",),
 		"makeChoice": ("kb:windows+alt+f5",),
 		"report_location": ("kb:alt+numpaddelete", "kb(laptop):alt+delete"),
+		"goToSpellingError": ("kb:windows+alt+f9",),
+		"goToGrammaticalError": ("kb:windows+control+f9",),
+
 		# word shortcuts
 		"tab": ("kb:tab",),
 		# move sentence by sentence
@@ -1036,26 +1071,196 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		from .ww_elementsListDialog import ElementsListDialog
 		return ElementsListDialog
 
-	# script comes from nvda appModules.winword.py module
-# we need do it because for french word,
-#   "control+shift+e" shortcut is remapped to "control+shift+r" in nvda locale gesture.ini
-# so this don't work  when we use nvdaBultin.appModule.winword.AppModule class
-	def script_toggleChangeTracking(self, gesture):
-		if not self.WinwordDocumentObject:
-			# We cannot fetch the Word object model, so we therefore cannot report the status change.
-			# The object model may be unavailable because it's within Windows Defender Application Guard.
-			# In this case, just let the gesture through and don't report anything.
-			return gesture.send()
-		val = self._WaitForValueChangeForAction(
-			lambda: gesture.send(),
-			lambda: self.WinwordDocumentObject.TrackRevisions
-		)
-		if val:
-			# Translators: a message when toggling change tracking in Microsoft word.
-			ui.message(_("Change tracking on"))
+	def _goToError(self, spellingError=True, forward=True):
+		wordApp = self.WinwordWindowObject.Application
+		doc = wordApp.ActiveDocument
+		from .ww_wdConst import wdWord
+		r = self.WinwordSelectionObject.Range
+		r.expand(wdWord)
+		if forward:
+			end = doc.Content.End - 1
+			start = r.End + 1 if r.end < end else r.end - 1
+			errorMsg = NVDAString(_("no next error"))
 		else:
-			# Translators: a message when toggling change tracking in Microsoft word.
-			ui.message(_("Change tracking off"))
+			start = 0
+			end = r.start - 1 if r.start else 0
+			errorMsg = NVDAString(_("no previous error"))
+		r = doc.range(start, end)
+		errors = r.SpellingErrors if spellingError else r.GrammaticalErrors
+		if errors.Count == 0:
+			ui.message(errorMsg)
+			return
+		if forward:
+			error = errors[1]
+		else:
+			error = errors[errors.Count]
+		error.Select()
+		self.WinwordSelectionObject.Collapse()
+		ui.message(error.Text)
+		if spellingError:
+			speech.speech.speakSpelling(error.Text)
+
+	@script(
+		# Translators: Input help mode message for go to next spelling error command.
+		description=_(
+			"Go to next spelling error. Twice: go to previous spelling error. Third: display suggestions"),
+	)
+	def script_goToSpellingError(self, gesture):
+		stopScriptTimer()
+		repeats = scriptHandler.getLastScriptRepeatCount()
+		if repeats == 0:
+			delayScriptTask(self._goToError, spellingError=True, forward=True)
+		elif repeats == 1:
+			delayScriptTask(self._goToError, spellingError=True, forward=False)
+		else:
+			self.script_displaySpellingErrorSuggestions(gesture)
+
+	@script(
+		# Translators: Input help mode message for go to next grammatical error command.
+		description=_("Go to next grammatical error. Twice: go to previous grammatical error"),
+	)
+	def script_goToGrammaticalError(self, gesture):
+		stopScriptTimer()
+		repeats = scriptHandler.getLastScriptRepeatCount()
+		if repeats == 0:
+			delayScriptTask(self._goToError, spellingError=False, forward=True)
+		else:
+			self._goToError(spellingError=False, forward=False)
+
+	@script(
+		# Translators: Input help mode message for report spelling error suggestions command.
+		description=_("Display suggestions for spelling error"),
+	)
+	def script_displaySpellingErrorSuggestions(self, gesture):
+		from .ww_spellingErrors import SpellingErrors
+		spellingErrors = SpellingErrors(None, api.getFocusObject(), "focus")
+		errors = spellingErrors.collection
+		if len(errors) == 0:
+			ui.message(_("no error at focus"))
+			return
+		error = errors[0]
+		wordApp = self._WinwordWindowObject.Application
+		wx.CallAfter(SpellingErrorSuggestionsDialog.run, wordApp, error)
+
+
+class SpellingErrorSuggestionsDialog(wx.Dialog):
+	_instance = None
+	title = None
+
+	def __new__(cls, *args, **kwargs):
+		if SpellingErrorSuggestionsDialog._instance is not None:
+			return SpellingErrorSuggestionsDialog._instance
+		return wx.Dialog.__new__(cls)
+
+	def __init__(self, parent, wordApp, spellingError):
+		if SpellingErrorSuggestionsDialog._instance is not None:
+			return
+		SpellingErrorSuggestionsDialog._instance = self
+		# Translators: This is the title of the Spelling Error Suggestions dialog.
+		dialogTitle = _("Suggestions")
+		title = SpellingErrorSuggestionsDialog.title = dialogTitle
+		super(SpellingErrorSuggestionsDialog, self).__init__(parent, -1, title)
+		self.wordApp = wordApp
+		self.spellingError = spellingError
+		sugs = wordApp.GetSpellingSuggestions(spellingError.text)
+		self.suggestionsList = [sug.name for sug in sugs]
+		self.doGui()
+
+	def doGui(self):
+		mainSizer = wx.BoxSizer(wx.VERTICAL)
+		sHelper = gui.guiHelper.BoxSizerHelper(self, orientation=wx.VERTICAL)
+		# Translators: This is a label appearing on SpellingErrorSuggestions dialog.
+		labelText = ""
+		self.suggestionsListBox = sHelper.addLabeledControl(
+			labelText, wx.ListBox, choices=self.suggestionsList)
+		self.suggestionsListBox.SetSelection(0)
+		bHelper = sHelper.addDialogDismissButtons(
+			gui.guiHelper.ButtonHelper(wx.HORIZONTAL))
+		correctButton = bHelper.addButton(
+			self,
+			# Translators: This is a label of a button appearing
+			# on SpellingErrorSuggestions Dialog.
+			label=_("&Correct")
+		)
+		closeButton = bHelper.addButton(self, id=wx.ID_CLOSE)
+		mainSizer.Add(
+			sHelper.sizer,
+			border=gui.guiHelper.BORDER_FOR_DIALOGS,
+			flag=wx.ALL)
+		mainSizer.Fit(self)
+		self.SetSizer(mainSizer)
+		# events
+		correctButton.Bind(wx.EVT_BUTTON, self.onCorrectButton)
+		closeButton.Bind(wx.EVT_BUTTON, self.onCloseButton)
+
+		self.suggestionsListBox.Bind(wx.EVT_LISTBOX, self.onSuggestionFocused)
+		self.SetEscapeId(wx.ID_CLOSE)
+		correctButton.SetDefault()
+		self.Bind(wx.EVT_ACTIVATE, self.onActivate)
+		self.suggestionsListBox.SetFocus()
+		self.onSuggestionFocused(None)
+
+	def Destroy(self):
+		self.Unbind(wx.EVT_ACTIVATE)
+		SpellingErrorSuggestionsDialog._instance = None
+		super().Destroy()
+
+	def onActivate(self, evt):
+		isActive = evt.GetActive()
+		if not isActive:
+			self.Destroy()
+			return
+		evt.Skip()
+
+	def onSuggestionFocused(self, evt):
+		if hasattr(self, "delay") and self.delay is not None:
+			self.delay.Stop()
+			self.delay = None
+		suggestion = self.suggestionsListBox.GetStringSelection()
+		self.delay = wx.CallLater(
+			400,
+			speech.speech.speakSpelling,
+			suggestion
+		)
+		if evt:
+			evt.Skip()
+
+	def onCorrectButton(self, evt):
+		def callback():
+			speech.speech.cancelSpeech()
+			self.spellingError.modify(suggestion)
+			ui.message(suggestion)
+
+		suggestion = self.suggestionsListBox.GetStringSelection()
+		wx.CallLater(50, callback)
+		self.Close()
+		evt.Skip()
+
+	def onCloseButton(self, evt):
+		def callback():
+			api.processPendingEvents()
+			speech.speech.cancelSpeech()
+			focus = api.getFocusObject()
+			from .ww_wdConst import wdWord
+			r = focus.WinwordSelectionObject.Range
+			r.expand(wdWord)
+			ui.message(r.text)
+			r.Collapse()
+			r.Select()
+			r.Collapse()
+
+		wx.CallLater(100, callback)
+		self.Destroy()
+
+	@classmethod
+	def run(cls, wordApp, spellingError):
+		if isOpened(cls):
+			return
+		gui.mainFrame.prePopup()
+		d = cls(gui.mainFrame, wordApp, spellingError)
+		d.CentreOnScreen()
+		d.ShowModal()
+		gui.mainFrame.postPopup()
 
 
 class InsertElementDialog(wx.Dialog):

@@ -1,6 +1,6 @@
 # appModules\winword\ww_comments.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2022 paulber19
+# Copyright (C) 2019-2025 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -8,7 +8,6 @@ import addonHandler
 import config
 import textInfos
 import ui
-import gui
 import wx
 from .ww_wdConst import wdGoToComment
 from .ww_collection import Collection, CollectionElement, ReportDialog
@@ -19,7 +18,11 @@ _curAddon = addonHandler.getCodeAddon()
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
 from ww_informationDialog import InformationDialog
+from messages import confirm_YesNo, ReturnCode
 del sys.path[-1]
+del sys.modules["ww_informationDialog"]
+del sys.modules["messages"]
+
 addonHandler.initTranslation()
 
 
@@ -161,14 +164,13 @@ class Comment(CollectionElement):
 			# Translators: message to user to warn an error on reply insert.
 			wx.CallLater(40, ui.message, _("Error, the reply could not be correctly added."))
 			return
-		if gui.messageBox(
+		if confirm_YesNo(
 			# Translators: text to indicate that reply has been inserted and ask for author name change.
 			_("""The reply was inserted with "{name}" as author. Do you want to change this name?""") .format(
 				name=newReply.author),
 			# Translators: title of insert reply dialog.
 			_("Reply comment"),
-			wx.YES | wx.NO | wx.ICON_INFORMATION
-		) != wx.YES:
+		) != ReturnCode.YES:
 			return
 		author = askForAuthor(newReply.Author)
 		if author:
@@ -223,14 +225,13 @@ class CommentReplies(object):
 			# Translators: message to user to warn an error on reply insert.
 			wx.CallLater(40, ui.message, _("Error, the reply could not be correctly added."))
 			return
-		if gui.messageBox(
+		if confirm_YesNo(
 			# Translators: text to indicate that reply has been inserted and ask for author name change.
 			_("""The reply was inserted with "{name}" as author name. Do you want to change this name?""") .format(
 				name=newReply.author),
 			# Translators: title of insert reply dialog.
 			_("Reply comment"),
-			wx.YES | wx.NO | wx.ICON_INFORMATION
-		) != wx.YES:
+		) != ReturnCode.YES:
 			return
 		author = askForAuthor(newReply.Author)
 		if author:
@@ -279,14 +280,13 @@ class Comments(Collection):
 			# Translators: message to user to warn an error on comment insert.
 			wx.CallLater(40, ui.message, _("Error, the comment could not be correctly added."))
 			return
-		if gui.messageBox(
+		if confirm_YesNo(
 			# Translators: text to indicate that comment has been inserted and ask for author name change.
 			_("""The comment was inserted with "{name}" as author name. Do you want to change this name?""") .format(
 				name=comment.author),
 			# Translators: title of insert comment dialog.
 			_("Insert comment"),
-			wx.YES | wx.NO | wx.ICON_INFORMATION
-		) != wx.YES:
+		) != ReturnCode.YES:
 			return
 		author = askForAuthor(comment.author)
 		if author:

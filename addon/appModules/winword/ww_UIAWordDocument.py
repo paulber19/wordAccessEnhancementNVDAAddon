@@ -1,6 +1,6 @@
 # appModules\winword\ww_UIAWordDocument.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2020-2024 paulber19, Abdel
+# Copyright (C) 2020-2025 paulber19, Abdel
 # This file is covered by the GNU General Public License.
 # See the file COPYING for more details.
 
@@ -68,6 +68,7 @@ def getIAccessibleTextWithFields(textInfo, unit, formatConfig: Optional[Dict] = 
 	info.expand(unit)
 	return info.getTextWithFields(formatConfig=formatConfig)
 
+
 _UIAUnits = [x for x in UIAHandler.NVDAUnitsToUIAUnits]
 
 
@@ -100,7 +101,7 @@ class UIAWordDocumentTextInfo (
 			unit=self.currentUnit,
 			formatConfig=formatConfig
 		)
-		IAccessibleComment  = None
+		IAccessibleComment = None
 		for field in IAccessibleFields:
 			if isinstance(field, textInfos.FieldCommand)\
 				and isinstance(field.field, textInfos.FormatField):
@@ -171,8 +172,8 @@ class WordDocumentNode(NVDAObjects.UIA.wordDocument.WordDocumentNode):
 
 
 class UIAWordDocument(
-	WordDocumentNode,
 	ww_wordDocumentBase.WordDocument,
+	WordDocumentNode,
 	NVDAObjects.UIA.wordDocument.WordDocument
 ):
 	treeInterceptorClass = UIAWordBrowseModeDocument
@@ -244,6 +245,7 @@ class UIAWordDocument(
 				return None
 			self._WinwordSelectionObject = windowObject.selection
 		return self._WinwordSelectionObject
+
 	"""
 	def event_caret(self, ):
 		from controlTypes.role import _roleLabels as roleLabels

@@ -12,6 +12,47 @@ Téléchargement :
 - [Version stable actuelle : ADDON_CUR_VERSION ADDON_DOWNLOAD_SERVER1]
 - [Version stable précédente : ADDON_PREV_VERSION ADDON_DOWNLOAD_PREVIOUS]
 - [versions de développement ADDON_DEV_URL]
+
+
++ v3.7 (06/06/2025) +
+Compatibilité avec NVDA 2025.1.
+
+Les versions de NVDA antérieures à la 2024.1 ne sont plus supportées.
+
+
+Nouveautés:
+- ajout  concernant la vérification du texte :
+ - scripts pour se déplacer de faute d'orthographe en faute d'orthographe sans passer en mode navigation.
+ - scripts pour se déplacer  d'erreur grammaticale en erreur grammaticale sans passer en mode navigation.
+ - script pour afficher les suggestions pour la faute d'orthographe sous le curseur.
+- vocalisation du résultat de l'action des raccourcis "control+majuscule+o" et "control+majuscule+p" (respectivement passage en mode plan et passage en mode page) de Word.
+- ajout , pour toutes les versions de NVDA supportées par l'extension, de la vocalisation du résultat de l'action des raccourcis  de Word pris en charge  par la dernière version de NVDA.
+- ajout dans la description du document du type de vue.
+- ajout d'un script pour basculer entre la voix pour la lecture automatique et la voix pour Word.
+
+
+changements:
+- pour résoudre le conflit de commandes "windows+control+flèche droite et gauche" avec celles de Windows (changement de bureau virtuel), les commandes de déplacement dans un tableau  ne sont plus bloquées hors du tableau.  Le message "Pas dans un tableau" n'est plus annoncé et les commandes sont alors envoyées à Windows. 
+- Le paramètre concernant l'utilisation de dictionnaires de symboles ne fait plus parti des paramètres enregistrés pour la voix de lecture automatique.
+- pour assurer la compatibilité avec NVDA 2025.1, les paramètres vocaux pour la lecture automatique sont effacés lors du premier démarrage de l'extension sur cette version. Il est nécessaire de les enregistrés à nouveau .
+
+
+Correction de bogues :
+- la recherche de mise à jour ne se fait plus lorsque l'option "Rechercher automatiquement les mises à jour " est décochée  juste après le démarrage de NVDA.
+
+
+Développement :
+- lors de l'installation de l'extension, la configuration courante n'est plus sauvegardée dans le dossier de l'extension mais est maintenant sauvegardée dans le dossier de la configuration utilisateur. Cela permet si une installation se passe mal de conserver quand même la configuration courante.
+
+
+Mise en conformité avec l'API de NVDA :
+- utilisation de la méthode "ExecAndPump" du module "systemUtils  ".
+- prise en compte du déplacement du paramètre "outpuDevice" de la section "speech" à la section "audio" de la configuration de NVDA.
+- prise en compte de la mémorisation du périphérique de sortie audio par son ID au lieu de son nom.
+ prise en compte de l'obsolescence de gui.messageBox et gui.message.messageBox, remplacés par MessageDialog:
+ - MessageDialog est maintenant utilisé pour toutes les versions de NVDA supérieures à 2025.1.
+
+
 + v3.6 (11/10/2024) +
 compatibilité avec NVDA 2024.2, 2024.3 et 2024.4.
 Nouveautés:

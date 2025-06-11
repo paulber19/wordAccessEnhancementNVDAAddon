@@ -1,6 +1,6 @@
 # appModules\winword\ww_revisions.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2022 paulber19
+# Copyright (C) 2019-2025 paulber19
 # This file is covered by the GNU General Public License.
 
 import addonHandler
@@ -15,8 +15,9 @@ from .ww_collection import Collection, CollectionElement, ReportDialog
 _curAddon = addonHandler.getCodeAddon()
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
-from ww_messageBox import myMessageBox
+from messages import confirm_YesNo, ReturnCode
 del sys.path[-1]
+del sys.modules["messages"]
 
 addonHandler.initTranslation()
 revisionTypeText = {
@@ -184,12 +185,12 @@ class RevisionsDialog(ReportDialog):
 			return
 
 		elif (key == wx.WXK_DELETE) or (key == wx.WXK_NUMPAD_DELETE):
-			if myMessageBox(
+			if confirm_YesNo(
 				# Translators: text of message.
 				_("Are you sure you wish to reject this items?"),
 				# Translators: title of message box dialog.
 				_("Reject of items"),
-				wx.YES_NO | wx.ICON_WARNING) != wx.YES:
+			) != ReturnCode.YES:
 				return
 			self.reject()
 			return
