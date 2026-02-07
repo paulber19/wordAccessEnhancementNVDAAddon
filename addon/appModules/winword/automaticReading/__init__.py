@@ -31,9 +31,6 @@ from ww_addonConfigManager import (
 )
 from messages import confirm_YesNo, ReturnCode
 del sys.path[-1]
-del sys.modules["ww_NVDAStrings"]
-del sys.modules["ww_addonConfigManager"]
-del sys.modules["messages"]
 
 addonHandler.initTranslation()
 
@@ -377,7 +374,7 @@ def getCurrentSpeechSettings():
 		outputDevice = config.conf[SCT_Audio]["outputDevice"]
 		d[SCT_Speech]["outputDevice"] = outputDevice
 		from utils import mmdevice
-		deviceIds, deviceNames = zip(*mmdevice._getOutputDevices(includeDefault=True))
+		deviceIds, deviceNames = zip(*mmdevice.getOutputDevices(includeDefault=True))
 		try:
 			outputDeviceName = deviceNames[deviceIds.index(outputDevice)]
 		except ValueError:

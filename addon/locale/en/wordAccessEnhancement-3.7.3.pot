@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: wordAccessEnhancement 3.7\n"
+"Project-Id-Version: wordAccessEnhancement 3.7.3\n"
 "Report-Msgid-Bugs-To: paulber19\n"
-"POT-Creation-Date: 2025-06-06 19:22+0200\n"
+"POT-Creation-Date: 2026-02-05 15:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1165,7 +1165,7 @@ msgstr ""
 #: appModules\winword\ww_document.py:508 appModules\winword\ww_document.py:861
 #: appModules\winword\ww_document.py:988 appModules\winword\ww_sections.py:44
 #: appModules\winword\ww_sections.py:192
-#: appModules\winword\automaticReading\__init__.py:343
+#: appModules\winword\automaticReading\__init__.py:340
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:222
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:226
 msgid "yes"
@@ -1176,7 +1176,7 @@ msgstr ""
 #: appModules\winword\ww_document.py:508 appModules\winword\ww_document.py:862
 #: appModules\winword\ww_document.py:988 appModules\winword\ww_sections.py:44
 #: appModules\winword\ww_sections.py:192
-#: appModules\winword\automaticReading\__init__.py:343
+#: appModules\winword\automaticReading\__init__.py:340
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:224
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:226
 msgid "no"
@@ -4635,58 +4635,58 @@ msgid ""
 msgstr ""
 
 #. Translators: Reported when text contains a draft comment.
-#: appModules\winword\automaticReading\__init__.py:232
+#: appModules\winword\automaticReading\__init__.py:229
 #, python-format
 msgid "draft comment of %s:"
 msgstr ""
 
-#: appModules\winword\automaticReading\__init__.py:232
-#: appModules\winword\automaticReading\__init__.py:236
-#: appModules\winword\automaticReading\__init__.py:240
+#: appModules\winword\automaticReading\__init__.py:229
+#: appModules\winword\automaticReading\__init__.py:233
+#: appModules\winword\automaticReading\__init__.py:237
 msgid "comment:"
 msgstr ""
 
 #. Translators: Reported when text contains a resolved comment.
-#: appModules\winword\automaticReading\__init__.py:235
+#: appModules\winword\automaticReading\__init__.py:232
 #, python-format
 msgid "resolved comment of %s:"
 msgstr ""
 
 #. Translators: Reported when text contains a comment.
-#: appModules\winword\automaticReading\__init__.py:240
+#: appModules\winword\automaticReading\__init__.py:237
 #, python-format
 msgid "comment of %s:"
 msgstr ""
 
 #. Translators:  label to report synthesizer output device .
-#: appModules\winword\automaticReading\__init__.py:357
+#: appModules\winword\automaticReading\__init__.py:354
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:252
 #: shared\ww_addonConfigManager.py:544
 msgid "Audio output device"
 msgstr ""
 
-#: appModules\winword\automaticReading\__init__.py:403
+#: appModules\winword\automaticReading\__init__.py:400
 msgid ""
 "There are already voice settings saved for automatic reading.\n"
 "Do you want to replace them with the current voice settings for Word?"
 msgstr ""
 
 #. Translators: title of message box
-#: appModules\winword\automaticReading\__init__.py:407
+#: appModules\winword\automaticReading\__init__.py:404
 #: shared\ww_addonConfigManager.py:301 shared\ww_addonConfigManager.py:557
 msgid "Warning"
 msgstr ""
 
 #. Translators: message to user to report automatic reading voice record.
-#: appModules\winword\automaticReading\__init__.py:415
+#: appModules\winword\automaticReading\__init__.py:412
 msgid "Current voice settings have beenset for automatic reading"
 msgstr ""
 
-#: appModules\winword\automaticReading\__init__.py:432
+#: appModules\winword\automaticReading\__init__.py:429
 msgid "Automatic reading voice"
 msgstr ""
 
-#: appModules\winword\automaticReading\__init__.py:437
+#: appModules\winword\automaticReading\__init__.py:434
 msgid "Current voice for Word"
 msgstr ""
 
@@ -4802,7 +4802,7 @@ msgstr ""
 
 #. Translators: This is the label for the Update panel.
 #: globalPlugins\wordAccessEnhancement\ww_configGui.py:333
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:99
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:98
 msgid "Update"
 msgstr ""
 
@@ -4834,60 +4834,60 @@ msgstr ""
 
 #. Translators: The progress message
 #. indicating the name of the add-on being downloaded.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:102
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:101
 msgid "Downloading {name}"
 msgstr ""
 
 #. Translators: A message indicating that an error occurred
 #. while downloading an update to NVDA.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:117
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:116
 msgid "Error downloading update for {name}."
 msgstr ""
 
 #. Translators: message to user
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:171
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:170
 msgid "Cannot update {name} - missing file or invalid file format"
 msgstr ""
 
 #. Translators: The title of the dialog
 #. presented while an Addon is being updated.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:188
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:187
 msgid "Updating"
 msgstr ""
 
 #. Translators: The message displayed while an addon is being updated.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:190
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:189
 msgid "Please wait while the add-on is being updated."
 msgstr ""
 
 #. Translators: The message displayed when an error occurs
 #. when installing an add-on package.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:212
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:211
 msgid "Failed to update {name} add-on"
 msgstr ""
 
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:256
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:255
 msgid "{summary} - update"
 msgstr ""
 
 #. Translators: message to user that the update service is temporarily in maintenance
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:269
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:268
 msgid "The service is temporarily under maintenance. Please, try again later."
 msgstr ""
 
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:297
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:295
 msgid ""
 "The update is not compatible with this version of NVDA. Minimum NVDA "
 "version: {minYear}.{minMajor}, last tested: {testedYear}.{testedMajor}."
 msgstr ""
 
 #. Translators: message to user to report a new version.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:357
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:356
 #, python-format
 msgid "New version%s is available. Do you want to download it now?"
 msgstr ""
 
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:361
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:360
 msgid ""
 "New version{0} is available.\n"
 "But it is not compatible with this version of NVDA: minimum version requred "
@@ -4896,34 +4896,34 @@ msgid ""
 msgstr ""
 
 #. Translators: message to user that add-on is up to date
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:382
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:381
 #, python-format
 msgid "You are up-to-date. %s is the latest version."
 msgstr ""
 
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:389
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:388
 msgid "Oops! There was a problem checking for updates. Please retry later"
 msgstr ""
 
 #. Translators: This is a label of a button appearing
 #. on UpdateCheckResult dialog.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:544
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:543
 msgid "&Yes"
 msgstr ""
 
 #. Translators: This is a label of a button appearing
 #. on UpdateCheckResult dialog.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:549
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:548
 msgid "&No"
 msgstr ""
 
 #. Translators: The label of a button to remind the user later
 #. about performing some action.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:554
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:553
 msgid "&Later"
 msgstr ""
 
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:558
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:557
 msgid "Wha&t's new"
 msgstr ""
 

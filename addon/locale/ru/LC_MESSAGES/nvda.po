@@ -1,0 +1,4711 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordAccessEnhancement\n"
+"Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
+"POT-Creation-Date: 2025-06-12 10:13+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: nvda.ru\n"
+"Language-Team: nvda.ru <eshanuap@gmail.com>\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.8.6\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: appModules\n"
+"X-Poedit-SearchPath-2: globalPlugins\n"
+"X-Poedit-SearchPath-3: shared\n"
+"X-Poedit-SearchPath-4: installTasks.py\n"
+"X-Poedit-SearchPath-5: buildVars.py\n"
+
+#: appModules/winword/NVDAAppModuleWinword.py:34
+msgid "DRAFT"
+msgstr "Черновик"
+
+#: appModules/winword/NVDAAppModuleWinword.py:36
+msgid "Outline"
+msgstr "Контур"
+
+#: appModules/winword/NVDAAppModuleWinword.py:38
+msgid "Print layout"
+msgstr "Макет для печати"
+
+#: appModules/winword/NVDAAppModuleWinword.py:40
+msgid "Web layout"
+msgstr "Веб-макет"
+
+#: appModules/winword/NVDAAppModuleWinword.py:42
+msgid "Read mode"
+msgstr "Режим чтения"
+
+#: appModules/winword/NVDAAppModuleWinword.py:71
+msgid "Change tracking on"
+msgstr "Отслеживание исправлений включено"
+
+#: appModules/winword/NVDAAppModuleWinword.py:74
+msgid "Change tracking off"
+msgstr "Отслеживание исправлений выключено"
+
+#: appModules/winword/NVDAAppModuleWinword.py:91
+msgid "All caps on"
+msgstr "Все заглавные буквы включены"
+
+#: appModules/winword/NVDAAppModuleWinword.py:94
+msgid "Small caps on"
+msgstr "Малые заглавные буквы включены"
+
+#: appModules/winword/NVDAAppModuleWinword.py:97
+msgid "Caps off"
+msgstr "Заглавные буквы выключены"
+
+#: appModules/winword/__init__.py:168
+msgid "Toggle on or off the option to skip empty paragraphs"
+msgstr "Включите или выключите опцию пропуска пустых абзацев"
+
+#: appModules/winword/__init__.py:176
+msgid "Skip empty paragraphs"
+msgstr "Пропускать пустые абзацы"
+
+#: appModules/winword/__init__.py:180
+msgid "Don't skip empty paragraphs"
+msgstr "Не пропускать пустые абзацы"
+
+#: appModules/winword/__init__.py:201 appModules/winword/__init__.py:259
+msgid "Hit tab to move focus in the spelling checker pane"
+msgstr "Нажмите Tab для перемещения фокуса в область проверки орфографии"
+
+#: appModules/winword/__init__.py:233
+msgid ""
+"Report error and suggestion displayed by the spelling checker. Twice:spell "
+"them. Third: say help text"
+msgstr ""
+"Сообщите об ошибке и предложении, показанном программой проверки орфографии. "
+"Дважды: произнесите их по буквам. Трижды: произнести текст помощи"
+
+#: appModules/winword/__init__.py:241
+msgid "Not available for this Word version"
+msgstr "Не доступно для этой версии Word"
+
+#: appModules/winword/__init__.py:251
+msgid "You are Not in the spelling checker"
+msgstr "Вы не в проверке орфографии"
+
+#: appModules/winword/__init__.py:286
+msgid "Report current sentence"
+msgstr "Сообщить о текущем предложении"
+
+#: appModules/winword/__init__.py:296
+msgid ""
+"Record settings for automatic reading voice. Twice: Switch between the "
+"automatic reading  voice and the current voice for Word"
+msgstr ""
+"Настройки записи для автоматического чтения голосом. Дважды: переключение "
+"между автоматическим чтением голосом и текущим голосом для Word"
+
+#: appModules/winword/__init__.py:357
+msgid ""
+"Display Microsoft UIA dialog to define the Use of UI Automation to access "
+"Microsoft Word document controls"
+msgstr ""
+"Отображение диалога Microsoft UIA для определения использования "
+"автоматизации пользовательского интерфейса для доступа к элементам "
+"управления документами Microsoft Word"
+
+#: appModules/winword/automaticReading/__init__.py:232
+#, python-format
+msgid "draft comment of %s:"
+msgstr "черновой комментарий %s:"
+
+#: appModules/winword/automaticReading/__init__.py:232
+#: appModules/winword/automaticReading/__init__.py:236
+#: appModules/winword/automaticReading/__init__.py:240
+msgid "comment:"
+msgstr "комментарий:"
+
+#: appModules/winword/automaticReading/__init__.py:235
+#, python-format
+msgid "resolved comment of %s:"
+msgstr "Rразрешенный комментарий от %s:"
+
+#: appModules/winword/automaticReading/__init__.py:240
+#, python-format
+msgid "comment of %s:"
+msgstr "комментарий от %s:"
+
+#: appModules/winword/automaticReading/__init__.py:343
+#: appModules/winword/ww_document.py:223 appModules/winword/ww_document.py:301
+#: appModules/winword/ww_document.py:354 appModules/winword/ww_document.py:360
+#: appModules/winword/ww_document.py:508 appModules/winword/ww_document.py:861
+#: appModules/winword/ww_document.py:988 appModules/winword/ww_sections.py:44
+#: appModules/winword/ww_sections.py:192
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:222
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:226
+msgid "yes"
+msgstr "да"
+
+#: appModules/winword/automaticReading/__init__.py:343
+#: appModules/winword/ww_document.py:223 appModules/winword/ww_document.py:301
+#: appModules/winword/ww_document.py:355 appModules/winword/ww_document.py:361
+#: appModules/winword/ww_document.py:508 appModules/winword/ww_document.py:862
+#: appModules/winword/ww_document.py:988 appModules/winword/ww_sections.py:44
+#: appModules/winword/ww_sections.py:192
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:224
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:226
+msgid "no"
+msgstr "нет"
+
+#: appModules/winword/automaticReading/__init__.py:357
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:252
+#: shared/ww_addonConfigManager.py:544
+msgid "Audio output device"
+msgstr "Устройство вывода звука"
+
+#: appModules/winword/automaticReading/__init__.py:403
+msgid ""
+"There are already voice settings saved for automatic reading.\n"
+"Do you want to replace them with the current voice settings for Word?"
+msgstr ""
+"Уже есть сохраненные настройки голоса для автоматического чтения.\n"
+"Хотите заменить их текущими настройками голоса для Word?"
+
+#: appModules/winword/automaticReading/__init__.py:407
+#: shared/ww_addonConfigManager.py:301 shared/ww_addonConfigManager.py:557
+msgid "Warning"
+msgstr "Предупреждение"
+
+#: appModules/winword/automaticReading/__init__.py:415
+msgid "Current voice settings have beenset for automatic reading"
+msgstr "Текущие настройки голоса установлены для автоматического чтения"
+
+#: appModules/winword/automaticReading/__init__.py:432
+msgid "Automatic reading voice"
+msgstr "Голос для автоматического чтения"
+
+#: appModules/winword/automaticReading/__init__.py:437
+msgid "Current voice for Word"
+msgstr "Текущий голос для Word"
+
+#: appModules/winword/ww_bookmarks.py:44
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Story type text: {storyTypeText}\n"
+"Associated Ttext:\n"
+"{text}\n"
+msgstr ""
+"Страница {page}, строка {line}\n"
+"Тип истории текста: {storyTypeText}\n"
+"Связанный текст:\n"
+"{text}\n"
+
+#: appModules/winword/ww_bookmarks.py:61
+#: appModules/winword/ww_browseMode.py:371
+#: appModules/winword/ww_elementsListDialog.py:48
+msgid "Bookmark"
+msgstr "Закладка"
+
+#: appModules/winword/ww_bookmarks.py:61 appModules/winword/ww_bookmarks.py:77
+#: appModules/winword/ww_headerFooters.py:67
+msgid "Bookmarks"
+msgstr "Закладки"
+
+#: appModules/winword/ww_bookmarks.py:68
+msgid "No bookmark"
+msgstr "Нет закладки"
+
+#: appModules/winword/ww_bookmarks.py:79 appModules/winword/ww_comments.py:325
+#: appModules/winword/ww_contentControl.py:91
+#: appModules/winword/ww_endnotes.py:101 appModules/winword/ww_fields.py:86
+#: appModules/winword/ww_footnotes.py:98 appModules/winword/ww_formfields.py:78
+#: appModules/winword/ww_grammaticalErrors.py:69
+#: appModules/winword/ww_headerFooters.py:69
+#: appModules/winword/ww_hyperlinks.py:93
+#: appModules/winword/ww_revisions.py:157 appModules/winword/ww_shapes.py:178
+#: appModules/winword/ww_spellingErrors.py:74
+msgid "Number"
+msgstr "Число"
+
+#: appModules/winword/ww_bookmarks.py:80 appModules/winword/ww_comments.py:327
+#: appModules/winword/ww_contentControl.py:92
+#: appModules/winword/ww_endnotes.py:102 appModules/winword/ww_fields.py:87
+#: appModules/winword/ww_footnotes.py:99 appModules/winword/ww_formfields.py:79
+#: appModules/winword/ww_frames.py:73
+#: appModules/winword/ww_grammaticalErrors.py:70
+#: appModules/winword/ww_headerFooters.py:70
+#: appModules/winword/ww_headings.py:104 appModules/winword/ww_hyperlinks.py:94
+#: appModules/winword/ww_revisions.py:158 appModules/winword/ww_shapes.py:179
+#: appModules/winword/ww_spellingErrors.py:75
+#: appModules/winword/ww_tables.py:332
+msgid "Location"
+msgstr "Расположение"
+
+#: appModules/winword/ww_bookmarks.py:81
+#: appModules/winword/ww_headerFooters.py:71
+#: appModules/winword/ww_hyperlinks.py:95 appModules/winword/ww_shapes.py:180
+msgid "Name"
+msgstr "Имя"
+
+#: appModules/winword/ww_bookmarks.py:82
+#: appModules/winword/ww_headerFooters.py:72
+msgid "Story type"
+msgstr "История ввода"
+
+#: appModules/winword/ww_bookmarks.py:91 appModules/winword/ww_comments.py:339
+#: appModules/winword/ww_contentControl.py:100
+#: appModules/winword/ww_endnotes.py:110 appModules/winword/ww_fields.py:95
+#: appModules/winword/ww_footnotes.py:107
+#: appModules/winword/ww_formfields.py:87 appModules/winword/ww_frames.py:84
+#: appModules/winword/ww_grammaticalErrors.py:79
+#: appModules/winword/ww_headerFooters.py:81
+#: appModules/winword/ww_headings.py:113
+#: appModules/winword/ww_hyperlinks.py:105
+#: appModules/winword/ww_revisions.py:170 appModules/winword/ww_sections.py:276
+#: appModules/winword/ww_shapes.py:192
+#: appModules/winword/ww_spellingErrors.py:82
+#: appModules/winword/ww_tables.py:344
+msgid "&Go to"
+msgstr "&Перейти к"
+
+#: appModules/winword/ww_bookmarks.py:92 appModules/winword/ww_comments.py:347
+#: appModules/winword/ww_contentControl.py:101
+#: appModules/winword/ww_endnotes.py:112 appModules/winword/ww_fields.py:96
+#: appModules/winword/ww_footnotes.py:109
+#: appModules/winword/ww_formfields.py:88 appModules/winword/ww_frames.py:85
+#: appModules/winword/ww_headerFooters.py:82
+#: appModules/winword/ww_hyperlinks.py:106 appModules/winword/ww_shapes.py:193
+#: appModules/winword/ww_tables.py:345
+msgid "&Delete"
+msgstr "&Удалить"
+
+#: appModules/winword/ww_bookmarks.py:93 appModules/winword/ww_comments.py:351
+#: appModules/winword/ww_contentControl.py:102
+#: appModules/winword/ww_endnotes.py:113 appModules/winword/ww_fields.py:97
+#: appModules/winword/ww_footnotes.py:110
+#: appModules/winword/ww_formfields.py:89
+#: appModules/winword/ww_headerFooters.py:83
+msgid "Delete &all"
+msgstr "Удалить &всё"
+
+#: appModules/winword/ww_bookmarks.py:96
+#: appModules/winword/ww_headerFooters.py:86
+msgid "Bookmark's text"
+msgstr "Текст закладки"
+
+#: appModules/winword/ww_bookmarks.py:102 appModules/winword/ww_comments.py:367
+#: appModules/winword/ww_contentControl.py:116
+#: appModules/winword/ww_endnotes.py:123 appModules/winword/ww_fields.py:110
+#: appModules/winword/ww_footnotes.py:120
+#: appModules/winword/ww_formfields.py:103 appModules/winword/ww_frames.py:91
+#: appModules/winword/ww_grammaticalErrors.py:89
+#: appModules/winword/ww_headerFooters.py:92
+#: appModules/winword/ww_headings.py:119
+#: appModules/winword/ww_hyperlinks.py:116
+#: appModules/winword/ww_revisions.py:232 appModules/winword/ww_sections.py:282
+#: appModules/winword/ww_sections.py:284 appModules/winword/ww_shapes.py:202
+#: appModules/winword/ww_spellingErrors.py:94
+#: appModules/winword/ww_tables.py:352
+#, python-brace-format
+msgid "Page {page}, line {line}"
+msgstr "Страница {page}, строка {line}"
+
+#: appModules/winword/ww_browseMode.py:49
+msgid "Extended browse mode for Microsoft Word"
+msgstr "Расширенный режим просмотра для Microsoft Word"
+
+#: appModules/winword/ww_browseMode.py:114
+msgid "moves to the next grammatical error"
+msgstr "переход к следующей грамматической ошибке"
+
+#: appModules/winword/ww_browseMode.py:116
+msgid "no next grammatical error"
+msgstr "нет следующей грамматической ошибки"
+
+#: appModules/winword/ww_browseMode.py:118
+msgid "moves to the previous grammatical error"
+msgstr "переход к предыдущей грамматической ошибке"
+
+#: appModules/winword/ww_browseMode.py:120
+msgid "no previous grammatical error"
+msgstr "нет предыдущей грамматической ошибки"
+
+#: appModules/winword/ww_browseMode.py:126
+msgid "moves to the next revision"
+msgstr "переход к следующему изменению"
+
+#: appModules/winword/ww_browseMode.py:128
+msgid "no next revision"
+msgstr "нет следующих изменений"
+
+#: appModules/winword/ww_browseMode.py:130
+msgid "moves to the previous revision"
+msgstr "переход к предыдущему изменению"
+
+#: appModules/winword/ww_browseMode.py:132
+msgid "no previous revision"
+msgstr "нет предыдущих изменений"
+
+#: appModules/winword/ww_browseMode.py:138
+msgid "moves to the next comment"
+msgstr "переход к следующему комментарию"
+
+#: appModules/winword/ww_browseMode.py:140
+msgid "no next comment"
+msgstr "нет следующего комментария"
+
+#: appModules/winword/ww_browseMode.py:142
+msgid "moves to the previous comment"
+msgstr "переход к предыдущему комментарию"
+
+#: appModules/winword/ww_browseMode.py:144
+msgid "no previous comment"
+msgstr "нет предыдущего комментария"
+
+#: appModules/winword/ww_browseMode.py:150
+msgid "moves to the next field"
+msgstr "переход к следующему полю"
+
+#: appModules/winword/ww_browseMode.py:152
+msgid "no next field"
+msgstr "нет следующего поля"
+
+#: appModules/winword/ww_browseMode.py:154
+msgid "moves to the previous field"
+msgstr "переход к предыдущему полю"
+
+#: appModules/winword/ww_browseMode.py:156
+msgid "no previous field"
+msgstr "нет предыдущего поля"
+
+#: appModules/winword/ww_browseMode.py:163
+msgid "moves to the next bookmark"
+msgstr "переход к следующей закладке"
+
+#: appModules/winword/ww_browseMode.py:165
+msgid "no next bookmark"
+msgstr "нет следующей закладки"
+
+#: appModules/winword/ww_browseMode.py:167
+msgid "moves to the previous bookmark"
+msgstr "переход к предыдущей закладке"
+
+#: appModules/winword/ww_browseMode.py:169
+msgid "no previous bookmark"
+msgstr "нет предыдущей закладки"
+
+#: appModules/winword/ww_browseMode.py:175
+msgid "moves to the next endnote"
+msgstr "переход к следующей концевой сноске"
+
+#: appModules/winword/ww_browseMode.py:177
+msgid "no next endnote"
+msgstr "нет следующей концевой сноски"
+
+#: appModules/winword/ww_browseMode.py:179
+msgid "moves to the previous endnote"
+msgstr "переход к предыдущей концевой сноске"
+
+#: appModules/winword/ww_browseMode.py:181
+msgid "no previous endnote"
+msgstr "нет предыдущей концевой сноски"
+
+#: appModules/winword/ww_browseMode.py:187
+msgid "moves to the next footnote"
+msgstr "переход к следующей сноске"
+
+#: appModules/winword/ww_browseMode.py:189
+msgid "no next footnote"
+msgstr "нет следующей сноски"
+
+#: appModules/winword/ww_browseMode.py:191
+msgid "moves to the previous footnote"
+msgstr "переход к предыдущей сноске"
+
+#: appModules/winword/ww_browseMode.py:193
+msgid "no previous footnote"
+msgstr "нет предыдущей сноски"
+
+#: appModules/winword/ww_browseMode.py:199
+msgid "moves to the next section"
+msgstr "переход к следующему разделу"
+
+#: appModules/winword/ww_browseMode.py:201
+msgid "no next section"
+msgstr "нет следующего раздела"
+
+#: appModules/winword/ww_browseMode.py:203
+msgid "moves to the previous section"
+msgstr "переход к предыдущему разделу"
+
+#: appModules/winword/ww_browseMode.py:205
+msgid "no previous section"
+msgstr "нет предыдущего раздела"
+
+#: appModules/winword/ww_browseMode.py:239
+msgid "Return to bottom of page"
+msgstr "Вернуться к нижней части страницы"
+
+#: appModules/winword/ww_browseMode.py:244
+msgid "Return to top of page"
+msgstr "Вернуться к верхней части страницы"
+
+#: appModules/winword/ww_browseMode.py:372
+#, python-brace-format
+msgid "{name} text: {text}"
+msgstr "{name} текст: {text}"
+
+#: appModules/winword/ww_browseMode.py:376
+#, python-format
+msgid "Bookmark %s"
+msgstr "Закладка %s"
+
+#: appModules/winword/ww_browseMode.py:389
+#, python-brace-format
+msgid "Endnote{index}"
+msgstr "Сноска {index}"
+
+#: appModules/winword/ww_browseMode.py:423
+#, python-brace-format
+msgid "Field {index}, type: {type}"
+msgstr "Поле {index}, тип: {type}"
+
+#: appModules/winword/ww_browseMode.py:455
+#, python-brace-format
+msgid "Footnote {index}"
+msgstr "Колонтитул {index}"
+
+#: appModules/winword/ww_browseMode.py:497
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: appModules/winword/ww_browseMode.py:534
+#, python-brace-format
+msgid "Section {index}"
+msgstr "Раздел {index}"
+
+#: appModules/winword/ww_browseMode.py:538
+#, python-format
+msgid "Section %s"
+msgstr "Раздел %s"
+
+#: appModules/winword/ww_choice.py:97
+msgid "Informations 's collection"
+msgstr "Сбор информации"
+
+#: appModules/winword/ww_choice.py:103 appModules/winword/ww_document.py:908
+msgid "Please wait"
+msgstr "Пожалуйста, подождите"
+
+#: appModules/winword/ww_choice.py:132
+msgid "&interrupt"
+msgstr "&прервать"
+
+#: appModules/winword/ww_choice.py:134
+msgid "&Cancel"
+msgstr "&Отмена"
+
+#: appModules/winword/ww_choice.py:161
+msgid "Interrupted"
+msgstr "прерванный"
+
+#: appModules/winword/ww_choice.py:176
+msgid "Elements's search"
+msgstr "Поиск элементов"
+
+#: appModules/winword/ww_choice.py:203
+msgid "Element's type:"
+msgstr "Тип элемента:"
+
+#: appModules/winword/ww_choice.py:216
+msgid "Part of document:"
+msgstr "Часть документа:"
+
+#: appModules/winword/ww_choice.py:220
+msgid "Cursor's positionFocus"
+msgstr "Позиция курсора"
+
+#: appModules/winword/ww_choice.py:221
+msgid "Document"
+msgstr "Документ"
+
+#: appModules/winword/ww_choice.py:222
+#: appModules/winword/ww_contentControl.py:161
+#: appModules/winword/ww_fields.py:155 appModules/winword/ww_formfields.py:148
+msgid "Page"
+msgstr "Страница"
+
+#: appModules/winword/ww_choice.py:223
+msgid "Selection"
+msgstr "Выделение"
+
+#: appModules/winword/ww_choice.py:224
+msgid "Focus to end"
+msgstr "От фокуса до конца"
+
+#: appModules/winword/ww_choice.py:225
+msgid "Start to focus"
+msgstr "От начала к фокусу"
+
+#: appModules/winword/ww_choice.py:275
+msgid "Search an&d display"
+msgstr "Найти и &показать"
+
+#: appModules/winword/ww_choice.py:283
+msgid "Search and C&opy to clipboard"
+msgstr "Найти и с&копировать в буфер обмена"
+
+#: appModules/winword/ww_choice.py:290 appModules/winword/ww_collection.py:419
+msgid "&Close"
+msgstr "&Закрыть"
+
+#: appModules/winword/ww_collection.py:49
+msgid "28.35"
+msgstr "28.35"
+
+#: appModules/winword/ww_collection.py:105
+#: appModules/winword/ww_collection.py:115
+#, python-format
+msgid "%s at cursor's position"
+msgstr "%s в позиции курсора"
+
+#: appModules/winword/ww_collection.py:106
+#: appModules/winword/ww_collection.py:116
+#, python-format
+msgid "%s in the selection"
+msgstr "%s в выделении"
+
+#: appModules/winword/ww_collection.py:107
+#: appModules/winword/ww_collection.py:117
+#, python-format
+msgid "%s in the document"
+msgstr "%s в документе"
+
+#: appModules/winword/ww_collection.py:108
+#: appModules/winword/ww_collection.py:118
+#, python-format
+msgid "%s in the page"
+msgstr "%s на странице"
+
+#: appModules/winword/ww_collection.py:109
+#, python-format
+msgid "%s between start of document and cursor's position"
+msgstr "%s между началом документа и положением курсора"
+
+#: appModules/winword/ww_collection.py:110
+#, python-format
+msgid "%s between cursor's position and end of document"
+msgstr "%s между позицией курсора и концом документа"
+
+#: appModules/winword/ww_collection.py:119
+#, python-format
+msgid "%s between document's start and cursor's position"
+msgstr "%s между началом документа и позицией курсора"
+
+#: appModules/winword/ww_collection.py:120
+#, python-format
+msgid "%s between cursor's position and document's end"
+msgstr "%s между положением курсора и концом документа"
+
+#: appModules/winword/ww_collection.py:138
+#, python-format
+msgid "%s percent"
+msgstr "%s процентов"
+
+#: appModules/winword/ww_collection.py:191
+msgid "Sorry, There are too many elements to be treated "
+msgstr "Извините, слишком много элементов для обработки "
+
+#: appModules/winword/ww_collection.py:225
+msgid "Please wait."
+msgstr "Пожалуйста, подождите."
+
+#: appModules/winword/ww_collection.py:258
+#, python-brace-format
+msgid "{name}'s list has been copied to clipboard"
+msgstr "{name} списка было скопировано в буфер обмена"
+
+#: appModules/winword/ww_collection.py:290
+#, python-brace-format
+msgid "{count} {element}"
+msgstr "{count} {element}"
+
+#: appModules/winword/ww_collection.py:480
+msgid "Are you sure you wish to delete this items?"
+msgstr "Вы уверены, что хотите удалить эти элементы?"
+
+#: appModules/winword/ww_collection.py:482
+msgid "Deletion of items"
+msgstr "Удаление элементов"
+
+#: appModules/winword/ww_collection.py:567
+msgid "Are you sure you wish to delete all items?"
+msgstr "Вы уверены, что хотите удалить все элементы?"
+
+#: appModules/winword/ww_collection.py:569
+msgid "Deletion of all items"
+msgstr "Удаление всех элементов"
+
+#: appModules/winword/ww_comments.py:111
+msgid "There is no reply"
+msgstr "Нет ответа"
+
+#: appModules/winword/ww_comments.py:119 appModules/winword/ww_comments.py:361
+msgid "Commented text"
+msgstr "Комментируемый текст"
+
+#: appModules/winword/ww_comments.py:122
+msgid "solved"
+msgstr "решено"
+
+#: appModules/winword/ww_comments.py:125
+#, python-brace-format
+msgid "Comment by {author}"
+msgstr "Комментарий от {author}"
+
+#: appModules/winword/ww_comments.py:127
+#, python-brace-format
+msgid "{text}{solved}:"
+msgstr "{text}{solved}:"
+
+#: appModules/winword/ww_comments.py:130
+#, python-brace-format
+msgid "{text} ({date}){solved}:"
+msgstr "{text} ({date}){solved}:"
+
+#: appModules/winword/ww_comments.py:135
+#, python-brace-format
+msgid "Reply from {author}"
+msgstr "Ответ от {author}"
+
+#: appModules/winword/ww_comments.py:138
+#, python-brace-format
+msgid "{text}:"
+msgstr "{text}:"
+
+#: appModules/winword/ww_comments.py:141
+#, python-brace-format
+msgid "{text} ({date}):"
+msgstr "{text} ({date}):"
+
+#: appModules/winword/ww_comments.py:151
+msgid "Comment replies"
+msgstr "Ответы на комментарии"
+
+#: appModules/winword/ww_comments.py:165 appModules/winword/ww_comments.py:226
+msgid "Error, the reply could not be correctly added."
+msgstr "Ошибка, не удалось правильно добавить ответ."
+
+#: appModules/winword/ww_comments.py:169
+#, python-brace-format
+msgid ""
+"The reply was inserted with \"{name}\" as author. Do you want to change this "
+"name?"
+msgstr ""
+"Ответ был вставлен с именем «{name}» в качестве автора. Вы хотите изменить "
+"это имя?"
+
+#: appModules/winword/ww_comments.py:172 appModules/winword/ww_comments.py:233
+msgid "Reply comment"
+msgstr "Ответить на комментарий"
+
+#: appModules/winword/ww_comments.py:181
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Author: {author}\n"
+"Date: {date}\n"
+"Comment's text:\n"
+"{text}\n"
+"Commented text:\n"
+"{commentedText}\n"
+msgstr ""
+"Страница {page}, строка {line}\n"
+"Автор: {author}\n"
+"Дата: {date}\n"
+"Текст комментария:\n"
+"{text}\n"
+"Откомментированный текст:\n"
+"{commentedText}\n"
+
+#: appModules/winword/ww_comments.py:201
+msgid "Reply comment's insert"
+msgstr "Вставить ответный комментарий"
+
+#: appModules/winword/ww_comments.py:203
+msgid "Enter the reply's text"
+msgstr "Введите текст ответа"
+
+#: appModules/winword/ww_comments.py:205
+msgid "Reply's Modification"
+msgstr "Изменение ответа"
+
+#: appModules/winword/ww_comments.py:213
+msgid "Not available, there is no comment at cursor position"
+msgstr "Недоступно, в позиции курсора нет комментария"
+
+#: appModules/winword/ww_comments.py:230
+#, python-brace-format
+msgid ""
+"The reply was inserted with \"{name}\" as author name. Do you want to change "
+"this name?"
+msgstr ""
+"Ответ был вставлен с именем автора «{name}». Вы хотите изменить это имя?"
+
+#: appModules/winword/ww_comments.py:245
+#: appModules/winword/ww_contentControl.py:147
+#: appModules/winword/ww_elementsListDialog.py:51
+#: appModules/winword/ww_elementsListDialog.py:461
+#: appModules/winword/ww_fields.py:141 appModules/winword/ww_formfields.py:134
+#: appModules/winword/ww_shapes.py:43
+#: appModules/winword/ww_wordDocumentBase.py:1294
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:116
+msgid "Comment"
+msgstr "Комментарий"
+
+#: appModules/winword/ww_comments.py:245
+msgid "Comments"
+msgstr "Комментарии"
+
+#: appModules/winword/ww_comments.py:249
+msgid "Comment's insert"
+msgstr "Вставить комментарий"
+
+#: appModules/winword/ww_comments.py:251
+msgid "Enter the comment's text"
+msgstr "Введите текст комментария"
+
+#: appModules/winword/ww_comments.py:253
+msgid "Comment's Modification"
+msgstr "Изменение комментария"
+
+#: appModules/winword/ww_comments.py:260
+msgid "No comment"
+msgstr "Без комментариев"
+
+#: appModules/winword/ww_comments.py:271
+msgid "Not available, there is already comment at cursor position"
+msgstr "Недоступно, в позиции курсора уже есть комментарий"
+
+#: appModules/winword/ww_comments.py:281
+msgid "Error, the comment could not be correctly added."
+msgstr "Ошибка, комментарий не удалось правильно добавить."
+
+#: appModules/winword/ww_comments.py:285
+#, python-brace-format
+msgid ""
+"The comment was inserted with \"{name}\" as author name. Do you want to "
+"change this name?"
+msgstr ""
+"Комментарий был вставлен с именем автора «{name}». Вы хотите изменить это "
+"имя?"
+
+#: appModules/winword/ww_comments.py:288
+msgid "Insert comment"
+msgstr "Вставить комментарий"
+
+#: appModules/winword/ww_comments.py:298
+msgid "There is no comment at cursor position"
+msgstr "В позиции курсора нет комментария"
+
+#: appModules/winword/ww_comments.py:307
+msgid "There is no comment to cursor position"
+msgstr "Нет комментариев к позиции курсора"
+
+#: appModules/winword/ww_comments.py:322
+msgid "Comments:"
+msgstr "Примечания:"
+
+#: appModules/winword/ww_comments.py:329
+#: appModules/winword/ww_contentControl.py:145
+#: appModules/winword/ww_document.py:825 appModules/winword/ww_fields.py:139
+#: appModules/winword/ww_formfields.py:132
+#: appModules/winword/ww_revisions.py:160
+msgid "Author"
+msgstr "Автор"
+
+#: appModules/winword/ww_comments.py:331
+#: appModules/winword/ww_contentControl.py:159
+#: appModules/winword/ww_fields.py:153 appModules/winword/ww_formfields.py:146
+#: appModules/winword/ww_revisions.py:161
+msgid "Date"
+msgstr "Дата"
+
+#: appModules/winword/ww_comments.py:341
+msgid "Repl&y"
+msgstr "&Ответить"
+
+#: appModules/winword/ww_comments.py:343
+msgid "&Modify comment text"
+msgstr "&Изменить текст комментария"
+
+#: appModules/winword/ww_comments.py:345
+msgid "Modify author &name"
+msgstr "&Изменить имя автора"
+
+#: appModules/winword/ww_comments.py:349
+msgid "Report &replies"
+msgstr "&Сообщать об ответах"
+
+#: appModules/winword/ww_comments.py:356
+msgid "Comment's text"
+msgstr "Текст комментария"
+
+#: appModules/winword/ww_contentControl.py:16
+msgid "rich-text content control"
+msgstr "управление полнотекстовым содержимым"
+
+#: appModules/winword/ww_contentControl.py:17
+msgid "Text content control"
+msgstr "Управление текстовым содержимым"
+
+#: appModules/winword/ww_contentControl.py:18
+msgid "picture content control"
+msgstr "управление содержимым изображения"
+
+#: appModules/winword/ww_contentControl.py:19
+msgid "combo box content control"
+msgstr "элемент управления содержимым комбинированного окна"
+
+#: appModules/winword/ww_contentControl.py:20
+msgid "drop-down list content control"
+msgstr "элемент управления содержимым выпадающего списка"
+
+#: appModules/winword/ww_contentControl.py:21
+msgid "building block gallery content control"
+msgstr "управление содержимым галереи строительных блоков"
+
+#: appModules/winword/ww_contentControl.py:22
+msgid "date content control"
+msgstr "управление содержимым даты"
+
+#: appModules/winword/ww_contentControl.py:23
+msgid "group content control"
+msgstr "управление содержимым группы"
+
+#: appModules/winword/ww_contentControl.py:24
+msgid "checkbox content control"
+msgstr "управление содержимым флажка"
+
+#: appModules/winword/ww_contentControl.py:25
+msgid "repeating section content control"
+msgstr "управление содержанием повторяющихся разделов"
+
+#: appModules/winword/ww_contentControl.py:48
+msgid "checked"
+msgstr "отмечен"
+
+#: appModules/winword/ww_contentControl.py:61
+#: appModules/winword/ww_fields.py:49 appModules/winword/ww_formfields.py:41
+#, python-brace-format
+msgid "Page {page}, line {line}\n"
+msgstr "Страница {page}, строка {line}\n"
+
+#: appModules/winword/ww_contentControl.py:73
+msgid "Content control"
+msgstr "Управление содержанием"
+
+#: appModules/winword/ww_contentControl.py:73
+#: appModules/winword/ww_contentControl.py:89
+msgid "Content controls"
+msgstr "Управления содержанием"
+
+#: appModules/winword/ww_contentControl.py:80
+msgid "No content control"
+msgstr "Нет управления над содержанием"
+
+#: appModules/winword/ww_contentControl.py:93
+#: appModules/winword/ww_fields.py:88 appModules/winword/ww_formfields.py:80
+#: appModules/winword/ww_hyperlinks.py:96
+#: appModules/winword/ww_revisions.py:159
+msgid "Type"
+msgstr "Тип"
+
+#: appModules/winword/ww_contentControl.py:105
+#: appModules/winword/ww_contentControl.py:143
+#: appModules/winword/ww_document.py:828 appModules/winword/ww_fields.py:137
+#: appModules/winword/ww_formfields.py:130 appModules/winword/ww_tables.py:333
+msgid "Title"
+msgstr "Название"
+
+#: appModules/winword/ww_contentControl.py:110
+msgid "Status or content"
+msgstr "Состояние или содержание"
+
+#: appModules/winword/ww_contentControl.py:130
+#: appModules/winword/ww_fields.py:124 appModules/winword/ww_formfields.py:117
+#: appModules/winword/ww_wordDocumentBase.py:381
+msgid "Empty"
+msgstr "Пусто"
+
+#: appModules/winword/ww_contentControl.py:131
+#: appModules/winword/ww_fields.py:125 appModules/winword/ww_formfields.py:118
+msgid "Ref"
+msgstr "Ссылка"
+
+#: appModules/winword/ww_contentControl.py:133
+#: appModules/winword/ww_fields.py:127 appModules/winword/ww_formfields.py:120
+msgid "FootnoteRef"
+msgstr "Ссылка на сноску"
+
+#: appModules/winword/ww_contentControl.py:138
+#: appModules/winword/ww_fields.py:132 appModules/winword/ww_formfields.py:125
+msgid "StyleRef"
+msgstr "Стиль ссылки"
+
+#: appModules/winword/ww_contentControl.py:141
+#: appModules/winword/ww_fields.py:135 appModules/winword/ww_formfields.py:128
+msgid "TOC"
+msgstr "Оглавление"
+
+#: appModules/winword/ww_contentControl.py:144
+#: appModules/winword/ww_document.py:829 appModules/winword/ww_fields.py:138
+#: appModules/winword/ww_formfields.py:131
+msgid "Subject"
+msgstr "Тема"
+
+#: appModules/winword/ww_contentControl.py:146
+#: appModules/winword/ww_fields.py:140 appModules/winword/ww_formfields.py:133
+msgid "Keyword"
+msgstr "Ключевое слово"
+
+#: appModules/winword/ww_contentControl.py:149
+#: appModules/winword/ww_fields.py:143 appModules/winword/ww_formfields.py:136
+msgid "CreateDate"
+msgstr "Дата создания"
+
+#: appModules/winword/ww_contentControl.py:162
+#: appModules/winword/ww_fields.py:156 appModules/winword/ww_formfields.py:149
+msgid "Expression"
+msgstr "Выражение"
+
+#: appModules/winword/ww_contentControl.py:163
+#: appModules/winword/ww_fields.py:157 appModules/winword/ww_formfields.py:150
+msgid "Quote"
+msgstr "Цитата"
+
+#: appModules/winword/ww_contentControl.py:164
+#: appModules/winword/ww_fields.py:158 appModules/winword/ww_formfields.py:151
+msgid "Include"
+msgstr "Заключённый"
+
+#: appModules/winword/ww_contentControl.py:184
+#: appModules/winword/ww_elementsListDialog.py:452
+#: appModules/winword/ww_fields.py:178 appModules/winword/ww_formfields.py:171
+msgid "Link"
+msgstr "Ссылка"
+
+#: appModules/winword/ww_contentControl.py:185
+#: appModules/winword/ww_fields.py:179 appModules/winword/ww_formfields.py:172
+msgid "Symbol"
+msgstr "Символ"
+
+#: appModules/winword/ww_document.py:35 appModules/winword/ww_document.py:124
+msgid "Page's number on the Left"
+msgstr "Номер страниц слева"
+
+#: appModules/winword/ww_document.py:37 appModules/winword/ww_document.py:127
+msgid "Page's number Centered"
+msgstr "Номер страницы по центру"
+
+#: appModules/winword/ww_document.py:39 appModules/winword/ww_document.py:130
+msgid "Page's number on the Right"
+msgstr "Номер страниц справа"
+
+#: appModules/winword/ww_document.py:41 appModules/winword/ww_document.py:133
+msgid "Page number inside"
+msgstr "Номер страницы внутри"
+
+#: appModules/winword/ww_document.py:43 appModules/winword/ww_document.py:136
+msgid "Page's number Outside"
+msgstr "Номер страниц снаружи"
+
+#: appModules/winword/ww_document.py:114
+msgid "linked to previous"
+msgstr "связанный с предыдущим"
+
+#: appModules/winword/ww_document.py:201
+#, python-brace-format
+msgid "Column {index}: {wide} wide"
+msgstr "Столбец {index}: ширина {wide}"
+
+#: appModules/winword/ww_document.py:205
+#, python-format
+msgid "with %s spacing after"
+msgstr "синтервалом  %s после"
+
+#: appModules/winword/ww_document.py:215
+msgid "Text columns:"
+msgstr "Текстовые столбцы:"
+
+#: appModules/winword/ww_document.py:221
+#, python-format
+msgid "Number of Text columns: %s"
+msgstr "Число текстовых столбцов: %s"
+
+#: appModules/winword/ww_document.py:225
+#, python-format
+msgid "Line between columns: %s"
+msgstr "Строк между столбцов: %s"
+
+#: appModules/winword/ww_document.py:230
+#, python-brace-format
+msgid ""
+"Style: columns' wide = {wide} (evenly spaced), gap between columns = "
+"{spacing}"
+msgstr ""
+"Стиль: ширина столбца = {wide} (Распределенная равномерно),  разрыв между "
+"столбцами = {spacing}"
+
+#: appModules/winword/ww_document.py:237
+msgid "Style: various column wide"
+msgstr "Стиль: разная ширина столбца"
+
+#: appModules/winword/ww_document.py:247
+msgid "on the left side"
+msgstr "на левой стороне"
+
+#: appModules/winword/ww_document.py:248
+msgid "on the right side"
+msgstr "на правой стороне"
+
+#: appModules/winword/ww_document.py:249
+msgid "on the top side"
+msgstr "на верхней стороне"
+
+#: appModules/winword/ww_document.py:257
+#, python-brace-format
+msgid "Gutter: {pos}, {size} large"
+msgstr "Переплет: {pos}, величина {size}"
+
+#: appModules/winword/ww_document.py:272
+msgid "Miror margins:"
+msgstr "Зеркальные поля:"
+
+#: appModules/winword/ww_document.py:275
+msgid "Margins:"
+msgstr "Поля:"
+
+#: appModules/winword/ww_document.py:280
+#, python-format
+msgid "Inside: %s"
+msgstr "Внутри: %s"
+
+#: appModules/winword/ww_document.py:282
+#, python-format
+msgid "Outside: %s"
+msgstr "Снаружи: %s"
+
+#: appModules/winword/ww_document.py:285
+#, python-format
+msgid "Left: %s"
+msgstr "Слева: %s"
+
+#: appModules/winword/ww_document.py:287
+#, python-format
+msgid "Right: %s"
+msgstr "Справа: %s"
+
+#: appModules/winword/ww_document.py:291
+#, python-format
+msgid "Top: %s"
+msgstr "Сверху: %s"
+
+#: appModules/winword/ww_document.py:294
+#, python-format
+msgid "Bottom: %s"
+msgstr "Внизу: %s"
+
+#: appModules/winword/ww_document.py:299
+#, python-format
+msgid "Orientation: %s"
+msgstr "Ориентация: %s"
+
+#: appModules/winword/ww_document.py:303
+#, python-format
+msgid "Print two pages per sheet: %s"
+msgstr "Печать двух страниц на одном листе: %s"
+
+#: appModules/winword/ww_document.py:312
+msgid "Landscape"
+msgstr "Ландшафт"
+
+#: appModules/winword/ww_document.py:313 appModules/winword/ww_sections.py:75
+msgid "Portrait"
+msgstr "Портрет"
+
+#: appModules/winword/ww_document.py:324 appModules/winword/ww_sections.py:86
+msgid "top"
+msgstr "сверху"
+
+#: appModules/winword/ww_document.py:325
+msgid "centered"
+msgstr "по центру"
+
+#: appModules/winword/ww_document.py:326
+msgid "justified"
+msgstr "по ширине"
+
+#: appModules/winword/ww_document.py:327 appModules/winword/ww_sections.py:89
+msgid "bottom"
+msgstr "внизу"
+
+#: appModules/winword/ww_document.py:339
+msgid "Continuous"
+msgstr "Непрерывный"
+
+#: appModules/winword/ww_document.py:340
+msgid "Even pages "
+msgstr "Чётные страницы "
+
+#: appModules/winword/ww_document.py:341
+msgid "New column"
+msgstr "Новый столбец"
+
+#: appModules/winword/ww_document.py:342
+msgid "New page"
+msgstr "Новая страница"
+
+#: appModules/winword/ww_document.py:343
+msgid "Odd pages"
+msgstr "Нечётные страницы"
+
+#: appModules/winword/ww_document.py:348
+msgid "Disposition:"
+msgstr "Расположение:"
+
+#: appModules/winword/ww_document.py:352
+#, python-format
+msgid "Sectionstart: %s"
+msgstr "Начало раздела: %s"
+
+#: appModules/winword/ww_document.py:357
+#, python-format
+msgid "Different first page: %s"
+msgstr "Другая первая страница: %s"
+
+#: appModules/winword/ww_document.py:363
+#, python-format
+msgid "Different Odd and even pages: %s"
+msgstr "Различные нечетные и четные страницы: %s"
+
+#: appModules/winword/ww_document.py:366
+#, python-format
+msgid "Distance between footer and bottom: %s"
+msgstr "Расстояние между колонтитулом и нижней частью: %s"
+
+#: appModules/winword/ww_document.py:370
+#, python-format
+msgid "Distance between header and top: %s"
+msgstr "Расстояние между заголовком и верхней частью: %s"
+
+#: appModules/winword/ww_document.py:375
+#, python-format
+msgid "Vertical alignment: %s"
+msgstr "Вертикальное выравнивание: %s"
+
+#: appModules/winword/ww_document.py:391
+msgid "Paper:"
+msgstr "Бумага:"
+
+#: appModules/winword/ww_document.py:395
+#, python-format
+msgid "Paper size: %s"
+msgstr "Размер бумаги: %s"
+
+#: appModules/winword/ww_document.py:398
+#, python-brace-format
+msgid "Page's size: {height}height, {width} width"
+msgstr "Размер страницы: высота {height}, ширина {width}"
+
+#: appModules/winword/ww_document.py:444
+#, python-format
+msgid "First Page Header: %s"
+msgstr "Верхний колонтитул первой страницы: %s"
+
+#: appModules/winword/ww_document.py:454
+#, python-format
+msgid "First Page Footer: %s"
+msgstr "Нижний колонтитул первой страницы: %s"
+
+#: appModules/winword/ww_document.py:465
+#, python-format
+msgid "Even Page Header: %s"
+msgstr "Верхний колонтитул четных страниц: %s"
+
+#: appModules/winword/ww_document.py:475
+#, python-format
+msgid "Even Page Footer: %s"
+msgstr "Нижний колонтитул четных страниц: %s"
+
+#: appModules/winword/ww_document.py:484
+#, python-format
+msgid "Page header: %s"
+msgstr "Верхний колонтитул страницы: %s"
+
+#: appModules/winword/ww_document.py:493
+#, python-format
+msgid "Page Footer: %s"
+msgstr "Нижний колонтитул страницы: %s"
+
+#: appModules/winword/ww_document.py:502
+#, python-brace-format
+msgid "Section {index} of {count}:"
+msgstr "Раздел {index} из {count}:"
+
+#: appModules/winword/ww_document.py:510
+#, python-format
+msgid "Text modification only in form fields: %s"
+msgstr "Изменение текста только в полях формы: %s"
+
+#: appModules/winword/ww_document.py:535
+msgid "Document's sections:"
+msgstr "Разделы Документа:"
+
+#: appModules/winword/ww_document.py:602
+msgid "Position in the document:"
+msgstr "Позиция в документе:"
+
+#: appModules/winword/ww_document.py:606
+#, python-brace-format
+msgid "In section {section}, page {page}"
+msgstr "Раздел {section}, страница {page}"
+
+#: appModules/winword/ww_document.py:614 appModules/winword/ww_document.py:969
+msgid "uniform"
+msgstr "равномерный"
+
+#: appModules/winword/ww_document.py:614 appModules/winword/ww_document.py:969
+msgid "non-uniform"
+msgstr "неравномерный"
+
+#: appModules/winword/ww_document.py:616
+#, python-brace-format
+msgid "In a {uniform} table"
+msgstr "В {uniform} таблице"
+
+#: appModules/winword/ww_document.py:621
+#, python-brace-format
+msgid " Cell row {row} , column {col} of table {tableIndex}"
+msgstr " Ячейка строка {row}, столбец {col} таблицы {tableIndex}"
+
+#: appModules/winword/ww_document.py:628
+#, python-brace-format
+msgid "In section {section}, text column {textColumn}"
+msgstr "Раздел {section}, текст столбца {textColumn}"
+
+#: appModules/winword/ww_document.py:633
+#, python-format
+msgid "In section {%s"
+msgstr "В разделе {%s"
+
+#: appModules/winword/ww_document.py:639
+#, python-brace-format
+msgid "On line {line} of the page {page}, column {col}"
+msgstr "На строке {line} страницы {page}, столбца {col}"
+
+#: appModules/winword/ww_document.py:702
+msgid "Allow only revisions"
+msgstr "Разрешить только ревизии"
+
+#: appModules/winword/ww_document.py:703
+msgid "Allow only comments"
+msgstr "Разрешить только комментарии"
+
+#: appModules/winword/ww_document.py:704
+msgid "Allow only form fields"
+msgstr "Разрешить только поля форм"
+
+#: appModules/winword/ww_document.py:705
+msgid "Read-only"
+msgstr "Только чтение"
+
+#: appModules/winword/ww_document.py:710
+msgid "No protection"
+msgstr "Нет защиты"
+
+#: appModules/winword/ww_document.py:726
+#, python-format
+msgid "%s or more"
+msgstr "%s или больше"
+
+#: appModules/winword/ww_document.py:735
+msgid "Statistics:"
+msgstr "Статистика:"
+
+#: appModules/winword/ww_document.py:739
+#, python-format
+msgid "Pages: %s"
+msgstr "Страница: %s"
+
+#: appModules/winword/ww_document.py:742
+#, python-format
+msgid "Lines: %s"
+msgstr "Строка: %s"
+
+#: appModules/winword/ww_document.py:745
+#, python-format
+msgid "Words: %s"
+msgstr "Слова: %s"
+
+#: appModules/winword/ww_document.py:748
+#, python-format
+msgid "Characters: %s"
+msgstr "Символы: %s"
+
+#: appModules/winword/ww_document.py:751
+#, python-format
+msgid "Paragraphs: %s"
+msgstr "Абзацы: %s"
+
+#: appModules/winword/ww_document.py:755
+#, python-format
+msgid "Sections: %s"
+msgstr "Раздел %s"
+
+#: appModules/winword/ww_document.py:759
+#, python-format
+msgid "Comments: %s"
+msgstr "Комментарии: %s"
+
+#: appModules/winword/ww_document.py:763
+#, python-format
+msgid "Tables: %s"
+msgstr "Таблицы: %s"
+
+#: appModules/winword/ww_document.py:767
+#, python-format
+msgid "Shape objects: %s"
+msgstr "Объекты формы: %s"
+
+#: appModules/winword/ww_document.py:771
+#, python-format
+msgid "InLineShape objects: %s"
+msgstr "Внутренние объекты формы: %s"
+
+#: appModules/winword/ww_document.py:775
+#, python-format
+msgid "Endnotes: %s"
+msgstr "Примечания: %s"
+
+#: appModules/winword/ww_document.py:779
+#, python-format
+msgid "Footnotes: %s"
+msgstr "Сноски: %s"
+
+#: appModules/winword/ww_document.py:783
+#, python-format
+msgid "Fields: %s"
+msgstr "Поля: %s"
+
+#: appModules/winword/ww_document.py:787
+#, python-format
+msgid "Formfields: %s"
+msgstr "Поля форм: %s"
+
+#: appModules/winword/ww_document.py:791
+#, python-format
+msgid "Frames: %s"
+msgstr "Рамки: %s"
+
+#: appModules/winword/ww_document.py:795
+#, python-format
+msgid "Hyperlinks: %s"
+msgstr "Гиперссылки: %s"
+
+#: appModules/winword/ww_document.py:799
+#, python-format
+msgid "Lists: %s"
+msgstr "Списки: %s"
+
+#: appModules/winword/ww_document.py:803
+#, python-format
+msgid "Bookmarks: %s"
+msgstr "Закладка: %s"
+
+#: appModules/winword/ww_document.py:809
+#, python-format
+msgid "Spelling errors: %s"
+msgstr "Орфографические ошибки: %s"
+
+#: appModules/winword/ww_document.py:818
+#, python-format
+msgid "Contains hidden text: %s"
+msgstr "Содержит скрытый текст: %s"
+
+#: appModules/winword/ww_document.py:819 appModules/winword/ww_document.py:855
+#: appModules/winword/ww_document.py:859 appModules/winword/ww_document.py:868
+#: appModules/winword/ww_document.py:871
+msgid "Yes"
+msgstr "Да"
+
+#: appModules/winword/ww_document.py:819 appModules/winword/ww_document.py:855
+#: appModules/winword/ww_document.py:859 appModules/winword/ww_document.py:868
+#: appModules/winword/ww_document.py:871
+msgid "No"
+msgstr "Нет"
+
+#: appModules/winword/ww_document.py:826
+msgid "Creation date"
+msgstr "Дата создания"
+
+#: appModules/winword/ww_document.py:827
+msgid "Revision number"
+msgstr "Номер ревизии"
+
+#: appModules/winword/ww_document.py:830
+msgid "Compagny"
+msgstr "Компания"
+
+#: appModules/winword/ww_document.py:834
+msgid "Document's properties:"
+msgstr "Свойства Документа:"
+
+#: appModules/winword/ww_document.py:836
+#, python-format
+msgid "File name: %s"
+msgstr "Имя файла: %s"
+
+#: appModules/winword/ww_document.py:844
+#, python-format
+msgid "Protection: %s"
+msgstr "Защита: %s"
+
+#: appModules/winword/ww_document.py:851
+msgid "Specific options:"
+msgstr "Специфические опции:"
+
+#: appModules/winword/ww_document.py:854
+#, python-format
+msgid "Check spelling as you type: %s"
+msgstr "Проверка орфографии: %s"
+
+#: appModules/winword/ww_document.py:858
+#, python-format
+msgid "Check grammar as you type: %s"
+msgstr "Проверка грамматики при вводе: %s"
+
+#: appModules/winword/ww_document.py:864
+#, python-format
+msgid "Check grammar with spelling: %s"
+msgstr "Проверка грамматики с написанием: %s"
+
+#: appModules/winword/ww_document.py:867
+#, python-format
+msgid "Track revision: %s"
+msgstr "Трек ревизии: %s"
+
+#: appModules/winword/ww_document.py:870
+#, python-format
+msgid "Display hidden text: %s"
+msgstr "Показать скрытый текст: %s"
+
+#: appModules/winword/ww_document.py:892
+msgid "Document's tables:"
+msgstr "Таблицы Документа:"
+
+#: appModules/winword/ww_document.py:898
+#, python-brace-format
+msgid "Table {index} of {count}:"
+msgstr "{index}таблицы из {count}:"
+
+#: appModules/winword/ww_document.py:917
+msgid "Document's informations"
+msgstr "Информация документа"
+
+#: appModules/winword/ww_document.py:970
+msgid " nested"
+msgstr " вложенный"
+
+#: appModules/winword/ww_document.py:972
+#, python-brace-format
+msgid "table {nested} {uniform} of {rows} rows, {columns} columns"
+msgstr "таблица {nested} {uniform} из {rows}строк, {columns} столбцов"
+
+#: appModules/winword/ww_document.py:977
+#, python-brace-format
+msgid "Localized at {page} page , {line} line"
+msgstr "Находится на странице {page}, строке {line}"
+
+#: appModules/winword/ww_document.py:982
+#, python-format
+msgid "Title: %s"
+msgstr "Название: %s"
+
+#: appModules/winword/ww_document.py:986
+#, python-format
+msgid "Description: %s"
+msgstr "Описание: %s"
+
+#: appModules/winword/ww_document.py:990
+#, python-format
+msgid "Automatic resize to fit content: %s"
+msgstr "Автоматическое изменение размеров по содержанию: %s"
+
+#: appModules/winword/ww_document.py:993
+#, python-format
+msgid "Top padding: %s"
+msgstr "Сверху от поля: %s"
+
+#: appModules/winword/ww_document.py:996
+#, python-format
+msgid "Bottom padding: %s"
+msgstr "Снизу от поля: %s"
+
+#: appModules/winword/ww_document.py:999
+#, python-format
+msgid "Spacing between cells: %s"
+msgstr "Интервал между ячейками: %s"
+
+#: appModules/winword/ww_document.py:1010
+#, python-format
+msgid "Contains %s tables"
+msgstr "Содержит %s таблиц"
+
+#: appModules/winword/ww_document.py:1027
+msgid "Without border"
+msgstr "Без границы"
+
+#: appModules/winword/ww_document.py:1034
+msgid "Borders:"
+msgstr "Границы:"
+
+#: appModules/winword/ww_document.py:1070
+#, python-brace-format
+msgid ""
+"surrounding {color} {lineStyle} with width of {lineWidth} and art style "
+"{artStyle}"
+msgstr ""
+"окружающий {color} {lineStyle} с шириной {lineWidth} and art style {artStyle}"
+
+#: appModules/winword/ww_document.py:1077
+#, python-brace-format
+msgid "surrounding {color} {lineStyle} with width of {lineWidth}"
+msgstr "окружающий {color} {lineStyle} с шириной {lineWidth}"
+
+#: appModules/winword/ww_document.py:1105
+#, python-brace-format
+msgid ""
+"{name}= {color} {lineStyle} with width of {lineWidth} and art style "
+"{artStyle}"
+msgstr ""
+"{name}= {color} {lineStyle} с шириной {lineWidth} and art style {artStyle}"
+
+#: appModules/winword/ww_document.py:1110
+#, python-brace-format
+msgid "{name}= {color} {lineStyle} with width of {lineWidth}"
+msgstr "{name}= {color} {lineStyle} с шириной {lineWidth}"
+
+#: appModules/winword/ww_document.py:1118
+msgid "Without borders"
+msgstr "Без границ"
+
+#: appModules/winword/ww_document.py:1131
+msgid "mixed"
+msgstr "смешанный"
+
+#: appModules/winword/ww_document.py:1132
+#, python-format
+msgid "%s line"
+msgstr "Строка %s"
+
+#: appModules/winword/ww_elementsListDialog.py:54
+#: appModules/winword/ww_elementsListDialog.py:464
+#: appModules/winword/ww_endnotes.py:45
+#: appModules/winword/ww_wordDocumentBase.py:1300
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:118
+msgid "Endnote"
+msgstr "Сноска"
+
+#: appModules/winword/ww_elementsListDialog.py:57
+#: appModules/winword/ww_fields.py:69
+msgid "Field"
+msgstr "Поле"
+
+#: appModules/winword/ww_elementsListDialog.py:60
+msgid "FormField"
+msgstr "Поле формы"
+
+#: appModules/winword/ww_elementsListDialog.py:63
+#: appModules/winword/ww_elementsListDialog.py:473
+#: appModules/winword/ww_footnotes.py:42
+#: appModules/winword/ww_wordDocumentBase.py:1298
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:117
+msgid "Footnote"
+msgstr "Колонтитул"
+
+#: appModules/winword/ww_elementsListDialog.py:66
+#: appModules/winword/ww_elementsListDialog.py:476
+#: appModules/winword/ww_revisions.py:122
+msgid "Revision"
+msgstr "Изменение"
+
+#: appModules/winword/ww_elementsListDialog.py:69
+#: appModules/winword/ww_sections.py:143 appModules/winword/ww_sections.py:265
+msgid "Section"
+msgstr "Раздел"
+
+#: appModules/winword/ww_elementsListDialog.py:72
+#: appModules/winword/ww_spellingErrors.py:48
+msgid "Spelling error"
+msgstr "Ошибка орфографии"
+
+#: appModules/winword/ww_elementsListDialog.py:75
+#: appModules/winword/ww_grammaticalErrors.py:43
+msgid "Grammatical error"
+msgstr "Грамматическая ошибка"
+
+#: appModules/winword/ww_elementsListDialog.py:93
+msgid "&Type:"
+msgstr "&Тип:"
+
+#: appModules/winword/ww_elementsListDialog.py:135
+msgid "&Activate"
+msgstr "&Активировать"
+
+#: appModules/winword/ww_elementsListDialog.py:254
+#, python-format
+msgid "more than %s elements"
+msgstr "более чем %s элементов"
+
+#: appModules/winword/ww_elementsListDialog.py:254
+#: appModules/winword/ww_elementsListDialog.py:257
+msgid "One element"
+msgstr "Один элемент"
+
+#: appModules/winword/ww_elementsListDialog.py:257
+#, python-format
+msgid "%s elements"
+msgstr "%s элементов"
+
+#: appModules/winword/ww_elementsListDialog.py:260
+msgid "no element"
+msgstr "нет элементов"
+
+#: appModules/winword/ww_elementsListDialog.py:449
+#: appModules/winword/ww_headings.py:62 appModules/winword/ww_headings.py:102
+msgid "Heading"
+msgstr "Заголовок"
+
+#: appModules/winword/ww_elementsListDialog.py:455
+msgid "Graphic"
+msgstr "Графика"
+
+#: appModules/winword/ww_elementsListDialog.py:488
+msgid "Error"
+msgstr "Ошибка"
+
+#: appModules/winword/ww_endnotes.py:30 appModules/winword/ww_footnotes.py:30
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Note's text:\n"
+"{text}\n"
+msgstr ""
+"Страница {page}, строка {line}\n"
+"Текст заметки:\n"
+"{text}\n"
+
+#: appModules/winword/ww_endnotes.py:45
+msgid "Endnotes"
+msgstr "Примечания"
+
+#: appModules/winword/ww_endnotes.py:49
+msgid "Endnote's insert"
+msgstr "Вставка концевой сноски"
+
+#: appModules/winword/ww_endnotes.py:51
+msgid "Enter the endnote's text"
+msgstr "Введите текст концевой сноски"
+
+#: appModules/winword/ww_endnotes.py:53
+msgid "Endnote's modification"
+msgstr "Изменение концевой сноски"
+
+#: appModules/winword/ww_endnotes.py:59
+msgid "No endnote"
+msgstr "Нет сносок"
+
+#: appModules/winword/ww_endnotes.py:87 appModules/winword/ww_footnotes.py:84
+#: appModules/winword/ww_tables.py:400
+msgid "empty"
+msgstr "пусто"
+
+#: appModules/winword/ww_endnotes.py:99 appModules/winword/ww_footnotes.py:96
+msgid "Notes:"
+msgstr "Примечания:"
+
+#: appModules/winword/ww_endnotes.py:111 appModules/winword/ww_footnotes.py:108
+msgid "&Modify"
+msgstr "&Изменить"
+
+#: appModules/winword/ww_endnotes.py:117 appModules/winword/ww_footnotes.py:113
+msgid "Note's text"
+msgstr "Текст примечания"
+
+#: appModules/winword/ww_fields.py:69 appModules/winword/ww_fields.py:84
+msgid "Fields"
+msgstr "Поля"
+
+#: appModules/winword/ww_fields.py:75
+msgid "No field"
+msgstr "Нет поля"
+
+#: appModules/winword/ww_fields.py:100 appModules/winword/ww_formfields.py:92
+msgid "Result"
+msgstr "Результат"
+
+#: appModules/winword/ww_fields.py:104
+msgid "Code"
+msgstr "Код"
+
+#: appModules/winword/ww_footnotes.py:42
+msgid "Footnotes"
+msgstr "Сноски"
+
+#: appModules/winword/ww_footnotes.py:46
+msgid "Footnote's insert"
+msgstr "Вставка сноски"
+
+#: appModules/winword/ww_footnotes.py:48
+msgid "Enter the footnote's text"
+msgstr "Ввести текст сноски"
+
+#: appModules/winword/ww_footnotes.py:50
+msgid "Footnote's modification"
+msgstr "Изменение сноски"
+
+#: appModules/winword/ww_footnotes.py:56
+msgid "No footnote"
+msgstr "Нет сноски"
+
+#: appModules/winword/ww_formfields.py:61
+msgid "Formfield"
+msgstr "Поле формы"
+
+#: appModules/winword/ww_formfields.py:61
+msgid "Formfields"
+msgstr "Поля форм"
+
+#: appModules/winword/ww_formfields.py:67
+msgid "No formfield"
+msgstr "Нет полей формы"
+
+#: appModules/winword/ww_formfields.py:76
+msgid "FormFields"
+msgstr "Поля форм"
+
+#: appModules/winword/ww_formfields.py:97
+msgid "Status"
+msgstr "Статус"
+
+#: appModules/winword/ww_frames.py:42
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Height: {height}\n"
+"Width:\n"
+"{width}\n"
+msgstr ""
+"Страница {page}, строка {line}\n"
+"Высота: {height}\n"
+"Ширина:\n"
+"{width}\n"
+
+#: appModules/winword/ww_frames.py:55 appModules/winword/ww_frames.py:72
+msgid "Frame"
+msgstr "Рамка"
+
+#: appModules/winword/ww_frames.py:55 appModules/winword/ww_frames.py:70
+msgid "Frames"
+msgstr "Рамки"
+
+#: appModules/winword/ww_frames.py:61
+msgid "No frame"
+msgstr "Без рамки"
+
+#: appModules/winword/ww_frames.py:74
+msgid "Width"
+msgstr "Ширина"
+
+#: appModules/winword/ww_frames.py:75
+msgid "Height"
+msgstr "Высота"
+
+#: appModules/winword/ww_funct old.py:58
+msgid "Main text story"
+msgstr "Основной текст"
+
+#: appModules/winword/ww_funct old.py:59
+msgid "Footnotes story"
+msgstr "История сноски"
+
+#: appModules/winword/ww_funct old.py:60
+msgid "Endnotes story"
+msgstr "История Примечания"
+
+#: appModules/winword/ww_funct old.py:61
+msgid "Comments story"
+msgstr "История комментариев"
+
+#: appModules/winword/ww_funct old.py:62
+msgid "Text frame story"
+msgstr "История текстовой рамке"
+
+#: appModules/winword/ww_funct old.py:63
+msgid "Even pages header story"
+msgstr "Верхний колонтитул четных страниц"
+
+#: appModules/winword/ww_funct old.py:64
+msgid "Primary header story"
+msgstr "История основного заголовка"
+
+#: appModules/winword/ww_funct old.py:65
+msgid "Even pages footer story"
+msgstr "Чётные страницы нижнего колонтитула"
+
+#: appModules/winword/ww_funct old.py:66
+msgid "Primary footer story"
+msgstr "Основная история нижнего колонтитула"
+
+#: appModules/winword/ww_funct old.py:67
+msgid "First page header story"
+msgstr "Заголовок первой страницы"
+
+#: appModules/winword/ww_funct old.py:68
+msgid "First page footer story"
+msgstr "Первая страница нижнего колонтитула"
+
+#: appModules/winword/ww_funct old.py:69
+msgid "Footnote separator story"
+msgstr "История разделителя сноски"
+
+#: appModules/winword/ww_funct old.py:70
+msgid "Footnote continuation separator story"
+msgstr "История разделителя продолжение сноски"
+
+#: appModules/winword/ww_funct old.py:71
+msgid "Footnote continuation notice story"
+msgstr "История уведомления продолжения сноски"
+
+#: appModules/winword/ww_funct old.py:72
+msgid "Endnote separator story"
+msgstr "История разделителя сноски"
+
+#: appModules/winword/ww_funct old.py:73
+msgid "Endnote continuation separator story"
+msgstr "Разделитель продолжение сноски"
+
+#: appModules/winword/ww_funct old.py:74
+msgid "Endnote continuation notice story"
+msgstr "История продолжение сноски"
+
+#: appModules/winword/ww_funct old.py:91
+#, python-brace-format
+msgid "Frame {name} document pane {index}"
+msgstr "Рамка {name} документ {index}"
+
+#: appModules/winword/ww_grammaticalErrors.py:28
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Text involved:\n"
+"{text}\n"
+msgstr ""
+"Страница {page}, строка {line}\n"
+"Текст участвует:\n"
+"{text}\n"
+
+#: appModules/winword/ww_grammaticalErrors.py:43
+msgid "Grammatical errors"
+msgstr "Грамматические ошибки"
+
+#: appModules/winword/ww_grammaticalErrors.py:49
+msgid "No gramatical error"
+msgstr "Нет граматических ошибок"
+
+#: appModules/winword/ww_grammaticalErrors.py:53
+msgid "Not available, Check grammar as you type is not activated"
+msgstr "Не доступно, проверка грамматики ввода не активирована"
+
+#: appModules/winword/ww_grammaticalErrors.py:67
+#: appModules/winword/ww_spellingErrors.py:72
+msgid "Errors:"
+msgstr "Ошибки:"
+
+#: appModules/winword/ww_grammaticalErrors.py:82
+#: appModules/winword/ww_spellingErrors.py:90
+msgid "Involved sentence"
+msgstr "Принятое предложение"
+
+#: appModules/winword/ww_headerFooters.py:34
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Story type text: {storyTypeText}\n"
+"Associated text:\n"
+"{text}\n"
+msgstr ""
+"Страница {page}, строка {line}\n"
+"Тип истории текста: {storyTypeText}\n"
+"Связанный текст:\n"
+"{text}\n"
+
+#: appModules/winword/ww_headerFooters.py:51
+msgid "Header/Footer"
+msgstr "Верхний/нижний колонтитул"
+
+#: appModules/winword/ww_headerFooters.py:51
+msgid "Headers/Footers"
+msgstr "Верхние/нижние колонтитулы"
+
+#: appModules/winword/ww_headerFooters.py:58
+msgid "No header or footer"
+msgstr "Нет верхнего или нижнего колонтитула"
+
+#: appModules/winword/ww_headings.py:44
+#, python-format
+msgid "heading level %s"
+msgstr "уровень заголовка %s"
+
+#: appModules/winword/ww_headings.py:48
+#, python-brace-format
+msgid ""
+"\tPage {page}, line {line}\n"
+"\tText: {text}\n"
+"\tLevel: {level}\n"
+"\tStyle: {style}\n"
+"\t"
+msgstr ""
+"\tСтраница {page}, строка {line}\n"
+"\tТекст: {text}\n"
+"\tУровень: {level}\n"
+"\tСтиль: {style}\n"
+"\t"
+
+#: appModules/winword/ww_headings.py:62 appModules/winword/ww_headings.py:100
+msgid "Headings"
+msgstr "Заголовки"
+
+#: appModules/winword/ww_headings.py:68
+msgid "No heading"
+msgstr "Без заголовка"
+
+#: appModules/winword/ww_headings.py:103
+msgid "Text"
+msgstr "Текст"
+
+#: appModules/winword/ww_headings.py:105
+msgid "Level"
+msgstr "Уровень"
+
+#: appModules/winword/ww_headings.py:106
+msgid "Style"
+msgstr "Стиль"
+
+#: appModules/winword/ww_hyperlinks.py:53
+msgid "Hyperlink to range"
+msgstr "Гиперссылка в диапазоне"
+
+#: appModules/winword/ww_hyperlinks.py:54
+msgid "Hyperlink to shape"
+msgstr "Гиперссылка на форме"
+
+#: appModules/winword/ww_hyperlinks.py:55
+msgid "Hyperlink to inLine Shape"
+msgstr "Гиперссылка на встроенной форме"
+
+#: appModules/winword/ww_hyperlinks.py:61
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Name: {name}\n"
+"type: {type}\n"
+"Address: {address}\n"
+"Sub-address: {subAddress}\n"
+msgstr ""
+"Страница {page}, строка {line}\n"
+"Имя: {name}\n"
+"Тип: {type}\n"
+"Адрес: {address}\n"
+"Суб-адрес: {subAddress}\n"
+
+#: appModules/winword/ww_hyperlinks.py:76
+msgid "Hyperlink"
+msgstr "Гиперссылка"
+
+#: appModules/winword/ww_hyperlinks.py:76
+#: appModules/winword/ww_hyperlinks.py:91
+msgid "Hyperlinks"
+msgstr "Гиперссылки"
+
+#: appModules/winword/ww_hyperlinks.py:82
+msgid "No hyperlink"
+msgstr "Нет гиперссылки"
+
+#: appModules/winword/ww_hyperlinks.py:110
+msgid "Text to display"
+msgstr "Текст для отображения"
+
+#: appModules/winword/ww_revisions.py:25 appModules/winword/ww_revisions.py:128
+msgid "No revision"
+msgstr "Нет изменений"
+
+#: appModules/winword/ww_revisions.py:27
+msgid "Insertion"
+msgstr "Вставка"
+
+#: appModules/winword/ww_revisions.py:29
+msgid "Deletion"
+msgstr "Удаление"
+
+#: appModules/winword/ww_revisions.py:31
+msgid "Property changed"
+msgstr "Свойство изменено"
+
+#: appModules/winword/ww_revisions.py:33
+msgid "Paragraph number changed"
+msgstr "Номер абзаца изменен"
+
+#: appModules/winword/ww_revisions.py:35
+msgid "Field display changed"
+msgstr "Отображение поля изменено"
+
+#: appModules/winword/ww_revisions.py:37
+msgid "Revision marked as reconciled conflict"
+msgstr "Изменение помечено как согласованный конфликт"
+
+#: appModules/winword/ww_revisions.py:39
+msgid "Revision marked as a conflict"
+msgstr "Изменение помечено как конфликт"
+
+#: appModules/winword/ww_revisions.py:41
+msgid "Style changed"
+msgstr "Стиль изменен"
+
+#: appModules/winword/ww_revisions.py:43
+msgid "Replaced"
+msgstr "Заменены"
+
+#: appModules/winword/ww_revisions.py:45
+msgid "Paragraph property changed"
+msgstr "Свойство абзаца изменено"
+
+#: appModules/winword/ww_revisions.py:47
+msgid "Table property changed"
+msgstr "Свойство таблицы изменено"
+
+#: appModules/winword/ww_revisions.py:49
+msgid "Section property changed"
+msgstr "Изменено свойство раздела"
+
+#: appModules/winword/ww_revisions.py:51
+msgid "Style definition changed"
+msgstr "Изменено определение стиля"
+
+#: appModules/winword/ww_revisions.py:53
+msgid "Content moved from"
+msgstr "Содержимое перемещено из"
+
+#: appModules/winword/ww_revisions.py:55
+msgid "Content moved to"
+msgstr "Содержимое перемещено в"
+
+#: appModules/winword/ww_revisions.py:57
+msgid "Table cell inserted"
+msgstr "Ячейка вставлена"
+
+#: appModules/winword/ww_revisions.py:59
+msgid "Table cell deleted"
+msgstr "Ячейки удалены"
+
+#: appModules/winword/ww_revisions.py:61
+msgid "Table cells merged"
+msgstr "Ячейки объединены"
+
+#: appModules/winword/ww_revisions.py:88
+#, python-format
+msgid "by %s"
+msgstr "от %s"
+
+#: appModules/winword/ww_revisions.py:101
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Author: {author}\n"
+"Date: {date}\n"
+"Type: {type}\n"
+"Revision's text:\n"
+"{text}\n"
+msgstr ""
+"Страница {page}, строка {line}\n"
+"Автор: {author}\n"
+"Дата: {date}\n"
+"Тип: {type}\n"
+"Текст ревизии:\n"
+"{text}\n"
+
+#: appModules/winword/ww_revisions.py:116
+#, python-brace-format
+msgid "{type} by {author} {text}"
+msgstr "{type} {author} {text}"
+
+#: appModules/winword/ww_revisions.py:122
+msgid "Revisions"
+msgstr "Изменения"
+
+#: appModules/winword/ww_revisions.py:143
+msgid "revision track is not activated"
+msgstr "дорожка редактирования не активирована"
+
+#: appModules/winword/ww_revisions.py:155
+msgid "Revisions:"
+msgstr "Изменения:"
+
+#: appModules/winword/ww_revisions.py:171
+msgid "&Accept"
+msgstr "&Принять"
+
+#: appModules/winword/ww_revisions.py:172
+msgid "&Reject"
+msgstr "&Отклонить"
+
+#: appModules/winword/ww_revisions.py:176
+msgid "Revision's text"
+msgstr "Изменённый текст"
+
+#: appModules/winword/ww_revisions.py:190
+msgid "Are you sure you wish to reject this items?"
+msgstr "Вы уверены, что хотите отклонить эти элементы?"
+
+#: appModules/winword/ww_revisions.py:192
+msgid "Reject of items"
+msgstr "Отклонить элементы"
+
+#: appModules/winword/ww_sections.py:55
+#, python-brace-format
+msgid ""
+"Start: Page {pageStart}, line {lineStart}\n"
+"End: Page {pageEnd}, line {lineEnd}\n"
+"With header: {header}\n"
+"With footer: {footer}\n"
+"Protected for forms: {protected}\n"
+"{pageSetup}\n"
+"\t\t"
+msgstr ""
+"Начало: Страница {pageStart}, строка {lineStart}\n"
+"Конец: Страница {pageEnd}, строка {lineEnd}\n"
+"С верхним колонтитулом: {header}\n"
+"С нижним колонтитулом: {footer}\n"
+"С защитой для форм: {protected}\n"
+"{pageSetup}\n"
+"\t\t"
+
+#: appModules/winword/ww_sections.py:70
+#, python-brace-format
+msgid "page {page} line {line}"
+msgstr "страница {page} строка {line}"
+
+#: appModules/winword/ww_sections.py:76
+msgid "land scape"
+msgstr "ландшафт"
+
+#: appModules/winword/ww_sections.py:79
+msgid "continue"
+msgstr "продолжить"
+
+#: appModules/winword/ww_sections.py:80
+msgid "new column"
+msgstr "новый столбец"
+
+#: appModules/winword/ww_sections.py:81
+msgid "new page"
+msgstr "новая страница"
+
+#: appModules/winword/ww_sections.py:82
+msgid "even page"
+msgstr "чётные страницы"
+
+#: appModules/winword/ww_sections.py:83
+msgid "odd page"
+msgstr "нечётные страницы"
+
+#: appModules/winword/ww_sections.py:87
+msgid "center"
+msgstr "по центру"
+
+#: appModules/winword/ww_sections.py:88
+msgid "justify"
+msgstr "по ширине"
+
+#: appModules/winword/ww_sections.py:132
+msgid "custom"
+msgstr "выборочно"
+
+#: appModules/winword/ww_sections.py:136
+msgid "Right alignment, right to left reading"
+msgstr "Выравнивание справа, справа налево"
+
+#: appModules/winword/ww_sections.py:137
+msgid "Left alignment, left to right reading"
+msgstr "Выравнивание слева, слева направо"
+
+#: appModules/winword/ww_sections.py:143 appModules/winword/ww_sections.py:263
+msgid "Sections"
+msgstr "Разделы"
+
+#: appModules/winword/ww_sections.py:150
+msgid "No section"
+msgstr "Нет раздела"
+
+#: appModules/winword/ww_sections.py:202
+#, python-brace-format
+msgid ""
+"Disposition:\n"
+"\tSection's start: {start}\n"
+"\tHeader / footer's even or odd pages different: {oddAndEven}\n"
+"\tHeader/footer's first page different: {firstPage}\n"
+"\tHeader distance from top: {headerDistance}\n"
+"\tFooter distance from bottom: {footerDistance}\n"
+"\tVertical alignment: {verticalAlignment}\n"
+"\t\t"
+msgstr ""
+"Расположение:\n"
+"\tНачало раздела: {start}\n"
+"\tЧётные или нечётные страницы верхнего / нижнего колонтитула: "
+"{oddAndEven} \n"
+"\tПервая страница верхнего / нижнего колонтитула: {firstPage}\n"
+"\tРасстояние верхнего колонтитула от верхнего края: {headerDistance}\n"
+"\tРасстояние нижнего колонтитула от нижнего края: {footerDistance}\n"
+"\tВертикальное выравнивание: {verticalAlignment}\n"
+"\t\t"
+
+#: appModules/winword/ww_sections.py:219
+#, python-brace-format
+msgid ""
+"Margins:\n"
+"\tLeft,right: {left}, {right}\n"
+"\tTop, bottom: {top}, {bottom}\n"
+"\tOrientation: {orientation}\n"
+"\t\t"
+msgstr ""
+"Отступы:\n"
+"\tСлева, справа: {left}, {right}\n"
+"\tВерхнее, нижнее: {top}, {bottom}\n"
+"\tОриентация: {orientation}\n"
+"\t\t"
+
+#: appModules/winword/ww_sections.py:230
+#, python-brace-format
+msgid ""
+"Paper:\n"
+"\tFormat: {paperSize}\n"
+"\tHeight's heet: {height}\n"
+"\tWidth's sheet: {width}\n"
+"\tTwo pages per sheet: {twoPages}\n"
+"\t\t"
+msgstr ""
+"Бумага:\n"
+"\tФормат: {paperSize}\n"
+"\tВысота: {height}\n"
+"\tШирина листа: {width}\n"
+"\tДве страницы на лист: {twoPages}\n"
+"\t\t"
+
+#: appModules/winword/ww_sections.py:241
+#, python-brace-format
+msgid ""
+"Page:\n"
+"\tChars number per line: {chars}\n"
+"\tLines number per page: {lines}\n"
+"\t{sectionDirection}\n"
+msgstr ""
+"Страница:\n"
+"\tКоличество символов в строке: {chars}\n"
+"\tКоличество строк на странице: {lines}\n"
+"\t{sectionDirection}\n"
+
+#: appModules/winword/ww_sections.py:266
+msgid "Start"
+msgstr "Начало"
+
+#: appModules/winword/ww_sections.py:267
+msgid "End"
+msgstr "Конец"
+
+#: appModules/winword/ww_shapes.py:39
+msgid "Mixed shape type"
+msgstr "Тип смешанной формы"
+
+#: appModules/winword/ww_shapes.py:40
+msgid "AutoShape"
+msgstr "Автофигура"
+
+#: appModules/winword/ww_shapes.py:41
+msgid " Callout"
+msgstr " Вызов"
+
+#: appModules/winword/ww_shapes.py:42
+msgid "Chart"
+msgstr "Диаграмма"
+
+#: appModules/winword/ww_shapes.py:44
+msgid "Freeform"
+msgstr "Свободная форма"
+
+#: appModules/winword/ww_shapes.py:45
+msgid "Group"
+msgstr "Группа"
+
+#: appModules/winword/ww_shapes.py:46 appModules/winword/ww_shapes.py:108
+msgid "Embedded OLE object"
+msgstr "Встроенный OLE-объект"
+
+#: appModules/winword/ww_shapes.py:47
+msgid "Form control"
+msgstr "Контроль формы"
+
+#: appModules/winword/ww_shapes.py:48
+msgid "Line"
+msgstr "Строка"
+
+#: appModules/winword/ww_shapes.py:49 appModules/winword/ww_shapes.py:109
+msgid "Linked OLE object"
+msgstr "Связанный объект OLE"
+
+#: appModules/winword/ww_shapes.py:50 appModules/winword/ww_shapes.py:111
+msgid "Linked picture"
+msgstr "Связанный рисунок"
+
+#: appModules/winword/ww_shapes.py:51 appModules/winword/ww_shapes.py:112
+msgid "OLE control object"
+msgstr "Управления OLE объекта"
+
+#: appModules/winword/ww_shapes.py:52 appModules/winword/ww_shapes.py:110
+msgid "Picture"
+msgstr "Рисунок"
+
+#: appModules/winword/ww_shapes.py:53
+msgid "Placeholder"
+msgstr "Заполнитель"
+
+#: appModules/winword/ww_shapes.py:54
+msgid "Text effect"
+msgstr "Текстовый эффект"
+
+#: appModules/winword/ww_shapes.py:55
+msgid "Media. "
+msgstr "Медиа. "
+
+#: appModules/winword/ww_shapes.py:56
+msgid "Text box"
+msgstr "Текстовое окно"
+
+#: appModules/winword/ww_shapes.py:58 appModules/winword/ww_tables.py:314
+#: appModules/winword/ww_tables.py:331
+msgid "Table"
+msgstr "Таблица"
+
+#: appModules/winword/ww_shapes.py:59
+msgid "Canvas"
+msgstr "Холст"
+
+#: appModules/winword/ww_shapes.py:60
+msgid "Diagram"
+msgstr "Диаграмма"
+
+#: appModules/winword/ww_shapes.py:61
+msgid "Ink"
+msgstr "Чернило"
+
+#: appModules/winword/ww_shapes.py:62
+msgid "Ink comment"
+msgstr "Комментарий"
+
+#: appModules/winword/ww_shapes.py:63 appModules/winword/ww_shapes.py:122
+msgid "Smart art"
+msgstr "Смарт арт"
+
+#: appModules/winword/ww_shapes.py:64
+msgid "Slicer"
+msgstr "Разрезка"
+
+#: appModules/winword/ww_shapes.py:65
+msgid "Web video"
+msgstr "Веб-видео"
+
+#: appModules/winword/ww_shapes.py:72
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Name: {name}\n"
+"type: {typeText}\n"
+"Width: {width}\n"
+"Height: {height}\n"
+"Alternative text:\n"
+"{alternativeText}\n"
+msgstr ""
+"Страница {page}, строка {line}\n"
+"Имя: {name}\n"
+"Тип: {typeText}\n"
+"Ширина: {width}\n"
+"Высота: {height}\n"
+"Альтернативный текст:\n"
+"{alternativeText}\n"
+
+#: appModules/winword/ww_shapes.py:113
+msgid "Horizontal line"
+msgstr "Горизонтальная линия"
+
+#: appModules/winword/ww_shapes.py:114
+msgid "Picture with horizontal line"
+msgstr "Рисунок с горизонтальной линией"
+
+#: appModules/winword/ww_shapes.py:115
+msgid "Linked picture with horizontal line"
+msgstr "Связанный рисунок с горизонтальной линией"
+
+#: appModules/winword/ww_shapes.py:116
+msgid "Picture used as a bullet"
+msgstr "Изображение используется как маркер"
+
+#: appModules/winword/ww_shapes.py:118
+msgid "OWS anchor"
+msgstr "OWS-якорь"
+
+#: appModules/winword/ww_shapes.py:120
+msgid "Inline diagram"
+msgstr "Встроенная диаграмма"
+
+#: appModules/winword/ww_shapes.py:130
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"type: {typeText}\n"
+"Width: {width}\n"
+"Height: {height}\n"
+"Alternative text:\n"
+"{alternativeText}\n"
+msgstr ""
+"Страница {page}, строка {line}\n"
+"Тип: {typeText}\n"
+"Ширина: {width}\n"
+"Высота: {height}\n"
+"Альтернативный текст:\n"
+"{alternativeText}\n"
+
+#: appModules/winword/ww_shapes.py:148
+msgid "Drawing layer object"
+msgstr "Объект слоя рисования"
+
+#: appModules/winword/ww_shapes.py:148
+msgid "Drawing layer objects"
+msgstr "Графические объекты слоя"
+
+#: appModules/winword/ww_shapes.py:154 appModules/winword/ww_shapes.py:166
+msgid "No object"
+msgstr "Нет объекта"
+
+#: appModules/winword/ww_shapes.py:160
+msgid "Text layer object"
+msgstr "Объект текстового слоя"
+
+#: appModules/winword/ww_shapes.py:160
+msgid "Text layer objects"
+msgstr "Объекты текстового слоя"
+
+#: appModules/winword/ww_shapes.py:176
+msgid "Objects:"
+msgstr "Объекты:"
+
+#: appModules/winword/ww_shapes.py:182
+msgid "Height(in centimeter)"
+msgstr "Высота (в см)"
+
+#: appModules/winword/ww_shapes.py:183
+msgid "Width (in centimeter)"
+msgstr "Ширина (в см)"
+
+#: appModules/winword/ww_shapes.py:196
+msgid "Alternative text"
+msgstr "Альтернативный текст"
+
+#: appModules/winword/ww_spellingChecker.py:124
+#: appModules/winword/ww_spellingChecker.py:256
+#, python-format
+msgid "Error: %s"
+msgstr "Ошибки: %s"
+
+#: appModules/winword/ww_spellingChecker.py:135
+#: appModules/winword/ww_spellingChecker.py:276
+#, python-format
+msgid "Suggestion: %s"
+msgstr "Предложение: %s"
+
+#: appModules/winword/ww_spellingChecker.py:154
+#: appModules/winword/ww_spellingChecker.py:347
+msgid "No explanation help"
+msgstr "Нет пояснения в справке"
+
+#: appModules/winword/ww_spellingChecker.py:268
+msgid "No suggestion"
+msgstr "Нет предложений"
+
+#: appModules/winword/ww_spellingChecker.py:287
+#, python-format
+msgid "%s suggestions"
+msgstr "%s предложений"
+
+#: appModules/winword/ww_spellingChecker.py:293
+msgid "One suggestions"
+msgstr "Одно предложение"
+
+#: appModules/winword/ww_spellingErrors.py:38
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Word: {word}\n"
+msgstr ""
+"Страница {page}, строка {line}\n"
+"Слово: {word}\n"
+
+#: appModules/winword/ww_spellingErrors.py:48
+msgid "Spelling errors"
+msgstr "Орфографические ошибки"
+
+#: appModules/winword/ww_spellingErrors.py:54
+msgid "No spelling error"
+msgstr "Нет орфографической ошибки"
+
+#: appModules/winword/ww_spellingErrors.py:58
+msgid "Not available, Check spelling as you type is not activated"
+msgstr "Недоступно, проверка орфографии при вводе не активирована"
+
+#: appModules/winword/ww_spellingErrors.py:86
+msgid "Mispelled word"
+msgstr "Замененное слово"
+
+#: appModules/winword/ww_tables.py:58
+#, python-brace-format
+msgid ""
+"Page {page}, line {line}\n"
+"Title: {title}\n"
+"Number of rows: {rowsCount}\n"
+"Number of columns: {columnsCount}\n"
+msgstr ""
+"Страница {page}, строка {line}\n"
+"Заглавие: {title}\n"
+"Число строк: {rowsCount}\n"
+"Число столбцов: {columnsCount}\n"
+
+#: appModules/winword/ww_tables.py:99 appModules/winword/ww_tables.py:236
+#: appModules/winword/ww_tables.py:266
+msgid "Row's limit"
+msgstr "Ограничение строки"
+
+#: appModules/winword/ww_tables.py:108 appModules/winword/ww_tables.py:238
+#: appModules/winword/ww_tables.py:253
+msgid "Column's limit"
+msgstr "Ограничение столбца"
+
+#: appModules/winword/ww_tables.py:116
+msgid "Table's start"
+msgstr "Начало таблицы"
+
+#: appModules/winword/ww_tables.py:124
+msgid "Table's end"
+msgstr "Конец таблицы"
+
+#: appModules/winword/ww_tables.py:137
+#: appModules/winword/ww_wordDocumentBase.py:1053
+msgid "Last cell"
+msgstr "Последняя ячейка"
+
+#: appModules/winword/ww_tables.py:142
+#: appModules/winword/ww_wordDocumentBase.py:1055
+msgid "First cell"
+msgstr "Первая ячейка"
+
+#: appModules/winword/ww_tables.py:241 appModules/winword/ww_tables.py:268
+#, python-format
+msgid "column %s"
+msgstr "столбец%s"
+
+#: appModules/winword/ww_tables.py:243 appModules/winword/ww_tables.py:256
+#, python-format
+msgid "row %s"
+msgstr "строка%s"
+
+#: appModules/winword/ww_tables.py:314 appModules/winword/ww_tables.py:329
+msgid "Tables"
+msgstr "Таблицы"
+
+#: appModules/winword/ww_tables.py:320
+msgid "No table"
+msgstr "Нет таблицы"
+
+#: appModules/winword/ww_tables.py:334
+msgid "Number of rows"
+msgstr "Число строк"
+
+#: appModules/winword/ww_tables.py:335
+msgid "Number of columns"
+msgstr "Число столбцов"
+
+#: appModules/winword/ww_textUtils.py:31
+msgid "Modification of author name"
+msgstr "Изменение имени автора"
+
+#: appModules/winword/ww_textUtils.py:33
+msgid "Enter Author name:"
+msgstr "Введите имя автора:"
+
+#: appModules/winword/ww_wdConst.py:589
+msgid " 10 inches wide, 14 inches long"
+msgstr " 10 дюймов в ширину, 14 дюймов в длину"
+
+#: appModules/winword/ww_wdConst.py:590
+msgid "Legal 11 inches wide, 17 inches long"
+msgstr "Юридический 11 дюймов в ширину, 17 дюймов в длину"
+
+#: appModules/winword/ww_wdConst.py:591
+msgid "A3 dimensions"
+msgstr "Размер А3"
+
+#: appModules/winword/ww_wdConst.py:592
+msgid "A4 dimensions"
+msgstr "Размер А4"
+
+#: appModules/winword/ww_wdConst.py:593
+msgid "Small A4 dimensions"
+msgstr "Размер А4 небольшой"
+
+#: appModules/winword/ww_wdConst.py:594
+msgid "A5 dimensions"
+msgstr "Размер А5"
+
+#: appModules/winword/ww_wdConst.py:595
+msgid "B4 dimensions"
+msgstr "Размер B4"
+
+#: appModules/winword/ww_wdConst.py:596
+msgid "B5 dimensions"
+msgstr "Размер B5"
+
+#: appModules/winword/ww_wdConst.py:597
+msgid "C sheet dimensions"
+msgstr "Размер листов C"
+
+#: appModules/winword/ww_wdConst.py:598
+msgid "Custom paper size"
+msgstr "Пользовательский размер бумаги"
+
+#: appModules/winword/ww_wdConst.py:599
+msgid "D sheet dimensions"
+msgstr "Размер листов D"
+
+#: appModules/winword/ww_wdConst.py:600
+msgid "Legal envelope, size 10"
+msgstr "Юридический конверт, размер 10"
+
+#: appModules/winword/ww_wdConst.py:601
+msgid "Envelope, size 11"
+msgstr "Конверт, размер 11"
+
+#: appModules/winword/ww_wdConst.py:602
+msgid "Envelope, size 12"
+msgstr "Конверт, размер 12"
+
+#: appModules/winword/ww_wdConst.py:603
+msgid "Envelope, size 14"
+msgstr "Конверт, размер 14"
+
+#: appModules/winword/ww_wdConst.py:604
+msgid "Envelope, size 9"
+msgstr "Конверт, размер 9"
+
+#: appModules/winword/ww_wdConst.py:605
+msgid "B4 envelope"
+msgstr "Конверт B4"
+
+#: appModules/winword/ww_wdConst.py:606
+msgid "B5 envelope"
+msgstr "Конверт B5"
+
+#: appModules/winword/ww_wdConst.py:607
+msgid "B6 envelope"
+msgstr "Конверт B6"
+
+#: appModules/winword/ww_wdConst.py:608
+msgid "C3 envelope"
+msgstr "Конверт C3"
+
+#: appModules/winword/ww_wdConst.py:609
+msgid "C4 envelope"
+msgstr "Конверт C4"
+
+#: appModules/winword/ww_wdConst.py:610
+msgid "C5 envelope"
+msgstr "Конверт C5"
+
+#: appModules/winword/ww_wdConst.py:611
+msgid "C6 envelope"
+msgstr "Конверт C6"
+
+#: appModules/winword/ww_wdConst.py:612
+msgid "C65 envelope"
+msgstr "Конверт C65"
+
+#: appModules/winword/ww_wdConst.py:613
+msgid "DL envelope"
+msgstr "Конверт DL"
+
+#: appModules/winword/ww_wdConst.py:614
+msgid "Italian envelope"
+msgstr "Итальянский конверт"
+
+#: appModules/winword/ww_wdConst.py:615
+msgid "Monarch envelope"
+msgstr "Монарший конверт"
+
+#: appModules/winword/ww_wdConst.py:616
+msgid "Personal envelope"
+msgstr "Личный конверт"
+
+#: appModules/winword/ww_wdConst.py:617
+msgid "E sheet dimensions"
+msgstr "Размер листов E"
+
+#: appModules/winword/ww_wdConst.py:618
+msgid "Executive dimensions"
+msgstr "Исполнительные размеры"
+
+#: appModules/winword/ww_wdConst.py:619
+msgid "German legal fanfold dimensions"
+msgstr "Размеры Немецкого юридического Фанфолда"
+
+#: appModules/winword/ww_wdConst.py:620
+msgid "German standard fanfold dimensions"
+msgstr "Размеры Немецкого стандартного Фанфолда"
+
+#: appModules/winword/ww_wdConst.py:621
+msgid "United States fanfold dimensions"
+msgstr "Размеры Американского Фанфолда"
+
+#: appModules/winword/ww_wdConst.py:622
+msgid "Folio dimensions"
+msgstr "Размеры Фолио"
+
+#: appModules/winword/ww_wdConst.py:623
+msgid "Ledger dimensions"
+msgstr "Размеры Леджер"
+
+#: appModules/winword/ww_wdConst.py:624
+msgid "Legal dimensions"
+msgstr "Юридические размеры"
+
+#: appModules/winword/ww_wdConst.py:625
+msgid "Letter dimensions"
+msgstr "Размеры письма"
+
+#: appModules/winword/ww_wdConst.py:626
+msgid "Small letter dimensions"
+msgstr "Размеры маленького письма"
+
+#: appModules/winword/ww_wdConst.py:627
+msgid "Note dimensions"
+msgstr "Размер примечания"
+
+#: appModules/winword/ww_wdConst.py:628
+msgid "Quarto dimensions"
+msgstr "Размеры комнаты"
+
+#: appModules/winword/ww_wdConst.py:629
+msgid "Statement dimensions"
+msgstr "Размеры заявления"
+
+#: appModules/winword/ww_wdConst.py:630
+msgid "Tabloid dimensions"
+msgstr "Размеры Таблоид"
+
+#: appModules/winword/ww_wdConst.py:634
+msgid "Aqua"
+msgstr "Вода"
+
+#: appModules/winword/ww_wdConst.py:635
+msgid "Black"
+msgstr "Черный"
+
+#: appModules/winword/ww_wdConst.py:636
+msgid "Blue"
+msgstr "Синий"
+
+#: appModules/winword/ww_wdConst.py:637
+msgid "BlueGray"
+msgstr "Серо-голубой"
+
+#: appModules/winword/ww_wdConst.py:638
+msgid "BrightGreen"
+msgstr "Ярко зеленый"
+
+#: appModules/winword/ww_wdConst.py:639
+msgid "Brown"
+msgstr "Коричневый"
+
+#: appModules/winword/ww_wdConst.py:640
+msgid "DarkBlue"
+msgstr "Темно-синий"
+
+#: appModules/winword/ww_wdConst.py:641
+msgid "DarkGreen"
+msgstr "Темно-зеленый"
+
+#: appModules/winword/ww_wdConst.py:642
+msgid "DarkRed"
+msgstr "Темно-красный"
+
+#: appModules/winword/ww_wdConst.py:643
+msgid "DarkTeal"
+msgstr "Темный Чирок"
+
+#: appModules/winword/ww_wdConst.py:644
+msgid "DarkYellow"
+msgstr "Темно-желтый"
+
+#: appModules/winword/ww_wdConst.py:645
+msgid "Gold"
+msgstr "Золотой"
+
+#: appModules/winword/ww_wdConst.py:646
+msgid "Gray05"
+msgstr "Серый 05"
+
+#: appModules/winword/ww_wdConst.py:647
+msgid "Gray10"
+msgstr "Серый 10"
+
+#: appModules/winword/ww_wdConst.py:648
+msgid "Gray125"
+msgstr "Серый 125"
+
+#: appModules/winword/ww_wdConst.py:649
+msgid "Gray15"
+msgstr "Серый 15"
+
+#: appModules/winword/ww_wdConst.py:650
+msgid "Gray20"
+msgstr "Серый 20"
+
+#: appModules/winword/ww_wdConst.py:651
+msgid "Gray25"
+msgstr "Серый 25"
+
+#: appModules/winword/ww_wdConst.py:652
+msgid "Gray30"
+msgstr "Серый 30"
+
+#: appModules/winword/ww_wdConst.py:653
+msgid "Gray35"
+msgstr "Серый 35"
+
+#: appModules/winword/ww_wdConst.py:654
+msgid "Gray375"
+msgstr "Серый 375"
+
+#: appModules/winword/ww_wdConst.py:655
+msgid "Gray40"
+msgstr "Серый 40"
+
+#: appModules/winword/ww_wdConst.py:656
+msgid "Gray45"
+msgstr "Серый 45"
+
+#: appModules/winword/ww_wdConst.py:657
+msgid "Gray50"
+msgstr "Серый 50"
+
+#: appModules/winword/ww_wdConst.py:658
+msgid "Gray55"
+msgstr "Серый 55"
+
+#: appModules/winword/ww_wdConst.py:659
+msgid "Gray60"
+msgstr "Серый 60"
+
+#: appModules/winword/ww_wdConst.py:660
+msgid "Gray625"
+msgstr "Серый 625"
+
+#: appModules/winword/ww_wdConst.py:661
+msgid "Gray65"
+msgstr "Серый 65"
+
+#: appModules/winword/ww_wdConst.py:662
+msgid "Gray70"
+msgstr "Серый 70"
+
+#: appModules/winword/ww_wdConst.py:663
+msgid "Gray75"
+msgstr "Серый 75"
+
+#: appModules/winword/ww_wdConst.py:664
+msgid "Gray80"
+msgstr "Серый 80"
+
+#: appModules/winword/ww_wdConst.py:665
+msgid "Gray85"
+msgstr "Серый 85"
+
+#: appModules/winword/ww_wdConst.py:666
+msgid "Gray875"
+msgstr "Серый 875"
+
+#: appModules/winword/ww_wdConst.py:667
+msgid "Gray90"
+msgstr "Серый 90"
+
+#: appModules/winword/ww_wdConst.py:668
+msgid "Gray95"
+msgstr "Серый 95"
+
+#: appModules/winword/ww_wdConst.py:669
+msgid "Green"
+msgstr "Зеленый"
+
+#: appModules/winword/ww_wdConst.py:670
+msgid "Indigo"
+msgstr "Индиго"
+
+#: appModules/winword/ww_wdConst.py:671
+msgid "Lavender"
+msgstr "Лаванда"
+
+#: appModules/winword/ww_wdConst.py:672
+msgid "LightBlue"
+msgstr "Светло-синий"
+
+#: appModules/winword/ww_wdConst.py:673
+msgid "LightGreen"
+msgstr "Светло-зеленый"
+
+#: appModules/winword/ww_wdConst.py:674
+msgid "LightOrange"
+msgstr "Светло-оранжевый"
+
+#: appModules/winword/ww_wdConst.py:675
+msgid "LightTurquoise"
+msgstr "Светло-бирюзовый"
+
+#: appModules/winword/ww_wdConst.py:676
+msgid "LightYellow"
+msgstr "Светло-желтый"
+
+#: appModules/winword/ww_wdConst.py:677
+msgid "Lime"
+msgstr "Лаймовый"
+
+#: appModules/winword/ww_wdConst.py:678
+msgid "OliveGreen"
+msgstr "Оливково-зеленый"
+
+#: appModules/winword/ww_wdConst.py:679
+msgid "Orange"
+msgstr "Оранжевый"
+
+#: appModules/winword/ww_wdConst.py:680
+msgid "PaleBlue"
+msgstr "Бледно-голубой"
+
+#: appModules/winword/ww_wdConst.py:681
+msgid "Pink"
+msgstr "Розовый"
+
+#: appModules/winword/ww_wdConst.py:682
+msgid "Plum"
+msgstr "Темно-фиолетовый"
+
+#: appModules/winword/ww_wdConst.py:683
+msgid "Red"
+msgstr "Красный"
+
+#: appModules/winword/ww_wdConst.py:684
+msgid "Rose"
+msgstr "Роза"
+
+#: appModules/winword/ww_wdConst.py:685
+msgid "SeaGreen"
+msgstr "Морская волна"
+
+#: appModules/winword/ww_wdConst.py:686
+msgid "SkyBlue"
+msgstr "Небесно-голубой"
+
+#: appModules/winword/ww_wdConst.py:687
+msgid "Tan"
+msgstr "Желтовато-коричневый"
+
+#: appModules/winword/ww_wdConst.py:688
+msgid "Teal"
+msgstr "Чирок"
+
+#: appModules/winword/ww_wdConst.py:689
+msgid "Turquoise"
+msgstr "Бирюзовый"
+
+#: appModules/winword/ww_wdConst.py:690
+msgid "Violet"
+msgstr "Фиолетовый"
+
+#: appModules/winword/ww_wdConst.py:691
+msgid "White"
+msgstr "Белый"
+
+#: appModules/winword/ww_wdConst.py:692
+msgid "Yellow"
+msgstr "Желтый"
+
+#: appModules/winword/ww_wdConst.py:713
+msgid "Bottom"
+msgstr "Внизу"
+
+#: appModules/winword/ww_wdConst.py:714
+msgid "Diagonal down"
+msgstr "Диагональ вниз"
+
+#: appModules/winword/ww_wdConst.py:715
+msgid "Diagonal up"
+msgstr "Диагональ вверх"
+
+#: appModules/winword/ww_wdConst.py:716
+msgid "Horizontal"
+msgstr "Горизонтальная линия"
+
+#: appModules/winword/ww_wdConst.py:717
+msgid "Left"
+msgstr "Слева"
+
+#: appModules/winword/ww_wdConst.py:718
+msgid "Right"
+msgstr "Правильно"
+
+#: appModules/winword/ww_wdConst.py:719
+msgid "Top"
+msgstr "Сверху"
+
+#: appModules/winword/ww_wdConst.py:720
+msgid "Vertical"
+msgstr "Вертикально"
+
+#: appModules/winword/ww_wdConst.py:724
+msgid "Dash Dot"
+msgstr "Точка тире"
+
+#: appModules/winword/ww_wdConst.py:725
+msgid "Dash Dot Dot"
+msgstr "Тире точка точка"
+
+#: appModules/winword/ww_wdConst.py:726
+msgid "Dash Dot Stroked"
+msgstr "Точка тире изглаженная"
+
+#: appModules/winword/ww_wdConst.py:727
+msgid "Dash Large Gap"
+msgstr "Тире большой разрыв"
+
+#: appModules/winword/ww_wdConst.py:728
+msgid "Dash Small Gap"
+msgstr "Тире малый разрыв"
+
+#: appModules/winword/ww_wdConst.py:730
+msgid "Double"
+msgstr "Двойной"
+
+#: appModules/winword/ww_wdConst.py:731
+msgid "Double Wavy"
+msgstr "Двойной Волнистый"
+
+#: appModules/winword/ww_wdConst.py:732
+msgid "Emboss 3D"
+msgstr "Тиснение 3D"
+
+#: appModules/winword/ww_wdConst.py:733
+msgid "Engrave 3D"
+msgstr "Гравировка 3D"
+
+#: appModules/winword/ww_wdConst.py:734
+msgid "Inset"
+msgstr "Уменьшенный"
+
+#: appModules/winword/ww_wdConst.py:735
+msgid "None"
+msgstr "Ничего"
+
+#: appModules/winword/ww_wdConst.py:736
+msgid "Outset"
+msgstr "Боковик"
+
+#: appModules/winword/ww_wdConst.py:737
+msgid "Single"
+msgstr "Разовый"
+
+#: appModules/winword/ww_wdConst.py:738
+msgid "Single Wavy"
+msgstr "Разовая волна"
+
+#: appModules/winword/ww_wdConst.py:739
+msgid "Thick Thin Large Gap"
+msgstr "Толстый Тонкий Большой разрыв"
+
+#: appModules/winword/ww_wdConst.py:740
+msgid "Thick Thin Medium Gap"
+msgstr "Толстый Тонкий Средний разрыв"
+
+#: appModules/winword/ww_wdConst.py:741
+msgid "Thick Thin Small Gap"
+msgstr "Толстый Тонкий Малый разрыв"
+
+#: appModules/winword/ww_wdConst.py:742
+msgid "Thin Thick Large Gap"
+msgstr "Тонкий Толстый Большой разрыв"
+
+#: appModules/winword/ww_wdConst.py:743
+msgid "Thin Thick Medium Gap"
+msgstr "Тонкий Толстый Средний разрыв"
+
+#: appModules/winword/ww_wdConst.py:744
+msgid "Thin Thick Small Gap"
+msgstr "Тонкий Толстый Малый разрыв"
+
+#: appModules/winword/ww_wdConst.py:745
+msgid "Thin Thick Thin Large Gap"
+msgstr "Тонкий Толстый Тонкий Большой разрыв"
+
+#: appModules/winword/ww_wdConst.py:746
+msgid "Thin Thick Thin Medium Gap"
+msgstr "Тонкий Толстый Тонкий Средний разрыв"
+
+#: appModules/winword/ww_wdConst.py:747
+msgid "Thin Thick Thin Small Gap"
+msgstr "Тонкий Толстый Тонкий Малый разрыв"
+
+#: appModules/winword/ww_wdConst.py:748
+msgid "Triple"
+msgstr "Тройной"
+
+#: appModules/winword/ww_wdConst.py:751
+msgid "0.25 points"
+msgstr "0,25 пункта"
+
+#: appModules/winword/ww_wdConst.py:752
+msgid "0.5 points"
+msgstr "0,5 пункта"
+
+#: appModules/winword/ww_wdConst.py:753
+msgid "0.75 points"
+msgstr "0,75 пункта"
+
+#: appModules/winword/ww_wdConst.py:754
+msgid "1 point"
+msgstr "1 пункт"
+
+#: appModules/winword/ww_wdConst.py:755
+msgid "1.5 points"
+msgstr "1.5 пункта"
+
+#: appModules/winword/ww_wdConst.py:756
+msgid "2.25 points"
+msgstr "2.25 пункта"
+
+#: appModules/winword/ww_wdConst.py:757
+msgid "3 points"
+msgstr "3 пункта"
+
+#: appModules/winword/ww_wdConst.py:758
+msgid "4.5 points"
+msgstr "4.5 пункта"
+
+#: appModules/winword/ww_wdConst.py:759
+msgid "6 points"
+msgstr "6 пунктов"
+
+#: appModules/winword/ww_wdConst.py:760
+msgid "custom width"
+msgstr "пользовательская ширина"
+
+#: appModules/winword/ww_wdConst.py:763
+msgid "Apples"
+msgstr "Яблоки"
+
+#: appModules/winword/ww_wdConst.py:764
+msgid "ArchedScallops"
+msgstr "Арочные Гребешки"
+
+#: appModules/winword/ww_wdConst.py:765
+msgid "BabyPacifier"
+msgstr "Детская соска"
+
+#: appModules/winword/ww_wdConst.py:766
+msgid "BabyRattle"
+msgstr "Детская погремушка"
+
+#: appModules/winword/ww_wdConst.py:767
+msgid "Balloons3Colors"
+msgstr "Воздушные шары 3 цвета"
+
+#: appModules/winword/ww_wdConst.py:768
+msgid "BalloonsHotAir"
+msgstr "Воздушные шары горячего воздуха"
+
+#: appModules/winword/ww_wdConst.py:769
+msgid "BasicBlackDashes"
+msgstr "Основные черный Штрихи"
+
+#: appModules/winword/ww_wdConst.py:770
+msgid "BasicBlackDots"
+msgstr "Основные черные точки"
+
+#: appModules/winword/ww_wdConst.py:771
+msgid "BasicBlackSquares"
+msgstr "Основные черные квадраты"
+
+#: appModules/winword/ww_wdConst.py:772
+msgid "BasicThinLines"
+msgstr "Основные тонкие линии"
+
+#: appModules/winword/ww_wdConst.py:773
+msgid "BasicWhiteDashes"
+msgstr "Основные белые черточки"
+
+#: appModules/winword/ww_wdConst.py:774
+msgid "BasicWhiteDots"
+msgstr "Основные белые точки"
+
+#: appModules/winword/ww_wdConst.py:775
+msgid "BasicWhiteSquares"
+msgstr "Основные белые квадраты"
+
+#: appModules/winword/ww_wdConst.py:776
+msgid "BasicWideInline"
+msgstr "Основные широкие линии внутри"
+
+#: appModules/winword/ww_wdConst.py:777
+msgid "BasicWideMidline"
+msgstr "Основные Широкие средние линии"
+
+#: appModules/winword/ww_wdConst.py:778
+msgid "BasicWideOutline"
+msgstr "Основные Широкие линии снаружи"
+
+#: appModules/winword/ww_wdConst.py:779
+msgid "Bats"
+msgstr "Летучие мыши"
+
+#: appModules/winword/ww_wdConst.py:780
+msgid "Birds"
+msgstr "Птицы"
+
+#: appModules/winword/ww_wdConst.py:781
+msgid "BirdsFlight"
+msgstr "Полет птицы"
+
+#: appModules/winword/ww_wdConst.py:782
+msgid "Cabins"
+msgstr "Каюты"
+
+#: appModules/winword/ww_wdConst.py:783
+msgid "CakeSlice"
+msgstr "Разрезка"
+
+#: appModules/winword/ww_wdConst.py:784
+msgid "CandyCorn"
+msgstr "Сладкий попкорн"
+
+#: appModules/winword/ww_wdConst.py:785
+msgid "CelticKnotwork"
+msgstr "Чересстрочный Celtic"
+
+#: appModules/winword/ww_wdConst.py:786
+msgid "CertificateBanner"
+msgstr "Баннер сертификата"
+
+#: appModules/winword/ww_wdConst.py:787
+msgid "ChainLink"
+msgstr "Цепочка ссылок"
+
+#: appModules/winword/ww_wdConst.py:788
+msgid "ChampagneBottle"
+msgstr "Бутылка шампанского"
+
+#: appModules/winword/ww_wdConst.py:789
+msgid "CheckedBarBlack"
+msgstr "Бар черный плед"
+
+#: appModules/winword/ww_wdConst.py:790
+msgid "CheckedBarColor"
+msgstr "Барная плитка"
+
+#: appModules/winword/ww_wdConst.py:791
+msgid "Checkered"
+msgstr "Клетчатый"
+
+#: appModules/winword/ww_wdConst.py:792
+msgid "ChristmasTree"
+msgstr "Елка"
+
+#: appModules/winword/ww_wdConst.py:793
+msgid "CirclesLines"
+msgstr "Круги линии"
+
+#: appModules/winword/ww_wdConst.py:794
+msgid "CirclesRectangles"
+msgstr "Круги Прямоугольники"
+
+#: appModules/winword/ww_wdConst.py:795
+msgid "ClassicalWave"
+msgstr "Классическая волна"
+
+#: appModules/winword/ww_wdConst.py:796
+msgid "Clocks"
+msgstr "Часы"
+
+#: appModules/winword/ww_wdConst.py:797
+msgid "Compass"
+msgstr "Компас"
+
+#: appModules/winword/ww_wdConst.py:798
+msgid "Confetti"
+msgstr "Конфетти"
+
+#: appModules/winword/ww_wdConst.py:799
+msgid "ConfettiGrays"
+msgstr "Конфетти серый"
+
+#: appModules/winword/ww_wdConst.py:800
+msgid "ConfettiOutline"
+msgstr "Конфетти Контур"
+
+#: appModules/winword/ww_wdConst.py:801
+msgid "ConfettiStreamers"
+msgstr "Конфетти Лента"
+
+#: appModules/winword/ww_wdConst.py:802
+msgid "ConfettiWhite"
+msgstr "Белое конфетти"
+
+#: appModules/winword/ww_wdConst.py:803
+msgid "CornerTriangles"
+msgstr "Углы треугольника"
+
+#: appModules/winword/ww_wdConst.py:804
+msgid "CouponCutoutDashes"
+msgstr "Купонные штрижки"
+
+#: appModules/winword/ww_wdConst.py:805
+msgid "CouponCutoutDots"
+msgstr "Купонные точки"
+
+#: appModules/winword/ww_wdConst.py:806
+msgid "CrazyMaze"
+msgstr "Сумасшедший лабиринт"
+
+#: appModules/winword/ww_wdConst.py:807
+msgid "CreaturesButterfly"
+msgstr "Существо Бабочка"
+
+#: appModules/winword/ww_wdConst.py:808
+msgid "CreaturesFish"
+msgstr "Существо Рыба"
+
+#: appModules/winword/ww_wdConst.py:809
+msgid "CreaturesInsects"
+msgstr "Существа Насекомые"
+
+#: appModules/winword/ww_wdConst.py:810
+msgid "CreaturesLadyBug"
+msgstr "Существа Божья коровка"
+
+#: appModules/winword/ww_wdConst.py:811
+msgid "CrossStitch"
+msgstr "Вышивка крестиком"
+
+#: appModules/winword/ww_wdConst.py:812
+msgid "Cup"
+msgstr "Кубок"
+
+#: appModules/winword/ww_wdConst.py:813
+msgid "DecoArch"
+msgstr "Деко Дуга"
+
+#: appModules/winword/ww_wdConst.py:814
+msgid "DecoArchColor"
+msgstr "Деко Дуга цветная"
+
+#: appModules/winword/ww_wdConst.py:815
+msgid "DecoBlocks"
+msgstr "Деко блоки"
+
+#: appModules/winword/ww_wdConst.py:816
+msgid "DiamondsGray"
+msgstr "Серый алмаз"
+
+#: appModules/winword/ww_wdConst.py:817
+msgid "DoubleD"
+msgstr "Двойной D"
+
+#: appModules/winword/ww_wdConst.py:818
+msgid "DoubleDiamonds"
+msgstr "Двойной алмаз"
+
+#: appModules/winword/ww_wdConst.py:819
+msgid "Earth1"
+msgstr "Земля 1"
+
+#: appModules/winword/ww_wdConst.py:820
+msgid "Earth2"
+msgstr "Земля 2"
+
+#: appModules/winword/ww_wdConst.py:821
+msgid "EclipsingSquares1"
+msgstr "Затемненные квадраты 1"
+
+#: appModules/winword/ww_wdConst.py:822
+msgid "EclipsingSquares2"
+msgstr "Затемненные квадраты 2"
+
+#: appModules/winword/ww_wdConst.py:823
+msgid "EggsBlack"
+msgstr "Черные яйца"
+
+#: appModules/winword/ww_wdConst.py:824
+msgid "Fans"
+msgstr "Вентиляторы"
+
+#: appModules/winword/ww_wdConst.py:825
+msgid "Film"
+msgstr "Фильм"
+
+#: appModules/winword/ww_wdConst.py:826
+msgid "Firecrackers"
+msgstr "Пожар"
+
+#: appModules/winword/ww_wdConst.py:827
+msgid "FlowersBlockPrint"
+msgstr "Цветочный блок печати"
+
+#: appModules/winword/ww_wdConst.py:828
+msgid "FlowersDaisies"
+msgstr "Цветы Ромашки"
+
+#: appModules/winword/ww_wdConst.py:829
+msgid "FlowersModern1"
+msgstr "Современные цветы 1"
+
+#: appModules/winword/ww_wdConst.py:830
+msgid "FlowersModern2"
+msgstr "Современные цветы 2"
+
+#: appModules/winword/ww_wdConst.py:831
+msgid "FlowersPansy"
+msgstr "Цветы Анютины глазки"
+
+#: appModules/winword/ww_wdConst.py:832
+msgid "FlowersRedRose"
+msgstr "Цветы Красные розы"
+
+#: appModules/winword/ww_wdConst.py:833
+msgid "FlowersRoses"
+msgstr "Цветы Розы"
+
+#: appModules/winword/ww_wdConst.py:834
+msgid "FlowersTeacup"
+msgstr "Цветы, Чайная"
+
+#: appModules/winword/ww_wdConst.py:835
+msgid "FlowersTiny"
+msgstr "Цветы Крошечные"
+
+#: appModules/winword/ww_wdConst.py:836
+msgid "Gems"
+msgstr "Драгоценные камни"
+
+#: appModules/winword/ww_wdConst.py:837
+msgid "GingerbreadMan"
+msgstr "Пряничный человечек"
+
+#: appModules/winword/ww_wdConst.py:838
+msgid "Gradient"
+msgstr "Градиент"
+
+#: appModules/winword/ww_wdConst.py:839
+msgid "Handmade1"
+msgstr "Хэндмэйд 1"
+
+#: appModules/winword/ww_wdConst.py:840
+msgid "Handmade2"
+msgstr "Хэндмэйд 2"
+
+#: appModules/winword/ww_wdConst.py:841
+msgid "HeartBalloon"
+msgstr "Шар Сердце"
+
+#: appModules/winword/ww_wdConst.py:842
+msgid "HeartGray"
+msgstr "Серое сердце"
+
+#: appModules/winword/ww_wdConst.py:843
+msgid "Hearts"
+msgstr "Сердца"
+
+#: appModules/winword/ww_wdConst.py:844
+msgid "HeebieJeebies"
+msgstr "Бред"
+
+#: appModules/winword/ww_wdConst.py:845
+msgid "Holly"
+msgstr "Святой"
+
+#: appModules/winword/ww_wdConst.py:846
+msgid "HouseFunky"
+msgstr "Дом в стиле фанк"
+
+#: appModules/winword/ww_wdConst.py:847
+msgid "Hypnotic"
+msgstr "Гипнотический"
+
+#: appModules/winword/ww_wdConst.py:848
+msgid "IceCreamCones"
+msgstr "Конусы мороженого"
+
+#: appModules/winword/ww_wdConst.py:849
+msgid "LightBulb"
+msgstr "Лампочка"
+
+#: appModules/winword/ww_wdConst.py:850
+msgid "Lightning1"
+msgstr "Молния 1"
+
+#: appModules/winword/ww_wdConst.py:851
+msgid "Lightning2"
+msgstr "Молния 2"
+
+#: appModules/winword/ww_wdConst.py:852
+msgid "MapleLeaf"
+msgstr "Кленовый лист"
+
+#: appModules/winword/ww_wdConst.py:853
+msgid "MapleMuffins"
+msgstr "Кленовый кекс"
+
+#: appModules/winword/ww_wdConst.py:854
+msgid "MapPins"
+msgstr "Карта Штырьков"
+
+#: appModules/winword/ww_wdConst.py:855
+msgid "Marquee"
+msgstr "Шатер"
+
+#: appModules/winword/ww_wdConst.py:856
+msgid "MarqueeToothed"
+msgstr "Зубчатый шатер"
+
+#: appModules/winword/ww_wdConst.py:857
+msgid "Moons"
+msgstr "Спутники"
+
+#: appModules/winword/ww_wdConst.py:858
+msgid "Mosaic"
+msgstr "Мозайка"
+
+#: appModules/winword/ww_wdConst.py:859
+msgid "MusicNotes"
+msgstr "Музыкальное примечание"
+
+#: appModules/winword/ww_wdConst.py:860
+msgid "Northwest"
+msgstr "Северо-запад"
+
+#: appModules/winword/ww_wdConst.py:861
+msgid "Ovals"
+msgstr "Овалы"
+
+#: appModules/winword/ww_wdConst.py:862
+msgid "Packages"
+msgstr "Пакеты"
+
+#: appModules/winword/ww_wdConst.py:863
+msgid "PalmsBlack"
+msgstr "Черные пальмы"
+
+#: appModules/winword/ww_wdConst.py:864
+msgid "PalmsColor"
+msgstr "Цветные пальмы"
+
+#: appModules/winword/ww_wdConst.py:865
+msgid "PaperClips"
+msgstr "Скрепки"
+
+#: appModules/winword/ww_wdConst.py:866
+msgid "Papyrus"
+msgstr "Папирус"
+
+#: appModules/winword/ww_wdConst.py:867
+msgid "PartyFavor"
+msgstr "Аксессуары для вечеринок"
+
+#: appModules/winword/ww_wdConst.py:868
+msgid "PartyGlass"
+msgstr "Праздничное стекло"
+
+#: appModules/winword/ww_wdConst.py:869
+msgid "Pencils"
+msgstr "Карандаши"
+
+#: appModules/winword/ww_wdConst.py:870
+msgid "People"
+msgstr "Люди"
+
+#: appModules/winword/ww_wdConst.py:871
+msgid "PeopleHats"
+msgstr "Люди шляпы"
+
+#: appModules/winword/ww_wdConst.py:872
+msgid "PeopleWaving"
+msgstr "Люди приветствуют"
+
+#: appModules/winword/ww_wdConst.py:873
+msgid "Poinsettias"
+msgstr "Рождественская звезда"
+
+#: appModules/winword/ww_wdConst.py:874
+msgid "PostageStamp"
+msgstr "Почтовая марка"
+
+#: appModules/winword/ww_wdConst.py:875
+msgid "Pumpkin1"
+msgstr "Тыква 1"
+
+#: appModules/winword/ww_wdConst.py:876
+msgid "PushPinNote1"
+msgstr "Чертежная кнопка 1"
+
+#: appModules/winword/ww_wdConst.py:877
+msgid "PushPinNote2"
+msgstr "Чертежная кнопка 2"
+
+#: appModules/winword/ww_wdConst.py:878
+msgid "Pyramids"
+msgstr "Пирамиды"
+
+#: appModules/winword/ww_wdConst.py:879
+msgid "PyramidsAbove"
+msgstr "Пирамиды Выше"
+
+#: appModules/winword/ww_wdConst.py:880
+msgid "Quadrants"
+msgstr "Квадранты"
+
+#: appModules/winword/ww_wdConst.py:881
+msgid "Rings"
+msgstr "Кольца"
+
+#: appModules/winword/ww_wdConst.py:882
+msgid "Safari"
+msgstr "Сафари"
+
+#: appModules/winword/ww_wdConst.py:883
+msgid "Sawtooth"
+msgstr "Зуб пилы"
+
+#: appModules/winword/ww_wdConst.py:884
+msgid "SawtoothGray"
+msgstr "Зуб пилы серый"
+
+#: appModules/winword/ww_wdConst.py:885
+msgid "ScaredCat"
+msgstr "Испуганный кот"
+
+#: appModules/winword/ww_wdConst.py:886
+msgid "Seattle"
+msgstr "Сиэтл"
+
+#: appModules/winword/ww_wdConst.py:887
+msgid "ShadowedSquares"
+msgstr "Теневые Квадраты"
+
+#: appModules/winword/ww_wdConst.py:888
+msgid "SharksTeeth"
+msgstr "Зубы акулы"
+
+#: appModules/winword/ww_wdConst.py:889
+msgid "ShorebirdTracks"
+msgstr "Следы куликов"
+
+#: appModules/winword/ww_wdConst.py:890
+msgid "Skyrocket"
+msgstr "Ракета"
+
+#: appModules/winword/ww_wdConst.py:891
+msgid "SnowflakeFancy"
+msgstr "Снежинки фантазии"
+
+#: appModules/winword/ww_wdConst.py:892
+msgid "Snowflakes"
+msgstr "Снежинки"
+
+#: appModules/winword/ww_wdConst.py:893
+msgid "Sombrero"
+msgstr "Сомбреро"
+
+#: appModules/winword/ww_wdConst.py:894
+msgid "Southwest"
+msgstr "Юго-запад"
+
+#: appModules/winword/ww_wdConst.py:895
+msgid "Stars"
+msgstr "Звёздочка"
+
+#: appModules/winword/ww_wdConst.py:896
+msgid "Stars3D"
+msgstr "Звёздочка 3D"
+
+#: appModules/winword/ww_wdConst.py:897
+msgid "StarsBlack"
+msgstr "Черные звезды"
+
+#: appModules/winword/ww_wdConst.py:898
+msgid "StarsShadowed"
+msgstr "Звезды в тени"
+
+#: appModules/winword/ww_wdConst.py:899
+msgid "StarsTop"
+msgstr "Верхняя звёздочка"
+
+#: appModules/winword/ww_wdConst.py:900
+msgid "Sun"
+msgstr "Солнце"
+
+#: appModules/winword/ww_wdConst.py:901
+msgid "Swirligig"
+msgstr "Турбулентность"
+
+#: appModules/winword/ww_wdConst.py:902
+msgid "TornPaper"
+msgstr "Рваная бумага"
+
+#: appModules/winword/ww_wdConst.py:903
+msgid "TornPaperBlack"
+msgstr "Рваная черная бумага"
+
+#: appModules/winword/ww_wdConst.py:904
+msgid "Trees"
+msgstr "Деревья"
+
+#: appModules/winword/ww_wdConst.py:905
+msgid "TriangleParty"
+msgstr "Треугольная вечеринка"
+
+#: appModules/winword/ww_wdConst.py:906
+msgid "Triangles"
+msgstr "Треугольники"
+
+#: appModules/winword/ww_wdConst.py:907
+msgid "Tribal1"
+msgstr "Племенной1"
+
+#: appModules/winword/ww_wdConst.py:908
+msgid "Tribal2"
+msgstr "Племенной2"
+
+#: appModules/winword/ww_wdConst.py:909
+msgid "Tribal3"
+msgstr "Племенной3"
+
+#: appModules/winword/ww_wdConst.py:910
+msgid "Tribal4"
+msgstr "Племенной4"
+
+#: appModules/winword/ww_wdConst.py:911
+msgid "Tribal5"
+msgstr "Племенной5"
+
+#: appModules/winword/ww_wdConst.py:912
+msgid "Tribal6"
+msgstr "Племенной6"
+
+#: appModules/winword/ww_wdConst.py:913
+msgid "TwistedLines1"
+msgstr "Витая линия1"
+
+#: appModules/winword/ww_wdConst.py:914
+msgid "TwistedLines2"
+msgstr "Витая линия2"
+
+#: appModules/winword/ww_wdConst.py:915
+msgid "Vine"
+msgstr "Виноградная лоза"
+
+#: appModules/winword/ww_wdConst.py:916
+msgid "Waveline"
+msgstr "Плетеные линии"
+
+#: appModules/winword/ww_wdConst.py:917
+msgid "WeavingAngles"
+msgstr "Плетеные уголки"
+
+#: appModules/winword/ww_wdConst.py:918
+msgid "WeavingBraid"
+msgstr "Плетеные косы"
+
+#: appModules/winword/ww_wdConst.py:919
+msgid "WeavingRibbon"
+msgstr "Плетеные ленты"
+
+#: appModules/winword/ww_wdConst.py:920
+msgid "WeavingStrips"
+msgstr "Плетеные полоски"
+
+#: appModules/winword/ww_wdConst.py:921
+msgid "WhiteFlowers"
+msgstr "Белые цветы"
+
+#: appModules/winword/ww_wdConst.py:922
+msgid "Woodwork"
+msgstr "Деревяшки"
+
+#: appModules/winword/ww_wdConst.py:923
+msgid "XIllusions"
+msgstr "X Иллюзии"
+
+#: appModules/winword/ww_wdConst.py:924
+msgid "ZanyTriangles"
+msgstr "Треугольники"
+
+#: appModules/winword/ww_wdConst.py:925
+msgid "ZigZag"
+msgstr "Зигзаг"
+
+#: appModules/winword/ww_wdConst.py:926
+msgid "ZigZagStitch"
+msgstr "Зигзаг петля"
+
+#: appModules/winword/ww_wordDocumentBase.py:154
+#, python-format
+msgid " row %s"
+msgstr " строка %s"
+
+#: appModules/winword/ww_wordDocumentBase.py:156
+#, python-format
+msgid " column %s"
+msgstr " столбец %s"
+
+#: appModules/winword/ww_wordDocumentBase.py:158
+#, python-brace-format
+msgid " row {rowIndex}, column {columnIndex}"
+msgstr " строка {rowIndex}, столбец {columnIndex}"
+
+#: appModules/winword/ww_wordDocumentBase.py:164
+#, python-brace-format
+msgid "Start of row {0}"
+msgstr "Начало строки {0}"
+
+#: appModules/winword/ww_wordDocumentBase.py:169
+#, python-brace-format
+msgid "End of row {0}"
+msgstr "Конец строки {0}"
+
+#: appModules/winword/ww_wordDocumentBase.py:174
+#, python-brace-format
+msgid "Start of column {0}"
+msgstr "Начало столбца {0}"
+
+#: appModules/winword/ww_wordDocumentBase.py:179
+#, python-brace-format
+msgid "End of column {0}"
+msgstr "Конец столбца {0}"
+
+#: appModules/winword/ww_wordDocumentBase.py:214
+msgid "Table: move to next row"
+msgstr "Таблица: переход к следующей строке"
+
+#: appModules/winword/ww_wordDocumentBase.py:222
+msgid "Table: move to previous row"
+msgstr "Таблица: переход к предыдущей строке"
+
+#: appModules/winword/ww_wordDocumentBase.py:230
+msgid "Table: move to next column"
+msgstr "Таблица: переход к следующему столбцу"
+
+#: appModules/winword/ww_wordDocumentBase.py:238
+msgid "Table: move to previous column "
+msgstr "Таблица: переход к предыдущему столбцу "
+
+#: appModules/winword/ww_wordDocumentBase.py:246
+msgid "Table: move to the first cell of row"
+msgstr "Таблица: переход к первой ячейке строки"
+
+#: appModules/winword/ww_wordDocumentBase.py:254
+msgid "Table: move to the last cell of row"
+msgstr "Таблица: переход к последней ячейке строки"
+
+#: appModules/winword/ww_wordDocumentBase.py:262
+msgid "Table: move to the first cell of column"
+msgstr "Таблица: переход к первой ячейке столбца"
+
+#: appModules/winword/ww_wordDocumentBase.py:270
+msgid "Table: move to the last cell of column "
+msgstr "Таблица: переход к последней ячейке столбца "
+
+#: appModules/winword/ww_wordDocumentBase.py:278
+msgid "Table: move to first cell of table"
+msgstr "Таблица: переход к первой ячейке таблицы"
+
+#: appModules/winword/ww_wordDocumentBase.py:286
+msgid "Table: move to last cell of table"
+msgstr "Таблица: переход к последней ячейке таблицы"
+
+#: appModules/winword/ww_wordDocumentBase.py:372
+msgid "Table: report current headers"
+msgstr "Таблица: сообщать текущие заголовки"
+
+#: appModules/winword/ww_wordDocumentBase.py:385
+msgid "No row header"
+msgstr "Нет заголовка строки"
+
+#: appModules/winword/ww_wordDocumentBase.py:388
+#: appModules/winword/ww_wordDocumentBase.py:391
+#, python-format
+msgid "Row header: %s"
+msgstr "Заголовок строки: %s"
+
+#: appModules/winword/ww_wordDocumentBase.py:395
+msgid "No column header"
+msgstr "Нет заголовка столбца"
+
+#: appModules/winword/ww_wordDocumentBase.py:398
+#: appModules/winword/ww_wordDocumentBase.py:401
+#, python-format
+msgid "Column header: %s"
+msgstr "Заголовок столбца %s"
+
+#: appModules/winword/ww_wordDocumentBase.py:406
+msgid "Table: report current cell"
+msgstr "Таблица: сообщать текущую ячейку"
+
+#: appModules/winword/ww_wordDocumentBase.py:418
+msgid "Table: report all cells of current row"
+msgstr "Таблица: сообщать все ячейки в текущей строке"
+
+#: appModules/winword/ww_wordDocumentBase.py:425
+msgid "Table: report all cells of current column"
+msgstr "Таблица: сообщать все ячейки в текущем столбце"
+
+#: appModules/winword/ww_wordDocumentBase.py:433
+msgid "Table: Report the nextt cell in the column"
+msgstr "Таблица: сообщать следующую ячейку в столбце"
+
+#: appModules/winword/ww_wordDocumentBase.py:441
+msgid "Table: report the previous cell in the column"
+msgstr "Таблица: сообщать предыдущую ячейку в столбце"
+
+#: appModules/winword/ww_wordDocumentBase.py:449
+msgid "Table: report the next cell in the row"
+msgstr "Таблица: сообщать следующую ячейку в строке"
+
+#: appModules/winword/ww_wordDocumentBase.py:457
+msgid "Table: report the previous cell in the row"
+msgstr "Таблица: сообщать предыдущую ячейку в строке"
+
+#: appModules/winword/ww_wordDocumentBase.py:465
+msgid "Table: report the first cell of the column"
+msgstr "Таблица: сообщать первую ячейку в столбце"
+
+#: appModules/winword/ww_wordDocumentBase.py:473
+msgid "Table: report the last cell of the column"
+msgstr "Таблица: сообщать последнюю ячейку в столбце"
+
+#: appModules/winword/ww_wordDocumentBase.py:481
+msgid "Table: report the first cell of the row"
+msgstr "Таблица: сообщать первую ячейку в строке"
+
+#: appModules/winword/ww_wordDocumentBase.py:489
+msgid "Table: report the last cell of the row"
+msgstr "Таблица: сообщать последнюю ячейку в строке"
+
+#: appModules/winword/ww_wordDocumentBase.py:497
+msgid "Table: move to next row and report all cells of row"
+msgstr "Таблица: переход к следующей строке и сообщать все ячейки строки"
+
+#: appModules/winword/ww_wordDocumentBase.py:505
+msgid "Table: move to previous row and report all cells of row"
+msgstr "Таблица: переход к предыдущей строке и сообщить все ячейки строки"
+
+#: appModules/winword/ww_wordDocumentBase.py:513
+msgid "Table: move to next column and report all cells of column"
+msgstr "Таблица: переход к следующему столбцу и сообщать все ячейки столбца"
+
+#: appModules/winword/ww_wordDocumentBase.py:520
+msgid "Table: move to prior column and report all cells of column"
+msgstr ""
+"Таблица: переход к предыдущему столбцу и сообщить обо всех ячейках столбца"
+
+#: appModules/winword/ww_wordDocumentBase.py:529
+msgid "Table: move to first cell of column and report all cells of row"
+msgstr "Таблица: переход к первой ячейке столбца и сообщать все ячейки строки"
+
+#: appModules/winword/ww_wordDocumentBase.py:539
+msgid "Table: move to last cell of column and report all cells of row"
+msgstr ""
+"Таблица: переход к последней ячейке столбца и сообщать все ячейки строки"
+
+#: appModules/winword/ww_wordDocumentBase.py:549
+msgid "Table: move to first cell of the row and report all cells of column"
+msgstr "Таблица: переход к первой ячейке строки и сообщать все ячейки столбца"
+
+#: appModules/winword/ww_wordDocumentBase.py:559
+msgid "Table: move to last cell of the row and report all cells of column"
+msgstr ""
+"Таблица: переход к последней ячейке строки и сообщить обо всех ячейках "
+"столбца"
+
+#: appModules/winword/ww_wordDocumentBase.py:609
+#: appModules/winword/ww_wordDocumentBase.py:652
+msgid "Table layer mode on"
+msgstr "Режим Таблицы слоя включен"
+
+#: appModules/winword/ww_wordDocumentBase.py:626
+msgid " (Table layer mode)"
+msgstr " (Режим Таблицы слоя)"
+
+#: appModules/winword/ww_wordDocumentBase.py:654
+msgid "Table layer mode off"
+msgstr "Режим Таблицы слоя выключен"
+
+#: appModules/winword/ww_wordDocumentBase.py:658
+msgid "Toggle table layer mode"
+msgstr "Переключение режима таблицы слоя"
+
+#: appModules/winword/ww_wordDocumentBase.py:674
+msgid "activate or desactivate the report of all cells of row or column"
+msgstr "включить или выключить сообщения всех ячеек строки или столбца"
+
+#: appModules/winword/ww_wordDocumentBase.py:683
+msgid "Report all Cells"
+msgstr "Сообщать все ячейки"
+
+#: appModules/winword/ww_wordDocumentBase.py:687
+msgid "Do not report all cells"
+msgstr "Не сообщать все ячейки"
+
+#: appModules/winword/ww_wordDocumentBase.py:692
+msgid "activate or desactivate automatic reading"
+msgstr "Включить или выключить автоматическое чтение"
+
+#: appModules/winword/ww_wordDocumentBase.py:698
+msgid "Automatic reading enabled"
+msgstr "Автоматическое чтение включено"
+
+#: appModules/winword/ww_wordDocumentBase.py:701
+msgid "Automatic reading disabled"
+msgstr "Автоматическое чтение выключено"
+
+#: appModules/winword/ww_wordDocumentBase.py:712
+msgid "Not in table"
+msgstr "Не в таблице"
+
+#: appModules/winword/ww_wordDocumentBase.py:721
+msgid "Report replies to comment under cursor. Twice: display its"
+msgstr ""
+"Сообщить об ответах на комментарий под курсором. Дважды: отобразить его"
+
+#: appModules/winword/ww_wordDocumentBase.py:739
+msgid "Reply to comment under cursor"
+msgstr "Ответить на комментарий под курсором"
+
+#: appModules/winword/ww_wordDocumentBase.py:809
+msgid "No other paragraph"
+msgstr "Нет другого параграфа"
+
+#: appModules/winword/ww_wordDocumentBase.py:863
+msgid ""
+"Insert an element (comment, footnote, endnote) where the System caret is "
+"located."
+msgstr ""
+"Вставить элемент (комментарий, сноску, концевую сноску) туда, где находится "
+"системная каретка."
+
+#: appModules/winword/ww_wordDocumentBase.py:898
+msgid ""
+"Reports the text of the endnote or footnote where the System caret is "
+"located. Twice: modify  this text"
+msgstr ""
+"Сообщить текст концевой сноски или сноски, в которой находится системная "
+"коретка. Дважды: изменить этот текст"
+
+#: appModules/winword/ww_wordDocumentBase.py:917
+msgid "no endnote or footnote"
+msgstr "нет следующей сноски"
+
+#: appModules/winword/ww_wordDocumentBase.py:930
+msgid "Reports the text of the revision where the System caret is located."
+msgstr "Сообщать текст ревизии, в которой находится системная каретка."
+
+#: appModules/winword/ww_wordDocumentBase.py:942
+msgid "Display a dialog to get word object informations in a range"
+msgstr "Показать диалог для получения информации об объекте слова в диапазоне"
+
+#: appModules/winword/ww_wordDocumentBase.py:953
+msgid ""
+"Report the page number and line number relative to the page. Twice: display "
+"this information"
+msgstr ""
+"Сообщить номер страницы и номер строки относительно страницы. Дважды: "
+"отображать эту информацию"
+
+#: appModules/winword/ww_wordDocumentBase.py:969
+#, python-brace-format
+msgid "at {0} from left edge and {1} from top edge of the page"
+msgstr "слева {0} и {1} от верха страницы"
+
+#: appModules/winword/ww_wordDocumentBase.py:976
+#, python-brace-format
+msgid "You are at the row {row}, column {column} of table"
+msgstr "Вы находитесь в строке {row}, столбце {column} таблицы"
+
+#: appModules/winword/ww_wordDocumentBase.py:984
+#, python-brace-format
+msgid "you are at Line {line}, column {column} of page {page}"
+msgstr "строка {line}, символ {column} страницы {page}."
+
+#: appModules/winword/ww_wordDocumentBase.py:992
+#, python-brace-format
+msgid "Selection begins at line {line}, column {column} of page {page}"
+msgstr ""
+"Выделение начинается со строки {line}, столбца {column} страницы {page}"
+
+#: appModules/winword/ww_wordDocumentBase.py:1004
+#, python-brace-format
+msgid "at {0} from left edge and {1} from top edge of the page."
+msgstr "слева {0} и {1} от верха страницы."
+
+#: appModules/winword/ww_wordDocumentBase.py:1007
+#, python-brace-format
+msgid "It ends at line {line}, column {column} of page {page}"
+msgstr "Заканчивается на строке {line}, столбца {column} страницы {page}"
+
+#: appModules/winword/ww_wordDocumentBase.py:1014
+msgid "Location information"
+msgstr "Информация расположения"
+
+#: appModules/winword/ww_wordDocumentBase.py:1021
+msgid "Display document's informations"
+msgstr "Показывает информацию документа"
+
+#: appModules/winword/ww_wordDocumentBase.py:1083
+msgid "no next error"
+msgstr "нет следующей ошибки"
+
+#: appModules/winword/ww_wordDocumentBase.py:1087
+msgid "no previous error"
+msgstr "нет предыдущей ошибки"
+
+#: appModules/winword/ww_wordDocumentBase.py:1106
+msgid ""
+"Go to next spelling error. Twice: go to previous spelling error. Third: "
+"display suggestions"
+msgstr ""
+"Перейти к следующей орфографической ошибке. Дважды: перейти к предыдущей "
+"орфографической ошибке. Трижды: отобразить предложения."
+
+#: appModules/winword/ww_wordDocumentBase.py:1120
+msgid "Go to next grammatical error. Twice: go to previous grammatical error"
+msgstr ""
+"Перейти к следующей грамматической ошибке. Дважды: перейти к предыдущей "
+"грамматической ошибке."
+
+#: appModules/winword/ww_wordDocumentBase.py:1132
+msgid "Display suggestions for spelling error"
+msgstr "Отображать предложения по исправлению орфографических ошибок"
+
+#: appModules/winword/ww_wordDocumentBase.py:1139
+msgid "no error at focus"
+msgstr "Нет ошибок в фокусе"
+
+#: appModules/winword/ww_wordDocumentBase.py:1160
+msgid "Suggestions"
+msgstr "Предложения"
+
+#: appModules/winword/ww_wordDocumentBase.py:1183
+msgid "&Correct"
+msgstr "&правильно"
+
+#: appModules/winword/ww_wordDocumentBase.py:1280
+msgid "Insert element"
+msgstr "Вставить элемент"
+
+#: appModules/winword/ww_wordDocumentBase.py:1291
+msgid "Element's &type:"
+msgstr "&Тип элемента:"
+
+#: appModules/winword/ww_wordDocumentBase.py:1296
+msgid "Comment reply"
+msgstr "Ответ на комментарий"
+
+#: appModules/winword/ww_wordDocumentBase.py:1311
+msgid "&Insert"
+msgstr "&Вставка"
+
+#: buildVars.py:23
+msgid "Microsoft Word text editor:   accessibility enhancement"
+msgstr "WordAccessEnhancement (Улучшение доступности Microsoft Word)"
+
+#: buildVars.py:28
+msgid ""
+"This add-on adds extra functionality when working with Microsoft Word:\n"
+"* a script (\"windows+alt+f5\") to display a dialog box to choose between "
+"most of objects 's type to be listed (like comments, revisions, bookmarks, "
+"fields, endnotes, footnotes, spelling errors, grammar errors,...),\n"
+"* a script (\"Alt+delete\") to announce line, column  and page of  cursor "
+"position, or start  and end of selection, or current table's cell,\n"
+"* a script (\"windows+alt+f2\") to insert a comment,\n"
+"* a script (\"windows+alt+m\") to report revision at cursor's  position,\n"
+"* a script (\"windows+alt+n\") to report endNote  or footNote at cursor's "
+"position,\n"
+"* modify the NVDA scripts \"control+downArrow\" and \"Control+Uparrow"
+"\" (which moves the carret paragraph by paragraph) to skip the empty "
+"paragraph (optionnal),\n"
+"* some scripts to move in table and read table 's elements (row, column, "
+"cell),\n"
+"* adds specific Word browse mode command keys,\n"
+"* possibility to move sentence by sentence (\"alt+ downArrow\" and \"alt"
+"+upArrow\"),\n"
+"* a script to report document 's informations(windows+alt+f1\"),\n"
+"* accessibility enhancement for spelling checker (Word 2013 and 2016):\n"
+"\t* a script (NVDA+shift+f7\") to report spelling or grammatical error\n"
+"\t\tand suggested correction by the spelling checker,\n"
+"\t* a script (NVDA+control+f7\") to report current sentence under focus.\n"
+"* automatic reading of some elements as comments ,  footnotes, or endnotes.\n"
+"\n"
+"\n"
+"This add-on has been tested with Microsoft Word 2019, 2016 and 2013 (perhaps "
+"works also with Word 365).\n"
+msgstr ""
+"Дополнение WordAccessEnhancement добавляет скрипты, встроенные в базовой "
+"версии NVDA и приносит:\n"
+"комбинация клавиш (windows+alt+f5) чтобы отобразить диалоговое окно для "
+"выбора между большинством типов объектов (как комментарии, ревизии, поля, "
+"сноски, примечания, орфографические ошибки, грамматические ошибки...).\n"
+"комбинация клавиш (Alt+delete) объявить строку, столбец и страницу позиции "
+"курсора или начало и конец выделения, или текущую ячейку,\n"
+"комбинация клавиш (windows+alt+f2) вставить комментарий,\n"
+"комбинация клавиш (windows+alt+r) сообщить о ревизии в позиции курсора,\n"
+"комбинация клавиш (windows+alt+n) сообщить сноску или колонтитул в позиции "
+"курсора,\n"
+"изменяемые комбинации клавиш NVDA (control+Стрелка вниз) и (Control+Стрелка "
+"вверх) (которые перемещают курсор абзац за абзацем) с пропуском пустых "
+"(настраиваемо).\n"
+"некоторые комбинации клавиш для перемещения в таблице и чтения её элементов "
+"(строка, столбец, ячейка),\n"
+"добавляет специальные комбинации клавиш режима команд просмотра Word,\n"
+"возможность двигаться предложение за предложением (alt+ Стрелка вниз) и (alt"
+"+Стрелка вверх),\n"
+"комбинация клавиш для сообщения о информации документа (windows+alt+f1),\n"
+"повышение доступности для проверки орфографии (Word 2013 и 2016):\n"
+"\tкомбинация клавиш (NVDA+shift+f7) сообщить написание или грамматические "
+"ошибки и предложенное исправление проверки орфографии,\n"
+"\tкомбинация клавиш (NVDA+control+f7) сообщить текущее предложение под "
+"фокусом.\n"
+"\n"
+"Для получения более подробной информации, обратитесь к справке модуля.\n"
+"\n"
+"\n"
+"Этот модуль был протестирован с Microsoft Word 2016 и 2013.\n"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:99
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:333
+msgid "Update"
+msgstr "Обновление"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:102
+#, python-brace-format
+msgid "Downloading {name}"
+msgstr "Загрузка {name}"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:117
+#, python-brace-format
+msgid "Error downloading update for {name}."
+msgstr "Ошибка загрузки обновления для  {name}."
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:171
+#, python-brace-format
+msgid "Cannot update {name} - missing file or invalid file format"
+msgstr "Невозможно обновить {name} - отсутствует файл или недопустимый формат"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:188
+msgid "Updating"
+msgstr "Обновление"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:190
+msgid "Please wait while the add-on is being updated."
+msgstr "Пожалуйста, подождите, пока обновляется дополнение."
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:212
+#, python-brace-format
+msgid "Failed to update {name} add-on"
+msgstr "Не удалось обновить дополнение {name}"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:256
+#, python-brace-format
+msgid "{summary} - update"
+msgstr "{summary} - обновление"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:269
+msgid "The service is temporarily under maintenance. Please, try again later."
+msgstr "Сервис временно на обслуживании. Пожалуйста, попробуйте позже."
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:297
+#, python-brace-format
+msgid ""
+"The update is not compatible with this version of NVDA. Minimum NVDA "
+"version: {minYear}.{minMajor}, last tested: {testedYear}.{testedMajor}."
+msgstr ""
+"Обновление несовместимо с этой версией NVDA. Минимальная версия NVDA: "
+"{minYear}.{minMajor}, последнее тестируемая: {testedYear}.{testedMajor}."
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:357
+#, python-format
+msgid "New version%s is available. Do you want to download it now?"
+msgstr "Доступна новая версия%s. Вы хотите загрузить его прямо сейчас?"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:361
+#, python-brace-format
+msgid ""
+"New version{0} is available.\n"
+"But it is not compatible with this version of NVDA: minimum version requred "
+"= {1}, last version tested  = {2}.\n"
+"Do you want to ignore this incompatibility and still download it now?"
+msgstr ""
+"Доступна новая версия {0}.\n"
+"Но она несовместима с этой версией NVDA: минимальная требуемая версия = {1}, "
+"последняя протестированная версия = {2}.\n"
+"Хотите игнорировать эту несовместимость и все равно загрузить ее сейчас?"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:382
+#, python-format
+msgid "You are up-to-date. %s is the latest version."
+msgstr "Обновление не требуется. %s это самая последняя версия."
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:389
+msgid "Oops! There was a problem checking for updates. Please retry later"
+msgstr ""
+"Ой!! Произошла проблема проверки обновлений. Пожалуйста, повторите попытку "
+"позже"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:544
+msgid "&Yes"
+msgstr "&Да"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:549
+msgid "&No"
+msgstr "&Нет"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:554
+msgid "&Later"
+msgstr "&Позже"
+
+#: globalPlugins/wordAccessEnhancement/updateHandler/update_check.py:558
+msgid "Wha&t's new"
+msgstr "&Что нового"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:48
+msgid "Options"
+msgstr "Параметры"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:55
+msgid "Paragraph"
+msgstr "Абзац"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:61
+msgid "&Skip empty paragraphs"
+msgstr "&Пропускать пустые абзацы"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:67
+msgid "&Play sound when paragraph is skipped"
+msgstr "Воспроизводить &звук при пропуске абзаца"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:73
+msgid "Na&vigate in loop"
+msgstr "&Навигация по циклу"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:79
+msgid "Maximum time of elements's search (in seconds:)"
+msgstr "Максимальное время поиска элементов (в секундах:)"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:106
+msgid "Automatic reading"
+msgstr "Автоматическое чтение"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:119
+msgid "Inserted text"
+msgstr "Вставленный текст"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:120
+msgid "Deleted text"
+msgstr "Удаленный текст"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:121
+msgid "Revised text"
+msgstr "Изменённый текст"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:127
+msgid "&Activate automatic reading"
+msgstr "&Включить автоматическое чтение"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:134
+msgid "Concerned elements:"
+msgstr "Соответствующие элементы:"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:154
+msgid "Read &with:"
+msgstr "&Читать с:"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:157
+msgid "Current voice"
+msgstr "Текущий голос"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:159
+msgid "Current voice and  beep at start and end"
+msgstr "Текущий голос и звуковой сигнал в начале и конце"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:161
+msgid "another voice"
+msgstr "другой голос"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:169
+msgid "&Report revision's type with author"
+msgstr "&Сообщить тип ревизии с автором"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:175
+msgid "&Display voice's recorded setting"
+msgstr "&Показать записанные настройки голоса"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:212
+msgid "Punctuation/symbol level"
+msgstr "Уровень пунктуации/символов"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:247
+msgid "Synthetizer"
+msgstr "Синтезатор"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:288
+msgid "No voice recorded for automatic reading"
+msgstr "Нет голоса, записанного для автоматического чтения"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:293
+msgid "Voice settings for automatic reading"
+msgstr "Голосовые настройки для автоматического чтения"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:338
+msgid "Automatically check for &updates "
+msgstr "Проверять обновления &автоматически "
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:344
+msgid "Update also release versions to &developpement versions"
+msgstr "Обновлять также до &разрабатываемых версий"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:350
+msgid "&Check for update"
+msgstr "Проверить &обновление"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:355
+msgid "View &history"
+msgstr "&Просмотр истории"
+
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:396
+#: globalPlugins/wordAccessEnhancement/ww_configGui.py:410
+msgid "Settings"
+msgstr "Настройки"
+
+#: installTasks.py:43
+msgid "Do you want to keep current add-on configuration settings ?"
+msgstr "Вы хотите сохранить настройки дополнения?"
+
+#: installTasks.py:45 installTasks.py:50
+#, python-format
+msgid "%s - installation"
+msgstr "%s - установка"
+
+#: installTasks.py:48
+msgid ""
+"Are you sure you don't want to keep the current add-on configuration "
+"settings?"
+msgstr ""
+"Вы уверены, что не хотите сохранить текущие настройки конфигурации "
+"дополнения?"
+
+#: shared/ww_addonConfigManager.py:298
+msgid ""
+"The configuration file of the add-on contains errors. The configuration has "
+"been reset to factory defaults"
+msgstr ""
+"Конфигурационный файл дополнения содержит ошибки. Конфигурация была сброшена "
+"к заводским настройкам по умолчанию"
+
+#: shared/ww_addonConfigManager.py:553
+msgid ""
+"To ensure compatibility with this NVDA's version, the voice settings saved "
+"for automatic reading had to be cleared.\n"
+"You need to register them again.\n"
+"Sorry for the inconvenience."
+msgstr ""
+"Для обеспечения совместимости с этой версией NVDA необходимо было удалить "
+"настройки голоса, сохраненные для автоматического чтения.\n"
+"Вам необходимо зарегистрировать их заново.\n"
+"Приносим извинения за неудобства."
+
+#: shared/ww_informationDialog.py:40
+msgid "Informations"
+msgstr "Информация"
+
+#: shared/ww_informationDialog.py:73
+msgid "Co&py to Clipboard"
+msgstr "С&копировать в буфер обмена"
+
+#: shared/ww_informationDialog.py:98
+msgid "Copied"
+msgstr "Скопировано"
+
+#: shared/ww_informationDialog.py:105
+msgid "Error, the information cannot be copied to the clipboard"
+msgstr "Ошибка, информация не может быть скопирована в буфер обмена"
+
+#: shared/ww_utils.py:65
+#, python-format
+msgid "%s dialog is allready open"
+msgstr "Диалог %s уже открыт"
+
+#~ msgid "Record automatic reading voice's settings"
+#~ msgstr "Запись настроек голоса автоматического чтения"
+
+#~ msgid "%s column"
+#~ msgid_plural "%s columns"
+#~ msgstr[0] "столбец %s"
+#~ msgstr[1] "%s столбца"
+#~ msgstr[2] "%s столбцов"
+
+#~ msgid "with %s item"
+#~ msgid_plural "with %s items"
+#~ msgstr[0] "с элементом %s"
+#~ msgstr[1] "с %s элементами"
+#~ msgstr[2] "с %s элементами"
+
+#~ msgid "No other sentence"
+#~ msgstr "Нет другого предложения"
+
+#~ msgid "Move to the next sentence"
+#~ msgstr "Переход к следующему предложению"
+
+#~ msgid "Move to the previous sentence"
+#~ msgstr "Переход к предыдущему предложению"
+
+#~ msgid ""
+#~ "Move to the next paragraph (skip empty paragraphs if \"Skip Empty "
+#~ "Paragraph\" option is set to on) "
+#~ msgstr ""
+#~ "Перейти к следующему абзацу (пропускать пустые абзацы, если опция "
+#~ "\"Пропустить пустой абзац\" включена) "
+
+#~ msgid ""
+#~ "Move to the previous paragraph (skip empty paragraphs if \"Skip Empty "
+#~ "Paragraph\" option is set to on) "
+#~ msgstr ""
+#~ "Переход к предыдущему абзацу (пропускает пустые абзацы, если опция "
+#~ "\"Пропустить пустой абзац\" включена) "
+
+#~ msgid " column {0}"
+#~ msgstr " столбец {0}"
+
+#~ msgid " row {0}"
+#~ msgstr " строка {0}"
+
+#~ msgid "Endnote {index}"
+#~ msgstr "Сноска {index}"
+
+#~ msgid "%s - choice"
+#~ msgstr "%s - выбор"
+
+#~ msgid "Select smaller part of document"
+#~ msgstr "Выберите меньшую часть документа"
+
+#~ msgid "&Skip empty paragraph"
+#~ msgstr "&Пропускать пустые абзацы"
+
+#~ msgid ""
+#~ "{indent}Section' margins:\n"
+#~ "{indent}\tLeft: {left}\n"
+#~ "{indent}\tRight: {right}\n"
+#~ "{indent}\tTop: {top}\n"
+#~ "{indent}\tBottom: {bottom}"
+#~ msgstr ""
+#~ "{indent}Поля раздела:\n"
+#~ "{indent}\tСлева: {left}\n"
+#~ "{indent}\tСправа: {right}\n"
+#~ "{indent}\tСверху: {top}\n"
+#~ "{indent}\tСнизу: {bottom}"
+
+#~ msgid ""
+#~ "{indent}Section's argins:\n"
+#~ "{indent}\tMirror Margins:\n"
+#~ "{indent}\tinside: {left}\n"
+#~ "{indent}\tOutside: {right}\n"
+#~ "{indent}\ttop: {top}\n"
+#~ "{indent}\tbottom {bottom}"
+#~ msgstr ""
+#~ "{indent}Выравнивание раздела:\n"
+#~ "{indent}\tЗеркальные поля:\n"
+#~ "{indent}\tВнутри: {left}\n"
+#~ "{indent}\tСнаружи: {right}\n"
+#~ "{indent}\tСверху: {top}\n"
+#~ "{indent}\tСнизу {bottom}"
+
+#~ msgid "First Page Header: {text}, {alignment}"
+#~ msgstr "Заголовок первой страницы: {text}, {alignment}"
+
+#~ msgid "First Page Footer: {text}, {alignment}"
+#~ msgstr "Колонтитул первой страницы: {text}, {alignment}"
+
+#~ msgid "Even Page Header: {text}, {alignment}"
+#~ msgstr "Заголовок четной страницы: {text}, {alignment}"
+
+#~ msgid "Even Page Footer: {text}, {alignment}"
+#~ msgstr "Колонтитул четной страницы: {text}, {alignment}"
+
+#~ msgid "Page header: {text}, {alignment}"
+#~ msgstr "Заголовок страницы: {text}, {alignment}"
+
+#~ msgid "Page Footer: {text}, {alignment}"
+#~ msgstr "Колонтитул страницы: {text}, {alignment}"
+
+#~ msgid "Grammatical errors: %s"
+#~ msgstr "Грамматические ошибки: %s"
+
+#~ msgid ""
+#~ "Page {page}, line {line}\n"
+#~ "Note's Ttext:\n"
+#~ "{text}\n"
+#~ msgstr ""
+#~ "Страница {page}, строка {line}\n"
+#~ "Текст заметки:\n"
+#~ "{text}\n"
+
+#~ msgid "table's limit"
+#~ msgstr "предел таблицы"
+
+#~ msgid "The update is not compatible with this version of Windows."
+#~ msgstr "Обновление не совместимо с данной версией Windows."
+
+#~ msgid "%s add-on - Informations"
+#~ msgstr "Дополнение %s - информация"

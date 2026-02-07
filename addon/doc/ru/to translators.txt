@@ -1,0 +1,8 @@
+Файлы, подлежащие переводу, являются:
+- addon_informations.t2tconf
+- addon_keys.t2tconf
+- addonUserManual.t2t
+- changes.t2t
+
+	Изменения по сравнению с предыдущей версией перечислены в diff.zip файл.
+Тот readme.md файл не должен быть переведен. Он используется только для репозитория GitHub.

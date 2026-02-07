@@ -1,0 +1,65 @@
+% base key definition
+%!PostProc (html): key_toggle_skip_empty_paragraph windows+alt+f4
+%!PostProc (html): key_document_infos windows +Alt+f1
+%!PostProc (html): key_spelling_checker_help NVDA+shift+f7
+%!PostProc (html): key_report_current_sentence NVDA+control+f7
+%!PostProc (html): key_line_page alt+numpad delete
+%!PostProc (html): key_laptop_line_page alt+delete
+%!PostProc (html): key_layerMode NVDA+e
+%!PostProc (html): key_sayAll windows+alt+space
+%!PostProc (html): key_escape escape
+%!PostProc (html): key_choice windows+alt+F5
+%!PostProc (html): key_insert_element windows+alt+f2
+%!PostProc (html): key_report_footnote_endnote windows+alt+n
+%!PostProc (html): key_report_revision windows+alt+m
+%!PostProc (html): key_report_replies windows+alt+o
+%!PostProc (html): key_reply windows+alt+y
+%!PostProc (html): key_goTo_spellingError windows+alt+f9
+%!PostProc (html): key_goTo_grammaticalError windows+control+F9
+
+% report in table
+%!PostProc (html): key_report_headers windows+alt+h
+%!PostProc (html): key_report_cell Windows+Alt+j
+%!PostProc (html): key_report_row Windows+Alt+k
+%!PostProc (html): key_report_column Windows+Alt+l
+%!PostProc (html): key_report_previousInRow windows+Alt+стрелка влево
+%!PostProc (html): key_report_nextInRow windows+Alt+стрелка вправо
+%!PostProc (html): key_report_previousInColumn windows+Alt+стрелка вверх
+%!PostProc (html): key_report_nextInColumn windows+Alt+стрелка вниз
+%!PostProc (html): key_report_firstInRow Windows+Alt+home
+%!PostProc (html): key_report_firstInColumn windows+Alt+pageUp
+%!PostProc (html): key_report_lastInRow windows+Alt+end
+%!PostProc (html): key_report_lastInColumn windows+alt+pageDown
+% moving key definitions  when table layer mode is off
+%!PostProc (html): key_moveTo_nextInRow Windows+control+стрелка вправо
+%!PostProc (html): key_moveTo_previousInRow Windows+control+стрелка влево
+%!PostProc (html): key_moveTo_nextInColumn Windows+control+стрелка вниз
+%!PostProc (html): key_moveTo_previousInColumn Windows+control+стрелка вверх
+%!PostProc (html): key_moveTo_firstInRow Windows+control+home
+%!PostProc (html): key_moveTo_lastInRow Windows+control+end
+%!PostProc (html): key_moveTo_firstInColumn Windows+control+pageUp
+%!PostProc (html): key_moveTo_lastInColumn Windows+control+pageDown
+%!PostProc (html): key_moveTo_firstCellOfTable windows+control+k
+%!PostProc (html): key_moveTo_lastCellOfTable windows+control+l
+% moving key definitions  when table layer mode is on
+%!PostProc (html): key_layer_moveTo_nextInRow стрелка вправо
+%!PostProc (html): key_layer_moveTo_previousInRow стрелка влево
+%!PostProc (html): key_layer_moveTo_nextInColumn стрелка вверх
+%!PostProc (html): key_layer_moveTo_previousInColumn стрелка вниз
+%!PostProc (html): key_layer_moveTo_firstInRow home
+%!PostProc (html): key_layer_moveTo_lastInRow end
+%!PostProc (html): key_layer_moveTo_firstInColumn pageUp
+%!PostProc (html): key_layer_moveTo_lastInColumn pageDown
+%!PostProc (html): key_layer_moveTo_firstCellOfTable k
+%!PostProc (html): key_layer_moveTo_lastCellOfTable l
+%!PostProc (html): key_AutomaticReading windows+alt+F3
+%!PostProc (html): key_RecordVoiceSettings windows+alt+f12
+% browseMode quick nav keys definitions
+%!PostProc (html): key_BrowseMode_grammaticalError ]
+%!PostProc (html): key_BrowseMode_revision \\
+%!PostProc (html): key_BrowseMode_comment j
+%!PostProc (html): key_BrowseMode_field z
+%!PostProc (html): key_BrowseMode_bookmark -
+%!PostProc (html): key_BrowseMode_endnote .
+%!PostProc (html): key_BrowseMode_footnote /
+%!PostProc (html): key_BrowseMode_section [
