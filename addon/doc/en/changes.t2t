@@ -16,6 +16,32 @@ Download:
 
 Sorry, but this document is an automatic translation from french language.
 
+
++ v3.8 (February/26/2026) +
+Compatibility with NVDA 2026.1.
+
+NVDA versions prior to 2025.1 are no longer supported.
+
+
+What's new:
+- added the script "windows + alt + b" to set the view in draft mode.
+
+
+Bug fixes:
+- the parameters of the synthesizer used for automatic reading are again correctly saved (regression since version 3.7 of the extension).
+- the displaying of automatic reading parameters is possible again (regression since version 3.7 of the extension).
+
+
+Development:
+- to display the "What's new" of a new version of the extension, the "changes.html" document is no longer opened by "urlopen", but is downloaded, saved momentarily in the "appData\local\temp" folder and opened in the browser.
+- taking into account the closure of the rawgit.com site for updating add-on.
+- use of json instead of pickle to store the add-on update status.
+
+
+Compliance with the NVDA API:
+- taking into account the movement of the NVDA version in the "buildVersion.py" module.
+
+
 + v3.7 (June/06/2025) +
 Compatibility with NVDA 2025.1.
 

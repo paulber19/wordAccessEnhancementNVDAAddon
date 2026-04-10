@@ -15,6 +15,7 @@
 %!PostProc (html): key_reply windows+alt+y
 %!PostProc (html): key_goTo_spellingError windows+alt+f9
 %!PostProc (html): key_goTo_grammaticalError windows+control+f9
+%!PostProc (html): key_Set_ViewMode windows+alt+b
 
 % report in table
 %!PostProc (html): key_report_headers windows+alt+h

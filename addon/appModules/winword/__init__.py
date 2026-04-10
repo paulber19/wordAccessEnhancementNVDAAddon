@@ -25,7 +25,7 @@ import sys
 from controlTypes.role import Role
 from controlTypes.outputReason import OutputReason
 from controlTypes.role import _roleLabels as roleLabels
-from .NVDAAppModuleWinword import WinwordWordDocument as NVDAAppModuleWinwordDocument
+from .ww_NVDAAppModuleWinword import WinwordWordDocument as NVDAAppModuleWinwordDocument
 
 _curAddon = addonHandler.getCodeAddon()
 debugToolsPath = os.path.join(_curAddon.path, "debugTools")

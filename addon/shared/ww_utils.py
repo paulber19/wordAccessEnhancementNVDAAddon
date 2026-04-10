@@ -1,6 +1,6 @@
 # shared\winword\ww_utils.py
 # A part of wordAccessEnhancement add-on
-# Copyright (C) 2019-2024 paulber19
+# Copyright (C) 2019-2026 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -44,8 +44,8 @@ def putWindowOnForeground(hwnd, sleepNb=10, sleepTime=0.1):
 
 def leftClick(x, y):
 	winUser.setCursorPos(x, y)
-	winUser.mouse_event(winUser.MOUSEEVENTF_LEFTDOWN, 0, 0, None, None)
-	winUser.mouse_event(winUser.MOUSEEVENTF_LEFTUP, 0, 0, None, None)
+	winUser.mouse_event(winUser.MOUSEEVENTF_LEFTDOWN, 0, 0)
+	winUser.mouse_event(winUser.MOUSEEVENTF_LEFTUP, 0, 0)
 
 
 # winuser.h constant

@@ -14,6 +14,31 @@ Descarga:
 - [Versiones de desarrollo ADDON_DEV_URL]
 
 
++ v3.8 (26/02/2026) +
+Compatibilidad con NVDA 2026.1.
+
+Las versiones de NVDA anteriores a 2025.1 ya no son soportadas.
+
+
+Nuevas características:
+- se añadió el script "windows + alt + b" para posicionar la vista en modo Borrador.
+
+
+Correcciones de fallos:
+- los parámetros del sintetizador usado para la lectura automática se registran correctamente nuevamente (regresión desde la version 3.7 del complemento).
+- la vista de los parámetros de la lectura automática es posible de nuevo (regresión desde la version 3.7 del complemento).
+
+
+Desarrolladores:
+- para mostrar el"Qué hay de nuevo" de una nueva versión del complemento, el documento"changes.html" ya no se abre por"urlopen", pero se descarga, se guarda momentáneamente en la carpeta "appData\local\temp" y se abre en el navegador.
+- se toma en cuenta del cierre del sitio rawgit.com para actualizar el complemento.
+- uso de json en lugar de pickle para almacenar el estado de actualización del complemento.
+
+
+Puesta en conformidad con la API de NVDA:
+- se toma en cuenta el desplazamiento de la versión de NVDA en el módulo "buildVersion.py".
+
+
 + v3.7 (06/06/2025) +
 Compatibilidad con NVDA 2025.1.
 

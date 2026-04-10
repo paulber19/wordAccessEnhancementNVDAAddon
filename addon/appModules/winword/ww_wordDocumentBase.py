@@ -588,6 +588,8 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		"reportCurrentRevision": ("kb:windows+alt+m",),
 		"reportRepliesToFocusedComment": ("kb:windows+alt+o",),
 		"replyToFocusedComment": ("kb:windows+alt+y",),
+		"switchViewTypeToDraftMode": ("kb:windows+alt+b",),
+
 	}
 
 	def initOverlayClass(self):
@@ -1141,6 +1143,19 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 		error = errors[0]
 		wordApp = self._WinwordWindowObject.Application
 		wx.CallAfter(SpellingErrorSuggestionsDialog.run, wordApp, error)
+
+	@script(
+		# Translators: Input help mode message for set view typ to draft command
+		description=_("Switch view to draft mode"),
+	)
+	def script_switchViewTypeToDraftMode(self, gesturrre):
+		if not self.WinwordWindowObject:
+			return
+		from .ww_NVDAAppModuleWinword import ViewType 
+		self.WinwordDocumentObject.ActiveWindow.View.Type = ViewType .DRAFT.value
+		val = self.WinwordDocumentObject.ActiveWindow.View.Type
+		view = ViewType(val).displayString
+		ui.message(view)
 
 
 class SpellingErrorSuggestionsDialog(wx.Dialog):

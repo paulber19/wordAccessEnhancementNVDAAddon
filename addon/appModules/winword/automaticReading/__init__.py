@@ -5,7 +5,12 @@
 
 import addonHandler
 from logHandler import log
-from versionInfo import version_year, version_major
+try:
+	# for nvda versions < 2026.1
+	from versionInfo import version_year, version_major
+except ImportError:
+	# for NVDA versions >= 2026.1
+	from buildVersion import version_year, version_major
 import config
 import gui
 import wx
@@ -29,7 +34,7 @@ from ww_NVDAStrings import NVDAString
 from ww_addonConfigManager import (
 	_addonConfigManager, AutoReadingWith_CurrentVoice, AutoReadingWith_Beep, AutoReadingWith_Voice
 )
-from messages import confirm_YesNo, ReturnCode
+from ww_messages import confirm_YesNo, ReturnCode
 del sys.path[-1]
 
 addonHandler.initTranslation()
@@ -140,7 +145,7 @@ def formatRevisionAutoReadingSequence(rangeObj, revision, text):
 		if not autoReading:
 			seq.append(text)
 			return seq
-		from .ww_revisions import Revision
+		from ..ww_revisions import Revision
 		rev = Revision(None, rangeObj.Revisions[1])
 		seq.append(rev.FormatRevisionTypeAndAuthorText())
 		seq .extend(startOrStopAutomaticReadingVoice())
@@ -158,7 +163,7 @@ def formatDeletedRevisionAutoReadingSequence(rangeObj, revision, text):
 	if not revision or rangeObj.Revisions.Count == 0:
 		seq.append(text)
 		return seq
-	from .ww_revisions import Revision
+	from ..ww_revisions import Revision
 	rev = Revision(None, rangeObj.Revisions[1])
 	seq.append(rev.FormatRevisionTypeAndAuthorText())
 	seq.append(speech.commands.EndUtteranceCommand())
@@ -349,10 +354,9 @@ def getSynthDisplayInfos(synth, synthConf, outputDeviceName):
 				textList.append((setting.displayName, info))
 	d = {}
 	i=1
-	if NVDAVersion >= [2025, 1]:
-		# Translators:  label to report synthesizer output device .
-		d[str(1)] = [_("Audio output device"), outputDeviceName]
-		i+= 1
+	# Translators:  label to report synthesizer output device .
+	d[str(1)] = [_("Audio output device"), outputDeviceName]
+	i+= 1
 	for label, val in textList:
 		d[str(i )] = (label, val)
 		i += 1
@@ -415,6 +419,8 @@ def saveCurrentSpeechSettings():
 # to memorize the suspended synth settings when automacic reading synth is running
 _suspendedSynth = (None, None)
 settingsBeforeSwitch = None
+
+
 def switchToAutomaticReadingSynth():
 	global settingsBeforeSwitch 
 	autoReadingSynth = _addonConfigManager.getAutoReadingSynthSettings()
@@ -433,6 +439,8 @@ def switchToAutomaticReadingSynth():
 		_setSynth(curSynthName, currentSpeechSettings , temporary=False) 
 		msg = _("Current voice for Word")
 	ui.message(msg)
+
+
 def _setSynth(synthName, speechSettings, temporary=False):
 	global _suspendedSynth
 	if temporary:
@@ -458,11 +466,6 @@ def _setSynth(synthName, speechSettings, temporary=False):
 	config.conf[SCT_Speech] = synthSpeechConfig.copy()
 
 
-# used for saving current nvda cancelSpeech
-# we must hake nvda cancelSpeech to restore previous synth when cancel speech occurs during automatic reading
-_NVDACancelSpeech = None
-
-
 def onSpeechCanceled():
 	if _suspendedSynth[0] is None:
 		return
@@ -470,33 +473,11 @@ def onSpeechCanceled():
 	_setSynth(_suspendedSynth[0], _suspendedSynth[1], temporary=False)
 
 
-def myCancelSpeech():
-	global _suspendedSynth
-	_NVDACancelSpeech()
-	onSpeechCanceled()
-
-
 def initialize():
-	if NVDAVersion >= [2024, 1]:
-		from speech.extensions import speechCanceled
-		speechCanceled.register(onSpeechCanceled)
-		return
-	global _NVDACancelSpeech
-	if _NVDACancelSpeech is not None:
-		log.warning("cancelSpeech already patched")
-		return
-	_NVDACancelSpeech = speech.cancelSpeech
-	speech.cancelSpeech = myCancelSpeech
+	from speech.extensions import speechCanceled
+	speechCanceled.register(onSpeechCanceled)
 
 
 def terminate():
-	if NVDAVersion >= [2024, 1]:
-		from speech.extensions import speechCanceled
-		speechCanceled.unregister(onSpeechCanceled)
-		return
-	global _NVDACancelSpeech
-	# to restore suspended synth
-	speech.cancelSpeech()
-	if _NVDACancelSpeech is not None:
-		speech.cancelSpeech = _NVDACancelSpeech
-		_NVDACancelSpeech = None
+	from speech.extensions import speechCanceled
+	speechCanceled.unregister(onSpeechCanceled)

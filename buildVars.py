@@ -51,18 +51,18 @@ This add-on has been tested with Microsoft Word 2019, 2016 and 2013 (perhaps wor
 """),
 
 	# version
-	"addon_version": "3.7.3",
+	"addon_version": "3.8",
 	# Author(s)
-	"addon_author": "paulber19",
+	"addon_author": "paulber19 <paulber19@laposte.net>",
 	# URL for the add-on documentation support
 	"addon_url": "paulber19@laposte.net",
 	# Documentation file name
 	"addon_docFileName": "addonUserManual.html",
 	# Minimum NVDA version supported (e.g. "2018.3")
-	"addon_minimumNVDAVersion": "2024.1",
+	"addon_minimumNVDAVersion": "2025.1",
 	# Last NVDA version supported/tested
 	# (e.g. "2018.4", ideally more recent than minimum version)
-	"addon_lastTestedNVDAVersion": "2025.3",
+	"addon_lastTestedNVDAVersion": "2026.1",
 	# Add-on update channel (default is stable or None)
 	"addon_updateChannel": None,
 }

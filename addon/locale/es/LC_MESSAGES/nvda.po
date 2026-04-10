@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wordAccessEnhancement\n"
 "Report-Msgid-Bugs-To: paulber19\n"
-"POT-Creation-Date: 2025-06-06 09:41+0200\n"
-"PO-Revision-Date: 2025-06-06 09:44+0200\n"
-"Last-Translator: paulber19 <paulber19@laposte.net>\n"
+"POT-Creation-Date: 2026-02-11 10:53+0100\n"
+"PO-Revision-Date: 2026-02-24 14:52+0100\n"
+"Last-Translator: Rémy Ruiz <remyruiz@gmail.com>\n"
 "Language-Team: paulber19 <paulber19@laposte.net>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-Bookmarks: -1,-1,-1,96,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -37,9 +37,9 @@ msgid ""
 "* a script (\"windows+alt+m\") to report revision at cursor's  position,\n"
 "* a script (\"windows+alt+n\") to report endNote  or footNote at cursor's "
 "position,\n"
-"* modify the NVDA scripts \"control+downArrow\" and "
-"\"Control+Uparrow\" (which moves the carret paragraph by paragraph) to skip "
-"the empty paragraph (optionnal),\n"
+"* modify the NVDA scripts \"control+downArrow\" and \"Control+Uparrow\" "
+"(which moves the carret paragraph by paragraph) to skip the empty paragraph "
+"(optionnal),\n"
 "* some scripts to move in table and read table 's elements (row, column, "
 "cell),\n"
 "* adds specific Word browse mode command keys,\n"
@@ -95,19 +95,19 @@ msgstr ""
 "también funciona con Word 365)..\n"
 
 #. Translators: the label of a message box dialog.
-#: installTasks.py:43
+#: installTasks.py:41
 msgid "Do you want to keep current add-on configuration settings ?"
 msgstr ""
 "¿Deseas conservar las opciones de configuración del complemento actual?"
 
 #. Translators: the title of a message box dialog.
-#: installTasks.py:45 installTasks.py:50
+#: installTasks.py:43 installTasks.py:48
 #, python-format
 msgid "%s - installation"
 msgstr "%s - instalación"
 
 #. Translators: the label of a message box dialog.
-#: installTasks.py:48
+#: installTasks.py:46
 msgid ""
 "Are you sure you don't want to keep the current add-on configuration "
 "settings?"
@@ -117,51 +117,61 @@ msgstr ""
 
 #. Translators: One of the view types in Word documents.
 #: appModules\winword\NVDAAppModuleWinword.py:34
+#: appModules\winword\ww_NVDAAppModuleWinword.py:34
 msgid "DRAFT"
 msgstr "Borrador"
 
 #. Translators: One of the view types in Word documents.
 #: appModules\winword\NVDAAppModuleWinword.py:36
+#: appModules\winword\ww_NVDAAppModuleWinword.py:36
 msgid "Outline"
 msgstr "Esquema"
 
 #. Translators: One of the view types in Word documents.
 #: appModules\winword\NVDAAppModuleWinword.py:38
+#: appModules\winword\ww_NVDAAppModuleWinword.py:38
 msgid "Print layout"
 msgstr "Diseño de impresión"
 
 #. Translators: One of the view types in Word documents.
 #: appModules\winword\NVDAAppModuleWinword.py:40
+#: appModules\winword\ww_NVDAAppModuleWinword.py:40
 msgid "Web layout"
 msgstr "Diseño web"
 
 #. Translators: One of the view types in Word documents.
 #: appModules\winword\NVDAAppModuleWinword.py:42
+#: appModules\winword\ww_NVDAAppModuleWinword.py:42
 msgid "Read mode"
 msgstr "Modo de lectura"
 
 #. Translators: a message when toggling change tracking in Microsoft word
 #: appModules\winword\NVDAAppModuleWinword.py:71
+#: appModules\winword\ww_NVDAAppModuleWinword.py:71
 msgid "Change tracking on"
 msgstr "Seguimiento de cambios activado"
 
 #. Translators: a message when toggling change tracking in Microsoft word
 #: appModules\winword\NVDAAppModuleWinword.py:74
+#: appModules\winword\ww_NVDAAppModuleWinword.py:74
 msgid "Change tracking off"
 msgstr "Seguimiento de cambios desactivado"
 
 #. Translators: a message when toggling formatting to 'all capital' in Microsoft word
 #: appModules\winword\NVDAAppModuleWinword.py:91
+#: appModules\winword\ww_NVDAAppModuleWinword.py:91
 msgid "All caps on"
 msgstr "Escritura en mayúscula activado"
 
 #. Translators: a message when toggling formatting to 'small capital' in Microsoft word
 #: appModules\winword\NVDAAppModuleWinword.py:94
+#: appModules\winword\ww_NVDAAppModuleWinword.py:94
 msgid "Small caps on"
 msgstr "Escritura en pequeña mayúscula activado"
 
 #. Translators: a message when toggling formatting to 'No capital' in Microsoft word
 #: appModules\winword\NVDAAppModuleWinword.py:97
+#: appModules\winword\ww_NVDAAppModuleWinword.py:97
 msgid "Caps off"
 msgstr "Escritura en mayúscula desactivado"
 
@@ -198,7 +208,7 @@ msgid "No bookmark"
 msgstr "No hay ningún marcador"
 
 #. Translators: label of comment number column in comments result dialog.
-#: appModules\winword\ww_bookmarks.py:79 appModules\winword\ww_comments.py:325
+#: appModules\winword\ww_bookmarks.py:79 appModules\winword\ww_comments.py:323
 #: appModules\winword\ww_contentControl.py:91
 #: appModules\winword\ww_endnotes.py:101 appModules\winword\ww_fields.py:86
 #: appModules\winword\ww_footnotes.py:98 appModules\winword\ww_formfields.py:78
@@ -211,7 +221,7 @@ msgid "Number"
 msgstr "Número"
 
 #. Translators: label of comment location column in comments result dialog.
-#: appModules\winword\ww_bookmarks.py:80 appModules\winword\ww_comments.py:327
+#: appModules\winword\ww_bookmarks.py:80 appModules\winword\ww_comments.py:325
 #: appModules\winword\ww_contentControl.py:92
 #: appModules\winword\ww_endnotes.py:102 appModules\winword\ww_fields.py:87
 #: appModules\winword\ww_footnotes.py:99 appModules\winword\ww_formfields.py:79
@@ -237,7 +247,7 @@ msgid "Story type"
 msgstr "tipo"
 
 #. Translators: go to button label.
-#: appModules\winword\ww_bookmarks.py:91 appModules\winword\ww_comments.py:339
+#: appModules\winword\ww_bookmarks.py:91 appModules\winword\ww_comments.py:337
 #: appModules\winword\ww_contentControl.py:100
 #: appModules\winword\ww_endnotes.py:110 appModules\winword\ww_fields.py:95
 #: appModules\winword\ww_footnotes.py:107
@@ -254,7 +264,7 @@ msgid "&Go to"
 msgstr "&Ir a"
 
 #. Translators: delete button label.
-#: appModules\winword\ww_bookmarks.py:92 appModules\winword\ww_comments.py:347
+#: appModules\winword\ww_bookmarks.py:92 appModules\winword\ww_comments.py:345
 #: appModules\winword\ww_contentControl.py:101
 #: appModules\winword\ww_endnotes.py:112 appModules\winword\ww_fields.py:96
 #: appModules\winword\ww_footnotes.py:109
@@ -266,7 +276,7 @@ msgid "&Delete"
 msgstr "&Suprimir"
 
 #. Translators: delete all button label.
-#: appModules\winword\ww_bookmarks.py:93 appModules\winword\ww_comments.py:351
+#: appModules\winword\ww_bookmarks.py:93 appModules\winword\ww_comments.py:349
 #: appModules\winword\ww_contentControl.py:102
 #: appModules\winword\ww_endnotes.py:113 appModules\winword\ww_fields.py:97
 #: appModules\winword\ww_footnotes.py:110
@@ -281,7 +291,7 @@ msgid "Bookmark's text"
 msgstr "Texto del marcador"
 
 #. Translators: text to indicate comment location.
-#: appModules\winword\ww_bookmarks.py:102 appModules\winword\ww_comments.py:367
+#: appModules\winword\ww_bookmarks.py:102 appModules\winword\ww_comments.py:365
 #: appModules\winword\ww_contentControl.py:116
 #: appModules\winword\ww_endnotes.py:123 appModules\winword\ww_fields.py:110
 #: appModules\winword\ww_footnotes.py:120
@@ -587,158 +597,158 @@ msgstr ""
 "Buscar y &copiar \n"
 "al portapapeles"
 
-#: appModules\winword\ww_choice.py:290 appModules\winword\ww_collection.py:419
+#: appModules\winword\ww_choice.py:290 appModules\winword\ww_collection.py:417
 msgid "&Close"
 msgstr "&Cerrar"
 
-#: appModules\winword\ww_collection.py:49
+#: appModules\winword\ww_collection.py:47
 msgid "28.35"
 msgstr "28.35"
 
-#: appModules\winword\ww_collection.py:105
-#: appModules\winword\ww_collection.py:115
+#: appModules\winword\ww_collection.py:103
+#: appModules\winword\ww_collection.py:113
 #, python-format
 msgid "%s at cursor's position"
 msgstr "%s a la posición del cursor"
 
-#: appModules\winword\ww_collection.py:106
-#: appModules\winword\ww_collection.py:116
+#: appModules\winword\ww_collection.py:104
+#: appModules\winword\ww_collection.py:114
 #, python-format
 msgid "%s in the selection"
 msgstr "%s en la selección"
 
-#: appModules\winword\ww_collection.py:107
-#: appModules\winword\ww_collection.py:117
+#: appModules\winword\ww_collection.py:105
+#: appModules\winword\ww_collection.py:115
 #, python-format
 msgid "%s in the document"
 msgstr "%s en el documento"
 
-#: appModules\winword\ww_collection.py:108
-#: appModules\winword\ww_collection.py:118
+#: appModules\winword\ww_collection.py:106
+#: appModules\winword\ww_collection.py:116
 #, python-format
 msgid "%s in the page"
 msgstr "%s en la página"
 
-#: appModules\winword\ww_collection.py:109
+#: appModules\winword\ww_collection.py:107
 #, python-format
 msgid "%s between start of document and cursor's position"
 msgstr "%s entre el inicio del documento y la posición del cursor"
 
-#: appModules\winword\ww_collection.py:110
+#: appModules\winword\ww_collection.py:108
 #, python-format
 msgid "%s between cursor's position and end of document"
 msgstr "%s entre la posición del cursor y el final del documento"
 
-#: appModules\winword\ww_collection.py:119
+#: appModules\winword\ww_collection.py:117
 #, python-format
 msgid "%s between document's start and cursor's position"
 msgstr "%s entre el inicio del documento y la posición del cursor"
 
-#: appModules\winword\ww_collection.py:120
+#: appModules\winword\ww_collection.py:118
 #, python-format
 msgid "%s between cursor's position and document's end"
 msgstr "%s entre la posición del cursor y el final del documento"
 
-#: appModules\winword\ww_collection.py:138
+#: appModules\winword\ww_collection.py:136
 #, python-format
 msgid "%s percent"
 msgstr "%s por ciento"
 
-#: appModules\winword\ww_collection.py:191
+#: appModules\winword\ww_collection.py:189
 msgid "Sorry, There are too many elements to be treated "
 msgstr "Lo sentimos, hay demasiados  elementos para ser procesados."
 
-#: appModules\winword\ww_collection.py:225
+#: appModules\winword\ww_collection.py:223
 msgid "Please wait."
 msgstr "Espera por favor"
 
 #. Translators: message to user when info copied to clipboard.
-#: appModules\winword\ww_collection.py:258
+#: appModules\winword\ww_collection.py:256
 msgid "{name}'s list has been copied to clipboard"
 msgstr "La lista de {name} se ha copiado al portapapeles"
 
-#: appModules\winword\ww_collection.py:290
+#: appModules\winword\ww_collection.py:288
 msgid "{count} {element}"
 msgstr "{count} {element}"
 
 #. Translators: text of a message box dialog.
-#: appModules\winword\ww_collection.py:480
+#: appModules\winword\ww_collection.py:478
 msgid "Are you sure you wish to delete this items?"
 msgstr "¿Está seguro de que quiere eliminar este elemento?"
 
 #. Translators: title of a message box dialog.
-#: appModules\winword\ww_collection.py:482
+#: appModules\winword\ww_collection.py:480
 msgid "Deletion of items"
 msgstr "Eliminación de elementos"
 
 #. Translators: text of a message box dialog.
-#: appModules\winword\ww_collection.py:567
+#: appModules\winword\ww_collection.py:565
 msgid "Are you sure you wish to delete all items?"
 msgstr "¿Está seguro de que desea eliminar todos los elementos?"
 
 #. Translators: title of a message box dialog.
-#: appModules\winword\ww_collection.py:569
+#: appModules\winword\ww_collection.py:567
 msgid "Deletion of all items"
 msgstr "Eliminación de todos los elementos"
 
 #. Translators: message to user to warn that there is no reply to this comment.
-#: appModules\winword\ww_comments.py:111
+#: appModules\winword\ww_comments.py:109
 msgid "There is no reply"
 msgstr "No hay respuesta"
 
 #. Translators: text to indicate commented text
 #. Translators: label of commented text column in comment result dialog.
-#: appModules\winword\ww_comments.py:119 appModules\winword\ww_comments.py:361
+#: appModules\winword\ww_comments.py:117 appModules\winword\ww_comments.py:359
 msgid "Commented text"
 msgstr "Texto comentado"
 
 #. Translators: text to indicate that the comment is solved.
-#: appModules\winword\ww_comments.py:122
+#: appModules\winword\ww_comments.py:120
 msgid "solved"
 msgstr "resuelto"
 
 #. Translators: comment author.
-#: appModules\winword\ww_comments.py:125
+#: appModules\winword\ww_comments.py:123
 msgid "Comment by {author}"
 msgstr "Comentario por {author}"
 
-#: appModules\winword\ww_comments.py:127
+#: appModules\winword\ww_comments.py:125
 msgid "{text}{solved}:"
 msgstr "{text}{solved}:"
 
 #. Translators: comment author with date.
-#: appModules\winword\ww_comments.py:130
+#: appModules\winword\ww_comments.py:128
 msgid "{text} ({date}){solved}:"
 msgstr "{text} ({date}){solved}:"
 
 #. Translators: text to indicate author reply.
-#: appModules\winword\ww_comments.py:135
+#: appModules\winword\ww_comments.py:133
 msgid "Reply from {author}"
 msgstr "Respuesta de {author}"
 
 #. Translators: text to indicate only author reply.
-#: appModules\winword\ww_comments.py:138
+#: appModules\winword\ww_comments.py:136
 msgid "{text}:"
 msgstr "{text}:"
 
 #. Translators: text to indicate author reply with date.
-#: appModules\winword\ww_comments.py:141
+#: appModules\winword\ww_comments.py:139
 msgid "{text} ({date}):"
 msgstr "{text} ({date}):"
 
 #. Translators: this is the title of informationdialog box.
 #. to show comment replies
-#: appModules\winword\ww_comments.py:151
+#: appModules\winword\ww_comments.py:149
 msgid "Comment replies"
 msgstr "Respuestas al comentario"
 
 #. Translators: message to user to warn an error on reply insert.
-#: appModules\winword\ww_comments.py:165 appModules\winword\ww_comments.py:226
+#: appModules\winword\ww_comments.py:163 appModules\winword\ww_comments.py:224
 msgid "Error, the reply could not be correctly added."
 msgstr "Error, la respuesta no se pudo añadir correctamente."
 
 #. Translators: text to indicate that reply has been inserted and ask for author name change.
-#: appModules\winword\ww_comments.py:169
+#: appModules\winword\ww_comments.py:167
 msgid ""
 "The reply was inserted with \"{name}\" as author. Do you want to change this "
 "name?"
@@ -747,12 +757,12 @@ msgstr ""
 "nombre?"
 
 #. Translators: title of insert reply dialog.
-#: appModules\winword\ww_comments.py:172 appModules\winword\ww_comments.py:233
+#: appModules\winword\ww_comments.py:170 appModules\winword\ww_comments.py:231
 msgid "Reply comment"
 msgstr "Responder al comentario"
 
 #. Translators: document information text.
-#: appModules\winword\ww_comments.py:181
+#: appModules\winword\ww_comments.py:179
 msgid ""
 "Page {page}, line {line}\n"
 "Author: {author}\n"
@@ -771,27 +781,27 @@ msgstr ""
 "{commentedText}\n"
 
 #. Translators: title of comment insert dialog.
-#: appModules\winword\ww_comments.py:201
+#: appModules\winword\ww_comments.py:199
 msgid "Reply comment's insert"
 msgstr "Inserción de respuesta al comentario"
 
 #. Translators: label of dialog entry text box.
-#: appModules\winword\ww_comments.py:203
+#: appModules\winword\ww_comments.py:201
 msgid "Enter the reply's text"
 msgstr "Escriba el texto de la respuesta"
 
 #. Translators: title of modification dialog.
-#: appModules\winword\ww_comments.py:205
+#: appModules\winword\ww_comments.py:203
 msgid "Reply's Modification"
 msgstr "Modificación de la respuesta"
 
 #. Translator: Not available, there  is no comment at cursor position
-#: appModules\winword\ww_comments.py:213
+#: appModules\winword\ww_comments.py:211
 msgid "Not available, there is no comment at cursor position"
 msgstr "No disponible, no hay comentarios en la posición del cursor"
 
 #. Translators: text to indicate that reply has been inserted and ask for author name change.
-#: appModules\winword\ww_comments.py:230
+#: appModules\winword\ww_comments.py:228
 msgid ""
 "The reply was inserted with \"{name}\" as author name. Do you want to change "
 "this name?"
@@ -811,53 +821,53 @@ msgstr ""
 #. wdFieldKeyWord
 #. msoChart
 #. Translators: comment element type.
-#: appModules\winword\ww_comments.py:245
+#: appModules\winword\ww_comments.py:243
 #: appModules\winword\ww_contentControl.py:147
 #: appModules\winword\ww_elementsListDialog.py:51
 #: appModules\winword\ww_elementsListDialog.py:461
 #: appModules\winword\ww_fields.py:141 appModules\winword\ww_formfields.py:134
 #: appModules\winword\ww_shapes.py:43
-#: appModules\winword\ww_wordDocumentBase.py:1294
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:116
+#: appModules\winword\ww_wordDocumentBase.py:1309
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:115
 msgid "Comment"
 msgstr "Comentario"
 
-#: appModules\winword\ww_comments.py:245
+#: appModules\winword\ww_comments.py:243
 msgid "Comments"
 msgstr "Comentarios"
 
 #. Translators: title of comment insert dialog.
-#: appModules\winword\ww_comments.py:249
+#: appModules\winword\ww_comments.py:247
 msgid "Comment's insert"
 msgstr "Inserción de comentario"
 
 #. Translators: label of dialog entry text box.
-#: appModules\winword\ww_comments.py:251
+#: appModules\winword\ww_comments.py:249
 msgid "Enter the comment's text"
 msgstr "Escriba el texto del comentario"
 
 #. Translators: title of comment modification dialog.
-#: appModules\winword\ww_comments.py:253
+#: appModules\winword\ww_comments.py:251
 msgid "Comment's Modification"
 msgstr "Modificación de comentario"
 
 #. Translators: to indicate that there is no comment.
-#: appModules\winword\ww_comments.py:260
+#: appModules\winword\ww_comments.py:258
 msgid "No comment"
 msgstr "No hay ningún comentario"
 
 #. Translator: Not available, there already a commentat cursor position
-#: appModules\winword\ww_comments.py:271
+#: appModules\winword\ww_comments.py:269
 msgid "Not available, there is already comment at cursor position"
 msgstr "Imposible, ya hay un comentario en la posición del cursor"
 
 #. Translators: message to user to warn an error on comment insert.
-#: appModules\winword\ww_comments.py:281
+#: appModules\winword\ww_comments.py:279
 msgid "Error, the comment could not be correctly added."
 msgstr "Error, el comentario no se pudo añadir correctamente."
 
 #. Translators: text to indicate that comment has been inserted and ask for author name change.
-#: appModules\winword\ww_comments.py:285
+#: appModules\winword\ww_comments.py:283
 msgid ""
 "The comment was inserted with \"{name}\" as author name. Do you want to "
 "change this name?"
@@ -866,28 +876,28 @@ msgstr ""
 "cambiar este nombre?"
 
 #. Translators: title of insert comment dialog.
-#: appModules\winword\ww_comments.py:288
+#: appModules\winword\ww_comments.py:286
 msgid "Insert comment"
 msgstr "Insertar comentario"
 
 #. Translators: to indicate that there is no comment to cursor position.
-#: appModules\winword\ww_comments.py:298
+#: appModules\winword\ww_comments.py:296
 msgid "There is no comment at cursor position"
 msgstr "No hay comentarios en la posición del cursor"
 
 #. Translators: to indicate that there is no comment to cursor position.
-#: appModules\winword\ww_comments.py:307
+#: appModules\winword\ww_comments.py:305
 msgid "There is no comment to cursor position"
 msgstr "No hay comentarios en la posición del cursor"
 
 #. Translators: label of comment column in comments result dialog.
-#: appModules\winword\ww_comments.py:322
+#: appModules\winword\ww_comments.py:320
 msgid "Comments:"
 msgstr "Comentarios:"
 
 #. Translators: label of comment author column in comments result dialog.
 #. wdFieldSubject
-#: appModules\winword\ww_comments.py:329
+#: appModules\winword\ww_comments.py:327
 #: appModules\winword\ww_contentControl.py:145
 #: appModules\winword\ww_document.py:825 appModules\winword\ww_fields.py:139
 #: appModules\winword\ww_formfields.py:132
@@ -906,7 +916,7 @@ msgstr "Autor"
 #. wdFieldNumChars
 #. wdFieldFileName
 #. wdFieldTemplate
-#: appModules\winword\ww_comments.py:331
+#: appModules\winword\ww_comments.py:329
 #: appModules\winword\ww_contentControl.py:159
 #: appModules\winword\ww_fields.py:153 appModules\winword\ww_formfields.py:146
 #: appModules\winword\ww_revisions.py:161
@@ -914,27 +924,27 @@ msgid "Date"
 msgstr "Fecha"
 
 #. Translators: reply button label.
-#: appModules\winword\ww_comments.py:341
+#: appModules\winword\ww_comments.py:339
 msgid "Repl&y"
 msgstr "Resp&onder"
 
 #. Translators: modify comment text button label.
-#: appModules\winword\ww_comments.py:343
+#: appModules\winword\ww_comments.py:341
 msgid "&Modify comment text"
 msgstr "&Modificar el texto del comentario"
 
 #. Translators: modify author button label.
-#: appModules\winword\ww_comments.py:345
+#: appModules\winword\ww_comments.py:343
 msgid "Modify author &name"
 msgstr "Modificar el &nombre del autor"
 
 #. Translators: report replies button label.
-#: appModules\winword\ww_comments.py:349
+#: appModules\winword\ww_comments.py:347
 msgid "Report &replies"
 msgstr "&Leer las respuestas"
 
 #. Translators: label of comment text column in comment result dialog.
-#: appModules\winword\ww_comments.py:356
+#: appModules\winword\ww_comments.py:354
 msgid "Comment's text"
 msgstr "Texto del comentario"
 
@@ -1221,9 +1231,9 @@ msgstr "Número de columnas de texto: %s"
 #: appModules\winword\ww_document.py:508 appModules\winword\ww_document.py:861
 #: appModules\winword\ww_document.py:988 appModules\winword\ww_sections.py:44
 #: appModules\winword\ww_sections.py:192
-#: appModules\winword\automaticReading\__init__.py:343
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:222
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:226
+#: appModules\winword\automaticReading\__init__.py:345
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:204
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:208
 msgid "yes"
 msgstr "sí"
 
@@ -1232,9 +1242,9 @@ msgstr "sí"
 #: appModules\winword\ww_document.py:508 appModules\winword\ww_document.py:862
 #: appModules\winword\ww_document.py:988 appModules\winword\ww_sections.py:44
 #: appModules\winword\ww_sections.py:192
-#: appModules\winword\automaticReading\__init__.py:343
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:224
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:226
+#: appModules\winword\automaticReading\__init__.py:345
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:206
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:208
 msgid "no"
 msgstr "no"
 
@@ -1876,8 +1886,8 @@ msgstr "%s línea"
 #: appModules\winword\ww_elementsListDialog.py:54
 #: appModules\winword\ww_elementsListDialog.py:464
 #: appModules\winword\ww_endnotes.py:45
-#: appModules\winword\ww_wordDocumentBase.py:1300
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:118
+#: appModules\winword\ww_wordDocumentBase.py:1315
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:117
 msgid "Endnote"
 msgstr "Nota final"
 
@@ -1908,8 +1918,8 @@ msgstr "Campo de formulario"
 #: appModules\winword\ww_elementsListDialog.py:63
 #: appModules\winword\ww_elementsListDialog.py:473
 #: appModules\winword\ww_footnotes.py:42
-#: appModules\winword\ww_wordDocumentBase.py:1298
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:117
+#: appModules\winword\ww_wordDocumentBase.py:1313
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:116
 msgid "Footnote"
 msgstr "Nota al pie de página"
 
@@ -3036,12 +3046,12 @@ msgid "Table's end"
 msgstr "Final de tabla"
 
 #: appModules\winword\ww_tables.py:137
-#: appModules\winword\ww_wordDocumentBase.py:1053
+#: appModules\winword\ww_wordDocumentBase.py:1055
 msgid "Last cell"
 msgstr "Última celda"
 
 #: appModules\winword\ww_tables.py:142
-#: appModules\winword\ww_wordDocumentBase.py:1055
+#: appModules\winword\ww_wordDocumentBase.py:1057
 msgid "First cell"
 msgstr "Primera celda"
 
@@ -4525,25 +4535,25 @@ msgstr ""
 "Tabla: ir a la última celda de la fila y anunciar todas las celdas de la "
 "columna"
 
-#: appModules\winword\ww_wordDocumentBase.py:609
-#: appModules\winword\ww_wordDocumentBase.py:652
+#: appModules\winword\ww_wordDocumentBase.py:611
+#: appModules\winword\ww_wordDocumentBase.py:654
 msgid "Table layer mode on"
 msgstr "Capa de órdenes para tabla habilitado"
 
-#: appModules\winword\ww_wordDocumentBase.py:626
+#: appModules\winword\ww_wordDocumentBase.py:628
 msgid " (Table layer mode)"
 msgstr "(Capa de órdenes para tabla)"
 
-#: appModules\winword\ww_wordDocumentBase.py:654
+#: appModules\winword\ww_wordDocumentBase.py:656
 msgid "Table layer mode off"
 msgstr "Capa de órdenes para tabla deshabilitado"
 
 #. Translators: Input help mode message for toggle layer mode command.
-#: appModules\winword\ww_wordDocumentBase.py:658
+#: appModules\winword\ww_wordDocumentBase.py:660
 msgid "Toggle table layer mode"
 msgstr "Habilitar o deshabilitar la capa de órdenes para tabla"
 
-#: appModules\winword\ww_wordDocumentBase.py:674
+#: appModules\winword\ww_wordDocumentBase.py:676
 msgid "activate or desactivate the report of all cells of row or column"
 msgstr ""
 "Habilitar o deshabilitar el anuncio de todas las celdas que componen la fila "
@@ -4551,57 +4561,57 @@ msgstr ""
 
 #. Translators: message to user to indicate
 #. report all cells mode is activated.
-#: appModules\winword\ww_wordDocumentBase.py:683
+#: appModules\winword\ww_wordDocumentBase.py:685
 msgid "Report all Cells"
 msgstr "Anunciar todas las celdas"
 
 #. Translators: message to user to indicate
 #. report all cells mode is desactivated.
-#: appModules\winword\ww_wordDocumentBase.py:687
+#: appModules\winword\ww_wordDocumentBase.py:689
 msgid "Do not report all cells"
 msgstr "No anunciar todas las celdas"
 
 #. Translators: Input help mode message for toggle automatic reading command.
-#: appModules\winword\ww_wordDocumentBase.py:692
+#: appModules\winword\ww_wordDocumentBase.py:694
 msgid "activate or desactivate automatic reading"
 msgstr "Habilitar o deshabilitar la lectura automática"
 
 #. Translators: message to user to indicate automatic reading enabled.
-#: appModules\winword\ww_wordDocumentBase.py:698
+#: appModules\winword\ww_wordDocumentBase.py:700
 msgid "Automatic reading enabled"
 msgstr "Lectura automática habilitado"
 
 #. Translators: message to user to indicate automatic reading disabled.
-#: appModules\winword\ww_wordDocumentBase.py:701
+#: appModules\winword\ww_wordDocumentBase.py:703
 msgid "Automatic reading disabled"
 msgstr "Lectura automática deshabilitado"
 
 #. Translators: The message reported
 #. when a user attempts to use a table movement command.
 #. when the cursor is not withnin a table.
-#: appModules\winword\ww_wordDocumentBase.py:712
+#: appModules\winword\ww_wordDocumentBase.py:714
 msgid "Not in table"
 msgstr "No en una tabla"
 
 #. Translators: Input help mode message for report comment replies.
-#: appModules\winword\ww_wordDocumentBase.py:721
+#: appModules\winword\ww_wordDocumentBase.py:723
 msgid "Report replies to comment under cursor. Twice: display its"
 msgstr ""
 "Anunciar respuestas al comentario bajo el cursor. Pulsando dos veces lo "
 "muestra"
 
 #. Translators: Input help mode message for reply to comment under cursor.
-#: appModules\winword\ww_wordDocumentBase.py:739
+#: appModules\winword\ww_wordDocumentBase.py:741
 msgid "Reply to comment under cursor"
 msgstr "Responder al comentario bajo el cursor"
 
 #. Translators: message to user when there is no other paragraph.
-#: appModules\winword\ww_wordDocumentBase.py:809
+#: appModules\winword\ww_wordDocumentBase.py:811
 msgid "No other paragraph"
 msgstr "No hay ningún párrafo siguiente"
 
 #. Translators: Input help mode message for insert comment command.
-#: appModules\winword\ww_wordDocumentBase.py:863
+#: appModules\winword\ww_wordDocumentBase.py:865
 msgid ""
 "Insert an element (comment, footnote, endnote) where the System caret is "
 "located."
@@ -4609,7 +4619,7 @@ msgstr ""
 "Insertar un elemento (comentario, nota al pie de página, nota final) a la "
 "posición del cursor"
 
-#: appModules\winword\ww_wordDocumentBase.py:898
+#: appModules\winword\ww_wordDocumentBase.py:900
 msgid ""
 "Reports the text of the endnote or footnote where the System caret is "
 "located. Twice: modify  this text"
@@ -4619,22 +4629,22 @@ msgstr ""
 
 #. Translators: a message when there is no endnoe or footnote
 #. to report in Microsoft Word.
-#: appModules\winword\ww_wordDocumentBase.py:917
+#: appModules\winword\ww_wordDocumentBase.py:919
 msgid "no endnote or footnote"
 msgstr ""
 "No hay ninguna nota al final o nota al pie de página a la posición del cursor"
 
-#: appModules\winword\ww_wordDocumentBase.py:930
+#: appModules\winword\ww_wordDocumentBase.py:932
 msgid "Reports the text of the revision where the System caret is located."
 msgstr "Anunciar el texto del cambio en la posición del cursor"
 
-#: appModules\winword\ww_wordDocumentBase.py:942
+#: appModules\winword\ww_wordDocumentBase.py:944
 msgid "Display a dialog to get word object informations in a range"
 msgstr ""
 "Mostrar el cuadro de diálogo que permite obtener los objetos Word en un "
 "rango del documento"
 
-#: appModules\winword\ww_wordDocumentBase.py:953
+#: appModules\winword\ww_wordDocumentBase.py:955
 msgid ""
 "Report the page number and line number relative to the page. Twice: display "
 "this information"
@@ -4644,60 +4654,60 @@ msgstr ""
 "de la tabla. Dos veces seguidas: muestra esta información"
 
 #. Translators: message in report location script.
-#: appModules\winword\ww_wordDocumentBase.py:969
+#: appModules\winword\ww_wordDocumentBase.py:971
 msgid "at {0} from left edge and {1} from top edge of the page"
 msgstr ""
 "A {0} desde el borde izquierdo et a {1} desde el borde superior de la página"
 
 #. Translators: message in report location script.
-#: appModules\winword\ww_wordDocumentBase.py:976
+#: appModules\winword\ww_wordDocumentBase.py:978
 msgid "You are at the row {row}, column {column} of table"
 msgstr "Usted está en la fila {row}, columna {column} de la tabla"
 
 #. Translators: message to user to report location in page.
-#: appModules\winword\ww_wordDocumentBase.py:984
+#: appModules\winword\ww_wordDocumentBase.py:986
 msgid "you are at Line {line}, column {column} of page {page}"
 msgstr "Usted está en la línea {line}, columna {column} de la página {page}"
 
 #. Translators: message to userto describe selection.
-#: appModules\winword\ww_wordDocumentBase.py:992
+#: appModules\winword\ww_wordDocumentBase.py:994
 msgid "Selection begins at line {line}, column {column} of page {page}"
 msgstr ""
 "La selección comienza en la línea {line}, columna {column} de la página "
 "{page}"
 
 #. Translators: text to report position.
-#: appModules\winword\ww_wordDocumentBase.py:1004
+#: appModules\winword\ww_wordDocumentBase.py:1006
 msgid "at {0} from left edge and {1} from top edge of the page."
 msgstr ""
 "A {0} desde el borde izquierdo y a {1} desde el borde superior de la página."
 
 #. Translators: text to report location.
-#: appModules\winword\ww_wordDocumentBase.py:1007
+#: appModules\winword\ww_wordDocumentBase.py:1009
 msgid "It ends at line {line}, column {column} of page {page}"
 msgstr ""
 "Esta se termina a la línea {line}, columna {column} de la página {page}"
 
 #. Translators: this is the title of informationdialog box
 #. to show location informations.
-#: appModules\winword\ww_wordDocumentBase.py:1014
+#: appModules\winword\ww_wordDocumentBase.py:1016
 msgid "Location information"
 msgstr "Información de la posición"
 
 #. Translators: Input help mode message for report document informations command.
-#: appModules\winword\ww_wordDocumentBase.py:1021
+#: appModules\winword\ww_wordDocumentBase.py:1023
 msgid "Display document's informations"
 msgstr "Mostrar información sobre el documento"
 
-#: appModules\winword\ww_wordDocumentBase.py:1083
+#: appModules\winword\ww_wordDocumentBase.py:1085
 msgid "no next error"
 msgstr "No más siguiente error"
 
-#: appModules\winword\ww_wordDocumentBase.py:1087
+#: appModules\winword\ww_wordDocumentBase.py:1089
 msgid "no previous error"
 msgstr "No más error anterior"
 
-#: appModules\winword\ww_wordDocumentBase.py:1106
+#: appModules\winword\ww_wordDocumentBase.py:1108
 msgid ""
 "Go to next spelling error. Twice: go to previous spelling error. Third: "
 "display suggestions"
@@ -4706,50 +4716,55 @@ msgstr ""
 "ortografía anterior. Pulsando tres veces: Mostrar las sugerencias"
 
 #. Translators: Input help mode message for go to next grammatical error command.
-#: appModules\winword\ww_wordDocumentBase.py:1120
+#: appModules\winword\ww_wordDocumentBase.py:1122
 msgid "Go to next grammatical error. Twice: go to previous grammatical error"
 msgstr ""
 "Ir al siguiente error gramatical. Pulsando dos veces: Ir al error gramatical "
 "anterior"
 
 #. Translators: Input help mode message for report spelling error suggestions command.
-#: appModules\winword\ww_wordDocumentBase.py:1132
+#: appModules\winword\ww_wordDocumentBase.py:1134
 msgid "Display suggestions for spelling error"
 msgstr "Mostrar sugerencias para errores de ortografía"
 
-#: appModules\winword\ww_wordDocumentBase.py:1139
+#: appModules\winword\ww_wordDocumentBase.py:1141
 msgid "no error at focus"
 msgstr "Sin error en el cursor"
 
+#. Translators: Input help mode message for set view typ to draft command
+#: appModules\winword\ww_wordDocumentBase.py:1149
+msgid "Switch view to draft mode"
+msgstr "Cambiar la vista al modo Borrador"
+
 #. Translators: This is the title of the Spelling Error Suggestions dialog.
-#: appModules\winword\ww_wordDocumentBase.py:1160
+#: appModules\winword\ww_wordDocumentBase.py:1175
 msgid "Suggestions"
 msgstr "Sugerencias"
 
 #. Translators: This is a label of a button appearing
 #. on SpellingErrorSuggestions Dialog.
-#: appModules\winword\ww_wordDocumentBase.py:1183
+#: appModules\winword\ww_wordDocumentBase.py:1198
 msgid "&Correct"
 msgstr "&Corregir"
 
 #. Translators: This is the title of the InsertElementDialog dialog.
-#: appModules\winword\ww_wordDocumentBase.py:1280
+#: appModules\winword\ww_wordDocumentBase.py:1295
 msgid "Insert element"
 msgstr "Inserción de elemento"
 
 #. Translators: This is a label appearing on Insert Element dialog.
-#: appModules\winword\ww_wordDocumentBase.py:1291
+#: appModules\winword\ww_wordDocumentBase.py:1306
 msgid "Element's &type:"
 msgstr "&Tipo de elemento:"
 
 #. Translators: comment reply element type.
-#: appModules\winword\ww_wordDocumentBase.py:1296
+#: appModules\winword\ww_wordDocumentBase.py:1311
 msgid "Comment reply"
 msgstr "Respuestas al comentario"
 
 #. Translators: This is a label of a button appearing
 #. on Insert Element Dialog.
-#: appModules\winword\ww_wordDocumentBase.py:1311
+#: appModules\winword\ww_wordDocumentBase.py:1326
 msgid "&Insert"
 msgstr "&Insertar"
 
@@ -4820,37 +4835,35 @@ msgstr ""
 "acceder a controles de documento de Microsoft Word"
 
 #. Translators: Reported when text contains a draft comment.
-#: appModules\winword\automaticReading\__init__.py:232
+#: appModules\winword\automaticReading\__init__.py:234
 #, python-format
 msgid "draft comment of %s:"
 msgstr "Comentario borrador de %s:"
 
-#: appModules\winword\automaticReading\__init__.py:232
-#: appModules\winword\automaticReading\__init__.py:236
-#: appModules\winword\automaticReading\__init__.py:240
+#: appModules\winword\automaticReading\__init__.py:234
+#: appModules\winword\automaticReading\__init__.py:238
+#: appModules\winword\automaticReading\__init__.py:242
 msgid "comment:"
 msgstr "Comentario:"
 
 #. Translators: Reported when text contains a resolved comment.
-#: appModules\winword\automaticReading\__init__.py:235
+#: appModules\winword\automaticReading\__init__.py:237
 #, python-format
 msgid "resolved comment of %s:"
 msgstr "Comentario tratado de %s:"
 
 #. Translators: Reported when text contains a comment.
-#: appModules\winword\automaticReading\__init__.py:240
+#: appModules\winword\automaticReading\__init__.py:242
 #, python-format
 msgid "comment of %s:"
 msgstr "Comentario de %s:"
 
 #. Translators:  label to report synthesizer output device .
-#: appModules\winword\automaticReading\__init__.py:357
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:252
-#: shared\ww_addonConfigManager.py:544
+#: appModules\winword\automaticReading\__init__.py:358
 msgid "Audio output device"
 msgstr "Dispositivo de salida de audio"
 
-#: appModules\winword\automaticReading\__init__.py:403
+#: appModules\winword\automaticReading\__init__.py:404
 msgid ""
 "There are already voice settings saved for automatic reading.\n"
 "Do you want to replace them with the current voice settings for Word?"
@@ -4859,181 +4872,181 @@ msgstr ""
 "¿Quieres reemplazarlas por las opciones de voz actual para Word?"
 
 #. Translators: title of message box
-#: appModules\winword\automaticReading\__init__.py:407
-#: shared\ww_addonConfigManager.py:301 shared\ww_addonConfigManager.py:557
+#: appModules\winword\automaticReading\__init__.py:408
+#: shared\ww_addonConfigManager.py:301
 msgid "Warning"
 msgstr "Advertencia"
 
 #. Translators: message to user to report automatic reading voice record.
-#: appModules\winword\automaticReading\__init__.py:415
+#: appModules\winword\automaticReading\__init__.py:416
 msgid "Current voice settings have beenset for automatic reading"
 msgstr ""
 "Las opciones de voz actuales fueron guardadas para la lectura automática"
 
-#: appModules\winword\automaticReading\__init__.py:432
+#: appModules\winword\automaticReading\__init__.py:435
 msgid "Automatic reading voice"
 msgstr "Voz para la lectura automática"
 
-#: appModules\winword\automaticReading\__init__.py:437
+#: appModules\winword\automaticReading\__init__.py:440
 msgid "Current voice for Word"
 msgstr "Voz actual para Word"
 
 #. Translators: This is the label for the Options panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:48
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:47
 msgid "Options"
 msgstr "Opciones"
 
 #. Translators: This is the label for a group of editing options
 #. in the settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:55
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:54
 msgid "Paragraph"
 msgstr "Párrafo"
 
 #. Translators: This is the label for a checkbox in the settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:61
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:60
 msgid "&Skip empty paragraphs"
 msgstr "Saltar los &párrafos vacíos"
 
 #. Translators: This is the label for a checkbox in the settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:67
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:66
 msgid "&Play sound when paragraph is skipped"
 msgstr "&Reproducir un sonido si se saltan párrafos vacíos"
 
 #. Translators: This is the label for a checkbox in the options settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:73
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:72
 msgid "Na&vigate in loop"
 msgstr "Navegar en &bucle"
 
 #. translators: label for a list box in Options settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:79
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:78
 msgid "Maximum time of elements's search (in seconds:)"
 msgstr "Tiempo máximo de búsqueda de elementos (en segundos):"
 
 #. Translators: This is the label for the Automatic reading panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:106
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:105
 msgid "Automatic reading"
 msgstr "Lectura automática"
 
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:119
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:118
 msgid "Inserted text"
 msgstr "Texto insertado"
 
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:120
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:119
 msgid "Deleted text"
 msgstr "Texto eliminado"
 
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:121
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:120
 msgid "Revised text"
 msgstr "Texto modificado"
 
 #. Translators: This is the label for a checkbox in the automatic reading settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:127
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:126
 msgid "&Activate automatic reading"
 msgstr "Habilitar la &lectura automática"
 
 #. Translators: This is the label for a list of checkboxes
 #. controlling which  object are automatically reading.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:134
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:133
 msgid "Concerned elements:"
 msgstr "Elementos concernientes:"
 
 #. Translators: This is the label for a checkbox in the settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:154
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:153
 msgid "Read &with:"
 msgstr "Leer &con:"
 
 #. Translators: a choice labels for automatic reading.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:157
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:156
 msgid "Current voice"
 msgstr "Voz actual"
 
 #. Translators: a choice labels for automatic reading.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:159
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:158
 msgid "Current voice and  beep at start and end"
 msgstr "Voz actual y pitido al inicio y al final"
 
 #. Translators: a choice labels for automatic reading.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:161
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:160
 msgid "another voice"
 msgstr "otra voz"
 
 #. Translators:  this is a label for a checkbox
 #. in automatic reading settings panel
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:169
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:168
 msgid "&Report revision's type with author"
 msgstr "&Anunciar al autor con el tipo de modificación"
 
 #. translators: label for a button in automatic reading settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:175
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:174
 msgid "&Display voice's recorded setting"
 msgstr "Mostrar las opciones de &voz guardadas"
 
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:212
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:195
 msgid "Punctuation/symbol level"
 msgstr "Nivel de Puntuación y símbolos"
 
 #. Translators: text to report synthesizer name.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:247
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:229
 msgid "Synthetizer"
 msgstr "Sintetizador"
 
 #. Translators: message to user to report no automatic reading voice.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:288
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:265
 msgid "No voice recorded for automatic reading"
 msgstr "Ninguna voz fue guardada para la lectura automática"
 
 #. Translators: this is the title of informationdialog box
 #. to show voice profile informations.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:293
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:270
 msgid "Voice settings for automatic reading"
 msgstr "Opciones de voz para la lectura automática"
 
 #. Translators: This is the label for the Update panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:333
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:99
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:310
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:98
 msgid "Update"
 msgstr "Actualización"
 
 #. Translators: This is the label for a checkbox in the update settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:338
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:315
 msgid "Automatically check for &updates "
 msgstr "Buscar automáticamente &actualizaciones"
 
 #. Translators: This is the label for a checkbox in the update settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:344
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:321
 msgid "Update also release versions to &developpement versions"
 msgstr "Actualizar también versiones estable hacia versiones de &desarrollo"
 
 #. translators: label for a button in update settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:350
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:327
 msgid "&Check for update"
 msgstr "&Buscar actualización"
 
 #. translators: this is a label for a button in update settings panel.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:355
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:332
 msgid "View &history"
 msgstr "Ver &historial"
 
 #. Translators: title of add-on parameters dialog.
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:396
-#: globalPlugins\wordAccessEnhancement\ww_configGui.py:410
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:373
+#: globalPlugins\wordAccessEnhancement\ww_configGui.py:387
 msgid "Settings"
 msgstr "Opciones"
 
 #. Translators: The progress message
 #. indicating the name of the add-on being downloaded.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:102
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:101
 msgid "Downloading {name}"
 msgstr "Descargando {name}"
 
 #. Translators: A message indicating that an error occurred
 #. while downloading an update to NVDA.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:117
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:116
 msgid "Error downloading update for {name}."
 msgstr "Error al descargar la actualización de {name}."
 
 #. Translators: message to user
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:171
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:170
 msgid "Cannot update {name} - missing file or invalid file format"
 msgstr ""
 "No se puede actualizar {name} - archivo ausente o formato de archivo no "
@@ -5041,33 +5054,33 @@ msgstr ""
 
 #. Translators: The title of the dialog
 #. presented while an Addon is being updated.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:188
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:187
 msgid "Updating"
 msgstr "Actualizando"
 
 #. Translators: The message displayed while an addon is being updated.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:190
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:189
 msgid "Please wait while the add-on is being updated."
 msgstr "Por favor, espera mientras se actualiza el complemento."
 
 #. Translators: The message displayed when an error occurs
 #. when installing an add-on package.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:212
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:211
 msgid "Failed to update {name} add-on"
 msgstr "Fallo al actualizar el complemento {name}"
 
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:256
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:255
 msgid "{summary} - update"
 msgstr "{summary} - actualización"
 
 #. Translators: message to user that the update service is temporarily in maintenance
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:269
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:268
 msgid "The service is temporarily under maintenance. Please, try again later."
 msgstr ""
 "El servicio está actualmente en mantenimiento. Por favor, inténtelo de nuevo "
 "más tarde."
 
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:297
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:295
 msgid ""
 "The update is not compatible with this version of NVDA. Minimum NVDA "
 "version: {minYear}.{minMajor}, last tested: {testedYear}.{testedMajor}."
@@ -5076,12 +5089,12 @@ msgstr ""
 "de NVDA: {minYear}.{minMajor}, última probada: {testedYear}.{testedMajor}."
 
 #. Translators: message to user to report a new version.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:357
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:356
 #, python-format
 msgid "New version%s is available. Do you want to download it now?"
 msgstr "La nueva versión %s está disponible. ¿Quieres descargarla ahora?"
 
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:361
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:360
 msgid ""
 "New version{0} is available.\n"
 "But it is not compatible with this version of NVDA: minimum version requred "
@@ -5094,12 +5107,12 @@ msgstr ""
 "¿Quieres ignorar esta incompatibilidad y aún así descargarla ahora?"
 
 #. Translators: message to user that add-on is up to date
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:382
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:381
 #, python-format
 msgid "You are up-to-date. %s is the latest version."
 msgstr "Estás al día, %s es la versión más reciente."
 
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:389
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:388
 msgid "Oops! There was a problem checking for updates. Please retry later"
 msgstr ""
 "¡Huy! Hubo un problema al buscar las actualizaciones. Por favor, inténtelo "
@@ -5107,23 +5120,23 @@ msgstr ""
 
 #. Translators: This is a label of a button appearing
 #. on UpdateCheckResult dialog.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:544
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:543
 msgid "&Yes"
 msgstr "&Sí"
 
 #. Translators: This is a label of a button appearing
 #. on UpdateCheckResult dialog.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:549
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:548
 msgid "&No"
 msgstr "&No"
 
 #. Translators: The label of a button to remind the user later
 #. about performing some action.
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:554
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:553
 msgid "&Later"
 msgstr "&Más tarde"
 
-#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:558
+#: globalPlugins\wordAccessEnhancement\updateHandler\update_check.py:557
 msgid "Wha&t's new"
 msgstr "Qué hay &de nuevo"
 
@@ -5134,18 +5147,6 @@ msgid ""
 msgstr ""
 "El archivo de la configuración del complemento contiene errores. La "
 "configuración se ha restablecido a los valores predeterminados"
-
-#: shared\ww_addonConfigManager.py:553
-msgid ""
-"To ensure compatibility with this NVDA's version, the voice settings saved "
-"for automatic reading had to be cleared.\n"
-"You need to register them again.\n"
-"Sorry for the inconvenience."
-msgstr ""
-"Para garantizar la compatibilidad con esta versión de NVDA, las opciones de "
-"voz guardadas para la lectura automática tuvieron que ser eliminadas.\n"
-"Debes guardarlas de nuevo.\n"
-"Lo siento por los inconvenientes ocasionados."
 
 #. Translators: this is the default title of Information dialog.
 #: shared\ww_informationDialog.py:40
@@ -5173,6 +5174,17 @@ msgstr "Error, la información no puede copiarse al portapapeles"
 #, python-format
 msgid "%s dialog is allready open"
 msgstr "El diálogo %s ya está abierto"
+
+#~ msgid ""
+#~ "To ensure compatibility with this NVDA's version, the voice settings "
+#~ "saved for automatic reading had to be cleared.\n"
+#~ "You need to register them again.\n"
+#~ "Sorry for the inconvenience."
+#~ msgstr ""
+#~ "Para garantizar la compatibilidad con esta versión de NVDA, las opciones "
+#~ "de voz guardadas para la lectura automática tuvieron que ser eliminadas.\n"
+#~ "Debes guardarlas de nuevo.\n"
+#~ "Lo siento por los inconvenientes ocasionados."
 
 #~ msgid "Record automatic reading voice's settings"
 #~ msgstr "Guardar las opciones de voz para la lectura automática"
@@ -5335,9 +5347,9 @@ msgstr "El diálogo %s ya está abierto"
 #~ "* a script (\"windows+alt+m\") to report revision at cursor's  position,\n"
 #~ "* a script (\"windows+alt+n\") to report endNote  or footNote at cursor's "
 #~ "position,\n"
-#~ "* modify the NVDA scripts \"control+downArrow\" and "
-#~ "\"Control+Uparrow\" (which moves the carret paragraph by paragraph) to "
-#~ "skip the empty paragraph (optionnal),\n"
+#~ "* modify the NVDA scripts \"control+downArrow\" and \"Control+Uparrow\" "
+#~ "(which moves the carret paragraph by paragraph) to skip the empty "
+#~ "paragraph (optionnal),\n"
 #~ "* some scripts to move in table and read table 's elements (row, column, "
 #~ "cell),\n"
 #~ "* adds specific Word browse mode command keys,\n"
@@ -5567,9 +5579,9 @@ msgstr "El diálogo %s ya está abierto"
 #~ "* a script (\"windows+alt+m\") to report revision at cursor's  position,\n"
 #~ "* a script (\"windows+alt+n\") to report endNote  or footNote at cursor's "
 #~ "position,\n"
-#~ "* modify the NVDA scripts \"control+downArrow\" and "
-#~ "\"Control+Uparrow\" (which moves the carret paragraph by paragraph) to "
-#~ "skip the empty paragraph (optionnal),\n"
+#~ "* modify the NVDA scripts \"control+downArrow\" and \"Control+Uparrow\" "
+#~ "(which moves the carret paragraph by paragraph) to skip the empty "
+#~ "paragraph (optionnal),\n"
 #~ "* some scripts to move in table and read table 's elements (row, column, "
 #~ "cell),\n"
 #~ "* adds specific Word browse mode command keys,\n"
@@ -5639,9 +5651,9 @@ msgstr "El diálogo %s ya está abierto"
 #~ "* a script (\"windows+alt+r\") to report revision at cursor's  position,\n"
 #~ "* a script (\"windows+alt+n\") to report endNote  or footNote at cursor's "
 #~ "position,\n"
-#~ "*  modify the NVDA scripts \"control+downArrow\" and "
-#~ "\"Control+Uparrow\" (which moves the carret paragraph by paragraph) to "
-#~ "skip the empty paragraph (optionnal).\n"
+#~ "*  modify the NVDA scripts \"control+downArrow\" and \"Control+Uparrow\" "
+#~ "(which moves the carret paragraph by paragraph) to skip the empty "
+#~ "paragraph (optionnal).\n"
 #~ "* some scripts to move in table and read table 's elements (row, column, "
 #~ "cell),\n"
 #~ "* adds specific Word browse mode command keys ,\n"

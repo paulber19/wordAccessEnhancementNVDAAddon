@@ -15,10 +15,7 @@ from configobj import ConfigObj
 from configobj.validate import Validator, ValidateError
 from io import StringIO
 import _pickle as cPickle
-from versionInfo import version_year, version_major
 
-
-NVDAVersion = [version_year, version_major]
 addonHandler.initTranslation()
 
 # config section
@@ -285,11 +282,14 @@ class AddonConfigurationManager():
 	def __init__(self):
 		self.configFileName = "%sAddon.ini" % _addonName
 		self.autoReadingSynthFileName = "%s_autoReadingSynth.pickle" % _addonName
+		self.userConfig = globalVars.appArgs.configPath
 		self.loadSettings()
+		
 		config.post_configSave.register(self.handlePostConfigSave)
 
+
 	def warnConfigurationReset(self):
-		from messages import alert
+		from ww_messages import alert
 		wx.CallLater(
 			100,
 			alert,
@@ -304,8 +304,7 @@ class AddonConfigurationManager():
 	def loadSettings(self):
 		self.restorePreviousAutoReadingSynth()
 		self.getAutoReadingSynthSettings()
-		userConfig = globalVars.appArgs.configPath
-		self.addonConfigFile = addonConfigFile = os.path.join(userConfig, self.configFileName)
+		self.addonConfigFile = addonConfigFile = os.path.join(self.userConfig, self.configFileName)
 		self.oldConfigFile = addonConfigFile + PREVIOUSCONFIGURATIONFILE_SUFFIX
 		# after add-on installation and and the user does not want to keep the configuration
 		# the configuration has been renamed with .delete extension
@@ -384,8 +383,7 @@ class AddonConfigurationManager():
 			pass
 
 	def restorePreviousAutoReadingSynth(self):
-		userConfig = globalVars.appArgs.configPath
-		autoReadingSynthFile = os.path.join(userConfig, self.autoReadingSynthFileName)
+		autoReadingSynthFile = os.path.join(self.userConfig, self.autoReadingSynthFileName)
 		prevAutoReadingSynthFile = autoReadingSynthFile + PREVIOUSCONFIGURATIONFILE_SUFFIX
 		if os.path.exists(prevAutoReadingSynthFile):
 			# rename it
@@ -402,16 +400,10 @@ class AddonConfigurationManager():
 
 	def canConfigurationBeSaved(self, force):
 		# Never save config or state if running securely or if running from the launcher.
-		try:
-			# for NVDA version >= 2023.2
-			from NVDAState import shouldWriteToDisk
-			writeToDisk = shouldWriteToDisk()
-		except ImportError:
-			# for NVDA version < 2023.2
-			writeToDisk = not (globalVars.appArgs.secure or globalVars.appArgs.launcher)
-		if not writeToDisk:
-			log.debug("Not writing add-on configuration, either --secure or --launcher args present")
-			return False
+
+		from NVDAState import shouldWriteToDisk
+		writeToDisk = shouldWriteToDisk()
+
 		# after add-on installation and and the user does not want to keep the configuration
 		# the configuration has been renamed with .delete extension
 		# if this file exists, configuration should not be saved
@@ -429,8 +421,7 @@ class AddonConfigurationManager():
 		return True
 
 	def _saveAutoReadingSynthSettings(self):
-		userConfig = config.getUserDefaultConfigPath()
-		autoReadingSynthFile = os.path.join(userConfig, self.autoReadingSynthFileName)
+		autoReadingSynthFile = os.path.join(self.userConfig, self.autoReadingSynthFileName)
 		with open(autoReadingSynthFile, 'wb') as f:
 			cPickle.dump(self._autoReadingSynth, f, 0)
 		# if an installation took place, the configuration file was renamed.
@@ -534,40 +525,13 @@ class AddonConfigurationManager():
 
 	def toggleAutoRevisedTextReadingOption(self, toggle=True):
 		return self._toggleAutoReportOption(ID_RevisedTextReport, toggle)
-	def checkAutomaticReadingSynthSettingsCompatibility(self):
-		from messages import alert
-		# until nvda 2024.4, audio output device is stored by it name
-		# since nvda 2025.1, it is stored by it id and for automatic voice  reading, itname is recorded in voice information
-		if NVDAVersion != [2025, 1]or self._autoReadingSynth is None:
-			return
-		c = self._autoReadingSynth["SynthDisplayInfos"].copy()
-		if c["1"][0] == _("Audio output device"):
-			return
-		self._autoReadingSynth = None
-		self._saveAutoReadingSynthSettings()
-		wx.CallLater(
-			100,
-			alert,
-			# Translators: A message warning automatic reading synth settings clearedconfiguration reset.
-			_(
-				"To ensure compatibility with this NVDA's version, the voice settings saved for automatic reading had to be cleared.\n"
-				"You need to register them again.\n"
-				"Sorry for the inconvenience."),
-			# Translators: title of message box
-			"{addon} - {title}" .format(addon=_curAddon.manifest["summary"], title=_("Warning")),
 
-		)
-
-
-	
 	def getAutoReadingSynthSettings(self):
 		if self._autoReadingSynth is None:
-			path = os.path.join(
-				config.getUserDefaultConfigPath(),
-				"wordAccessEnhancement_autoReadingSynth.pickle")
-			if not os.path.exists(path):
+			autoReadingSynthFile = os.path.join(self.userConfig, self.autoReadingSynthFileName)
+			if not os.path.exists(autoReadingSynthFile):
 				return None
-			with open(path, 'rb') as f:
+			with open(autoReadingSynthFile , 'rb') as f:
 				self._autoReadingSynth = cPickle.load(f)
 				log.debug("loading autoReadingSynth settings")
 		if self._autoReadingSynth  is None:
@@ -579,7 +543,6 @@ class AddonConfigurationManager():
 			del self._autoReadingSynth[SCT_Speech]["includeCLDR"]
 		if "symbolDictionaries" in self._autoReadingSynth[SCT_Speech]:
 			del self._autoReadingSynth[SCT_Speech]["symbolDictionaries"]
-		self.checkAutomaticReadingSynthSettingsCompatibility()
 		return self._autoReadingSynth
 
 	def saveAutoReadingSynthSettings(self, synthSettings):

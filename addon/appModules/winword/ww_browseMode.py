@@ -559,8 +559,15 @@ class WordDocumentRevisionQuickNavItemEx(WordDocumentRevisionQuickNavItem):
 				# We've expanded past the end of the field, so limit to the end of the field.
 				info.setEndPoint(fieldInfo, "endToEnd")
 		if revisionType == wdRevisionDelete:
+			from .ww_revisions import Revision
+			rev = Revision(None, self.collectionItem)
+			seq = []
+			seq.append(rev.FormatRevisionTypeAndAuthorText())
+			seq.append(rev.text)
+			seq.append(speech.commands.EndUtteranceCommand())
+			speech.speak(seq)
 			info.expand(textInfos.UNIT_CHARACTER)
-			speech.speakTextInfo(info, useCache=False, reason=OutputReason.FOCUS)
+			#speech.speakTextInfo(info, useCache=False, reason=OutputReason.FOCUS)
 			return
 		autoReadingWith = _addonConfigManager.getAutoReadingWithOption()
 		autoReadingWithBeep = _addonConfigManager.toggleAutomaticReadingOption(

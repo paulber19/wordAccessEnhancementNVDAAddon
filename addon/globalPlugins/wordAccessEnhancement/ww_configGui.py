@@ -13,8 +13,7 @@ from gui.settingsDialogs import MultiCategorySettingsDialog, SettingsPanel
 import wx
 import characterProcessing
 import speech
-from versionInfo import version_year, version_major
-NVDAVersion = [version_year, version_major]
+
 _curAddon = addonHandler.getCodeAddon()
 path = os.path.join(_curAddon.path, "shared")
 sys.path.append(path)
@@ -179,43 +178,26 @@ class AutomaticReadingPanel(SettingsPanel):
 
 	def getSynthInformations(self, autoReadingSynth ):
 		def get_NVDASpeechSettings():
-			if NVDAVersion < [2024, 3]:
-				return [
-					"autoLanguageSwitching",
-					"autoDialectSwitching",
-					"symbolLevel",
-					"trustVoiceLanguage",
-					"delayedCharacterDescriptions"]
-			else:
-				return [
-					"autoLanguageSwitching",
-					"autoDialectSwitching",
-					"symbolLevel",
-					"trustVoiceLanguage",
-					"unicodeNormalization",
-					"reportNormalizedForCharacterNavigation",
-					"delayedCharacterDescriptions"]
+			return [
+				"autoLanguageSwitching",
+				"autoDialectSwitching",
+				"symbolLevel",
+				"trustVoiceLanguage",
+				"unicodeNormalization",
+				"reportNormalizedForCharacterNavigation",
+				"delayedCharacterDescriptions"
+			]
 
 		def getNVDASpeechSettingsInfos():
-			if NVDAVersion < [2024, 3]:
-				return [
-					("Automatic language switching (when supported)", boolToText),
-					("Automatic dialect switching (when supported)", boolToText),
-					("Punctuation/symbol level", punctuationLevelToText),
-					("Trust voice's language when processing characters and symbols", boolToText),
-					("Delayed descriptions for characters on cursor movement", boolToText),
-				]
-			else:
-				return [
-					("Automatic language switching (when supported)", boolToText),
-					("Automatic dialect switching (when supported)", boolToText),
-					(_("Punctuation/symbol level"), punctuationLevelToText),
-					("Trust voice's language when processing characters and symbols", boolToText),
-					("Unicode normali&zation", featureFlagToText),
-					("Report '&Normalized' when navigating by character", boolToText),
-					("&Delayed descriptions for characters on cursor movement", boolToText),
-				]
-
+			return [
+				("Automatic language switching (when supported)", boolToText),
+				("Automatic dialect switching (when supported)", boolToText),
+				(_("Punctuation/symbol level"), punctuationLevelToText),
+				("Trust voice's language when processing characters and symbols", boolToText),
+				("Unicode normali&zation", featureFlagToText),
+				("Report '&Normalized' when navigating by character", boolToText),
+				("&Delayed descriptions for characters on cursor movement", boolToText),
+			]
 
 		def boolToText(value):
 			if type(value) is str and value == "True":
@@ -247,12 +229,7 @@ class AutomaticReadingPanel(SettingsPanel):
 		textList.append("%s = %s" %(_("Synthetizer"), autoReadingSynthName))
 		synthSpeechSettings = autoReadingSynth[SCT_Speech]
 		synthDisplayInfos = autoReadingSynth["SynthDisplayInfos"]
-		if NVDAVersion < [2025, 1]:
-			# Translators:  label to report synthesizer output device .
-			textList.append("%s = %s" % (_("Audio output device"), synthSpeechSettings["outputDevice"]))
-		print("synthDisplayInfos: %s" %synthDisplayInfos)
 		for i in synthDisplayInfos:
-			print("i: %s" %i)
 			label, val = synthDisplayInfos[i]
 			textList.append("%s = %s" % (label,val))
 

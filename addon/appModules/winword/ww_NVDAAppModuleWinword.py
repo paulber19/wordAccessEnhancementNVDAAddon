@@ -1,4 +1,4 @@
-# appModules\winword\ww_NVDAAppModuleWinword.py
+# appModules\winword\NVDAAppModuleWinword.py
 # A part of wordAccessEnhancement add-on
 # Copyright (C) 2024 paulber19
 # This file is covered by the GNU General Public License.
@@ -17,7 +17,7 @@ addonHandler.initTranslation()
 
 
 class ViewType(DisplayStringIntEnum):
-	"""Enumeration containing the possible view types in Word documents:
+	"""Enumeration containing the possible view types in Word documents:.
 	https://learn.microsoft.com/en-us/office/vba/api/word.wdviewtype
 	"""
 

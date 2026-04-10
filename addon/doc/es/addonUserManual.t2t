@@ -503,21 +503,13 @@ Para simplificar esto, el complemento proporciona un script, sin gesto de entrad
 
 Ten en cuenta que para un funcionamiento óptimo del complemento, es preferible que la opción "Utilizar UI automation para acceder a controles de documento de Microsoft Word" debe estar en "Sólo cuando sea necesario". Esta opción está en la categoría "Avanzadas" en las Opciones de NVDA. Por defecto, NVDA lo configura en "Por defecto (cuando sea adecuado)".
 
-++ Verbalización del resultado de ciertos atajos de Word ++
-Según sus versiones, NVDA anuncia el resultado de ciertos atajos de Word.
+++ Puesta en modo Borrador de la vista del documento ++
+La vista del documento se puede mostrar de varias maneras: Modo de lectura, Diseño de impresión, Borrador, Esquema y Diseño web. 
+Algunos atajos de Word como "control+alt+o" o "control+alt+p"  te permite cambiar al modo Esquema o modo Diseño de impresión.
+Pero el atajo "control+alt+n" que cambia la vista al modo Borrador no se puede utilizar porque es el atajo para el icono de NVDA.
 
-El complemento tiene, en primer lugar, de proporcionar sus anuncios para todas las versiones de NVDA que el admite.
+El complemento proporciona entonces el script "Cambiar la vista al modo Borrador" que se lanza con el gesto de entrada "key_Set_ViewMode".
 
-En segundo lugar, para aportar otros anuncios:
-- atajo "control+mayúscula+p": poner la vista en Diseño de impresión.
-- atajo "control+mayúscula+o": poner la vista en Esquema.
-
-
-++ Indicación de tipo de vista ++
-El complemento trae la indicación de tipo de vista en la descripción del documento para todas las versiones de NVDA antes de la versión 2025.1.
-
-
-Para que sea anunciada esta descripción, es imperativo que la opción "Anunciar Descripciones de Objetos" en la categoría "Presentación de objetos" de NVDA esté marcada.
 
 + Historial +
 El historial de las versiones del complemento está en el archivo ["changes.html" changes.html]

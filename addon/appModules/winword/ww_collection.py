@@ -37,10 +37,8 @@ sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
 from ww_utils import (
 	getSpeechMode, setSpeechMode, setSpeechMode_off)
-from messages import confirm_YesNo, alert, ReturnCode
+from ww_messages import confirm_YesNo, alert, ReturnCode
 del sys.path[-1]
-del sys.modules["ww_utils"]
-del sys.modules["messages"]
 
 addonHandler.initTranslation()
 

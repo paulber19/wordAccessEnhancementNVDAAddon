@@ -498,20 +498,13 @@ Pour simplifier cela, l'extension apporte un script, sans geste de commande,  po
 
 Attention : pour un fonctionnement optimum de l'extension, il est préférable que l'option  "Utiliser UI Automation pour accéder aux Contrôles des documents Microsoft Word" soit sur  "Seulement si nécessaire". Cette option se trouve dans la catégorie "Avancé" des paramètres de NVDA . Par défaut, NVDA la configure à "Lorsque c'est adapté".
 
-++ Vocalisation du résultat de certains raccourcis Word ++
-Suivant ses versions, NVDA annonce le résultat de certains raccourcis de Word.
+++ Mise en mode brouillon de la vue du document ++
+La vue du document peut être affichée  de plusieurs manière: lecture, page,  brouillon , plan et web. 
+Certains raccourcis de Word comme "control+alt+o" ou "control+alt+p"  permettent de basculer en mode plan ou mode page.
+Mais le raccourci "control+alt+n" qui permet de basculer la vue en mode brouillon ne peut pas être utilisé car c'est le raccourci de l'icône de NVDA.
 
-L'extension a, en premier lieu, de fournir ces annonces pour toutes les versions de NVDA qu'elle supporte.
+L'extension apporte donc le script "Basculer la vue en mode brouillon"  qui se lance avec le geste de commande "key_Set_ViewMode".
 
-En second lieu, d'apporter d'autre annonce :
-- raccourci "control+majuscule+p" : mettre la vue en mode page.
-- raccourci "control+majuscule+o" : mettre la vue en mode plan.
-
-
-++ Indication du type de vue ++
-L'extension amène  l'indication du type de vue dans la description du document pour toutes les versions de NVDA antérieure à la version 2025.1.
-
-Pour que cette description soit  annoncée, il est impératif que l'option "Annoncer la description de l'objet " de la catégorie "Présentation des objets" de NVDA soit cochée.
 
 + Historique +
 L'historique des versions de cette extension est dans le fichier ["changes.html" changes.html]

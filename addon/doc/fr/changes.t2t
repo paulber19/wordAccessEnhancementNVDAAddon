@@ -14,6 +14,31 @@ Téléchargement :
 - [versions de développement ADDON_DEV_URL]
 
 
++ v3.8 (26/02/2026) +
+Compatibilité avec NVDA 2026.1.
+
+Les versions de NVDA antérieures à la 2025.1 ne sont plus supportées.
+
+
+Nouveautés :
+- ajout du script "windows + alt + b" pour positionner la vue en mode brouillon.
+
+
+Corrections de bogues :
+- les paramètres du synthétiseur utilisé pour la lecture automatique sont de nouveau correctement enregistrés (régression depuis la version 3.7 de l'extension).
+- l'affichage des paramètres  de la lecture automatique est  de nouvau possible (régression de puis la version 3.7 de l'extension).
+
+
+Développement :
+- pour afficher le "Quoi de neuf" d'une nouvelle version de l'extension, le document "changes.html" n'est plus ouvert par"urlopen", mais est téléchargé , enregistré momentanément dans le dossier "appData\local\temp" et ouvert dans le navigateur.
+-  prise en compte de la fermeture du site rawgit.com pour la mise à jour  de l'extension.
+- utilisation de json en lieu et place de pickle pour stoquer l'état de la mise à jour de l'extension.
+
+
+Mise en conformité avec l'API de NVDA :
+- prise en compte du déplacement de la version de NVDA dans le module "buildVersion.py".
+
+
 + v3.7 (06/06/2025) +
 Compatibilité avec NVDA 2025.1.
 

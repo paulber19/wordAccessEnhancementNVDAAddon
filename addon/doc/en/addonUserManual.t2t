@@ -508,6 +508,12 @@ The extension brings the indication of the view type in the document description
 
 For this description to be announced, it is imperative that the “Announce the description of the object” option in the “Presentation of objects” category of NVDA, is checked.
 
+++ Putting the document view into draft mode ++
+The document view can be displayed in several ways: read, print, draft, outline. 
+Some Word shortcuts like "control+alt+o" or "control+alt+p" allow you to switch to outline or print mode.
+But the "control+alt+n" shortcut which switches the view to draft mode cannot be used because it is the shortcut for the NVDA icon.
+
+The extension therefore provides the "Switch view to draft mode" script which is launched with the "key_Set_ViewMode" input gesture.
 
 + History +
 The version history of this add-on is in the file ["changes.html" changes.html]

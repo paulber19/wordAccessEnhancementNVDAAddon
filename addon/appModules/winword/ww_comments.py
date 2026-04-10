@@ -18,10 +18,8 @@ _curAddon = addonHandler.getCodeAddon()
 sharedPath = os.path.join(_curAddon.path, "shared")
 sys.path.append(sharedPath)
 from ww_informationDialog import InformationDialog
-from messages import confirm_YesNo, ReturnCode
+from ww_messages import confirm_YesNo, ReturnCode
 del sys.path[-1]
-del sys.modules["ww_informationDialog"]
-del sys.modules["messages"]
 
 addonHandler.initTranslation()
 
