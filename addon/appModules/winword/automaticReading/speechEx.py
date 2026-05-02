@@ -19,6 +19,7 @@ import colors
 from typing import Optional, Dict
 
 from speech import getTableInfoSpeech
+from speech.commands import WaveFileCommand
 from speech.types import logBadSequenceTypes
 from config.configFlags import ReportCellBorders
 import sys

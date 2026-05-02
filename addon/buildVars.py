@@ -51,7 +51,7 @@ This add-on has been tested with Microsoft Word 2019, 2016 and 2013 (perhaps wor
 """),
 
 	# version
-	"addon_version": "3.8",
+	"addon_version": "3.8.1",
 	# Author(s)
 	"addon_author": "paulber19 <paulber19@laposte.net>",
 	# URL for the add-on documentation support
