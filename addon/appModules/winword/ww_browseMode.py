@@ -567,7 +567,6 @@ class WordDocumentRevisionQuickNavItemEx(WordDocumentRevisionQuickNavItem):
 			seq.append(speech.commands.EndUtteranceCommand())
 			speech.speak(seq)
 			info.expand(textInfos.UNIT_CHARACTER)
-			#speech.speakTextInfo(info, useCache=False, reason=OutputReason.FOCUS)
 			return
 		autoReadingWith = _addonConfigManager.getAutoReadingWithOption()
 		autoReadingWithBeep = _addonConfigManager.toggleAutomaticReadingOption(

@@ -4,7 +4,6 @@
 # This file is covered by the GNU General Public License.
 
 import addonHandler
-from logHandler import log
 try:
 	# for nvda versions < 2026.1
 	from versionInfo import version_year, version_major
@@ -12,7 +11,6 @@ except ImportError:
 	# for NVDA versions >= 2026.1
 	from buildVersion import version_year, version_major
 import config
-import gui
 import wx
 import textInfos
 from textInfos import SpeechSequence
@@ -353,12 +351,12 @@ def getSynthDisplayInfos(synth, synthConf, outputDeviceName):
 				info = v
 				textList.append((setting.displayName, info))
 	d = {}
-	i=1
+	i = 1
 	# Translators:  label to report synthesizer output device .
 	d[str(1)] = [_("Audio output device"), outputDeviceName]
-	i+= 1
+	i += 1
 	for label, val in textList:
-		d[str(i )] = (label, val)
+		d[str(i)] = (label, val)
 		i += 1
 	return d
 
@@ -383,8 +381,8 @@ def getCurrentSpeechSettings():
 			outputDeviceName = deviceNames[deviceIds.index(outputDevice)]
 		except ValueError:
 			pass
-	
-	d["SynthDisplayInfos"] = getSynthDisplayInfos(currentSynth, d[SCT_Speech][currentSynth.name], outputDeviceName)
+	d["SynthDisplayInfos"] = getSynthDisplayInfos(
+		currentSynth, d[SCT_Speech][currentSynth.name], outputDeviceName)
 	# nvda 2024.4: include CLDR check box is replaced by symbolDictionnaries list
 	# so we exclude from setting to keep and restore
 	if "includeCLDR" in d[SCT_Speech]:
@@ -409,7 +407,7 @@ def saveCurrentSpeechSettings():
 		) != ReturnCode.YES:
 			return
 	autoReadingSynth = {}
-	autoReadingSynth["synthName"] = curSynthName 
+	autoReadingSynth["synthName"] = curSynthName
 	autoReadingSynth.update(currentSpeechSettings)
 	_addonConfigManager.saveAutoReadingSynthSettings(autoReadingSynth)
 	# Translators: message to user to report automatic reading voice record.
@@ -422,21 +420,21 @@ settingsBeforeSwitch = None
 
 
 def switchToAutomaticReadingSynth():
-	global settingsBeforeSwitch 
+	global settingsBeforeSwitch
 	autoReadingSynth = _addonConfigManager.getAutoReadingSynthSettings()
 	if not autoReadingSynth:
 		return
 	curSynthName = synthDriverHandler.getSynth().name
 	currentSpeechSettings = getCurrentSpeechSettings()
 	(autoReadingSynthName, autoReadingSynthSpeechSettings) = (autoReadingSynth["synthName"], autoReadingSynth)
-	if settingsBeforeSwitch  is None:
-		settingsBeforeSwitch  = (curSynthName, currentSpeechSettings )
+	if settingsBeforeSwitch is None:
+		settingsBeforeSwitch = (curSynthName, currentSpeechSettings)
 		_setSynth(autoReadingSynthName, autoReadingSynthSpeechSettings, temporary=False)
 		msg = _("Automatic reading voice")
 	else:
-		(curSynthName, currentSpeechSettings ) = settingsBeforeSwitch  
-		settingsBeforeSwitch   = None
-		_setSynth(curSynthName, currentSpeechSettings , temporary=False) 
+		(curSynthName, currentSpeechSettings) = settingsBeforeSwitch
+		settingsBeforeSwitch = None
+		_setSynth(curSynthName, currentSpeechSettings, temporary=False)
 		msg = _("Current voice for Word")
 	ui.message(msg)
 
@@ -458,7 +456,6 @@ def _setSynth(synthName, speechSettings, temporary=False):
 		synthSpeechConfig.update(speechSettings[SCT_Speech])
 	newOutputDevice = synthSpeechConfig["outputDevice"]
 	if "outputDevice" in config.conf[SCT_Audio]:
-		#curOutputDevice = config.conf[SCT_Audio]["outputDevice"] 
 		config.conf[SCT_Audio]["outputDevice"] = newOutputDevice
 		del synthSpeechConfig["outputDevice"]
 	config.conf[SCT_Speech] = synthSpeechConfig.copy()

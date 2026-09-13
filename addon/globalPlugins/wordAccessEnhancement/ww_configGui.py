@@ -5,6 +5,7 @@
 
 
 import addonHandler
+from logHandler import log
 import os
 import sys
 import gui
@@ -176,7 +177,7 @@ class AutomaticReadingPanel(SettingsPanel):
 		sHelper.addItem(voiceInformationsButton)
 		voiceInformationsButton.Bind(wx.EVT_BUTTON, self.onVoiceInformationButton)
 
-	def getSynthInformations(self, autoReadingSynth ):
+	def getSynthInformations(self, autoReadingSynth):
 		def get_NVDASpeechSettings():
 			return [
 				"autoLanguageSwitching",
@@ -226,12 +227,12 @@ class AutomaticReadingPanel(SettingsPanel):
 		autoReadingSynthName = autoReadingSynth.get("synthName")
 		textList = []
 		# Translators: text to report synthesizer name.
-		textList.append("%s = %s" %(_("Synthetizer"), autoReadingSynthName))
+		textList.append("%s = %s" % (_("Synthetizer"), autoReadingSynthName))
 		synthSpeechSettings = autoReadingSynth[SCT_Speech]
 		synthDisplayInfos = autoReadingSynth["SynthDisplayInfos"]
 		for i in synthDisplayInfos:
 			label, val = synthDisplayInfos[i]
-			textList.append("%s = %s" % (label,val))
+			textList.append("%s = %s" % (label, val))
 
 		for setting in get_NVDASpeechSettings():
 			val = synthSpeechSettings.get(setting, None)
@@ -256,7 +257,6 @@ class AutomaticReadingPanel(SettingsPanel):
 			name = NVDAString(name).replace("&", "")
 			textList.append("%s = %s" % (name, val))
 		return textList
-		
 
 	def onVoiceInformationButton(self, evt):
 		autoReadingSynth = _addonConfigManager.getAutoReadingSynthSettings()
@@ -264,7 +264,7 @@ class AutomaticReadingPanel(SettingsPanel):
 			# Translators: message to user to report no automatic reading voice.
 			speech.speakMessage(_("No voice recorded for automatic reading"))
 			return
-		textList = self.getSynthInformations(autoReadingSynth )
+		textList = self.getSynthInformations(autoReadingSynth)
 		# Translators: this is the title of informationdialog box
 # to show voice profile informations.
 		dialogTitle = _("Voice settings for automatic reading")

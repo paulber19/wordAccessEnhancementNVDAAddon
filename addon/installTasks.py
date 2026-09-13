@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 # install.py
 # a part of wordAccessEnhancement add-on
-# Copyright 2018-2025 paulber19
+# Copyright 2018-2026 paulber19
 # This file is covered by the GNU General Public License.
 
 
@@ -15,8 +15,19 @@ PREVIOUSCONFIGURATIONFILE_SUFFIX = ".prev"
 DELETECONFIGURATIONFILE_SUFFIX = ".delete"
 
 
+def getAddonName():
+	curModuleFilePath = os.path.dirname(__file__)
+	manifestPath = os.path.join(curModuleFilePath, addonHandler.MANIFEST_FILENAME)
+	if not os.path.exists(manifestPath):
+		log.warning("There is not manifest.ini for this module")
+		return None
+	with open(manifestPath) as f:
+		manifest = addonHandler.AddonManifest(f)
+		addonName = manifest.get("name")
+	return addonName
+
+
 def renameFile(file, dest):
-	log.debug("renaming file:  %s to %s" % (file, dest))
 	try:
 		if os.path.exists(dest):
 			os.remove(dest)
@@ -54,8 +65,7 @@ def keepPreviousSettingsConfirmation(addonSummary):
 def onInstall():
 	import globalVars
 	curPath = os.path.dirname(__file__)
-	from addonHandler import _availableAddons
-	addon = _availableAddons[curPath]
+	addon = addonHandler._availableAddons[curPath]
 	addonName = addon.manifest["name"]
 	addonSummary = addon.manifest["summary"]
 	# save old configuration
@@ -64,24 +74,15 @@ def onInstall():
 	addonConfigFile = os.path.join(userConfigPath, curConfigFileName)
 	if not os.path.exists(addonConfigFile):
 		return
-	autoReadingSynthFileName = "%s_autoReadingSynth.pickle" % addonName
-	autoReadingSynthFile = os.path.join(userConfigPath, autoReadingSynthFileName)
 	extraAppArgs = globalVars.appArgsExtra if hasattr(globalVars, "appArgsExtra") else globalVars.unknownAppArgs
-	# this configuration is automatically preserved during an automatic update
 	keep = True if "addon-auto-update" in extraAppArgs else False
 	if keep or keepPreviousSettingsConfirmation(addonSummary):
-		dest = addonConfigFile + ".prev"
+		dest = addonConfigFile + PREVIOUSCONFIGURATIONFILE_SUFFIX
 		renameFile(addonConfigFile, dest)
-		if os.path.exists(autoReadingSynthFile):
-			dest = autoReadingSynthFile + PREVIOUSCONFIGURATIONFILE_SUFFIX
-			renameFile(autoReadingSynthFile, dest)
 	else:
 		# add-on configuration should not be kept
 		dest = addonConfigFile + DELETECONFIGURATIONFILE_SUFFIX
 		renameFile(addonConfigFile, dest)
-		if os.path.exists(autoReadingSynthFile):
-			dest = autoReadingSynthFile + DELETECONFIGURATIONFILE_SUFFIX
-			renameFile(autoReadingSynthFile, dest)
 
 
 def deleteFile(theFile):
@@ -89,25 +90,19 @@ def deleteFile(theFile):
 		return
 	os.remove(theFile)
 	if os.path.exists(theFile):
-		log.warning("Error on deletion of%s file" % theFile)
+		log.warning("Error on deletion of%s  file" % theFile)
 	else:
 		log.warning("%s file deleted" % theFile)
 
 
 def deleteAddonConfig():
 	import globalVars
-	import sys
-	curPath = os.path.dirname(__file__)
-	sys.path.append(curPath)
-	import buildVars
-	addonName = buildVars.addon_info["addon_name"]
-	del sys.path[-1]
+	addonName = getAddonName()
+	if not addonName:
+		return
 	configFile = os.path.join(
 		globalVars.appArgs.configPath, "%sAddon.ini" % addonName)
 	deleteFile(configFile)
-	autoReadingSynthFile = os.path.join(
-		globalVars.appArgs.configPath, "%s_autoReadingSynth.pickle" % addonName)
-	deleteFile(autoReadingSynthFile)
 
 
 def onUninstall():

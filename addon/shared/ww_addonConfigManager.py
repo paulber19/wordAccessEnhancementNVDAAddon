@@ -9,7 +9,6 @@ import addonHandler
 import os
 import config
 import wx
-import gui
 import globalVars
 from configobj import ConfigObj
 from configobj.validate import Validator, ValidateError
@@ -284,9 +283,7 @@ class AddonConfigurationManager():
 		self.autoReadingSynthFileName = "%s_autoReadingSynth.pickle" % _addonName
 		self.userConfig = globalVars.appArgs.configPath
 		self.loadSettings()
-		
 		config.post_configSave.register(self.handlePostConfigSave)
-
 
 	def warnConfigurationReset(self):
 		from ww_messages import alert
@@ -400,10 +397,11 @@ class AddonConfigurationManager():
 
 	def canConfigurationBeSaved(self, force):
 		# Never save config or state if running securely or if running from the launcher.
-
 		from NVDAState import shouldWriteToDisk
 		writeToDisk = shouldWriteToDisk()
-
+		if not writeToDisk:
+			log.debug("Not writing add-on configuration, either --secure or --launcher args present")
+			return False
 		# after add-on installation and and the user does not want to keep the configuration
 		# the configuration has been renamed with .delete extension
 		# if this file exists, configuration should not be saved
@@ -531,10 +529,10 @@ class AddonConfigurationManager():
 			autoReadingSynthFile = os.path.join(self.userConfig, self.autoReadingSynthFileName)
 			if not os.path.exists(autoReadingSynthFile):
 				return None
-			with open(autoReadingSynthFile , 'rb') as f:
+			with open(autoReadingSynthFile, 'rb') as f:
 				self._autoReadingSynth = cPickle.load(f)
 				log.debug("loading autoReadingSynth settings")
-		if self._autoReadingSynth  is None:
+		if self._autoReadingSynth is None:
 			return
 		# nvda 2024.4: include CLDR check box is replaced by symbolDictionnaries list
 		# so we exclude from setting to keep and restore

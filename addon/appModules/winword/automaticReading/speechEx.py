@@ -22,6 +22,7 @@ from speech import getTableInfoSpeech
 from speech.commands import WaveFileCommand
 from speech.types import logBadSequenceTypes
 from config.configFlags import ReportCellBorders
+from controlTypes import State
 import sys
 import os
 from controlTypes import OutputReason, TextPosition
@@ -68,14 +69,13 @@ class FormatFieldSpeech(textInfos.TextInfo):
 
 		# my modification
 		from ww_addonConfigManager import (
-			_addonConfigManager, AutoReadingWith_CurrentVoice, AutoReadingWith_Beep, AutoReadingWith_Voice
+			_addonConfigManager
 		)
 		# end modification
 		if not formatConfig:
 			formatConfig = config.conf["documentFormatting"]
 		# my modification
 		from config.configFlags import (
-			ReportCellBorders,
 			OutputMode,
 		)
 		# end modification
@@ -105,12 +105,11 @@ class FormatFieldSpeech(textInfos.TextInfo):
 				# %s will be replaced with the section number.
 				text = NVDAString("section %s") % sectionNumber
 				textList.append(text)
-	
+
 			textColumnCount = attrs.get("text-column-count")
 			oldTextColumnCount = attrsCache.get("text-column-count") if attrsCache is not None else None
 			textColumnNumber = attrs.get("text-column-number")
 			oldTextColumnNumber = attrsCache.get("text-column-number") if attrsCache is not None else None
-	
 			# Because we do not want to report the number of columns when a document is just opened and there is only
 			# one column. This would be verbose, in the standard case.
 			# column number has changed, or the columnCount has changed
@@ -134,7 +133,6 @@ class FormatFieldSpeech(textInfos.TextInfo):
 					# Translators: Indicates the text column number in a document.
 					text = NVDAString("column {columnNumber}").format(columnNumber=textColumnNumber)
 					textList.append(text)
-	
 		sectionBreakType = attrs.get("section-break")
 		if sectionBreakType:
 			if sectionBreakType == "0":  # Continuous section break.
@@ -249,7 +247,8 @@ class FormatFieldSpeech(textInfos.TextInfo):
 			elif color and color != oldColor:
 				# Translators: Reported when the text color changes (but not the background color).
 				# {color} will be replaced with the text color.
-				textList.append(NVDAString("{color}").format(color=color.name if isinstance(color, colors.RGB) else color))
+				textList.append(
+					NVDAString("{color}").format(color=color.name if isinstance(color, colors.RGB) else color))
 			elif backgroundColor and bgColorChanged:
 				# Translators: Reported when the background color changes (but not the text color).
 				# {backgroundColor} will be replaced with the background color.
@@ -588,9 +587,12 @@ class FormatFieldSpeech(textInfos.TextInfo):
 					text = ""
 				if text:
 					textList.append(text)
-		# The line-prefix formatField attribute contains the text for a bullet or number for a list item, when the bullet or number does not appear in the actual text content.
-		# Normally this attribute could be repeated across formatFields within a list item and therefore is not safe to speak when the unit is word or character.
-		# However, some implementations (such as MS Word with UIA) do limit its useage to the very first formatField of the list item.
+		# The line-prefix formatField attribute contains the text for a bullet or number for a list item,
+					# when the bullet or number does not appear in the actual text content.
+		# Normally this attribute could be repeated across formatFields
+					# within a list item and therefore is not safe to speak when the unit is word or character.
+		# However, some implementations (such as MS Word with UIA)
+					#  do limit its useage to the very first formatField of the list item.
 		# Therefore, they also expose a line-prefix_speakAlways attribute to allow its usage for any unit.
 		linePrefix_speakAlways = attrs.get("line-prefix_speakAlways", False)
 		if linePrefix_speakAlways or unit in (
@@ -608,9 +610,6 @@ class FormatFieldSpeech(textInfos.TextInfo):
 		logBadSequenceTypes(textList)
 		return textList
 
-
-
-	
 	def getFormatFieldSpeech_2026_1(  # noqa: C901
 		self,
 		attrs: textInfos.Field,
@@ -623,7 +622,7 @@ class FormatFieldSpeech(textInfos.TextInfo):
 	) -> SpeechSequence:
 		# my modification
 		from ww_addonConfigManager import (
-			_addonConfigManager, AutoReadingWith_CurrentVoice, AutoReadingWith_Beep, AutoReadingWith_Voice
+			_addonConfigManager
 		)
 		# end modification
 		if not formatConfig:
@@ -631,7 +630,6 @@ class FormatFieldSpeech(textInfos.TextInfo):
 		# my modification
 		from config.configFlags import (
 			ReportSpellingErrors,
-			ReportCellBorders,
 			OutputMode,
 		)
 		# end modification
@@ -690,7 +688,6 @@ class FormatFieldSpeech(textInfos.TextInfo):
 					# Translators: Indicates the text column number in a document.
 					text = NVDAString("column {columnNumber}").format(columnNumber=textColumnNumber)
 					textList.append(text)
-	
 		sectionBreakType = attrs.get("section-break")
 		if sectionBreakType:
 			if sectionBreakType == "0":  # Continuous section break.
@@ -805,7 +802,8 @@ class FormatFieldSpeech(textInfos.TextInfo):
 			elif color and color != oldColor:
 				# Translators: Reported when the text color changes (but not the background color).
 				# {color} will be replaced with the text color.
-				textList.append(NVDAString("{color}").format(color=color.name if isinstance(color, colors.RGB) else color))
+				textList.append(
+					NVDAString("{color}").format(color=color.name if isinstance(color, colors.RGB) else color))
 			elif backgroundColor and bgColorChanged:
 				# Translators: Reported when the background color changes (but not the text color).
 				# {backgroundColor} will be replaced with the background color.
@@ -1144,9 +1142,13 @@ class FormatFieldSpeech(textInfos.TextInfo):
 					text = ""
 				if text:
 					textList.append(text)
-		# The line-prefix formatField attribute contains the text for a bullet or number for a list item, when the bullet or number does not appear in the actual text content.
-		# Normally this attribute could be repeated across formatFields within a list item and therefore is not safe to speak when the unit is word or character.
-		# However, some implementations (such as MS Word with UIA) do limit its useage to the very first formatField of the list item.
+		# The line-prefix formatField attribute
+					# contains the text for a bullet or number for a list item,
+					# when the bullet or number does not appear in the actual text content.
+		# Normally this attribute could be repeated across formatFields
+					# within a list item and therefore is not safe to speak when the unit is word or character.
+		# However, some implementations (such as MS Word
+					# with UIA) do limit its useage to the very first formatField of the list item.
 		# Therefore, they also expose a line-prefix_speakAlways attribute to allow its usage for any unit.
 		linePrefix_speakAlways = attrs.get("line-prefix_speakAlways", False)
 		if linePrefix_speakAlways or unit in (
@@ -1163,4 +1165,3 @@ class FormatFieldSpeech(textInfos.TextInfo):
 			attrsCache.update(attrs)
 		logBadSequenceTypes(textList)
 		return textList
-

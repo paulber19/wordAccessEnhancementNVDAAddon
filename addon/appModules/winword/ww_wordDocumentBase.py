@@ -1151,7 +1151,7 @@ class WordDocument(ScriptsForTable, NVDAObjects.NVDAObject):
 	def script_switchViewTypeToDraftMode(self, gesturrre):
 		if not self.WinwordWindowObject:
 			return
-		from .ww_NVDAAppModuleWinword import ViewType 
+		from .ww_NVDAAppModuleWinword import ViewType
 		self.WinwordDocumentObject.ActiveWindow.View.Type = ViewType .DRAFT.value
 		val = self.WinwordDocumentObject.ActiveWindow.View.Type
 		view = ViewType(val).displayString
